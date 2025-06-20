@@ -1,6 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap'); */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 
@@ -27,14 +28,14 @@ Custom Fonts - Gotham
 @font-face {
   font-family: 'Gotham';
   src: url('assets/custom-fonts/GothamMediumItalic.ttf') format('truetype');
-  font-weight: 500;
+  font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Gotham';
   src: url('assets/custom-fonts/GothamMedium.ttf') format('truetype');
-  font-weight: 500;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -110,8 +111,8 @@ html {
 }
 
 body {
-  /* font-family: 'Gotham', sans-serif; */
-  font-family: 'Gotham', sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Montserrat", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -129,9 +130,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-color);
   font-weight: normal;
   line-height: 1.2;
-  /* font-family: 'Gotham', sans-serif; */
-  font-family: 'Gotham', sans-serif;
-  letter-spacing: -1px;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Montserrat", sans-serif;
+  
   margin: 0;
   margin-bottom: 20px;
 }
@@ -180,7 +181,7 @@ a, .btn, button {
   -ms-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   outline: medium none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 a img, iframe {
@@ -243,7 +244,7 @@ a {
   -ms-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   text-decoration: none;
-  font-family: 'Gotham', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 a.btn-regular {
@@ -377,7 +378,7 @@ input {
   color: var(--text-color);
   border-radius: 50%;
   margin-left: 10px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 15px;
 }
 
@@ -387,7 +388,7 @@ input {
 
 .btn {
   display: inline-block;
-  font-family: 'Gotham', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 800;
   line-height: 25px;
@@ -397,7 +398,7 @@ input {
   -ms-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
-  letter-spacing: -1px;
+  
   overflow: hidden;
   border-radius: inherit;
   border: none;
@@ -424,7 +425,7 @@ input {
 
 .btn.btn-sm-pro {
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 5px;
   padding: 4px 35px;
   display: inline-block;
@@ -459,7 +460,7 @@ input {
   background-color: var(--primary-color);
   /* color: #ffffff; */
   color: white;
-  font-weight: 500;
+  font-weight: 600;
   
 }
 
@@ -537,6 +538,10 @@ input {
 
 .product-cta .btn-light:hover{
   color: var(--primary-color) !important;
+}
+
+.product-cta h2{
+  font-weight: 800;
 }
 
 .btn-light:hover::after {
@@ -635,7 +640,7 @@ a.more-btn {
   text-transform: uppercase;
   color: var(--primary-color);
   font-weight: 800;
-  letter-spacing: -1px;
+  
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -816,7 +821,7 @@ background: linear-gradient(to bottom right, var(--primary-color), #F3BA19);
   margin-bottom: 0;
   position: relative;
   text-transform: capitalize;
-  letter-spacing: -1px;
+  
 }
 
 .bg-dark .site-heading h2,
@@ -830,7 +835,7 @@ background: linear-gradient(to bottom right, var(--primary-color), #F3BA19);
 
 .site-heading h4 {
   color: var(--primary-color) !important;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: 16px;
   margin-bottom: 10px;
@@ -915,7 +920,7 @@ HOMEPAGE
 HEADER - navbar
 ----------------------------- */
 nav.navbar.bootsnav ul.nav > li > a{
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .navbar .attr-nav .side-menu {
@@ -924,7 +929,7 @@ nav.navbar.bootsnav ul.nav > li > a{
 
 /* sidebar */
 nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a{
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
 .widget.address .content p{
@@ -1026,12 +1031,12 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 
 .home-about h4 {
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   color: #32c36c;
 }
 
 .home-about h2 {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 25px;
 }
 
@@ -1068,7 +1073,7 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 
 .home-about ul li h5 {
   margin: 0;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   letter-spacing: 0;
 }
@@ -1094,12 +1099,12 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
   text-transform: uppercase;
   color: var(--primary-color);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
 .product-category-col h2 {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0;
 }
 
@@ -1118,7 +1123,7 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 }
 
 .product-category-col h4 {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .product-category-col::before {
@@ -1282,18 +1287,18 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 .home-products__main-tab-box .tab-buttons .tab-btn p {
   font-size: 18px;
   color: var(--primary-color);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 18px;
-  letter-spacing: -1px;
+  
   margin-bottom: 0;
 }
 
 .home-products__main-tab-box .tab-buttons .tab-btn span {
   font-size: 12px;
   color: var(--primary-color);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 12px;
-  letter-spacing: -1px;
+  
 }
 
 .home-products__right {
@@ -1413,8 +1418,8 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
   /* color: #dce6f2; */
   color: #f0f0f0;
   text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: -1px;
+  font-weight: 600;
+  
   line-height: 12px;
 }
 
@@ -1422,7 +1427,7 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
   font-size: 24px;
   font-weight: 800;
   line-height: 30px;
-  letter-spacing: -1px;
+  
   margin-top: 7px;
   color: var(--secondary-color);
 }
@@ -1603,7 +1608,7 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 }
 
 .sathi-community-area .inner-items .left-info .item h4 {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sathi-community-area .inner-items .left-info .item h2{
@@ -1641,7 +1646,7 @@ ul.achivement li .counter {
   display: flex;
   align-items: center;
   font-size: 36px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-color);
   line-height: 1;
   margin-bottom: 5px;
@@ -1653,7 +1658,7 @@ ul.achivement li .counter .operator {
 }
 
 ul.achivement li .medium {
-  font-weight: 500;
+  font-weight: 600;
   text-align: right;
 }
 
@@ -1817,7 +1822,7 @@ ul.achivement li .medium {
   color: white;
   line-height: 60px !important;
   padding-top: 47px;
-  letter-spacing: -1px;
+  
   padding-bottom: 50px;
 }
 
@@ -1929,7 +1934,7 @@ ul.achivement li .medium {
 
 .testimonials-area .testimonial-content .provider .info h5 {
   margin-bottom: 4px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: capitalize;
   font-size: 20px;
 }
@@ -1937,7 +1942,7 @@ ul.achivement li .medium {
 .testimonials-area .testimonial-content .provider .info span {
   display: block;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -1962,7 +1967,7 @@ ul.achivement li .medium {
 }
 
 .testimonials-area .testimonial-content.testimonials-carousel .owl-nav i {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .testimonials-area .testimonial-content.testimonials-carousel .owl-nav .owl-prev, 
@@ -2053,7 +2058,7 @@ ul.achivement li .medium {
   position: absolute;
   left: 50px;
   top: 50px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 70px;
   /* color: var(--text-color); */
   color: var(--secondary-color);
@@ -2084,7 +2089,20 @@ ul.achivement li .medium {
   z-index: 1;
   padding: 10px;
   /* border: 1px solid transparent; */
+  
 }
+.main-blogs-grid.blog-area .blog-items .item{
+  opacity: 0;
+   transform: rotateY(90deg); /* flip from side */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.main-blogs-grid.blog-area .blog-items .item.show{
+   opacity: 1;
+  transform: rotateY(0deg);
+
+}
+
 .blog-area .blog-items .item::before{
   position: absolute;
   content: "";
@@ -2203,7 +2221,7 @@ a.more-btn:hover::after {
 .blog-area .item .info .meta ul li {
   margin-right: 15px;
   position: relative;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: capitalize;
   font-size: 15px;
   color: #999;
@@ -2214,13 +2232,13 @@ a.more-btn:hover::after {
   font-size: 16px;
   position: relative;
   top: 1px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .blog-area .item .info .meta ul li a {
   /* color: var(--text-color); blogs meta */
   color: #999;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .blog-area .item .info .meta ul li a:hover {
@@ -2231,7 +2249,7 @@ a.more-btn:hover::after {
 .blog-area .item .info h2,
 .blog-area .item .info h3,
 .blog-area .item .info h4 {
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.4;
 }
 
@@ -2244,6 +2262,7 @@ a.more-btn:hover::after {
 
 .blog-area .item .info .content h4 a{
   color: var(--primary-color);
+  font-size: 18px;
 }
 
 .blog-area .item .info .content h4 a:hover {
@@ -2303,7 +2322,7 @@ Blogs - Single Blog
   margin-right: 10px;
   margin-top: 10px;
   background: #ffffff;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 12px;
   padding: 3px 20px;
   border-radius: 30px;
@@ -2347,7 +2366,7 @@ Blogs - Single Blog
 }
 
 .blog-area .sidebar .title h4 {
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 30px;
   margin-top: -5px;
   position: relative;
@@ -2388,8 +2407,8 @@ Blogs - Single Blog
 .blog-area .sidebar button[type="submit"] {
   border: none;
   color: #ffffff;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-weight: 600;
+  
   min-height: 50px;
   width: 50px;
   position: absolute;
@@ -2452,7 +2471,7 @@ Blogs - Single Blog
 .blog-area .sidebar .sidebar-item.category li a {
   display: flex;
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 600;
   align-items: center;
   justify-content: space-between;
   position: relative;
@@ -2508,7 +2527,7 @@ Blogs - Single Blog
 .sidebar-item.recent-post li a {
   color: #232323;
   display: block;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .sidebar-item.recent-post li a:last-child {
@@ -2524,7 +2543,7 @@ Blogs - Single Blog
 
 .sidebar-item.recent-post .meta-title i {
   margin-right: 3px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sidebar-item.recent-post li a:hover {
@@ -2543,7 +2562,7 @@ Blogs - Single Blog
 .sidebar-item.recent-post li span {
   display: inline-block;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: capitalize;
 }
 
@@ -2629,7 +2648,7 @@ Blogs - Single Blog
 
 .sidebar-item.archives ul li a {
   display: inline-block;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: capitalize;
   z-index: 1;
   padding-left: 25px;
@@ -2647,7 +2666,7 @@ Blogs - Single Blog
   left: 0;
   position: absolute;
   width: 8px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sidebar-item.social-sidebar ul {
@@ -2711,7 +2730,7 @@ Blogs - Single Blog
 .sidebar-item.tags ul li a {
   border: 1px solid #e7e7e7;
   display: inline-block;
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 8px;
   margin-right: 5px;
   padding: 5px 13px;
@@ -2758,7 +2777,7 @@ Blogs - Single Blog
 
 .blog-area .sidebar .sidebar-item.add-banner .sidebar-info h4 {
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .blog-area .sidebar .sidebar-item.add-banner .sidebar-info p {
@@ -2784,7 +2803,7 @@ Blogs - Single Blog
   color: #ffffff;
   display: inline-block;
   font-weight: 600;
-  letter-spacing: 1px;
+  
   padding: 3px 20px;
   text-transform: uppercase;
 }
@@ -2796,7 +2815,7 @@ Blogs - Single Blog
 .blog-area.single .item .content-box h2,
 .blog-area.single .item .content-box h3,
 .blog-area.single .item .content-box h4 {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .blog-area.single .content-box .cats {
@@ -2806,7 +2825,7 @@ Blogs - Single Blog
 
 .blog-area.single .content-box .meta .date {
   float: right;
-  letter-spacing: 1px;
+  
   text-transform: uppercase;
 }
 
@@ -2911,7 +2930,7 @@ Blogs - Single Blog
   line-height: 34px;
   font-size: 16px;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .blog-area .blog-content .post-tags, 
@@ -3097,7 +3116,7 @@ Blogs - Single Blog
 .comments-area .comments-title h2,
 .comments-area .comments-title h3,
 .comments-area .comments-title h4 {
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 30px;
   text-transform: capitalize;
 }
@@ -3138,11 +3157,11 @@ Blogs - Single Blog
 .comments-list .commen-item .content .title {
   align-items: center;
   margin-bottom: 15px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .comments-list .commen-item .content .title span {
-  font-weight: 500;
+  font-weight: 600;
   color: #999999;
   display: block;
   font-size: 15px;
@@ -3150,7 +3169,7 @@ Blogs - Single Blog
 }
 
 .comments-list .commen-item .content .title span i {
-  font-weight: 500;
+  font-weight: 600;
   margin-right: 5px;
 }
 
@@ -3304,7 +3323,7 @@ footer .single-item {
 
 footer .widget-title {
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 30px;
   font-size: 22px;
 }
@@ -3401,7 +3420,7 @@ footer .link ul li a:hover {
 }
 .footer-bottom a:hover{
   color: var(--secondary-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .footer-bottom li {
@@ -3414,7 +3433,7 @@ footer .link ul li a:hover {
 }
 
 .footer-bottom .text-right li a {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 
@@ -3593,7 +3612,7 @@ Pagination
 .breadcrumb-area .breadcrumb li::after {
   content: "\f105";
   font-family: "Font Awesome 5 Pro";
-  font-weight: 500;
+  font-weight: 600;
   left: -5px;
   position: absolute;
   font-size: 14px;
@@ -3605,7 +3624,7 @@ Pagination
 
 .breadcrumb-area .breadcrumb a, 
 .breadcrumb-area .breadcrumb li {
-  font-weight: 500;
+  font-weight: 600;
   text-transform: capitalize;
   color: var(--primary-color);
 }
@@ -3636,7 +3655,7 @@ Pagination
   z-index: 1;
   font-size: 18px;
   line-height: 1.3em;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .work-process-area .work-pro-items .item:hover h4,
@@ -3952,7 +3971,7 @@ Pagination
 
 .services-one__title {
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 30px;
   margin-bottom: 15px;
 }
@@ -4059,7 +4078,7 @@ Pagination
   color: var(--primary-color) !important;
   text-transform: capitalize;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 

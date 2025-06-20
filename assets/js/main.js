@@ -591,4 +591,21 @@
 
   });   
 
+  const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          $(entry.target).addClass("show");
+        } else {
+          $(entry.target).removeClass("show");
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    $(".main-blogs-grid .blog-items .item").each(function () {
+      observer.observe(this);
+    });
+
+
 })(jQuery); // End jQuery
