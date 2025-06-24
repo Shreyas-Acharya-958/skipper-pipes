@@ -606,6 +606,82 @@
     $(".main-blogs-grid .blog-items .item").each(function () {
       observer.observe(this);
     });
+    
+    $(".business-dir-card").each(function () {
+      observer.observe(this);
+    });
+    
+    $(".business-heads-card").each(function () {
+      observer.observe(this);
+    });
+    
+    $(".certificate-col").each(function () {
+      observer.observe(this);
+    });
+
+
+
+// Timeline - Overview page
+var swiper = new Swiper('.timeline-swiper', {
+  slidesPerView: 3,
+  spaceBetween: 40,
+  grabCursor: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  },
+  breakpoints: {
+    992: {
+      slidesPerView: 3
+    },
+    768: {
+      slidesPerView: 2
+    },
+    0: {
+      slidesPerView: 1
+    }
+  }
+});
+
+
+// Leadership poage - business directors popup
+ $('.view-profile-popup').magnificPopup({
+    type: 'inline',
+    midClick: true,
+    removalDelay: 300,
+    mainClass: 'mfp-fade'
+  });
+
+
+  // Location - Manufacturing page
+var swiper = new Swiper('.location-swiper', {
+  slidesPerView: 3,
+  spaceBetween: 40,
+  grabCursor: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
+  },
+  breakpoints: {
+    992: {
+      slidesPerView: 3
+    },
+    768: {
+      slidesPerView: 2
+    },
+    0: {
+      slidesPerView: 1
+    }
+  }
+});
 
 
 })(jQuery); // End jQuery
