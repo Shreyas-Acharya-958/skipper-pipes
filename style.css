@@ -4123,7 +4123,8 @@ Company - Overview page
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(20, 67, 114, 0.9);
+  /* background-color: rgba(20, 67, 114, 0.9); */
+  background-color: rgba(20, 67, 114, 0.6);
 }
 
 .hero-banner2-content{
@@ -4198,7 +4199,7 @@ Company - Overview page
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(20, 67, 114, 0.55);
+  background-color: rgba(20, 67, 114, 0.45);
 }
 
 .vision-sec .vision-sec-content{
@@ -4230,7 +4231,7 @@ Company - Overview page
 /* overview - mission section */
 .mission-sec .mission-card{
   box-shadow:0px 0px 10px  rgba(0 0 0 / 18%);
-  padding: 15px;
+  padding: 25px 15px 15px;
   text-align: center;
   margin-bottom: 25px;
   background-color: white;
@@ -4342,7 +4343,7 @@ Company - Overview page
 .location-slide {
   background: white;
   /* border-radius: 10px; */
-  padding: 35px 20px 20px;
+  padding: 20px;
   max-width: 350px;
   text-align: left;
   /* min-height: 515px;
@@ -4378,10 +4379,10 @@ Company - Overview page
 
 
 .timeline-year {
-  font-size: 30px;
+  font-size: 20px !important;
   font-weight: 700;
   color: #fff;
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid var(--secondary-color);
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
@@ -4583,7 +4584,7 @@ LEADERSHIP
 
 .business-dir-card .business-dir-img,
 .business-heads-card .business-heads-img{
-  width: 85%;
+  width: 100%;
   border-right: 10px solid var(--secondary-color);
   /* border-right: 10px solid var(--primary-color); */
   margin-bottom: 15px;
@@ -4702,6 +4703,7 @@ MANUFACTURING
 .sustainability-practice-sec ul li i{
   margin-top: 7px;
   font-weight: 500;
+  color: var(--secondary-color);
 }
 
 
