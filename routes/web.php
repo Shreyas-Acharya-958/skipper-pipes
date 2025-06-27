@@ -8,6 +8,7 @@ use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\CompanyPageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MenuController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,4 +44,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Contact routes
     Route::resource('contacts', ContactController::class)->names('contacts');
+
+    // Menu Management Routes
+    Route::resource('menus', MenuController::class);
+    Route::post('menus/update-order', [MenuController::class, 'updateOrder'])->name('menus.update-order');
 });

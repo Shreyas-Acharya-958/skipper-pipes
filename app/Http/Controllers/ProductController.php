@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Blog;
-use App\Models\BlogCategory;
+use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
-class BlogController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = Blog::query();
+        $query = Product::query();
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where('title', 'like', "%{$search}%");
         }
-        $blogs = $query->get();
-        return view('admin.blogs.index', compact('blogs'));
+        $products = $query->paginate(10); // 10 per page, change as needed
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -27,8 +27,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $categories = BlogCategory::all();
-        return view('admin.blogs.create', compact('categories'));
+        return view('admin.products.create');
     }
 
     /**
@@ -37,67 +36,124 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'cat_id' => 'required|exists:blog_categories,id',
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:blogs,slug',
-            'short_description' => 'required|string',
-            'long_description' => 'required|string',
+            'slug' => 'required|string|max:255|unique:products,slug',
+            'product_overview' => 'required|string',
+            'features_benefits' => 'required|string',
+            'technical' => 'required|string',
+            'application' => 'required|string',
+            'faq' => 'required|string',
             'status' => 'required|boolean',
-            'published_at' => 'nullable|date',
-            // Add validation for images if needed
+            'page_image' => 'nullable|image',
+            'product_overview_image' => 'nullable|image',
+            'brochure' => 'nullable|mimes:pdf,doc,docx',
         ]);
 
-        $blog = Blog::create($validated);
-        // Handle file uploads if needed
+        // Handle file uploads
+        foreach (['page_image', 'product_overview_image'] as $field) {
+            if ($request->hasFile($field)) {
+                $validated[$field] = $request->file($field)->store('products', 'public');
+            }
+        }
 
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully.');
+        if ($request->hasFile('brochure')) {
+            $validated['brochure'] = $request->file('brochure')->store('products/brochures', 'public');
+        }
+
+        Product::create($validated);
+
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Blog $blog)
+    public function show(Product $product)
     {
-        return view('admin.blogs.show', compact('blog'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Blog $blog)
+    public function edit(Product $product)
     {
-        $categories = BlogCategory::all();
-        return view('admin.blogs.edit', compact('blog', 'categories'));
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'cat_id' => 'required|exists:blog_categories,id',
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:blogs,slug,' . $blog->id,
-            'short_description' => 'required|string',
-            'long_description' => 'required|string',
+            'slug' => 'required|string|max:255|unique:products,slug,' . $product->id,
+            'product_overview' => 'required|string',
+            'features_benefits' => 'required|string',
+            'technical' => 'required|string',
+            'application' => 'required|string',
+            'faq' => 'required|string',
             'status' => 'required|boolean',
-            'published_at' => 'nullable|date',
-            // Add validation for images if needed
+            'page_image' => 'nullable|image',
+            'product_overview_image' => 'nullable|image',
+            'brochure' => 'nullable|mimes:pdf,doc,docx',
         ]);
 
-        $blog->update($validated);
-        // Handle file uploads if needed
+        // Handle file uploads and removals
+        foreach (['page_image', 'product_overview_image'] as $field) {
+            if ($request->has('remove_' . $field)) {
+                if ($product->$field) {
+                    Storage::disk('public')->delete($product->$field);
+                    $validated[$field] = null;
+                }
+            } elseif ($request->hasFile($field)) {
+                if ($product->$field) {
+                    Storage::disk('public')->delete($product->$field);
+                }
+                $validated[$field] = $request->file($field)->store('products', 'public');
+            } else {
+                unset($validated[$field]);
+            }
+        }
 
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully.');
+        // Handle brochure
+        if ($request->has('remove_brochure')) {
+            if ($product->brochure) {
+                Storage::disk('public')->delete($product->brochure);
+                $validated['brochure'] = null;
+            }
+        } elseif ($request->hasFile('brochure')) {
+            if ($product->brochure) {
+                Storage::disk('public')->delete($product->brochure);
+            }
+            $validated['brochure'] = $request->file('brochure')->store('products/brochures', 'public');
+        } else {
+            unset($validated['brochure']);
+        }
+
+        $product->update($validated);
+
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy(Product $product)
     {
-        $blog->delete();
-        return redirect()->route('admin.blogs.index')->with('success', 'Blog deleted successfully.');
+        // Delete associated files
+        if ($product->page_image) {
+            Storage::disk('public')->delete($product->page_image);
+        }
+        if ($product->product_overview_image) {
+            Storage::disk('public')->delete($product->product_overview_image);
+        }
+        if ($product->brochure) {
+            Storage::disk('public')->delete($product->brochure);
+        }
+
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 }

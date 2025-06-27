@@ -17,108 +17,100 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-8">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <th width="150">ID:</th>
-                                    <td>{{ $product->id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Title:</th>
-                                    <td>{{ $product->title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Slug:</th>
-                                    <td>{{ $product->slug }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Status:</th>
-                                    <td>
-                                        @if ($product->status)
-                                            <span class="badge bg-success">Active</span>
-                                        @else
-                                            <span class="badge bg-danger">Inactive</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Created At:</th>
-                                    <td>{{ $product->created_at->format('Y-m-d H:i:s') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated At:</th>
-                                    <td>{{ $product->updated_at->format('Y-m-d H:i:s') }}</td>
-                                </tr>
-                            </table>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong>Title:</strong>
+                                <p>{{ $product->title }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Slug:</strong>
+                                <p>{{ $product->slug }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <strong>Status:</strong>
+                                <p>
+                                    @if ($product->status)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-danger">Inactive</span>
+                                    @endif
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            @if ($product->page_image)
-                                <div class="mb-3">
-                                    <label class="form-label">Page Image:</label>
-                                    <img src="{{ asset('storage/' . $product->page_image) }}" class="img-fluid rounded"
-                                        alt="Page Image">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <strong>Page Image:</strong>
+                                @if ($product->page_image)
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/' . $product->page_image) }}" alt="Page Image"
+                                            style="max-width: 200px; height: auto;">
+                                    </div>
+                                @else
+                                    <p>No page image uploaded</p>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <strong>Product Overview Image:</strong>
+                                @if ($product->product_overview_image)
+                                    <div class="mt-2">
+                                        <img src="{{ asset('storage/' . $product->product_overview_image) }}"
+                                            alt="Product Overview Image" style="max-width: 200px; height: auto;">
+                                    </div>
+                                @else
+                                    <p>No product overview image uploaded</p>
+                                @endif
+                            </div>
+                            <div class="mb-3">
+                                <strong>Brochure:</strong>
+                                @if ($product->brochure)
+                                    <div class="mt-2">
+                                        <a href="{{ asset('storage/' . $product->brochure) }}" target="_blank"
+                                            class="btn btn-sm btn-info">
+                                            <i class="fas fa-download"></i> Download Brochure
+                                        </a>
+                                    </div>
+                                @else
+                                    <p>No brochure uploaded</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="mb-4">
+                                <strong>Product Overview:</strong>
+                                <div class="mt-2">
+                                    {!! $product->product_overview !!}
                                 </div>
-                            @endif
-                            @if ($product->product_overview_image)
-                                <div class="mb-3">
-                                    <label class="form-label">Product Overview Image:</label>
-                                    <img src="{{ asset('storage/' . $product->product_overview_image) }}"
-                                        class="img-fluid rounded" alt="Product Overview Image">
+                            </div>
+
+                            <div class="mb-4">
+                                <strong>Features & Benefits:</strong>
+                                <div class="mt-2">
+                                    {!! $product->features_benefits !!}
                                 </div>
-                            @endif
-                            @if ($product->brochure)
-                                <div class="mb-3">
-                                    <label class="form-label">Brochure:</label>
-                                    <a href="{{ asset('storage/' . $product->brochure) }}" class="btn btn-sm btn-primary"
-                                        target="_blank">
-                                        <i class="icon icon-download"></i> Download PDF
-                                    </a>
+                            </div>
+
+                            <div class="mb-4">
+                                <strong>Technical Details:</strong>
+                                <div class="mt-2">
+                                    {!! $product->technical !!}
                                 </div>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>Product Overview</h5>
-                            <div class="border rounded p-3 bg-light">
-                                {!! nl2br(e($product->product_overview)) !!}
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>Features & Benefits</h5>
-                            <div class="border rounded p-3 bg-light">
-                                {!! nl2br(e($product->features_benefits)) !!}
+                            <div class="mb-4">
+                                <strong>Application:</strong>
+                                <div class="mt-2">
+                                    {!! $product->application !!}
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>Technical Specifications</h5>
-                            <div class="border rounded p-3 bg-light">
-                                {!! nl2br(e($product->technical)) !!}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>Applications</h5>
-                            <div class="border rounded p-3 bg-light">
-                                {!! nl2br(e($product->application)) !!}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>FAQ</h5>
-                            <div class="border rounded p-3 bg-light">
-                                {!! nl2br(e($product->faq)) !!}
+                            <div class="mb-4">
+                                <strong>FAQ:</strong>
+                                <div class="mt-2">
+                                    {!! $product->faq !!}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
                     <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
@@ -21,46 +21,26 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="slug" class="form-label">Slug</label>
-                                    <input type="text" class="form-control @error('slug') is-invalid @enderror"
-                                        id="slug" name="slug" value="{{ old('slug') }}" required>
-                                    @error('slug')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="page_image" class="form-label">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
-                                        id="page_image" name="page_image">
+                                        id="page_image" name="page_image" accept="image/*">
                                     @error('page_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="product_overview_image" class="form-label">Product Overview Image</label>
                                     <input type="file"
                                         class="form-control @error('product_overview_image') is-invalid @enderror"
-                                        id="product_overview_image" name="product_overview_image">
+                                        id="product_overview_image" name="product_overview_image" accept="image/*">
                                     @error('product_overview_image')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="brochure" class="form-label">Brochure (PDF)</label>
-                                    <input type="file" class="form-control @error('brochure') is-invalid @enderror"
-                                        id="brochure" name="brochure" accept=".pdf">
-                                    @error('brochure')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -68,9 +48,18 @@
                         </div>
 
                         <div class="mb-3">
+                            <label for="slug" class="form-label">Slug</label>
+                            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
+                                name="slug" value="{{ old('slug') }}" required>
+                            @error('slug')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <label for="product_overview" class="form-label">Product Overview</label>
                             <textarea class="form-control @error('product_overview') is-invalid @enderror" id="product_overview"
-                                name="product_overview" rows="4" required>{{ old('product_overview') }}</textarea>
+                                name="product_overview" rows="6">{{ old('product_overview') }}</textarea>
                             @error('product_overview')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -79,25 +68,24 @@
                         <div class="mb-3">
                             <label for="features_benefits" class="form-label">Features & Benefits</label>
                             <textarea class="form-control @error('features_benefits') is-invalid @enderror" id="features_benefits"
-                                name="features_benefits" rows="4" required>{{ old('features_benefits') }}</textarea>
+                                name="features_benefits" rows="6">{{ old('features_benefits') }}</textarea>
                             @error('features_benefits')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="technical" class="form-label">Technical Specifications</label>
-                            <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical" rows="4"
-                                required>{{ old('technical') }}</textarea>
+                            <label for="technical" class="form-label">Technical Details</label>
+                            <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical" rows="6">{{ old('technical') }}</textarea>
                             @error('technical')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="application" class="form-label">Applications</label>
+                            <label for="application" class="form-label">Application</label>
                             <textarea class="form-control @error('application') is-invalid @enderror" id="application" name="application"
-                                rows="4" required>{{ old('application') }}</textarea>
+                                rows="6">{{ old('application') }}</textarea>
                             @error('application')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -105,22 +93,37 @@
 
                         <div class="mb-3">
                             <label for="faq" class="form-label">FAQ</label>
-                            <textarea class="form-control @error('faq') is-invalid @enderror" id="faq" name="faq" rows="4" required>{{ old('faq') }}</textarea>
+                            <textarea class="form-control @error('faq') is-invalid @enderror" id="faq" name="faq" rows="6">{{ old('faq') }}</textarea>
                             @error('faq')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-select @error('status') is-invalid @enderror" id="status"
-                                name="status" required>
-                                <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive</option>
-                            </select>
-                            @error('status')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select @error('status') is-invalid @enderror" id="status"
+                                        name="status" required>
+                                        <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
+                                        <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive
+                                        </option>
+                                    </select>
+                                    @error('status')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="brochure" class="form-label">Brochure</label>
+                                    <input type="file" class="form-control @error('brochure') is-invalid @enderror"
+                                        id="brochure" name="brochure" accept=".pdf,.doc,.docx">
+                                    @error('brochure')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -133,3 +136,38 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
+    <script>
+        const editors = ['product_overview', 'features_benefits', 'technical', 'application', 'faq'];
+        editors.forEach(editor => {
+            tinymce.init({
+                selector: `#${editor}`,
+                height: 300,
+                menubar: false,
+                plugins: 'lists link image code',
+                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code'
+            });
+        });
+    </script>
+    <script>
+        let slugInput = document.getElementById('slug');
+        let titleInput = document.getElementById('title');
+        let autoSlug = true;
+
+        slugInput.addEventListener('input', function() {
+            autoSlug = false;
+        });
+
+        titleInput.addEventListener('input', function() {
+            if (autoSlug) {
+                let slug = this.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '');
+                slugInput.value = slug;
+            }
+        });
+    </script>
+@endpush

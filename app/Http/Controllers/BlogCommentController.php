@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\BlogComment;
 use Illuminate\Http\Request;
 
@@ -9,28 +10,31 @@ class BlogCommentController extends Controller
 {
     public function index()
     {
-        $comments = BlogComment::all();
+        $comments = BlogComment::with('blog')->latest()->paginate(10);
         return view('admin.blog_comments.index', compact('comments'));
     }
 
     public function create()
     {
-        return view('admin.blog_comments.create');
+        $blogs = Blog::where('status', 1)->get();
+        return view('admin.blog_comments.create', compact('blogs'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'blog_id' => 'required|integer|exists:blogs,id',
+            'blog_id' => 'required|exists:blogs,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'description' => 'required|string',
-            'status' => 'required|boolean'
+            'status' => 'required|boolean',
+            'is_active' => 'required|boolean',
         ]);
 
         BlogComment::create($request->all());
 
-        return redirect()->route('admin.blog_comments.index')->with('success', 'Blog comment created successfully.');
+        return redirect()->route('admin.blog_comments.index')
+            ->with('success', 'Blog comment created successfully.');
     }
 
     public function show(BlogComment $comment)
@@ -40,28 +44,32 @@ class BlogCommentController extends Controller
 
     public function edit(BlogComment $comment)
     {
-        return view('admin.blog_comments.edit', compact('comment'));
+        $blogs = Blog::where('status', 1)->get();
+        return view('admin.blog_comments.edit', compact('comment', 'blogs'));
     }
 
     public function update(Request $request, BlogComment $comment)
     {
         $request->validate([
-            'blog_id' => 'required|integer|exists:blogs,id',
+            'blog_id' => 'required|exists:blogs,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'description' => 'required|string',
-            'status' => 'required|boolean'
+            'status' => 'required|boolean',
+            'is_active' => 'required|boolean',
         ]);
 
         $comment->update($request->all());
 
-        return redirect()->route('admin.blog_comments.index')->with('success', 'Blog comment updated successfully.');
+        return redirect()->route('admin.blog_comments.index')
+            ->with('success', 'Blog comment updated successfully.');
     }
 
     public function destroy(BlogComment $comment)
     {
         $comment->delete();
 
-        return redirect()->route('admin.blog_comments.index')->with('success', 'Blog comment deleted successfully.');
+        return redirect()->route('admin.blog_comments.index')
+            ->with('success', 'Blog comment deleted successfully.');
     }
 }
