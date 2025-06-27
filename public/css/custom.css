@@ -1,0 +1,252 @@
+/* Custom CSS for Admin Panel */
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+    --primary-color: #FF9900;
+    --primary-dark: #F08700;
+    --sidebar-width: 250px;
+    --sidebar-width-collapsed: 70px;
+    --header-height: 60px;
+    --sidebar-bg: #FF9900;
+    --sidebar-color: #ECF0F1;
+}
+
+/* ===== ADMIN LAYOUT STYLES ===== */
+body {
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: var(--sidebar-color);
+    transition: width 0.3s ease;
+    position: fixed;
+    height: 100vh;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 1rem 1rem 1rem;
+}
+
+.sidebar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.sidebar .logo-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.sidebar .nav {
+    flex: 1;
+    padding-top: 1rem;
+}
+
+.sidebar .nav-link {
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 0 30px 30px 0;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s;
+}
+
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.sidebar .nav-link i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.sidebar .nav-link .nav-text {
+    white-space: nowrap;
+}
+
+.sidebar .logout {
+    margin: 1rem 0 1.5rem 0;
+    padding: 0 1.5rem;
+}
+
+.content-wrapper {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: var(--sidebar-width);
+    height: var(--header-height);
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    z-index: 1000;
+    transition: left 0.3s;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-content {
+    padding: 32px 24px 24px 24px;
+    margin-top: var(--header-height);
+}
+
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.07);
+    border: none;
+}
+
+.user-dropdown .dropdown-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.user-dropdown img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.footer {
+    background: #fff;
+    border-top: 1px solid #e4e5e6;
+    font-size: 0.95rem;
+    color: #888;
+    text-align: right;
+    padding: 10px 24px;
+}
+
+.sidebar.collapsed {
+    width: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .nav-text {
+    display: none;
+}
+
+.content-wrapper.collapsed,
+.dashboard-header.collapsed {
+    margin-left: 60px !important;
+    transition: all 0.3s;
+}
+
+/* ===== LOGIN PAGE STYLES ===== */
+.login-body {
+    background: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.10);
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-logo img {
+    height: 48px;
+    margin-right: 10px;
+}
+
+.login-logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #FF9900;
+}
+
+/* ===== LOGIN FORM STYLES ===== */
+.login-card .card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+}
+
+.input-group-text {
+    background-color: white;
+    border-right: none;
+}
+
+.input-group .form-control {
+    border-left: none;
+}
+
+.input-group .form-control:focus {
+    border-left: none;
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    padding: 0.8rem 1rem;
+    background: #FF9900 !important;
+    border: none;
+    color: #fff !important;
+}
+
+.btn-primary:hover {
+    background: #F08700 !important;
+    color: #fff !important;
+}
+
+#togglePassword {
+    border-left: none;
+    border-color: #ced4da;
+}
+
+#togglePassword:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+/* ===== WELCOME PAGE STYLES ===== */
+/* Note: The welcome page uses Tailwind CSS classes, so we don't need to extract those styles */

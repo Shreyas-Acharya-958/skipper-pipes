@@ -1,0 +1,46 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogCommentController;
+use App\Http\Controllers\CompanyPageController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AuthController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// Admin authentication routes (no middleware)
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login.post');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+// Admin routes (with auth middleware)
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    // Blog routes
+    Route::resource('blogs', BlogController::class)->names('blogs');
+
+    // Product routes
+    Route::resource('products', ProductController::class)->names('products');
+
+    // Blog Category routes
+    Route::resource('blog-categories', BlogCategoryController::class)->names('blog_categories');
+
+    // Blog Comment routes
+    Route::resource('blog-comments', BlogCommentController::class)->names('blog_comments');
+
+    // Company Page routes
+    Route::resource('company-pages', CompanyPageController::class)->names('company_pages');
+
+    // Contact routes
+    Route::resource('contacts', ContactController::class)->names('contacts');
+});
