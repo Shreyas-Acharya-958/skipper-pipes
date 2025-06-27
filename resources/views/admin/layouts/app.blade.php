@@ -15,8 +15,7 @@
     <div class="dashboard-container">
         <div class="sidebar">
             <div class="logo">
-                <img src="https://i.imgur.com/4M34hi2.png" alt="Logo">
-                <span class="logo-text">Admin Panel</span>
+                <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </div>
             <nav class="nav flex-column">
                 <a class="nav-link{{ request()->routeIs('admin.dashboard') ? ' active' : '' }}"
@@ -48,11 +47,13 @@
                     <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
                 </a>
             </nav>
-            <div class="logout mt-auto">
+            <div class="logout">
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-light w-100"><i class="fas fa-sign-out-alt me-2"></i>
-                        Logout</button>
+                    <button type="submit" class="btn btn-light w-100">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
                 </form>
             </div>
         </div>
