@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\BlogTag;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
@@ -19,7 +20,7 @@ class BlogController extends Controller
             $search = $request->input('search');
             $query->where('title', 'like', "%{$search}%");
         }
-        $blogs = $query->paginate(10); // 10 per page, change as needed
+        $blogs = $query->with(['category', 'tags'])->paginate(10);
         return view('admin.blogs.index', compact('blogs'));
     }
 
@@ -29,7 +30,8 @@ class BlogController extends Controller
     public function create()
     {
         $categories = BlogCategory::all();
-        return view('admin.blogs.create', compact('categories'));
+        $tags = BlogTag::where('status', true)->get();
+        return view('admin.blogs.create', compact('categories', 'tags'));
     }
 
     /**
@@ -48,6 +50,8 @@ class BlogController extends Controller
             'page_image' => 'nullable|image',
             'image_1' => 'nullable|image',
             'image_2' => 'nullable|image',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:blog_tags,id'
         ]);
 
         // Handle file uploads
@@ -57,7 +61,12 @@ class BlogController extends Controller
             }
         }
 
-        Blog::create($validated);
+        $blog = Blog::create($validated);
+
+        // Sync tags
+        if ($request->has('tags')) {
+            $blog->tags()->sync($request->input('tags'));
+        }
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully.');
     }
@@ -67,6 +76,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
+        $blog->load(['category', 'tags']);
         return view('admin.blogs.show', compact('blog'));
     }
 
@@ -76,7 +86,8 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         $categories = BlogCategory::all();
-        return view('admin.blogs.edit', compact('blog', 'categories'));
+        $tags = BlogTag::where('status', true)->get();
+        return view('admin.blogs.edit', compact('blog', 'categories', 'tags'));
     }
 
     /**
@@ -95,11 +106,12 @@ class BlogController extends Controller
             'page_image' => 'nullable|image',
             'image_1' => 'nullable|image',
             'image_2' => 'nullable|image',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:blog_tags,id'
         ]);
 
         // Handle file uploads and removals
         foreach (['page_image', 'image_1', 'image_2'] as $field) {
-
             if ($request->has('remove_' . $field)) {
                 if ($blog->$field) {
                     Storage::disk('public')->delete($blog->$field);
@@ -117,6 +129,9 @@ class BlogController extends Controller
 
         $blog->update($validated);
 
+        // Sync tags
+        $blog->tags()->sync($request->input('tags', []));
+
         return redirect()->route('admin.blogs.index')->with('success', 'Blog updated successfully.');
     }
 
@@ -125,7 +140,17 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
+        // Delete associated images
+        foreach (['page_image', 'image_1', 'image_2'] as $field) {
+            if ($blog->$field) {
+                Storage::disk('public')->delete($blog->$field);
+            }
+        }
+
+        // Delete blog and its relationships
+        $blog->tags()->detach();
         $blog->delete();
+
         return redirect()->route('admin.blogs.index')->with('success', 'Blog deleted successfully.');
     }
 }

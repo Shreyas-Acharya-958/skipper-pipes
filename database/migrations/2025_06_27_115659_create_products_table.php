@@ -23,6 +23,9 @@ class CreateProductsTable extends Migration
             $table->text('application');
             $table->text('faq');
             $table->string('brochure')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

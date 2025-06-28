@@ -27,6 +27,7 @@
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Category</th>
+                                    <th>Tags</th>
                                     <th>Status</th>
                                     <th>Published At</th>
                                     <th>Actions</th>
@@ -37,7 +38,12 @@
                                     <tr>
                                         <td>{{ $blog->id }}</td>
                                         <td>{{ $blog->title }}</td>
-                                        <td>{{ $blog->cat_id }}</td>
+                                        <td>{{ $blog->category->title ?? 'N/A' }}</td>
+                                        <td>
+                                            @foreach ($blog->tags as $tag)
+                                                <span class="badge bg-info me-1">{{ $tag->name }}</span>
+                                            @endforeach
+                                        </td>
                                         <td>
                                             @if ($blog->status)
                                                 <span class="badge bg-success">Active</span>

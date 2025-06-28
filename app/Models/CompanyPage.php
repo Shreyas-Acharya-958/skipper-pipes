@@ -14,6 +14,9 @@ class CompanyPage extends Model
         'slug',
         'short_description',
         'long_description',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
         'status',
         'is_active'
     ];

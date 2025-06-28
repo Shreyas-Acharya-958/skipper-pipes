@@ -46,6 +46,12 @@
                     href="{{ route('admin.contacts.index') }}">
                     <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
                 </a>
+                <li class="nav-item">
+                    <a href="{{ route('admin.menus.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-bars"></i>
+                        <p>Menu Management</p>
+                    </a>
+                </li>
             </nav>
             <div class="logout">
                 <form action="{{ route('admin.logout') }}" method="POST">

@@ -4,22 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class BlogComment extends Model
+class BlogTag extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'blog_id',
         'name',
-        'email',
-        'description',
+        'slug',
         'status'
     ];
 
-    public function blog(): BelongsTo
+    public function blogs(): BelongsToMany
     {
-        return $this->belongsTo(Blog::class);
+        return $this->belongsToMany(Blog::class, 'blog_tag', 'tag_id', 'blog_id');
     }
 }

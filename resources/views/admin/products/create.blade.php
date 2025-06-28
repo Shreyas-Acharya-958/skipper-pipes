@@ -99,13 +99,50 @@
                             @enderror
                         </div>
 
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5 class="mb-0">SEO Meta Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="meta_title" class="form-label">Meta Title</label>
+                                    <input type="text" class="form-control @error('meta_title') is-invalid @enderror"
+                                        id="meta_title" name="meta_title" value="{{ old('meta_title') }}">
+                                    @error('meta_title')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="meta_description" class="form-label">Meta Description</label>
+                                    <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
+                                        name="meta_description" rows="3">{{ old('meta_description') }}</textarea>
+                                    @error('meta_description')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                                    <input type="text"
+                                        class="form-control @error('meta_keywords') is-invalid @enderror"
+                                        id="meta_keywords" name="meta_keywords" value="{{ old('meta_keywords') }}">
+                                    <small class="text-muted">Separate keywords with commas</small>
+                                    @error('meta_keywords')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select @error('status') is-invalid @enderror" id="status"
                                         name="status" required>
-                                        <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
+                                        <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active
+                                        </option>
                                         <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive
                                         </option>
                                     </select>

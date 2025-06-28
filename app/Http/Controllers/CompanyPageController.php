@@ -54,21 +54,21 @@ class CompanyPageController extends Controller
             ->with('success', 'Company page created successfully.');
     }
 
-    public function show(CompanyPage $page)
+    public function show(CompanyPage $company_page)
     {
-        return view('admin.company_pages.show', compact('page'));
+        return view('admin.company_pages.show', compact('company_page'));
     }
 
-    public function edit(CompanyPage $page)
+    public function edit(CompanyPage $company_page)
     {
-        return view('admin.company_pages.edit', compact('page'));
+        return view('admin.company_pages.edit', compact('company_page'));
     }
 
-    public function update(Request $request, CompanyPage $page)
+    public function update(Request $request, CompanyPage $company_page)
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:company_pages,slug,' . $page->id,
+            'slug' => 'required|string|max:255|unique:company_pages,slug,' . $company_page->id,
             'short_description' => 'required|string',
             'long_description' => 'required|string',
             'meta_title' => 'nullable|string|max:255',
@@ -87,8 +87,8 @@ class CompanyPageController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             // Delete old image
-            if ($page->image) {
-                Storage::delete('public/' . $page->image);
+            if ($company_page->image) {
+                Storage::delete('public/' . $company_page->image);
             }
 
             $image = $request->file('image');
@@ -97,20 +97,20 @@ class CompanyPageController extends Controller
             $data['image'] = str_replace('public/', '', $path);
         }
 
-        $page->update($data);
+        $company_page->update($data);
 
         return redirect()->route('admin.company_pages.index')
             ->with('success', 'Company page updated successfully.');
     }
 
-    public function destroy(CompanyPage $page)
+    public function destroy(CompanyPage $company_page)
     {
         // Delete image if exists
-        if ($page->image) {
-            Storage::delete('public/' . $page->image);
+        if ($company_page->image) {
+            Storage::delete('public/' . $company_page->image);
         }
 
-        $page->delete();
+        $company_page->delete();
 
         return redirect()->route('admin.company_pages.index')
             ->with('success', 'Company page deleted successfully.');

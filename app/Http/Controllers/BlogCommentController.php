@@ -37,18 +37,18 @@ class BlogCommentController extends Controller
             ->with('success', 'Blog comment created successfully.');
     }
 
-    public function show(BlogComment $comment)
+    public function show(BlogComment $blog_comment)
     {
-        return view('admin.blog_comments.show', compact('comment'));
+        return view('admin.blog_comments.show', compact('blog_comment'));
     }
 
-    public function edit(BlogComment $comment)
+    public function edit(BlogComment $blog_comment)
     {
         $blogs = Blog::where('status', 1)->get();
-        return view('admin.blog_comments.edit', compact('comment', 'blogs'));
+        return view('admin.blog_comments.edit', compact('blog_comment', 'blogs'));
     }
 
-    public function update(Request $request, BlogComment $comment)
+    public function update(Request $request, BlogComment $blog_comment)
     {
         $request->validate([
             'blog_id' => 'required|exists:blogs,id',
@@ -59,15 +59,15 @@ class BlogCommentController extends Controller
             'is_active' => 'required|boolean',
         ]);
 
-        $comment->update($request->all());
+        $blog_comment->update($request->all());
 
         return redirect()->route('admin.blog_comments.index')
             ->with('success', 'Blog comment updated successfully.');
     }
 
-    public function destroy(BlogComment $comment)
+    public function destroy(BlogComment $blog_comment)
     {
-        $comment->delete();
+        $blog_comment->delete();
 
         return redirect()->route('admin.blog_comments.index')
             ->with('success', 'Blog comment deleted successfully.');

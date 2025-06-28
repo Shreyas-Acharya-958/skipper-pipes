@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('link')->nullable();
             $table->integer('sequence')->default(0);
             $table->unsignedBigInteger('parent_id')->nullable();

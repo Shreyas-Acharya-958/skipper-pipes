@@ -40,21 +40,21 @@ class BlogCategoryController extends Controller
             ->with('success', 'Blog category created successfully.');
     }
 
-    public function show(BlogCategory $category)
+    public function show(BlogCategory $blog_category)
     {
-        return view('admin.blog_categories.show', compact('category'));
+        return view('admin.blog_categories.show', compact('blog_category'));
     }
 
-    public function edit(BlogCategory $category)
+    public function edit(BlogCategory $blog_category)
     {
-        return view('admin.blog_categories.edit', compact('category'));
+        return view('admin.blog_categories.edit', compact('blog_category'));
     }
 
-    public function update(Request $request, BlogCategory $category)
+    public function update(Request $request, BlogCategory $blog_category)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:blog_categories,slug,' . $category->id,
+            'slug' => 'required|string|max:255|unique:blog_categories,slug,' . $blog_category->id,
             'description' => 'required|string',
             'status' => 'required|boolean',
             'is_active' => 'required|boolean',
@@ -65,15 +65,15 @@ class BlogCategoryController extends Controller
             $data['slug'] = Str::slug($data['name']);
         }
 
-        $category->update($data);
+        $blog_category->update($data);
 
         return redirect()->route('admin.blog_categories.index')
             ->with('success', 'Blog category updated successfully.');
     }
 
-    public function destroy(BlogCategory $category)
+    public function destroy(BlogCategory $blog_category)
     {
-        $category->delete();
+        $blog_category->delete();
 
         return redirect()->route('admin.blog_categories.index')
             ->with('success', 'Blog category deleted successfully.');
