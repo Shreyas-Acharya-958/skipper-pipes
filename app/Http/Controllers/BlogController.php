@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -47,9 +48,9 @@ class BlogController extends Controller
             'long_description' => 'required|string',
             'status' => 'required|boolean',
             'published_at' => 'nullable|date',
-            'page_image' => 'nullable|image',
-            'image_1' => 'nullable|image',
-            'image_2' => 'nullable|image',
+            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:blog_tags,id'
         ]);
@@ -57,7 +58,10 @@ class BlogController extends Controller
         // Handle file uploads
         foreach (['page_image', 'image_1', 'image_2'] as $field) {
             if ($request->hasFile($field)) {
-                $validated[$field] = $request->file($field)->store('blogs', 'public');
+                $file = $request->file($field);
+                $filename = Str::slug($request->title) . '-' . $field . '-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('blogs', $filename, 'public');
+                $validated[$field] = $path;
             }
         }
 
@@ -103,16 +107,16 @@ class BlogController extends Controller
             'long_description' => 'required|string',
             'status' => 'required|boolean',
             'published_at' => 'nullable|date',
-            'page_image' => 'nullable|image',
-            'image_1' => 'nullable|image',
-            'image_2' => 'nullable|image',
+            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:blog_tags,id'
         ]);
 
         // Handle file uploads and removals
         foreach (['page_image', 'image_1', 'image_2'] as $field) {
-            if ($request->has('remove_' . $field)) {
+            if ($request->has('remove_' . $field) && $request->input('remove_' . $field) === '1') {
                 if ($blog->$field) {
                     Storage::disk('public')->delete($blog->$field);
                     $validated[$field] = null;
@@ -121,7 +125,10 @@ class BlogController extends Controller
                 if ($blog->$field) {
                     Storage::disk('public')->delete($blog->$field);
                 }
-                $validated[$field] = $request->file($field)->store('blogs', 'public');
+                $file = $request->file($field);
+                $filename = Str::slug($request->title) . '-' . $field . '-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('blogs', $filename, 'public');
+                $validated[$field] = $path;
             } else {
                 unset($validated[$field]);
             }

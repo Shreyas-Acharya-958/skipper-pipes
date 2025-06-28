@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BannerController extends Controller
 {
@@ -47,7 +48,10 @@ class BannerController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('banners', 'public');
+            $file = $request->file('image');
+            $filename = Str::slug($request->title) . '-banner-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('banners', $filename, 'public');
+            $validated['image'] = $path;
         }
 
         Banner::create($validated);
@@ -85,17 +89,19 @@ class BannerController extends Controller
             'status' => 'required|boolean',
         ]);
 
-        if ($request->hasFile('image')) {
-            // Delete old image
+        if ($request->has('remove_image') && $request->remove_image) {
             if ($banner->image) {
                 Storage::disk('public')->delete($banner->image);
             }
-            $validated['image'] = $request->file('image')->store('banners', 'public');
-        }
-
-        if ($request->has('remove_image') && $request->remove_image) {
-            Storage::disk('public')->delete($banner->image);
             $validated['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            if ($banner->image) {
+                Storage::disk('public')->delete($banner->image);
+            }
+            $file = $request->file('image');
+            $filename = Str::slug($request->title) . '-banner-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('banners', $filename, 'public');
+            $validated['image'] = $path;
         }
 
         $banner->update($validated);

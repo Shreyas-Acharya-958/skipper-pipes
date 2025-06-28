@@ -70,18 +70,12 @@
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Banner Image</label>
                                     @if ($banner->image)
-                                        <div class="mb-2">
+                                        <div class="mb-2 position-relative d-inline-block">
                                             <img src="{{ asset('storage/' . $banner->image) }}" alt="{{ $banner->title }}"
                                                 style="max-width: 200px; height: auto;">
-                                            <div class="mt-2">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="remove_image"
-                                                        onchange="document.getElementById('remove_image_input').value = this.checked ? '1' : '0'">
-                                                    <label class="form-check-label" for="remove_image">
-                                                        Remove existing image
-                                                    </label>
-                                                </div>
-                                            </div>
+                                            <button type="button"
+                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                data-field="image">&times;</button>
                                         </div>
                                     @endif
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
@@ -105,3 +99,20 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.querySelectorAll('.remove-image-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const field = this.getAttribute('data-field');
+                // Clear file input
+                const input = document.getElementById(field);
+                if (input) input.value = '';
+                // Hide the preview
+                this.parentElement.remove();
+                // Set hidden input to 1 (mark for removal)
+                document.getElementById('remove_' + field + '_input').value = '1';
+            });
+        });
+    </script>
+@endpush
