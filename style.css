@@ -4127,6 +4127,10 @@ Company - Overview page
   background-color: rgba(20, 67, 114, 0.6);
 }
 
+.hero-banner2-overlay.product-single{
+  background-color: rgba(20, 67, 114, 0.35);
+}
+
 .hero-banner2-content{
   position: absolute;
   bottom: 13%;
