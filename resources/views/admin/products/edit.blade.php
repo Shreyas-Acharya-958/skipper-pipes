@@ -17,7 +17,25 @@
                         <input type="hidden" name="remove_brochure" value="0" id="remove_brochure_input">
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="product_category_id" class="form-label">Category</label>
+                                    <select class="form-select @error('product_category_id') is-invalid @enderror"
+                                        id="product_category_id" name="product_category_id" required>
+                                        <option value="">Select Category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                {{ old('product_category_id', $product->product_category_id) == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('product_category_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" class="form-control @error('title') is-invalid @enderror"
@@ -101,7 +119,8 @@
 
                         <div class="mb-3">
                             <label for="technical" class="form-label">Technical Details</label>
-                            <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical" rows="6">{{ old('technical', $product->technical) }}</textarea>
+                            <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical"
+                                rows="6">{{ old('technical', $product->technical) }}</textarea>
                             @error('technical')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

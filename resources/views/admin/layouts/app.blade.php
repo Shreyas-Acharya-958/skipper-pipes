@@ -18,44 +18,101 @@
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
             </div>
             <nav class="nav flex-column">
+                <!-- Dashboard -->
                 <a class="nav-link{{ request()->routeIs('admin.dashboard') ? ' active' : '' }}"
                     href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-tachometer-alt"></i> <span class="nav-text">Dashboard</span>
                 </a>
-                <a class="nav-link{{ request()->routeIs('admin.blogs.*') ? ' active' : '' }}"
-                    href="{{ route('admin.blogs.index') }}">
-                    <i class="fas fa-newspaper"></i> <span class="nav-text">Blogs</span>
-                </a>
-                <a class="nav-link{{ request()->routeIs('admin.products.*') ? ' active' : '' }}"
-                    href="{{ route('admin.products.index') }}">
-                    <i class="fas fa-box"></i> <span class="nav-text">Products</span>
-                </a>
-                <a class="nav-link{{ request()->routeIs('admin.blog_categories.*') ? ' active' : '' }}"
-                    href="{{ route('admin.blog_categories.index') }}">
-                    <i class="fas fa-tags"></i> <span class="nav-text">Blog Categories</span>
-                </a>
-                <a class="nav-link{{ request()->routeIs('admin.blog_comments.*') ? ' active' : '' }}"
-                    href="{{ route('admin.blog_comments.index') }}">
-                    <i class="fas fa-comments"></i> <span class="nav-text">Blog Comments</span>
-                </a>
-                <a class="nav-link{{ request()->routeIs('admin.company_pages.*') ? ' active' : '' }}"
-                    href="{{ route('admin.company_pages.index') }}">
-                    <i class="fas fa-file-alt"></i> <span class="nav-text">Company Pages</span>
-                </a>
-                <a class="nav-link{{ request()->routeIs('admin.contacts.*') ? ' active' : '' }}"
-                    href="{{ route('admin.contacts.index') }}">
-                    <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
-                </a>
-                <a class="nav-link{{ request()->routeIs('admin.banners.*') ? ' active' : '' }}"
-                    href="{{ route('admin.banners.index') }}">
-                    <i class="fas fa-images"></i> <span class="nav-text">Banners</span>
-                </a>
-                <li class="nav-item">
-                    <a href="{{ route('admin.menus.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-bars"></i>
-                        <p>Menu Management</p>
-                    </a>
-                </li>
+
+                <!-- Blog Module -->
+                <div
+                    class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#blogModule">
+                        <span class="nav-section-title">
+                            <i class="fas fa-chevron-right nav-section-arrow"></i>
+                            Blog Module
+                        </span>
+                    </div>
+                    <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'show' : '' }}"
+                        id="blogModule">
+                        <a class="nav-link{{ request()->routeIs('admin.blogs.*') ? ' active' : '' }}"
+                            href="{{ route('admin.blogs.index') }}">
+                            <i class="fas fa-newspaper"></i> <span class="nav-text">Blogs</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.blog_categories.*') ? ' active' : '' }}"
+                            href="{{ route('admin.blog_categories.index') }}">
+                            <i class="fas fa-tags"></i> <span class="nav-text">Blog Categories</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.blog_comments.*') ? ' active' : '' }}"
+                            href="{{ route('admin.blog_comments.index') }}">
+                            <i class="fas fa-comments"></i> <span class="nav-text">Blog Comments</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product Module -->
+                <div
+                    class="nav-section {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#productModule">
+                        <span class="nav-section-title">
+                            <i class="fas fa-chevron-right nav-section-arrow"></i>
+                            Product Module
+                        </span>
+                    </div>
+                    <div class="collapse {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'show' : '' }}"
+                        id="productModule">
+                        <a class="nav-link{{ request()->routeIs('admin.products.*') ? ' active' : '' }}"
+                            href="{{ route('admin.products.index') }}">
+                            <i class="fas fa-box"></i> <span class="nav-text">Products</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.product_categories.*') ? ' active' : '' }}"
+                            href="{{ route('admin.product_categories.index') }}">
+                            <i class="fas fa-tags"></i> <span class="nav-text">Product Categories</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Content Module -->
+                <div
+                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#contentModule">
+                        <span class="nav-section-title">
+                            <i class="fas fa-chevron-right nav-section-arrow"></i>
+                            Content Module
+                        </span>
+                    </div>
+                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*') ? 'show' : '' }}"
+                        id="contentModule">
+                        <a class="nav-link{{ request()->routeIs('admin.company_pages.*') ? ' active' : '' }}"
+                            href="{{ route('admin.company_pages.index') }}">
+                            <i class="fas fa-file-alt"></i> <span class="nav-text">Company Pages</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.contacts.*') ? ' active' : '' }}"
+                            href="{{ route('admin.contacts.index') }}">
+                            <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.banners.*') ? ' active' : '' }}"
+                            href="{{ route('admin.banners.index') }}">
+                            <i class="fas fa-images"></i> <span class="nav-text">Banners</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="nav-section {{ request()->routeIs('admin.menus.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#settingsModule">
+                        <span class="nav-section-title">
+                            <i class="fas fa-chevron-right nav-section-arrow"></i>
+                            Settings
+                        </span>
+                    </div>
+                    <div class="collapse {{ request()->routeIs('admin.menus.*') ? 'show' : '' }}" id="settingsModule">
+                        <a class="nav-link{{ request()->routeIs('admin.menus.*') ? ' active' : '' }}"
+                            href="{{ route('admin.menus.index') }}">
+                            <i class="fas fa-bars"></i> <span class="nav-text">Menu Management</span>
+                        </a>
+                    </div>
+                </div>
             </nav>
             <div class="logout">
                 <form action="{{ route('admin.logout') }}" method="POST">
@@ -98,7 +155,7 @@
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
-                        <button type="button" class="btn-close" data-coreui-dismiss="alert"
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
                             aria-label="Close"></button>
                     </div>
                 @endif
@@ -106,7 +163,7 @@
                 @if (session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ session('error') }}
-                        <button type="button" class="btn-close" data-coreui-dismiss="alert"
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
                             aria-label="Close"></button>
                     </div>
                 @endif
@@ -121,12 +178,47 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Sidebar toggle (collapsible)
         $(function() {
+            // Sidebar toggle
             $('#sidebarToggle').on('click', function() {
                 $('.sidebar').toggleClass('collapsed');
                 $('.content-wrapper').toggleClass('collapsed');
                 $('.dashboard-header').toggleClass('collapsed');
+            });
+
+            // Initialize menu state based on URL
+            function initializeMenuState() {
+                $('.nav-link').each(function() {
+                    if ($(this).hasClass('active')) {
+                        $(this).closest('.nav-section').addClass('open');
+                        $(this).closest('.collapse').addClass('show');
+                    }
+                });
+            }
+
+            // Handle menu section clicks
+            $('.nav-section-header').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const section = $(this).closest('.nav-section');
+                const collapse = section.find('.collapse');
+
+                // Close other sections
+                $('.nav-section').not(section).removeClass('open');
+                $('.collapse').not(collapse).removeClass('show');
+
+                // Toggle current section
+                section.toggleClass('open');
+                collapse.toggleClass('show');
+            });
+
+            // Initialize menu state on page load
+            initializeMenuState();
+
+            // Prevent collapse events from bubbling
+            $('.collapse').on('show.bs.collapse hide.bs.collapse', function(e) {
+                e.stopPropagation();
             });
         });
     </script>

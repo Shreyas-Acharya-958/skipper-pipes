@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogCommentController;
 use App\Http\Controllers\CompanyPageController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\FrontController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +36,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Product routes
     Route::resource('products', ProductController::class)->names('products');
 
+    // Product Category routes
+    Route::resource('product-categories', ProductCategoryController::class)->names('product_categories');
+
     // Blog Category routes
     Route::resource('blog-categories', BlogCategoryController::class)->names('blog_categories');
 
@@ -53,3 +58,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Banner routes
     Route::resource('banners', BannerController::class);
 });
+
+// Frontend Routes
+Route::name('front.')->group(function () {
+    Route::get('/', [FrontController::class, 'index'])->name('home');
+    Route::get('/products/{product}', [FrontController::class, 'showProduct'])->name('products.show');
+});
+
+Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs');
+Route::get('/blog/{slug}', [FrontController::class, 'blogDetail'])->name('blog.detail');
+Route::get('/products', [FrontController::class, 'products'])->name('products');
+Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('product.detail');
+Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');

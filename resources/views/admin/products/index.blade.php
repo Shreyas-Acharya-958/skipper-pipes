@@ -24,6 +24,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Title</th>
+                                    <th>Category</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -33,6 +34,7 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->title }}</td>
+                                        <td>{{ $product->productCategory->name }}</td>
                                         <td>
                                             @if ($product->status)
                                                 <span class="badge bg-success">Active</span>

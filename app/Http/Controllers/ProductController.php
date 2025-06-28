@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ class ProductController extends Controller
             $search = $request->input('search');
             $query->where('title', 'like', "%{$search}%");
         }
-        $products = $query->paginate(10); // 10 per page, change as needed
+        $products = $query->with('productCategory')->paginate(10); // 10 per page, change as needed
         return view('admin.products.index', compact('products'));
     }
 
@@ -28,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = ProductCategory::where('status', true)->get();
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -37,6 +39,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'product_category_id' => 'required|exists:product_categories,id',
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:products,slug',
             'product_overview' => 'required|string',
@@ -77,6 +80,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $product->load('productCategory');
         return view('admin.products.show', compact('product'));
     }
 
@@ -85,7 +89,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $categories = ProductCategory::where('status', true)->get();
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -94,6 +99,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
+            'product_category_id' => 'required|exists:product_categories,id',
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:products,slug,' . $product->id,
             'product_overview' => 'required|string',

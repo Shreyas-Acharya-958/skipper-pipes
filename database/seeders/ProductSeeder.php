@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -10,9 +11,16 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
+        // Get category IDs
+        $plumbingId = ProductCategory::where('name', 'Plumbing & Sewage')->first()->id;
+        $agricultureId = ProductCategory::where('name', 'Agriculture Pipes')->first()->id;
+        $borewellId = ProductCategory::where('name', 'Borewell')->first()->id;
+        $hdpeId = ProductCategory::where('name', 'HDPE Pipes')->first()->id;
+
         $products = [
             // Plumbing & Sewage Category
             [
+                'product_category_id' => $plumbingId,
                 'title' => 'UPVC Pipes',
                 'slug' => 'upvc-pipes',
                 'page_image' => 'products/upvc-pipes.jpg',
@@ -51,6 +59,7 @@ class ProductSeeder extends Seeder
                 'status' => true
             ],
             [
+                'product_category_id' => $plumbingId,
                 'title' => 'CPVC Pipes',
                 'slug' => 'cpvc-pipes',
                 'page_image' => 'products/cpvc-pipes.jpg',
@@ -84,6 +93,7 @@ class ProductSeeder extends Seeder
             ],
             // Agriculture Category
             [
+                'product_category_id' => $agricultureId,
                 'title' => 'Agriculture Column Pipes',
                 'slug' => 'agriculture-column-pipes',
                 'page_image' => 'products/agri-pipes.jpg',
@@ -115,6 +125,7 @@ class ProductSeeder extends Seeder
             ],
             // Borewell Category
             [
+                'product_category_id' => $borewellId,
                 'title' => 'Ribbed Strainer Pipes',
                 'slug' => 'ribbed-strainer-pipes',
                 'page_image' => 'products/strainer-pipes.jpg',
@@ -146,6 +157,7 @@ class ProductSeeder extends Seeder
             ],
             // HDPE Category
             [
+                'product_category_id' => $hdpeId,
                 'title' => 'HDPE Water Supply Pipes',
                 'slug' => 'hdpe-water-supply-pipes',
                 'page_image' => 'products/hdpe-pipes.jpg',

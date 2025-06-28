@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
+        'product_category_id',
         'title',
         'slug',
         'page_image',
@@ -25,4 +26,9 @@ class Product extends Model
         'meta_keywords',
         'status'
     ];
+
+    public function productCategory()
+    {
+        return $this->belongsTo(ProductCategory::class);
+    }
 }
