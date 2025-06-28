@@ -50,8 +50,8 @@
                         professionals alike.
                     </blockquote>
                     <!-- <p>
-                                                From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
-                                            </p> -->
+                                                        From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
+                                                    </p> -->
                     <ul>
                         <li class="about-li">
                             <div class="icon">
@@ -310,8 +310,8 @@
                     <div class="col-lg-6 right-info" style="background-image: url(assets/img/final/skipper-sathi.jpg);">
                         <h2>Join India's Fastest-Growing Plumber Network!</h2>
                         <!-- <p>
-                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
-                                                </p> -->
+                                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
+                                                        </p> -->
                         <a class="btn btn-light effect btn-md" href="#">Connect with Skipper</a>
                     </div>
                 </div>

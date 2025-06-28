@@ -28,6 +28,12 @@ class Blog extends Model
         'published_at'
     ];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     public function comments(): HasMany
     {
         return $this->hasMany(BlogComment::class);

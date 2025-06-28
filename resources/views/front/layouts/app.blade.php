@@ -85,18 +85,17 @@
                     <ul class="nav navbar-nav navbar-center" data-in="#" data-out="#">
                         @foreach (App\Models\Menu::tree() as $menu)
                             @if ($menu->children->isEmpty())
-                                <li class="{{ request()->is($menu->slug) ? 'active' : '' }}">
-                                    <a href="{{ url($menu->slug) }}">{{ $menu->title }}</a>
+                                <li class="{{ request()->is($menu->link) ? 'active' : '' }}">
+                                    <a href="{{ $menu->link }}">{{ $menu->title }}</a>
                                 </li>
                             @else
-                                <li class="dropdown {{ request()->is($menu->slug . '/*') ? 'active' : '' }}">
+                                <li class="dropdown {{ request()->is($menu->link . '/*') ? 'active' : '' }}">
                                     <a href="#" class="dropdown-toggle"
                                         data-toggle="dropdown">{{ $menu->title }}</a>
                                     <ul class="dropdown-menu">
                                         @foreach ($menu->children as $child)
                                             @if ($child->children->isEmpty())
-                                                <li><a
-                                                        href="{{ url($menu->slug . '/' . $child->slug) }}">{{ $child->title }}</a>
+                                                <li><a href="{{ $child->link }}">{{ $child->title }}</a>
                                                 </li>
                                             @else
                                                 <li class="dropdown">
@@ -105,7 +104,7 @@
                                                     <ul class="dropdown-menu">
                                                         @foreach ($child->children as $grandchild)
                                                             <li><a
-                                                                    href="{{ url($menu->slug . '/' . $child->slug . '/' . $grandchild->slug) }}">{{ $grandchild->title }}</a>
+                                                                    href="{{ $grandchild->link }}">{{ $grandchild->title }}</a>
                                                             </li>
                                                         @endforeach
                                                     </ul>

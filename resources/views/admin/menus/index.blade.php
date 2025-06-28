@@ -200,111 +200,69 @@
                     handle: '.menu-handle',
                     items: '> li',
                     placeholder: 'sortable-placeholder',
+                    forcePlaceholderSize: true,
                     tolerance: 'pointer',
                     cursor: 'move',
-                    connectWith: '.menu-tree, .submenu',
+                    opacity: 0.8,
                     update: function(event, ui) {
-                        if (this === ui.item.parent()[0]) {
-                            updateOrder();
-                        }
+                        updateMenuOrder();
                     }
                 });
             }
 
-            // Initialize sortable on the main menu and all submenus
-            initializeSortable('.menu-tree');
+            initializeSortable('#menu-tree');
             initializeSortable('.submenu');
 
-            // Update menu order
-            function updateOrder() {
+            function updateMenuOrder() {
                 const items = [];
-                let sequence = 0;
-
-                function traverseMenu(element, parentId = null) {
-                    $(element).children('li').each(function() {
-                        const id = $(this).data('id');
-                        items.push({
-                            id: id,
-                            parent_id: parentId,
-                            sequence: sequence++
-                        });
-
-                        // Traverse submenu if exists
-                        const submenu = $(this).children('.submenu');
-                        if (submenu.length) {
-                            traverseMenu(submenu, id);
-                        }
+                $('#menu-tree li.menu-item').each(function(index) {
+                    const $item = $(this);
+                    items.push({
+                        id: $item.data('id'),
+                        parent_id: $item.parent().closest('.menu-item').data('id') || null,
+                        sequence: index
                     });
-                }
-
-                traverseMenu('#menu-tree');
+                });
 
                 $.ajax({
                     url: '{{ route('admin.menus.update-order') }}',
-                    type: 'POST',
+                    method: 'POST',
                     data: {
                         _token: '{{ csrf_token() }}',
                         items: items
                     },
                     success: function(response) {
                         orderToast.show();
-                    },
-                    error: function(error) {
-                        console.error('Error updating order:', error);
-                        const errorToast = document.getElementById('orderToast');
-                        errorToast.classList.remove('bg-success');
-                        errorToast.classList.add('bg-danger');
-                        errorToast.querySelector('.toast-body').textContent =
-                            'Error updating menu order!';
-                        bootstrap.Toast.getOrCreateInstance(errorToast).show();
                     }
                 });
             }
-
-            // Edit menu
-            window.editMenu = function(id) {
-                const menu = findMenu(id);
-                if (menu) {
-                    $('#menu_id').val(menu.id);
-                    $('#title').val(menu.title);
-                    $('#link').val(menu.link);
-                    $('#parent_id').val(menu.parent_id);
-                    $('#status').val(menu.status ? '1' : '0');
-                    $('#is_active').val(menu.is_active ? '1' : '0');
-                    $('#method').val('PUT');
-                    $('#menuForm').attr('action', `/admin/menus/${id}`);
-                    $('#submitBtn').text('Update Menu');
-                }
-            };
-
-            // Delete menu
-            window.deleteMenu = function(id) {
-                if (confirm('Are you sure you want to delete this menu?')) {
-                    $(`form#delete-form-${id}`).submit();
-                }
-            };
-
-            // Reset form
-            window.resetForm = function() {
-                $('#menuForm')[0].reset();
-                $('#menu_id').val('');
-                $('#method').val('POST');
-                $('#menuForm').attr('action', '{{ route('admin.menus.store') }}');
-                $('#submitBtn').text('Create Menu');
-            };
-
-            // Helper function to find menu data
-            function findMenu(id) {
-                const menuItem = $(`#menu-${id}`);
-                return {
-                    id: id,
-                    title: menuItem.find('.menu-title').text().trim(),
-                    link: menuItem.data('link'),
-                    parent_id: menuItem.data('parent-id'),
-                    status: menuItem.data('status'),
-                    is_active: menuItem.data('is-active')
-                };
-            }
         });
+
+        function editMenu(id) {
+            const menuItem = $(`#menu-${id}`);
+            $('#menu_id').val(id);
+            $('#title').val(menuItem.find('.menu-title').text().trim());
+            $('#link').val(menuItem.data('link'));
+            $('#parent_id').val(menuItem.data('parent-id'));
+            $('#status').val(menuItem.data('status'));
+            $('#is_active').val(menuItem.data('is-active'));
+            $('#method').val('PUT');
+            $('#menuForm').attr('action', `{{ url('admin/menus') }}/${id}`);
+            $('#submitBtn').text('Update Menu');
+        }
+
+        function resetForm() {
+            $('#menu_id').val('');
+            $('#menuForm').trigger('reset');
+            $('#method').val('POST');
+            $('#menuForm').attr('action', '{{ route('admin.menus.store') }}');
+            $('#submitBtn').text('Create Menu');
+        }
+
+        function deleteMenu(id) {
+            if (confirm('Are you sure you want to delete this menu item?')) {
+                $(`#delete-form-${id}`).submit();
+            }
+        }
     </script>
 @endpush

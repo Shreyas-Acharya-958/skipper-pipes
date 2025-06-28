@@ -64,9 +64,9 @@ Route::name('front.')->group(function () {
     Route::get('/', [FrontController::class, 'index'])->name('home');
     Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs.index');
     Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
+    Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeComment'])->name('blogs.comment');
+    Route::get('/products', [FrontController::class, 'products'])->name('products.index');
     Route::get('/products/{product}', [FrontController::class, 'showProduct'])->name('products.show');
+    Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('products.detail');
+    Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
 });
-
-Route::get('/products', [FrontController::class, 'products'])->name('products');
-Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('product.detail');
-Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');

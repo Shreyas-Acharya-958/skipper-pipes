@@ -9,6 +9,7 @@ class Menu extends Model
     protected $fillable = [
         'title',
         'slug',
+        'link',
         'sequence',
         'parent_id',
         'status',
