@@ -119,3 +119,13 @@ Meta Title(not required)
 Meta Description(not required)
 Meta Keywords(not required)
 you need to update create & edit view pages
+
+step 12.2
+create new migartion for banner
+colunm id,title,image,sequence,link
+
+step 12.3
+create controller,model,migartion
+
+step 12.4
+create index,creat,edit,view baldes or in last please add in left side menu `banner`

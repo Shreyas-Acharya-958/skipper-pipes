@@ -46,6 +46,10 @@
                     href="{{ route('admin.contacts.index') }}">
                     <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
                 </a>
+                <a class="nav-link{{ request()->routeIs('admin.banners.*') ? ' active' : '' }}"
+                    href="{{ route('admin.banners.index') }}">
+                    <i class="fas fa-images"></i> <span class="nav-text">Banners</span>
+                </a>
                 <li class="nav-item">
                     <a href="{{ route('admin.menus.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-bars"></i>

@@ -9,6 +9,7 @@ use App\Http\Controllers\CompanyPageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\BannerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,4 +49,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Menu Management Routes
     Route::resource('menus', MenuController::class);
     Route::post('menus/update-order', [MenuController::class, 'updateOrder'])->name('menus.update-order');
+
+    // Banner routes
+    Route::resource('banners', BannerController::class);
 });
