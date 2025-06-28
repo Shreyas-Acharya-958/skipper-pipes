@@ -8,7 +8,7 @@ class Menu extends Model
 {
     protected $fillable = [
         'title',
-        'link',
+        'slug',
         'sequence',
         'parent_id',
         'status',
@@ -29,7 +29,9 @@ class Menu extends Model
     // Get the child menus
     public function children()
     {
-        return $this->hasMany(Menu::class, 'parent_id')->orderBy('sequence');
+        return $this->hasMany(Menu::class, 'parent_id')
+            ->orderBy('sequence')
+            ->with('children'); // Eager load nested children
     }
 
     // Get all descendants
@@ -41,13 +43,18 @@ class Menu extends Model
     // Get root level menus
     public static function root()
     {
-        return static::whereNull('parent_id')->orderBy('sequence')->get();
+        return static::whereNull('parent_id')
+            ->orderBy('sequence')
+            ->with('children') // Eager load children
+            ->get();
     }
 
     // Get nested array of all menus
     public static function tree()
     {
-        return static::with('descendants')
+        return static::with(['children' => function ($query) {
+            $query->orderBy('sequence');
+        }])
             ->whereNull('parent_id')
             ->orderBy('sequence')
             ->get();

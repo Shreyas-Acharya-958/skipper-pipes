@@ -83,56 +83,39 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-center" data-in="#" data-out="#">
-                        <li>
-                            <a href="{{ url('/') }}">Home</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Company</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url('company/overview') }}">Overview</a></li>
-                                <li><a href="{{ url('company/leadership') }}">Leadership</a></li>
-                                <li><a href="{{ url('company/manufacturing') }}">Manufacturing</a></li>
-                                <li><a href="{{ url('company/csr') }}">CSR</a></li>
-                                <li><a href="{{ url('company/certifications') }}">Certifications</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url('products') }}">All Products</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plumbing &
-                                        Sewage</a>
+                        @foreach (App\Models\Menu::tree() as $menu)
+                            @if ($menu->children->isEmpty())
+                                <li class="{{ request()->is($menu->slug) ? 'active' : '' }}">
+                                    <a href="{{ url($menu->slug) }}">{{ $menu->title }}</a>
+                                </li>
+                            @else
+                                <li class="dropdown {{ request()->is($menu->slug . '/*') ? 'active' : '' }}">
+                                    <a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown">{{ $menu->title }}</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ url('products/upvc-pipes') }}">UPVC Pipes</a></li>
-                                        <li><a href="{{ url('products/cpvc-pipes') }}">CPVC Pipes</a></li>
-                                        <li><a href="{{ url('products/swr-pipes') }}">SWR Pipes</a></li>
+                                        @foreach ($menu->children as $child)
+                                            @if ($child->children->isEmpty())
+                                                <li><a
+                                                        href="{{ url($menu->slug . '/' . $child->slug) }}">{{ $child->title }}</a>
+                                                </li>
+                                            @else
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle"
+                                                        data-toggle="dropdown">{{ $child->title }}</a>
+                                                    <ul class="dropdown-menu">
+                                                        @foreach ($child->children as $grandchild)
+                                                            <li><a
+                                                                    href="{{ url($menu->slug . '/' . $child->slug . '/' . $grandchild->slug) }}">{{ $grandchild->title }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('products/agriculture-pipes') }}">Agriculture Pipes</a></li>
-                                <li><a href="{{ url('products/hdpe-pipes') }}">HDPE Pipes</a></li>
-                                <li><a href="{{ url('products/marina-tank') }}">Marina Tank</a></li>
-                                <li><a href="{{ url('products/bath-fittings') }}">Bath Fittings</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{ url('network') }}">Network</a>
-                        </li>
-                        <li>
-                            <a href="{{ url('partner') }}">Partner</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resources</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ url('news') }}">News</a></li>
-                                <li><a href="{{ url('blogs') }}">Blogs</a></li>
-                                <li><a href="{{ url('media') }}">Media</a></li>
-                                <li><a href="{{ url('faqs') }}">FAQs</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{ url('contact') }}">Contact Us</a>
-                        </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
