@@ -137,10 +137,10 @@
                         <span>{{ Auth::user()->name ?? 'Admin' }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
-                        <li>
+                        {{-- <li><a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i>Settings</a></li> --}}
+                        {{-- <li>
                             <hr class="dropdown-divider">
-                        </li>
+                        </li> --}}
                         <li>
                             <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf

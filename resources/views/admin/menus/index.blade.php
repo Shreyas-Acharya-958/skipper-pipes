@@ -94,13 +94,11 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-body">
-                                    <div id="menu-tree" class="dd">
-                                        <ol class="dd-list">
-                                            @foreach ($menus as $menu)
-                                                @include('admin.menus.menu-item', ['menu' => $menu])
-                                            @endforeach
-                                        </ol>
-                                    </div>
+                                    <ul id="menu-tree" class="menu-tree">
+                                        @foreach ($menus as $menu)
+                                            @include('admin.menus.menu-item', ['menu' => $menu])
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -109,55 +107,138 @@
             </div>
         </div>
     </div>
+
+    <!-- Toast Container -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="orderToast" class="toast align-items-center text-white bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Menu order updated successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.css">
     <style>
-        .dd {
-            max-width: 100%;
+        .menu-tree {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
 
-        .dd-handle {
-            height: auto;
-            padding: 8px 15px;
+        .menu-item {
             margin: 5px 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 3px;
         }
 
-        .dd-item>button {
-            height: 30px;
+        .menu-handle {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            cursor: move;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-handle:hover {
+            background: #e9ecef;
+        }
+
+        .handle-icon {
+            color: #999;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .menu-title {
+            flex-grow: 1;
+            margin-right: 100px;
         }
 
         .menu-actions {
             position: absolute;
-            right: 10px;
-            top: 5px;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        .dd3-content {
-            padding: 8px 15px 8px 40px;
+        .submenu {
+            list-style: none;
+            padding: 0 0 0 30px;
+            margin: 0;
+            border-left: 1px dashed #ddd;
+        }
+
+        .sortable-placeholder {
+            border: 1px dashed #b6bcbf;
+            background: #f2fbff;
             margin: 5px 0;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 3px;
+            min-height: 42px;
+        }
+
+        .sortable-dragging {
+            opacity: 0.8;
         }
     </style>
 @endpush
 
 @push('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize Nestable
-            $('.dd').nestable({
-                maxDepth: 3
-            }).on('change', function() {
-                updateOrder();
-            });
+            const orderToast = new bootstrap.Toast(document.getElementById('orderToast'));
+
+            function initializeSortable(element) {
+                $(element).sortable({
+                    handle: '.menu-handle',
+                    items: '> li',
+                    placeholder: 'sortable-placeholder',
+                    tolerance: 'pointer',
+                    cursor: 'move',
+                    connectWith: '.menu-tree, .submenu',
+                    update: function(event, ui) {
+                        if (this === ui.item.parent()[0]) {
+                            updateOrder();
+                        }
+                    }
+                });
+            }
+
+            // Initialize sortable on the main menu and all submenus
+            initializeSortable('.menu-tree');
+            initializeSortable('.submenu');
 
             // Update menu order
             function updateOrder() {
-                const items = $('.dd').nestable('serialize');
+                const items = [];
+                let sequence = 0;
+
+                function traverseMenu(element, parentId = null) {
+                    $(element).children('li').each(function() {
+                        const id = $(this).data('id');
+                        items.push({
+                            id: id,
+                            parent_id: parentId,
+                            sequence: sequence++
+                        });
+
+                        // Traverse submenu if exists
+                        const submenu = $(this).children('.submenu');
+                        if (submenu.length) {
+                            traverseMenu(submenu, id);
+                        }
+                    });
+                }
+
+                traverseMenu('#menu-tree');
+
                 $.ajax({
                     url: '{{ route('admin.menus.update-order') }}',
                     type: 'POST',
@@ -166,10 +247,16 @@
                         items: items
                     },
                     success: function(response) {
-                        console.log('Order updated successfully');
+                        orderToast.show();
                     },
                     error: function(error) {
                         console.error('Error updating order:', error);
+                        const errorToast = document.getElementById('orderToast');
+                        errorToast.classList.remove('bg-success');
+                        errorToast.classList.add('bg-danger');
+                        errorToast.querySelector('.toast-body').textContent =
+                            'Error updating menu order!';
+                        bootstrap.Toast.getOrCreateInstance(errorToast).show();
                     }
                 });
             }
@@ -208,14 +295,14 @@
 
             // Helper function to find menu data
             function findMenu(id) {
-                // This should be replaced with actual menu data from your backend
+                const menuItem = $(`#menu-${id}`);
                 return {
                     id: id,
-                    title: $(`#menu-${id} .dd3-content`).text().trim(),
-                    link: $(`#menu-${id}`).data('link'),
-                    parent_id: $(`#menu-${id}`).data('parent-id'),
-                    status: $(`#menu-${id}`).data('status'),
-                    is_active: $(`#menu-${id}`).data('is-active')
+                    title: menuItem.find('.menu-title').text().trim(),
+                    link: menuItem.data('link'),
+                    parent_id: menuItem.data('parent-id'),
+                    status: menuItem.data('status'),
+                    is_active: menuItem.data('is-active')
                 };
             }
         });

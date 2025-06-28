@@ -26,8 +26,15 @@ class FrontController extends Controller
             ->orderBy('sequence')
             ->get();
 
+        // Get recent blogs
+        $blogs = Blog::where('status', '1')
+            ->with('category')
+            ->latest('published_at')
+            ->take(3)
+            ->get();
+
         // dd($categories->toArray());
-        return view('front.index', compact('categories', 'banners'));
+        return view('front.index', compact('categories', 'banners', 'blogs'));
     }
 
     public function blogs()

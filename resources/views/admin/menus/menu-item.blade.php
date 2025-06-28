@@ -1,7 +1,8 @@
-<div class="dd-item" id="menu-{{ $menu->id }}" data-id="{{ $menu->id }}" data-link="{{ $menu->link }}"
+<li class="menu-item" id="menu-{{ $menu->id }}" data-id="{{ $menu->id }}" data-link="{{ $menu->link }}"
     data-parent-id="{{ $menu->parent_id }}" data-status="{{ $menu->status }}" data-is-active="{{ $menu->is_active }}">
-    <div class="dd-handle dd3-content">
-        {{ $menu->title }}
+    <div class="menu-handle">
+        <i class="fas fa-grip-vertical handle-icon"></i>
+        <span class="menu-title">{{ $menu->title }}</span>
         <div class="menu-actions">
             <a href="javascript:void(0)" onclick="editMenu({{ $menu->id }})" class="me-2" title="Edit">
                 <i class="fas fa-edit text-warning" style="font-size: 1.2rem;"></i>
@@ -17,10 +18,10 @@
         </div>
     </div>
     @if ($menu->children->count() > 0)
-        <ol class="dd-list">
+        <ul class="submenu">
             @foreach ($menu->children as $child)
                 @include('admin.menus.menu-item', ['menu' => $child])
             @endforeach
-        </ol>
+        </ul>
     @endif
-</div>
+</li>

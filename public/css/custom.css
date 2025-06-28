@@ -4,6 +4,8 @@
 :root {
     --primary-color: #FF9900;
     --primary-hover: #e68a00;
+    --secondary-color: #FF9900; /* Skipper Orange */
+    --secondary-hover: #e68a00; /* Darker Orange */
     --sidebar-bg: #1a1a1a;
     --sidebar-text: #ffffff;
     --sidebar-hover: #2d2d2d;
@@ -228,13 +230,6 @@ body {
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
-    width: 100%;
-    padding: 8px;
-    opacity: 0.7;
 }
 
 .logout .btn:hover {

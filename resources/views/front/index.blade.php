@@ -50,8 +50,8 @@
                         professionals alike.
                     </blockquote>
                     <!-- <p>
-                                                        From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
-                                                    </p> -->
+                                                From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
+                                            </p> -->
                     <ul>
                         <li class="about-li">
                             <div class="icon">
@@ -185,7 +185,6 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="home-products__left">
                             <ul class="tab-buttons clearfix list-unstyled">
-
                                 @foreach ($categories as $index => $category)
                                     <li data-tab="#category-{{ $category->id }}"
                                         class="tab-btn {{ $index === 0 ? 'active-btn' : '' }}">
@@ -208,7 +207,7 @@
                                                 "items": 1,
                                                 "margin": 30,
                                                 "smartSpeed": 700,
-                                                "loop":true,
+                                                "loop": {{ $category->products->count() > 1 ? 'true' : 'false' }},
                                                 "autoplay": 6000,
                                                 "nav":false,
                                                 "dots":true,
@@ -218,13 +217,13 @@
                                                         "items":1
                                                     },
                                                     "768":{
-                                                        "items":2
+                                                        "items": {{ $category->products->count() > 1 ? '2' : '1' }}
                                                     },
                                                     "992":{
-                                                        "items": 2
+                                                        "items": {{ $category->products->count() > 1 ? '2' : '1' }}
                                                     },
                                                     "1200":{
-                                                        "items": 2
+                                                        "items": {{ $category->products->count() > 1 ? '2' : '1' }}
                                                     }
                                                 }
                                             }'>
@@ -311,8 +310,8 @@
                     <div class="col-lg-6 right-info" style="background-image: url(assets/img/final/skipper-sathi.jpg);">
                         <h2>Join India's Fastest-Growing Plumber Network!</h2>
                         <!-- <p>
-                                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
-                                                        </p> -->
+                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
+                                                </p> -->
                         <a class="btn btn-light effect btn-md" href="#">Connect with Skipper</a>
                     </div>
                 </div>
@@ -437,117 +436,88 @@
             </div>
             <div class="blog-items">
                 <div class="row">
-                    <!-- Single Item -->
-                    <div class="col-lg-4 col-md-6 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="blogs-single.html"><img src="assets/img/final/blog1.jpeg" alt="Thumb">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>14 June, 2025</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                    @foreach ($blogs as $blog)
+                        <!-- Single Item -->
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item">
+                                <div class="thumb">
+                                    <a href="{{ route('front.blogs.show', $blog->slug) }}">
+                                        @if ($blog->page_image)
+                                            <img src="{{ asset('storage/' . $blog->image_1) }}"
+                                                alt="{{ $blog->title }}">
+                                        @else
+                                            <img src="{{ asset('assets/img/final/blog1.jpeg') }}"
+                                                alt="{{ $blog->title }}">
+                                        @endif
+                                    </a>
                                 </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="blogs-single.html">The Environmental Impact of Piping Materials:
-                                            Sustainable Choices for Green Building Projects</a>
-                                    </h4>
-                                    <p>
-                                        In the present construction industry, sustainability is considered to be crucial.
-                                        Engineers, architects and builders are largely focusing on eco-friendly…
-                                    </p>
-                                    <a class="more-btn" href="blogs-single.html">Read More <i
-                                            class="fas fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="col-lg-4 col-md-6 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="blogs-single.html"><img src="assets/img/final/blog2.jpeg" alt="Thumb">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>14 May, 2025</span>
-                                            </a>
-                                        </li>
-                                        <!-- <li>
-                                                                            <a href="#">
-                                                                                <i class="fas fa-comments"></i>
-                                                                                <span>08 Comments</span>
-                                                                            </a>
-                                                                        </li> -->
-                                    </ul>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="blogs-single.html">Reasons Why Industry Experts Choose Skipper Pipes for
-                                            Large-Scale Projects</a>
-                                    </h4>
-                                    <p>
-                                        Introduction Major real estate and infrastructure projects rely on the quality and
-                                        endurance of critical components, such as pipe networks.…
-                                    </p>
-                                    <a class="more-btn" href="blogs-single.html">Read More <i
-                                            class="fas fa-plus"></i></a>
+                                <div class="info">
+                                    <div class="meta">
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                    <span>{{ $blog->published_at ? \Carbon\Carbon::parse($blog->published_at)->format('d F, Y') : \Carbon\Carbon::parse($blog->created_at)->format('d F, Y') }}</span>
+                                                </a>
+                                            </li>
+                                            @if ($blog->category)
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fas fa-folder"></i>
+                                                        <span>{{ $blog->category->name }}</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </div>
+                                    <div class="content">
+                                        <h4>
+                                            <a
+                                                href="{{ route('front.blogs.show', $blog->slug) }}">{{ $blog->title }}</a>
+                                        </h4>
+                                        <p>
+                                            {{ Str::limit($blog->short_description, 150) }}
+                                        </p>
+                                        <a class="more-btn" href="{{ route('front.blogs.show', $blog->slug) }}">Read More
+                                            <i class="fas fa-plus"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- End Single Item -->
-                    <!-- Single Item -->
-                    <div class="col-lg-4 col-md-6 single-item">
-                        <div class="item">
-                            <div class="thumb">
-                                <a href="blogs-single.html"><img src="assets/img/final/blog3.jpeg" alt="Thumb">
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="meta">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-calendar-alt"></i>
-                                                <span>24 April, 2025</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="content">
-                                    <h4>
-                                        <a href="blogs-single.html">Innovation & Quality: The Award-Winning Journey of
-                                            Skipper <br> Pipes</a>
-                                    </h4>
-                                    <p>
-                                        Today, in the modern age, the evolution of the plumbing pipes is something which is
-                                        very fascinating to know. The advancement of technologies and ..
-                                    </p>
-                                    <a class="more-btn" href="blogs-single.html">Read More <i
-                                            class="fas fa-plus"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
+                        <!-- End Single Item -->
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
     <!-- Blog Section ends -->
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            // Tab switching functionality
+            $('.tab-btn').on('click', function() {
+                var tab = $(this).data('tab');
+
+                // Remove active classes
+                $('.tab-btn').removeClass('active-btn');
+                $('.tab').removeClass('active-tab');
+
+                // Add active classes
+                $(this).addClass('active-btn');
+                $(tab).addClass('active-tab');
+
+                // Reinitialize carousel for the active tab
+                $(tab).find('.owl-carousel').trigger('destroy.owl.carousel').owlCarousel(
+                    JSON.parse($(tab).find('.owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
+                );
+            });
+
+            // Initialize first tab's carousel
+            $('.tab.active-tab .owl-carousel').owlCarousel(
+                JSON.parse($('.tab.active-tab .owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
+            );
+        });
+    </script>
 @endsection

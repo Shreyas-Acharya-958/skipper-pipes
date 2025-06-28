@@ -62,11 +62,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 // Frontend Routes
 Route::name('front.')->group(function () {
     Route::get('/', [FrontController::class, 'index'])->name('home');
+    Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs.index');
+    Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
     Route::get('/products/{product}', [FrontController::class, 'showProduct'])->name('products.show');
 });
 
-Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs');
-Route::get('/blog/{slug}', [FrontController::class, 'blogDetail'])->name('blog.detail');
 Route::get('/products', [FrontController::class, 'products'])->name('products');
 Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('product.detail');
 Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');

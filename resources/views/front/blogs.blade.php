@@ -31,7 +31,7 @@
                         <div class="col-lg-4 col-md-6 single-item">
                             <div class="item">
                                 <div class="thumb">
-                                    <a href="{{ route('blog.detail', $blog->slug) }}">
+                                    <a href="{{ route('front.blogs.show', $blog->slug) }}">
                                         <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}">
                                     </a>
                                 </div>
@@ -48,12 +48,12 @@
                                         </ul>
                                     </div>
                                     <h4>
-                                        <a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->title }}</a>
+                                        <a href="{{ route('front.blogs.show', $blog->slug) }}">{{ $blog->title }}</a>
                                     </h4>
                                     <p>
                                         {{ Str::limit(strip_tags($blog->content), 150) }}
                                     </p>
-                                    <a class="btn-simple" href="{{ route('blog.detail', $blog->slug) }}">Read More <i
+                                    <a class="btn-simple" href="{{ route('front.blogs.show', $blog->slug) }}">Read More <i
                                             class="fas fa-angle-right"></i></a>
                                 </div>
                             </div>
