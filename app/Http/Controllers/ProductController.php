@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -49,15 +50,21 @@ class ProductController extends Controller
             'brochure' => 'nullable|mimes:pdf,doc,docx',
         ]);
 
-        // Handle file uploads
+        // Handle file uploads with custom names
         foreach (['page_image', 'product_overview_image'] as $field) {
             if ($request->hasFile($field)) {
-                $validated[$field] = $request->file($field)->store('products', 'public');
+                $file = $request->file($field);
+                $filename = Str::slug($request->title) . '-' . $field . '-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('products', $filename, 'public');
+                $validated[$field] = $path;
             }
         }
 
         if ($request->hasFile('brochure')) {
-            $validated['brochure'] = $request->file('brochure')->store('products/brochures', 'public');
+            $file = $request->file('brochure');
+            $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('products/brochures', $filename, 'public');
+            $validated['brochure'] = $path;
         }
 
         Product::create($validated);
@@ -100,9 +107,9 @@ class ProductController extends Controller
             'brochure' => 'nullable|mimes:pdf,doc,docx',
         ]);
 
-        // Handle file uploads and removals
+        // Handle file uploads and removals with custom names
         foreach (['page_image', 'product_overview_image'] as $field) {
-            if ($request->has('remove_' . $field)) {
+            if ($request->has('remove_' . $field) && $request->input('remove_' . $field) === '1') {
                 if ($product->$field) {
                     Storage::disk('public')->delete($product->$field);
                     $validated[$field] = null;
@@ -111,14 +118,17 @@ class ProductController extends Controller
                 if ($product->$field) {
                     Storage::disk('public')->delete($product->$field);
                 }
-                $validated[$field] = $request->file($field)->store('products', 'public');
+                $file = $request->file($field);
+                $filename = Str::slug($request->title) . '-' . $field . '-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('products', $filename, 'public');
+                $validated[$field] = $path;
             } else {
                 unset($validated[$field]);
             }
         }
 
         // Handle brochure
-        if ($request->has('remove_brochure')) {
+        if ($request->has('remove_brochure') && $request->input('remove_brochure') === '1') {
             if ($product->brochure) {
                 Storage::disk('public')->delete($product->brochure);
                 $validated['brochure'] = null;
@@ -127,7 +137,10 @@ class ProductController extends Controller
             if ($product->brochure) {
                 Storage::disk('public')->delete($product->brochure);
             }
-            $validated['brochure'] = $request->file('brochure')->store('products/brochures', 'public');
+            $file = $request->file('brochure');
+            $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('products/brochures', $filename, 'public');
+            $validated['brochure'] = $path;
         } else {
             unset($validated['brochure']);
         }

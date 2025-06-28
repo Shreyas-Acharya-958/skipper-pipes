@@ -247,8 +247,13 @@
         document.querySelectorAll('.remove-image-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const field = this.dataset.field;
-                document.getElementById(`remove_${field}_input`).value = '1';
+                // Clear file input
+                const input = document.getElementById(field);
+                if (input) input.value = '';
+                // Hide the preview
                 this.closest('.position-relative').remove();
+                // Set hidden input to 1 (mark for removal)
+                document.getElementById(`remove_${field}_input`).value = '1';
             });
         });
 
@@ -256,8 +261,13 @@
         document.querySelectorAll('.remove-file-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const field = this.dataset.field;
-                document.getElementById(`remove_${field}_input`).value = '1';
+                // Clear file input
+                const input = document.getElementById(field);
+                if (input) input.value = '';
+                // Hide the preview
                 this.closest('.position-relative').remove();
+                // Set hidden input to 1 (mark for removal)
+                document.getElementById(`remove_${field}_input`).value = '1';
             });
         });
     </script>
