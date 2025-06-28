@@ -188,56 +188,57 @@
 
     @yield('content')
 
-    <!-- Start Footer -->
-    <footer class="bg-dark text-light">
+    <!-- Footer Section  -->
+    <footer>
         <div class="container">
             <div class="f-items default-padding">
                 <div class="row">
                     <!-- Single Item -->
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="f-item about">
-                            <img src="{{ asset('assets/img/final/logo.png') }}" alt="Logo">
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" class="w-50 mb-3"
+                                alt="">
                             <p>
-                                Excellence in plumbing solutions since decades. Trusted by millions of customers across
-                                India.
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum qui minima reiciendis ea,
+                                aperiam neque!
                             </p>
-                            <div class="social">
-                                <ul>
-                                    <li><a href="https://www.facebook.com/skipperpipes/"><i
-                                                class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://www.instagram.com/skipperpipes/"><i
-                                                class="fab fa-instagram"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/company/skipperpipes/"><i
-                                                class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="https://www.youtube.com/@skipperpipes358"><i
-                                                class="fab fa-youtube"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single Item -->
-
-                    <!-- Single Item -->
-                    <div class="col-lg-2 col-md-6 item">
-                        <div class="f-item link">
-                            <h4 class="widget-title">Quick Links</h4>
-                            <ul>
-                                <li><a href="{{ url('about-us') }}">About us</a></li>
-                                <li><a href="{{ url('products') }}">Our Products</a></li>
-                                <li><a href="{{ url('network') }}">Network</a></li>
-                                <li><a href="{{ url('contact') }}">Contact us</a></li>
+                            <ul class="footer-social">
+                                <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i
+                                            class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i
+                                            class="fab fa-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    <div class="col-lg-3 col-md-6 item">
+                    <div class="col-lg-2 col-md-6 single-item">
                         <div class="f-item link">
-                            <h4 class="widget-title">Products</h4>
+                            <h4 class="widget-title">Other Links</h4>
+                            <ul>
+                                <li><a href="{{ url('privacy') }}">Privacy</a></li>
+                                <li><a href="{{ url('disclaimer') }}">Disclaimer</a></li>
+                                <li><a href="{{ url('resources') }}">Resources</a></li>
+                                <li><a href="{{ url('network') }}">Network</a></li>
+                                <li><a href="{{ url('contact') }}">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Our Products</h4>
                             <ul>
                                 <li><a href="{{ url('products/upvc-pipes') }}">UPVC Pipes</a></li>
                                 <li><a href="{{ url('products/cpvc-pipes') }}">CPVC Pipes</a></li>
+                                <li><a href="{{ url('products/swr-pipes') }}">SWR Pipes</a></li>
                                 <li><a href="{{ url('products/agriculture-pipes') }}">Agriculture Pipes</a></li>
                                 <li><a href="{{ url('products/bath-fittings') }}">Bath Fittings</a></li>
                             </ul>
@@ -246,25 +247,19 @@
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    <div class="col-lg-3 col-md-6 item">
-                        <div class="f-item">
-                            <h4 class="widget-title">Contact Info</h4>
-                            <div class="address">
-                                <ul>
-                                    <li>
-                                        <strong>Address:</strong>
-                                        3A, Loudon Street Kolkata- 700017
-                                    </li>
-                                    <li>
-                                        <strong>Email:</strong>
-                                        <a href="mailto:enquiry@skipperlimited.com">enquiry@skipperlimited.com</a>
-                                    </li>
-                                    <li>
-                                        <strong>Phone:</strong>
-                                        <a href="tel:+913322851231">+91 33 2285 1231/32</a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <h4 class="widget-title">Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    3A, Loudon Street Kolkata- 700017
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope-open"></i>
+                                    <a href="mailto:enquiry@skipperlimited.com">enquiry@skipperlimited.com</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <!-- End Single Item -->
@@ -274,15 +269,13 @@
         <!-- Start Footer Bottom -->
         <div class="footer-bottom">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-lg-6">
                         <p>&copy; {{ date('Y') }} Skipper Pipes. All Rights Reserved</p>
                     </div>
-                    <div class="col-lg-6 text-right">
-                        <ul>
-                            <li><a href="{{ url('privacy-policy') }}">Privacy Policy</a></li>
-                            <li><a href="{{ url('terms-conditions') }}">Terms & Conditions</a></li>
-                        </ul>
+                    <div class="col-lg-6 text-end">
+                        <p><a href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a
+                                href="{{ url('terms-conditions') }}">Terms & Conditions</a></p>
                     </div>
                 </div>
             </div>
