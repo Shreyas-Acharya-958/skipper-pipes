@@ -26,11 +26,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>UPVC Pipes</h4>
+                        <h4>{{ $product->title }}</h4>
                         <h2>Product Overview</h2>
                         <!-- <p>
-                                                                                                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolore repellat at quod nulla officiis.
-                                                                                                                </p> -->
+                                                                                                                                                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolore repellat at quod nulla officiis.
+                                                                                                                                                    </p> -->
                     </div>
                 </div>
             </div>
@@ -50,11 +50,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="site-heading text-center">
-                            <h4>UPVC Pipes</h4>
+                            <h4>{{ $product->title }}</h4>
                             <h2>Key Features & Benefits</h2>
-                            <!-- <p>
-                                                                                                                                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut excepturi hic nesciunt cupiditate soluta, minus ut autem commodi explicabo exercitationem!
-                                                                                                                                                                </p> -->
                         </div>
                     </div>
 
@@ -76,7 +73,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>UPVC Pipes</h4>
+                        <h4>{{ $product->title }}</h4>
                         <h2>Product Technical</h2>
 
                     </div>
@@ -96,7 +93,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>UPVC Pipes</h4>
+                        <h4>{{ $product->title }}</h4>
                         <h2>Product Application</h2>
 
                     </div>
@@ -131,7 +128,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>UPVC Pipes</h4>
+                        <h4>{{ $product->title }}</h4>
                         <h2>Frequently Asked Questions</h2>
 
                     </div>
@@ -149,7 +146,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white">Ready to Install India’s Safest UPVC Pipes?</h2>
+                    <h2 class="text-white">Ready to Install India’s Safest {{ $product->title }}?</h2>
                     <p class="text-white pb-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse nemo
                         assumenda facilis unde debitis, quia quam pariatur. Facilis magni voluptates sint dolorum </p>
                     <a class="btn btn-light effect btn-md mr-md-3" href="tel:+913322851231"><i class="far fa-phone-alt"></i>
