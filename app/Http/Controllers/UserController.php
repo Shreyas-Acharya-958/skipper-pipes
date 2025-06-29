@@ -16,6 +16,7 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
+
         $query = User::query();
 
         if ($request->filled('search')) {

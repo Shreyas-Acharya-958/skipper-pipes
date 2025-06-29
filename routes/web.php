@@ -21,8 +21,10 @@ Route::get('/', function () {
 
 
 // Admin authentication routes (no middleware)
+
+Route::get('admin/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
@@ -78,3 +80,10 @@ Route::name('front.')->group(function () {
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
 });
+// Route::get('/admin/users', function () {
+//     //redireto admin login page
+//     return redirect()->route('admin.login');
+// });
+// Route::get('/admin', function () {
+//     return redirect()->route('admin.login');
+// });
