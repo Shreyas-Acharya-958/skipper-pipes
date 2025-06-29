@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
                 'name' => 'Palkesh Patel',
                 'email' => 'patel.palkesh@gmail.com',
                 'email_verified_at' => '2025-06-28 08:27:54',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('Bh@v!k10'),
                 'created_at' => '2025-06-28 08:27:55',
                 'updated_at' => '2025-06-28 08:27:55'
             ],
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin User',
                 'email' => 'admin@admin.com',
                 'email_verified_at' => '2025-06-28 08:27:54',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('Bh@v!k10'),
                 'created_at' => '2025-06-28 08:27:55',
                 'updated_at' => '2025-06-28 08:27:55'
             ],
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'name' => 'User Admin',
                 'email' => 'user@admin.com',
                 'email_verified_at' => '2025-06-28 08:27:55',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('Bh@v!k10'),
                 'created_at' => '2025-06-28 08:27:55',
                 'updated_at' => '2025-06-28 08:27:55'
             ]

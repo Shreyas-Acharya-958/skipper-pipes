@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +33,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    // User Management routes
+    Route::resource('users', UserController::class);
 
     // Blog routes
     Route::resource('blogs', BlogController::class)->names('blogs');

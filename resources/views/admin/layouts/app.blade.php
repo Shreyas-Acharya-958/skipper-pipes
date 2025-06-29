@@ -99,17 +99,22 @@
                 </div>
 
                 <!-- Settings -->
-                <div class="nav-section {{ request()->routeIs('admin.menus.*') ? 'open' : '' }}">
+                <div class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*') ? 'open' : '' }}">
                     <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#settingsModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
                             Settings
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.menus.*') ? 'show' : '' }}" id="settingsModule">
+                    <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*') ? 'show' : '' }}"
+                        id="settingsModule">
                         <a class="nav-link{{ request()->routeIs('admin.menus.*') ? ' active' : '' }}"
                             href="{{ route('admin.menus.index') }}">
                             <i class="fas fa-bars"></i> <span class="nav-text">Menu Management</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.users.*') ? ' active' : '' }}"
+                            href="{{ route('admin.users.index') }}">
+                            <i class="fas fa-users"></i> <span class="nav-text">User Management</span>
                         </a>
                     </div>
                 </div>
