@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\CompanyPage;
 use App\Models\Banner;
 use App\Models\BlogCategory;
+use App\Models\BlogTag;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,14 @@ class FrontController extends Controller
     public function blogs()
     {
         $blogs = Blog::where('status', 1)->with('category')->paginate(9);
+        if (isset($queryParams['tag'])) {
+            $blog_id = BlogTag::where('name', $queryParams['tag'])->pluck('blog_id');
+            $blogs = Blog::where('status', 1)->whereIn('id', $blog_id)->with('category')->paginate(9);
+        }
+        if (isset($queryParams['category'])) {
+            $blogs = Blog::where('status', 1)->where('cat_id', $queryParams['category'])->with('category')->paginate(9);
+        }
+
         return view('front.blogs', compact('blogs'));
     }
 
@@ -54,6 +63,7 @@ class FrontController extends Controller
             ->latest()
             ->take(5)
             ->get();
+
 
         $categories = BlogCategory::withCount('blogs')
             ->where('status', 1)
