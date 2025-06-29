@@ -3,29 +3,53 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use App\Models\BlogCategory;
 
 class BlogCategorySeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $categories = [
-            ['name' => 'Plumbing & Sewage'],
-            ['name' => 'Agriculture'],
-            ['name' => 'Borewell'],
-            ['name' => 'HDPE Pipes'],
-            ['name' => 'Marina Tank'],
-            ['name' => 'Bath Fittings'],
+            [
+                'title' => 'Plumbing & Sewage',
+                'status' => 1,
+                'created_at' => '2025-06-28 08:27:55',
+                'updated_at' => '2025-06-28 08:27:55'
+            ],
+            [
+                'title' => 'Agriculture',
+                'status' => 1,
+                'created_at' => '2025-06-28 08:27:55',
+                'updated_at' => '2025-06-28 08:27:55'
+            ],
+            [
+                'title' => 'Borewell',
+                'status' => 1,
+                'created_at' => '2025-06-28 08:27:55',
+                'updated_at' => '2025-06-28 08:27:55'
+            ],
+            [
+                'title' => 'HDPE Pipes',
+                'status' => 1,
+                'created_at' => '2025-06-28 08:27:55',
+                'updated_at' => '2025-06-28 08:27:55'
+            ],
+            [
+                'title' => 'Marina Tank',
+                'status' => 1,
+                'created_at' => '2025-06-28 08:27:55',
+                'updated_at' => '2025-06-28 08:27:55'
+            ],
+            [
+                'title' => 'Bath Fittings',
+                'status' => 1,
+                'created_at' => '2025-06-28 08:27:55',
+                'updated_at' => '2025-06-28 08:27:55'
+            ]
         ];
 
         foreach ($categories as $category) {
-            DB::table('blog_categories')->insert([
-                'title' => $category['name'],
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            BlogCategory::create($category);
         }
     }
 }
