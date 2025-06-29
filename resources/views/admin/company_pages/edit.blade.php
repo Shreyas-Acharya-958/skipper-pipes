@@ -40,19 +40,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="image" class="form-label">Image</label>
-                            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                                name="image" accept="image/*">
-                            @if ($company_page->image)
+                            <label for="page_image" class="form-label">Page Image</label>
+                            <input type="file" class="form-control @error('page_image') is-invalid @enderror"
+                                id="page_image" name="page_image" accept="image/*">
+                            @if ($company_page->page_image)
                                 <div class="mt-2 position-relative d-inline-block">
-                                    <img src="{{ asset('storage/' . $company_page->image) }}" alt="Page Image"
+                                    <img src="{{ asset('storage/' . $company_page->page_image) }}" alt="Page Image"
                                         style="width:100px;height:100px;object-fit:cover;">
                                     <button type="button"
                                         class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
-                                        data-field="image">&times;</button>
+                                        data-field="page_image">&times;</button>
                                 </div>
                             @endif
-                            @error('image')
+                            @error('page_image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small class="text-muted">Allowed formats: JPEG, PNG, JPG, GIF. Max size: 2MB</small>
@@ -76,7 +76,77 @@
                             @enderror
                         </div>
 
-                        <div class="row">
+                        <!-- Sections 1-8 -->
+                        <div class="mb-3">
+                            <label for="section_1" class="form-label">Section 1</label>
+                            <textarea class="form-control @error('section_1') is-invalid @enderror" id="section_1" name="section_1" rows="6">{{ old('section_1', $company_page->section_1) }}</textarea>
+                            @error('section_1')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_2" class="form-label">Section 2</label>
+                            <textarea class="form-control @error('section_2') is-invalid @enderror" id="section_2" name="section_2" rows="6">{{ old('section_2', $company_page->section_2) }}</textarea>
+                            @error('section_2')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_3" class="form-label">Section 3</label>
+                            <textarea class="form-control @error('section_3') is-invalid @enderror" id="section_3" name="section_3" rows="6">{{ old('section_3', $company_page->section_3) }}</textarea>
+                            @error('section_3')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_4" class="form-label">Section 4</label>
+                            <textarea class="form-control @error('section_4') is-invalid @enderror" id="section_4" name="section_4" rows="6">{{ old('section_4', $company_page->section_4) }}</textarea>
+                            @error('section_4')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_5" class="form-label">Section 5</label>
+                            <textarea class="form-control @error('section_5') is-invalid @enderror" id="section_5" name="section_5"
+                                rows="6">{{ old('section_5', $company_page->section_5) }}</textarea>
+                            @error('section_5')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_6" class="form-label">Section 6</label>
+                            <textarea class="form-control @error('section_6') is-invalid @enderror" id="section_6" name="section_6"
+                                rows="6">{{ old('section_6', $company_page->section_6) }}</textarea>
+                            @error('section_6')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_7" class="form-label">Section 7</label>
+                            <textarea class="form-control @error('section_7') is-invalid @enderror" id="section_7" name="section_7"
+                                rows="6">{{ old('section_7', $company_page->section_7) }}</textarea>
+                            @error('section_7')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="section_8" class="form-label">Section 8</label>
+                            <textarea class="form-control @error('section_8') is-invalid @enderror" id="section_8" name="section_8"
+                                rows="6">{{ old('section_8', $company_page->section_8) }}</textarea>
+                            @error('section_8')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Meta Information -->
+                        <div class="row mt-4">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="meta_title" class="form-label">Meta Title</label>
@@ -101,7 +171,8 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="meta_keywords" class="form-label">Meta Keywords</label>
-                                    <input type="text" class="form-control @error('meta_keywords') is-invalid @enderror"
+                                    <input type="text"
+                                        class="form-control @error('meta_keywords') is-invalid @enderror"
                                         id="meta_keywords" name="meta_keywords"
                                         value="{{ old('meta_keywords', $company_page->meta_keywords) }}">
                                     @error('meta_keywords')
@@ -111,6 +182,7 @@
                             </div>
                         </div>
 
+                        <!-- Status Fields -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -129,7 +201,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display: none;">
                                 <div class="mb-3">
                                     <label for="is_active" class="form-label">Is Active</label>
                                     <select class="form-select @error('is_active') is-invalid @enderror" id="is_active"
@@ -162,23 +234,28 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
     <script>
-        tinymce.init({
-            selector: '#long_description',
-            height: 300,
-            menubar: false,
-            plugins: 'lists link image code',
-            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
-            verify_html: false,
-            cleanup: false,
-            valid_elements: '*[*]',
-            extended_valid_elements: '*[*]',
-            valid_children: '+*[*]',
-            preserve_cdata: true,
-            entity_encoding: 'raw',
-            force_br_newlines: false,
-            force_p_newlines: false,
-            forced_root_block: '',
-            keep_styles: true
+        const editors = ['long_description', 'section_1', 'section_2', 'section_3', 'section_4', 'section_5', 'section_6',
+            'section_7', 'section_8'
+        ];
+        editors.forEach(editor => {
+            tinymce.init({
+                selector: `#${editor}`,
+                height: 300,
+                menubar: false,
+                plugins: 'lists link image code',
+                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                verify_html: false,
+                cleanup: false,
+                valid_elements: '*[*]',
+                extended_valid_elements: '*[*]',
+                valid_children: '+*[*]',
+                preserve_cdata: true,
+                entity_encoding: 'raw',
+                force_br_newlines: false,
+                force_p_newlines: false,
+                forced_root_block: '',
+                keep_styles: true
+            });
         });
     </script>
     <script>
@@ -216,8 +293,13 @@
         document.querySelectorAll('.remove-image-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 const field = this.dataset.field;
-                document.getElementById(`remove_${field}_input`).value = '1';
-                this.closest('.position-relative').remove();
+                // Clear file input
+                const input = document.getElementById(field);
+                if (input) input.value = '';
+                // Hide the preview
+                this.parentElement.remove();
+                // Set hidden input to 1 (mark for removal)
+                document.getElementById('remove_image_input').value = '1';
             });
         });
     </script>

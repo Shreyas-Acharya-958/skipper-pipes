@@ -50,8 +50,8 @@
                         professionals alike.
                     </blockquote>
                     <!-- <p>
-                                                        From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
-                                                    </p> -->
+                                                                                From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
+                                                                            </p> -->
                     <ul>
                         <li class="about-li">
                             <div class="icon">
@@ -108,61 +108,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 product-category-col">
-                        <div class="thumb" style="background: url(assets/img/final/plumbing-and-sewage.jpeg);"></div>
-                        <i class="flaticon-bridge"></i>
-                        <h4>Plumbing & Sewage</h4>
-                        <p>
-                            Designed for safe, leak-free flow—ideal for modern plumbing and efficient wastewater management
-                            systems.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 product-category-col">
-                        <div class="thumb" style="background: url(assets/img/final/agriculture-pipes.jpeg);"></div>
-                        <i class="flaticon-engineer-3"></i>
-                        <h4>Agriculture Pipes</h4>
-                        <p>
-                            Reliable performance for modern farming needs; durable, weather-resistant, and easy to install
-                            and maintain.
-
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 product-category-col">
-                        <div class="thumb" style="background: url(assets/img/final/borewell.jpeg);"></div>
-                        <i class="flaticon-machinery"></i>
-                        <h4>Borewell Pipes</h4>
-                        <p>
-                            Built for deep water extraction, our borewell range ensures strength, efficiency, and
-                            long-lasting performance underground.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 product-category-col">
-                        <div class="thumb" style="background: url(assets/img/final/HDPE-pipes.jpeg);"></div>
-                        <i class="flaticon-bridge"></i>
-                        <h4>HDPE Pipes</h4>
-                        <p>
-                            High-strength, corrosion-resistant pipes designed for leak-free flow in agriculture, drainage,
-                            and infrastructure systems.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 product-category-col">
-                        <div class="thumb" style="background: url(assets/img/final/Marina\ Tank.jpeg);"></div>
-                        <i class="flaticon-house"></i>
-                        <h4>Marina Tanks</h4>
-                        <p>
-                            UV-stabilized, multilayer storage tank designed for safe, hygienic, and long-lasting water
-                            storage.
-                        </p>
-                    </div>
-                    <div class="col-lg-4 col-md-6 product-category-col">
-                        <div class="thumb" style="background: url(assets/img/final/bath-fittings.jpeg);"></div>
-                        <i class="flaticon-ruler"></i>
-                        <h4>Bath Fittings</h4>
-                        <p>
-                            Contemporary bath fittings designed for elegance, long-lasting performance, and effortless daily
-                            functionality.
-                        </p>
-                    </div>
+                    @foreach ($featuredCategories as $category)
+                        <div class="col-lg-4 col-md-6 product-category-col">
+                            <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
+                            <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
+                            <h4>{{ $category->name }}</h4>
+                            <p>
+                                {{ $category->description }}
+                            </p>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -310,8 +265,8 @@
                     <div class="col-lg-6 right-info" style="background-image: url(assets/img/final/skipper-sathi.jpg);">
                         <h2>Join India's Fastest-Growing Plumber Network!</h2>
                         <!-- <p>
-                                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
-                                                        </p> -->
+                                                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
+                                                                                </p> -->
                         <a class="btn btn-light effect btn-md" href="#">Connect with Skipper</a>
                     </div>
                 </div>
@@ -354,7 +309,7 @@
                                 </div>
                                 <div class="provider">
                                     <div class="thumb">
-                                        <img src="assets/img/final/testimonial1.png" alt="Thumb">
+                                        <img src="/assets/img/final/testimonial1.png" alt="Thumb">
                                     </div>
                                     <div class="info">
                                         <h5>Mr. Varun Bansal</h5>
@@ -380,7 +335,7 @@
                                 </div>
                                 <div class="provider">
                                     <div class="thumb">
-                                        <img src="assets/img/final/testimonial2.jpg" alt="Thumb">
+                                        <img src="/assets/img/final/testimonial2.jpg" alt="Thumb">
                                     </div>
                                     <div class="info">
                                         <h5>Mr. Ripan Sikder</h5>

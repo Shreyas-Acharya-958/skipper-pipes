@@ -26,9 +26,9 @@
                                     <th>Image</th>
                                     <th>Title</th>
                                     <th>Slug</th>
-                                    <th>Meta Title</th>
+
                                     <th>Status</th>
-                                    <th>Is Active</th>
+
                                     <th>Created At</th>
                                     <th>Actions</th>
                                 </tr>
@@ -38,8 +38,8 @@
                                     <tr>
                                         <td>{{ $page->id }}</td>
                                         <td>
-                                            @if ($page->image)
-                                                <img src="{{ asset('storage/' . $page->image) }}" alt="Page Image"
+                                            @if ($page->page_image)
+                                                <img src="{{ asset('storage/' . $page->page_image) }}" alt="Page Image"
                                                     class="img-thumbnail" style="max-height: 50px;">
                                             @else
                                                 <span class="text-muted">No image</span>
@@ -47,17 +47,17 @@
                                         </td>
                                         <td>{{ $page->title }}</td>
                                         <td>{{ $page->slug }}</td>
-                                        <td>{{ $page->meta_title }}</td>
+
                                         <td>
                                             <span class="badge bg-{{ $page->status ? 'success' : 'danger' }}">
                                                 {{ $page->status ? 'Active' : 'Inactive' }}
                                             </span>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <span class="badge bg-{{ $page->is_active ? 'success' : 'danger' }}">
                                                 {{ $page->is_active ? 'Yes' : 'No' }}
                                             </span>
-                                        </td>
+                                        </td> --}}
                                         <td>{{ $page->created_at->format('d-m-Y H:i:s') }}</td>
                                         <td>
                                             <div class="btn-group" role="group">

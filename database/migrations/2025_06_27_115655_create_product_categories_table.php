@@ -17,6 +17,7 @@ class CreateProductCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('icon')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

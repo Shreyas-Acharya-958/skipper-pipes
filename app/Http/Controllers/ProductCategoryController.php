@@ -47,6 +47,7 @@ class ProductCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:product_categories',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'icon' => 'nullable|string',
             'status' => 'required|boolean'
         ]);
 
@@ -90,6 +91,7 @@ class ProductCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'icon' => 'nullable|string',
             'status' => 'required|boolean'
         ]);
 

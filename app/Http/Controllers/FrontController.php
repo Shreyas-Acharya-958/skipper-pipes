@@ -22,6 +22,11 @@ class FrontController extends Controller
             ->where('status', '1')
             ->get();
 
+        // Get featured categories for the static section
+        $featuredCategories = ProductCategory::where('status', '1')
+            ->take(6)
+            ->get();
+
         // Get banners
         $banners = Banner::where('status', '1')
             ->orderBy('sequence')
@@ -35,7 +40,7 @@ class FrontController extends Controller
             ->get();
 
         // dd($categories->toArray());
-        return view('front.index', compact('categories', 'banners', 'blogs'));
+        return view('front.index', compact('categories', 'banners', 'blogs', 'featuredCategories'));
     }
 
     public function blogs()
