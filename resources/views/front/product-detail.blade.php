@@ -1,129 +1,168 @@
 @extends('front.layouts.app')
 
 @section('content')
-    <!-- Product Detail Section -->
-    <section class="product-detail">
-        <div class="container">
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container-fluid p-0">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="product-detail__img">
-                        @if ($product->page_image)
-                            <img src="{{ asset('storage/' . $product->page_image) }}" alt="{{ $product->title }}"
-                                class="img-fluid">
-                        @else
-                            <img src="{{ asset('assets/img/final/project1.jpg') }}" alt="{{ $product->title }}"
-                                class="img-fluid">
-                        @endif
+                <div class="col-12">
+                    <div class="hero-banner-img">
+                        <img src="{{ asset('assets/img/final/product-single-banner1.jpg') }}" alt="hero-banner">
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="product-detail__content">
-                        <h2 class="product-detail__title">{{ $product->title }}</h2>
-                        <div class="product-detail__category">
-                            <span>Category:</span> {{ $product->category->name }}
-                        </div>
-
-                        @if ($product->product_overview)
-                            <div class="product-detail__overview">
-                                <h3>Overview</h3>
-                                {!! $product->product_overview !!}
-                            </div>
-                        @endif
-
-                        @if ($product->features_benefits)
-                            <div class="product-detail__features">
-                                <h3>Features & Benefits</h3>
-                                {!! $product->features_benefits !!}
-                            </div>
-                        @endif
+                    <div class="hero-bg-overlay"></div>
+                    <div class="hero-banner-content">
+                        <h1>{{ $product->title }}</h1>
+                        <p>{{ $product->short_description }}</p>
                     </div>
                 </div>
             </div>
-
-            @if ($product->product_overview_image)
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <div class="product-detail__overview-image">
-                            <img src="{{ asset('storage/' . $product->product_overview_image) }}" alt="Overview"
-                                class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            @endif
         </div>
     </section>
+
+    <!-- Product Overview -->
+    <!-- Product Overview -->
+    <section class="product-overview default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h4>UPVC Pipes</h4>
+                        <h2>Product Overview</h2>
+                        <!-- <p>
+                                                                                                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere dolore repellat at quod nulla officiis.
+                                                                                                                </p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row align-center">
+                {!! $product->product_overview !!}
+            </div>
+        </div>
+    </section>
+    <!-- Product Overview ends -->
+    <!-- Product Overview ends -->
+
+
+    <!-- Key Features & Benefits -->
+    <section class="key-features-benefits bg-gray">
+        <div class="work-process-area relative default-padding bottom-less bg-fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="site-heading text-center">
+                            <h4>UPVC Pipes</h4>
+                            <h2>Key Features & Benefits</h2>
+                            <!-- <p>
+                                                                                                                                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut excepturi hic nesciunt cupiditate soluta, minus ut autem commodi explicabo exercitationem!
+                                                                                                                                                                </p> -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="work-pro-items">
+                    <div class="row">
+                        {!! $product->features_benefits !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Key Features & Benefits ends -->
+
+
+    <!-- Product Technical Table -->
+    <section class="product-technical default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h4>UPVC Pipes</h4>
+                        <h2>Product Technical</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {!! $product->technical !!}
+            </div>
+        </div>
+    </section>
+    <!-- Product Technical Table ends -->
+
+
+    <!-- Product Application -->
+    <section class="services-page-one bg-gray default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h4>UPVC Pipes</h4>
+                        <h2>Product Application</h2>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                {!! $product->application !!}
+            </div>
+        </div>
+    </section>
+    <!-- Product Application ends -->
+
+    <!-- product cta -->
+    <section class="product-cta bg-theme text-white default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-white mb-4">Everything You Need to Know</h2>
+                    <a class="btn btn-light effect btn-md" target="_blank"
+                        href="{{ asset('storage/' . $product->brochure) }}" download>Download
+                        Brochure</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product cta ends -->
+
+    <!-- Product Faq  -->
+    <section class="product-faq default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h4>UPVC Pipes</h4>
+                        <h2>Frequently Asked Questions</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {!! $product->faq !!}
+            </div>
+        </div>
+    </section>
+    <!-- Product Faq ends -->
+
+    <!-- product cta -->
+    <section class="product-cta bg-theme text-white default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-white">Ready to Install India’s Safest UPVC Pipes?</h2>
+                    <p class="text-white pb-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse nemo
+                        assumenda facilis unde debitis, quia quam pariatur. Facilis magni voluptates sint dolorum </p>
+                    <a class="btn btn-light effect btn-md mr-md-3" href="tel:+913322851231"><i class="far fa-phone-alt"></i>
+                        +91 33 2285 1231 / 32</a>
+                    <a class="btn btn-light effect btn-md mr-md-3"
+                        href="mailto:enquiry@skipperpipes.com">enquiry@skipperpipes.com</a>
+
+                    <a class="btn btn-light effect btn-md" target="_blank"
+                        href="{{ asset('storage/' . $product->brochure) }}" download>Download
+                        Brochure</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product cta ends -->
 @endsection
-
-@push('styles')
-    <style>
-        .product-detail {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .product-detail__img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-detail__img img {
-            width: 100%;
-            height: auto;
-        }
-
-        .product-detail__content {
-            padding: 20px;
-        }
-
-        .product-detail__title {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .product-detail__category {
-            margin-bottom: 20px;
-            color: #666;
-        }
-
-        .product-detail__category span {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .product-detail__overview,
-        .product-detail__features {
-            margin-top: 30px;
-        }
-
-        .product-detail__overview h3,
-        .product-detail__features h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .product-detail__overview p,
-        .product-detail__features p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .product-detail__features ul {
-            padding-left: 20px;
-        }
-
-        .product-detail__features li {
-            margin-bottom: 10px;
-            color: #666;
-        }
-
-        .product-detail__overview-image {
-            margin-top: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-@endpush

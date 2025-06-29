@@ -145,7 +145,18 @@
             height: 300,
             menubar: false,
             plugins: 'lists link image code',
-            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code'
+            toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+            verify_html: false,
+            cleanup: false,
+            valid_elements: '*[*]',
+            extended_valid_elements: '*[*]',
+            valid_children: '+*[*]',
+            preserve_cdata: true,
+            entity_encoding: 'raw',
+            force_br_newlines: false,
+            force_p_newlines: false,
+            forced_root_block: '',
+            keep_styles: true
         });
     </script>
     <script>

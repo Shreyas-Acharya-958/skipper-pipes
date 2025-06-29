@@ -67,7 +67,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display: none;">
                                 <div class="mb-3">
                                     <label for="product_overview_image" class="form-label">Product Overview Image</label>
                                     <input type="file"
@@ -239,7 +239,18 @@
                 height: 300,
                 menubar: false,
                 plugins: 'lists link image code',
-                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code'
+                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                verify_html: false,
+                cleanup: false,
+                valid_elements: '*[*]',
+                extended_valid_elements: '*[*]',
+                valid_children: '+*[*]',
+                preserve_cdata: true,
+                entity_encoding: 'raw',
+                force_br_newlines: false,
+                force_p_newlines: false,
+                forced_root_block: '',
+                keep_styles: true
             });
         });
     </script>

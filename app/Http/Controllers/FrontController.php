@@ -70,7 +70,7 @@ class FrontController extends Controller
 
     public function productDetail($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
         return view('front.product-detail', compact('product'));
     }
 
@@ -152,8 +152,10 @@ class FrontController extends Controller
 
     public function showProduct(Product $product)
     {
+        dd($product);
         // Check if product is active
         if ($product->status != '1') {
+            dd('test');
             abort(404);
         }
 

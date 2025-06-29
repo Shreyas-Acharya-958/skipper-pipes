@@ -17,12 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 // Admin authentication routes (no middleware)
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
+
 
 // Admin routes (with auth middleware)
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
@@ -59,14 +62,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('banners', BannerController::class);
 });
 
+
 // Frontend Routes
 Route::name('front.')->group(function () {
+
     Route::get('/', [FrontController::class, 'index'])->name('home');
     Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs.index');
     Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
     Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeComment'])->name('blogs.comment');
-    Route::get('/products', [FrontController::class, 'products'])->name('products.index');
-    Route::get('/products/{product}', [FrontController::class, 'showProduct'])->name('products.show');
-    Route::get('/product/{slug}', [FrontController::class, 'productDetail'])->name('products.detail');
+    //Route::get('/products', [FrontController::class, 'products'])->name('products.index');
+    Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
 });

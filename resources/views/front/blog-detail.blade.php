@@ -55,7 +55,7 @@
     <!-- Hero Banner ends-->
 
     <!-- Start Blog
-                                                                                                ============================================= -->
+                                                                                                                ============================================= -->
     <div class="blog-area single full-blog right-sidebar full-blog default-padding">
         <div class="container">
             <div class="blog-items">
@@ -66,38 +66,14 @@
 
                             <div class="blog-item-box">
                                 <div class="item">
-                                    <!-- Start Post Thumb -->
-                                    <!-- <div class="thumb">
-                                                                                                                                    <img src="assets/img/final/blog1.jpeg" alt="Thumb">
-                                                                                                                                </div> -->
-                                    <!-- Start Post Thumb -->
-
+                                    {!! $blog->long_description !!}
                                     <div class="info">
-                                        <!-- <div class="meta">
-                                                                                                                                        <ul>
-                                                                                                                                            <li>
-                                                                                                                                                <i class="fas fa-calendar-alt"></i> 14 June, 2025
-                                                                                                                                            </li>
-                                                                                                                                            <li>
-                                                                                                                                                <a href="#">
-                                                                                                                                                    <i class="fas fa-user"></i>
-                                                                                                                                                    <span>Admin</span>
-                                                                                                                                                </a>
-                                                                                                                                            </li>
-                                                                                                                                        </ul>
-                                                                                                                                    </div> -->
-                                        <!-- <h3>The Environmental Impact of Piping Materials: Sustainable Choices for Green Building Projects</h3> -->
-                                        {!! $blog->long_description !!}
-
-                                        @if ($blog->tags->count() > 0)
-                                            <div class="footer-entry">
-                                                <h4>Tags: </h4>
-                                                @foreach ($blog->tags as $tag)
-                                                    <a
-                                                        href="{{ route('front.blogs.index', ['tag' => $tag->id]) }}">{{ $tag->title }}</a>
-                                                @endforeach
-                                            </div>
-                                        @endif
+                                        <div class="footer-entry">
+                                            <h4>Tags: </h4>
+                                            @foreach ($blog->tags as $tag)
+                                                <a href="#">{{ $tag->name }}</a>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -175,13 +151,13 @@
             <div class="sidebar col-lg-4 col-md-12">
                 <aside>
                     <!-- <div class="sidebar-item search">
-                                                                                                                            <div class="sidebar-info">
-                                                                                                                                <form>
-                                                                                                                                    <input type="text" name="text" placeholder="Search Here.." class="form-control">
-                                                                                                                                    <button type="submit"><i class="fas fa-search"></i></button>
-                                                                                                                                </form>
-                                                                                                                            </div>
-                                                                                                                        </div> -->
+                                                                                                                                            <div class="sidebar-info">
+                                                                                                                                                <form>
+                                                                                                                                                    <input type="text" name="text" placeholder="Search Here.." class="form-control">
+                                                                                                                                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                                                                                                                                </form>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
                     <div class="sidebar-item recent-post">
                         <div class="title">
                             <h4>Recent Post</h4>
@@ -225,74 +201,74 @@
                         </div>
                     </div>
                     <!-- <div class="sidebar-item gallery">
-                                                                                                                            <div class="title">
-                                                                                                                                <h4>Gallery</h4>
-                                                                                                                            </div>
-                                                                                                                            <div class="sidebar-info">
-                                                                                                                                <ul>
-                                                                                                                                    <li>
-                                                                                                                                        <a href="#">
-                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                        <a href="#">
-                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                        <a href="#">
-                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                        <a href="#">
-                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                        <a href="#">
-                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li>
-                                                                                                                                        <a href="#">
-                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                </ul>
-                                                                                                                            </div>
-                                                                                                                        </div> -->
+                                                                                                                                            <div class="title">
+                                                                                                                                                <h4>Gallery</h4>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="sidebar-info">
+                                                                                                                                                <ul>
+                                                                                                                                                    <li>
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li>
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li>
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li>
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li>
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li>
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <img src="assets/img/800x800.png" alt="thumb">
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                </ul>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
 
                     <!-- <div class="sidebar-item social-sidebar">
-                                                                                                                            <div class="title">
-                                                                                                                                <h4>follow us</h4>
-                                                                                                                            </div>
-                                                                                                                            <div class="sidebar-info">
-                                                                                                                                <ul>
-                                                                                                                                    <li class="facebook">
-                                                                                                                                        <a href="#">
-                                                                                                                                            <i class="fab fa-facebook-f"></i>
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li class="twitter">
-                                                                                                                                        <a href="#">
-                                                                                                                                            <i class="fab fa-twitter"></i>
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li class="g-plus">
-                                                                                                                                        <a href="#">
-                                                                                                                                            <i class="fab fa-google-plus-g"></i>
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                    <li class="linkedin">
-                                                                                                                                        <a href="#">
-                                                                                                                                            <i class="fab fa-linkedin-in"></i>
-                                                                                                                                        </a>
-                                                                                                                                    </li>
-                                                                                                                                </ul>
-                                                                                                                            </div>
-                                                                                                                        </div> -->
+                                                                                                                                            <div class="title">
+                                                                                                                                                <h4>follow us</h4>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="sidebar-info">
+                                                                                                                                                <ul>
+                                                                                                                                                    <li class="facebook">
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <i class="fab fa-facebook-f"></i>
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li class="twitter">
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <i class="fab fa-twitter"></i>
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li class="g-plus">
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <i class="fab fa-google-plus-g"></i>
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                    <li class="linkedin">
+                                                                                                                                                        <a href="#">
+                                                                                                                                                            <i class="fab fa-linkedin-in"></i>
+                                                                                                                                                        </a>
+                                                                                                                                                    </li>
+                                                                                                                                                </ul>
+                                                                                                                                            </div>
+                                                                                                                                        </div> -->
 
                     <div class="sidebar-item tags">
                         <div class="title">

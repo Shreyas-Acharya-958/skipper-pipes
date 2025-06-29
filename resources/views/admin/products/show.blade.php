@@ -37,7 +37,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="display: none;">
                             <div class="mb-3">
                                 <strong>Page Image:</strong>
                                 @if ($product->page_image)

@@ -137,7 +137,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-12 pagi-area text-center ml-auto">
                         <nav aria-label="navigation">
                             <ul class="pagination">
@@ -151,7 +151,7 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
