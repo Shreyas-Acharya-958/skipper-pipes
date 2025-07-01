@@ -28,7 +28,7 @@
                     <div class="site-heading text-center">
                         <h4>{{ $product->title }}</h4>
                         <h2>Product Overview</h2>
-                        </p> -->
+
                     </div>
                 </div>
             </div>
