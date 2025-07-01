@@ -121,7 +121,8 @@ class HomePageController extends Controller
                             'person_role' => $review['person_role'],
                             'star' => $review['star'],
                             'sequence' => $index,
-                            'status' => $review['status'] ?? 0
+                            'status' => $review['status'] ?? 0,
+                            'description' => $review['description'] ?? null
                         ]);
 
                         if (isset($review['person_image']) && $review['person_image']) {

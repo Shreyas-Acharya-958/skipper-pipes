@@ -206,7 +206,7 @@
                                     value="{{ $sectionThree->title ?? '' }}" readonly>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3" style="display: none;">
                                 <label for="image3" class="form-label">Image</label>
                                 <input type="text" class="form-control form-control-sm" id="image3" name="image"
                                     value="{{ $sectionThree->image ?? '' }}" readonly>
@@ -256,7 +256,7 @@
                                     value="{{ $sectionFour->title ?? '' }}" readonly>
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3" style="display: none;">
                                 <label for="description4" class="form-label">Description</label>
                                 <textarea class="form-control form-control-sm" id="description4" name="description" rows="4" readonly>{{ $sectionFour->description ?? '' }}</textarea>
                             </div>
@@ -271,30 +271,40 @@
                                                 'person_name' => 'John Doe',
                                                 'person_role' => 'Plumber',
                                                 'star' => 5,
+                                                'description' =>
+                                                    'Excellent quality pipes that make my plumbing work much easier. The durability and ease of installation are outstanding.',
                                             ],
                                             [
                                                 'id' => 2,
                                                 'person_name' => 'Jane Smith',
                                                 'person_role' => 'Contractor',
                                                 'star' => 4,
+                                                'description' =>
+                                                    'As a contractor, I appreciate the consistency in quality. Their pipes have been reliable for all my construction projects.',
                                             ],
                                             [
                                                 'id' => 3,
                                                 'person_name' => 'Mike Johnson',
                                                 'person_role' => 'Builder',
                                                 'star' => 5,
+                                                'description' =>
+                                                    'The wide range of products and their superior quality have made my building projects much more efficient.',
                                             ],
                                             [
                                                 'id' => 4,
                                                 'person_name' => 'Sarah Wilson',
                                                 'person_role' => 'Dealer',
                                                 'star' => 4,
+                                                'description' =>
+                                                    'Great product lineup and excellent customer support. My customers are always satisfied with Skipper Pipes products.',
                                             ],
                                             [
                                                 'id' => 5,
                                                 'person_name' => 'Robert Brown',
                                                 'person_role' => 'Distributor',
                                                 'star' => 5,
+                                                'description' =>
+                                                    'The product quality and brand reputation make these pipes easy to distribute. Excellent market demand and customer satisfaction.',
                                             ],
                                         ];
 
@@ -328,6 +338,11 @@
                                                             name="reviews[{{ $index }}][star]"
                                                             value="{{ $review['star'] }}" min="1" max="5"
                                                             readonly>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label small">Description</label>
+                                                        <textarea class="form-control form-control-sm" name="reviews[{{ $index }}][description]" rows="3"
+                                                            readonly>{{ $review['description'] }}</textarea>
                                                     </div>
                                                     <div class="form-group mb-3">
                                                         <label class="form-label small">Status</label>
@@ -590,11 +605,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                                                                                                <div class="mb-2">
-                                                                                                                                                    <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                                                                                        alt="Person Image" style="max-width: 100px;">
-                                                                                                                                                </div>
-                                                                                                                                            ` : ''}
+                                                                                                                                                                                                    <div class="mb-2">
+                                                                                                                                                                                                        <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                                                                            alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>
