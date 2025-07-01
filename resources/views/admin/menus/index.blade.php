@@ -98,6 +98,16 @@
                                         @foreach ($menus as $menu)
                                             @include('admin.menus.menu-item', ['menu' => $menu])
                                         @endforeach
+                                        <li class="menu-item">
+                                            <div class="menu-handle">
+                                                <i class="handle-icon fas fa-home"></i>
+                                                <span class="menu-title">Home Page</span>
+                                                <div class="menu-actions">
+                                                    <a href="{{ route('admin.home-page.index') }}"
+                                                        class="btn btn-sm btn-primary">View</a>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

@@ -50,8 +50,8 @@
                         professionals alike.
                     </blockquote>
                     <!-- <p>
-                                                                                From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
-                                                                            </p> -->
+                                                                                                                From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
+                                                                                                            </p> -->
                     <ul>
                         <li class="about-li">
                             <div class="icon">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($featuredCategories as $category)
+                    @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
                             <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
@@ -116,6 +116,11 @@
                             <p>
                                 {{ $category->description }}
                             </p>
+                            <ul>
+                                @foreach ($category->products as $product)
+                                    <li>{{ $product->name }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     @endforeach
                 </div>
@@ -140,29 +145,183 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="home-products__left">
                             <ul class="tab-buttons clearfix list-unstyled">
-                                @foreach ($categories as $index => $category)
-                                    <li data-tab="#category-{{ $category->id }}"
-                                        class="tab-btn {{ $index === 0 ? 'active-btn' : '' }}">
-                                        <p>{{ $category->name }}</p>
-                                        <span>{{ $category->products->count() }}</span>
-                                    </li>
-                                @endforeach
+                                <li data-tab="#plumbing-sewage" class="tab-btn active-btn">
+                                    <p>Plumbing & Sewage</p>
+                                    <span>05</span>
+                                </li>
+                                <li data-tab="#agriculture" class="tab-btn ">
+                                    <p>Agriculture</p>
+                                    <span>03</span>
+                                </li>
+                                <li data-tab="#borewell" class="tab-btn">
+                                    <p>Borewell</p>
+                                    <span>10</span>
+                                </li>
+                                <li data-tab="#hdpe-pipes" class="tab-btn">
+                                    <p>HDPE Pipes</p>
+                                    <span>09</span>
+                                </li>
+                                <li data-tab="#marina-tank" class="tab-btn">
+                                    <p>Marina Tank</p>
+                                    <span>02</span>
+                                </li>
+                                <li data-tab="#bath-fittings" class="tab-btn">
+                                    <p>Bath Fittings</p>
+                                    <span>02</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-9 col-lg-8">
                         <div class="home-products__right">
                             <div class="tabs-content">
-                                @foreach ($categories as $index => $category)
-                                    <div class="tab {{ $index === 0 ? 'active-tab' : '' }}"
-                                        id="category-{{ $category->id }}">
-                                        <div class="home-products__main-tab-content">
-                                            <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
-                                                data-owl-options='{
+                                <!--tab-->
+                                <div class="tab active-tab" id="plumbing-sewage">
+                                    <div class="home-products__main-tab-content">
+                                        <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
+                                            data-owl-options='{
                                                 "items": 1,
                                                 "margin": 30,
                                                 "smartSpeed": 700,
-                                                "loop": {{ $category->products->count() > 1 ? 'true' : 'false' }},
+                                                "loop":true,
+                                                "autoplay": 6000,
+                                                "nav":false,
+                                                "dots":true,
+                                                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                                                "responsive":{
+                                                    "0":{
+                                                        "items":3
+                                                    },
+                                                    "768":{
+                                                        "items":3
+                                                    },
+                                                    "992":{
+                                                        "items": 3
+                                                    },
+                                                    "1200":{
+                                                        "items": 3
+                                                    }
+                                                }
+
+                                            }'>
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Plumbing & Sewage</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">UPVC Pipes 1</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project2.png" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Plumbing & Sewage</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">CPVC Pipes 2</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Plumbing & Sewage</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">SWR Pipes 3</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Plumbing & Sewage</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">SWR Pipes 4</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Plumbing & Sewage</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">SWR Pipes 5</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--tab-->
+                                <div class="tab" id="agriculture">
+                                    <div class="home-products__main-tab-content">
+                                        <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
+                                            data-owl-options='{
+                                                "items": 1,
+                                                "margin": 30,
+                                                "smartSpeed": 700,
+                                                "loop":true,
                                                 "autoplay": 6000,
                                                 "nav":false,
                                                 "dots":true,
@@ -172,45 +331,293 @@
                                                         "items":1
                                                     },
                                                     "768":{
-                                                        "items": {{ $category->products->count() > 1 ? '2' : '1' }}
+                                                        "items":2
                                                     },
                                                     "992":{
-                                                        "items": {{ $category->products->count() > 1 ? '2' : '1' }}
+                                                        "items": 2
                                                     },
                                                     "1200":{
-                                                        "items": {{ $category->products->count() > 1 ? '2' : '1' }}
+                                                        "items": 2
                                                     }
                                                 }
+
                                             }'>
-                                                @foreach ($category->products as $product)
-                                                    <div class="item">
-                                                        <div class="home-products__single">
-                                                            <div class="home-products__img-box">
-                                                                <div class="home-products__img">
-                                                                    @if ($product->image)
-                                                                        <img src="{{ asset('storage/' . $product->image) }}"
-                                                                            alt="{{ $product->name }}">
-                                                                    @else
-                                                                        <img src="{{ asset('assets/img/final/project1.jpg') }}"
-                                                                            alt="{{ $product->name }}">
-                                                                    @endif
-                                                                </div>
-                                                                <div class="home-products__content-box">
-                                                                    <p class="home-products__sub-title">
-                                                                        {{ $category->name }}</p>
-                                                                    <h4 class="home-products__title">
-                                                                        <a
-                                                                            href="{{ route('front.products.show', $product->id) }}">{{ $product->name }}</a>
-                                                                    </h4>
-                                                                </div>
-                                                            </div>
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Agriculture</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">Agriculture Pipes</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
                                                         </div>
                                                     </div>
-                                                @endforeach
+                                                </div>
                                             </div>
+                                            <!--Project One Single End-->
+
                                         </div>
                                     </div>
-                                @endforeach
+                                </div>
+                                <!--tab-->
+                                <div class="tab" id="borewell">
+                                    <div class="home-products__main-tab-content">
+                                        <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
+                                            data-owl-options='{
+                                                "items": 1,
+                                                "margin": 30,
+                                                "smartSpeed": 700,
+                                                "loop":true,
+                                                "autoplay": 6000,
+                                                "nav":false,
+                                                "dots":true,
+                                                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                                                "responsive":{
+                                                    "0":{
+                                                        "items":1
+                                                    },
+                                                    "768":{
+                                                        "items":2
+                                                    },
+                                                    "992":{
+                                                        "items": 2
+                                                    },
+                                                    "1200":{
+                                                        "items": 2
+                                                    }
+                                                }
+
+                                            }'>
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project2.png" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Borewell</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">Casing Pipes</a>
+                                                            </h4>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Borewell</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">Column Pipes</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project2.png" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Borewell</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">Ribbed Strainer Pipes</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab" id="hdpe-pipes">
+                                    <div class="home-products__main-tab-content">
+                                        <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
+                                            data-owl-options='{
+                                                "items": 1,
+                                                "margin": 30,
+                                                "smartSpeed": 700,
+                                                "loop":true,
+                                                "autoplay": 6000,
+                                                "nav":false,
+                                                "dots":true,
+                                                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                                                "responsive":{
+                                                    "0":{
+                                                        "items":1
+                                                    },
+                                                    "768":{
+                                                        "items":2
+                                                    },
+                                                    "992":{
+                                                        "items": 2
+                                                    },
+                                                    "1200":{
+                                                        "items": 2
+                                                    }
+                                                }
+
+                                            }'>
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">HDPE</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">HDPE Pipes</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--tab-->
+                                <div class="tab" id="marina-tank">
+                                    <div class="home-products__main-tab-content">
+                                        <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
+                                            data-owl-options='{
+                                                "items": 1,
+                                                "margin": 30,
+                                                "smartSpeed": 700,
+                                                "loop":true,
+                                                "autoplay": 6000,
+                                                "nav":false,
+                                                "dots":true,
+                                                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                                                "responsive":{
+                                                    "0":{
+                                                        "items":1
+                                                    },
+                                                    "768":{
+                                                        "items":2
+                                                    },
+                                                    "992":{
+                                                        "items": 2
+                                                    },
+                                                    "1200":{
+                                                        "items": 2
+                                                    }
+                                                }
+
+                                            }'>
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project1.jpg" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Marina Tank</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">Marina Tank</a>
+                                                            </h4>
+                                                            <!-- <div class="home-products__arrow">
+                                                                                                <a href="#"><span
+                                                                                                        class="icon-right-arrow"></span></a>
+                                                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--tab-->
+                                <div class="tab" id="bath-fittings">
+                                    <div class="home-products__main-tab-content">
+                                        <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
+                                            data-owl-options='{
+                                                "items": 1,
+                                                "margin": 30,
+                                                "smartSpeed": 700,
+                                                "loop":true,
+                                                "autoplay": 6000,
+                                                "nav":false,
+                                                "dots":true,
+                                                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
+                                                "responsive":{
+                                                    "0":{
+                                                        "items":1
+                                                    },
+                                                    "768":{
+                                                        "items":2
+                                                    },
+                                                    "992":{
+                                                        "items": 2
+                                                    },
+                                                    "1200":{
+                                                        "items": 2
+                                                    }
+                                                }
+
+                                            }'>
+                                            <!--Project One Single Start-->
+                                            <div class="item">
+                                                <div class="home-products__single">
+                                                    <div class="home-products__img-box">
+                                                        <div class="home-products__img">
+                                                            <img src="assets/img/final/project2.png" alt="">
+                                                        </div>
+                                                        <div class="home-products__content-box">
+                                                            <p class="home-products__sub-title">Bath Fittings</p>
+                                                            <h4 class="home-products__title">
+                                                                <a href="#">Bath Fittings Pipes</a>
+                                                            </h4>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Project One Single End-->
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -265,8 +672,8 @@
                     <div class="col-lg-6 right-info" style="background-image: url(assets/img/final/skipper-sathi.jpg);">
                         <h2>Join India's Fastest-Growing Plumber Network!</h2>
                         <!-- <p>
-                                                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
-                                                                                </p> -->
+                                                                                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
+                                                                                                                </p> -->
                         <a class="btn btn-light effect btn-md" href="#">Connect with Skipper</a>
                     </div>
                 </div>
@@ -274,6 +681,7 @@
         </div>
     </div>
     <!-- Skipper Sathi Community ends-->
+
 
     <!-- Testimonials Section  -->
     <div class="testimonials-area bg-gray default-padding">
@@ -309,7 +717,7 @@
                                 </div>
                                 <div class="provider">
                                     <div class="thumb">
-                                        <img src="/assets/img/final/testimonial1.png" alt="Thumb">
+                                        <img src="assets/img/final/testimonial1.png" alt="Thumb">
                                     </div>
                                     <div class="info">
                                         <h5>Mr. Varun Bansal</h5>
@@ -335,7 +743,7 @@
                                 </div>
                                 <div class="provider">
                                     <div class="thumb">
-                                        <img src="/assets/img/final/testimonial2.jpg" alt="Thumb">
+                                        <img src="assets/img/final/testimonial2.jpg" alt="Thumb">
                                     </div>
                                     <div class="info">
                                         <h5>Mr. Ripan Sikder</h5>
@@ -352,6 +760,7 @@
         </div>
     </div>
     <!-- Testimonials Section ends -->
+
 
     <!--Trusted One Start-->
     <section class="trusted-one">

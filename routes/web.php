@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -66,6 +67,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Banner routes
     Route::resource('banners', BannerController::class);
+
+
+    // Home Page Management
+    Route::get('home-page', [HomePageController::class, 'index'])->name('home-page.index');
+    Route::post('home-page/section1', [HomePageController::class, 'saveSection1'])->name('home-page.section1.save');
+    Route::post('home-page/section2', [HomePageController::class, 'saveSection2'])->name('home-page.section2.save');
+    Route::post('home-page/section3', [HomePageController::class, 'saveSection3'])->name('home-page.section3.save');
+    Route::post('home-page/section4', [HomePageController::class, 'saveSection4'])->name('home-page.section4.save');
+    Route::post('home-page/add-review', [HomePageController::class, 'addReview'])->name('home-page.add-review');
 });
 
 
