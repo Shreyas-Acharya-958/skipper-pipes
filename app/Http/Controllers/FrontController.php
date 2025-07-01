@@ -9,6 +9,10 @@ use App\Models\Banner;
 use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\ProductCategory;
+use App\Models\HomeSectionOne;
+use App\Models\HomeSectionTwo;
+use App\Models\HomeSectionThree;
+use App\Models\HomeSectionFour;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -39,8 +43,25 @@ class FrontController extends Controller
             ->take(3)
             ->get();
 
+        // Get home page sections
+        $sectionOne = HomeSectionOne::with('features')->first();
+        $sectionTwo = HomeSectionTwo::first();
+        $sectionThree = HomeSectionThree::first();
+        $sectionFour = HomeSectionFour::with(['reviews' => function ($query) {
+            $query->where('status', 1)->orderBy('sequence');
+        }])->first();
+
         // dd($categories->toArray());
-        return view('front.index', compact('categories', 'banners', 'blogs', 'featuredCategories'));
+        return view('front.index', compact(
+            'categories',
+            'banners',
+            'blogs',
+            'featuredCategories',
+            'sectionOne',
+            'sectionTwo',
+            'sectionThree',
+            'sectionFour'
+        ));
     }
 
     public function blogs()

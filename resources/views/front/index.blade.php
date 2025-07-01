@@ -35,58 +35,76 @@
             <div class="row align-center">
                 <div class="home-about col-lg-5">
                     <div class="thumb">
-                        <img src="assets/img/final/home-about.jpg" alt="Thumb">
+                        @if ($sectionOne && $sectionOne->image)
+                            <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
+                        @else
+                            <img src="assets/img/final/home-about.jpg" alt="Why Skipper Pipes">
+                        @endif
                     </div>
                 </div>
                 <div class="home-about col-lg-6 offset-lg-1">
                     <div class="site-heading">
                         <h4>Why Skipper Pipes</h4>
-                        <h2>Engineered for Safety</h2>
+                        <h2>{{ $sectionOne->title ?? '' }}</h2>
                     </div>
 
                     <blockquote>
-                        From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety,
-                        and ease of installation, making it the preferred choice for engineers, architects, and plumbing
-                        professionals alike.
+                        {{ $sectionOne->description ?? '' }}
                     </blockquote>
-                    <!-- <p>
-                                                                                                                From product innovation to nationwide support, Skipper Pipes ensures long-term performance, safety, and ease of installation, making it the preferred choice for engineers, architects, and plumbing professionals alike.
-                                                                                                            </p> -->
+
                     <ul>
-                        <li class="about-li">
-                            <div class="icon">
-                                <img src="assets/img/energy/cashback.png" alt="Icon">
-                            </div>
-                            <div class="content">
-                                <h5>16+ Years of Industry Expertise</h5>
-                            </div>
-                        </li>
-                        <li class="about-li">
-                            <div class="icon">
-                                <img src="assets/img/energy/eco-house.png" alt="Icon">
-                            </div>
-                            <div class="content">
-                                <h5> 5 State-of-the-Art Manufacturing Units</h5>
-                            </div>
-                        </li>
-                        <li class="about-li">
-                            <div class="icon">
-                                <img src="assets/img/energy/eco-house.png" alt="Icon">
-                            </div>
-                            <div class="content">
-                                <h5>25,000+ Dealers & Distributors</h5>
-                            </div>
-                        </li>
-                        <li class="about-li">
-                            <div class="icon">
-                                <img src="assets/img/energy/eco-house.png" alt="Icon">
-                            </div>
-                            <div class="content">
-                                <h5>1700+ <br> SKUs</h5>
-                            </div>
-                        </li>
+                        @if ($sectionOne && $sectionOne->features->count() > 0)
+                            @foreach ($sectionOne->features as $feature)
+                                <li class="about-li">
+                                    <div class="icon">
+                                        @if ($feature->icon)
+                                            <img src="{{ asset('storage/' . $feature->icon) }}" alt="{{ $feature->title }}">
+                                        @else
+                                            <img src="{{ asset('storage/' . $feature->image) }}"
+                                                alt="{{ $feature->title }}">
+                                        @endif
+                                    </div>
+                                    <div class="content">
+                                        <h5>{{ $feature->title }}</h5>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @else
+                            <li class="about-li">
+                                <div class="icon">
+                                    <img src="assets/img/energy/cashback.png" alt="Icon">
+                                </div>
+                                <div class="content">
+                                    <h5>16+ Years of Industry Expertise</h5>
+                                </div>
+                            </li>
+                            <li class="about-li">
+                                <div class="icon">
+                                    <img src="assets/img/energy/eco-house.png" alt="Icon">
+                                </div>
+                                <div class="content">
+                                    <h5>Pan India Presence</h5>
+                                </div>
+                            </li>
+                            <li class="about-li">
+                                <div class="icon">
+                                    <img src="assets/img/energy/eco-house.png" alt="Icon">
+                                </div>
+                                <div class="content">
+                                    <h5>Wide Range of Products</h5>
+                                </div>
+                            </li>
+                            <li class="about-li">
+                                <div class="icon">
+                                    <img src="assets/img/energy/eco-house.png" alt="Icon">
+                                </div>
+                                <div class="content">
+                                    <h5>Best Quality Products</h5>
+                                </div>
+                            </li>
+                        @endif
                     </ul>
-                    <a class="btn btn-dark theme theme2 btn-md mt-5">Know More</a>
+                    <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ url('contact-us') }}">Know More</a>
                 </div>
             </div>
         </div>
@@ -217,9 +235,9 @@
                                                                 <a href="#">UPVC Pipes 1</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -238,9 +256,9 @@
                                                                 <a href="#">CPVC Pipes 2</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -259,9 +277,9 @@
                                                                 <a href="#">SWR Pipes 3</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -280,9 +298,9 @@
                                                                 <a href="#">SWR Pipes 4</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -301,9 +319,9 @@
                                                                 <a href="#">SWR Pipes 5</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -355,9 +373,9 @@
                                                                 <a href="#">Agriculture Pipes</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -427,9 +445,9 @@
                                                                 <a href="#">Column Pipes</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -448,9 +466,9 @@
                                                                 <a href="#">Ribbed Strainer Pipes</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -501,9 +519,9 @@
                                                                 <a href="#">HDPE Pipes</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -555,9 +573,9 @@
                                                                 <a href="#">Marina Tank</a>
                                                             </h4>
                                                             <!-- <div class="home-products__arrow">
-                                                                                                <a href="#"><span
-                                                                                                        class="icon-right-arrow"></span></a>
-                                                                                            </div> -->
+                                                                                                                                                                                                                                        <a href="#"><span
+                                                                                                                                                                                                                                                class="icon-right-arrow"></span></a>
+                                                                                                                                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -627,161 +645,101 @@
     </section>
     <!-- our products section ends -->
 
-    <!-- Skipper Sathi Community -->
-    <div class="sathi-community-area shape-less overflow-hidden relative">
-        <div class="container">
-            <div class="inner-items">
-                <div class="row">
-                    <div class="col-lg-6 text-light left-info">
-                        <div class="item">
-                            <!-- <h4>Skipper Sathi Community</h4> -->
-                            <img src="assets/img/final/Skipper-Sathi-logo-1.jpg" class="w-25 pb-3"
-                                alt="skipper-sathi-logo">
-                            <h2 class="mb-4">Empowering Every Plumber</h2>
-                            <p class="mb-3">Skipper Saathi is more than a loyalty program — it's a nationwide movement by
-                                Skipper Pipes, India's Safest Pipes, to build a thriving community of plumbers,
-                                distributors, and retailers from every corner of the country.</p>
-                            <p class="mb-3">Whether you're on-site, in-store, or on the move, Skipper Saathi keeps you
-                                connected to the latest in the piping world — from product innovations and plumbing
-                                technologies to installation hacks, best practices, and exclusive training modules.</p>
-                            <p>Top-performing plumbers will be featured and rewarded for their dedication, skill, and
-                                contribution to the Skipper family — because we believe in celebrating real heroes.</p>
+    <!-- Section 2: Empowering Every Plumber -->
+    @if ($sectionTwo && $sectionTwo->title)
+        <div class="sathi-community-area shape-less overflow-hidden relative">
+            <div class="container">
+                <div class="inner-items">
+                    <div class="row">
+                        <div class="col-lg-6 text-light left-info">
+                            {!! $sectionTwo->description !!}
                         </div>
+                        <div class="col-lg-6 right-info"
+                            style="background-image: url(assets/img/final/skipper-sathi.jpg);">
+                            <h2> {{ $sectionTwo->image_title }} </h2>
 
-                        <ul class="achivement">
-                            <li>
-                                <div class="fun-fact">
-                                    <div class="counter">
-                                        <div class="timer" data-to="11000" data-speed="1500">11000</div>
-                                        <div class="operator">+</div>
-                                    </div>
-                                    <span class="medium">Plumbers Trained</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="fun-fact">
-                                    <div class="counter">
-                                        <div class="timer" data-to="100000" data-speed="1500">100,000</div>
-                                        <div class="operator">+</div>
-                                    </div>
-                                    <span class="medium">Plumbers Trust</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 right-info" style="background-image: url(assets/img/final/skipper-sathi.jpg);">
-                        <h2>Join India's Fastest-Growing Plumber Network!</h2>
-                        <!-- <p>
-                                                                                                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero, blanditiis.
-                                                                                                                </p> -->
-                        <a class="btn btn-light effect btn-md" href="#">Connect with Skipper</a>
+                            <a class="btn btn-light effect btn-md" href="{{ $sectionTwo->link }}">
+                                {{ $sectionTwo->image_button }} </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     <!-- Skipper Sathi Community ends-->
 
 
-    <!-- Testimonials Section  -->
-    <div class="testimonials-area bg-gray default-padding">
-        <div class="container">
-            <div class="testimonial-items">
-                <div class="row align-center">
-                    <div class="col-lg-5 title text-center">
-                        <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
-                        <img src="assets/img/final/skipper-pipes-s-logo2.png" class="w-50 mb-4" alt="">
-                        <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
+
+
+
+    <!-- Section 4: Reviews -->
+    @if ($sectionFour && $sectionFour->title && $sectionFour->reviews->count() > 0)
+        <div class="testimonial-section default-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="site-heading text-center">
-                            <!-- <h4>Our Feedbacks</h4> -->
-                            <h2>Their words reflect the strength we deliver.</h2>
+                            <h4>Testimonials</h4>
+                            <h2>{{ $sectionFour->title }}</h2>
+                            @if ($sectionFour->description)
+                                <p>{{ $sectionFour->description }}</p>
+                            @endif
                         </div>
                     </div>
-                    <div class="col-lg-7 testimonial-box">
-                        <div class="testimonial-content testimonials-carousel owl-carousel owl-theme">
-                            <!-- Single Item -->
-                            <div class="item">
-                                <div class="content">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <p>
-                                        For skipper I can proudly say that Skipper is best in service. We have unique
-                                        loyalty program for retailers and plumbers. This uniqueness make us different from
-                                        others.
-                                    </p>
-                                </div>
-                                <div class="provider">
-                                    <div class="thumb">
-                                        <img src="assets/img/final/testimonial1.png" alt="Thumb">
-                                    </div>
-                                    <div class="info">
-                                        <h5>Mr. Varun Bansal</h5>
-                                        <span>Distributor</span>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="testimonial-carousel">
+                            @foreach ($sectionFour->reviews as $review)
+                                <div class="testimonial-item">
+                                    <div class="testimonial-content">
+                                        @if ($review->star)
+                                            <div class="rating">
+                                                @for ($i = 0; $i < $review->star; $i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
+                                            </div>
+                                        @endif
+                                        <div class="author-info">
+                                            @if ($review->person_image)
+                                                <img src="{{ asset('storage/' . $review->person_image) }}"
+                                                    alt="{{ $review->person_name }}">
+                                            @endif
+                                            <h5>{{ $review->person_name }}</h5>
+                                            <span>{{ $review->person_role }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="item">
-                                <div class="content">
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <p>
-                                        Plumber is the key of this industry. And with the help of Skipper, we have conducted
-                                        many mega meet and small meets. That help me to build my foundation.
-                                    </p>
-                                </div>
-                                <div class="provider">
-                                    <div class="thumb">
-                                        <img src="assets/img/final/testimonial2.jpg" alt="Thumb">
-                                    </div>
-                                    <div class="info">
-                                        <h5>Mr. Ripan Sikder</h5>
-                                        <span>Retailer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Testimonials Section ends -->
+    @endif
 
-
-    <!--Trusted One Start-->
-    <section class="trusted-one">
-        <div class="trusted-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-            style="background-image: url(assets/img/final/video-bg.jpg);">
-        </div>
-        <div class="container">
-            <div class="trusted-one__inner">
-                <div class="trusted-one__video-link">
-                    <a href="https://www.youtube.com/watch?v=Get7rqXYrbQ" class="video-popup">
-                        <div class="trusted-one__video-icon">
-                            <span class="fa fa-play"></span>
-                            <i class="ripple"></i>
-                        </div>
-                    </a>
-                </div>
-                <h3 class="trusted-one__title count-box">India's Safest Pipes Manufacturer</h3>
+    <!-- Section 3: Video Section -->
+    @if ($sectionThree && $sectionThree->title)
+        <section class="trusted-one">
+            <div class="trusted-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
+                style="background-image: url({{ asset('storage/' . $sectionThree->image) }});">
             </div>
-        </div>
-    </section>
-    <!--Trusted One End-->
+            <div class="container">
+                <div class="trusted-one__inner">
+                    <div class="trusted-one__video-link">
+                        <a href="{{ $sectionThree->video_link }}" class="video-popup">
+                            <div class="trusted-one__video-icon">
+                                <span class="fa fa-play"></span>
+                                <i class="ripple"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <h3 class="trusted-one__title count-box">{{ $sectionThree->title }}</h3>
+                </div>
+            </div>
+        </section>
+    @endif
+    <!-- Section 3: Video Section -->
 
     <!-- Blog Section  -->
     <div class="blog-area home-blog date-less default-padding bottom-less">
