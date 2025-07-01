@@ -238,10 +238,10 @@ class ProductController extends Controller
             $overview->save();
 
             DB::commit();
-            return redirect()->back()->with('success', 'Overview section updated successfully.');
+            return redirect()->back()->withFragment($request->input('active_tab', '#overview'))->with('success', 'Overview section updated successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Failed to update overview section: ' . $e->getMessage());
+            return redirect()->back()->withFragment($request->input('active_tab', '#overview'))->with('error', 'Failed to update overview section: ' . $e->getMessage());
         }
     }
 
@@ -316,10 +316,10 @@ class ProductController extends Controller
             }
 
             DB::commit();
-            return redirect()->back()->with('success', 'Applications section updated successfully.');
+            return redirect()->back()->withFragment($request->input('active_tab', '#applications'))->with('success', 'Applications section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Failed to update applications section: ' . $e->getMessage());
+            return redirect()->back()->withFragment($request->input('active_tab', '#applications'))->with('error', 'Failed to update applications section: ' . $e->getMessage());
         }
     }
 
@@ -381,10 +381,10 @@ class ProductController extends Controller
             }
 
             DB::commit();
-            return redirect()->back()->with('success', 'Features section updated successfully.');
+            return redirect()->back()->withFragment($request->input('active_tab', '#features'))->with('success', 'Features section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Failed to update features section: ' . $e->getMessage());
+            return redirect()->back()->withFragment($request->input('active_tab', '#features'))->with('error', 'Failed to update features section: ' . $e->getMessage());
         }
     }
 
@@ -429,10 +429,10 @@ class ProductController extends Controller
             }
 
             DB::commit();
-            return redirect()->back()->with('success', 'FAQ section updated successfully.');
+            return redirect()->back()->withFragment($request->input('active_tab', '#faq'))->with('success', 'FAQ section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Failed to update FAQ section.');
+            return redirect()->back()->withFragment($request->input('active_tab', '#faq'))->with('error', 'Failed to update FAQ section: ' . $e->getMessage());
         }
     }
 }

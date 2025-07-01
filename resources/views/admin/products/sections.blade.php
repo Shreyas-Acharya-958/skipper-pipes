@@ -332,16 +332,35 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            // Keep the active tab after page refresh
-            const activeTab = window.location.hash || localStorage.getItem('activeProductSectionTab') ||
-                '#overview';
-            $('a[data-bs-toggle="tab"][href="' + activeTab + '"]').tab('show');
+            // Get the tab ID from URL hash or localStorage
+            let activeTab = window.location.hash;
+            if (!activeTab) {
+                activeTab = localStorage.getItem('activeProductSectionTab') || '#overview';
+            }
 
-            // Store the active tab when changed
-            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
-                const tab = $(e.target).attr('href');
-                localStorage.setItem('activeProductSectionTab', tab);
-                window.location.hash = tab;
+            // Show the active tab
+            $(`button[data-bs-target="${activeTab}"]`).tab('show');
+
+            // Store the active tab when tab is changed
+            $('#productSectionTabs button[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+                const targetTab = $(e.target).data('bs-target');
+                localStorage.setItem('activeProductSectionTab', targetTab);
+                window.location.hash = targetTab;
+            });
+
+            // Add hidden input for active tab to all forms
+            $('.section-form').append(`<input type="hidden" name="active_tab" value="${activeTab}">`);
+
+            // Update hidden input when tab changes
+            $('#productSectionTabs button[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+                const targetTab = $(e.target).data('bs-target');
+                $('input[name="active_tab"]').val(targetTab);
+            });
+
+            // Handle form submission
+            $('.section-form').on('submit', function(e) {
+                const activeTab = localStorage.getItem('activeProductSectionTab') || '#overview';
+                $(this).find('input[name="active_tab"]').val(activeTab);
             });
 
             // Handle Edit button click
