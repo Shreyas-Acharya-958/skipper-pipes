@@ -70,7 +70,8 @@
                                         @foreach (json_decode($overview->overview_image) as $index => $image)
                                             <div class="mb-2 position-relative d-inline-block me-2">
                                                 <img src="{{ asset('storage/' . $image) }}"
-                                                    alt="Overview Image {{ $index + 1 }}" style="max-width: 200px;">
+                                                    alt="Overview Image {{ $index + 1 }}"
+                                                    style="max-width: 200px; height: auto;">
                                                 <input type="hidden" name="existing_images[]" value="{{ $image }}">
                                                 <button type="button"
                                                     class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
@@ -203,7 +204,8 @@
                                                         @if ($feature->image)
                                                             <div class="mb-2">
                                                                 <img src="{{ asset('storage/' . $feature->image) }}"
-                                                                    alt="Feature Image" style="max-width: 200px;">
+                                                                    alt="Feature Image"
+                                                                    style="max-width: 200px; height: auto;">
                                                             </div>
                                                         @endif
                                                         <input type="file" class="form-control"
@@ -342,7 +344,62 @@
                 ).hide();
             });
 
-            // Handle remove image button
+            // Handle image preview for overview images
+            $('input[name="overview_images[]"]').change(function() {
+                const files = this.files;
+                const container = $('#overview_images');
+                const maxFiles = 5;
+                const existingImages = container.find('.position-relative').length;
+
+                if (files.length + existingImages > maxFiles) {
+                    alert('You can only upload up to ' + maxFiles + ' images');
+                    this.value = '';
+                    return;
+                }
+
+                Array.from(files).forEach(file => {
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const preview = `
+                                <div class="mb-2 position-relative d-inline-block me-2">
+                                    <img src="${e.target.result}" alt="Preview" style="max-width: 200px; height: auto;">
+                                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-preview-btn">&times;</button>
+                                </div>
+                            `;
+                            container.find('.mt-2').before(preview);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+
+            // Handle image preview for feature images
+            $(document).on('change', 'input[name^="features"][name$="[image]"]', function() {
+                const file = this.files[0];
+                const container = $(this).closest('.form-group');
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const preview = `
+                            <div class="mb-2">
+                                <img src="${e.target.result}" alt="Preview" style="max-width: 200px; height: auto;">
+                            </div>
+                        `;
+                        container.find('.mb-2').remove(); // Remove existing preview
+                        container.find('label').after(preview);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Remove preview image
+            $(document).on('click', '.remove-preview-btn', function() {
+                $(this).closest('.position-relative').remove();
+            });
+
+            // Remove existing image
             $('.remove-image-btn').click(function() {
                 $(this).closest('.position-relative').remove();
             });

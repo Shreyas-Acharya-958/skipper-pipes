@@ -194,36 +194,39 @@ class ProductController extends Controller
 
     public function saveOverview(Request $request, Product $product)
     {
-        $request->validate([
-            'overview_description' => 'required|string',
-            'overview_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $overview = $product->productionOverviewSection ?? new ProductionOverviewSection();
-        $overview->product_id = $product->id;
-        $overview->overview_description = $request->overview_description;
+            $overview = $product->productionOverviewSection ?? new ProductionOverviewSection();
+            $overview->product_id = $product->id;
+            $overview->overview_description = $request->overview_description;
 
-        // Handle images
-        $images = [];
+            // Handle images
+            $images = [];
 
-        // Keep existing images that weren't removed
-        if ($request->has('existing_images')) {
-            $images = $request->existing_images;
-        }
-
-        // Add new images
-        if ($request->hasFile('overview_images')) {
-            foreach ($request->file('overview_images') as $image) {
-                if (count($images) >= 5) break; // Maximum 5 images
-                $path = $image->store('product-overviews', 'public');
-                $images[] = $path;
+            // Keep existing images that weren't removed
+            if ($request->has('existing_images')) {
+                $images = array_values($request->existing_images);
             }
+
+            // Add new images
+            if ($request->hasFile('overview_images')) {
+                foreach ($request->file('overview_images') as $image) {
+                    if (count($images) >= 5) break; // Maximum 5 images
+                    $path = $image->store('products/overview', 'public');
+                    $images[] = $path;
+                }
+            }
+
+            $overview->overview_image = json_encode($images);
+            $overview->save();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Overview section updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Failed to update overview section: ' . $e->getMessage());
         }
-
-        $overview->overview_image = json_encode(array_values($images));
-        $overview->save();
-
-        return redirect()->back()->with('success', 'Overview section updated successfully.');
     }
 
     public function saveApplications(Request $request, Product $product)
@@ -279,16 +282,9 @@ class ProductController extends Controller
 
     public function saveFeatures(Request $request, Product $product)
     {
-        $request->validate([
-            'features.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'features.*.icon' => 'required|string',
-            'features.*.title' => 'required|string',
-            'features.*.description' => 'required|string',
-        ]);
-
-        // Start transaction
-        DB::beginTransaction();
         try {
+            DB::beginTransaction();
+
             // Delete existing features not in the request
             if ($request->has('features')) {
                 $existingIds = collect($request->features)->pluck('id')->filter();
@@ -302,30 +298,23 @@ class ProductController extends Controller
             // Create or update features
             if ($request->has('features')) {
                 foreach ($request->features as $index => $featureData) {
-                    $imageData = [];
-
-                    // Handle image upload
-                    if (isset($featureData['image']) && $featureData['image'] instanceof UploadedFile) {
-                        $path = $featureData['image']->store('product-features', 'public');
-                        $imageData['image'] = $path;
-                    } elseif (isset($featureData['id'])) {
-                        // Keep existing image if no new image uploaded
-                        $feature = ProductionFeaturesSection::find($featureData['id']);
-                        if ($feature) {
-                            $imageData['image'] = $feature->image;
-                        }
-                    }
-
-                    $featureData = array_merge($featureData, $imageData, ['sequence' => $index]);
-
                     if (isset($featureData['id'])) {
                         $feature = ProductionFeaturesSection::find($featureData['id']);
-                        if ($feature) {
-                            $feature->update($featureData);
-                        }
                     } else {
-                        $product->productionFeaturesSections()->create($featureData);
+                        $feature = new ProductionFeaturesSection();
+                        $feature->product_id = $product->id;
                     }
+
+                    $feature->title = $featureData['title'];
+                    $feature->icon = $featureData['icon'];
+                    $feature->description = $featureData['description'];
+                    $feature->sequence = $index;
+
+                    if (isset($featureData['image']) && $featureData['image']) {
+                        $feature->image = $featureData['image']->store('products/features', 'public');
+                    }
+
+                    $feature->save();
                 }
             }
 
