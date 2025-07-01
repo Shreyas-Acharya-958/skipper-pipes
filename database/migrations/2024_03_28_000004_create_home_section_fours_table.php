@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+
             $table->timestamps();
         });
 
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('person_role')->nullable();
             $table->string('star')->nullable();
             $table->integer('sequence')->default(0);
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

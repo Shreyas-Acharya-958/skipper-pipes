@@ -12,7 +12,8 @@ class HomeSectionFourReview extends Model
         'person_name',
         'person_role',
         'star',
-        'sequence'
+        'sequence',
+        'status'
     ];
 
     public function section()

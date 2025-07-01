@@ -18,7 +18,7 @@ class HomePageController extends Controller
         $sectionOne = HomeSectionOne::with('features')->first();
         $sectionTwo = HomeSectionTwo::first();
         $sectionThree = HomeSectionThree::first();
-        $sectionFour = HomeSectionFour::with('reviews')->first();
+        $sectionFour = HomeSectionFour::first();
 
         return view('admin.home-page.index', compact('sectionOne', 'sectionTwo', 'sectionThree', 'sectionFour'));
     }
@@ -120,7 +120,8 @@ class HomePageController extends Controller
                             'person_name' => $review['person_name'],
                             'person_role' => $review['person_role'],
                             'star' => $review['star'],
-                            'sequence' => $index
+                            'sequence' => $index,
+                            'status' => $review['status'] ?? 0
                         ]);
 
                         if (isset($review['person_image']) && $review['person_image']) {
@@ -137,42 +138,6 @@ class HomePageController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
-        }
-    }
-
-    public function addReview(Request $request)
-    {
-        try {
-            $request->validate([
-                'person_name' => 'required|string|max:255',
-                'person_role' => 'required|string|max:255',
-                'star' => 'required|integer|min:1|max:5',
-                'person_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
-            ]);
-
-            $review = new HomeSectionFourReview();
-            $review->section_four_id = 1; // Fixed value as requested
-            $review->person_name = $request->person_name;
-            $review->person_role = $request->person_role;
-            $review->star = $request->star;
-
-            if ($request->hasFile('person_image')) {
-                $imagePath = $request->file('person_image')->store('reviews', 'public');
-                $review->person_image = $imagePath;
-            }
-
-            $review->save();
-
-            return response()->json([
-                'success' => true,
-                'message' => 'Review added successfully',
-                'review' => $review
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to add review: ' . $e->getMessage()
-            ], 500);
         }
     }
 }

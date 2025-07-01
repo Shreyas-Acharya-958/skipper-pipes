@@ -251,50 +251,50 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="title4" class="form-label">Title on Image</label>
+                                <label for="title4" class="form-label">Title</label>
                                 <input type="text" class="form-control form-control-sm" id="title4" name="title"
                                     value="{{ $sectionFour->title ?? '' }}" readonly>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="description4" class="form-label">Description on Image</label>
+                                <label for="description4" class="form-label">Description</label>
                                 <textarea class="form-control form-control-sm" id="description4" name="description" rows="4" readonly>{{ $sectionFour->description ?? '' }}</textarea>
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label">Person Reviews</label>
-                                <div id="person_reviews">
+                                <label class="form-label">Reviews</label>
+                                <div id="reviews">
                                     @php
                                         $defaultReviews = [
                                             [
                                                 'id' => 1,
                                                 'person_name' => 'John Doe',
                                                 'person_role' => 'Plumber',
-                                                'star' => '5',
+                                                'star' => 5,
                                             ],
                                             [
                                                 'id' => 2,
                                                 'person_name' => 'Jane Smith',
                                                 'person_role' => 'Contractor',
-                                                'star' => '4',
+                                                'star' => 4,
                                             ],
                                             [
                                                 'id' => 3,
                                                 'person_name' => 'Mike Johnson',
                                                 'person_role' => 'Builder',
-                                                'star' => '5',
+                                                'star' => 5,
                                             ],
                                             [
                                                 'id' => 4,
                                                 'person_name' => 'Sarah Wilson',
                                                 'person_role' => 'Dealer',
-                                                'star' => '4',
+                                                'star' => 4,
                                             ],
                                             [
                                                 'id' => 5,
                                                 'person_name' => 'Robert Brown',
                                                 'person_role' => 'Distributor',
-                                                'star' => '5',
+                                                'star' => 5,
                                             ],
                                         ];
 
@@ -304,68 +304,61 @@
                                                 : $defaultReviews;
                                     @endphp
 
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div>
-                                            <span class="review-counter">Review 1 of {{ count($reviews) }}</span>
-                                        </div>
-                                        <div>
-                                            <button type="button" class="btn btn-sm btn-secondary prev-review" disabled>
-                                                <i class="fas fa-chevron-left"></i> Previous
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-secondary next-review">
-                                                Next <i class="fas fa-chevron-right"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#reviewModal">
-                                                <i class="fas fa-plus"></i> Add Review
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="review-container">
-                                        <!-- Reviews will be loaded here dynamically via JavaScript -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Review Modal -->
-                            <div class="modal fade" id="reviewModal" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Add Review</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Name</label>
-                                                <input type="text" class="form-control form-control-sm"
-                                                    id="newReviewName">
+                                    @foreach ($reviews as $index => $review)
+                                        <div class="review border rounded p-3 mb-3">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label small">Review {{ $index + 1 }}</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="reviews[{{ $index }}][person_name]"
+                                                            value="{{ $review['person_name'] }}" readonly>
+                                                        <input type="hidden" name="reviews[{{ $index }}][id]"
+                                                            value="{{ $review['id'] }}">
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label small">Role</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="reviews[{{ $index }}][person_role]"
+                                                            value="{{ $review['person_role'] }}" readonly>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label small">Rating (1-5)</label>
+                                                        <input type="number" class="form-control form-control-sm"
+                                                            name="reviews[{{ $index }}][star]"
+                                                            value="{{ $review['star'] }}" min="1" max="5"
+                                                            readonly>
+                                                    </div>
+                                                    <div class="form-group mb-3">
+                                                        <label class="form-label small">Status</label>
+                                                        <select class="form-select form-select-sm"
+                                                            name="reviews[{{ $index }}][status]">
+                                                            <option value="1"
+                                                                {{ isset($review['status']) && $review['status'] == 1 ? 'selected' : '' }}>
+                                                                Active</option>
+                                                            <option value="0"
+                                                                {{ isset($review['status']) && $review['status'] == 0 ? 'selected' : '' }}>
+                                                                Inactive</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="form-label small">Photo</label>
+                                                        @if (isset($review['person_image']))
+                                                            <div class="mb-2">
+                                                                <img src="{{ asset('storage/' . $review['person_image']) }}"
+                                                                    alt="Review {{ $index + 1 }} Photo"
+                                                                    style="max-width: 100px;">
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" class="form-control form-control-sm"
+                                                            name="reviews[{{ $index }}][person_image]" disabled>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Role</label>
-                                                <input type="text" class="form-control form-control-sm"
-                                                    id="newReviewRole">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Rating (1-5 stars)</label>
-                                                <input type="number" class="form-control form-control-sm"
-                                                    id="newReviewStar" min="1" max="5">
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label class="form-label">Photo</label>
-                                                <input type="file" class="form-control form-control-sm"
-                                                    id="newReviewImage" accept="image/*">
-                                                <div id="newReviewImagePreview" class="mt-2"></div>
-                                            </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-primary" onclick="saveNewReview()">Save
-                                                Review</button>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </form>
@@ -425,57 +418,75 @@
             }
         });
 
-        // Handle form submissions
-        $('.section-form').on('submit', function(e) {
-            e.preventDefault();
+        // Keep the active tab after page refresh
+        $(document).ready(function() {
+            // Get active tab from URL hash or localStorage
+            const activeTab = window.location.hash || localStorage.getItem('activeHomeTab') || '#section1';
 
-            const form = $(this);
-            const formData = new FormData(this);
+            // Show the active tab
+            $('a[data-bs-toggle="tab"][href="' + activeTab + '"]').tab('show');
 
-            // If this is section 2 form, get TinyMCE content
-            if (form.attr('id') === 'section2Form') {
-                const description = tinymce.get('description2').getContent();
-                formData.set('description', description);
-            }
+            // Store the active tab when changed
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+                const tab = $(e.target).attr('href');
+                localStorage.setItem('activeHomeTab', tab);
+                window.location.hash = tab;
+            });
 
-            // Show loading state
-            const submitBtn = form.find('button[type="submit"]');
-            const originalText = submitBtn.html();
-            submitBtn.html(
-                '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Saving...'
-            );
-            submitBtn.prop('disabled', true);
+            // Handle Edit button click
+            $('.edit-btn').click(function() {
+                const form = $(this).closest('form');
 
-            $.ajax({
-                url: form.attr('action'),
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.success) {
-                        // Show success message using toast
-                        const toast = new bootstrap.Toast(document.getElementById('successToast'));
-                        toast.show();
+                // Hide edit button, show save button
+                $(this).hide();
+                form.find('.save-btn').show();
 
-                        // Hide save button, show edit button
-                        form.find('.save-btn').hide();
-                        form.find('.edit-btn').show();
+                // Enable all inputs and selects
+                form.find('input:not([type="hidden"]), textarea, select').removeAttr('readonly disabled');
+                form.find('input[type="file"]').removeAttr('disabled');
+            });
 
-                        // Make all inputs readonly again
-                        form.find('input:not([type="hidden"]), textarea').attr('readonly', 'readonly');
-                        form.find('input[type="file"]').attr('disabled', 'disabled');
+            // Handle form submission
+            $('.section-form').on('submit', function(e) {
+                e.preventDefault();
 
-                        // Reload images if needed
-                        if (response.images) {
-                            // Update images based on response
-                            // You'll need to implement this based on your needs
+                const form = $(this);
+                const formData = new FormData(this);
+
+                $.ajax({
+                    url: form.attr('action'),
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.success) {
+                            // Show success message using toast
+                            const toast = new bootstrap.Toast(document.getElementById(
+                                'successToast'));
+                            toast.show();
+
+                            // Hide save button, show edit button
+                            form.find('.save-btn').hide();
+                            form.find('.edit-btn').show();
+
+                            // Make all inputs readonly again
+                            form.find('input:not([type="hidden"]), textarea, select').attr(
+                                'readonly', 'readonly');
+                            form.find('input[type="file"], select').attr('disabled',
+                                'disabled');
+
+                            // Reload images if needed
+                            if (response.images) {
+                                // Update images based on response
+                                // You'll need to implement this based on your needs
+                            }
                         }
+                    },
+                    error: function(xhr) {
+                        alert('Error saving changes. Please try again.');
                     }
-                },
-                error: function(xhr) {
-                    alert('Error saving changes. Please try again.');
-                }
+                });
             });
         });
 
@@ -529,77 +540,6 @@
             button.closest('.person_review').remove();
         }
 
-        // Keep the active tab after page refresh
-        $(document).ready(function() {
-            // Get active tab from URL hash or localStorage
-            const activeTab = window.location.hash || localStorage.getItem('activeHomeTab') || '#section1';
-
-            // Show the active tab
-            $('a[data-bs-toggle="tab"][href="' + activeTab + '"]').tab('show');
-
-            // Store the active tab when changed
-            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
-                const tab = $(e.target).attr('href');
-                localStorage.setItem('activeHomeTab', tab);
-                window.location.hash = tab;
-            });
-
-            // Handle Edit button click
-            $('.edit-btn').click(function() {
-                const form = $(this).closest('form');
-
-                // Hide edit button, show save button
-                $(this).hide();
-                form.find('.save-btn').show();
-
-                // Enable all inputs
-                form.find('input:not([type="hidden"]), textarea').removeAttr('readonly');
-                form.find('input[type="file"]').removeAttr('disabled');
-            });
-
-            // Handle form submission
-            $('.section-form').on('submit', function(e) {
-                e.preventDefault();
-
-                const form = $(this);
-                const formData = new FormData(this);
-
-                $.ajax({
-                    url: form.attr('action'),
-                    method: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        if (response.success) {
-                            // Show success message using toast
-                            const toast = new bootstrap.Toast(document.getElementById(
-                                'successToast'));
-                            toast.show();
-
-                            // Hide save button, show edit button
-                            form.find('.save-btn').hide();
-                            form.find('.edit-btn').show();
-
-                            // Make all inputs readonly again
-                            form.find('input:not([type="hidden"]), textarea').attr('readonly',
-                                'readonly');
-                            form.find('input[type="file"]').attr('disabled', 'disabled');
-
-                            // Reload images if needed
-                            if (response.images) {
-                                // Update images based on response
-                                // You'll need to implement this based on your needs
-                            }
-                        }
-                    },
-                    error: function(xhr) {
-                        alert('Error saving changes. Please try again.');
-                    }
-                });
-            });
-        });
-
         // Review management
         let currentReviewIndex = 0;
         let reviews = @json($reviews);
@@ -650,11 +590,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                        <div class="mb-2">
-                                                                            <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                alt="Person Image" style="max-width: 100px;">
-                                                                        </div>
-                                                                    ` : ''}
+                                                                                                                                                <div class="mb-2">
+                                                                                                                                                    <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                        alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                </div>
+                                                                                                                                            ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>

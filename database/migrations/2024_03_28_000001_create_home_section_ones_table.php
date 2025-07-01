@@ -22,6 +22,7 @@ return new class extends Migration
             $table->foreignId('section_one_id')->constrained('home_section_ones')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->string('icon')->nullable();
+            $table->string('status')->nullable();
             $table->integer('sequence')->default(0);
             $table->timestamps();
         });
