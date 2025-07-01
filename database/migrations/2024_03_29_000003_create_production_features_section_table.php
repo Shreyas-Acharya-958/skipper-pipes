@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('image')->nullable(); // For uploaded image
             $table->string('icon')->nullable(); // For icon class name
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('sequence')->default(0);
             $table->timestamps();

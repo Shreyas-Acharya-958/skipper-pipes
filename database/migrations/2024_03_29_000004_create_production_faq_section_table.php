@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('production_faq_sections', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('sequence')->default(0);
             $table->timestamps();

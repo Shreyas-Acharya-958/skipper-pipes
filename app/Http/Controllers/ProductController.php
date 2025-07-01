@@ -310,8 +310,27 @@ class ProductController extends Controller
                     $feature->description = $featureData['description'];
                     $feature->sequence = $index;
 
-                    if (isset($featureData['image']) && $featureData['image']) {
-                        $feature->image = $featureData['image']->store('products/features', 'public');
+                    // Handle base64 image
+                    if (!empty($featureData['image_base64'])) {
+                        // Get file data
+                        $imageData = $featureData['image_base64'];
+
+                        // Extract the actual base64 string (remove data:image/png;base64, etc.)
+                        if (strpos($imageData, ';base64,') !== false) {
+                            list(, $imageData) = explode(';base64,', $imageData);
+                        }
+
+                        // Decode base64 data
+                        $imageData = base64_decode($imageData);
+
+                        // Generate unique filename
+                        $filename = 'feature_' . time() . '_' . uniqid() . '.png';
+
+                        // Store the file
+                        Storage::disk('public')->put('products/features/' . $filename, $imageData);
+
+                        // Save the path
+                        $feature->image = 'products/features/' . $filename;
                     }
 
                     $feature->save();

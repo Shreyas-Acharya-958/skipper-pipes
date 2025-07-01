@@ -208,9 +208,12 @@
                                                                     style="max-width: 200px; height: auto;">
                                                             </div>
                                                         @endif
-                                                        <input type="file" class="form-control"
-                                                            name="features[{{ $index }}][image]" accept="image/*"
-                                                            disabled>
+                                                        <input type="file" class="form-control feature-image-input"
+                                                            name="features[{{ $index }}][image_file]"
+                                                            accept="image/*">
+                                                        <input type="hidden"
+                                                            name="features[{{ $index }}][image_base64]"
+                                                            class="image-base64-input">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -375,16 +378,21 @@
             });
 
             // Handle image preview for feature images
-            $(document).on('change', 'input[name^="features"][name$="[image]"]', function() {
+            $(document).on('change', '.feature-image-input', function() {
                 const file = this.files[0];
                 const container = $(this).closest('.form-group');
+                const base64Input = container.find('.image-base64-input');
 
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
+                        const base64Data = e.target.result;
+                        // Store base64 data in hidden input
+                        base64Input.val(base64Data);
+
                         const preview = `
                             <div class="mb-2">
-                                <img src="${e.target.result}" alt="Preview" style="max-width: 200px; height: auto;">
+                                <img src="${base64Data}" alt="Preview" style="max-width: 200px; height: auto;">
                             </div>
                         `;
                         container.find('.mb-2').remove(); // Remove existing preview
@@ -451,7 +459,8 @@
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label class="form-label">Image</label>
-                                <input type="file" class="form-control" name="features[${index}][image]" accept="image/*">
+                                <input type="file" class="form-control feature-image-input" name="features[${index}][image_file]" accept="image/*">
+                                <input type="hidden" name="features[${index}][image_base64]" class="image-base64-input">
                             </div>
                         </div>
                         <div class="col-md-6">
