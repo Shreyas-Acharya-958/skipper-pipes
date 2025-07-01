@@ -75,15 +75,19 @@
 
                 <!-- Content Module -->
                 <div
-                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*') ? 'open' : '' }}">
+                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*') ? 'open' : '' }}">
                     <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#contentModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
                             Content Module
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*') ? 'show' : '' }}"
+                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*') ? 'show' : '' }}"
                         id="contentModule">
+                        <a class="nav-link{{ request()->routeIs('admin.home-page.*') ? ' active' : '' }}"
+                            href="{{ route('admin.home-page.index') }}">
+                            <i class="fas fa-home"></i> <span class="nav-text">Home Page Management</span>
+                        </a>
                         <a class="nav-link{{ request()->routeIs('admin.company_pages.*') ? ' active' : '' }}"
                             href="{{ route('admin.company_pages.index') }}">
                             <i class="fas fa-file-alt"></i> <span class="nav-text">Company Pages</span>

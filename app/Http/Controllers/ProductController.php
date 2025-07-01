@@ -7,6 +7,12 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
+use App\Models\ProductionOverviewSection;
+use App\Models\ProductionApplicationSection;
+use App\Models\ProductionFeaturesSection;
+use App\Models\ProductionFaqSection;
 
 class ProductController extends Controller
 {
@@ -174,5 +180,208 @@ class ProductController extends Controller
 
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function sections(Product $product)
+    {
+        $overview = $product->productionOverviewSection;
+        $applications = $product->productionApplicationSections;
+        $features = $product->productionFeaturesSections;
+        $faqs = $product->productionFaqSections;
+
+        return view('admin.products.sections', compact('product', 'overview', 'applications', 'features', 'faqs'));
+    }
+
+    public function saveOverview(Request $request, Product $product)
+    {
+        $request->validate([
+            'overview_description' => 'required|string',
+            'overview_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        ]);
+
+        $overview = $product->productionOverviewSection ?? new ProductionOverviewSection();
+        $overview->product_id = $product->id;
+        $overview->overview_description = $request->overview_description;
+
+        // Handle images
+        $images = [];
+
+        // Keep existing images that weren't removed
+        if ($request->has('existing_images')) {
+            $images = $request->existing_images;
+        }
+
+        // Add new images
+        if ($request->hasFile('overview_images')) {
+            foreach ($request->file('overview_images') as $image) {
+                if (count($images) >= 5) break; // Maximum 5 images
+                $path = $image->store('product-overviews', 'public');
+                $images[] = $path;
+            }
+        }
+
+        $overview->overview_image = json_encode(array_values($images));
+        $overview->save();
+
+        return redirect()->back()->with('success', 'Overview section updated successfully.');
+    }
+
+    public function saveApplications(Request $request, Product $product)
+    {
+        $request->validate([
+            'applications.*.icon' => 'required|string',
+            'applications.*.title' => 'required|string',
+            'applications.*.description' => 'required|string',
+        ]);
+
+        // Start transaction
+        DB::beginTransaction();
+        try {
+            // Delete existing applications not in the request
+            if ($request->has('applications')) {
+                $existingIds = collect($request->applications)->pluck('id')->filter();
+                $product->productionApplicationSections()
+                    ->whereNotIn('id', $existingIds)
+                    ->delete();
+            } else {
+                $product->productionApplicationSections()->delete();
+            }
+
+            // Create or update applications
+            if ($request->has('applications')) {
+                foreach ($request->applications as $index => $appData) {
+                    if (isset($appData['id'])) {
+                        $application = ProductionApplicationSection::find($appData['id']);
+                        $application->update([
+                            'icon' => $appData['icon'],
+                            'title' => $appData['title'],
+                            'description' => $appData['description'],
+                            'sequence' => $index,
+                        ]);
+                    } else {
+                        $product->productionApplicationSections()->create([
+                            'icon' => $appData['icon'],
+                            'title' => $appData['title'],
+                            'description' => $appData['description'],
+                            'sequence' => $index,
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Applications section updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Failed to update applications section.');
+        }
+    }
+
+    public function saveFeatures(Request $request, Product $product)
+    {
+        $request->validate([
+            'features.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'features.*.icon' => 'required|string',
+            'features.*.title' => 'required|string',
+            'features.*.description' => 'required|string',
+        ]);
+
+        // Start transaction
+        DB::beginTransaction();
+        try {
+            // Delete existing features not in the request
+            if ($request->has('features')) {
+                $existingIds = collect($request->features)->pluck('id')->filter();
+                $product->productionFeaturesSections()
+                    ->whereNotIn('id', $existingIds)
+                    ->delete();
+            } else {
+                $product->productionFeaturesSections()->delete();
+            }
+
+            // Create or update features
+            if ($request->has('features')) {
+                foreach ($request->features as $index => $featureData) {
+                    $imageData = [];
+
+                    // Handle image upload
+                    if (isset($featureData['image']) && $featureData['image'] instanceof UploadedFile) {
+                        $path = $featureData['image']->store('product-features', 'public');
+                        $imageData['image'] = $path;
+                    } elseif (isset($featureData['id'])) {
+                        // Keep existing image if no new image uploaded
+                        $feature = ProductionFeaturesSection::find($featureData['id']);
+                        if ($feature) {
+                            $imageData['image'] = $feature->image;
+                        }
+                    }
+
+                    $featureData = array_merge($featureData, $imageData, ['sequence' => $index]);
+
+                    if (isset($featureData['id'])) {
+                        $feature = ProductionFeaturesSection::find($featureData['id']);
+                        if ($feature) {
+                            $feature->update($featureData);
+                        }
+                    } else {
+                        $product->productionFeaturesSections()->create($featureData);
+                    }
+                }
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Features section updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Failed to update features section: ' . $e->getMessage());
+        }
+    }
+
+    public function saveFaq(Request $request, Product $product)
+    {
+        $request->validate([
+            'faqs.*.title' => 'required|string',
+            'faqs.*.description' => 'required|string',
+        ]);
+
+        // Start transaction
+        DB::beginTransaction();
+        try {
+            // Delete existing FAQs not in the request
+            if ($request->has('faqs')) {
+                $existingIds = collect($request->faqs)->pluck('id')->filter();
+                $product->productionFaqSections()
+                    ->whereNotIn('id', $existingIds)
+                    ->delete();
+            } else {
+                $product->productionFaqSections()->delete();
+            }
+
+            // Create or update FAQs
+            if ($request->has('faqs')) {
+                foreach ($request->faqs as $index => $faqData) {
+                    if (isset($faqData['id'])) {
+                        $faq = ProductionFaqSection::find($faqData['id']);
+                        $faq->update([
+                            'title' => $faqData['title'],
+                            'description' => $faqData['description'],
+                            'sequence' => $index,
+                        ]);
+                    } else {
+                        $product->productionFaqSections()->create([
+                            'title' => $faqData['title'],
+                            'description' => $faqData['description'],
+                            'sequence' => $index,
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'FAQ section updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Failed to update FAQ section.');
+        }
     }
 }

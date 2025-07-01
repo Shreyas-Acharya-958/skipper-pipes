@@ -74,7 +74,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="product_overview" class="form-label">Product Overview</label>
                             <textarea class="form-control @error('product_overview') is-invalid @enderror" id="product_overview"
                                 name="product_overview" rows="6">{{ old('product_overview') }}</textarea>
@@ -83,7 +83,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="features_benefits" class="form-label">Features & Benefits</label>
                             <textarea class="form-control @error('features_benefits') is-invalid @enderror" id="features_benefits"
                                 name="features_benefits" rows="6">{{ old('features_benefits') }}</textarea>
@@ -92,7 +92,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="technical" class="form-label">Technical Details</label>
                             <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical" rows="6">{{ old('technical') }}</textarea>
                             @error('technical')
@@ -100,7 +100,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="application" class="form-label">Application</label>
                             <textarea class="form-control @error('application') is-invalid @enderror" id="application" name="application"
                                 rows="6">{{ old('application') }}</textarea>
@@ -109,7 +109,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="faq" class="form-label">FAQ</label>
                             <textarea class="form-control @error('faq') is-invalid @enderror" id="faq" name="faq" rows="6">{{ old('faq') }}</textarea>
                             @error('faq')

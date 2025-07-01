@@ -45,6 +45,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Product routes
     Route::resource('products', ProductController::class)->names('products');
+    Route::get('products-section/{product}', [ProductController::class, 'sections'])->name('products.sections');
+    Route::post('products-section/{product}/overview', [ProductController::class, 'saveOverview'])->name('products.sections.overview.save');
+    Route::post('products-section/{product}/applications', [ProductController::class, 'saveApplications'])->name('products.sections.applications.save');
+    Route::post('products-section/{product}/features', [ProductController::class, 'saveFeatures'])->name('products.sections.features.save');
+    Route::post('products-section/{product}/faq', [ProductController::class, 'saveFaq'])->name('products.sections.faq.save');
 
     // Product Category routes
     Route::resource('product-categories', ProductCategoryController::class)->names('product_categories');

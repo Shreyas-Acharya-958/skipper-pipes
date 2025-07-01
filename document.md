@@ -1,41 +1,55 @@
-please add in admin Content Module=> one new menu named=>home-page
-implement bellow thing in it
+please take refrence of bellow page
+resources\views\admin\home-page\index.blade.php
 
-in tab =>section 1
-Note:(Why Skipper Pipes)
-title(text_box)
-image (file)
-description(textarea)
-features-data(multi data json store) =>
-1)title (text_box),icon(image)
-2)title (text_box),icon(image)
-3)title (text_box),icon(image)
-+....
+1 Make migartion
+2 make model
+3 Make control from production section part (every methde get product id) because we redired on our this page from prduct list
+4)Creta vew make some data need ot daynmic (tab 3 , tab 4)
 
-in tab =>section 2
-Note:(Empowering Every Plumber)
-title (text_box)
-description:(tinyeditor)
-image(file)
-image title(text_box)
-image button(text_box)
-image link(text_box)
-in tab =>section 3
-Note:(Video part)
-title(text_box)
-image(text_box)
-video_link(text_box)
+tab 1
+production_overview_section
+product_id
+overview_descrition
+overview_image(json) (multiple image upload)
 
-in tab =>section 4
-Note:(review part)
-image(text_box)
-title(text_box)
-description(textarea)
-person review(multi data json store) =>
-1)person_image (file),person_name(text_box),person_role(text_box),start
-1)person_image (file),person_name(text_box),person_role(text_box),start
-2)person_image (file),person_name(text_box),person_role(text_box),start
-3)person_image (file),person_name(text_box),person_role(text_box),start
-+....
+tab 2
+production_application_section
+product_id
+icon
+title
+description
+tab 3
+production_features_section
+product_id
+product_id
+image
+icon
+title
+description
 
----
+tab 4
+production_faq_section
+product_id
+title
+description
+
+Migrations and Models for:
+production_overview_section (Tab 1)Yes
+production_application_section (Tab 2)Yes
+production_features_section (Tab 3)Yes
+production_faq_section (Tab 4)Yes
+A controller that handles all these sections, with methods getting product_id as a parameter Yes
+Views similar to home-page/index.blade.php structure but with these 4 tabs
+Before I proceed, I need to clarify a few things:
+For Tab 1's overview_image field which is JSON for multiple images:
+Do you want a limit on how many images can be uploaded?limit 5
+Should there be any specific image dimensions or size restrictions?image size 2 mb
+For Tab 2's application section:
+Should the icon be an uploaded image or a FontAwesome icon selection?not it's text box we just give "class name in that"
+Can there be multiple application entries for a single product?Yes
+For Tab 3's features section:
+I notice there are two product_id fields in the document. Is this a typo?oh is my mistake i copy two time
+Should both image and icon be supported, or is this a typo? image file upload & icon label has text box
+Can there be multiple feature entries for a single product?yes because its featur & benifit part that well be multi pal
+For Tab 4's FAQ section:
+Can there be multiple FAQ entries for a single product?yes it's multipel

@@ -31,4 +31,24 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class);
     }
+
+    public function productionOverviewSection()
+    {
+        return $this->hasOne(ProductionOverviewSection::class);
+    }
+
+    public function productionApplicationSections()
+    {
+        return $this->hasMany(ProductionApplicationSection::class);
+    }
+
+    public function productionFeaturesSections()
+    {
+        return $this->hasMany(ProductionFeaturesSection::class);
+    }
+
+    public function productionFaqSections()
+    {
+        return $this->hasMany(ProductionFaqSection::class);
+    }
 }
