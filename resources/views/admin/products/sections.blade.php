@@ -128,6 +128,24 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group mb-3">
+                                                        <label class="form-label">Image</label>
+                                                        @if ($application->image)
+                                                            <div class="mb-2">
+                                                                <img src="{{ asset('storage/' . $application->image) }}"
+                                                                    alt="Application Image"
+                                                                    style="max-width: 200px; height: auto;">
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" class="form-control application-image-input"
+                                                            name="applications[{{ $index }}][image_file]"
+                                                            accept="image/*" readonly>
+                                                        <input type="hidden"
+                                                            name="applications[{{ $index }}][image_base64]"
+                                                            class="image-base64-input">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group mb-3">
                                                         <label class="form-label">Icon Class</label>
                                                         <input type="text" class="form-control"
                                                             name="applications[{{ $index }}][icon]"
@@ -136,7 +154,7 @@
                                                             fa-star)</small>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-8">
+                                                <div class="col-md-4">
                                                     <div class="form-group mb-3">
                                                         <label class="form-label">Title</label>
                                                         <input type="text" class="form-control"
@@ -347,34 +365,57 @@
                 ).hide();
             });
 
-            // Handle image preview for overview images
-            $('input[name="overview_images[]"]').change(function() {
-                const files = this.files;
-                const container = $('#overview_images');
-                const maxFiles = 5;
-                const existingImages = container.find('.position-relative').length;
+            // Handle overview image file input change
+            $('input[name="overview_images[]"]').on('change', function(e) {
+                const files = e.target.files;
+                const overviewImages = [];
 
-                if (files.length + existingImages > maxFiles) {
-                    alert('You can only upload up to ' + maxFiles + ' images');
-                    this.value = '';
-                    return;
-                }
-
+                // Process each selected file
                 Array.from(files).forEach(file => {
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            const preview = `
-                                <div class="mb-2 position-relative d-inline-block me-2">
-                                    <img src="${e.target.result}" alt="Preview" style="max-width: 200px; height: auto;">
-                                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-preview-btn">&times;</button>
-                                </div>
-                            `;
-                            container.find('.mt-2').before(preview);
-                        }
-                        reader.readAsDataURL(file);
-                    }
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Get the base64 string
+                        const base64String = e.target.result;
+
+                        // Create preview
+                        const previewContainer = $('<div>').addClass(
+                            'mb-2 position-relative d-inline-block me-2');
+                        const previewImage = $('<img>')
+                            .attr('src', base64String)
+                            .attr('alt', 'Preview')
+                            .css({
+                                'max-width': '200px',
+                                'height': 'auto'
+                            });
+                        const removeButton = $('<button>')
+                            .addClass(
+                                'btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn'
+                            )
+                            .html('&times;')
+                            .on('click', function() {
+                                previewContainer.remove();
+                            });
+
+                        previewContainer.append(previewImage, removeButton);
+                        $('#overview_images').prepend(previewContainer);
+
+                        // Add base64 string to form data
+                        const input = $('<input>')
+                            .attr('type', 'hidden')
+                            .attr('name', 'overview_images[]')
+                            .val(base64String);
+                        previewContainer.append(input);
+                    };
+                    reader.readAsDataURL(file);
                 });
+
+                // Clear the file input
+                $(this).val('');
+            });
+
+            // Handle existing image removal
+            $('.remove-image-btn').on('click', function() {
+                $(this).closest('.position-relative').remove();
             });
 
             // Handle image preview for feature images
@@ -412,6 +453,31 @@
                 $(this).closest('.position-relative').remove();
             });
 
+            // Handle image preview for application images
+            $(document).on('change', '.application-image-input', function() {
+                const file = this.files[0];
+                const container = $(this).closest('.form-group');
+                const base64Input = container.find('.image-base64-input');
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const base64Data = e.target.result;
+                        // Store base64 data in hidden input
+                        base64Input.val(base64Data);
+
+                        const preview = `
+                            <div class="mb-2">
+                                <img src="${base64Data}" alt="Preview" style="max-width: 200px; height: auto;">
+                            </div>
+                        `;
+                        container.find('.mb-2').remove(); // Remove existing preview
+                        container.find('label').after(preview);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
             // Template for new application
             function getNewApplicationTemplate(index) {
                 return `
@@ -425,12 +491,19 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group mb-3">
+                                <label class="form-label">Image</label>
+                                <input type="file" class="form-control application-image-input" name="applications[${index}][image_file]" accept="image/*">
+                                <input type="hidden" name="applications[${index}][image_base64]" class="image-base64-input">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group mb-3">
                                 <label class="form-label">Icon Class</label>
                                 <input type="text" class="form-control" name="applications[${index}][icon]">
                                 <small class="text-muted">Enter FontAwesome class name (e.g., fas fa-star)</small>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="form-group mb-3">
                                 <label class="form-label">Title</label>
                                 <input type="text" class="form-control" name="applications[${index}][title]">

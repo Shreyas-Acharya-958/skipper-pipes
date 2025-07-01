@@ -209,12 +209,28 @@ class ProductController extends Controller
                 $images = array_values($request->existing_images);
             }
 
-            // Add new images
-            if ($request->hasFile('overview_images')) {
-                foreach ($request->file('overview_images') as $image) {
+            // Handle base64 images
+            if ($request->has('overview_images')) {
+                foreach ($request->overview_images as $imageData) {
                     if (count($images) >= 5) break; // Maximum 5 images
-                    $path = $image->store('products/overview', 'public');
-                    $images[] = $path;
+
+                    // Check if it's a base64 image
+                    if (strpos($imageData, ';base64,') !== false) {
+                        // Extract the actual base64 string
+                        list(, $imageData) = explode(';base64,', $imageData);
+
+                        // Decode base64 data
+                        $imageData = base64_decode($imageData);
+
+                        // Generate unique filename
+                        $filename = 'overview_' . time() . '_' . uniqid() . '.png';
+
+                        // Store the file
+                        Storage::disk('public')->put('products/overview/' . $filename, $imageData);
+
+                        // Save the path
+                        $images[] = 'products/overview/' . $filename;
+                    }
                 }
             }
 
@@ -235,6 +251,7 @@ class ProductController extends Controller
             'applications.*.icon' => 'required|string',
             'applications.*.title' => 'required|string',
             'applications.*.description' => 'required|string',
+            'applications.*.image_base64' => 'nullable|string',
         ]);
 
         // Start transaction
@@ -253,22 +270,48 @@ class ProductController extends Controller
             // Create or update applications
             if ($request->has('applications')) {
                 foreach ($request->applications as $index => $appData) {
+                    $application = null;
+
                     if (isset($appData['id'])) {
                         $application = ProductionApplicationSection::find($appData['id']);
-                        $application->update([
-                            'icon' => $appData['icon'],
-                            'title' => $appData['title'],
-                            'description' => $appData['description'],
-                            'sequence' => $index,
-                        ]);
-                    } else {
-                        $product->productionApplicationSections()->create([
-                            'icon' => $appData['icon'],
-                            'title' => $appData['title'],
-                            'description' => $appData['description'],
-                            'sequence' => $index,
-                        ]);
                     }
+
+                    if (!$application) {
+                        $application = new ProductionApplicationSection();
+                        $application->product_id = $product->id;
+                    }
+
+                    $application->icon = $appData['icon'];
+                    $application->title = $appData['title'];
+                    $application->description = $appData['description'];
+                    $application->sequence = $index;
+
+                    // Handle base64 image
+                    if (!empty($appData['image_base64'])) {
+                        // Delete old image if exists
+                        if ($application->image) {
+                            Storage::disk('public')->delete($application->image);
+                        }
+
+                        // Extract the actual base64 string
+                        if (strpos($appData['image_base64'], ';base64,') !== false) {
+                            list(, $imageData) = explode(';base64,', $appData['image_base64']);
+
+                            // Decode base64 data
+                            $imageData = base64_decode($imageData);
+
+                            // Generate unique filename
+                            $filename = 'application_' . time() . '_' . uniqid() . '.png';
+
+                            // Store the file
+                            Storage::disk('public')->put('products/applications/' . $filename, $imageData);
+
+                            // Save the path
+                            $application->image = 'products/applications/' . $filename;
+                        }
+                    }
+
+                    $application->save();
                 }
             }
 
@@ -276,7 +319,7 @@ class ProductController extends Controller
             return redirect()->back()->with('success', 'Applications section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();
-            return redirect()->back()->with('error', 'Failed to update applications section.');
+            return redirect()->back()->with('error', 'Failed to update applications section: ' . $e->getMessage());
         }
     }
 

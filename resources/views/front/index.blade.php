@@ -267,57 +267,61 @@
     <!-- Skipper Sathi Community ends-->
 
 
-
-
-
-    <!-- Section 4: Reviews -->
+    <!-- Testimonials Section  -->
     @if ($sectionFour && $sectionFour->title && $sectionFour->reviews->count() > 0)
-        <div class="testimonial-section default-padding">
+        <div class="testimonials-area bg-gray default-padding">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="site-heading text-center">
-                            <h4>Testimonials</h4>
-                            <h2>{{ $sectionFour->title }}</h2>
-                            @if ($sectionFour->description)
-                                <p>{{ $sectionFour->description }}</p>
-                            @endif
+                <div class="testimonial-items">
+                    <div class="row align-center">
+                        <div class="col-lg-5 title text-center">
+                            <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
+                            <img src="/assets/img/final/skipper-pipes-s-logo2.png" class="w-50 mb-4" alt="">
+                            <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
+                            <div class="site-heading text-center">
+                                <!-- <h4>Our Feedbacks</h4> -->
+                                <h2>{{ $sectionFour->title }}</h2>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="testimonial-carousel">
-                            @foreach ($sectionFour->reviews as $review)
-                                <div class="testimonial-item">
-                                    <div class="testimonial-content">
-                                        @if ($review->star)
+                        <div class="col-lg-7 testimonial-box">
+                            <div class="testimonial-content testimonials-carousel owl-carousel owl-theme">
+                                @foreach ($sectionFour->reviews as $review)
+                                    <!-- Single Item -->
+                                    <div class="item">
+                                        <div class="content">
                                             <div class="rating">
-                                                @for ($i = 0; $i < $review->star; $i++)
-                                                    <i class="fas fa-star"></i>
-                                                @endfor
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
                                             </div>
-                                        @endif
-                                        @if ($review->description)
-                                            <p>{{ $review->description }}</p>
-                                        @endif
-                                        <div class="author-info">
-                                            @if ($review->person_image)
-                                                <img src="{{ asset('storage/' . $review->person_image) }}"
+                                            <p>
+                                                {{ $review->description }}
+                                            </p>
+                                        </div>
+                                        <div class="provider">
+                                            <div class="thumb">
+                                                <img src="{{ asset('storage/' . $review->person_image) ?? '/assets/img/final/testimonial1.png' }}"
                                                     alt="{{ $review->person_name }}">
-                                            @endif
-                                            <h5>{{ $review->person_name }}</h5>
-                                            <span>{{ $review->person_role }}</span>
+                                            </div>
+                                            <div class="info">
+                                                <h5>{{ $review->person_name }}</h5>
+                                                <span>{{ $review->person_role }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                    <!-- End Single Item -->
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Testimonials Section ends -->
     @endif
+
 
     <!-- Section 3: Video Section -->
     @if ($sectionThree && $sectionThree->title)

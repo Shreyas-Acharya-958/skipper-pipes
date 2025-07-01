@@ -468,6 +468,9 @@
                 const form = $(this);
                 const formData = new FormData(this);
 
+                // Get current active tab ID (just the section part)
+                const activeTabId = $('.nav-link.active').attr('href').split('#')[1];
+
                 $.ajax({
                     url: form.attr('action'),
                     method: 'POST',
@@ -481,21 +484,9 @@
                                 'successToast'));
                             toast.show();
 
-                            // Hide save button, show edit button
-                            form.find('.save-btn').hide();
-                            form.find('.edit-btn').show();
-
-                            // Make all inputs readonly again
-                            form.find('input:not([type="hidden"]), textarea, select').attr(
-                                'readonly', 'readonly');
-                            form.find('input[type="file"], select').attr('disabled',
-                                'disabled');
-
-                            // Reload images if needed
-                            if (response.images) {
-                                // Update images based on response
-                                // You'll need to implement this based on your needs
-                            }
+                            // Set the hash and reload the page
+                            window.location.hash = activeTabId;
+                            window.location.reload();
                         }
                     },
                     error: function(xhr) {
@@ -605,11 +596,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                                                                                                                                                    <div class="mb-2">
-                                                                                                                                                                                                        <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                                                                                                                                            alt="Person Image" style="max-width: 100px;">
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                ` : ''}
+                                                                                                                                                                                                                                        <div class="mb-2">
+                                                                                                                                                                                                                                            <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                                                                                                                alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                    ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>

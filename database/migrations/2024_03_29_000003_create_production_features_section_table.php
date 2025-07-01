@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('icon')->nullable(); // For icon class name
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->string('alert')->nullable();
             $table->integer('sequence')->default(0);
             $table->timestamps();
         });

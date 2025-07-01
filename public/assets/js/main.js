@@ -1,9 +1,9 @@
 /* ===================================================================
-    
+
     Author          : Valid Theme
     Template Name   : Dustra - Factory & Industrial Template
     Version         : 1.0
-    
+
 * ================================================================= */
 
 (function($) {
@@ -64,7 +64,7 @@
 
 
 
-        
+
         /* ==================================================
             # imagesLoaded active
         ===============================================*/
@@ -120,12 +120,12 @@
         /* ==================================================
             # Load More
         ===============================================*/
-        $('.portfolio-list').simpleLoadMore({
-            item: '.pf-item',
-            count: 3,
-            counterInBtn: true,
-            btnText: 'View More {showing}/{total}',
-        });
+        // $('.portfolio-list').simpleLoadMore({
+        //     item: '.pf-item',
+        //     count: 3,
+        //     counterInBtn: true,
+        //     btnText: 'View More {showing}/{total}',
+        // });
 
 
         /* ==================================================
@@ -441,7 +441,7 @@
     navbar.addClass('no-background')
   }
 });
-    
+
 
     /* ==================================================
         Preloader Init
@@ -485,7 +485,7 @@
 
   }
 
-// home products carousel/swiper - homepage 
+// home products carousel/swiper - homepage
    if ($(".tabs-box").length) {
     $(".tabs-box .tab-buttons .tab-btn").on("click", function (e) {
       e.preventDefault();
@@ -589,7 +589,7 @@
 
     OnePageMenuScroll();
 
-  });   
+  });
 
   const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -606,15 +606,15 @@
     $(".main-blogs-grid .blog-items .item").each(function () {
       observer.observe(this);
     });
-    
+
     $(".business-dir-card").each(function () {
       observer.observe(this);
     });
-    
+
     $(".business-heads-card").each(function () {
       observer.observe(this);
     });
-    
+
     $(".certificate-col").each(function () {
       observer.observe(this);
     });
