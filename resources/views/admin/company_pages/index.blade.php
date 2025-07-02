@@ -14,9 +14,9 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        <a href="{{ route('admin.company_pages.create') }}" class="btn btn-warning">
+                        {{-- <a href="{{ route('admin.company_pages.create') }}" class="btn btn-warning">
                             <i class="fas fa-plus"></i> Add New Page
-                        </a>
+                        </a> --}}
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
