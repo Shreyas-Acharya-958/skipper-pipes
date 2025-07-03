@@ -55,12 +55,13 @@ class ProductController extends Controller
             'faq' => 'required|string',
             'status' => 'required|boolean',
             'page_image' => 'nullable|image',
+            'home_image' => 'nullable|image',
             'product_overview_image' => 'nullable|image',
             'brochure' => 'nullable|mimes:pdf,doc,docx',
         ]);
 
         // Handle file uploads with custom names
-        foreach (['page_image', 'product_overview_image'] as $field) {
+        foreach (['page_image', 'home_image', 'product_overview_image'] as $field) {
             if ($request->hasFile($field)) {
                 $file = $request->file($field);
                 $filename = Str::slug($request->title) . '-' . $field . '-' . time() . '.' . $file->getClientOriginalExtension();
@@ -115,12 +116,13 @@ class ProductController extends Controller
             'faq' => 'required|string',
             'status' => 'required|boolean',
             'page_image' => 'nullable|image',
+            'home_image' => 'nullable|image',
             'product_overview_image' => 'nullable|image',
             'brochure' => 'nullable|mimes:pdf,doc,docx',
         ]);
 
         // Handle file uploads and removals with custom names
-        foreach (['page_image', 'product_overview_image'] as $field) {
+        foreach (['page_image', 'home_image', 'product_overview_image'] as $field) {
             if ($request->has('remove_' . $field) && $request->input('remove_' . $field) === '1') {
                 if ($product->$field) {
                     Storage::disk('public')->delete($product->$field);

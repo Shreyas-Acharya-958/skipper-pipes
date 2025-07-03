@@ -12,6 +12,7 @@
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="remove_page_image" value="0" id="remove_page_image_input">
+                        <input type="hidden" name="remove_home_image" value="0" id="remove_home_image_input">
                         <input type="hidden" name="remove_product_overview_image" value="0"
                             id="remove_product_overview_image_input">
                         <input type="hidden" name="remove_brochure" value="0" id="remove_brochure_input">
@@ -48,7 +49,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="page_image" class="form-label">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
@@ -67,6 +68,46 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="home_image" class="form-label">Home Image</label>
+                                    <input type="file" class="form-control @error('home_image') is-invalid @enderror"
+                                        id="home_image" name="home_image" accept="image/*">
+                                    @if ($product->home_image)
+                                        <div class="mt-2 position-relative d-inline-block">
+                                            <img src="{{ asset('storage/' . $product->home_image) }}" alt="Home Image"
+                                                style="width:100px;height:100px;object-fit:cover;">
+                                            <button type="button"
+                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                data-field="home_image">&times;</button>
+                                        </div>
+                                    @endif
+                                    @error('home_image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="brochure" class="form-label">Brochure</label>
+                                    <input type="file" class="form-control @error('brochure') is-invalid @enderror"
+                                        id="brochure" name="brochure" accept=".pdf,.doc,.docx">
+                                    @if ($product->brochure)
+                                        <div class="mt-2 position-relative d-inline-block">
+                                            <a href="{{ asset('storage/' . $product->brochure) }}" target="_blank"
+                                                class="btn btn-sm btn-info">View Current Brochure</a>
+                                            <button type="button" class="btn btn-sm btn-danger ms-2 remove-file-btn"
+                                                data-field="brochure">Remove</button>
+                                        </div>
+                                    @endif
+                                    @error('brochure')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6" style="display: none;">
                                 <div class="mb-3">
                                     <label for="product_overview_image" class="form-label">Product Overview Image</label>
@@ -198,24 +239,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="brochure" class="form-label">Brochure</label>
-                                    <input type="file" class="form-control @error('brochure') is-invalid @enderror"
-                                        id="brochure" name="brochure" accept=".pdf,.doc,.docx">
-                                    @if ($product->brochure)
-                                        <div class="mt-2 position-relative d-inline-block">
-                                            <a href="{{ asset('storage/' . $product->brochure) }}" target="_blank"
-                                                class="btn btn-sm btn-info">View Current Brochure</a>
-                                            <button type="button" class="btn btn-sm btn-danger ms-2 remove-file-btn"
-                                                data-field="brochure">Remove</button>
-                                        </div>
-                                    @endif
-                                    @error('brochure')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="d-flex justify-content-between">

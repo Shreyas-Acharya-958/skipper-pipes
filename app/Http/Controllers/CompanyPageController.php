@@ -122,9 +122,7 @@ class CompanyPageController extends Controller
         }
 
         $company_page->update($data);
-
-        return redirect()->route('admin.company_pages.index')
-            ->with('success', 'Company page updated successfully.');
+        return redirect(url('admin/company-pages'))->with('success', 'Company page updated successfully.');
     }
 
     public function destroy(CompanyPage $company_page)

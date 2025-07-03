@@ -14,6 +14,7 @@ class Product extends Model
         'title',
         'slug',
         'page_image',
+        'home_image',
         'product_overview',
         'product_overview_image',
         'features_benefits',

@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="page_image" class="form-label">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
@@ -52,6 +52,29 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="home_image" class="form-label">Home Image</label>
+                                    <input type="file" class="form-control @error('home_image') is-invalid @enderror"
+                                        id="home_image" name="home_image" accept="image/*">
+                                    @error('home_image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="brochure" class="form-label">Brochure</label>
+                                    <input type="file" class="form-control @error('brochure') is-invalid @enderror"
+                                        id="brochure" name="brochure" accept=".pdf,.doc,.docx">
+                                    @error('brochure')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6" style="display: none;">
                                 <div class="mb-3">
                                     <label for="product_overview_image" class="form-label">Product Overview Image</label>
@@ -94,7 +117,8 @@
 
                         <div class="mb-3">
                             <label for="technical" class="form-label">Technical Details</label>
-                            <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical" rows="6">{{ old('technical') }}</textarea>
+                            <textarea class="form-control @error('technical') is-invalid @enderror" id="technical" name="technical"
+                                rows="6">{{ old('technical') }}</textarea>
                             @error('technical')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -169,16 +193,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="brochure" class="form-label">Brochure</label>
-                                    <input type="file" class="form-control @error('brochure') is-invalid @enderror"
-                                        id="brochure" name="brochure" accept=".pdf,.doc,.docx">
-                                    @error('brochure')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="d-flex justify-content-between">
