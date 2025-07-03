@@ -11,7 +11,7 @@
                     <form action="{{ route('admin.company_pages_update.update', $company_page->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
+
                         <input type="hidden" name="remove_image" value="0" id="remove_image_input">
 
                         <div class="row">
