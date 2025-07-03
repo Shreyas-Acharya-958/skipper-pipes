@@ -67,8 +67,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Company Page routes
     Route::resource('company-pages', CompanyPageController::class)->names('company_pages');
-    Route::post('company-pages-update/{id}', [CompanyPageController::class, 'update'])->name('company_pages_update.update');
-
+    // Route::post('company-pages-update/{id}', [CompanyPageController::class, 'update'])->name('company_pages_update.update');
+    Route::post('company-pages/{id}/update', [CompanyPageController::class, 'update'])->name('company_pages.update');
     // Route::get('company-pages', [CompanyPageController::class, 'index'])->name('company_pages.index');
     // Route::get('company-pages/{company_page}', [CompanyPageController::class, 'show'])->name('company_pages.show');
     // Route::post('company-pages', [CompanyPageController::class, 'store'])->name('company_pages.store');

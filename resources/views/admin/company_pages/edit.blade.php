@@ -8,7 +8,7 @@
                     <h4 class="card-title">Edit Company Page</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.company_pages_update.update', $company_page->id) }}" method="POST"
+                    <form action="{{ route('admin.company_pages.update', $company_page->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('POST')
