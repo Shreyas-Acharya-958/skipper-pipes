@@ -210,8 +210,8 @@
                                                         <div class="home-products__single">
                                                             <div class="home-products__img-box">
                                                                 <div class="home-products__img">
-                                                                    @if ($product->page_image)
-                                                                        <img src="{{ asset('storage/' . $product->page_image) }}"
+                                                                    @if ($product->home_image)
+                                                                        <img src="{{ asset('storage/' . $product->home_image) }}"
                                                                             alt="{{ $product->title }}">
                                                                     @else
                                                                         <img src="{{ asset('assets/img/final/project1.jpg') }}"
