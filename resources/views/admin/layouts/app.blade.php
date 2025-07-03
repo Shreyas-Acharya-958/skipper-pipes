@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     @stack('styles')
+    <style>
+        .nav-tabs .nav-link {
+            color: #505050;
+            font-weight: bold;
+            padding: 10px 15px;
+        }
+
+        .nav.nav-tabs .nav-link:hover {
+            background-color: transparent !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -75,18 +86,22 @@
 
                 <!-- Content Module -->
                 <div
-                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*') ? 'open' : '' }}">
+                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*') ? 'open' : '' }}">
                     <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#contentModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
                             Content Module
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*') ? 'show' : '' }}"
+                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*') ? 'show' : '' }}"
                         id="contentModule">
                         <a class="nav-link{{ request()->routeIs('admin.home-page.*') ? ' active' : '' }}"
                             href="{{ route('admin.home-page.index') }}">
                             <i class="fas fa-home"></i> <span class="nav-text">Home Page Management</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.leadership.*') ? ' active' : '' }}"
+                            href="{{ route('admin.leadership.sections') }}">
+                            <i class="fas fa-users-cog"></i> <span class="nav-text">Leadership Page</span>
                         </a>
                         <a class="nav-link{{ request()->routeIs('admin.company_pages.*') ? ' active' : '' }}"
                             href="{{ route('admin.company_pages.index') }}">

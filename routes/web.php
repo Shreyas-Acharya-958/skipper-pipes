@@ -11,9 +11,14 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CsrController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\LeadershipController;
+use App\Http\Controllers\ManufacturingController;
+use App\Http\Controllers\CertificationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,6 +86,38 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('home-page/section3', [HomePageController::class, 'saveSection3'])->name('home-page.section3.save');
     Route::post('home-page/section4', [HomePageController::class, 'saveSection4'])->name('home-page.section4.save');
     Route::post('home-page/add-review', [HomePageController::class, 'addReview'])->name('home-page.add-review');
+
+    // Overview Page Management
+    Route::get('/overview/sections', [OverviewController::class, 'sections'])->name('overview.sections');
+    Route::post('/overview/section1/save', [OverviewController::class, 'saveSectionOne'])->name('overview.section1.save');
+    Route::post('/overview/section2/save', [OverviewController::class, 'saveSectionTwo'])->name('overview.section2.save');
+    Route::post('/overview/section3/save', [OverviewController::class, 'saveSectionThree'])->name('overview.section3.save');
+    Route::post('/overview/section4/save', [OverviewController::class, 'saveSectionFour'])->name('overview.section4.save');
+    Route::post('/overview/section5/save', [OverviewController::class, 'saveSectionFive'])->name('overview.section5.save');
+
+    // Leadership Page Management
+    Route::get('/leadership/sections', [LeadershipController::class, 'sections'])->name('leadership.sections');
+    Route::post('/leadership/section1/save', [LeadershipController::class, 'saveSectionOne'])->name('leadership.section1.save');
+    Route::post('/leadership/section2/save', [LeadershipController::class, 'saveSectionTwo'])->name('leadership.section2.save');
+    Route::post('/leadership/section3/save', [LeadershipController::class, 'saveSectionThree'])->name('leadership.section3.save');
+    Route::post('/leadership/section4/save', [LeadershipController::class, 'saveSectionFour'])->name('leadership.section4.save');
+
+    Route::get('/csr/sections', [CsrController::class, 'sections'])->name('csr.sections');
+    Route::post('/csr/section1/save', [CsrController::class, 'saveSectionOne'])->name('csr.section1.save');
+    Route::post('/csr/section2/save', [CsrController::class, 'saveSectionTwo'])->name('csr.section2.save');
+    Route::post('/csr/section3/save', [CsrController::class, 'saveSectionThree'])->name('csr.section3.save');
+
+    // manufacturing
+    Route::get('/manufacturing/sections', [ManufacturingController::class, 'sections'])->name('manufacturing.sections');
+    Route::post('/manufacturing/section1/save', [ManufacturingController::class, 'saveSectionOne'])->name('manufacturing.section1.save');
+    Route::post('/manufacturing/section2/save', [ManufacturingController::class, 'saveSectionTwo'])->name('manufacturing.section2.save');
+    Route::post('/manufacturing/section3/save', [ManufacturingController::class, 'saveSectionThree'])->name('manufacturing.section3.save');
+    Route::post('/manufacturing/section4/save', [ManufacturingController::class, 'saveSectionFour'])->name('manufacturing.section4.save');
+
+    //Certifications
+    Route::get('/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');
+    Route::post('/certifications/section1/save', [CertificationController::class, 'saveSectionOne'])->name('certifications.section1.save');
+    Route::delete('/certifications/section1/delete', [CertificationController::class, 'delete'])->name('certifications.section1.delete');
 });
 
 
