@@ -112,6 +112,7 @@ class FrontController extends Controller
 
     public function companyPage($slug)
     {
+
         $page = CompanyPage::where('slug', $slug)
             ->where('status', 1)
             ->where('is_active', 1)
@@ -183,12 +184,12 @@ class FrontController extends Controller
             ]
         ];
 
-        return view('front.company-page', compact('page', 'seoData', 'timelineEvents', 'statistics'));
+        return view('front.company-page', compact('page', 'seoData', 'timelineEvents', 'statistics', 'slug'));
     }
 
     public function showProduct(Product $product)
     {
-        dd($product);
+
         // Check if product is active
         if ($product->status != '1') {
             dd('test');

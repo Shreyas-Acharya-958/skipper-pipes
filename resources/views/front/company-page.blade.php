@@ -33,17 +33,18 @@
     <!-- Hero banner-section ends -->
 
 
-    {{-- @if ($page->slug == 'overview')
-        @include('front.company-page.section.overview')
-    @elseif ($page->slug == 'manufacturing')
-        @include('front.company-page.section.manufacturing')
-    @elseif ($page->slug == 'leadership')
-        @include('front.company-page.section.leadership')
-    @elseif ($page->slug == 'csr')
-        @include('front.company-page.section.csr')
-    @elseif ($page->slug == 'certifications')
-        @include('front.company-page.section.certifications')
-    @endif --}}
+    @if ($slug == 'overview')
+        @include('front.company-section.overview')
+    @elseif ($slug == 'manufacturing')
+        @include('front.company-section.manufacturing')
+    @elseif ($slug == 'leadership')
+        @include('front.company-section.leadership')
+    @elseif ($slug == 'csr')
+        @include('front.company-section.csr')
+    @elseif ($slug == 'certifications')
+        @include('front.company-section.certifications')
+    @endif
+
 
 
 

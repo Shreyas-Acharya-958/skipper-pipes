@@ -99,10 +99,10 @@
                             href="{{ route('admin.home-page.index') }}">
                             <i class="fas fa-home"></i> <span class="nav-text">Home Page Management</span>
                         </a>
-                        <a class="nav-link{{ request()->routeIs('admin.leadership.*') ? ' active' : '' }}"
+                        {{-- <a class="nav-link{{ request()->routeIs('admin.leadership.*') ? ' active' : '' }}"
                             href="{{ route('admin.leadership.sections') }}">
                             <i class="fas fa-users-cog"></i> <span class="nav-text">Leadership Page</span>
-                        </a>
+                        </a> --}}
                         <a class="nav-link{{ request()->routeIs('admin.company_pages.*') ? ' active' : '' }}"
                             href="{{ route('admin.company_pages.index') }}">
                             <i class="fas fa-file-alt"></i> <span class="nav-text">Company Pages</span>
