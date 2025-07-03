@@ -113,77 +113,79 @@
                             @csrf
                             <input type="hidden" name="active_tab" value="#section2">
 
-                            <div class="d-flex justify-content-between mb-3">
-                                <button type="button" class="btn btn-warning add-vision-btn" style="display: none;">
-                                    <i class="fas fa-plus"></i> Add Vision Item
+                            <div class="d-flex justify-content-end mb-3">
+                                <button type="button" class="btn btn-primary me-2 edit-btn">
+                                    <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <div>
-                                    <button type="button" class="btn btn-primary me-2 edit-btn">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-success save-btn" style="display: none;">
-                                        <i class="fas fa-save"></i> Save
-                                    </button>
-                                </div>
+                                <button type="submit" class="btn btn-success save-btn" style="display: none;">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
                             </div>
 
                             <div id="vision_items_container">
-                                @if (isset($sectionTwos) && $sectionTwos->count() > 0)
-                                    @foreach ($sectionTwos as $index => $item)
-                                        <div class="vision-item border rounded p-3 mb-3">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <h6 class="mb-0">Vision Item {{ $index + 1 }}</h6>
-                                                <button type="button" class="btn btn-sm btn-danger remove-vision-btn"
-                                                    style="display: none;">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </div>
-                                            <input type="hidden" name="sections[{{ $index }}][id]"
-                                                value="{{ $item->id }}">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label class="form-label">Image</label>
-                                                        @if ($item->image)
-                                                            <div class="position-relative d-inline-block mb-2">
-                                                                <img src="{{ asset('storage/' . $item->image) }}"
-                                                                    alt="Vision Image {{ $index + 1 }}"
-                                                                    style="max-width: 200px; height: auto;">
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
-                                                                    style="display: none;"
-                                                                    data-image="vision_{{ $index }}">&times;</button>
-                                                            </div>
-                                                        @endif
-                                                        <input type="file" class="form-control"
-                                                            name="sections[{{ $index }}][image_file]"
-                                                            accept="image/*" disabled>
-                                                        <input type="hidden"
-                                                            name="sections[{{ $index }}][remove_image]"
-                                                            value="0">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label class="form-label">Title</label>
-                                                        <input type="text" class="form-control"
-                                                            name="sections[{{ $index }}][title]"
-                                                            value="{{ $item->title }}" readonly required>
-                                                    </div>
+                                <div class="vision-item border rounded p-3 mb-3">
+                                    @if (isset($sectionTwos) && $sectionTwos->count() > 0)
+                                        @php $item = $sectionTwos->first(); @endphp
+                                        <input type="hidden" name="sections[0][id]" value="{{ $item->id }}">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Image</label>
+                                                    @if ($item->image)
+                                                        <div class="position-relative d-inline-block mb-2">
+                                                            <img src="{{ asset('storage/' . $item->image) }}"
+                                                                alt="Vision Image"
+                                                                style="max-width: 200px; height: auto;">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                                style="display: none;"
+                                                                data-image="vision_0">&times;</button>
+                                                        </div>
+                                                    @endif
+                                                    <input type="file" class="form-control"
+                                                        name="sections[0][image_file]" accept="image/*" disabled>
+                                                    <input type="hidden" name="sections[0][remove_image]"
+                                                        value="0">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Title</label>
+                                                    <input type="text" class="form-control" name="sections[0][title]"
+                                                        value="{{ $item->title ?? '' }}" readonly required>
+                                                </div>
                                             </div>
                                         </div>
-                                    @endforeach
-                                @else
-                                    <div class="text-center py-5">
-                                        <p class="text-muted">No vision items added yet. Click Edit and then Add Vision
-                                            Item to create one.</p>
-                                    </div>
-                                @endif
+                                        <div class="form-group">
+                                            <label class="form-label">Description</label>
+                                            <textarea class="form-control" name="sections[0][description]" rows="3" readonly required>{{ $item->description ?? '' }}</textarea>
+                                        </div>
+                                    @else
+                                        <input type="hidden" name="sections[0][id]" value="">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Image</label>
+                                                    <input type="file" class="form-control"
+                                                        name="sections[0][image_file]" accept="image/*" disabled>
+                                                    <input type="hidden" name="sections[0][remove_image]"
+                                                        value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-3">
+                                                    <label class="form-label">Title</label>
+                                                    <input type="text" class="form-control" name="sections[0][title]"
+                                                        value="" readonly required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Description</label>
+                                            <textarea class="form-control" name="sections[0][description]" rows="3" readonly required></textarea>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -193,8 +195,8 @@
                         <div class="alert alert-info mb-4">
                             <span class="fw-bold">Information:</span> Mission & Philosophy Section
                         </div>
-                        <form id="section3Form" class="section-form"
-                            action="{{ route('admin.overview.section3.save') }}" method="POST">
+                        <form id="section3Form" class="section-form" action="{{ route('admin.overview.section3.save') }}"
+                            method="POST">
                             @csrf
                             <input type="hidden" name="active_tab" value="#section3">
 
@@ -466,7 +468,7 @@
                     form.find('input:not([type="hidden"]), textarea:not(.tinymce), select').removeAttr(
                         'readonly disabled');
                     form.find(
-                        '.save-btn, .remove-image-btn, .add-vision-btn, .add-mission-btn, .add-timeline-btn, .remove-vision-btn, .remove-mission-btn, .remove-timeline-btn'
+                        '.save-btn, .remove-image-btn, .add-mission-btn, .add-timeline-btn, .remove-mission-btn, .remove-timeline-btn'
                     ).show();
                     $(this).hide();
 
@@ -487,37 +489,6 @@
                 });
 
                 // Dynamic item templates
-                function getVisionItemTemplate(index) {
-                    return `
-                        <div class="vision-item border rounded p-3 mb-3">
-                            <div class="d-flex justify-content-between mb-2">
-                                <h6 class="mb-0">Vision Item ${index + 1}</h6>
-                                <button type="button" class="btn btn-sm btn-danger remove-vision-btn">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Image</label>
-                                        <input type="file" class="form-control" name="sections[${index}][image_file]" accept="image/*">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Title</label>
-                                        <input type="text" class="form-control" name="sections[${index}][title]" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" name="sections[${index}][description]" rows="3" required></textarea>
-                            </div>
-                        </div>
-                    `;
-                }
-
                 function getMissionItemTemplate(index) {
                     return `
                         <div class="mission-item border rounded p-3 mb-3">
@@ -597,13 +568,6 @@
                 }
 
                 // Add item button click handlers
-                $('.add-vision-btn').click(function() {
-                    const container = $('#vision_items_container');
-                    const index = container.children('.vision-item').length;
-                    container.find('.text-center').remove();
-                    container.append(getVisionItemTemplate(index));
-                });
-
                 $('.add-mission-btn').click(function() {
                     const container = $('#mission_items_container');
                     const index = container.children('.mission-item').length;
@@ -619,27 +583,6 @@
                 });
 
                 // Remove item button click handlers
-                $(document).on('click', '.remove-vision-btn', function() {
-                    const item = $(this).closest('.vision-item');
-                    const id = item.find('input[name$="[id]"]').val();
-                    if (id) {
-                        const form = item.closest('form');
-                        form.append($('<input>').attr({
-                            type: 'hidden',
-                            name: 'deleted_sections[]',
-                            value: id
-                        }));
-                    }
-                    item.remove();
-
-                    const container = $('#vision_items_container');
-                    if (container.children('.vision-item').length === 0) {
-                        container.html(
-                            '<div class="text-center py-5"><p class="text-muted">No vision items added yet. Click Edit and then Add Vision Item to create one.</p></div>'
-                        );
-                    }
-                });
-
                 $(document).on('click', '.remove-mission-btn', function() {
                     const item = $(this).closest('.mission-item');
                     const id = item.find('input[name$="[id]"]').val();
