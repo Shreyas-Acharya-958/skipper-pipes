@@ -103,8 +103,8 @@
                             href="{{ route('admin.leadership.sections') }}">
                             <i class="fas fa-users-cog"></i> <span class="nav-text">Leadership Page</span>
                         </a> --}}
-                        <a class="nav-link{{ request()->routeIs('admin.company_pages.*') ? ' active' : '' }}"
-                            href="{{ route('admin.company_pages.index') }}">
+                        <a class="nav-link{{ request()->routeIs('admin.company.*') ? ' active' : '' }}"
+                            href="{{ route('admin.company.index') }}">
                             <i class="fas fa-file-alt"></i> <span class="nav-text">Company Pages</span>
                         </a>
                         <a class="nav-link{{ request()->routeIs('admin.contacts.*') ? ' active' : '' }}"

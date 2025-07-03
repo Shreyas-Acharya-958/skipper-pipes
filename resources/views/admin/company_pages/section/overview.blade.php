@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Overview Page Sections</h4>
-                <a href="{{ url('/admin/company-pages') }}" class="btn btn-secondary">
+                <a href="{{ url('/admin/company') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to Pages
                 </a>
             </div>
