@@ -61,6 +61,10 @@
                                         <td>{{ $page->created_at->format('d-m-Y H:i:s') }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
+                                                <a href="{{ url('admin/company-pages/' . $page->slug . '/sections') }}"
+                                                    class="me-2" title="Sections">
+                                                    <i class="fas fa-list-alt text-primary" style="font-size: 1.2rem;"></i>
+                                                </a>
                                                 <a href="{{ route('admin.company_pages.show', $page) }}" class="me-2"
                                                     title="View">
                                                     <i class="fas fa-eye text-info" style="font-size: 1.2rem;"></i>

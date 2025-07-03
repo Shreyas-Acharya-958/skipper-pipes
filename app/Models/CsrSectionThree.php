@@ -8,6 +8,7 @@ class CsrSectionThree extends Model
 {
     protected $fillable = [
         'company_id',
+        'title',
         'image',
         'description'
     ];

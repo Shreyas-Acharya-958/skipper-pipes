@@ -5,12 +5,12 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="mb-0">Overview Page Sections</h4>
-                <a href="javascript:history.back()" class="btn btn-secondary">
+                <a href="{{ url('/admin/company-pages') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to Pages
                 </a>
             </div>
             <div class="card-body">
-                @if (session('success'))
+                {{-- @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -22,7 +22,7 @@
                         {{ session('error') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
+                @endif --}}
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs mb-3" id="overviewSectionTabs" role="tablist">

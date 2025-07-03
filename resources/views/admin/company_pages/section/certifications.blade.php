@@ -1,90 +1,86 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="container-fluid" style="padding: 20px;">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="mb-0">Certifications</h4>
-                <div>
-                    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
-                        data-bs-target="#certificationModal">
-                        <i class="fas fa-plus"></i> Add Certification
-                    </button>
-                    <a href="javascript:history.back()" class="btn btn-secondary">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Certifications</h4>
+                    <a href="{{ url('/admin/company-pages') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Back to Pages
                     </a>
                 </div>
-            </div>
-            <div class="card-body">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex" style="max-width: 400px;">
+                            <!-- Add search functionality if needed -->
+                        </div>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#certificationModal">
+                            <i class="fas fa-plus"></i> Add New Certification
+                        </button>
                     </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Title</th>
-                                <th>Short Description</th>
-                                <th>Link</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (isset($certifications) && $certifications->count() > 0)
-                                @foreach ($certifications as $certification)
-                                    <tr>
-                                        <td>
-                                            @if ($certification->image)
-                                                <img src="{{ asset('storage/' . $certification->image) }}"
-                                                    alt="Certification Image" style="max-width: 100px; height: auto;">
-                                            @else
-                                                <span class="text-muted">No image</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $certification->title }}</td>
-                                        <td>{{ $certification->short_description }}</td>
-                                        <td>
-                                            @if ($certification->link)
-                                                <a href="{{ $certification->link }}" target="_blank">View Link</a>
-                                            @else
-                                                <span class="text-muted">No link</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm btn-primary edit-certification"
-                                                data-id="{{ $certification->id }}" data-title="{{ $certification->title }}"
-                                                data-short-description="{{ $certification->short_description }}"
-                                                data-long-description="{{ $certification->long_description }}"
-                                                data-link="{{ $certification->link }}"
-                                                data-image="{{ $certification->image }}">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-danger delete-certification"
-                                                data-id="{{ $certification->id }}">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td colspan="5" class="text-center">No certifications found</td>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Short Description</th>
+                                    <th>Link</th>
+                                    <th>Actions</th>
                                 </tr>
-                            @endif
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @if (isset($certifications) && $certifications->count() > 0)
+                                    @foreach ($certifications as $certification)
+                                        <tr>
+                                            <td>
+                                                @if ($certification->image)
+                                                    <img src="{{ asset('storage/' . $certification->image) }}"
+                                                        alt="Certification Image" style="max-width: 100px; height: auto;">
+                                                @else
+                                                    <span class="text-muted">No image</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $certification->title }}</td>
+                                            <td>{{ $certification->short_description }}</td>
+                                            <td>
+                                                @if ($certification->link)
+                                                    <a href="{{ $certification->link }}" target="_blank">View Link</a>
+                                                @else
+                                                    <span class="text-muted">No link</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn p-0 me-2 edit-certification"
+                                                        style="background: none; border: none;"
+                                                        data-id="{{ $certification->id }}"
+                                                        data-title="{{ $certification->title }}"
+                                                        data-short-description="{{ $certification->short_description }}"
+                                                        data-long-description="{{ $certification->long_description }}"
+                                                        data-link="{{ $certification->link }}"
+                                                        data-image="{{ $certification->image }}" title="Edit">
+                                                        <i class="fas fa-edit text-warning" style="font-size: 1.2rem;"></i>
+                                                    </button>
+                                                    <button type="button" class="btn p-0 delete-certification"
+                                                        style="background: none; border: none;"
+                                                        data-id="{{ $certification->id }}" title="Delete">
+                                                        <i class="fas fa-trash text-danger" style="font-size: 1.2rem;"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="5" class="text-center">No certifications found</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

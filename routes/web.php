@@ -88,36 +88,37 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('home-page/add-review', [HomePageController::class, 'addReview'])->name('home-page.add-review');
 
     // Overview Page Management
-    Route::get('/overview/sections', [OverviewController::class, 'sections'])->name('overview.sections');
-    Route::post('/overview/section1/save', [OverviewController::class, 'saveSectionOne'])->name('overview.section1.save');
-    Route::post('/overview/section2/save', [OverviewController::class, 'saveSectionTwo'])->name('overview.section2.save');
-    Route::post('/overview/section3/save', [OverviewController::class, 'saveSectionThree'])->name('overview.section3.save');
-    Route::post('/overview/section4/save', [OverviewController::class, 'saveSectionFour'])->name('overview.section4.save');
-    Route::post('/overview/section5/save', [OverviewController::class, 'saveSectionFive'])->name('overview.section5.save');
+    Route::get('/company-pages/overview/sections', [OverviewController::class, 'sections'])->name('overview.sections');
+    Route::post('/company-pages/overview/section1/save', [OverviewController::class, 'saveSectionOne'])->name('overview.section1.save');
+    Route::post('/company-pages/overview/section2/save', [OverviewController::class, 'saveSectionTwo'])->name('overview.section2.save');
+    Route::post('/company-pages/overview/section3/save', [OverviewController::class, 'saveSectionThree'])->name('overview.section3.save');
+    Route::post('/company-pages/overview/section4/save', [OverviewController::class, 'saveSectionFour'])->name('overview.section4.save');
+    Route::post('/company-pages/overview/section5/save', [OverviewController::class, 'saveSectionFive'])->name('overview.section5.save');
 
     // Leadership Page Management
-    Route::get('/leadership/sections', [LeadershipController::class, 'sections'])->name('leadership.sections');
-    Route::post('/leadership/section1/save', [LeadershipController::class, 'saveSectionOne'])->name('leadership.section1.save');
-    Route::post('/leadership/section2/save', [LeadershipController::class, 'saveSectionTwo'])->name('leadership.section2.save');
-    Route::post('/leadership/section3/save', [LeadershipController::class, 'saveSectionThree'])->name('leadership.section3.save');
-    Route::post('/leadership/section4/save', [LeadershipController::class, 'saveSectionFour'])->name('leadership.section4.save');
+    Route::get('/company-pages/leadership/sections', [LeadershipController::class, 'sections'])->name('leadership.sections');
+    Route::post('/company-pages/leadership/section1/save', [LeadershipController::class, 'saveSectionOne'])->name('leadership.section1.save');
+    Route::post('/company-pages/leadership/section2/save', [LeadershipController::class, 'saveSectionTwo'])->name('leadership.section2.save');
+    Route::post('/company-pages/leadership/section3/save', [LeadershipController::class, 'saveSectionThree'])->name('leadership.section3.save');
+    Route::post('/company-pages/leadership/section4/save', [LeadershipController::class, 'saveSectionFour'])->name('leadership.section4.save');
 
-    Route::get('/csr/sections', [CsrController::class, 'sections'])->name('csr.sections');
-    Route::post('/csr/section1/save', [CsrController::class, 'saveSectionOne'])->name('csr.section1.save');
-    Route::post('/csr/section2/save', [CsrController::class, 'saveSectionTwo'])->name('csr.section2.save');
-    Route::post('/csr/section3/save', [CsrController::class, 'saveSectionThree'])->name('csr.section3.save');
+    Route::get('/company-pages/csr/sections', [CsrController::class, 'sections'])->name('csr.sections');
+    Route::post('/company-pages/csr/section1/save', [CsrController::class, 'saveSectionOne'])->name('csr.section1.save');
+    Route::post('/company-pages/csr/section2/save', [CsrController::class, 'saveSectionTwo'])->name('csr.section2.save');
+    Route::post('/company-pages/csr/section3/save', [CsrController::class, 'saveSectionThree'])->name('csr.section3.save');
+    Route::delete('/company-pages/csr/section3/delete', [CsrController::class, 'deleteSectionThree'])->name('csr.section3.delete');
 
     // manufacturing
-    Route::get('/manufacturing/sections', [ManufacturingController::class, 'sections'])->name('manufacturing.sections');
-    Route::post('/manufacturing/section1/save', [ManufacturingController::class, 'saveSectionOne'])->name('manufacturing.section1.save');
-    Route::post('/manufacturing/section2/save', [ManufacturingController::class, 'saveSectionTwo'])->name('manufacturing.section2.save');
-    Route::post('/manufacturing/section3/save', [ManufacturingController::class, 'saveSectionThree'])->name('manufacturing.section3.save');
-    Route::post('/manufacturing/section4/save', [ManufacturingController::class, 'saveSectionFour'])->name('manufacturing.section4.save');
+    Route::get('/company-pages/manufacturing/sections', [ManufacturingController::class, 'sections'])->name('manufacturing.sections');
+    Route::post('/company-pages/manufacturing/section1/save', [ManufacturingController::class, 'saveSectionOne'])->name('manufacturing.section1.save');
+    Route::post('/company-pages/manufacturing/section2/save', [ManufacturingController::class, 'saveSectionTwo'])->name('manufacturing.section2.save');
+    Route::post('/company-pages/manufacturing/section3/save', [ManufacturingController::class, 'saveSectionThree'])->name('manufacturing.section3.save');
+    Route::post('/company-pages/manufacturing/section4/save', [ManufacturingController::class, 'saveSectionFour'])->name('manufacturing.section4.save');
 
     //Certifications
-    Route::get('/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');
-    Route::post('/certifications/section1/save', [CertificationController::class, 'saveSectionOne'])->name('certifications.section1.save');
-    Route::delete('/certifications/section1/delete', [CertificationController::class, 'delete'])->name('certifications.section1.delete');
+    Route::get('/company-pages/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');
+    Route::post('/company-pages/certifications/section1/save', [CertificationController::class, 'saveSectionOne'])->name('certifications.section1.save');
+    Route::delete('/company-pages/certifications/section1/delete', [CertificationController::class, 'delete'])->name('certifications.section1.delete');
 });
 
 

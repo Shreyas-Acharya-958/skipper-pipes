@@ -15,9 +15,9 @@ class CsrController extends Controller
     {
         $sectionOne = CsrSectionOne::where('company_id', 1)->first();
         $sectionTwos = CsrSectionTwo::where('company_id', 1)->get();
-        $sectionThree = CsrSectionThree::where('company_id', 1)->first();
+        $sectionThrees = CsrSectionThree::where('company_id', 1)->get();
 
-        return view('admin.company_pages.section.csr', compact('sectionOne', 'sectionTwos', 'sectionThree'));
+        return view('admin.company_pages.section.csr', compact('sectionOne', 'sectionTwos', 'sectionThrees'));
     }
 
     public function saveSectionOne(Request $request)
@@ -84,26 +84,57 @@ class CsrController extends Controller
         try {
             DB::beginTransaction();
 
-            $section = CsrSectionThree::where('company_id', 1)->first() ?? new CsrSectionThree(['company_id' => 1]);
+            $initiative = $request->initiative_id
+                ? CsrSectionThree::find($request->initiative_id)
+                : new CsrSectionThree(['company_id' => 1]);
 
             if ($request->hasFile('image')) {
-                if ($section->image) {
-                    Storage::disk('public')->delete($section->image);
+                if ($initiative->image) {
+                    Storage::disk('public')->delete($initiative->image);
                 }
                 $file = $request->file('image');
-                $filename = 'csr-section3-' . time() . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('csr/section3', $filename, 'public');
-                $section->image = $path;
+                $filename = 'csr-initiative-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('csr/initiatives', $filename, 'public');
+                $initiative->image = $path;
+            } elseif ($request->remove_image == '1' && $initiative->image) {
+                Storage::disk('public')->delete($initiative->image);
+                $initiative->image = null;
             }
 
-            $section->description = $request->description;
-            $section->save();
+            $initiative->title = $request->title;
+            $initiative->description = $request->description;
+            $initiative->save();
 
             DB::commit();
-            return redirect()->route('admin.csr.sections', ['tab' => 'section3'])->with('success', 'Ongoing Initiatives updated successfully.');
+            return redirect()->route('admin.csr.sections', ['tab' => 'section3'])
+                ->with('success', 'Initiative ' . ($request->initiative_id ? 'updated' : 'added') . ' successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('admin.csr.sections', ['tab' => 'section3'])->with('error', 'Failed to update Ongoing Initiatives: ' . $e->getMessage());
+            return redirect()->route('admin.csr.sections', ['tab' => 'section3'])
+                ->with('error', 'Failed to save initiative: ' . $e->getMessage());
+        }
+    }
+
+    public function deleteSectionThree(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $initiative = CsrSectionThree::find($request->initiative_id);
+            if ($initiative) {
+                if ($initiative->image) {
+                    Storage::disk('public')->delete($initiative->image);
+                }
+                $initiative->delete();
+            }
+
+            DB::commit();
+            return redirect()->route('admin.csr.sections', ['tab' => 'section3'])
+                ->with('success', 'Initiative deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.csr.sections', ['tab' => 'section3'])
+                ->with('error', 'Failed to delete initiative: ' . $e->getMessage());
         }
     }
 }

@@ -67,7 +67,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="long_description" class="form-label">Long Description</label>
                             <textarea class="form-control @error('long_description') is-invalid @enderror" id="long_description"
                                 name="long_description" rows="6">{{ old('long_description', $company_page->long_description) }}</textarea>
@@ -77,7 +77,7 @@
                         </div>
 
                         <!-- Sections 1-8 -->
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_1" class="form-label">Section 1</label>
                             <textarea class="form-control @error('section_1') is-invalid @enderror" id="section_1" name="section_1" rows="6">{{ old('section_1', $company_page->section_1) }}</textarea>
                             @error('section_1')
@@ -85,7 +85,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_2" class="form-label">Section 2</label>
                             <textarea class="form-control @error('section_2') is-invalid @enderror" id="section_2" name="section_2" rows="6">{{ old('section_2', $company_page->section_2) }}</textarea>
                             @error('section_2')
@@ -93,7 +93,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_3" class="form-label">Section 3</label>
                             <textarea class="form-control @error('section_3') is-invalid @enderror" id="section_3" name="section_3" rows="6">{{ old('section_3', $company_page->section_3) }}</textarea>
                             @error('section_3')
@@ -101,15 +101,16 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_4" class="form-label">Section 4</label>
-                            <textarea class="form-control @error('section_4') is-invalid @enderror" id="section_4" name="section_4" rows="6">{{ old('section_4', $company_page->section_4) }}</textarea>
+                            <textarea class="form-control @error('section_4') is-invalid @enderror" id="section_4" name="section_4"
+                                rows="6">{{ old('section_4', $company_page->section_4) }}</textarea>
                             @error('section_4')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_5" class="form-label">Section 5</label>
                             <textarea class="form-control @error('section_5') is-invalid @enderror" id="section_5" name="section_5"
                                 rows="6">{{ old('section_5', $company_page->section_5) }}</textarea>
@@ -118,7 +119,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_6" class="form-label">Section 6</label>
                             <textarea class="form-control @error('section_6') is-invalid @enderror" id="section_6" name="section_6"
                                 rows="6">{{ old('section_6', $company_page->section_6) }}</textarea>
@@ -127,7 +128,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_7" class="form-label">Section 7</label>
                             <textarea class="form-control @error('section_7') is-invalid @enderror" id="section_7" name="section_7"
                                 rows="6">{{ old('section_7', $company_page->section_7) }}</textarea>
@@ -136,7 +137,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3" style="display: none;">
                             <label for="section_8" class="form-label">Section 8</label>
                             <textarea class="form-control @error('section_8') is-invalid @enderror" id="section_8" name="section_8"
                                 rows="6">{{ old('section_8', $company_page->section_8) }}</textarea>
