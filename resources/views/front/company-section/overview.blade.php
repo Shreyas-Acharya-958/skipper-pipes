@@ -1,3 +1,7 @@
+@php
+    //slug have value
+    $company_id = $page->id;
+@endphp
 <section class="who-we-are-sec default-padding">
     <div class="container">
         <div class="row">
