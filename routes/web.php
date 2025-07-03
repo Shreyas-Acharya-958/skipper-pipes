@@ -19,6 +19,7 @@ use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\ManufacturingController;
 use App\Http\Controllers\CertificationController;
+use App\Http\Controllers\CompanyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +48,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Blog routes
     Route::resource('blogs', BlogController::class)->names('blogs');
+
+    // Company routes
+    Route::resource('company', CompanyController::class)->names('company');
 
     // Product routes
     Route::resource('products', ProductController::class)->names('products');
