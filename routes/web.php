@@ -66,7 +66,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('blog-comments', BlogCommentController::class)->names('blog_comments');
 
     // Company Page routes
-    Route::resource('company-pages', CompanyPageController::class)->names('company_pages');
+    //Route::resource('company-pages', CompanyPageController::class)->names('company_pages');
+    Route::get('company-pages', [CompanyPageController::class, 'index'])->name('company_pages.index');
+    Route::get('company-pages/{company_page}', [CompanyPageController::class, 'show'])->name('company_pages.show');
+    Route::post('company-pages', [CompanyPageController::class, 'store'])->name('company_pages.store');
+    Route::put('company-pages/{company_page}', [CompanyPageController::class, 'update'])->name('company_pages.update');
+    Route::delete('company-pages/{company_page}', [CompanyPageController::class, 'destroy'])->name('company_pages.destroy');
+
 
     // Contact routes
     Route::resource('contacts', ContactController::class)->names('contacts');
