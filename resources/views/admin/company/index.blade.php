@@ -14,9 +14,7 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        <a href="{{ route('admin.company.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add New Company
-                        </a>
+
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3" style="display: none;">
                                     <label for="long_description">Long Description</label>
                                     <textarea class="form-control @error('long_description') is-invalid @enderror" id="long_description"
                                         name="long_description" rows="5">{{ old('long_description', $company->long_description) }}</textarea>
