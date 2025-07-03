@@ -42,13 +42,29 @@
             'overview_section_fives' => $data['overview_section_fives'],
         ])
     @elseif ($slug == 'manufacturing')
-        @include('front.company-section.manufacturing')
+        @include('front.company-section.manufacturing', [
+            'manufacturing_section_ones' => $data['manufacturing_section_ones'],
+            'manufacturing_section_twos' => $data['manufacturing_section_twos'],
+            'manufacturing_section_threes' => $data['manufacturing_section_threes'],
+            'manufacturing_section_fours' => $data['manufacturing_section_fours'],
+        ])
     @elseif ($slug == 'leadership')
-        @include('front.company-section.leadership')
+        @include('front.company-section.leadership', [
+            'leadership_section_ones' => $data['leadership_section_ones'],
+            'leadership_section_twos' => $data['leadership_section_twos'],
+            'leadership_section_threes' => $data['leadership_section_threes'],
+            'leadership_section_fours' => $data['leadership_section_fours'],
+        ])
     @elseif ($slug == 'csr')
-        @include('front.company-section.csr')
+        @include('front.company-section.csr', [
+            'csr_section_ones' => $data['csr_section_ones'],
+            'csr_section_twos' => $data['csr_section_twos'],
+            'csr_section_threes' => $data['csr_section_threes'],
+        ])
     @elseif ($slug == 'certifications')
-        @include('front.company-section.certifications')
+        @include('front.company-section.certifications', [
+            'certifications_section_ones' => $data['certifications_section_ones'],
+        ])
     @endif
 
 

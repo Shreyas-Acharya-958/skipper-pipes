@@ -31,90 +31,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
+                @foreach ($certifications_section_ones as $certification)
+                    <div class="col-md-4">
+                        <div class="certificate-col">
+                            <div class="certificate-img">
+                                <img src="{{ asset($certification->image ?? '') }}" alt="">
+                            </div>
+                            <h3 class="certificate-name">{{ $certification->title ?? '' }}</h3>
+                            <span class="certificate-type">{{ $certification->short_description ?? '' }}</span>
+                            <span class="certificate-desc">{!! $certification->long_description ?? '' !!}</span>
+                            <a class="certificate-link" href="{{ $certification->link ?? '' }}"
+                                target="_blank">Download</a>
                         </div>
-                        <h3 class="certificate-name">Quality Management</h3>
-                        <span class="certificate-type">ISO 9001:20XX</span>
-                        <span class="certificate-desc">Company-wide quality assurance system </span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
-                        </div>
-                        <h3 class="certificate-name">Environmental Management</h3>
-                        <span class="certificate-type">ISO 14001:20XX</span>
-                        <span class="certificate-desc">Sustainable manufacturing practices </span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
-                        </div>
-                        <h3 class="certificate-name">Occupational Health & Safety</h3>
-                        <span class="certificate-type">ISO 45001:20XX</span>
-                        <span class="certificate-desc">Safe workplace compliance </span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
-                        </div>
-                        <h3 class="certificate-name">Product Compliance</h3>
-                        <span class="certificate-type">BIS IS:4985</span>
-                        <span class="certificate-desc">Potable-water PVC/UPVC pipes </span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
-                        </div>
-                        <h3 class="certificate-name">Lead Free Certifications</h3>
-                        <span class="certificate-type">[placeholder]</span>
-                        <span class="certificate-desc">100 % lead-free formulations </span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
-                        </div>
-                        <h3 class="certificate-name">Fire Safety</h3>
-                        <span class="certificate-type">[placeholder]</span>
-                        <span class="certificate-desc">Flammability / smoke-spread ratings </span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="certificate-col">
-                        <div class="certificate-img">
-                            <img src="assets/img/final/certificate.jpg" alt="">
-                        </div>
-                        <h3 class="certificate-name">GreenPro / Eco-Label</h3>
-                        <span class="certificate-type">[placeholder]</span>
-                        <span class="certificate-desc">Environment-friendly product endorsement</span>
-                        <a class="certificate-link" href="assets/img/final/iso-certificate-05.02.2013-001.pdf"
-                            target="_blank">Download</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>

@@ -11,168 +11,89 @@
          </div>
          <div class="row align-center">
              <div class="col-md-5">
-                 <img src="assets/img/final/Mr. Sajan Kumar Bansal.jpeg" alt="">
+                 <img src="{{ asset($leadership_section_ones[0]->image ?? '') }}" alt="">
              </div>
              <div class="col-md-7 pl-5 md-message-content">
-                 <p>“Pipes are more than products, they’re lifelines. Our mission is to safeguard every drop, every
-                     project, and every community we serve.”</p>
-                 <span>— Mr. Sajan Kumar Bansal, Managing Director</span>
+                 {!! $leadership_section_ones[0]->description ?? '' !!}
              </div>
          </div>
      </div>
  </section>
 
- <!-- Our Philosophy  -->
- <section class="philosophy-sec default-padding">
-     <div class="container">
-         <div class="row">
-             <div class="col-12 text-center">
-                 <div class="site-heading headings">
-                     <h4>Skipper Pipes</h4>
-                     <h2>Leadership Philosophy</h2>
-                     <p class="site-description">At Skipper Pipes, leadership is defined by three enduring principles:
-                     </p>
+ @if ($leadership_section_twos->count() > 0)
+     <!-- Our Philosophy  -->
+     <section class="philosophy-sec default-padding">
+         <div class="container">
+             <div class="row">
+                 <div class="col-12 text-center">
+                     <div class="site-heading headings">
+                         <h4>Skipper Pipes</h4>
+                         <h2>Leadership Philosophy</h2>
+                         <p class="site-description">At Skipper Pipes, leadership is defined by three enduring
+                             principles:
+                         </p>
+                     </div>
                  </div>
              </div>
-         </div>
-         <div class="row philosophy-wrapper text-center mt-5">
-             <div class="col-12 col-md philosophy-col">
-                 <i class="fas fa-hard-hat icon"></i>
-                 <h4>Trust</h4>
-                 <p>Transparent decision-making and uncompromised product safety at every stage.</p>
-             </div>
-             <div class="col-12 col-md philosophy-col">
-                 <i class="fas fa-hard-hat icon"></i>
-                 <h4>Innovation</h4>
-                 <p>Continuous investment in R & D, smart manufacturing, and future-ready solutions.</p>
-             </div>
-             <div class="col-12 col-md philosophy-col">
-                 <i class="fas fa-hard-hat icon"></i>
-                 <h4>Transparency</h4>
-                 <p>Open communication with employees, partners, and customers to build lasting relationships.</p>
-             </div>
+             <div class="row philosophy-wrapper text-center mt-5">
+                 @foreach ($leadership_section_twos as $leadership)
+                     <div class="col-12 col-md philosophy-col">
+                         <i class="{{ $leadership->icon ?? 'fas fa-hard-hat' }} icon"></i>
+                         <h4>{{ $leadership->title ?? '' }}</h4>
+                         <p>{!! $leadership->description ?? '' !!}</p>
+                     </div>
+                 @endforeach
 
+             </div>
          </div>
-     </div>
- </section>
- <!-- Our Philosophy ends -->
-
+     </section>
+     <!-- Our Philosophy ends -->
+ @endif
  <!-- Business Directors Section -->
- <section class="business-directors-sec default-padding bg-gray">
-     <div class="container">
-         <div class="row">
-             <div class="col-12 text-center">
-                 <div class="site-heading headings">
-                     <h4>Skipper Pipes</h4>
-                     <h2>Business Directors</h2>
+ @if ($leadership_section_threes->count() > 0)
+     <section class="business-directors-sec default-padding bg-gray">
+         <div class="container">
+             <div class="row">
+                 <div class="col-12 text-center">
+                     <div class="site-heading headings">
+                         <h4>Skipper Pipes</h4>
+                         <h2>Business Directors</h2>
+                     </div>
                  </div>
+             </div>
+             <div class="row">
+                 <!-- Business Director 1 -->
+                 @foreach ($leadership_section_threes as $leadership)
+                     <div class="col-md-3">
+                         <div class="business-dir-card">
+                             <div class="business-dir-img">
+                                 <img src="{{ asset($leadership->image ?? '') }}" alt="">
+                             </div>
+                             <div class="business-dir-content">
+                                 <h3 class="dir-name">{{ $leadership->name ?? '' }}</h3>
+                                 <span class="dir-designation">{{ $leadership->role ?? '' }}</span>
+                                 <a href="#team-popup-siddarth" class="dir-link view-profile-popup">View Profile <i
+                                         class="far fa-arrow-right"></i></a>
+                             </div>
+                         </div>
+
+                         <!-- Popup Content (hidden) -->
+                         <div id="team-popup-siddarth" class="mfp-hide team-popup">
+                             <button title="Close" class="mfp-close">&times;</button>
+                             <img src="{{ asset($leadership->image ?? '') }}" alt="{{ $leadership->name ?? '' }}">
+                             <h4>{{ $leadership->name ?? '' }}</h4>
+                             <p class="designation">{{ $leadership->role ?? '' }}</p>
+                             <p>{!! $leadership->description ?? '' !!}</p>
+                         </div>
+                     </div>
+                 @endforeach
+
              </div>
          </div>
-         <div class="row">
-             <!-- Business Director 1 -->
-             <div class="col-md-3">
-                 <div class="business-dir-card">
-                     <div class="business-dir-img">
-                         <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="">
-                     </div>
-                     <div class="business-dir-content">
-                         <h3 class="dir-name">Mr. Siddarth Bansal</h3>
-                         <span class="dir-designation">Director</span>
-                         <a href="#team-popup-siddarth" class="dir-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
+     </section>
+     <!-- Business Directors Section emds -->
+ @endif
 
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="Mr. Siddharth Bansal">
-                     <h4>Mr. Siddharth Bansal</h4>
-                     <p class="designation">Managing Director</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-             <!-- Business Director 2 -->
-             <div class="col-md-3">
-                 <div class="business-dir-card">
-                     <div class="business-dir-img">
-                         <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="">
-                     </div>
-                     <div class="business-dir-content">
-                         <h3 class="dir-name">Mr. Siddarth Bansal</h3>
-                         <span class="dir-designation">Director</span>
-                         <a href="#team-popup-siddarth1" class="dir-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
-
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth1" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="Mr. Siddharth Bansal">
-                     <h4>Mr. Siddharth Bansal</h4>
-                     <p class="designation">Managing Director</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-             <!-- Business Director 3 -->
-             <div class="col-md-3">
-                 <div class="business-dir-card">
-                     <div class="business-dir-img">
-                         <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="">
-                     </div>
-                     <div class="business-dir-content">
-                         <h3 class="dir-name">Mr. Siddarth Bansal</h3>
-                         <span class="dir-designation">Director</span>
-                         <a href="#team-popup-siddarth2" class="dir-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
-
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth2" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="Mr. Siddharth Bansal">
-                     <h4>Mr. Siddharth Bansal</h4>
-                     <p class="designation">Managing Director</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-             <!-- Business Director 4 -->
-             <div class="col-md-3">
-                 <div class="business-dir-card">
-                     <div class="business-dir-img">
-                         <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="">
-                     </div>
-                     <div class="business-dir-content">
-                         <h3 class="dir-name">Mr. Siddarth Bansal</h3>
-                         <span class="dir-designation">Director</span>
-                         <a href="#team-popup-siddarth3" class="dir-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
-
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth3" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="Mr. Siddharth Bansal">
-                     <h4>Mr. Siddharth Bansal</h4>
-                     <p class="designation">Managing Director</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-         </div>
-     </div>
- </section>
- <!-- Business Directors Section emds -->
 
  <!-- Business Directors Section -->
  <section class="business-heads-sec default-padding">
@@ -186,106 +107,36 @@
              </div>
          </div>
          <div class="row">
-             <!-- Business Head 1 -->
-             <div class="col-md-3">
-                 <div class="business-heads-card">
-                     <div class="business-heads-img">
-                         <img src="assets/img/final/anirban-paul.png" alt="">
+             @foreach ($leadership_section_fours as $leadership)
+                 <!-- Business Head 1 -->
+                 <div class="col-md-3">
+                     <div class="business-heads-card">
+                         <div class="business-heads-img">
+                             <img src="{{ asset($leadership->image ?? '') }}" alt="">
+                         </div>
+                         <div class="business-heads-content">
+                             <h3 class="heads-name">{{ $leadership->name }} </h3>
+                             <span class="heads-designation">{{ $leadership->role }}</span>
+                             <a href="#team-popup-siddarth31" class="heads-link view-profile-popup">View Profile <i
+                                     class="far fa-arrow-right"></i></a>
+                         </div>
                      </div>
-                     <div class="business-heads-content">
-                         <h3 class="heads-name">Mr. Anirban P</h3>
-                         <span class="heads-designation">CMO</span>
-                         <a href="#team-popup-siddarth31" class="heads-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth31" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/anirban-paul.png" alt="Mr. Siddharth Bansal">
-                     <h4>Mr. Anirban P</h4>
-                     <p class="designation">CMO</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-             <!-- Business Head 2 -->
-             <div class="col-md-3">
-                 <div class="business-heads-card">
-                     <div class="business-heads-img">
-                         <img src="assets/img/final/anirban-paul.png" alt="">
-                     </div>
-                     <div class="business-heads-content">
-                         <h3 class="heads-name">Mr. Anirban P</h3>
-                         <span class="heads-designation">CMO</span>
-                         <a href="#team-popup-siddarth31" class="heads-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
+                     <!-- Popup Content (hidden) -->
+                     <div id="team-popup-siddarth31" class="mfp-hide team-popup">
+                         <button title="Close" class="mfp-close">&times;</button>
+                         <img src="assets/img/final/anirban-paul.png" alt="Mr. Siddharth Bansal">
+                         <h4>Mr. Anirban P</h4>
+                         <p class="designation">CMO</p>
+                         <p>{!! $leadership->description ?? '' !!}</p>
                      </div>
                  </div>
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth31" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/anirban-paul.png" alt="Mr. Siddharth Bansal">
-                     <h4>Mr. Anirban P</h4>
-                     <p class="designation">CMO</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-             <!-- Business Head 3 -->
-             <div class="col-md-3">
-                 <div class="business-heads-card">
-                     <div class="business-heads-img">
-                         <img src="assets/img/final/anirban-paul.png" alt="">
-                     </div>
-                     <div class="business-heads-content">
-                         <h3 class="heads-name">Mr. Anirban P</h3>
-                         <span class="heads-designation">CMO</span>
-                         <a href="#team-popup-siddarth31" class="heads-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth31" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/anirban-paul.png" alt="Mr. Anirban P">
-                     <h4>Mr. Anirban P</h4>
-                     <p class="designation">CMO</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
-
-             <!-- Business Heads 4 -->
-             <div class="col-md-3">
-                 <div class="business-heads-card">
-                     <div class="business-heads-img">
-                         <img src="assets/img/final/anirban-paul.png" alt="">
-                     </div>
-                     <div class="business-heads-content">
-                         <h3 class="heads-name">Mr. Anirban P</h3>
-                         <span class="heads-designation">CMO</span>
-                         <a href="#team-popup-siddarth31" class="heads-link view-profile-popup">View Profile <i
-                                 class="far fa-arrow-right"></i></a>
-                     </div>
-                 </div>
-                 <!-- Popup Content (hidden) -->
-                 <div id="team-popup-siddarth31" class="mfp-hide team-popup">
-                     <button title="Close" class="mfp-close">&times;</button>
-                     <img src="assets/img/final/mr-siddharth-bansal-big.jpg" alt="Mr. Anirban P">
-                     <h4>Mr. Anirban P</h4>
-                     <p class="designation">Managing Director</p>
-                     <p>With [X] years in polymer technology and strategic growth, [Name] pioneered Skipper’s lead-free
-                         formulations and pan-India expansion.</p>
-                 </div>
-             </div>
+             @endforeach
 
          </div>
      </div>
  </section>
  <!-- Business Directors Section emds -->
+
 
 
 
