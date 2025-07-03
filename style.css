@@ -4360,31 +4360,44 @@ Company - Overview page
 
 
 /* overview - philosophy section */
-.philosophy-col{
+.philosophy-col,
+.company-icon-col{
   margin-bottom: 25px;
   padding: 25px 15px;
   border-right: 1px solid var(--bg-dark);
   transition: all 0.25s ease-in-out;
 }
 
-.philosophy-col:hover{
+.company-icon-col{
+  border: 1px solid transparent;
+  border-right: 1px solid var(--bg-dark);
+
+}
+
+.philosophy-col:hover,
+.company-icon-col:hover{
   /* background-color: var(--bg-light); */
   border: none;
   cursor: pointer;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(20, 67, 114, 0.25) !important;
+  background-color: white;
 }
 
-.philosophy-col:last-child{
+.philosophy-col:last-child,
+.company-icon-col:last-child{
   border-right: none;
 }
 
-.philosophy-col .icon{
+.philosophy-col .icon,
+.company-icon-col .icon{
   font-size: 38px !important;
   color: var(--primary-color);
   margin-bottom: 15px;
 }
 
-.philosophy-col h4{
+.philosophy-col h4,
+.company-icon-col h4{
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -4910,6 +4923,233 @@ CERTIFICATIONS
   transform: rotateY(0deg);
 
 }
+
+
+/* ================================
+WHY SKIPPER PIPES - PAGE
+================================ */
+.infrastrcture-banner-col{
+  position: relative;
+  /* margin-bottom: 25px; */
+  height: 600px;
+}
+
+.infrastrcture-banner-col img{
+  width: 100%;
+  height: 600px;
+  object-fit:cover;
+  position: relative;
+}
+
+.infrastructure-img-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 67, 114, 0.35);
+  z-index: 1;
+}
+
+.infrastrcture-banner-content{
+  position: absolute;
+  /* bottom: 50px; */
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  color: white;
+  z-index: 2;
+  /* background-color: rgba(255, 255, 255, 0.85); */
+  background-color: white;
+  border-bottom: 1px solid rgba(20, 67, 114, 0.5);
+  width: 900px;
+  /* margin-left: 9%; */
+  padding:35px 20px 20px 50px;
+}
+
+.infrastrcture-banner-content h3{
+  color: var(--primary-color);
+  font-weight: 600;
+  /* margin-left: 9%; */
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.infrastrcture-banner-col p{
+  color: var(--primary-color) !important;
+}
+
+.infrastrcture-banner-content h3,
+.infrastrcture-banner-content p{
+  /* margin-left: 9%; */
+  /* font-size: 18px; */
+  color: var(--primary-color);
+}
+
+
+/* ================================
+NETWORK - PAGE
+================================ */
+.left-img_full-col{
+  background-color: var(--primary-color);
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.left-img_full-col h3{
+  font-weight: 600;
+  color: white;
+  padding-left: 30px;
+}
+
+.left-img_full-col p{
+  color: white;
+  padding-left: 30px;
+  padding-right: 50px;
+}
+
+.right-img_full-col{
+  background-color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+}
+
+.right-img_full-col h3{
+  font-weight: 600;
+  padding-left: 30px;
+}
+
+.right-img_full-col p{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* ================================
+Careers 
+================================ */
+.career-application-form{
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.partner-application-form{
+  background-color: var(--bg-light);
+  padding: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.career-application-form .form-group label,
+.partner-application-form .form-group label{
+  font-weight: 500;
+}
+
+.career-application-form .form-control:focus{
+  /* background-color: var(--secondary-color); */
+  /* border-color: var(--primary-color); */
+  box-shadow: 0 0 0 .15rem rgba(20, 67, 114, 0.25);
+}
+
+.career-application-form .form-address,
+.partner-application-form .form-desc{
+  display: flex;
+  flex-direction: column;
+}
+
+.partner-application-form label span{
+  color: red;
+}
+
+.career-application-form .form-resume-upload input{
+    padding: 10px;
+}
+
+
+
+
+.tabs,
+.offer-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tab {
+  padding: 25px 20px 15px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 10px;
+  background: white;
+  border-left: 5px solid var(--secondary-color);
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+
+}
+.tab p{
+  display: none;
+  transition: all 0.3s ease-in;
+}
+
+.tab.active p{
+  display: block;
+}
+
+.tab h3{
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  /* border-bottom: 1px solid var(--bg-dark);
+  padding-bottom: 10px; */
+}
+
+
+.tab.active h3{
+  /* font-size: 24px; */
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--bg-dark);
+}
+.tab:hover, .tab.active {
+  /* background: #f0f0f0; */
+  background: var(--primary-color);
+  /* color: var(--primary-color); */
+  /* color: white !important; */
+  border-left: 5px solid var(--secondary-color);
+  font-weight: bold;
+   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tab.active h3,
+.tab:hover h3{
+  color: white !important;
+}
+.tab.active p{
+  color: white;
+}
+
+.image-display {
+  flex: 2;
+}
+.image-display img {
+  width: 100%;
+  height: auto;
+  /* border-radius: 10px; */
+}
+
+
+/* ================================
+LEGAL PAGES  = TERMS Page
+================================ */
+.legal-sec-content{
+  text-align: justify;
+}
+.legal-sec-content span{
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--primary-color);
+  display: block;
+  margin-top: 35px;
+  margin-bottom: 10px;
+}
+
 
 
 /* ================================

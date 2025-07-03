@@ -683,5 +683,16 @@ var swiper = new Swiper('.location-swiper', {
   }
 });
 
+// careers page
+$(".tab").click(function() {
+    $(".tab").removeClass("active");
+    $(this).addClass("active");
+
+    const newImg = $(this).data("image");
+    $("#tab-image").fadeOut(200, function() {
+      $(this).attr("src", newImg).fadeIn(200);
+    });
+  });
+
 
 })(jQuery); // End jQuery
