@@ -22,7 +22,7 @@
                                             <ul>
                                                 <li>
                                                     <i class="fas fa-calendar-alt"></i>
-                                                    {{ $blog->published_at->format('d F, Y') }}
+                                                    {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }}
                                                 </li>
                                             </ul>
                                         </div>

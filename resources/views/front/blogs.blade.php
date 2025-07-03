@@ -96,9 +96,7 @@
                                                     <i class="fas fa-calendar-alt"></i>
                                                     <span>
                                                         @if ($blog->published_at)
-                                                            {{ $blog->published_at->format('d F, Y') }}
-                                                        @else
-                                                            {{ $blog->created_at->format('d F, Y') }}
+                                                            {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }}
                                                         @endif
                                                     </span>
                                                 </a>
