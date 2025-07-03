@@ -4,15 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Product;
-use App\Models\CompanyPage;
+
 use App\Models\Banner;
 use App\Models\BlogCategory;
 use App\Models\BlogTag;
+use App\Models\CertificationSectionOne;
+use App\Models\Company;
+use App\Models\CsrSectionOne;
+use App\Models\CsrSectionThree;
+use App\Models\CsrSectionTwo;
 use App\Models\ProductCategory;
 use App\Models\HomeSectionOne;
 use App\Models\HomeSectionTwo;
 use App\Models\HomeSectionThree;
 use App\Models\HomeSectionFour;
+use App\Models\LeadershipSectionFour;
+use App\Models\LeadershipSectionOne;
+use App\Models\LeadershipSectionThree;
+use App\Models\LeadershipSectionTwo;
+use App\Models\ManufacturingSectionFour;
+use App\Models\ManufacturingSectionOne;
+use App\Models\ManufacturingSectionThree;
+use App\Models\ManufacturingSectionTwo;
+use App\Models\OverviewSectionFive;
+use App\Models\OverviewSectionFour;
+use App\Models\OverviewSectionOne;
+use App\Models\OverviewSectionThree;
+use App\Models\OverviewSectionTwo;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -113,7 +131,7 @@ class FrontController extends Controller
     public function companyPage($slug)
     {
 
-        $page = CompanyPage::where('slug', $slug)
+        $page = Company::where('slug', $slug)
             ->where('status', 1)
             ->where('is_active', 1)
             ->firstOrFail();
@@ -125,66 +143,37 @@ class FrontController extends Controller
             'meta_keywords' => $page->meta_keywords,
         ];
 
-        // Timeline events data
-        $timelineEvents = [
-            [
-                'year' => '2009',
-                'title' => 'Laid the Foundation for Growth',
-                'description' => 'Launched first <b>PVC unit in Uluberia, Kolkata</b> —our beginning in piping solutions.'
-            ],
-            [
-                'year' => '2015',
-                'title' => 'Global Collaboration for Excellence',
-                'description' => 'Strategic partnership with <b>Sekisui Chemical Co., Japan,</b> enhancing product innovation and excellence.'
-            ],
-            [
-                'year' => '2016',
-                'title' => 'Recognized for National Impact',
-                'description' => 'Awarded <b>"Best in Water Resources" by CBIP,</b> affirming infrastructure excellence and trust.'
-            ],
-            [
-                'year' => '2017',
-                'title' => 'Expanding Horizons in the Northeast',
-                'description' => '<b>Guwahati facility</b> started; over <b>10,000 youth trained</b> under NSDC plumbing initiative.'
-            ],
-            [
-                'year' => '2020',
-                'title' => 'Ventured into Premium Bath Fittings',
-                'description' => 'Launched <b>Skipper CP Bath Fittings,</b> bringing precision and elegance to everyday hygiene solutions.'
-            ],
-            [
-                'year' => '2021',
-                'title' => 'Strengthening Core Product Lines',
-                'description' => 'Relaunched advanced HDPE pipes for stronger, safer industrial and agricultural performance.'
-            ],
-            [
-                'year' => '2025',
-                'title' => 'Building a Community of Plumbers',
-                'description' => 'Initiated the <b>Skipper Saathi Program,</b> a nationwide platform to connect, support, and upskill plumbers.'
-            ]
-        ];
+        $data = [];
 
-        // Statistics data
-        $statistics = [
-            [
-                'value' => 5,
-                'label' => 'Manufacturing Units'
-            ],
-            [
-                'value' => 100,
-                'label' => 'Warehouse Hubs'
-            ],
-            [
-                'value' => 25000,
-                'label' => 'Dealers & Distributors'
-            ],
-            [
-                'value' => 100000,
-                'label' => 'Plumber Partners'
-            ]
-        ];
-
-        return view('front.company-page', compact('page', 'seoData', 'timelineEvents', 'statistics', 'slug'));
+        if ($slug == 'overview') {
+            $data['overview_section_ones'] = OverviewSectionOne::where('company_id', $page->id)->get();
+            $data['overview_section_twos'] = OverviewSectionTwo::where('company_id', $page->id)->get();
+            $data['overview_section_threes'] = OverviewSectionThree::where('company_id', $page->id)->get();
+            $data['overview_section_fours'] = OverviewSectionFour::where('company_id', $page->id)->get();
+            $data['overview_section_fives'] = OverviewSectionFive::where('company_id', $page->id)->get();
+        }
+        if ($slug == 'leadership') {
+            $data['leadership_section_ones'] = LeadershipSectionOne::where('company_id', $page->id)->get();
+            $data['leadership_section_twos'] = LeadershipSectionTwo::where('company_id', $page->id)->get();
+            $data['leadership_section_threes'] = LeadershipSectionThree::where('company_id', $page->id)->get();
+            $data['leadership_section_fours'] = LeadershipSectionFour::where('company_id', $page->id)->get();
+        }
+        if ($slug == 'manufacturing') {
+            $data['manufacturing_section_ones'] = ManufacturingSectionOne::where('company_id', $page->id)->get();
+            $data['manufacturing_section_twos'] = ManufacturingSectionTwo::where('company_id', $page->id)->get();
+            $data['manufacturing_section_threes'] = ManufacturingSectionThree::where('company_id', $page->id)->get();
+            $data['manufacturing_section_fours'] = ManufacturingSectionFour::where('company_id', $page->id)->get();
+        }
+        if ($slug == 'csr') {
+            $data['csr_section_ones'] = CsrSectionOne::where('company_id', $page->id)->get();
+            $data['csr_section_twos'] = CsrSectionTwo::where('company_id', $page->id)->get();
+            $data['csr_section_threes'] = CsrSectionThree::where('company_id', $page->id)->get();
+        }
+        if ($slug == 'certifications') {
+            $data['certifications_section_ones'] = CertificationSectionOne::where('company_id', $page->id)->get();
+        }
+        //leadership
+        return view('front.company-page', compact('page', 'seoData', 'data', 'slug'));
     }
 
     public function showProduct(Product $product)

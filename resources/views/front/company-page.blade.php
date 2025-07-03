@@ -34,7 +34,13 @@
 
 
     @if ($slug == 'overview')
-        @include('front.company-section.overview')
+        @include('front.company-section.overview', [
+            'overview_section_ones' => $data['overview_section_ones'],
+            'overview_section_twos' => $data['overview_section_twos'],
+            'overview_section_threes' => $data['overview_section_threes'],
+            'overview_section_fours' => $data['overview_section_fours'],
+            'overview_section_fives' => $data['overview_section_fives'],
+        ])
     @elseif ($slug == 'manufacturing')
         @include('front.company-section.manufacturing')
     @elseif ($slug == 'leadership')
