@@ -72,11 +72,14 @@ class CompanyPageController extends Controller
         return view('admin.company_pages.edit', compact('company_page'));
     }
 
-    public function update(Request $request, CompanyPage $company_page)
+    public function update(Request $request, $id)
     {
+        // CompanyPage $company_page
+        $company_page = CompanyPage::find($id);
+
         $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:company_pages,slug,' . $company_page->id,
+            //'slug' => 'required|string|max:255|unique:company_pages,slug,' . $company_page->id,
             'short_description' => 'required|string',
             'long_description' => 'required|string',
             'section_1' => 'nullable|string',
@@ -97,9 +100,7 @@ class CompanyPageController extends Controller
         ]);
 
         $data = $request->all();
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title']);
-        }
+
 
         // Handle image removal
         if ($request->boolean('remove_image')) {

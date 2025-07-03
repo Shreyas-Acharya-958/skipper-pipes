@@ -8,7 +8,7 @@
                     <h4 class="card-title">Edit Company Page</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.company_pages.update', $company_page) }}" method="POST"
+                    <form action="{{ route('admin.company_pages_update.update', $company_page->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -26,12 +26,12 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display: none;">
                                 <div class="mb-3">
                                     <label for="slug" class="form-label">Slug</label>
                                     <input type="text" class="form-control @error('slug') is-invalid @enderror"
                                         id="slug" name="slug" value="{{ old('slug', $company_page->slug) }}"
-                                        required>
+                                        required readonly>
                                     @error('slug')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -268,15 +268,15 @@
             autoSlug = false;
         });
 
-        titleInput.addEventListener('input', function() {
-            if (autoSlug) {
-                let slug = this.value
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/(^-|-$)/g, '');
-                slugInput.value = slug;
-            }
-        });
+        // titleInput.addEventListener('input', function() {
+        //     if (autoSlug) {
+        //         let slug = this.value
+        //             .toLowerCase()
+        //             .replace(/[^a-z0-9]+/g, '-')
+        //             .replace(/(^-|-$)/g, '');
+        //         slugInput.value = slug;
+        //     }
+        // });
     </script>
     <script>
         document.querySelector('form').addEventListener('submit', function(e) {
