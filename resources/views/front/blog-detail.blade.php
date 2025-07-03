@@ -176,7 +176,7 @@
                                             <div class="info">
                                                 <div class="meta-title">
                                                     <span
-                                                        class="post-date">{{ $recentBlog->published_at->format('F d, Y') }}</span>
+                                                        class="post-date">{{ $recentBlog->published_at ? $recentBlog->published_at->format('F d, Y') : '' }}</span>
                                                 </div>
                                                 <a href="{{ route('front.blogs.show', $recentBlog->slug) }}">
                                                     {{ Str::limit($recentBlog->title, 50) }}
