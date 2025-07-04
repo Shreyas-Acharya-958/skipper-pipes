@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('page_image')->nullable();
             $table->text('short_description')->nullable();
             $table->longText('long_description')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
-            $table->boolean('status');
-            $table->boolean('is_active');
+            $table->string('page_image')->nullable();
+            $table->boolean('status')->default(true);
+            $table->boolean('is_active')->default(true);
+            $table->string('partner_type')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('company');
+        Schema::dropIfExists('partners');
     }
 };

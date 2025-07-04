@@ -20,6 +20,7 @@ use App\Http\Controllers\LeadershipController;
 use App\Http\Controllers\ManufacturingController;
 use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PartnerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,6 +46,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // User Management routes
     Route::resource('users', UserController::class);
+
+    // Partner routes
+    Route::resource('partners', PartnerController::class)->names('partners');
+    Route::get('partners-section/{partner}', [PartnerController::class, 'sections'])->name('partners.sections');
+    Route::post('partners-section/{partner}/section-one', [PartnerController::class, 'saveSectionOne'])->name('partners.sections.one.save');
+    Route::post('partners-section/{partner}/section-one/delete-image', [PartnerController::class, 'deleteImage'])->name('partners.sections.one.delete-image');
+    Route::post('partners-section/{partner}/section-two', [PartnerController::class, 'saveSectionTwo'])->name('partners.sections.two.save');
+    Route::post('partners-section/{partner}/pipes-offers', [PartnerController::class, 'savePipesOffers'])->name('partners.sections.pipes-offers.save');
+    Route::delete('partners-section/{partner}/pipes-offers/{offer}', [PartnerController::class, 'deletePipesOffer'])->name('partners.sections.pipes-offers.delete');
 
     // Blog routes
     Route::resource('blogs', BlogController::class)->names('blogs');
