@@ -1,4 +1,6 @@
  <!-- MD Directors message -->
+
+
  @if ($leadership_section_ones->count() > 0)
      <section class="md-message default-padding bg-gray">
          <div class="container">
@@ -21,6 +23,7 @@
          </div>
      </section>
  @endif
+
 
  @if ($leadership_section_twos->count() > 0)
      <!-- Our Philosophy  -->

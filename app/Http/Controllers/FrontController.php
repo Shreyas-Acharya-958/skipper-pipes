@@ -146,33 +146,34 @@ class FrontController extends Controller
         $data = [];
 
         if ($slug == 'overview') {
-            $data['overview_section_ones'] = OverviewSectionOne::where('company_id', $page->id)->get();
-            $data['overview_section_twos'] = OverviewSectionTwo::where('company_id', $page->id)->get();
-            $data['overview_section_threes'] = OverviewSectionThree::where('company_id', $page->id)->get();
-            $data['overview_section_fours'] = OverviewSectionFour::where('company_id', $page->id)->get();
-            $data['overview_section_fives'] = OverviewSectionFive::where('company_id', $page->id)->get();
+            $data['overview_section_ones'] = OverviewSectionOne::get();
+            $data['overview_section_twos'] = OverviewSectionTwo::get();
+            $data['overview_section_threes'] = OverviewSectionThree::get();
+            $data['overview_section_fours'] = OverviewSectionFour::get();
+            $data['overview_section_fives'] = OverviewSectionFive::get();
         }
         if ($slug == 'leadership') {
-            $data['leadership_section_ones'] = LeadershipSectionOne::where('company_id', $page->id)->get();
-            $data['leadership_section_twos'] = LeadershipSectionTwo::where('company_id', $page->id)->get();
-            $data['leadership_section_threes'] = LeadershipSectionThree::where('company_id', $page->id)->get();
-            $data['leadership_section_fours'] = LeadershipSectionFour::where('company_id', $page->id)->get();
+            $data['leadership_section_ones'] = LeadershipSectionOne::get();
+            $data['leadership_section_twos'] = LeadershipSectionTwo::get();
+            $data['leadership_section_threes'] = LeadershipSectionThree::get();
+            $data['leadership_section_fours'] = LeadershipSectionFour::get();
         }
         if ($slug == 'manufacturing') {
-            $data['manufacturing_section_ones'] = ManufacturingSectionOne::where('company_id', $page->id)->get();
-            $data['manufacturing_section_twos'] = ManufacturingSectionTwo::where('company_id', $page->id)->get();
-            $data['manufacturing_section_threes'] = ManufacturingSectionThree::where('company_id', $page->id)->get();
-            $data['manufacturing_section_fours'] = ManufacturingSectionFour::where('company_id', $page->id)->get();
+            $data['manufacturing_section_ones'] = ManufacturingSectionOne::get();
+            $data['manufacturing_section_twos'] = ManufacturingSectionTwo::get();
+            $data['manufacturing_section_threes'] = ManufacturingSectionThree::get();
+            $data['manufacturing_section_fours'] = ManufacturingSectionFour::get();
         }
         if ($slug == 'csr') {
-            $data['csr_section_ones'] = CsrSectionOne::where('company_id', $page->id)->get();
-            $data['csr_section_twos'] = CsrSectionTwo::where('company_id', $page->id)->get();
-            $data['csr_section_threes'] = CsrSectionThree::where('company_id', $page->id)->get();
+            $data['csr_section_ones'] = CsrSectionOne::get();
+            $data['csr_section_twos'] = CsrSectionTwo::get();
+            $data['csr_section_threes'] = CsrSectionThree::get();
         }
         if ($slug == 'certifications') {
-            $data['certifications_section_ones'] = CertificationSectionOne::where('company_id', $page->id)->get();
+            $data['certifications_section_ones'] = CertificationSectionOne::get();
         }
         //leadership
+
         return view('front.company-page', compact('page', 'seoData', 'data', 'slug'));
     }
 
