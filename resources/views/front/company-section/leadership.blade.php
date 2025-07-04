@@ -1,24 +1,26 @@
  <!-- MD Directors message -->
- <section class="md-message default-padding bg-gray">
-     <div class="container">
-         <div class="row">
-             <div class="col-12 text-center">
-                 <div class="site-heading headings">
-                     <h4>SKipper Pipes</h4>
-                     <h2>Words from the Top!</h2>
+ @if ($leadership_section_ones->count() > 0)
+     <section class="md-message default-padding bg-gray">
+         <div class="container">
+             <div class="row">
+                 <div class="col-12 text-center">
+                     <div class="site-heading headings">
+                         <h4>SKipper Pipes</h4>
+                         <h2>Words from the Top!</h2>
+                     </div>
+                 </div>
+             </div>
+             <div class="row align-center">
+                 <div class="col-md-5">
+                     <img src="{{ asset('storage/' . $leadership_section_ones[0]->image ?? '') }}" alt="">
+                 </div>
+                 <div class="col-md-7 pl-5 md-message-content">
+                     {!! $leadership_section_ones[0]->description ?? '' !!}
                  </div>
              </div>
          </div>
-         <div class="row align-center">
-             <div class="col-md-5">
-                 <img src="{{ asset('storage/' . $leadership_section_ones[0]->image ?? '') }}" alt="">
-             </div>
-             <div class="col-md-7 pl-5 md-message-content">
-                 {!! $leadership_section_ones[0]->description ?? '' !!}
-             </div>
-         </div>
-     </div>
- </section>
+     </section>
+ @endif
 
  @if ($leadership_section_twos->count() > 0)
      <!-- Our Philosophy  -->
