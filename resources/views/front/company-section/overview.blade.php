@@ -169,7 +169,7 @@
         <div class="row align-center">
             <div class="col"></div>
             <div class="col-md-3 pan-india-wrapper">
-                {!! $overview_section_fives[0]->long_description ?? '' !!}
+                {!! $overview_section_fives[0]->description ?? '' !!}
 
             </div>
             <div class="col-md-6 pan-india-img">
