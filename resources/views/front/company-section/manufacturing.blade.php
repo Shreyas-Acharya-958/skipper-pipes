@@ -24,7 +24,7 @@
                             @foreach ($manufacturing_section_ones as $manufacturing)
                                 <div class="swiper-slide location-slide">
                                     <div class="location-img">
-                                        <img src="{{ asset($manufacturing->image ?? '') }}"
+                                        <img src="{{ asset('storage/' . $manufacturing->image) }}"
                                             alt="{{ $manufacturing->title ?? '' }}">
                                     </div>
                                     <span class="location-title">{{ $manufacturing->title ?? '' }}</span>
@@ -64,7 +64,7 @@
             </div>
             <div class="row align-center">
                 <div class="col-md-5">
-                    <img src="{{ asset($manufacturing_section_twos[0]->image ?? '') }}" alt="">
+                    <img src="{{ asset('storage/' . $manufacturing_section_twos[0]->image) }}" alt="">
                 </div>
                 <div class="col-md-7 pl-5 ">
                     {!! $manufacturing_section_twos[0]->description ?? '' !!}
@@ -123,7 +123,7 @@
 
                 </div>
                 <div class="col-md-5">
-                    <img src="{{ asset($manufacturing_section_fours[0]->image ?? '') }}" alt="">
+                    <img src="{{ asset('storage/' . $manufacturing_section_fours[0]->image) }}" alt="">
                 </div>
             </div>
         </div>

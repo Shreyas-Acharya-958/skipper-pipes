@@ -11,7 +11,7 @@
          </div>
          <div class="row align-center">
              <div class="col-md-5">
-                 <img src="{{ asset($leadership_section_ones[0]->image ?? '') }}" alt="">
+                 <img src="{{ asset('storage/' . $leadership_section_ones[0]->image ?? '') }}" alt="">
              </div>
              <div class="col-md-7 pl-5 md-message-content">
                  {!! $leadership_section_ones[0]->description ?? '' !!}
@@ -67,7 +67,7 @@
                      <div class="col-md-3">
                          <div class="business-dir-card">
                              <div class="business-dir-img">
-                                 <img src="{{ asset($leadership->image ?? '') }}" alt="">
+                                 <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
                              </div>
                              <div class="business-dir-content">
                                  <h3 class="dir-name">{{ $leadership->name ?? '' }}</h3>
@@ -80,7 +80,8 @@
                          <!-- Popup Content (hidden) -->
                          <div id="team-popup-siddarth" class="mfp-hide team-popup">
                              <button title="Close" class="mfp-close">&times;</button>
-                             <img src="{{ asset($leadership->image ?? '') }}" alt="{{ $leadership->name ?? '' }}">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}"
+                                 alt="{{ $leadership->name ?? '' }}">
                              <h4>{{ $leadership->name ?? '' }}</h4>
                              <p class="designation">{{ $leadership->role ?? '' }}</p>
                              <p>{!! $leadership->description ?? '' !!}</p>
@@ -112,7 +113,7 @@
                  <div class="col-md-3">
                      <div class="business-heads-card">
                          <div class="business-heads-img">
-                             <img src="{{ asset($leadership->image ?? '') }}" alt="">
+                             <img src="{{ asset('storage/' . $leadership->image) }}" alt="">
                          </div>
                          <div class="business-heads-content">
                              <h3 class="heads-name">{{ $leadership->name }} </h3>

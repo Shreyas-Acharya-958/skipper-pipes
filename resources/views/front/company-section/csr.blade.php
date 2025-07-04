@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset($csr_section_ones[0]->image ?? '') }}" alt="">
+                    <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" alt="">
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 @if ($loop->index % 2 == 0)
                     <div class="row initatives-card">
                         <div class="col-md-5">
-                            <img src="{{ asset($csr->image ?? '') }}" alt="">
+                            <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
                         </div>
                         <div class="col-md-7">
                             {!! $csr->description ?? '' !!}
@@ -78,7 +78,7 @@
                             {!! $csr->description ?? '' !!}
                         </div>
                         <div class="col-md-5">
-                            <img src="{{ asset($csr->image ?? '') }}" alt="">
+                            <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
                         </div>
 
                     </div>

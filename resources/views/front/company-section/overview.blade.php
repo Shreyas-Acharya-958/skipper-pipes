@@ -10,10 +10,10 @@
         </div>
         <div class="row align-center">
             <div class="col-md-6 p-md-0">
-                <p>{!! $overview_section_ones[0]->long_description ?? '' !!}</p>
+                <p>{!! $overview_section_ones[0]->description ?? '' !!}</p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset($overview_section_ones[0]->image ?? '') }}" alt="">
+                <img src="{{ asset('storage/' . $overview_section_ones[0]->image) }}" alt="">
 
             </div>
         </div>
@@ -25,7 +25,7 @@
 
 <!-- Our Vision -->
 <section class="vision-sec">
-    <img src="{{ asset($overview_section_twos[0]->image ?? '') }}" alt="skipper vision">
+    <img src="{{ asset('storage/' . $overview_section_twos[0]->image) }}" alt="skipper vision">
     <div class="img-overlay"></div>
     <div class="vision-sec-content">
         <h2>{{ $overview_section_twos[0]->title ?? '' }}</h2>
@@ -130,7 +130,8 @@
                                     <h4 class="timeline-title">{{ $overview->title }}</h4>
                                     <p class="timeline-desc">{!! $overview->description !!}</p>
                                     <div class="timeline-img">
-                                        <img src="{{ asset($overview->image) }}" alt="{{ $overview->title }}">
+                                        <img src="{{ asset('storage/' . $overview->image) }}"
+                                            alt="{{ $overview->title }}">
                                     </div>
                                 </div>
                             @endforeach
@@ -171,7 +172,7 @@
 
             </div>
             <div class="col-md-6 pan-india-img">
-                <img src="{{ asset($overview_section_fives[0]->image ?? '') }}" alt="">
+                <img src="{{ asset('storage/' . $overview_section_fives[0]->image) }}" alt="">
             </div>
             <div class="col"></div>
         </div>
