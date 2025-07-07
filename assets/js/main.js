@@ -684,8 +684,8 @@ var swiper = new Swiper('.location-swiper', {
 });
 
 // careers page
-$(".tab").click(function() {
-    $(".tab").removeClass("active");
+$(".partners-tab").click(function() {
+    $(".partners-tab").removeClass("active");
     $(this).addClass("active");
 
     const newImg = $(this).data("image");

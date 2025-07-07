@@ -296,7 +296,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 pt-3 pt-md-0">
                     <!-- <h2>Product Overview</h2> -->
                     <p>Skipper Pipes proudly operates on the strength of its extensive network of distributors, dealers, and plumbers spread across India. This trusted ecosystem is backed by a comprehensive product portfolio that caters to diverse sectors — from plumbing and agriculture to infrastructure. With a robust supply chain, reliable inventory, and proactive service, our partners enjoy hassle-free operations. Consistent brand visibility, dealer support programs, and product innovation ensure long-term growth, customer retention, and a rewarding business experience for every Skipper associate.</p>
                 </div>
@@ -320,34 +320,34 @@
                 </div>
             </div>
             <div class="row">
-                <div class="tabs col-md-6">
-                    <div class="tab active" data-image="assets/img/final/agriculture-pipes.jpeg">
+                <div class="partners-tabs col-md-6">
+                    <div class="partners-tab active" data-image="assets/img/final/12344.jpg">
                         <h3>Certified Quality Assurance</h3>
                         <p>Our products meet national and international standards, backed by rigorous quality checks.</p>
                     </div>
-                    <div class="tab" data-image="assets/img/final/Marina Tank.jpeg">
+                    <div class="partners-tab" data-image="assets/img/final/Marina Tank.jpeg">
                         <h3>Strong Brand Backing & Marketing Support</h3>
                         <p>Skipper invests heavily in branding, visibility, and local marketing to support dealer sales.</p>
                     </div>
-                    <div class="tab" data-image="assets/img/final/agriculture-pipes.jpeg">
+                    <div class="partners-tab" data-image="assets/img/final/12344.jpg">
                         <h3>Diverse, High-Demand Product Portfolio</h3>
                         <p>Pipes, tanks, bath fittings, and more — built for construction, plumbing, and infrastructure projects.</p>
                     </div>
-                    <div class="tab" data-image="assets/img/final/Marina Tank.jpeg">
+                    <div class="partners-tab" data-image="assets/img/final/Marina Tank.jpeg">
                         <h3>Fast-Growing National Network</h3>
                         <p>25,000+ dealers and 5 manufacturing plants ensure consistent supply and trust nationwide.</p>
                     </div>
-                    <div class="tab" data-image="assets/img/final/agriculture-pipes.jpeg">
+                    <div class="partners-tab" data-image="assets/img/final/12344.jpg">
                         <h3>Lucrative Incentives & Growth Rewards</h3>
                         <p>Structured bonuses, turnover discounts (TOD), and special recognitions for performance.</p>
                     </div>
-                    <div class="tab" data-image="img2.jpg">
+                    <div class="partners-tab" data-image="img2.jpg">
                         <h3>Dedicated After-Sales Support</h3>
                         <p>Technical assistance and service teams are available across India for dealer and customer support.</p>
                     </div>
                 </div>
                 <div class="image-display col-md-6">
-                    <img src="assets/img/final/agriculture-pipes.jpeg" id="tab-image" alt="Image" />
+                    <img src="assets/img/final/12344.jpg" id="tab-image" alt="Image" />
                     <!-- <img src="assets/img/final/Marina Tank.jpeg" id="tab-image" alt="Image" /> -->
                 </div>
             </div>
@@ -402,9 +402,22 @@
                             </div>
                         </div>
                         <div class="form-row">
-                           <div class="form-group col-md-12">
-                                <label for="inputState">Select Dealership Option of Interest:</label>
-                                <select id="inputState" class="form-control">
+                           <div class="form-group col-md-4">
+                                <label for="occupation">Current Occupation <span>*</span></label>
+                                <input type="text" class="form-control" id="occupation" required>
+                            </div>
+                           <div class="form-group col-md-4">
+                                <label for="experience">Experience:</label>
+                                <select id="experience" class="form-control">
+                                    <option selected>Select Experience...</option>
+                                    <option>1 to 5 Years</option>
+                                    <option>6 to 10 Years</option>
+                                    <option>10+ Years</option>
+                                </select>
+                            </div>
+                           <div class="form-group col-md-4">
+                                <label for="dealership-interest">Select Dealership Option of Interest:</label>
+                                <select id="dealership-interest" class="form-control">
                                     <option selected>Choose...</option>
                                     <option>Pipes</option>
                                     <option>Tank</option>
