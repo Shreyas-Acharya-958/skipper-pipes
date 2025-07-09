@@ -821,6 +821,19 @@ background: linear-gradient(to bottom right, var(--primary-color), #F3BA19);
   margin-left: 0;
 }
 
+.side .widget.social img{
+      height: 45px;
+    width: 22px;
+}
+
+.side .widget.social svg{
+  margin-bottom: 20px;
+}
+
+.side .widget.social svg:hover path {
+    fill: #144372 !important; /* Change the fill color on hover */
+}
+
 
 
 /* ================================
@@ -976,8 +989,12 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 }
 
 .home-about ul li img {
-  height: 50px;
-  margin-right: 20px;
+  height: 80px;
+  /* margin-right: 20px; */
+}
+
+.home-about ul li img:hover{
+  color: var(--secondary-color);
 }
 
 .home-about ul {
@@ -3984,21 +4001,58 @@ Pagination
 }
 
 
-/* Product faq */
+/* Product faq  = main faq*/
+.main-faqs{
+  padding: 60px 0;
+}
+
+/* .main-faqs.bg-gray .card-header{
+  background-color: var(--primary-color);
+  color: white;
+} 
+
+
+.main-faqs.bg-gray .card-header h2 button{
+  color: var(--secondary-color) !important;
+}
+
+.main-faqs.bg-gray .card-header:hover h2 button.collapsed{
+  color: var(--secondary-color) !important;
+}
+
+.main-faqs.bg-gray .card-header h2 button.collapsed{
+  color: white !important;
+} */
+
+.faq-sec-title{
+  font-weight: 600;
+}
+.main-faqs .card-header,
 .product-faq .card-header{
   background-color: var(--bg-light);
   color: var(--primary-color);
 }
 
+.main-faqs .card-body,
 .product-faq .card-body{
   padding: 20px 32px;
 }
+
+.main-faqs .card-header .collapse.show,
 .product-faq .card-header .collapse.show{
   background-color: var(--primary-color);
   color: white;
 }
 
+.main-faqs .card-header h2 button,
 .product-faq .card-header h2 button{
+  text-decoration: none;
+  color: var(--primary-color) !important;
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 600;
+}
+.main-faqs .card-header h3 button{
   text-decoration: none;
   color: var(--primary-color) !important;
   text-transform: capitalize;
@@ -5028,6 +5082,10 @@ MEDIA QUERIES
   .container-full {
     max-width: 960px;
   }
+  .hero-banner2{
+    min-height: auto !important;
+    height: auto !important;
+  }
 }
 
 @media (min-width: 1024px){
@@ -5092,6 +5150,11 @@ nav.navbar.bootsnav.no-background li.search a {
   color: #ffffff !important;
 }
 
+.hero-banner2{
+    min-height: auto !important;
+    height: auto !important;
+  }
+
 }
 
 
@@ -5108,6 +5171,10 @@ nav.navbar.bootsnav.no-background li.search a {
 .align-center {
     align-items: center;
   }
+  .hero-banner2{
+    min-height: 550px !important;
+    height: 60% !important;
+  }
 }
 
 
@@ -5121,6 +5188,9 @@ nav.navbar.bootsnav.no-background li.search a {
     min-height: 550px !important;
     height: 70% !important;
   }
+  
+
+
 }
 
 @media (min-width: 1920px ){
