@@ -37,6 +37,14 @@ class FrontController extends Controller
 {
     public function index()
     {
+        // SEO data
+        $seoData = [
+            'meta_title' => 'Home | Skipper Pipes',
+            'meta_description' => 'Discover high-quality pipes and fittings from Skipper Pipes. Leading manufacturer of innovative plumbing solutions for residential and industrial applications.',
+            'meta_keywords' => 'pipes, plumbing, fittings, skipper pipes, manufacturing',
+            'meta_author' => 'Skipper Pipes'
+        ];
+
         // Get all active categories with their products
         $categories = ProductCategory::with(['products' => function ($query) {
             $query->where('status', '1');
@@ -78,12 +86,21 @@ class FrontController extends Controller
             'sectionOne',
             'sectionTwo',
             'sectionThree',
-            'sectionFour'
+            'sectionFour',
+            'seoData'
         ));
     }
 
     public function blogs()
     {
+        // SEO data
+        $seoData = [
+            'meta_title' => 'Blog | Skipper Pipes',
+            'meta_description' => 'Stay updated with the latest news, insights, and innovations in plumbing and pipe manufacturing from Skipper Pipes.',
+            'meta_keywords' => 'blog, news, plumbing insights, pipe manufacturing, skipper pipes',
+            'meta_author' => 'Skipper Pipes'
+        ];
+
         $blogs = Blog::where('status', 1)->with('category')->paginate(9);
         if (isset($queryParams['tag'])) {
             $blog_id = BlogTag::where('name', $queryParams['tag'])->pluck('blog_id');
@@ -93,7 +110,7 @@ class FrontController extends Controller
             $blogs = Blog::where('status', 1)->where('cat_id', $queryParams['category'])->with('category')->paginate(9);
         }
 
-        return view('front.blogs', compact('blogs'));
+        return view('front.blogs', compact('blogs', 'seoData'));
     }
 
     public function blogDetail($slug)
@@ -101,6 +118,14 @@ class FrontController extends Controller
         $blog = Blog::where('slug', $slug)
             ->with(['category.blogs', 'tags', 'comments'])
             ->firstOrFail();
+
+        // SEO data
+        $seoData = [
+            'meta_title' => $blog->meta_title ?? $blog->title . ' | Skipper Pipes Blog',
+            'meta_description' => $blog->meta_description ?? substr(strip_tags($blog->content), 0, 160),
+            'meta_keywords' => $blog->meta_keywords ?? implode(', ', $blog->tags->pluck('name')->toArray()),
+            'meta_author' => $blog->author ?? 'Skipper Pipes'
+        ];
 
         $recentBlogs = Blog::where('status', 1)
             ->where('id', '!=', $blog->id)
@@ -113,7 +138,7 @@ class FrontController extends Controller
             ->where('status', 1)
             ->get();
 
-        return view('front.blog-detail', compact('blog', 'recentBlogs', 'categories'));
+        return view('front.blog-detail', compact('blog', 'recentBlogs', 'categories', 'seoData'));
     }
 
     public function products()
@@ -125,7 +150,16 @@ class FrontController extends Controller
     public function productDetail($slug)
     {
         $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
-        return view('front.product-detail', compact('product'));
+
+        // SEO data
+        $seoData = [
+            'meta_title' => $product->meta_title ?? $product->name . ' | Skipper Pipes Products',
+            'meta_description' => $product->meta_description ?? substr(strip_tags($product->description), 0, 160),
+            'meta_keywords' => $product->meta_keywords ?? $product->name . ', ' . $product->productCategory->name . ', skipper pipes',
+            'meta_author' => 'Skipper Pipes'
+        ];
+
+        return view('front.product-detail', compact('product', 'seoData'));
     }
 
     public function companyPage($slug)

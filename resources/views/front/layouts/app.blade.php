@@ -6,10 +6,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Skipper Pipes">
 
-    <!-- ========== Page Title ========== -->
-    <title>@yield('title', 'Skipper Pipes')</title>
+    <!--Start meta-->
+    <meta name="description"
+        content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+    <meta name="title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
+    {{-- <meta name="author" content="{{ $seoData['meta_author'] ?? 'Skipper Pipes' }}">
+    <meta name="keywords" content="{{ $seoData['meta_keywords'] ?? 'pipes, plumbing, fittings, skipper pipes' }}"> --}}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
+    <meta property="og:description"
+        content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+    <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
+    <meta property="twitter:description"
+        content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+    <meta property="twitter:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+
+    <title>{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}</title>
+    <!--End meta-->
 
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
