@@ -25,6 +25,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Slug</th>
+                                    <th>Icon</th>
                                     <th>Image</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -36,6 +37,14 @@
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->slug }}</td>
+                                        <td>
+                                            @if ($category->icon)
+                                                <img src="{{ asset('storage/' . $category->icon) }}"
+                                                    alt="{{ $category->name }} Icon" style="max-width: 50px; height: auto;">
+                                            @else
+                                                No Icon
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($category->image)
                                                 <img src="{{ asset('storage/' . $category->image) }}"

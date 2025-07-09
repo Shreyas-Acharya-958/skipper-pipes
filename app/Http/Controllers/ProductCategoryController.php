@@ -47,15 +47,20 @@ class ProductCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:product_categories',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'nullable|string',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|boolean'
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except(['image', 'icon']);
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('product-categories', 'public');
             $data['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('icon')) {
+            $iconPath = $request->file('icon')->store('product-categories/icons', 'public');
+            $data['icon'] = $iconPath;
         }
 
         ProductCategory::create($data);
@@ -91,11 +96,11 @@ class ProductCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'nullable|string',
+            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|boolean'
         ]);
 
-        $data = $request->except('image');
+        $data = $request->except(['image', 'icon']);
 
         if ($request->hasFile('image')) {
             // Delete old image if exists
@@ -105,6 +110,16 @@ class ProductCategoryController extends Controller
 
             $imagePath = $request->file('image')->store('product-categories', 'public');
             $data['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('icon')) {
+            // Delete old icon if exists
+            if ($productCategory->icon) {
+                Storage::disk('public')->delete($productCategory->icon);
+            }
+
+            $iconPath = $request->file('icon')->store('product-categories/icons', 'public');
+            $data['icon'] = $iconPath;
         }
 
         $productCategory->update($data);
@@ -122,6 +137,11 @@ class ProductCategoryController extends Controller
         // Delete the image if exists
         if ($productCategory->image) {
             Storage::disk('public')->delete($productCategory->image);
+        }
+
+        // Delete the icon if exists
+        if ($productCategory->icon) {
+            Storage::disk('public')->delete($productCategory->icon);
         }
 
         $productCategory->delete();

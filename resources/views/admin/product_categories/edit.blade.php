@@ -48,18 +48,23 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="icon" class="form-label">Icon</label>
-                                    <input type="text" class="form-control @error('icon') is-invalid @enderror"
-                                        id="icon" name="icon" value="{{ old('icon', $category->icon) }}">
+                                    <label for="icon" class="form-label">Category Icon</label>
+                                    @if ($category->icon)
+                                        <div class="mb-2">
+                                            <img src="{{ asset('storage/' . $category->icon) }}"
+                                                alt="{{ $category->name }} Icon" style="max-width: 100px;">
+                                        </div>
+                                    @endif
+                                    <input type="file" class="form-control @error('icon') is-invalid @enderror"
+                                        id="icon" name="icon" accept="image/*">
+                                    <small class="text-muted">Leave empty to keep the current icon</small>
                                     @error('icon')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Category Image</label>
@@ -77,6 +82,8 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
