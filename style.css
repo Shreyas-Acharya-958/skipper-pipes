@@ -1290,6 +1290,30 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
   display: block;
 }
 
+/* HOME PRODUCTS CAROUSEL  */
+.single-item-carousel .owl-dots,
+.single-item-carousel .owl-nav {
+    display: none !important;
+}
+
+.single-item-carousel .item{
+  width: 593px !important;
+  height: auto !important;
+}
+
+@media (min-width: 1400px) {
+  .custom-container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1920px) {
+  .custom-container {
+    max-width: 1800px;
+  }
+}
+
 .home-products__single {
   position: relative;
   display: block;
@@ -5198,20 +5222,26 @@ nav.navbar.bootsnav.no-background li.search a {
     width: 1300px;
   }
 
+
   .hero-banner2{
     min-height: 550px !important;
     height: 70% !important;
   }
   
+}
 
-
+@media (min-width: 1600px){
+  /* CAROUSEL PRODUCTS */
+  .home-products__main-tab-box{
+    overflow: hidden;
+  }
 }
 
 @media (min-width: 1920px ){
-  .owl-stage{
+  /* .owl-stage{
     width: 100% !important;
     max-width: 2560px !important;
-  }
+  } */
    .hero-banner-contents2{
     bottom: 40% !important;
   }
@@ -5256,6 +5286,11 @@ Media queries - max-width
     min-height: auto !important;
     height: auto !important;
   }
+/* CAROUSEL PRODUCT */
+  .single-item-carousel .item{
+  width: 440px !important;
+  height: auto !important;
+}
 }
 
 
@@ -5363,6 +5398,11 @@ Media queries - max-width
   .sathi-community-area .inner-items .right-info{
     padding: 240px 50px;
   }
+/* CAROUSEL PRODUCTS  */
+   .single-item-carousel .item{
+  width: 440px !important;
+  height: auto !important;
+}
   
 }
 
@@ -5440,6 +5480,7 @@ Media queries - max-width
   margin-bottom: 0px;
   display: block;
 }
+
   
 }
 
@@ -5528,6 +5569,12 @@ Media queries - max-width
 
   .partner-application-form{
     padding: 20px;
+  }
+
+  /* CAROUSEL PROUDCTS */
+  .home-products__content-box{
+    left: 0 !important;
+    bottom: 0 !important;
   }
 
 

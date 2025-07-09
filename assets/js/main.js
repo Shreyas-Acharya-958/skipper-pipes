@@ -516,47 +516,40 @@
     });
   }
 
+// HOME PRODUCTS CAROUSEL - Owl Carousel
+$('.home-products__carousel').each(function () {
+    var $carousel = $(this);
+    var itemCount = $carousel.find('.item').length;
 
-     if ($("#home-products__thumb").length) {
-    let testimonialsThumb = new Swiper("#home-products__thumb", {
-      slidesPerView: 4,
-      spaceBetween: 16,
-      speed: 1400,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
-      loop: true,
-      autoplay: {
-        delay: 5000
-      }
+    $carousel.owlCarousel({
+        items: 1,
+        margin: 30,
+        smartSpeed: 700,
+        loop: itemCount > 1, // ✅ Enable loop only if more than 1 item
+        autoplay: 6000,
+        nav: false,
+        dots: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: Math.min(2, itemCount)
+            },
+            992: {
+                items: Math.min(2, itemCount)
+            },
+            1200: {
+                items: Math.min(2, itemCount)
+            }
+        }
     });
 
-    let testimonialsCarousel = new Swiper("#home-products__carousel", {
-      observer: true,
-      observeParents: true,
-      loop: true,
-      speed: 1400,
-      mousewheel: false,
-      slidesPerView: 1,
-      spaceBetween: 72,
-      autoplay: {
-        delay: 5000
-      },
-      thumbs: {
-        swiper: testimonialsThumb
-      },
-      pagination: {
-        el: '#testimonials-one__carousel-pagination',
-        type: 'bullets',
-        clickable: true
-      },
-
-      "navigation": {
-        "nextEl": "#home-products__swiper-button-next",
-        "prevEl": "#home-products__swiper-button-prev"
-      },
-
-    });
-  }
+    if (itemCount <= 1) {
+    $carousel.addClass('single-item-carousel');
+}
+});
+    
 
 
    $(window).on("load", function () {
