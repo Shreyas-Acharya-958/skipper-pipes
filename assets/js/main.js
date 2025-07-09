@@ -527,7 +527,7 @@ $('.home-products__carousel').each(function () {
         smartSpeed: 700,
         loop: itemCount > 1, // ✅ Enable loop only if more than 1 item
         autoplay: 6000,
-        nav: false,
+        nav: true,
         dots: true,
         responsive: {
             0: {

@@ -1300,6 +1300,29 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
   width: 593px !important;
   height: auto !important;
 }
+.home-products__carousel .owl-nav{
+  margin-top: 50px !important;
+}
+
+.home-products__carousel .owl-nav .owl-prev,
+.home-products__carousel .owl-nav .owl-next{
+  background-color: var(--bg-light);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 10px  rgba(0 0 0 / 18%);
+}
+
+.home-products__carousel .owl-nav .owl-prev:hover,
+.home-products__carousel .owl-nav .owl-next:hover{
+  background-color: var(--primary-color);
+  color: white;
+}
+
+
 
 @media (min-width: 1400px) {
   .custom-container {
@@ -1461,7 +1484,7 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 
 .home-products__carousel.owl-carousel .owl-dots {
   position: absolute;
-  bottom: -45px;
+  bottom: 10%;
   left: -300px;
   right: 0;
   text-align: center;
