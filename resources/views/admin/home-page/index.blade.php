@@ -35,7 +35,7 @@
                 <div class="tab-content" id="homePageTabsContent">
                     <!-- Section 1 -->
                     <div class="tab-pane fade show active p-3" id="section1" role="tabpanel">
-                        <div class="alert alert-info mb-4">
+                        <div class="alert-info mb-4">
                             <span class="fw-bold">Information:</span> Why Skipper Pipes
                         </div>
                         <form id="section1Form" class="section-form" action="{{ route('admin.home-page.section1.save') }}"
@@ -123,7 +123,7 @@
 
                     <!-- Section 2 -->
                     <div class="tab-pane fade p-3" id="section2" role="tabpanel">
-                        <div class="alert alert-info mb-4">
+                        <div class="alert-info mb-4">
                             <span class="fw-bold">Information:</span> Empowering Every Plumber
                         </div>
                         <form id="section2Form" class="section-form"
@@ -184,7 +184,7 @@
 
                     <!-- Section 3 -->
                     <div class="tab-pane fade p-3" id="section3" role="tabpanel">
-                        <div class="alert alert-info mb-4">
+                        <div class="alert-info mb-4">
                             <span class="fw-bold">Information:</span> Video Part
                         </div>
                         <form id="section3Form" class="section-form"
@@ -222,7 +222,7 @@
 
                     <!-- Section 4 -->
                     <div class="tab-pane fade p-3" id="section4" role="tabpanel">
-                        <div class="alert alert-info mb-4">
+                        <div class="alert-info mb-4">
                             <span class="fw-bold">Information:</span> Review Part
                         </div>
                         <form id="section4Form" class="section-form"
@@ -485,7 +485,7 @@
                             toast.show();
 
                             // Set the hash and reload the page
-                            window.location.hash = activeTabId;
+                            // window.location.hash = activeTabId;
                             window.location.reload();
                         }
                     },
@@ -596,11 +596,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                                                                                                                                                                                        <div class="mb-2">
-                                                                                                                                                                                                                                            <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                                                                                                                                                                                alt="Person Image" style="max-width: 100px;">
-                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                    ` : ''}
+                                                                                                                                                                                                                                                            <div class="mb-2">
+                                                                                                                                                                                                                                                                <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                                                                                                                                    alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                        ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>

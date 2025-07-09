@@ -111,20 +111,22 @@ class HomePageController extends Controller
 
             // Handle reviews
             if ($request->has('reviews')) {
-                // Delete old reviews
-                $section->reviews()->delete();
-
                 foreach ($request->reviews as $index => $review) {
                     if (!empty($review['person_name'])) {
-                        $reviewModel = new HomeSectionFourReview([
-                            'person_name' => $review['person_name'],
-                            'person_role' => $review['person_role'],
-                            'star' => $review['star'],
-                            'sequence' => $index,
-                            'status' => $review['status'] ?? 0,
-                            'description' => $review['description'] ?? null
+                        // Find existing review or create new one
+                        $reviewModel = HomeSectionFourReview::firstOrNew([
+                            'id' => $review['id'] ?? null,
+                            'section_four_id' => $section->id
                         ]);
 
+                        $reviewModel->person_name = $review['person_name'];
+                        $reviewModel->person_role = $review['person_role'];
+                        $reviewModel->star = $review['star'];
+                        $reviewModel->sequence = $index;
+                        $reviewModel->status = $review['status'] ?? 0;
+                        $reviewModel->description = $review['description'] ?? null;
+
+                        // Only update image if a new one is uploaded
                         if (isset($review['person_image']) && $review['person_image']) {
                             $reviewModel->person_image = $review['person_image']->store('home/section4/reviews', 'public');
                         }
@@ -132,6 +134,12 @@ class HomePageController extends Controller
                         $section->reviews()->save($reviewModel);
                     }
                 }
+
+                // Delete reviews that are no longer in the request
+                $existingIds = collect($request->reviews)->pluck('id')->filter()->toArray();
+                $section->reviews()
+                    ->whereNotIn('id', $existingIds)
+                    ->delete();
             }
 
             DB::commit();
