@@ -67,7 +67,21 @@ class LeadershipController extends Controller
                         ? LeadershipSectionTwo::find($sectionData['id'])
                         : new LeadershipSectionTwo(['company_id' => 1]);
 
-                    $section->icon = $sectionData['icon'];
+                    if (isset($sectionData['icon_file'])) {
+                        if ($section->icon) {
+                            Storage::disk('public')->delete($section->icon);
+                        }
+                        $file = $sectionData['icon_file'];
+                        $filename = 'leadership-section2-icon-' . time() . '-' . $index . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('leadership/section2/icons', $filename, 'public');
+                        $section->icon = $path;
+                    }
+
+                    if (isset($sectionData['remove_icon']) && $sectionData['remove_icon']) {
+                        Storage::disk('public')->delete($section->icon);
+                        $section->icon = null;
+                    }
+
                     $section->title = $sectionData['title'];
                     $section->description = $sectionData['description'];
                     $section->save();
@@ -76,7 +90,13 @@ class LeadershipController extends Controller
 
             // Handle deletions
             if ($request->has('deleted_sections')) {
-                LeadershipSectionTwo::whereIn('id', explode(',', $request->deleted_sections))->delete();
+                $deletedSections = LeadershipSectionTwo::whereIn('id', explode(',', $request->deleted_sections))->get();
+                foreach ($deletedSections as $section) {
+                    if ($section->icon) {
+                        Storage::disk('public')->delete($section->icon);
+                    }
+                    $section->delete();
+                }
             }
 
             DB::commit();

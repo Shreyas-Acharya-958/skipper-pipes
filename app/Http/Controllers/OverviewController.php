@@ -106,17 +106,37 @@ class OverviewController extends Controller
                         ? OverviewSectionThree::find($sectionData['id'])
                         : new OverviewSectionThree(['company_id' => 1]);
 
-                    $section->icon = $sectionData['icon'];
+                    if (isset($sectionData['icon_file'])) {
+                        if ($section->icon) {
+                            Storage::disk('public')->delete($section->icon);
+                        }
+                        $file = $sectionData['icon_file'];
+                        $filename = 'overview-section3-icon-' . time() . '-' . $index . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('overview/section3/icons', $filename, 'public');
+                        $section->icon = $path;
+                    }
+
+                    if (isset($sectionData['remove_icon']) && $sectionData['remove_icon']) {
+                        Storage::disk('public')->delete($section->icon);
+                        $section->icon = null;
+                    }
+
+                    $section->type = $sectionData['type'];
                     $section->title = $sectionData['title'];
                     $section->description = $sectionData['description'];
-                    $section->type = $sectionData['type']; // Mission or Philosophy
                     $section->save();
                 }
             }
 
             // Handle deletions
             if ($request->has('deleted_sections')) {
-                OverviewSectionThree::whereIn('id', $request->deleted_sections)->delete();
+                $deletedSections = OverviewSectionThree::whereIn('id', explode(',', $request->deleted_sections))->get();
+                foreach ($deletedSections as $section) {
+                    if ($section->icon) {
+                        Storage::disk('public')->delete($section->icon);
+                    }
+                    $section->delete();
+                }
             }
 
             DB::commit();

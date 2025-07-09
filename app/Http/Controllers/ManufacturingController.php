@@ -102,7 +102,21 @@ class ManufacturingController extends Controller
                         ? ManufacturingSectionThree::find($sectionData['id'])
                         : new ManufacturingSectionThree(['company_id' => 1]);
 
-                    $section->icon = $sectionData['icon'];
+                    if (isset($sectionData['icon_file'])) {
+                        if ($section->icon) {
+                            Storage::disk('public')->delete($section->icon);
+                        }
+                        $file = $sectionData['icon_file'];
+                        $filename = 'manufacturing-section3-icon-' . time() . '-' . $index . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('manufacturing/section3/icons', $filename, 'public');
+                        $section->icon = $path;
+                    }
+
+                    if (isset($sectionData['remove_icon']) && $sectionData['remove_icon']) {
+                        Storage::disk('public')->delete($section->icon);
+                        $section->icon = null;
+                    }
+
                     $section->title = $sectionData['title'];
                     $section->description = $sectionData['description'];
                     $section->save();
@@ -111,14 +125,20 @@ class ManufacturingController extends Controller
 
             // Handle deletions
             if ($request->has('deleted_sections')) {
-                ManufacturingSectionThree::whereIn('id', $request->deleted_sections)->delete();
+                $deletedSections = ManufacturingSectionThree::whereIn('id', explode(',', $request->deleted_sections))->get();
+                foreach ($deletedSections as $section) {
+                    if ($section->icon) {
+                        Storage::disk('public')->delete($section->icon);
+                    }
+                    $section->delete();
+                }
             }
 
             DB::commit();
-            return redirect()->route('admin.manufacturing.sections', ['tab' => 'section3'])->with('success', 'Quality Control updated successfully.');
+            return redirect()->route('admin.manufacturing.sections', ['tab' => 'section3'])->with('success', 'Section Three updated successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('admin.manufacturing.sections', ['tab' => 'section3'])->with('error', 'Failed to update Quality Control: ' . $e->getMessage());
+            return redirect()->route('admin.manufacturing.sections', ['tab' => 'section3'])->with('error', 'Failed to update Section Three: ' . $e->getMessage());
         }
     }
 

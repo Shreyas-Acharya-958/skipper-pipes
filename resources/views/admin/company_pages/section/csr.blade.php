@@ -131,12 +131,20 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Icon</label>
-                                                        <input type="text" class="form-control"
-                                                            name="sections[{{ $index }}][icon]"
-                                                            value="{{ $item->icon }}" readonly required>
-                                                        <small class="text-muted">Enter icon class name (e.g., fas
-                                                            fa-star)</small>
+                                                        <label class="form-label">Icon Image</label>
+                                                        @if ($item->icon)
+                                                            <div class="mb-2">
+                                                                <img src="{{ asset('storage/' . $item->icon) }}"
+                                                                    alt="Focus Area Icon"
+                                                                    style="max-width: 50px; height: auto;">
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" class="form-control focus-area-icon-input"
+                                                            name="sections[{{ $index }}][icon_file]"
+                                                            accept="image/*" readonly>
+                                                        <input type="hidden"
+                                                            name="sections[{{ $index }}][icon_base64]"
+                                                            class="icon-base64-input">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -402,9 +410,9 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Icon</label>
-                                        <input type="text" class="form-control" name="sections[${index}][icon]" required>
-                                        <small class="text-muted">Enter icon class name (e.g., fas fa-star)</small>
+                                        <label class="form-label">Icon Image</label>
+                                        <input type="file" class="form-control focus-area-icon-input" name="sections[${index}][icon_file]" accept="image/*">
+                                        <input type="hidden" name="sections[${index}][icon_base64]" class="icon-base64-input">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -520,6 +528,31 @@
                 $(document).on('click', '.remove-image-btn', function() {
                     $(this).closest('.position-relative').remove();
                     $('input[name="remove_image"]').val('1');
+                });
+
+                // Handle icon file uploads
+                $(document).on('change', '.focus-area-icon-input', function() {
+                    const file = this.files[0];
+                    const container = $(this).closest('.form-group');
+                    const base64Input = container.find('.icon-base64-input');
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const base64Data = e.target.result;
+                            // Store base64 data in hidden input
+                            base64Input.val(base64Data);
+
+                            const preview = `
+                                <div class="mb-2">
+                                    <img src="${base64Data}" alt="Icon Preview" style="max-width: 50px; height: auto;">
+                                </div>
+                            `;
+                            container.find('.mb-2').remove(); // Remove existing preview
+                            container.find('label').after(preview);
+                        }
+                        reader.readAsDataURL(file);
+                    }
                 });
             });
         </script>

@@ -59,7 +59,31 @@ class CsrController extends Controller
                         ? CsrSectionTwo::find($sectionData['id'])
                         : new CsrSectionTwo(['company_id' => 1]);
 
-                    $section->icon = $sectionData['icon'];
+                    // Handle base64 icon
+                    if (!empty($sectionData['icon_base64'])) {
+                        // Delete old icon if exists
+                        if ($section->icon) {
+                            Storage::disk('public')->delete($section->icon);
+                        }
+
+                        // Extract the actual base64 string
+                        if (strpos($sectionData['icon_base64'], ';base64,') !== false) {
+                            list(, $iconData) = explode(';base64,', $sectionData['icon_base64']);
+
+                            // Decode base64 data
+                            $iconData = base64_decode($iconData);
+
+                            // Generate unique filename
+                            $filename = 'csr-focus-area-icon-' . time() . '_' . uniqid() . '.png';
+
+                            // Store the file
+                            Storage::disk('public')->put('csr/section2/icons/' . $filename, $iconData);
+
+                            // Save the path
+                            $section->icon = 'csr/section2/icons/' . $filename;
+                        }
+                    }
+
                     $section->title = $sectionData['title'];
                     $section->description = $sectionData['description'];
                     $section->save();
@@ -68,6 +92,12 @@ class CsrController extends Controller
 
             // Handle deletions
             if ($request->has('deleted_sections')) {
+                $deletedSections = CsrSectionTwo::whereIn('id', $request->deleted_sections)->get();
+                foreach ($deletedSections as $section) {
+                    if ($section->icon) {
+                        Storage::disk('public')->delete($section->icon);
+                    }
+                }
                 CsrSectionTwo::whereIn('id', $request->deleted_sections)->delete();
             }
 

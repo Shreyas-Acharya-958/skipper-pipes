@@ -187,7 +187,8 @@
                             <span class="fw-bold">Information:</span> Quality Control Section
                         </div>
                         <form id="section3Form" class="section-form"
-                            action="{{ route('admin.manufacturing.section3.save') }}" method="POST">
+                            action="{{ route('admin.manufacturing.section3.save') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="active_tab" value="#section3">
 
@@ -223,12 +224,26 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Icon</label>
-                                                        <input type="text" class="form-control"
-                                                            name="sections[{{ $index }}][icon]"
-                                                            value="{{ $item->icon }}" readonly required>
-                                                        <small class="text-muted">Enter icon class name (e.g., fas
-                                                            fa-star)</small>
+                                                        <label class="form-label">Icon Image</label>
+                                                        <div class="mb-2">
+                                                            @if ($item->icon)
+                                                                <div class="position-relative d-inline-block">
+                                                                    <img src="{{ asset('storage/' . $item->icon) }}"
+                                                                        alt="Icon Image"
+                                                                        style="max-width: 100px; height: auto;">
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                                        style="display: none;"
+                                                                        data-image="icon_{{ $index }}">&times;</button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <input type="file" class="form-control"
+                                                            name="sections[{{ $index }}][icon_file]"
+                                                            accept="image/*" readonly>
+                                                        <input type="hidden"
+                                                            name="sections[{{ $index }}][remove_icon]"
+                                                            value="0">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -443,9 +458,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
-                                        <label class="form-label">Icon</label>
-                                        <input type="text" class="form-control" name="sections[${index}][icon]" required>
-                                        <small class="text-muted">Enter icon class name (e.g., fas fa-star)</small>
+                                        <label class="form-label">Icon Image</label>
+                                        <input type="file" class="form-control" name="sections[${index}][icon_file]" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col-md-4">

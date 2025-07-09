@@ -103,7 +103,7 @@
                             <span class="fw-bold">Information:</span> Leadership Philosophy Section
                         </div>
                         <form id="section2Form" class="section-form" action="{{ route('admin.leadership.section2.save') }}"
-                            method="POST">
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="active_tab" value="#section2">
 
@@ -137,12 +137,26 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Icon</label>
-                                                        <input type="text" class="form-control"
-                                                            name="sections[{{ $index }}][icon]"
-                                                            value="{{ $item->icon }}" readonly required>
-                                                        <small class="text-muted">Enter icon class name (e.g., fas
-                                                            fa-star)</small>
+                                                        <label class="form-label">Icon Image</label>
+                                                        <div class="mb-2">
+                                                            @if ($item->icon)
+                                                                <div class="position-relative d-inline-block">
+                                                                    <img src="{{ asset('storage/' . $item->icon) }}"
+                                                                        alt="Icon Image"
+                                                                        style="max-width: 100px; height: auto;">
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                                        style="display: none;"
+                                                                        data-image="icon_{{ $index }}">&times;</button>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <input type="file" class="form-control"
+                                                            name="sections[{{ $index }}][icon_file]"
+                                                            accept="image/*" readonly>
+                                                        <input type="hidden"
+                                                            name="sections[{{ $index }}][remove_icon]"
+                                                            value="0">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">
@@ -455,9 +469,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
-                                    <label class="form-label">Icon</label>
-                                    <input type="text" class="form-control" name="sections[${index}][icon]" required>
-                                    <small class="text-muted">Enter icon class name (e.g., fas fa-star)</small>
+                                    <label class="form-label">Icon Image</label>
+                                    <input type="file" class="form-control" name="sections[${index}][icon_file]" accept="image/*">
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -488,25 +501,47 @@
                             <div class="col-md-3">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" name="sections[${index}][name]" required>
+                                    <input type="text" class="form-control"
+                                        name="sections[${index}][name]"
+                                        value="{{ $item->name }}" readonly required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Role</label>
-                                    <input type="text" class="form-control" name="sections[${index}][role]" required>
+                                    <input type="text" class="form-control"
+                                        name="sections[${index}][role]"
+                                        value="{{ $item->role }}" readonly required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Image</label>
-                                    <input type="file" class="form-control" name="sections[${index}][image_file]" accept="image/*">
+                                    <div class="mb-2">
+                                        @if ($item->image)
+                                            <div class="position-relative d-inline-block">
+                                                <img src="{{ asset('storage/' . $item->image) }}"
+                                                    alt="Director Image"
+                                                    style="max-width: 200px; height: auto;">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                    style="display: none;"
+                                                    data-image="director_{{ $index }}">&times;</button>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <input type="file" class="form-control"
+                                        name="sections[${index}][image_file]"
+                                        accept="image/*" disabled>
+                                    <input type="hidden"
+                                        name="sections[${index}][remove_image]"
+                                        value="0">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Description</label>
-                            <textarea class="form-control" name="sections[${index}][description]" rows="3" required></textarea>
+                            <textarea class="form-control" name="sections[${index}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
                         </div>
                     </div>
                 `;
@@ -525,25 +560,47 @@
                             <div class="col-md-3">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" name="sections[${index}][name]" required>
+                                    <input type="text" class="form-control"
+                                        name="sections[${index}][name]"
+                                        value="{{ $item->name }}" readonly required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Role</label>
-                                    <input type="text" class="form-control" name="sections[${index}][role]" required>
+                                    <input type="text" class="form-control"
+                                        name="sections[${index}][role]"
+                                        value="{{ $item->role }}" readonly required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Image</label>
-                                    <input type="file" class="form-control" name="sections[${index}][image_file]" accept="image/*">
+                                    <div class="mb-2">
+                                        @if ($item->image)
+                                            <div class="position-relative d-inline-block">
+                                                <img src="{{ asset('storage/' . $item->image) }}"
+                                                    alt="Head Image"
+                                                    style="max-width: 200px; height: auto;">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                    style="display: none;"
+                                                    data-image="head_{{ $index }}">&times;</button>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <input type="file" class="form-control"
+                                        name="sections[${index}][image_file]"
+                                        accept="image/*" disabled>
+                                    <input type="hidden"
+                                        name="sections[${index}][remove_image]"
+                                        value="0">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Description</label>
-                            <textarea class="form-control" name="sections[${index}][description]" rows="3" required></textarea>
+                            <textarea class="form-control" name="sections[${index}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
                         </div>
                     </div>
                 `;
