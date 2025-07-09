@@ -129,7 +129,8 @@
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
-                            <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
+                            {{-- <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i> --}}
+                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
                             <h4>{{ $category->name }}</h4>
                             <p>
                                 {{ $category->description }}
@@ -253,7 +254,7 @@
                             {!! $sectionTwo->description !!}
                         </div>
                         <div class="col-lg-6 right-info"
-                            style="background-image: url(assets/img/final/skipper-sathi.jpg);">
+                            style="background-image: url({{ asset('storage/' . $sectionTwo->image) }});">
                             <h2> {{ $sectionTwo->image_title }} </h2>
 
                             <a class="btn btn-light effect btn-md" href="{{ $sectionTwo->link }}">
