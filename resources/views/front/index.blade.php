@@ -130,7 +130,8 @@
                         <div class="col-lg-4 col-md-6 product-category-col">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
                             {{-- <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i> --}}
-                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
+                            <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $category->icon) }}"
+                                alt="{{ $category->name }}">
                             <h4>{{ $category->name }}</h4>
                             <p>
                                 {{ $category->description }}
