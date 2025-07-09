@@ -44,15 +44,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'product_category_id' => 'required|exists:product_categories,id',
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:products,slug',
-            'product_overview' => 'required|string',
-            'features_benefits' => 'required|string',
-            'technical' => 'required|string',
-            'application' => 'required|string',
-            'faq' => 'required|string',
+            //'product_overview' => 'required|string',
+            //'features_benefits' => 'required|string',
+            //'technical' => 'required|string',
+            //'application' => 'required|string',
+            //'faq' => 'required|string',
             'status' => 'required|boolean',
             'page_image' => 'nullable|image',
             'home_image' => 'nullable|image',
@@ -109,11 +110,11 @@ class ProductController extends Controller
             'product_category_id' => 'required|exists:product_categories,id',
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:products,slug,' . $product->id,
-            'product_overview' => 'required|string',
-            'features_benefits' => 'required|string',
-            'technical' => 'required|string',
-            'application' => 'required|string',
-            'faq' => 'required|string',
+            // 'product_overview' => 'required|string',
+            // 'features_benefits' => 'required|string',
+            // 'technical' => 'required|string',
+            // 'application' => 'required|string',
+            // 'faq' => 'required|string',
             'status' => 'required|boolean',
             'page_image' => 'nullable|image',
             'home_image' => 'nullable|image',
