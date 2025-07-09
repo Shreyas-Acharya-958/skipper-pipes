@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
-
+<script>
+    // window.location.href = "/admin/partners";
+</script>
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -25,7 +27,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display: none">
                                 <div class="mb-3">
                                     <label for="slug" class="form-label">Slug <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('slug') is-invalid @enderror"
@@ -50,7 +52,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display:none">
                                 <div class="mb-3">
                                     <label for="partner_type" class="form-label">Partner Type <span
                                             class="text-danger">*</span></label>
@@ -132,16 +134,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        document.getElementById('title').addEventListener('input', function() {
-            const title = this.value;
-            const slug = title.toLowerCase()
-                .replace(/[^a-z0-9-]/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '');
-            document.getElementById('slug').value = slug;
-        });
-    </script>
-@endpush

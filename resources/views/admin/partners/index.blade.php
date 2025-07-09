@@ -14,9 +14,7 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        <a href="{{ route('admin.partners.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add New Partner
-                        </a>
+
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -24,7 +22,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Title</th>
-                                    <th>Partner Type</th>
+
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -33,8 +31,8 @@
                                 @foreach ($partners as $partner)
                                     <tr>
                                         <td>{{ $partner->id }}</td>
-                                        <td>{{ $partner->title }}</td>
-                                        <td>{{ $partner->partner_type }}</td>
+                                        <td>{{ ucfirst(str_replace('-', ' ', $partner->slug)) }}</td>
+
                                         <td>
                                             @if ($partner->status)
                                                 <span class="badge bg-success">Active</span>
