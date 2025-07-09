@@ -21,7 +21,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" style="display:none">
                                 <div class="form-group mb-3">
                                     <label for="slug">Slug <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('slug') is-invalid @enderror"
@@ -129,16 +129,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        document.getElementById('title').addEventListener('keyup', function() {
-            const title = this.value;
-            const slug = title.toLowerCase()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/[\s_-]+/g, '-')
-                .replace(/^-+|-+$/g, '');
-            document.getElementById('slug').value = slug;
-        });
-    </script>
-@endpush

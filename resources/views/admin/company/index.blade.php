@@ -31,7 +31,7 @@
                                 @foreach ($companies as $company)
                                     <tr>
                                         <td>{{ $company->id }}</td>
-                                        <td>{{ $company->title }}</td>
+                                        <td>{{ $company->slug }}</td>
                                         <td>
                                             @if ($company->status)
                                                 <span class="badge bg-success">Active</span>
