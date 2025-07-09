@@ -146,12 +146,20 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Icon Class</label>
-                                                        <input type="text" class="form-control"
-                                                            name="applications[{{ $index }}][icon]"
-                                                            value="{{ $application->icon }}" readonly>
-                                                        <small class="text-muted">Enter FontAwesome class name (e.g., fas
-                                                            fa-star)</small>
+                                                        <label class="form-label">Icon</label>
+                                                        @if ($application->icon)
+                                                            <div class="mb-2">
+                                                                <img src="{{ asset('storage/' . $application->icon) }}"
+                                                                    alt="Application Icon"
+                                                                    style="max-width: 50px; height: auto;">
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" class="form-control application-icon-input"
+                                                            name="applications[{{ $index }}][icon_file]"
+                                                            accept="image/*" readonly>
+                                                        <input type="hidden"
+                                                            name="applications[{{ $index }}][icon_base64]"
+                                                            class="icon-base64-input">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -236,12 +244,20 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Icon Class</label>
-                                                        <input type="text" class="form-control"
-                                                            name="features[{{ $index }}][icon]"
-                                                            value="{{ $feature->icon }}" readonly>
-                                                        <small class="text-muted">Enter FontAwesome class name (e.g., fas
-                                                            fa-star)</small>
+                                                        <label class="form-label">Icon</label>
+                                                        @if ($feature->icon)
+                                                            <div class="mb-2">
+                                                                <img src="{{ asset('storage/' . $feature->icon) }}"
+                                                                    alt="Feature Icon"
+                                                                    style="max-width: 50px; height: auto;">
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" class="form-control feature-icon-input"
+                                                            name="features[{{ $index }}][icon_file]"
+                                                            accept="image/*" readonly>
+                                                        <input type="hidden"
+                                                            name="features[{{ $index }}][icon_base64]"
+                                                            class="icon-base64-input">
                                                     </div>
                                                 </div>
                                             </div>
@@ -437,11 +453,13 @@
                 $(this).closest('.position-relative').remove();
             });
 
-            // Handle image preview for feature images
-            $(document).on('change', '.feature-image-input', function() {
+            // Handle image preview for feature images and icons
+            $(document).on('change', '.feature-image-input, .feature-icon-input', function() {
                 const file = this.files[0];
                 const container = $(this).closest('.form-group');
-                const base64Input = container.find('.image-base64-input');
+                const base64Input = container.find($(this).hasClass('feature-icon-input') ?
+                    '.icon-base64-input' : '.image-base64-input');
+                const maxWidth = $(this).hasClass('feature-icon-input') ? '50px' : '200px';
 
                 if (file) {
                     const reader = new FileReader();
@@ -452,7 +470,7 @@
 
                         const preview = `
                             <div class="mb-2">
-                                <img src="${base64Data}" alt="Preview" style="max-width: 200px; height: auto;">
+                                <img src="${base64Data}" alt="Preview" style="max-width: ${maxWidth}; height: auto;">
                             </div>
                         `;
                         container.find('.mb-2').remove(); // Remove existing preview
@@ -472,11 +490,13 @@
                 $(this).closest('.position-relative').remove();
             });
 
-            // Handle image preview for application images
-            $(document).on('change', '.application-image-input', function() {
+            // Handle image preview for application images and icons
+            $(document).on('change', '.application-image-input, .application-icon-input', function() {
                 const file = this.files[0];
                 const container = $(this).closest('.form-group');
-                const base64Input = container.find('.image-base64-input');
+                const base64Input = container.find($(this).hasClass('application-icon-input') ?
+                    '.icon-base64-input' : '.image-base64-input');
+                const maxWidth = $(this).hasClass('application-icon-input') ? '50px' : '200px';
 
                 if (file) {
                     const reader = new FileReader();
@@ -487,7 +507,7 @@
 
                         const preview = `
                             <div class="mb-2">
-                                <img src="${base64Data}" alt="Preview" style="max-width: 200px; height: auto;">
+                                <img src="${base64Data}" alt="Preview" style="max-width: ${maxWidth}; height: auto;">
                             </div>
                         `;
                         container.find('.mb-2').remove(); // Remove existing preview
@@ -517,9 +537,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
-                                <label class="form-label">Icon Class</label>
-                                <input type="text" class="form-control" name="applications[${index}][icon]">
-                                <small class="text-muted">Enter FontAwesome class name (e.g., fas fa-star)</small>
+                                <label class="form-label">Icon</label>
+                                <input type="file" class="form-control application-icon-input" name="applications[${index}][icon_file]" accept="image/*">
+                                <input type="hidden" name="applications[${index}][icon_base64]" class="icon-base64-input">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -557,9 +577,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label class="form-label">Icon Class</label>
-                                <input type="text" class="form-control" name="features[${index}][icon]">
-                                <small class="text-muted">Enter FontAwesome class name (e.g., fas fa-star)</small>
+                                <label class="form-label">Icon</label>
+                                <input type="file" class="form-control feature-icon-input" name="features[${index}][icon_file]" accept="image/*">
+                                <input type="hidden" name="features[${index}][icon_base64]" class="icon-base64-input">
                             </div>
                         </div>
                     </div>

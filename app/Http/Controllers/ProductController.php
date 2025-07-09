@@ -251,10 +251,10 @@ class ProductController extends Controller
     public function saveApplications(Request $request, Product $product)
     {
         $request->validate([
-            'applications.*.icon' => 'required|string',
             'applications.*.title' => 'required|string',
             'applications.*.description' => 'required|string',
             'applications.*.image_base64' => 'nullable|string',
+            'applications.*.icon_base64' => 'nullable|string',
         ]);
 
         // Start transaction
@@ -284,7 +284,6 @@ class ProductController extends Controller
                         $application->product_id = $product->id;
                     }
 
-                    $application->icon = $appData['icon'];
                     $application->title = $appData['title'];
                     $application->description = $appData['description'];
                     $application->sequence = $index;
@@ -311,6 +310,31 @@ class ProductController extends Controller
 
                             // Save the path
                             $application->image = 'products/applications/' . $filename;
+                        }
+                    }
+
+                    // Handle base64 icon
+                    if (!empty($appData['icon_base64'])) {
+                        // Delete old icon if exists
+                        if ($application->icon) {
+                            Storage::disk('public')->delete($application->icon);
+                        }
+
+                        // Extract the actual base64 string
+                        if (strpos($appData['icon_base64'], ';base64,') !== false) {
+                            list(, $iconData) = explode(';base64,', $appData['icon_base64']);
+
+                            // Decode base64 data
+                            $iconData = base64_decode($iconData);
+
+                            // Generate unique filename
+                            $filename = 'application_icon_' . time() . '_' . uniqid() . '.png';
+
+                            // Store the file
+                            Storage::disk('public')->put('products/applications/icons/' . $filename, $iconData);
+
+                            // Save the path
+                            $application->icon = 'products/applications/icons/' . $filename;
                         }
                     }
 
@@ -352,31 +376,57 @@ class ProductController extends Controller
                     }
 
                     $feature->title = $featureData['title'];
-                    $feature->icon = $featureData['icon'];
                     $feature->description = $featureData['description'];
                     $feature->sequence = $index;
 
                     // Handle base64 image
                     if (!empty($featureData['image_base64'])) {
-                        // Get file data
-                        $imageData = $featureData['image_base64'];
-
-                        // Extract the actual base64 string (remove data:image/png;base64, etc.)
-                        if (strpos($imageData, ';base64,') !== false) {
-                            list(, $imageData) = explode(';base64,', $imageData);
+                        // Delete old image if exists
+                        if ($feature->image) {
+                            Storage::disk('public')->delete($feature->image);
                         }
 
-                        // Decode base64 data
-                        $imageData = base64_decode($imageData);
+                        // Extract the actual base64 string
+                        if (strpos($featureData['image_base64'], ';base64,') !== false) {
+                            list(, $imageData) = explode(';base64,', $featureData['image_base64']);
 
-                        // Generate unique filename
-                        $filename = 'feature_' . time() . '_' . uniqid() . '.png';
+                            // Decode base64 data
+                            $imageData = base64_decode($imageData);
 
-                        // Store the file
-                        Storage::disk('public')->put('products/features/' . $filename, $imageData);
+                            // Generate unique filename
+                            $filename = 'feature_' . time() . '_' . uniqid() . '.png';
 
-                        // Save the path
-                        $feature->image = 'products/features/' . $filename;
+                            // Store the file
+                            Storage::disk('public')->put('products/features/' . $filename, $imageData);
+
+                            // Save the path
+                            $feature->image = 'products/features/' . $filename;
+                        }
+                    }
+
+                    // Handle base64 icon
+                    if (!empty($featureData['icon_base64'])) {
+                        // Delete old icon if exists
+                        if ($feature->icon) {
+                            Storage::disk('public')->delete($feature->icon);
+                        }
+
+                        // Extract the actual base64 string
+                        if (strpos($featureData['icon_base64'], ';base64,') !== false) {
+                            list(, $iconData) = explode(';base64,', $featureData['icon_base64']);
+
+                            // Decode base64 data
+                            $iconData = base64_decode($iconData);
+
+                            // Generate unique filename
+                            $filename = 'feature_icon_' . time() . '_' . uniqid() . '.png';
+
+                            // Store the file
+                            Storage::disk('public')->put('products/features/icons/' . $filename, $iconData);
+
+                            // Save the path
+                            $feature->icon = 'products/features/icons/' . $filename;
+                        }
                     }
 
                     $feature->save();
