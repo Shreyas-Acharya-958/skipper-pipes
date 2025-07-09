@@ -68,7 +68,7 @@ class FrontController extends Controller
         $sectionFour = HomeSectionFour::with(['reviews' => function ($query) {
             $query->where('status', 1)->orderBy('sequence');
         }])->first();
-
+        // dd($sectionFour->toArray());
         // dd($categories->toArray());
         return view('front.index', compact(
             'categories',

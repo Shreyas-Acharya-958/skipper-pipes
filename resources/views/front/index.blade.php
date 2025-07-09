@@ -275,7 +275,7 @@
                     <div class="row align-center">
                         <div class="col-lg-5 title text-center">
                             <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
-                            <img src="/assets/img/final/skipper-pipes-s-logo2.png" class="w-50 mb-4" alt="">
+                            <img src="{{ asset('storage/' . $sectionFour->image) }}" class="w-50 mb-4" alt="">
                             <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
                             <div class="site-heading text-center">
                                 <!-- <h4>Our Feedbacks</h4> -->
@@ -327,7 +327,7 @@
     @if ($sectionThree && $sectionThree->title)
         <section class="trusted-one">
             <div class="trusted-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(assets/img/final/video-bg.jpg);">
+                style="background-image: url(assets/img/home-video-banner.png);">
             </div>
             <div class="container">
                 <div class="trusted-one__inner">
