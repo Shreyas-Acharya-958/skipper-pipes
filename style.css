@@ -843,6 +843,16 @@ HOMEPAGE
 
 
 /* -----------------------------
+All icons
+----------------------------- */
+.home-product-category-icons{
+  width: 50px;
+}
+
+
+
+
+/* -----------------------------
 HEADER - navbar
 ----------------------------- */
 nav.navbar.bootsnav ul.nav > li > a{
@@ -989,8 +999,12 @@ nav.navbar.bootsnav ul.nav > li > a:hover{
 }
 
 .home-about ul li img {
-  height: 80px;
-  /* margin-right: 20px; */
+  height: 40px;
+  margin-right: 20px;
+}
+
+.home-about ul li:nth-child(2) img{
+  margin-right: 50px !important;
 }
 
 .home-about ul li img:hover{
