@@ -572,7 +572,7 @@ $('.home-products__carousel').each(function () {
     });
   }
 
-
+// Careers page - culture section
    $(".culture-tab-buttons .nav-link").click(function () {
     $(".culture-tab-buttons .nav-link").removeClass("active");
     $(this).addClass("active");
@@ -589,7 +589,20 @@ $('.home-products__carousel').each(function () {
   });
 
 
+// FAQs page - filter tabs accordion
+$('.faq-tabs .nav-link').click(function () {
+    // Make tabs active
+    $('.faq-tabs .nav-link').removeClass('active');
+    $(this).addClass('active');
 
+    // Get selected category
+    let selectedCategory = $(this).data('category');
+
+    // Show selected FAQ section only
+    $('.faq-section').addClass('d-none');
+    $('.faq-section[data-category="' + selectedCategory + '"]').removeClass('d-none');
+  });
+  
    // window scroll event
 
   $(window).on("scroll", function () {
