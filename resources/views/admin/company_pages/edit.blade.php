@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <label for="page_image" class="form-label">Page Image</label>
                             <input type="file" class="form-control @error('page_image') is-invalid @enderror"
-                                id="page_image" name="page_image" accept="image/*">
+                                id="page_image" name="page_image" accept="image/*,.svg">
                             @if ($company_page->page_image)
                                 <div class="mt-2 position-relative d-inline-block">
                                     <img src="{{ asset('storage/' . $company_page->page_image) }}" alt="Page Image"

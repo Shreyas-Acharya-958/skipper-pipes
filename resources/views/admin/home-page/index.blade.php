@@ -64,7 +64,8 @@
                                             style="max-width: 200px;">
                                     </div>
                                 @endif
-                                <input type="file" class="form-control" id="image1" name="image" disabled>
+                                <input type="file" class="form-control" id="image1" name="image"
+                                    accept="image/*,.svg" disabled>
                             </div>
 
                             <div class="form-group mb-3">
@@ -110,7 +111,8 @@
                                                             </div>
                                                         @endif
                                                         <input type="file" class="form-control form-control-sm"
-                                                            name="features[{{ $index }}][icon]" disabled>
+                                                            name="features[{{ $index }}][icon]"
+                                                            accept="image/*,.svg" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -368,7 +370,8 @@
                                                             </div>
                                                         @endif
                                                         <input type="file" class="form-control form-control-sm"
-                                                            name="reviews[{{ $index }}][person_image]" disabled>
+                                                            name="reviews[{{ $index }}][person_image]"
+                                                            accept="image/*,.svg" disabled>
                                                     </div>
                                                 </div>
                                             </div>
@@ -504,7 +507,7 @@
                     <div class="d-flex align-items-center gap-2">
                         <div class="flex-grow-1">
                             <input type="text" class="form-control mb-2" placeholder="Feature Title" name="features[${featureCount}][title]" style="padding: 8px; border-radius: 4px;">
-                            <input type="file" class="form-control" placeholder="Feature Icon" name="features[${featureCount}][icon]" style="padding: 8px; border-radius: 4px;">
+                            <input type="file" class="form-control" placeholder="Feature Icon" name="features[${featureCount}][icon]" accept="image/*,.svg" style="padding: 8px; border-radius: 4px;">
                         </div>
                         <button type="button" class="btn btn-danger" onclick="removeFeature(this)">
                             <i class="fas fa-trash"></i>
@@ -522,7 +525,7 @@
                 <div class="person_review mb-3">
                     <div class="d-flex align-items-center gap-2">
                         <div class="flex-grow-1">
-                            <input type="file" class="form-control mb-2" placeholder="Person Image" name="reviews[${reviewCount}][person_image]">
+                            <input type="file" class="form-control mb-2" placeholder="Person Image" name="reviews[${reviewCount}][person_image]" accept="image/*,.svg">
                             <input type="text" class="form-control mb-2" placeholder="Person Name" name="reviews[${reviewCount}][person_name]">
                             <input type="text" class="form-control mb-2" placeholder="Person Role" name="reviews[${reviewCount}][person_role]">
                             <input type="text" class="form-control" placeholder="Star Rating" name="reviews[${reviewCount}][star]">
@@ -596,11 +599,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                                                                                                                                                                                                            <div class="mb-2">
-                                                                                                                                                                                                                                                                <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                                                                                                                                                                                                    alt="Person Image" style="max-width: 100px;">
-                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                        ` : ''}
+                                                                                                                                                                                                                                                                <div class="mb-2">
+                                                                                                                                                                                                                                                                    <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                                                                                                                                        alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                            ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>

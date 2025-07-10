@@ -78,8 +78,8 @@
                                                 data-field="image">&times;</button>
                                         </div>
                                     @endif
-                                    <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                        id="image" name="image" accept="image/*">
+                                    <input type="file" class="form-control" id="image" name="image"
+                                        accept="image/*,.svg">
                                     @error('image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

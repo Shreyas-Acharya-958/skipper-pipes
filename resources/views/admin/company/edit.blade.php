@@ -88,7 +88,7 @@
                                 <div class="form-group mb-3">
                                     <label for="page_image">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
-                                        id="page_image" name="page_image">
+                                        id="page_image" name="page_image" accept="image/*,.svg">
                                     @error('page_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

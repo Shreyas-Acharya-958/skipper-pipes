@@ -150,7 +150,7 @@
                                             <label for="offer_images" class="form-label">Add Images</label>
                                             <input type="file"
                                                 class="form-control @error('images.*') is-invalid @enderror"
-                                                id="offer_images" name="images[]" multiple accept="image/*">
+                                                id="offer_images" name="images[]" multiple accept="image/*,.svg">
                                             @error('images.*')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

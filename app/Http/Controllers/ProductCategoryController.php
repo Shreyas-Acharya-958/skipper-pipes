@@ -46,8 +46,8 @@ class ProductCategoryController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:product_categories',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|boolean'
         ]);
 
@@ -95,8 +95,8 @@ class ProductCategoryController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => 'required|boolean'
         ]);
 

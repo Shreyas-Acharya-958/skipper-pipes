@@ -58,7 +58,7 @@
                                         </div>
                                     @endif
                                     <input type="file" class="form-control @error('icon') is-invalid @enderror"
-                                        id="icon" name="icon" accept="image/*">
+                                        id="icon" name="icon" accept="image/*,.svg">
                                     <small class="text-muted">Leave empty to keep the current icon</small>
                                     @error('icon')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -75,7 +75,7 @@
                                         </div>
                                     @endif
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                        id="image" name="image" accept="image/*">
+                                        id="image" name="image" accept="image/*,.svg">
                                     <small class="text-muted">Leave empty to keep the current image</small>
                                     @error('image')
                                         <div class="invalid-feedback">{{ $message }}</div>

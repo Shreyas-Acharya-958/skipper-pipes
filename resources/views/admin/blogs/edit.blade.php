@@ -49,7 +49,7 @@
                                 <div class="mb-3">
                                     <label for="page_image" class="form-label">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
-                                        id="page_image" name="page_image" accept="image/*">
+                                        id="page_image" name="page_image" accept="image/*,.svg">
                                     @if ($blog->page_image)
                                         <div class="mt-2 position-relative d-inline-block">
                                             <img src="{{ asset('storage/' . $blog->page_image) }}" alt="Page Image"
@@ -68,7 +68,7 @@
                                 <div class="mb-3">
                                     <label for="image_1" class="form-label">Image 1</label>
                                     <input type="file" class="form-control @error('image_1') is-invalid @enderror"
-                                        id="image_1" name="image_1" accept="image/*">
+                                        id="image_1" name="image_1" accept="image/*,.svg">
                                     @if ($blog->image_1)
                                         <div class="mt-2 position-relative d-inline-block">
                                             <img src="{{ asset('storage/' . $blog->image_1) }}" alt="Image 1"
@@ -87,7 +87,7 @@
                                 <div class="mb-3">
                                     <label for="image_2" class="form-label">Image 2</label>
                                     <input type="file" class="form-control @error('image_2') is-invalid @enderror"
-                                        id="image_2" name="image_2" accept="image/*">
+                                        id="image_2" name="image_2" accept="image/*,.svg">
                                     @if ($blog->image_2)
                                         <div class="mt-2 position-relative d-inline-block">
                                             <img src="{{ asset('storage/' . $blog->image_2) }}" alt="Image 2"

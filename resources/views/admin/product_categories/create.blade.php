@@ -50,7 +50,7 @@
                                 <div class="mb-3">
                                     <label for="icon" class="form-label">Category Icon</label>
                                     <input type="file" class="form-control @error('icon') is-invalid @enderror"
-                                        id="icon" name="icon" accept="image/*">
+                                        id="icon" name="icon" accept="image/*,.svg">
                                     @error('icon')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -60,7 +60,7 @@
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Category Image</label>
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                        id="image" name="image" accept="image/*">
+                                        id="image" name="image" accept="image/*,.svg">
                                     @error('image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -138,7 +138,7 @@
                                                         @endif
                                                         <input type="file" class="form-control application-image-input"
                                                             name="applications[{{ $index }}][image_file]"
-                                                            accept="image/*" readonly>
+                                                            accept="image/*,.svg" readonly>
                                                         <input type="hidden"
                                                             name="applications[{{ $index }}][image_base64]"
                                                             class="image-base64-input">
@@ -156,7 +156,7 @@
                                                         @endif
                                                         <input type="file" class="form-control application-icon-input"
                                                             name="applications[{{ $index }}][icon_file]"
-                                                            accept="image/*" readonly>
+                                                            accept="image/*,.svg">
                                                         <input type="hidden"
                                                             name="applications[{{ $index }}][icon_base64]"
                                                             class="icon-base64-input">
@@ -236,7 +236,7 @@
                                                         @endif
                                                         <input type="file" class="form-control feature-image-input"
                                                             name="features[{{ $index }}][image_file]"
-                                                            accept="image/*">
+                                                            accept="image/*,.svg">
                                                         <input type="hidden"
                                                             name="features[{{ $index }}][image_base64]"
                                                             class="image-base64-input">
@@ -254,7 +254,7 @@
                                                         @endif
                                                         <input type="file" class="form-control feature-icon-input"
                                                             name="features[{{ $index }}][icon_file]"
-                                                            accept="image/*" readonly>
+                                                            accept="image/*,.svg" readonly>
                                                         <input type="hidden"
                                                             name="features[{{ $index }}][icon_base64]"
                                                             class="icon-base64-input">
@@ -531,14 +531,14 @@
                         <div class="col-md-4">
                             <div class="form-group mb-3">
                                 <label class="form-label">Image</label>
-                                <input type="file" class="form-control application-image-input" name="applications[${index}][image_file]" accept="image/*">
+                                <input type="file" class="form-control application-image-input" name="applications[${index}][image_file]" accept="image/*,.svg">
                                 <input type="hidden" name="applications[${index}][image_base64]" class="image-base64-input">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mb-3">
                                 <label class="form-label">Icon</label>
-                                <input type="file" class="form-control application-icon-input" name="applications[${index}][icon_file]" accept="image/*">
+                                <input type="file" class="form-control application-icon-input" name="applications[${index}][icon_file]" accept="image/*,.svg">
                                 <input type="hidden" name="applications[${index}][icon_base64]" class="icon-base64-input">
                             </div>
                         </div>
@@ -571,14 +571,14 @@
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label class="form-label">Image</label>
-                                <input type="file" class="form-control feature-image-input" name="features[${index}][image_file]" accept="image/*">
+                                <input type="file" class="form-control feature-image-input" name="features[${index}][image_file]" accept="image/*,.svg">
                                 <input type="hidden" name="features[${index}][image_base64]" class="image-base64-input">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label class="form-label">Icon</label>
-                                <input type="file" class="form-control feature-icon-input" name="features[${index}][icon_file]" accept="image/*">
+                                <input type="file" class="form-control feature-icon-input" name="features[${index}][icon_file]" accept="image/*,.svg">
                                 <input type="hidden" name="features[${index}][icon_base64]" class="icon-base64-input">
                             </div>
                         </div>

@@ -85,7 +85,7 @@
                                 <div class="form-group mb-3">
                                     <label for="page_image">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
-                                        id="page_image" name="page_image">
+                                        id="page_image" name="page_image" accept="image/*,.svg">
                                     @error('page_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -110,7 +110,8 @@
                                     <label for="is_active">Is Active <span class="text-danger">*</span></label>
                                     <select class="form-control @error('is_active') is-invalid @enderror" id="is_active"
                                         name="is_active" required>
-                                        <option value="1" {{ old('is_active') == '1' ? 'selected' : '' }}>Yes</option>
+                                        <option value="1" {{ old('is_active') == '1' ? 'selected' : '' }}>Yes
+                                        </option>
                                         <option value="0" {{ old('is_active') == '0' ? 'selected' : '' }}>No</option>
                                     </select>
                                     @error('is_active')

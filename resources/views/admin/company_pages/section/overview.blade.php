@@ -92,7 +92,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <input type="file" class="form-control" name="image" accept="image/*" disabled>
+                                <input type="file" class="form-control" name="image" accept="image/*,.svg" disabled>
                                 <input type="hidden" name="remove_image" value="0">
                             </div>
 
@@ -143,7 +143,7 @@
                                                         </div>
                                                     @endif
                                                     <input type="file" class="form-control"
-                                                        name="sections[0][image_file]" accept="image/*" disabled>
+                                                        name="sections[0][image_file]" accept="image/*,.svg" disabled>
                                                     <input type="hidden" name="sections[0][remove_image]"
                                                         value="0">
                                                 </div>
@@ -167,7 +167,7 @@
                                                 <div class="form-group mb-3">
                                                     <label class="form-label">Image</label>
                                                     <input type="file" class="form-control"
-                                                        name="sections[0][image_file]" accept="image/*" disabled>
+                                                        name="sections[0][image_file]" accept="image/*,.svg" disabled>
                                                     <input type="hidden" name="sections[0][remove_image]"
                                                         value="0">
                                                 </div>
@@ -260,7 +260,7 @@
                                                         </div>
                                                         <input type="file" class="form-control"
                                                             name="sections[{{ $index }}][icon_file]"
-                                                            accept="image/*" readonly>
+                                                            accept="image/*,.svg" readonly>
                                                         <input type="hidden"
                                                             name="sections[{{ $index }}][remove_icon]"
                                                             value="0">
@@ -346,7 +346,7 @@
                                                         @endif
                                                         <input type="file" class="form-control"
                                                             name="sections[{{ $index }}][image_file]"
-                                                            accept="image/*" disabled>
+                                                            accept="image/*,.svg" disabled>
                                                         <input type="hidden"
                                                             name="sections[{{ $index }}][remove_image]"
                                                             value="0">
@@ -418,7 +418,8 @@
                                         </div>
                                     @endif
                                 </div>
-                                <input type="file" class="form-control" name="image" accept="image/*" disabled>
+                                <input type="file" class="form-control" name="image" accept="image/*,.svg"
+                                    disabled>
                                 <input type="hidden" name="remove_image" value="0">
                             </div>
 
@@ -525,7 +526,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Icon Image</label>
-                                        <input type="file" class="form-control" name="sections[${index}][icon_file]" accept="image/*">
+                                        <input type="file" class="form-control" name="sections[${index}][icon_file]" accept="image/*,.svg">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -556,7 +557,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Image</label>
-                                        <input type="file" class="form-control" name="sections[${index}][image_file]" accept="image/*">
+                                        <input type="file" class="form-control" name="sections[${index}][image_file]" accept="image/*,.svg">
                                     </div>
                                 </div>
                                 <div class="col-md-4">

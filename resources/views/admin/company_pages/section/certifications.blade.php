@@ -104,7 +104,7 @@
                         <div class="form-group mb-3">
                             <label class="form-label">Image</label>
                             <div class="mb-2" id="currentImage"></div>
-                            <input type="file" class="form-control" name="image" accept="image/*">
+                            <input type="file" class="form-control" name="image" accept="image/*,.svg">
                             <input type="hidden" name="remove_image" value="0">
                         </div>
                         <div class="form-group mb-3">

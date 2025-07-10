@@ -46,7 +46,7 @@
                                 <div class="mb-3">
                                     <label for="page_image" class="form-label">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
-                                        id="page_image" name="page_image" accept="image/*">
+                                        id="page_image" name="page_image" accept="image/*,.svg">
                                     @error('page_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -56,7 +56,7 @@
                                 <div class="mb-3">
                                     <label for="home_image" class="form-label">Home Image</label>
                                     <input type="file" class="form-control @error('home_image') is-invalid @enderror"
-                                        id="home_image" name="home_image" accept="image/*">
+                                        id="home_image" name="home_image" accept="image/*,.svg">
                                     @error('home_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -80,7 +80,7 @@
                                     <label for="product_overview_image" class="form-label">Product Overview Image</label>
                                     <input type="file"
                                         class="form-control @error('product_overview_image') is-invalid @enderror"
-                                        id="product_overview_image" name="product_overview_image" accept="image/*">
+                                        id="product_overview_image" name="product_overview_image" accept="image/*,.svg">
                                     @error('product_overview_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

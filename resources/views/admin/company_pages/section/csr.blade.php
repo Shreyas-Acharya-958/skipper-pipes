@@ -80,7 +80,7 @@
                                         </div>
                                     @endif
                                 </div>
-                                <input type="file" class="form-control" name="image" accept="image/*" disabled>
+                                <input type="file" class="form-control" name="image" accept="image/*,.svg" disabled>
                                 <input type="hidden" name="remove_image" value="0">
                             </div>
 
@@ -141,7 +141,7 @@
                                                         @endif
                                                         <input type="file" class="form-control focus-area-icon-input"
                                                             name="sections[{{ $index }}][icon_file]"
-                                                            accept="image/*" readonly>
+                                                            accept="image/*,.svg" readonly>
                                                         <input type="hidden"
                                                             name="sections[{{ $index }}][icon_base64]"
                                                             class="icon-base64-input">
@@ -411,7 +411,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group mb-3">
                                         <label class="form-label">Icon Image</label>
-                                        <input type="file" class="form-control focus-area-icon-input" name="sections[${index}][icon_file]" accept="image/*">
+                                        <input type="file" class="form-control focus-area-icon-input" name="sections[${index}][icon_file]" accept="image/*,.svg">
                                         <input type="hidden" name="sections[${index}][icon_base64]" class="icon-base64-input">
                                     </div>
                                 </div>
