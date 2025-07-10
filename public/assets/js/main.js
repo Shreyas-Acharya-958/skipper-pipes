@@ -1,9 +1,9 @@
 /* ===================================================================
-
+    
     Author          : Valid Theme
     Template Name   : Dustra - Factory & Industrial Template
     Version         : 1.0
-
+    
 * ================================================================= */
 
 (function($) {
@@ -64,7 +64,7 @@
 
 
 
-
+        
         /* ==================================================
             # imagesLoaded active
         ===============================================*/
@@ -120,12 +120,12 @@
         /* ==================================================
             # Load More
         ===============================================*/
-        // $('.portfolio-list').simpleLoadMore({
-        //     item: '.pf-item',
-        //     count: 3,
-        //     counterInBtn: true,
-        //     btnText: 'View More {showing}/{total}',
-        // });
+        $('.portfolio-list').simpleLoadMore({
+            item: '.pf-item',
+            count: 3,
+            counterInBtn: true,
+            btnText: 'View More {showing}/{total}',
+        });
 
 
         /* ==================================================
@@ -441,7 +441,7 @@
     navbar.addClass('no-background')
   }
 });
-
+    
 
     /* ==================================================
         Preloader Init
@@ -485,7 +485,7 @@
 
   }
 
-// home products carousel/swiper - homepage
+// home products carousel/swiper - homepage 
    if ($(".tabs-box").length) {
     $(".tabs-box .tab-buttons .tab-btn").on("click", function (e) {
       e.preventDefault();
@@ -516,47 +516,40 @@
     });
   }
 
+// HOME PRODUCTS CAROUSEL - Owl Carousel
+$('.home-products__carousel').each(function () {
+    var $carousel = $(this);
+    var itemCount = $carousel.find('.item').length;
 
-     if ($("#home-products__thumb").length) {
-    let testimonialsThumb = new Swiper("#home-products__thumb", {
-      slidesPerView: 4,
-      spaceBetween: 16,
-      speed: 1400,
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
-      loop: true,
-      autoplay: {
-        delay: 5000
-      }
+    $carousel.owlCarousel({
+        items: 1,
+        margin: 30,
+        smartSpeed: 700,
+        loop: itemCount > 1, // ✅ Enable loop only if more than 1 item
+        autoplay: 6000,
+        nav: true,
+        dots: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: Math.min(2, itemCount)
+            },
+            992: {
+                items: Math.min(2, itemCount)
+            },
+            1200: {
+                items: Math.min(2, itemCount)
+            }
+        }
     });
 
-    let testimonialsCarousel = new Swiper("#home-products__carousel", {
-      observer: true,
-      observeParents: true,
-      loop: true,
-      speed: 1400,
-      mousewheel: false,
-      slidesPerView: 1,
-      spaceBetween: 72,
-      autoplay: {
-        delay: 5000
-      },
-      thumbs: {
-        swiper: testimonialsThumb
-      },
-      pagination: {
-        el: '#testimonials-one__carousel-pagination',
-        type: 'bullets',
-        clickable: true
-      },
-
-      "navigation": {
-        "nextEl": "#home-products__swiper-button-next",
-        "prevEl": "#home-products__swiper-button-prev"
-      },
-
-    });
-  }
+    if (itemCount <= 1) {
+    $carousel.addClass('single-item-carousel');
+}
+});
+    
 
 
    $(window).on("load", function () {
@@ -566,6 +559,50 @@
 
    });
 
+
+// Homepage - video section popup
+ if ($(".video-popup").length) {
+    $(".video-popup").magnificPopup({
+      type: "iframe",
+      mainClass: "mfp-fade",
+      removalDelay: 160,
+      preloader: true,
+
+      fixedContentPos: false
+    });
+  }
+
+// Careers page - culture section
+   $(".culture-tab-buttons .nav-link").click(function () {
+    $(".culture-tab-buttons .nav-link").removeClass("active");
+    $(this).addClass("active");
+
+    let target = $(this).data("target");
+
+    // Show correct content
+    $(".culture-tab-pane-content").addClass("d-none");
+    $("#content-" + target).removeClass("d-none");
+
+    // Show correct image
+    $(".culture-tab-image").addClass("d-none");
+    $("#img-" + target).removeClass("d-none");
+  });
+
+
+// FAQs page - filter tabs accordion
+$('.faq-tabs .nav-link').click(function () {
+    // Make tabs active
+    $('.faq-tabs .nav-link').removeClass('active');
+    $(this).addClass('active');
+
+    // Get selected category
+    let selectedCategory = $(this).data('category');
+
+    // Show selected FAQ section only
+    $('.faq-section').addClass('d-none');
+    $('.faq-section[data-category="' + selectedCategory + '"]').removeClass('d-none');
+  });
+  
    // window scroll event
 
   $(window).on("scroll", function () {
@@ -589,7 +626,7 @@
 
     OnePageMenuScroll();
 
-  });
+  });   
 
   const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -606,15 +643,15 @@
     $(".main-blogs-grid .blog-items .item").each(function () {
       observer.observe(this);
     });
-
+    
     $(".business-dir-card").each(function () {
       observer.observe(this);
     });
-
+    
     $(".business-heads-card").each(function () {
       observer.observe(this);
     });
-
+    
     $(".certificate-col").each(function () {
       observer.observe(this);
     });
@@ -682,6 +719,17 @@ var swiper = new Swiper('.location-swiper', {
     }
   }
 });
+
+// careers page
+$(".partners-tab").click(function() {
+    $(".partners-tab").removeClass("active");
+    $(this).addClass("active");
+
+    const newImg = $(this).data("image");
+    $("#tab-image").fadeOut(200, function() {
+      $(this).attr("src", newImg).fadeIn(200);
+    });
+  });
 
 
 })(jQuery); // End jQuery

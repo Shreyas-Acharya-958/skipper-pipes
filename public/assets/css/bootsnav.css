@@ -351,7 +351,7 @@ nav.bootsnav.nav-box .dropdown-menu {
   display: block;
   color: #232323;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .navbar .attr-nav.contact li p {
@@ -532,8 +532,8 @@ nav.bootsnav .dropdown.megamenu-fw .dropdown-menu {
 
 .navbar .side .widget .contact li .info span {
   display: block;
-  font-family: 'Gotham', sans-serif;
-  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
   line-height: 20px;
   text-transform: uppercase;
   font-size: 15px;
@@ -1014,7 +1014,7 @@ ul.cart-list > li > p {
 ul.cart-list > li.total {
   background-color: #f5f5f5;
   padding-bottom: 15px !important;
-  font-family: 'Gotham', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 ul.cart-list > li.total > .btn {
@@ -1024,7 +1024,7 @@ ul.cart-list > li.total > .btn {
 }
 
 ul.cart-list > li .price {
-  font-family: 'Gotham', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
 }
 
@@ -1259,7 +1259,7 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
   margin-left: 5px;
   margin-top: 2px;
   border: none;
-  font-weight: 800;
+  font-weight: 700;
   transition: all 0.35s ease-in-out;
 }
 
@@ -1357,10 +1357,10 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
 
 .side .widget.address ul li p {
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 0;
   color: #232323;
-  font-family: 'Gotham', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .side .widget.address ul li strong {
@@ -1452,8 +1452,9 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
   top: 0;
   content: "";
   height: 2px;
-  width: 30px;
-  background: #232323;
+  width: 20px;
+  /* background: white; */
+  background: black;
   transition: all 0.35s ease-in-out;
 }
 
@@ -1462,12 +1463,12 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
 }
 
 .navbar .attr-nav .side-menu a:hover span {
-  width: 20px;
+  width: 10px;
 }
 
 .navbar .attr-nav .side-menu span:nth-child(2) {
   top: 8px;
-  width: 25px;
+  width: 15px;
 }
 
 .navbar .attr-nav .side-menu a:hover span:nth-child(2) {
@@ -1480,7 +1481,7 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
 }
 
 .navbar .attr-nav .side-menu a:hover span:nth-child(3) {
-  width: 20px;
+  width: 10px;
 }
 
 .navbar.white.navbar-transparent .attr-nav .side-menu span,
@@ -1625,6 +1626,12 @@ nav.navbar.bootsnav {
     width: 100%;
     padding-left: 30px;
     padding-right: 30px;
+  }
+  nav.navbar.bootsnav ul.nav > li > a{
+    font-size: 12px !important;
+  }
+  .collapse.navbar-collapse{
+    padding-left: 70px !important;
   }
 }
 
@@ -1941,7 +1948,7 @@ nav.navbar.bootsnav {
 
   nav.navbar.bootsnav li.dropdown ul.dropdown-menu li.dropdown > a.dropdown-toggle:before {
     font-family: 'Font Awesome 5 Pro';
-    font-weight: 800;
+    font-weight: 700;
     float: right;
     content: "\f105";
     margin-top: 0;
@@ -1949,7 +1956,7 @@ nav.navbar.bootsnav {
 
   nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu li.dropdown > a.dropdown-toggle:before {
     font-family: 'Font Awesome 5 Pro';
-    font-weight: 800;
+    font-weight: 700;
     float: right;
     content: "\f105";
     margin-top: 0;
@@ -1957,7 +1964,7 @@ nav.navbar.bootsnav {
 
   nav.navbar.bootsnav ul.navbar-right li.dropdown.dropdown-left ul.dropdown-menu li.dropdown > a.dropdown-toggle:before {
     font-family: 'Font Awesome 5 Pro';
-    font-weight: 800;
+    font-weight: 700;
     float: left;
     content: "\f104";
     margin-top: 0;
@@ -2750,7 +2757,7 @@ nav.navbar.bootsnav {
 
   nav.navbar.bootsnav li.dropdown a.dropdown-toggle:before {
     font-family: 'Font Awesome 5 Pro';
-    font-weight: 800;
+    font-weight: 700;
     content: "\f105";
     float: right;
     font-size: 16px;
@@ -2864,7 +2871,7 @@ nav.navbar.bootsnav {
     float: right;
     font-family: "Font Awesome 5 Pro";
     font-size: 16px;
-    font-weight: 800;
+    font-weight: 700;
     margin-left: 10px;
     position: relative;
     right: -15px;
@@ -3616,6 +3623,9 @@ nav.navbar-inverse.navbar-full .navbar-toggle {
   nav.navbar.navbar-inverse.navbar-mobile ul.nav {
     border-top: solid 1px #222;
   }
+  .navbar .attr-nav .side-menu span{
+    background-color: white;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -3676,6 +3686,9 @@ nav.bootsnav.navbar-full .navbar-toggle:hover span {
     left: 0;
     top: 0;
     width: 100%;
+  }
+  .side{
+    padding: 25px !important;
   }
 }
 

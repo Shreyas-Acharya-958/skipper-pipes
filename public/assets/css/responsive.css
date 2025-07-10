@@ -581,9 +581,12 @@
   }
 
   .breadcrumb-area {
-    padding: 100px 0;
+    padding: 15px 0;
   }
 
+  .breadcrumb-area .breadcrumb li{
+    font-size: 14px;
+  }
   .default-padding-bottom.bottom-less {
     padding-bottom: 20px;
   }
@@ -1310,7 +1313,7 @@
 
   .footer-bottom {
     text-align: center;
-    background: #092e5a;
+    /* background: #092e5a; */
     padding-top: 30px;
   }
 
@@ -1437,15 +1440,6 @@
 
 
 /* Max Wide Mobile Layout: 600px. */
-@media only screen and (min-width: 600px) and (max-width: 767px) {
-
-  /* Portfolio */
-  .portfolio-area .gallery-items.colums-2 .pf-item,
-  .portfolio-area .gallery-items.colums-3 .pf-item,
-  .portfolio-area .gallery-items.colums-4 .pf-item {
-    width: 50%;
-  }
-}
 
 @media only screen and (max-width: 400px) {
   .attr-nav {
