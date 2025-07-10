@@ -129,9 +129,9 @@
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
-                            {{-- <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i> --}}
                             <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $category->icon) }}"
                                 alt="{{ $category->name }}">
+                            <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
                             <h4>{{ $category->name }}</h4>
                             <p>
                                 {{ $category->description }}

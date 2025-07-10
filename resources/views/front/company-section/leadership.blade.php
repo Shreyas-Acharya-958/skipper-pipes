@@ -43,7 +43,10 @@
              <div class="row philosophy-wrapper text-center mt-5">
                  @foreach ($leadership_section_twos as $leadership)
                      <div class="col-12 col-md philosophy-col">
-                         <i class="{{ $leadership->icon ?? 'fas fa-hard-hat' }} icon"></i>
+                         <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $leadership->icon) }}"
+                             alt="{{ $leadership->name ?? '' }}">
+
+                         {{-- <i class="{{ $leadership->icon ?? 'fas fa-hard-hat' }} icon"></i> --}}
                          <h4>{{ $leadership->title ?? '' }}</h4>
                          <p>{!! $leadership->description ?? '' !!}</p>
                      </div>
