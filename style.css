@@ -4979,6 +4979,32 @@ NETWORK - PAGE
 /* ================================
 Careers 
 ================================ */
+.culture-tab-buttons{
+  margin: 5px 0;
+}
+
+.culture-tab-buttons .nav-link{
+  background-color: white;
+  font-size: 17px;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 0px;
+  margin: 10px 0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+    transition: all 0.35s ease;
+}
+
+.culture-tab-buttons .nav-link:hover,
+.culture-tab-buttons .nav-link.active{
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.skipper-tab-content-area .culture-tab-pane-content p{
+  font-size: 18px;
+  line-height: 1.5;
+}
+
 .career-application-form{
   background-color: white;
   padding: 30px;

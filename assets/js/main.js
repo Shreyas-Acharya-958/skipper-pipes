@@ -573,6 +573,22 @@ $('.home-products__carousel').each(function () {
   }
 
 
+   $(".culture-tab-buttons .nav-link").click(function () {
+    $(".culture-tab-buttons .nav-link").removeClass("active");
+    $(this).addClass("active");
+
+    let target = $(this).data("target");
+
+    // Show correct content
+    $(".culture-tab-pane-content").addClass("d-none");
+    $("#content-" + target).removeClass("d-none");
+
+    // Show correct image
+    $(".culture-tab-image").addClass("d-none");
+    $("#img-" + target).removeClass("d-none");
+  });
+
+
 
    // window scroll event
 
