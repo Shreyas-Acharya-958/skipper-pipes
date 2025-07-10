@@ -11,8 +11,9 @@ return new class extends Migration
         Schema::create('home_section_ones', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('video')->nullable(); // Added video field
             $table->timestamps();
         });
 

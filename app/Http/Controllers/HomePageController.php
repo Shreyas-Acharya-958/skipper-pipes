@@ -10,6 +10,7 @@ use App\Models\HomeSectionFour;
 use App\Models\HomeSectionFourReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class HomePageController extends Controller
 {
@@ -31,8 +32,35 @@ class HomePageController extends Controller
             $section = HomeSectionOne::firstOrNew();
             $section->fill($request->only(['title', 'description']));
 
-            if ($request->hasFile('image')) {
-                $section->image = $request->file('image')->store('home/section1', 'public');
+            // Handle media upload based on type
+            if ($request->input('media_type') === 'video') {
+                // Remove existing image if switching to video
+                if ($section->image) {
+                    Storage::disk('public')->delete($section->image);
+                    $section->image = null;
+                }
+
+                if ($request->hasFile('video')) {
+                    // Remove existing video if any
+                    if ($section->video) {
+                        Storage::disk('public')->delete($section->video);
+                    }
+                    $section->video = $request->file('video')->store('home/section1', 'public');
+                }
+            } else {
+                // Remove existing video if switching to image
+                if ($section->video) {
+                    Storage::disk('public')->delete($section->video);
+                    $section->video = null;
+                }
+
+                if ($request->hasFile('image')) {
+                    // Remove existing image if any
+                    if ($section->image) {
+                        Storage::disk('public')->delete($section->image);
+                    }
+                    $section->image = $request->file('image')->store('home/section1', 'public');
+                }
             }
 
             $section->save();
@@ -49,6 +77,10 @@ class HomePageController extends Controller
                     $featureModel->sequence = $feature['id'] - 1; // Use ID as sequence
 
                     if (isset($feature['icon']) && $feature['icon']) {
+                        // Remove old icon if exists
+                        if ($featureModel->icon) {
+                            Storage::disk('public')->delete($featureModel->icon);
+                        }
                         $featureModel->icon = $feature['icon']->store('home/section1/features', 'public');
                     }
 

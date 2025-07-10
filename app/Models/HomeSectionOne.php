@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class HomeSectionOne extends Model
 {
-    protected $fillable = ['title', 'image', 'description'];
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+        'video'
+    ];
 
     public function features()
     {

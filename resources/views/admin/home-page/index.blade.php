@@ -57,6 +57,15 @@
                             </div>
 
                             <div class="form-group mb-3">
+                                <label class="form-label">Media Type</label>
+                                <select class="form-select" id="mediaType1" name="media_type" disabled>
+                                    <option value="image" {{ !isset($sectionOne->video) ? 'selected' : '' }}>Image</option>
+                                    <option value="video" {{ isset($sectionOne->video) ? 'selected' : '' }}>Video</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3" id="imageSection1"
+                                style="{{ isset($sectionOne->video) ? 'display: none;' : '' }}">
                                 <label for="image1" class="form-label">Image</label>
                                 @if (isset($sectionOne->image))
                                     <div class="mb-2">
@@ -66,6 +75,22 @@
                                 @endif
                                 <input type="file" class="form-control" id="image1" name="image"
                                     accept="image/*,.svg" disabled>
+                            </div>
+
+                            <div class="form-group mb-3" id="videoSection1"
+                                style="{{ !isset($sectionOne->video) ? 'display: none;' : '' }}">
+                                <label for="video1" class="form-label">Video</label>
+                                @if (isset($sectionOne->video))
+                                    <div class="mb-2">
+                                        <video width="200" controls>
+                                            <source src="{{ asset('storage/' . $sectionOne->video) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                @endif
+                                <input type="file" class="form-control" id="video1" name="video" accept="video/*"
+                                    disabled>
+                                <small class="text-muted">Supported formats: MP4, WebM, Ogg</small>
                             </div>
 
                             <div class="form-group mb-3">
@@ -497,6 +522,18 @@
                     }
                 });
             });
+
+            // Handle media type change
+            $('#mediaType1').change(function() {
+                const selectedType = $(this).val();
+                if (selectedType === 'image') {
+                    $('#imageSection1').show();
+                    $('#videoSection1').hide();
+                } else {
+                    $('#imageSection1').hide();
+                    $('#videoSection1').show();
+                }
+            });
         });
 
         // Function to add new feature
@@ -599,11 +636,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                                                                                                                                                                                                                <div class="mb-2">
-                                                                                                                                                                                                                                                                    <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                                                                                                                                                                                                        alt="Person Image" style="max-width: 100px;">
-                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                            ` : ''}
+                                                                                                                                                                                                                                                                            <div class="mb-2">
+                                                                                                                                                                                                                                                                                <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                                                                                                                                                    alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                        ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>
