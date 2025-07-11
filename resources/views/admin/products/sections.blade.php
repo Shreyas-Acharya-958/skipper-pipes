@@ -126,7 +126,7 @@
                                             <input type="hidden" name="applications[{{ $index }}][id]"
                                                 value="{{ $application->id }}">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-4" style="display: none;">
                                                     <div class="form-group mb-3">
                                                         <label class="form-label">Image</label>
                                                         @if ($application->image)
@@ -224,7 +224,7 @@
                                             <input type="hidden" name="features[{{ $index }}][id]"
                                                 value="{{ $feature->id }}">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6" style="display: none;">
                                                     <div class="form-group mb-3">
                                                         <label class="form-label">Image</label>
                                                         @if ($feature->image)

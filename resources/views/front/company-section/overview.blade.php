@@ -97,8 +97,7 @@
                 @foreach ($overview_section_threes as $overview)
                     @if ($overview->type == 'Philosophy')
                         <div class="col-12 col-md philosophy-col">
-                            <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $overview->icon) }}"
-                                alt="{{ $overview->title ?? '' }}">
+                            <img src="{{ asset('storage/' . $overview->icon) }}" alt="{{ $overview->title ?? '' }}">
 
                             <h4>{{ $overview->title }}</h4>
                             <p>{!! $overview->description !!}</p>

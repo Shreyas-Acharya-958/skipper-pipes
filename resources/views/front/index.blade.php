@@ -35,8 +35,10 @@
             <div class="row align-center">
                 <div class="home-about col-lg-5">
                     <div class="thumb">
-                        @if ($sectionOne && $sectionOne->image)
+                        @if ($sectionOne->image)
                             <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
+                        @elseif ($sectionOne->video)
+                            <video src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes"></video>
                         @else
                             <img src="assets/img/final/home-about.jpg" alt="Why Skipper Pipes">
                         @endif
@@ -129,8 +131,7 @@
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
-                            <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $category->icon) }}"
-                                alt="{{ $category->name }}">
+                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
                             <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
                             <h4>{{ $category->name }}</h4>
                             <p>

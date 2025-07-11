@@ -38,8 +38,7 @@
             <div class="row philosophy-wrapper text-center mt-5">
                 @foreach ($csr_section_twos as $csr)
                     <div class="col-12 col-md philosophy-col">
-                        <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $csr->icon) }}"
-                            alt="{{ $csr->name ?? '' }}">
+                        <img src="{{ asset('storage/' . $csr->icon) }}" alt="{{ $csr->name ?? '' }}">
                         <h4>{{ $csr->title ?? '' }}</h4>
                         <p>{!! $csr->description ?? '' !!}</p>
                     </div>

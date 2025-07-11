@@ -92,7 +92,7 @@
             <div class="row philosophy-wrapper text-center mt-5">
                 @foreach ($manufacturing_section_threes as $manufacturing)
                     <div class="col-12 col-md philosophy-col">
-                        <img style="width: 50px; height: 50px;" src="{{ asset('storage/' . $manufacturing->icon) }}"
+                        <img src="{{ asset('storage/' . $manufacturing->icon) }}"
                             alt="{{ $manufacturing->name ?? '' }}">
 
                         <h4>{{ $manufacturing->title ?? '' }}</h4>
