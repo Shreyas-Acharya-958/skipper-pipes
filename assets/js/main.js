@@ -602,6 +602,42 @@ $('.faq-tabs .nav-link').click(function () {
     $('.faq-section').addClass('d-none');
     $('.faq-section[data-category="' + selectedCategory + '"]').removeClass('d-none');
   });
+
+
+
+  // Media page - filter tabs accordion
+$('.media-tabs .nav-link').click(function () {
+    // Make tabs active
+    $('.media-tabs .nav-link').removeClass('active');
+    $(this).addClass('active');
+
+    // Get selected category
+    let selectedCategory = $(this).data('category');
+
+    // Show selected FAQ section only
+    $('.media-section').addClass('d-none');
+    $('.media-section[data-category="' + selectedCategory + '"]').removeClass('d-none');
+  });
+
+  // Contact page
+  $(document).ready(function () {
+  $('.city-list .list-group-item').click(function () {
+    var selectedCity = $(this).data('city');
+
+    // Update active tab
+    $('.city-list .list-group-item').removeClass('active');
+    $(this).addClass('active');
+
+    // Show relevant location info
+    $('.location-info').addClass('d-none');
+    $('#info-' + selectedCity).removeClass('d-none');
+
+    // Handle map pins
+    $('.active-pin').addClass('d-none');
+    $('.active-pin.pin-' + selectedCity).removeClass('d-none');
+  });
+});
+
   
    // window scroll event
 
