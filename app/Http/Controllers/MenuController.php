@@ -24,7 +24,10 @@ class MenuController extends Controller
             'is_active' => 'required|boolean',
         ]);
 
-        Menu::create($request->all());
+        $data = $request->all();
+        $data['link'] = $request->input('link') ?: '#';
+
+        Menu::create($data);
 
         return redirect()->route('admin.menus.index')
             ->with('success', 'Menu created successfully.');
@@ -41,7 +44,10 @@ class MenuController extends Controller
             'is_active' => 'required|boolean',
         ]);
 
-        $menu->update($request->all());
+        $data = $request->all();
+        $data['link'] = $request->input('link') ?: '#';
+
+        $menu->update($data);
 
         return redirect()->route('admin.menus.index')
             ->with('success', 'Menu updated successfully.');

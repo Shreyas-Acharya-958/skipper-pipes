@@ -42,9 +42,28 @@
                                                 id="parent_id" name="parent_id">
                                                 <option value="">None</option>
                                                 @foreach ($menus as $menu)
-                                                    <option value="{{ $menu->id }}">{{ $menu->title }}</option>
+                                                    <option value="{{ $menu->id }}" class="fw-bold">{{ $menu->title }}
+                                                    </option>
+                                                    @if ($menu->children->count() > 0)
+                                                        @foreach ($menu->children as $child)
+                                                            <option value="{{ $child->id }}" style="padding-left: 20px">
+                                                                └─ {{ $child->title }}</option>
+                                                            @if ($child->children->count() > 0)
+                                                                @foreach ($child->children as $grandchild)
+                                                                    <option value="{{ $grandchild->id }}"
+                                                                        style="padding-left: 40px">└─
+                                                                        {{ $grandchild->title }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
                                                 @endforeach
                                             </select>
+                                            <div class="form-text">
+                                                Select a parent menu to create nested menus. Items with no indentation are
+                                                top-level, single indent (└─) are second level, double indent (└─) are third
+                                                level.
+                                            </div>
                                             @error('parent_id')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

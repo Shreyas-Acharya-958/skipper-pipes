@@ -107,35 +107,6 @@
                     <ul class="nav navbar-nav navbar-center" data-in="#" data-out="#">
                         @php
                             $menus = App\Models\Menu::tree();
-                            $productCategories = App\Models\ProductCategory::where('status', 1)->get();
-                            $products = App\Models\Product::where('status', 1)->get();
-
-                            // Transform product categories into menu-like structure with their products
-                            $productMenuItems = $productCategories->map(function ($category) use ($products) {
-                                // Get products for this category
-                                $categoryProducts = $products->where('product_category_id', $category->id);
-
-                                // Transform products into menu items
-                                $productItems = $categoryProducts->map(function ($product) {
-                                    return (object) [
-                                        'title' => $product->title,
-                                        'link' => $product->slug,
-                                        'children' => collect([]),
-                                    ];
-                                });
-
-                                return (object) [
-                                    'title' => $category->name,
-                                    'link' => $category->slug,
-                                    'children' => $productItems,
-                                ];
-                            });
-
-                            foreach ($menus as $item) {
-                                if ($item->link == 'products') {
-                                    $item->children = $productMenuItems;
-                                }
-                            }
                         @endphp
                         @foreach ($menus as $menu)
                             @if ($menu->children->isEmpty())
@@ -151,10 +122,7 @@
                                         @foreach ($menu->children as $child)
                                             @if ($child->children->isEmpty())
                                                 <li>
-                                                    <a
-                                                        href="{{ $menu->link == 'products' ? url('products/' . $child->link) : url($child->link) }}">
-                                                        {{ $child->title }}
-                                                    </a>
+                                                    <a href="{{ url($child->link) }}">{{ $child->title }}</a>
                                                 </li>
                                             @else
                                                 <li class="dropdown">
@@ -162,9 +130,25 @@
                                                         data-toggle="dropdown">{{ $child->title }}</a>
                                                     <ul class="dropdown-menu">
                                                         @foreach ($child->children as $grandchild)
-                                                            <li><a
-                                                                    href="{{ url('products/' . $grandchild->link) }}">{{ $grandchild->title }}</a>
-                                                            </li>
+                                                            @if ($grandchild->children->isEmpty())
+                                                                <li>
+                                                                    <a
+                                                                        href="{{ url($grandchild->link) }}">{{ $grandchild->title }}</a>
+                                                                </li>
+                                                            @else
+                                                                <li class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle"
+                                                                        data-toggle="dropdown">{{ $grandchild->title }}</a>
+                                                                    <ul class="dropdown-menu">
+                                                                        @foreach ($grandchild->children as $greatgrandchild)
+                                                                            <li>
+                                                                                <a
+                                                                                    href="{{ url($greatgrandchild->link) }}">{{ $greatgrandchild->title }}</a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </li>
+                                                            @endif
                                                         @endforeach
                                                     </ul>
                                                 </li>
