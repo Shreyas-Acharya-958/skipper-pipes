@@ -38,7 +38,8 @@
                         @if ($sectionOne->image)
                             <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
                         @elseif ($sectionOne->video)
-                            <video src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes"></video>
+                            <video src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes" loop autoplay
+                                muted></video>
                         @else
                             <img src="assets/img/final/home-about.jpg" alt="Why Skipper Pipes">
                         @endif

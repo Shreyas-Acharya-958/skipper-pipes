@@ -151,19 +151,20 @@
                     <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="services-one__single">
                             <div class="services-one__img-box">
-
+                                <div class="services-one__img"><img src="{{ asset('storage/' . $application->image) }}"
+                                        alt=""></div>
                                 <div class="services-one__shape-1"></div>
                                 <div class="services-one__icon"><img src="{{ asset('storage/' . $application->icon) }}"
-                                        alt="">
-                                    <a href="mechanical-expert.html" class="services-one__arrow"><i
-                                            class="icon-right-arrow"></i></a>
-                                </div>
-                                <div class="services-one__content">
-                                    <h3 class="services-one__title">{{ $application->title }}</h3>
-                                    <p>{{ $application->description }}</p>
-                                </div>
+                                        alt=""></div>
+                                <a href="mechanical-expert.html" class="services-one__arrow"><i
+                                        class="icon-right-arrow"></i></a>
+                            </div>
+                            <div class="services-one__content">
+                                <h3 class="services-one__title">{{ $application->title }}</h3>
+                                <p>{{ $application->description }}</p>
                             </div>
                         </div>
+                    </div>
                 @endforeach
             </div>
         </div>
