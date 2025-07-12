@@ -22,7 +22,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('image')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
         });
 
@@ -40,7 +40,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('image')->nullable();
+            $table->json('images')->nullable();
             $table->integer('sequence')->default(0);
             $table->timestamps();
         });

@@ -55,43 +55,44 @@ class WhySkipperPipeController extends Controller
 
     public function saveSection3(Request $request)
     {
-        // Handle deleted sections
-        if ($request->deleted_sections) {
-            foreach ($request->deleted_sections as $id) {
-                $section = WhySkipperPipeSectionThree::find($id);
-                if ($section) {
-                    if ($section->image) {
-                        Storage::disk('public')->delete($section->image);
-                    }
-                    $section->delete();
+        $section = WhySkipperPipeSectionThree::first() ?? new WhySkipperPipeSectionThree();
+
+        // Handle multiple image uploads
+        if ($request->hasFile('images')) {
+            $images = [];
+            foreach ($request->file('images') as $image) {
+                $images[] = $image->store('why-skipper-pipes', 'public');
+            }
+
+            // Delete old images if they exist
+            if ($section->images) {
+                foreach ($section->images as $oldImage) {
+                    Storage::disk('public')->delete($oldImage);
                 }
             }
+
+            $section->images = $images;
         }
 
-        // Handle sections data
-        foreach ($request->sections as $data) {
-            if (isset($data['id']) && $data['id']) {
-                $section = WhySkipperPipeSectionThree::find($data['id']);
-            } else {
-                $section = new WhySkipperPipeSectionThree();
-            }
+        // Handle image deletions
+        if ($request->has('deleted_images')) {
+            $remainingImages = [];
+            $currentImages = $section->images ?? [];
 
-            if (isset($data['image_file']) && $data['image_file']) {
-                if ($section->image) {
-                    Storage::disk('public')->delete($section->image);
+            foreach ($currentImages as $image) {
+                if (!in_array($image, $request->deleted_images)) {
+                    $remainingImages[] = $image;
+                } else {
+                    Storage::disk('public')->delete($image);
                 }
-                $section->image = $data['image_file']->store('why-skipper-pipes', 'public');
             }
 
-            if (isset($data['remove_image']) && $data['remove_image'] && $section->image) {
-                Storage::disk('public')->delete($section->image);
-                $section->image = null;
-            }
-
-            $section->title = $data['title'];
-            $section->description = $data['description'];
-            $section->save();
+            $section->images = $remainingImages;
         }
+
+        $section->title = $request->title;
+        $section->description = $request->description;
+        $section->save();
 
         return redirect()->back()->with('success', 'Why Skipper Pipes section updated successfully');
     }
@@ -141,44 +142,52 @@ class WhySkipperPipeController extends Controller
 
     public function saveSection5(Request $request)
     {
-        // Handle deleted sections
-        if ($request->deleted_sections) {
-            foreach ($request->deleted_sections as $id) {
-                $section = WhySkipperPipeSectionFive::find($id);
-                if ($section) {
-                    if ($section->image) {
-                        Storage::disk('public')->delete($section->image);
-                    }
-                    $section->delete();
+        $section = WhySkipperPipeSectionFive::first() ?? new WhySkipperPipeSectionFive();
+
+        // Handle multiple image uploads
+        if ($request->hasFile('images')) {
+            $images = [];
+            $imageFiles = $request->file('images');
+
+            // Ensure $imageFiles is an array
+            if (!is_array($imageFiles)) {
+                $imageFiles = [$imageFiles];
+            }
+
+            foreach ($imageFiles as $image) {
+                $images[] = $image->store('why-skipper-pipes', 'public');
+            }
+
+            // Delete old images if they exist
+            if (!empty($section->images)) {
+                foreach ((array)$section->images as $oldImage) {
+                    Storage::disk('public')->delete($oldImage);
                 }
             }
+
+            $section->images = $images;
         }
 
-        // Handle sections data
-        foreach ($request->sections as $index => $data) {
-            if (isset($data['id']) && $data['id']) {
-                $section = WhySkipperPipeSectionFive::find($data['id']);
-            } else {
-                $section = new WhySkipperPipeSectionFive();
-            }
+        // Handle image deletions
+        if ($request->has('deleted_images')) {
+            $remainingImages = [];
+            $currentImages = (array)($section->images ?? []);
 
-            if (isset($data['image_file']) && $data['image_file']) {
-                if ($section->image) {
-                    Storage::disk('public')->delete($section->image);
+            foreach ($currentImages as $image) {
+                if (!in_array($image, $request->deleted_images)) {
+                    $remainingImages[] = $image;
+                } else {
+                    Storage::disk('public')->delete($image);
                 }
-                $section->image = $data['image_file']->store('why-skipper-pipes', 'public');
             }
 
-            if (isset($data['remove_image']) && $data['remove_image'] && $section->image) {
-                Storage::disk('public')->delete($section->image);
-                $section->image = null;
-            }
-
-            $section->title = $data['title'];
-            $section->description = $data['description'];
-            $section->sequence = $index + 1;
-            $section->save();
+            $section->images = $remainingImages;
         }
+
+        $section->title = $request->title;
+        $section->description = $request->description;
+        $section->sequence = 1; // Since it's a single entry
+        $section->save();
 
         return redirect()->back()->with('success', 'Quality section updated successfully');
     }

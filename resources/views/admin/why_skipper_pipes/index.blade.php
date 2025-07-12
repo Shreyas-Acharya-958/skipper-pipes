@@ -90,7 +90,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="main_description" class="form-label">Description</label>
-                                <textarea class="form-control tinymce" id="main_description" name="description" rows="6">{{ $mainSection->description ?? '' }}</textarea>
+                                <textarea class="form-control" name="description" rows="6" readonly required>{{ $mainSection->description ?? '' }}</textarea>
                             </div>
                         </form>
                     </div>
@@ -106,77 +106,47 @@
                             @csrf
                             <input type="hidden" name="active_tab" value="#section3">
 
-                            <div class="d-flex justify-content-between mb-3">
-                                <button type="button" class="btn btn-warning add-item-btn" style="display: none;">
-                                    <i class="fas fa-plus"></i> Add Item
+                            <div class="d-flex justify-content-end mb-3">
+                                <button type="button" class="btn btn-primary me-2 edit-btn">
+                                    <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <div>
-                                    <button type="button" class="btn btn-primary me-2 edit-btn">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-success save-btn" style="display: none;">
-                                        <i class="fas fa-save"></i> Save
-                                    </button>
-                                </div>
+                                <button type="submit" class="btn btn-success save-btn" style="display: none;">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
                             </div>
 
-                            <div id="section3_items_container">
-                                @if (isset($sectionThrees) && $sectionThrees->count() > 0)
-                                    @foreach ($sectionThrees as $index => $item)
-                                        <div class="section-item border rounded p-3 mb-3">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <h6 class="mb-0">Item {{ $index + 1 }}</h6>
-                                                <button type="button" class="btn btn-sm btn-danger remove-item-btn"
-                                                    style="display: none;">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" class="form-control" name="title"
+                                    value="{{ $sectionThrees->first()->title ?? '' }}" readonly required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Images</label>
+                                <div class="mb-2 d-flex flex-wrap gap-3">
+                                    @if (isset($sectionThrees->first()->images))
+                                        @foreach ($sectionThrees->first()->images as $index => $image)
+                                            <div class="position-relative d-inline-block">
+                                                <img src="{{ asset('storage/' . $image) }}"
+                                                    alt="Section Image {{ $index + 1 }}"
+                                                    style="max-width: 200px; height: auto;">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                    style="display: none;"
+                                                    data-image="{{ $image }}">&times;</button>
+                                                <input type="hidden" name="deleted_images[]" value=""
+                                                    class="deleted-image-input">
                                             </div>
-                                            <input type="hidden" name="sections[{{ $index }}][id]"
-                                                value="{{ $item->id }}">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label class="form-label">Image</label>
-                                                        @if ($item->image)
-                                                            <div class="position-relative d-inline-block mb-2">
-                                                                <img src="{{ asset('storage/' . $item->image) }}"
-                                                                    alt="Item Image {{ $index + 1 }}"
-                                                                    style="max-width: 200px; height: auto;">
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
-                                                                    style="display: none;"
-                                                                    data-image="item_{{ $index }}">&times;</button>
-                                                            </div>
-                                                        @endif
-                                                        <input type="file" class="form-control"
-                                                            name="sections[{{ $index }}][image_file]"
-                                                            accept="image/*,.svg" disabled>
-                                                        <input type="hidden"
-                                                            name="sections[{{ $index }}][remove_image]"
-                                                            value="0">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label class="form-label">Title</label>
-                                                        <input type="text" class="form-control"
-                                                            name="sections[{{ $index }}][title]"
-                                                            value="{{ $item->title }}" readonly required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <div class="text-center py-5">
-                                        <p class="text-muted">No items added yet. Click Edit and then Add Item to create
-                                            one.</p>
-                                    </div>
-                                @endif
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <input type="file" class="form-control" name="images[]" accept="image/*,.svg"
+                                    multiple disabled>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="section3_description" class="form-label">Description</label>
+                                <textarea class="form-control" name="description" rows="6" readonly required>{{ $sectionThrees->first()->description ?? '' }}</textarea>
                             </div>
                         </form>
                     </div>
@@ -278,77 +248,47 @@
                             @csrf
                             <input type="hidden" name="active_tab" value="#section5">
 
-                            <div class="d-flex justify-content-between mb-3">
-                                <button type="button" class="btn btn-warning add-item-btn" style="display: none;">
-                                    <i class="fas fa-plus"></i> Add Item
+                            <div class="d-flex justify-content-end mb-3">
+                                <button type="button" class="btn btn-primary me-2 edit-btn">
+                                    <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <div>
-                                    <button type="button" class="btn btn-primary me-2 edit-btn">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-success save-btn" style="display: none;">
-                                        <i class="fas fa-save"></i> Save
-                                    </button>
-                                </div>
+                                <button type="submit" class="btn btn-success save-btn" style="display: none;">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
                             </div>
 
-                            <div id="section5_items_container">
-                                @if (isset($sectionFives) && $sectionFives->count() > 0)
-                                    @foreach ($sectionFives as $index => $item)
-                                        <div class="section-item border rounded p-3 mb-3">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <h6 class="mb-0">Item {{ $index + 1 }}</h6>
-                                                <button type="button" class="btn btn-sm btn-danger remove-item-btn"
-                                                    style="display: none;">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
+                            <div class="form-group mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" class="form-control" name="title"
+                                    value="{{ $sectionFives->first()->title ?? '' }}" readonly required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Images</label>
+                                <div class="mb-2 d-flex flex-wrap gap-3">
+                                    @if (!empty($sectionFives->first()->images))
+                                        @foreach ((array) $sectionFives->first()->images as $index => $image)
+                                            <div class="position-relative d-inline-block">
+                                                <img src="{{ asset('storage/' . $image) }}"
+                                                    alt="Section Image {{ $index + 1 }}"
+                                                    style="max-width: 200px; height: auto;">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                    style="display: none;"
+                                                    data-image="{{ $image }}">&times;</button>
+                                                <input type="hidden" name="deleted_images[]" value=""
+                                                    class="deleted-image-input">
                                             </div>
-                                            <input type="hidden" name="sections[{{ $index }}][id]"
-                                                value="{{ $item->id }}">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label class="form-label">Image</label>
-                                                        @if ($item->image)
-                                                            <div class="position-relative d-inline-block mb-2">
-                                                                <img src="{{ asset('storage/' . $item->image) }}"
-                                                                    alt="Item Image {{ $index + 1 }}"
-                                                                    style="max-width: 200px; height: auto;">
-                                                                <button type="button"
-                                                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
-                                                                    style="display: none;"
-                                                                    data-image="item_{{ $index }}">&times;</button>
-                                                            </div>
-                                                        @endif
-                                                        <input type="file" class="form-control"
-                                                            name="sections[{{ $index }}][image_file]"
-                                                            accept="image/*,.svg" disabled>
-                                                        <input type="hidden"
-                                                            name="sections[{{ $index }}][remove_image]"
-                                                            value="0">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group mb-3">
-                                                        <label class="form-label">Title</label>
-                                                        <input type="text" class="form-control"
-                                                            name="sections[{{ $index }}][title]"
-                                                            value="{{ $item->title }}" readonly required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @else
-                                    <div class="text-center py-5">
-                                        <p class="text-muted">No items added yet. Click Edit and then Add Item to create
-                                            one.</p>
-                                    </div>
-                                @endif
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <input type="file" class="form-control" name="images[]" accept="image/*,.svg"
+                                    multiple disabled>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="section5_description" class="form-label">Description</label>
+                                <textarea class="form-control" name="description" rows="6" readonly required>{{ $sectionFives->first()->description ?? '' }}</textarea>
                             </div>
                         </form>
                     </div>
@@ -444,7 +384,6 @@
     </div>
 
     @push('scripts')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
         <script>
             $(document).ready(function() {
                 // Get the tab ID from URL hash or localStorage
@@ -463,43 +402,24 @@
                     window.location.hash = targetTab;
                 });
 
-                // Initialize TinyMCE
-                tinymce.init({
-                    selector: '#main_description',
-                    height: 300,
-                    menubar: false,
-                    plugins: 'lists link image code',
-                    toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
-                    verify_html: false,
-                    cleanup: false,
-                    valid_elements: '*[*]',
-                    extended_valid_elements: '*[*]',
-                    valid_children: '+*[*]',
-                    preserve_cdata: true,
-                    entity_encoding: 'raw',
-                    force_br_newlines: false,
-                    force_p_newlines: false,
-                    forced_root_block: '',
-                    keep_styles: true
-                });
-
                 // Edit button click handler
                 $('.edit-btn').click(function() {
                     const form = $(this).closest('form');
-                    form.find('input:not([type="hidden"]), textarea:not(.tinymce), select').removeAttr(
+                    form.find('input:not([type="hidden"]), textarea, select').removeAttr(
                         'readonly disabled');
-                    form.find('.save-btn, .remove-image-btn, .add-item-btn, .remove-item-btn').show();
+                    form.find('.save-btn, .remove-image-btn').show();
                     $(this).hide();
-
-                    // Enable TinyMCE editor
-                    tinymce.get('main_description')?.setMode('design');
                 });
 
-                // Remove image button click handler
-                $('.remove-image-btn').click(function() {
-                    const imageId = $(this).data('image');
-                    $(this).closest('.position-relative').remove();
-                    $('input[name="remove_' + imageId + '"]').val('1');
+                // Remove image button click handler for sections 3 and 5
+                $(document).on('click', '#section3 .remove-image-btn, #section5 .remove-image-btn', function() {
+                    const imageContainer = $(this).closest('.position-relative');
+                    const imagePath = $(this).data('image');
+                    const deletedInput = imageContainer.find('.deleted-image-input');
+
+                    // Mark image for deletion
+                    deletedInput.val(imagePath);
+                    imageContainer.hide();
                 });
 
                 // Dynamic item template
@@ -569,13 +489,7 @@
                 $('.section-form').on('submit', function() {
                     // Enable all fields before submit
                     $(this).find('input:not([type="hidden"]), textarea, select').removeAttr(
-                    'readonly disabled');
-
-                    // Get TinyMCE content
-                    const editor = tinymce.get('main_description');
-                    if (editor) {
-                        $('#main_description').val(editor.getContent());
-                    }
+                        'readonly disabled');
 
                     // Update active tab
                     const activeTab = localStorage.getItem('activeWhySkipperPipesTab') || '#main';

@@ -32,3 +32,34 @@ Information: Built for Every Condition (dyanmic add++)
 Image
 Title
 description
+
+---
+
+careers
+section1
+main
+id
+title
+description
+
+Section Name: Why Skipper
+Image
+Content
+
+---
+
+Section Name: Life at Skipper
+Repeated
+Tab Title
+Tab Content
+Tab Image
+
+---
+
+Section Name: Skipper Pipes
+Repeated
+Image
+Title
+Content
+
+======

@@ -9,7 +9,11 @@ class WhySkipperPipeSectionFive extends Model
     protected $fillable = [
         'title',
         'description',
-        'image',
+        'images',
         'sequence'
+    ];
+
+    protected $casts = [
+        'images' => 'array'
     ];
 }
