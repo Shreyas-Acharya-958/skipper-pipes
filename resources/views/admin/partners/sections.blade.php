@@ -67,13 +67,7 @@
                                                         <div class="card">
                                                             <img src="{{ asset('storage/' . trim($image)) }}"
                                                                 class="card-img-top" alt="Section Image">
-                                                            <div class="card-body text-center">
-                                                                <button type="button"
-                                                                    class="btn btn-danger btn-sm delete-image"
-                                                                    data-image="{{ trim($image) }}">
-                                                                    <i class="fas fa-trash"></i> Delete
-                                                                </button>
-                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -97,8 +91,7 @@
                             </div>
 
                             <form action="{{ route('admin.partners.sections.two.save', $partner) }}" method="POST"
-                                id="sectionTwoForm" class="tab-form" data-tab="section-two"
-                                enctype="multipart/form-data">
+                                id="sectionTwoForm" class="tab-form" data-tab="section-two" enctype="multipart/form-data">
                                 @csrf
                                 <div id="sectionTwoItems">
                                     @if ($partner->sectionTwo && count(json_decode($partner->sectionTwo->title)) > 0)
