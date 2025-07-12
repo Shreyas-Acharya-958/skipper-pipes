@@ -21,6 +21,7 @@ use App\Http\Controllers\ManufacturingController;
 use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\WhySkipperPipeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -140,6 +141,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/company-pages/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');
     Route::post('/company-pages/certifications/section1/save', [CertificationController::class, 'saveSectionOne'])->name('certifications.section1.save');
     Route::delete('/company-pages/certifications/section1/delete', [CertificationController::class, 'delete'])->name('certifications.section1.delete');
+
+    //
+    Route::get('why-skipper-pipes', [WhySkipperPipeController::class, 'index'])->name('why-skipper-pipes.index');
+    Route::post('why-skipper-pipes/main/save', [WhySkipperPipeController::class, 'saveMain'])->name('why-skipper-pipes.main.save');
+    Route::post('why-skipper-pipes/section3/save', [WhySkipperPipeController::class, 'saveSection3'])->name('why-skipper-pipes.section3.save');
+    Route::post('why-skipper-pipes/section4/save', [WhySkipperPipeController::class, 'saveSection4'])->name('why-skipper-pipes.section4.save');
+    Route::post('why-skipper-pipes/section5/save', [WhySkipperPipeController::class, 'saveSection5'])->name('why-skipper-pipes.section5.save');
+    Route::post('why-skipper-pipes/built-for-condition/save', [WhySkipperPipeController::class, 'saveBuiltForCondition'])->name('why-skipper-pipes.built-for-condition.save');
 });
 
 
@@ -155,6 +164,8 @@ Route::name('front.')->group(function () {
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
     Route::post('/partner-enquiry', [FrontController::class, 'storePartnerEnquiry'])->name('partner.enquiry');
 });
+
+
 // Route::get('/admin/users', function () {
 //     //redireto admin login page
 //     return redirect()->route('admin.login');
