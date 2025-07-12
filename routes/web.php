@@ -24,6 +24,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\WhySkipperPipeController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\FaqMasterController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,7 +43,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 // Admin routes (with auth middleware)
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
@@ -158,6 +159,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::post('careers/why-skipper/save', [CareerController::class, 'saveWhySkipper'])->name('careers.why-skipper.save');
     Route::post('careers/life-at-skipper/save', [CareerController::class, 'saveLifeAtSkipper'])->name('careers.life-at-skipper.save');
     Route::post('careers/skipper-pipes/save', [CareerController::class, 'saveSkipperPipes'])->name('careers.skipper-pipes.save');
+
+    //Faq
+    Route::resource('faq-masters', FaqMasterController::class)->names('faq_masters');
+    Route::get('faq-masters/{faqMaster}/faqs', [FaqMasterController::class, 'getFaqs']);
+    Route::post('faq-masters/{faqMaster}/faqs', [FaqMasterController::class, 'storeFaq']);
+    Route::put('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'updateFaq']);
+    Route::delete('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'deleteFaq']);
+
 
     // News Routes
     Route::resource('news', NewsController::class);
