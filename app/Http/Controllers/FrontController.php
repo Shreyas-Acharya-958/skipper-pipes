@@ -34,6 +34,9 @@ use App\Models\OverviewSectionTwo;
 use Illuminate\Http\Request;
 use App\Models\Partner;
 use App\Models\PartnerEnquiry;
+use App\Models\PartnerSectionOne;
+use App\Models\PartnerSectionTwo;
+use App\Models\PartnerPipesOffer;
 
 class FrontController extends Controller
 {
@@ -242,7 +245,7 @@ class FrontController extends Controller
         return back()->with('success', 'Comment posted successfully!');
     }
 
-    public function partner()
+    public function partner($slug)
     {
         // SEO data
         $seoData = [
@@ -252,10 +255,25 @@ class FrontController extends Controller
             'meta_author' => 'Skipper Pipes'
         ];
 
-        // Get the first active partner (assuming we're showing one partner type)
-        $partner = Partner::where('status', 1)
-            ->with(['sectionOne', 'sectionTwo', 'pipesOffers'])
+        // First get the partner ID
+        $partner = Partner::where('slug', $slug)
+            ->where('status', 1)
             ->first();
+
+        // Now get the related data using the partner_id
+        $sectionOne = PartnerSectionOne::where('partner_id', $partner->id)->first();
+        $sectionTwo = PartnerSectionTwo::where('partner_id', $partner->id)->first();
+        $pipesOffers = PartnerPipesOffer::where('partner_id', $partner->id)->get();
+
+        // Attach the relations manually
+        $partner->setRelation('sectionOne', $sectionOne);
+        $partner->setRelation('sectionTwo', $sectionTwo);
+        $partner->setRelation('pipesOffers', $pipesOffers);
+
+        // Update SEO data with partner specific info
+        $seoData['meta_title'] = $partner->meta_title ?? $partner->title . ' | Skipper Pipes';
+        $seoData['meta_description'] = $partner->meta_description ?? substr(strip_tags($partner->description), 0, 160);
+        $seoData['meta_keywords'] = $partner->meta_keywords ?? $partner->title . ', partner, skipper pipes';
 
         return view('front.partner', compact('seoData', 'partner'));
     }
