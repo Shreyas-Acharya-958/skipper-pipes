@@ -39,27 +39,28 @@ careers
 section1
 main
 id
+images
 title
 description
 
-Section Name: Why Skipper
-Image
+Information: Why Skipper
+Images
 Content
 
 ---
 
-Section Name: Life at Skipper
-Repeated
-Tab Title
-Tab Content
-Tab Image
-
----
-
-Section Name: Skipper Pipes
+Information: Life at Skipper(dyanmic add++)
 Repeated
 Image
 Title
-Content
+description
+
+---
+
+Information: Skipper Pipes(dyanmic add++)
+Repeated
+Image
+Title
+description
 
 ======

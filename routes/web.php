@@ -22,6 +22,7 @@ use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\WhySkipperPipeController;
+use App\Http\Controllers\CareerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -149,6 +150,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('why-skipper-pipes/section4/save', [WhySkipperPipeController::class, 'saveSection4'])->name('why-skipper-pipes.section4.save');
     Route::post('why-skipper-pipes/section5/save', [WhySkipperPipeController::class, 'saveSection5'])->name('why-skipper-pipes.section5.save');
     Route::post('why-skipper-pipes/built-for-condition/save', [WhySkipperPipeController::class, 'saveBuiltForCondition'])->name('why-skipper-pipes.built-for-condition.save');
+
+    // Career Routes
+    Route::get('careers', [CareerController::class, 'index'])->name('careers.index');
+    Route::post('careers/main/save', [CareerController::class, 'saveMain'])->name('careers.main.save');
+    Route::post('careers/why-skipper/save', [CareerController::class, 'saveWhySkipper'])->name('careers.why-skipper.save');
+    Route::post('careers/life-at-skipper/save', [CareerController::class, 'saveLifeAtSkipper'])->name('careers.life-at-skipper.save');
+    Route::post('careers/skipper-pipes/save', [CareerController::class, 'saveSkipperPipes'])->name('careers.skipper-pipes.save');
 });
 
 
