@@ -64,3 +64,11 @@ Title
 description
 
 ======
+it's simler copy of banner
+news
+id
+title
+press_release:date
+file (pdf)
+
+---

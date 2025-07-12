@@ -23,6 +23,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\WhySkipperPipeController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,7 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 // Admin routes (with auth middleware)
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
@@ -157,6 +158,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('careers/why-skipper/save', [CareerController::class, 'saveWhySkipper'])->name('careers.why-skipper.save');
     Route::post('careers/life-at-skipper/save', [CareerController::class, 'saveLifeAtSkipper'])->name('careers.life-at-skipper.save');
     Route::post('careers/skipper-pipes/save', [CareerController::class, 'saveSkipperPipes'])->name('careers.skipper-pipes.save');
+
+    // News Routes
+    Route::resource('news', NewsController::class);
+    Route::post('news/update-sequence', [NewsController::class, 'updateSequence'])->name('news.update-sequence');
 });
 
 
