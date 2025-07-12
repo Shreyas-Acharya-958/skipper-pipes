@@ -135,7 +135,8 @@ class PartnerController extends Controller
             ]
         );
 
-        return redirect()->back()->with('success', 'Section One updated successfully.');
+        return redirect()->route('admin.partners.sections', $partner)->with('success', 'Section One updated successfully.')
+            ->with('active_tab', 'section-one');
     }
 
     public function deleteImage(Request $request, Partner $partner)
@@ -159,21 +160,51 @@ class PartnerController extends Controller
     {
         $request->validate([
             'titles.*' => 'required|string|max:255',
-            'descriptions.*' => 'required|string'
+            'descriptions.*' => 'required|string',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'existing_images.*' => 'nullable|string'
         ]);
 
         $titles = $request->titles;
         $descriptions = $request->descriptions;
+        $images = [];
+
+        // Process each item
+        foreach ($titles as $key => $title) {
+            // Handle image for this item
+            if ($request->hasFile('images') && isset($request->file('images')[$key])) {
+                // If there's a new image uploaded
+                $file = $request->file('images')[$key];
+                if ($file) {
+                    // Delete old image if exists
+                    if (isset($request->existing_images[$key]) && !empty($request->existing_images[$key])) {
+                        Storage::disk('public')->delete($request->existing_images[$key]);
+                    }
+                    // Store new image
+                    $path = $file->store('partner-sections', 'public');
+                    $images[$key] = $path;
+                }
+            } elseif (isset($request->existing_images[$key]) && !empty($request->existing_images[$key])) {
+                // Keep existing image if no new image was uploaded
+                $images[$key] = $request->existing_images[$key];
+            } else {
+                // No image for this item
+                $images[$key] = null;
+            }
+        }
 
         $partner->sectionTwo()->updateOrCreate(
             ['partner_id' => $partner->id],
             [
                 'title' => json_encode($titles),
-                'description' => json_encode($descriptions)
+                'description' => json_encode($descriptions),
+                'image' => json_encode($images)
             ]
         );
 
-        return redirect()->back()->with('success', 'Section Two updated successfully.');
+        return redirect()->route('admin.partners.sections', $partner)
+            ->with('success', 'Section Two updated successfully.')
+            ->with('active_tab', 'section-two');
     }
 
     public function savePipesOffers(Request $request, Partner $partner)
@@ -191,13 +222,15 @@ class PartnerController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', 'Pipes offer images uploaded successfully.');
+        return redirect()->route('admin.partners.sections', $partner)->with('success', 'Pipes offer images uploaded successfully.')
+            ->with('active_tab', 'pipes-offers');
     }
 
     public function deletePipesOffer(Partner $partner, PartnerPipesOffer $offer)
     {
         Storage::disk('public')->delete($offer->image);
         $offer->delete();
-        return redirect()->back()->with('success', 'Pipes offer image deleted successfully.');
+        return redirect()->route('admin.partners.sections', $partner)->with('success', 'Pipes offer image deleted successfully.')
+            ->with('active_tab', 'pipes-offers');
     }
 }

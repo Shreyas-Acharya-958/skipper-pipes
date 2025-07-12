@@ -32,6 +32,8 @@ use App\Models\OverviewSectionOne;
 use App\Models\OverviewSectionThree;
 use App\Models\OverviewSectionTwo;
 use Illuminate\Http\Request;
+use App\Models\Partner;
+use App\Models\PartnerEnquiry;
 
 class FrontController extends Controller
 {
@@ -238,5 +240,45 @@ class FrontController extends Controller
         ]);
 
         return back()->with('success', 'Comment posted successfully!');
+    }
+
+    public function partner()
+    {
+        // SEO data
+        $seoData = [
+            'meta_title' => 'Partner | Skipper Pipes',
+            'meta_description' => 'Partner with Skipper Pipes to access our high-quality pipes and fittings for your plumbing needs.',
+            'meta_keywords' => 'partner, pipes, plumbing, fittings, skipper pipes',
+            'meta_author' => 'Skipper Pipes'
+        ];
+
+        // Get the first active partner (assuming we're showing one partner type)
+        $partner = Partner::where('status', 1)
+            ->with(['sectionOne', 'sectionTwo', 'pipesOffers'])
+            ->first();
+
+        return view('front.partner', compact('seoData', 'partner'));
+    }
+
+    public function storePartnerEnquiry(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'required|string|max:20',
+            'firm_name' => 'nullable|string|max:255',
+            'gst' => 'nullable|string|max:20',
+            'pincode' => 'required|string|max:10',
+            'occupation' => 'required|string|max:255',
+            'experience' => 'nullable|string|in:1-5,6-10,10+',
+            'dealership_type' => 'nullable|string|in:pipes,tank,bathware',
+            'description' => 'nullable|string',
+            'partner_id' => 'nullable|exists:partners,id'
+        ]);
+
+        // Create partner enquiry
+        PartnerEnquiry::create($validated);
+
+        return redirect()->back()->with('success', 'Thank you for your interest! We will contact you soon.');
     }
 }

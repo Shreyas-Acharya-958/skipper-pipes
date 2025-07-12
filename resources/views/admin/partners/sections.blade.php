@@ -13,16 +13,16 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="sectionTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="section-one-tab" data-bs-toggle="tab"
-                                data-bs-target="#section-one" type="button" role="tab" aria-controls="section-one"
-                                aria-selected="true">Why Become a Skipper Distributor/Dealer?</button>
+                            <button class="nav-link" id="section-one-tab" data-bs-toggle="tab" data-bs-target="#section-one"
+                                type="button" role="tab" aria-controls="section-one" aria-selected="true">Why Become a
+                                Skipper Distributor/Dealer?</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="section-two-tab" data-bs-toggle="tab" data-bs-target="#section-two"
                                 type="button" role="tab" aria-controls="section-two" aria-selected="false">What Skipper
                                 Pipes Offers</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation" style="display:none">
                             <button class="nav-link" id="pipes-offers-tab" data-bs-toggle="tab"
                                 data-bs-target="#pipes-offers" type="button" role="tab" aria-controls="pipes-offers"
                                 aria-selected="false">Pipes Offer Images</button>
@@ -30,10 +30,9 @@
                     </ul>
                     <div class="tab-content mt-4" id="sectionTabsContent">
                         <!-- Section One Tab -->
-                        <div class="tab-pane fade show active" id="section-one" role="tabpanel"
-                            aria-labelledby="section-one-tab">
+                        <div class="tab-pane fade" id="section-one" role="tabpanel" aria-labelledby="section-one-tab">
                             <form action="{{ route('admin.partners.sections.one.save', $partner) }}" method="POST"
-                                enctype="multipart/form-data" id="sectionOneForm">
+                                enctype="multipart/form-data" id="sectionOneForm" class="tab-form" data-tab="section-one">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -98,13 +97,40 @@
                             </div>
 
                             <form action="{{ route('admin.partners.sections.two.save', $partner) }}" method="POST"
-                                id="sectionTwoForm">
+                                id="sectionTwoForm" class="tab-form" data-tab="section-two"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div id="sectionTwoItems">
                                     @if ($partner->sectionTwo && count(json_decode($partner->sectionTwo->title)) > 0)
                                         @foreach (json_decode($partner->sectionTwo->title) as $key => $title)
                                             <div class="row mb-3 section-two-item">
-                                                <div class="col-md-5">
+                                                <div class="col-md-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Image</label>
+                                                        @php
+                                                            $sectionTwoImages = $partner->sectionTwo
+                                                                ? json_decode($partner->sectionTwo->image, true)
+                                                                : [];
+                                                        @endphp
+                                                        @if (!empty($sectionTwoImages) && isset($sectionTwoImages[$key]))
+                                                            <div class="mb-2 image-preview">
+                                                                <img src="{{ asset('storage/' . $sectionTwoImages[$key]) }}"
+                                                                    alt="Section Image"
+                                                                    style="max-width: 100px; height: auto;">
+                                                            </div>
+                                                        @endif
+                                                        <input type="file" class="form-control image-input"
+                                                            name="images[]" accept="image/*,.svg"
+                                                            onchange="previewImage(this)">
+                                                        <input type="hidden" name="existing_images[]"
+                                                            value="{{ isset($sectionTwoImages[$key]) ? $sectionTwoImages[$key] : '' }}">
+                                                        <div class="mt-2 new-image-preview" style="display: none;">
+                                                            <img src="" alt="New Image Preview"
+                                                                style="max-width: 100px; height: auto;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
                                                     <div class="mb-3">
                                                         <label class="form-label">Title <span
                                                                 class="text-danger">*</span></label>
@@ -112,7 +138,7 @@
                                                             value="{{ $title }}" required>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-5">
                                                     <div class="mb-3">
                                                         <label class="form-label">Description <span
                                                                 class="text-danger">*</span></label>
@@ -142,7 +168,7 @@
                         <!-- Pipes Offers Tab -->
                         <div class="tab-pane fade" id="pipes-offers" role="tabpanel" aria-labelledby="pipes-offers-tab">
                             <form action="{{ route('admin.partners.sections.pipes-offers.save', $partner) }}"
-                                method="POST" enctype="multipart/form-data">
+                                method="POST" enctype="multipart/form-data" class="tab-form" data-tab="pipes-offers">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -195,16 +221,70 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Get active tab from URL or session flash
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            const sessionTab = '{{ session('active_tab') }}';
+
+            // Function to activate tab
+            function activateTab(tabId) {
+                const tab = document.querySelector(`#${tabId}-tab`);
+                if (tab) {
+                    const bsTab = new bootstrap.Tab(tab);
+                    bsTab.show();
+                }
+            }
+
+            // Set active tab from URL, session, or default to first tab
+            if (tabParam) {
+                activateTab(tabParam);
+            } else if (sessionTab) {
+                activateTab(sessionTab);
+            } else {
+                activateTab('section-one');
+            }
+
+            // Update URL when tab changes
+            const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
+            tabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function(event) {
+                    const tabId = event.target.id.replace('-tab', '');
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('tab', tabId);
+                    window.history.pushState({}, '', url);
+                });
+            });
+
+            // Handle form submissions
+            const forms = document.querySelectorAll('.tab-form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const tabId = this.dataset.tab;
+                    const formData = new FormData(this);
+                    formData.append('active_tab', tabId);
+                });
+            });
+
             // Section Two Item Template
             const sectionTwoTemplate = `
                 <div class="row mb-3 section-two-item">
-                    <div class="col-md-5">
+                    <div class="col-md-2">
+                        <div class="mb-3">
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control image-input" name="images[]" accept="image/*,.svg" onchange="previewImage(this)">
+                            <input type="hidden" name="existing_images[]" value="">
+                            <div class="mt-2 new-image-preview" style="display: none;">
+                                <img src="" alt="New Image Preview" style="max-width: 100px; height: auto;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="mb-3">
                             <label class="form-label">Title <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="titles[]" required>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="mb-3">
                             <label class="form-label">Description <span class="text-danger">*</span></label>
                             <textarea class="form-control" name="descriptions[]" rows="3" required></textarea>
@@ -256,6 +336,72 @@
                             });
                     }
                 });
+            });
+
+            // Image preview function
+            function previewImage(input) {
+                const previewContainer = input.closest('.mb-3').querySelector('.new-image-preview');
+                const previewImage = previewContainer.querySelector('img');
+                const existingPreview = input.closest('.mb-3').querySelector('.image-preview');
+
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewContainer.style.display = 'block';
+                        if (existingPreview) {
+                            existingPreview.style.display = 'none';
+                        }
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    previewContainer.style.display = 'none';
+                    if (existingPreview) {
+                        existingPreview.style.display = 'block';
+                    }
+                }
+            }
+
+            // Add image preview to new items
+            document.getElementById('addSectionTwoItem').addEventListener('click', function() {
+                const newItem = document.createElement('div');
+                newItem.innerHTML = `
+                    <div class="row mb-3 section-two-item">
+                        <div class="col-md-2">
+                            <div class="mb-3">
+                                <label class="form-label">Image</label>
+                                <input type="file" class="form-control image-input" name="images[]" accept="image/*,.svg" onchange="previewImage(this)">
+                                <input type="hidden" name="existing_images[]" value="">
+                                <div class="mt-2 new-image-preview" style="display: none;">
+                                    <img src="" alt="New Image Preview" style="max-width: 100px; height: auto;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Title <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="titles[]" required>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label">Description <span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="descriptions[]" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="mb-3">
+                                <label class="form-label">&nbsp;</label>
+                                <button type="button" class="btn btn-danger d-block w-100 remove-item">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('sectionTwoItems').appendChild(newItem.firstElementChild);
             });
         });
     </script>

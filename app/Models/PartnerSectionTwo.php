@@ -9,7 +9,8 @@ class PartnerSectionTwo extends Model
     protected $fillable = [
         'partner_id',
         'title',
-        'description'
+        'description',
+        'image'
     ];
 
     public function partner()

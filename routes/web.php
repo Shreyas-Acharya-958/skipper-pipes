@@ -150,9 +150,10 @@ Route::name('front.')->group(function () {
     Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs.index');
     Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
     Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeComment'])->name('blogs.comment');
-    //Route::get('/products', [FrontController::class, 'products'])->name('products.index');
+    Route::get('/partner/{slug}', [FrontController::class, 'partner'])->name('partner.show');
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
+    Route::post('/partner-enquiry', [FrontController::class, 'storePartnerEnquiry'])->name('partner.enquiry');
 });
 // Route::get('/admin/users', function () {
 //     //redireto admin login page

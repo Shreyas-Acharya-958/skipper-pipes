@@ -1,9 +1,9 @@
 /* ===================================================================
-    
+
     Author          : Valid Theme
     Template Name   : Dustra - Factory & Industrial Template
     Version         : 1.0
-    
+
 * ================================================================= */
 
 (function($) {
@@ -64,7 +64,7 @@
 
 
 
-        
+
         /* ==================================================
             # imagesLoaded active
         ===============================================*/
@@ -114,17 +114,6 @@
             $('.timer').countTo();
         }, {
             accY: -100
-        });
-
-
-        /* ==================================================
-            # Load More
-        ===============================================*/
-        $('.portfolio-list').simpleLoadMore({
-            item: '.pf-item',
-            count: 3,
-            counterInBtn: true,
-            btnText: 'View More {showing}/{total}',
         });
 
 
@@ -441,7 +430,7 @@
     navbar.addClass('no-background')
   }
 });
-    
+
 
     /* ==================================================
         Preloader Init
@@ -485,7 +474,7 @@
 
   }
 
-// home products carousel/swiper - homepage 
+// home products carousel/swiper - homepage
    if ($(".tabs-box").length) {
     $(".tabs-box .tab-buttons .tab-btn").on("click", function (e) {
       e.preventDefault();
@@ -549,7 +538,7 @@ $('.home-products__carousel').each(function () {
     $carousel.addClass('single-item-carousel');
 }
 });
-    
+
 
 
    $(window).on("load", function () {
@@ -602,7 +591,7 @@ $('.faq-tabs .nav-link').click(function () {
     $('.faq-section').addClass('d-none');
     $('.faq-section[data-category="' + selectedCategory + '"]').removeClass('d-none');
   });
-  
+
    // window scroll event
 
   $(window).on("scroll", function () {
@@ -626,7 +615,7 @@ $('.faq-tabs .nav-link').click(function () {
 
     OnePageMenuScroll();
 
-  });   
+  });
 
   const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -643,15 +632,15 @@ $('.faq-tabs .nav-link').click(function () {
     $(".main-blogs-grid .blog-items .item").each(function () {
       observer.observe(this);
     });
-    
+
     $(".business-dir-card").each(function () {
       observer.observe(this);
     });
-    
+
     $(".business-heads-card").each(function () {
       observer.observe(this);
     });
-    
+
     $(".certificate-col").each(function () {
       observer.observe(this);
     });
@@ -733,3 +722,50 @@ $(".partners-tab").click(function() {
 
 
 })(jQuery); // End jQuery
+
+/* ==================================================
+            # One Page Menu Scroll
+        ===============================================*/
+        function OnePageMenuScroll() {
+            $('.onepage nav a[href*="#"]:not([href="#"])').on('click', function() {
+                if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top - 50
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        }
+
+/* ==================================================
+            # Partners Tab Image Switch
+        ===============================================*/
+        $(document).ready(function() {
+            // Set initial image from active tab
+            var activeTab = $('.partners-tab.active');
+            if (activeTab.length) {
+                var imageUrl = activeTab.data('image');
+                if (imageUrl) {
+                    $('.image-display img').attr('src', imageUrl);
+                }
+            }
+
+            // Handle tab clicks
+            $('.partners-tab').on('click', function() {
+                // Remove active class from all tabs
+                $('.partners-tab').removeClass('active');
+
+                // Add active class to clicked tab
+                $(this).addClass('active');
+
+                // Update image
+                var imageUrl = $(this).data('image');
+                if (imageUrl) {
+                    $('.image-display img').attr('src', imageUrl);
+                }
+            });
+        });
