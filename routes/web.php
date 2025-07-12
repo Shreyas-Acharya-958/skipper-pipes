@@ -25,6 +25,7 @@ use App\Http\Controllers\WhySkipperPipeController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqMasterController;
+use App\Http\Controllers\SectionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -167,6 +168,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'updateFaq']);
     Route::delete('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'deleteFaq']);
 
+    // Sections Routes
+    Route::resource('sections', SectionController::class);
 
     // News Routes
     Route::resource('news', NewsController::class);
