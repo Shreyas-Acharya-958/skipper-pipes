@@ -54,6 +54,12 @@
                                                 @endif
                                             @elseif ($item->file_type === 'pdf')
                                                 @if ($item->file)
+                                                    @if ($item->thumbnail)
+                                                        <img src="{{ asset('storage/' . $item->thumbnail) }}"
+                                                            alt="{{ $item->title }}"
+                                                            style="max-width: 100px; height: auto;">
+                                                        <br>
+                                                    @endif
                                                     <a href="{{ asset('storage/' . $item->file) }}" target="_blank">View
                                                         PDF</a>
                                                 @else

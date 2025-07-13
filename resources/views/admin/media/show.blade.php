@@ -54,6 +54,12 @@
                                             @endif
                                         @elseif ($media->file_type === 'pdf')
                                             @if ($media->file)
+                                                @if ($media->thumbnail)
+                                                    <img src="{{ asset('storage/' . $media->thumbnail) }}"
+                                                        class="img-fluid rounded mb-2" alt="{{ $media->title }}"
+                                                        style="max-width: 200px;">
+                                                    <br>
+                                                @endif
                                                 <a href="{{ asset('storage/' . $media->file) }}" target="_blank">View
                                                     PDF</a>
                                             @else

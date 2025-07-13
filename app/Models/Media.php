@@ -13,6 +13,7 @@ class Media extends Model
         'title',
         'file_type',
         'file',
+        'thumbnail',
         'media_type',
     ];
 }

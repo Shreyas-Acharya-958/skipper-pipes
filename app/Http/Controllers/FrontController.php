@@ -37,6 +37,7 @@ use App\Models\PartnerEnquiry;
 use App\Models\PartnerSectionOne;
 use App\Models\PartnerSectionTwo;
 use App\Models\PartnerPipesOffer;
+use App\Models\Media;
 
 class FrontController extends Controller
 {
@@ -298,5 +299,31 @@ class FrontController extends Controller
         PartnerEnquiry::create($validated);
 
         return redirect()->back()->with('success', 'Thank you for your interest! We will contact you soon.');
+    }
+
+    public function careers()
+    {
+        return view('front.resources.careers');
+    }
+
+    public function faqs()
+    {
+        return view('front.resources.faqs');
+    }
+
+    public function news()
+    {
+        return view('front.resources.news');
+    }
+
+    public function media()
+    {
+        $media = Media::all()->groupBy('media_type');
+        return view('front.resources.media', compact('media'));
+    }
+
+    protected function whySkipperPipes($slug)
+    {
+        return view('front.product-detail', compact('slug'));
     }
 }

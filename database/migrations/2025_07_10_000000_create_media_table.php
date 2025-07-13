@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->enum('file_type', ['video', 'youtube_link', 'image', 'pdf']);
             $table->string('file')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->enum('media_type', ['Company', 'Events', 'Awards'])->default('Company'); // media type
             $table->timestamps();
         });

@@ -83,6 +83,11 @@
                                                 <video src="{{ asset('storage/' . $media->file) }}"
                                                     style="max-width: 200px; height: auto;" controls></video>
                                             @elseif ($media->file_type === 'pdf')
+                                                @if ($media->thumbnail)
+                                                    <img src="{{ asset('storage/' . $media->thumbnail) }}"
+                                                        alt="{{ $media->title }}" style="max-width: 200px; height: auto;">
+                                                    <br>
+                                                @endif
                                                 <a href="{{ asset('storage/' . $media->file) }}" target="_blank">View
                                                     PDF</a>
                                             @elseif ($media->file_type === 'youtube_link')

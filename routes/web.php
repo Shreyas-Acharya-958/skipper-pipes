@@ -191,6 +191,11 @@ Route::name('front.')->group(function () {
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
     Route::post('/partner-enquiry', [FrontController::class, 'storePartnerEnquiry'])->name('partner.enquiry');
+
+    Route::get('/faqs', [FrontController::class, 'faqs'])->name('faqs.index');
+    Route::get('/careers', [FrontController::class, 'careers'])->name('careers.index');
+    Route::get('/news', [FrontController::class, 'news'])->name('news.index');
+    Route::get('/media', [FrontController::class, 'media'])->name('media.index');
 });
 
 
