@@ -28,9 +28,9 @@
 <body>
     <div class="dashboard-container">
         <div class="sidebar">
-            <div class="logo">
+            {{-- <div class="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
-            </div>
+            </div> --}}
             <nav class="nav flex-column">
                 <!-- Dashboard -->
                 <a class="nav-link{{ request()->routeIs('admin.dashboard') ? ' active' : '' }}"
@@ -38,17 +38,17 @@
                     <i class="fas fa-tachometer-alt"></i> <span class="nav-text">Dashboard</span>
                 </a>
 
-                <!-- Blog Module -->
+                <!-- Resources Module -->
                 <div
-                    class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#blogModule">
+                    class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*', 'admin.careers.*', 'admin.news.*', 'admin.faq_masters.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#resourcesModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Blog Module
+                            Resources Module
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'show' : '' }}"
-                        id="blogModule">
+                    <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*', 'admin.careers.*', 'admin.news.*', 'admin.faq_masters.*') ? 'show' : '' }}"
+                        id="resourcesModule">
                         <a class="nav-link{{ request()->routeIs('admin.blogs.*') ? ' active' : '' }}"
                             href="{{ route('admin.blogs.index') }}">
                             <i class="fas fa-newspaper"></i> <span class="nav-text">Blogs</span>
@@ -60,6 +60,18 @@
                         <a class="nav-link{{ request()->routeIs('admin.blog_comments.*') ? ' active' : '' }}"
                             href="{{ route('admin.blog_comments.index') }}">
                             <i class="fas fa-comments"></i> <span class="nav-text">Blog Comments</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.careers.*') ? ' active' : '' }}"
+                            href="{{ route('admin.careers.index') }}">
+                            <i class="fas fa-briefcase"></i> <span class="nav-text">Careers</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.news.*') ? ' active' : '' }}"
+                            href="{{ route('admin.news.index') }}">
+                            <i class="fas fa-newspaper"></i> <span class="nav-text">News</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.faq_masters.*') ? ' active' : '' }}"
+                            href="{{ route('admin.faq_masters.index') }}">
+                            <i class="fas fa-question-circle"></i> <span class="nav-text">FAQs</span>
                         </a>
                     </div>
                 </div>
@@ -88,14 +100,14 @@
 
                 <!-- Content Module -->
                 <div
-                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*') ? 'open' : '' }}">
+                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*', 'admin.overview.*', 'admin.csr.*', 'admin.manufacturing.*', 'admin.certifications.*', 'admin.why-skipper-pipes.*') ? 'open' : '' }}">
                     <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#contentModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
                             Content Module
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*') ? 'show' : '' }}"
+                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*', 'admin.overview.*', 'admin.csr.*', 'admin.manufacturing.*', 'admin.certifications.*', 'admin.why-skipper-pipes.*') ? 'show' : '' }}"
                         id="contentModule">
                         <a class="nav-link{{ request()->routeIs('admin.home-page.*') ? ' active' : '' }}"
                             href="{{ route('admin.home-page.index') }}">
@@ -107,7 +119,12 @@
                         </a>
                         <a class="nav-link{{ request()->routeIs('admin.company.*') ? ' active' : '' }}"
                             href="{{ route('admin.company.index') }}">
-                            <i class="fas fa-file-alt"></i> <span class="nav-text">Company Pages</span>
+                            <i class="fas fa-building"></i> <span class="nav-text">Company Pages</span>
+                        </a>
+
+                        <a class="nav-link{{ request()->routeIs('admin.why-skipper-pipes.*') ? ' active' : '' }}"
+                            href="{{ route('admin.why-skipper-pipes.index') }}">
+                            <i class="fas fa-star"></i> <span class="nav-text">Why Skipper Pipes</span>
                         </a>
                         <a class="nav-link{{ request()->routeIs('admin.contacts.*') ? ' active' : '' }}"
                             href="{{ route('admin.contacts.index') }}">
@@ -121,14 +138,15 @@
                 </div>
 
                 <!-- Settings -->
-                <div class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*') ? 'open' : '' }}">
+                <div
+                    class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*') ? 'open' : '' }}">
                     <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#settingsModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
                             Settings
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*') ? 'show' : '' }}"
+                    <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*') ? 'show' : '' }}"
                         id="settingsModule">
                         <a class="nav-link{{ request()->routeIs('admin.menus.*') ? ' active' : '' }}"
                             href="{{ route('admin.menus.index') }}">
@@ -137,6 +155,10 @@
                         <a class="nav-link{{ request()->routeIs('admin.users.*') ? ' active' : '' }}"
                             href="{{ route('admin.users.index') }}">
                             <i class="fas fa-users"></i> <span class="nav-text">User Management</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.sections.*') ? ' active' : '' }}"
+                            href="{{ route('admin.sections.index') }}">
+                            <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Sections</span>
                         </a>
                     </div>
                 </div>

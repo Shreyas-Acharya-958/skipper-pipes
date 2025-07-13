@@ -131,7 +131,7 @@ body {
 
 /* Navigation Links */
 .nav-link {
-    padding: 10px 15px 10px 45px;
+    padding: 5px 7px 10px 25px;
     color: #ffffff;
     text-decoration: none;
     transition: all 0.2s;
@@ -386,4 +386,25 @@ body {
 
 .login-card .alert {
     margin-bottom: 20px;
+}
+
+/* --- Sidebar Collapse Fix --- */
+.sidebar .collapse {
+    display: none;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    box-shadow: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .collapse.show {
+    display: block;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    box-shadow: none !important;
+    padding: 0;
+    margin: 0;
 }
