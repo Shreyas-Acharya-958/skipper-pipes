@@ -38,17 +38,17 @@
                     <i class="fas fa-tachometer-alt"></i> <span class="nav-text">Dashboard</span>
                 </a>
 
-                <!-- Resources Module -->
+                <!-- Blog Module -->
                 <div
-                    class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*', 'admin.careers.*', 'admin.news.*', 'admin.faq_masters.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#resourcesModule">
+                    class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#blogModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Resources Module
+                            Blog Module
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*', 'admin.careers.*', 'admin.news.*', 'admin.faq_masters.*') ? 'show' : '' }}"
-                        id="resourcesModule">
+                    <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'show' : '' }}"
+                        id="blogModule">
                         <a class="nav-link{{ request()->routeIs('admin.blogs.*') ? ' active' : '' }}"
                             href="{{ route('admin.blogs.index') }}">
                             <i class="fas fa-newspaper"></i> <span class="nav-text">Blogs</span>
@@ -61,6 +61,20 @@
                             href="{{ route('admin.blog_comments.index') }}">
                             <i class="fas fa-comments"></i> <span class="nav-text">Blog Comments</span>
                         </a>
+                    </div>
+                </div>
+
+                <!-- Resources Module -->
+                <div
+                    class="nav-section {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'open' : '' }}">
+                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#resourcesModule">
+                        <span class="nav-section-title">
+                            <i class="fas fa-chevron-right nav-section-arrow"></i>
+                            Resources Module
+                        </span>
+                    </div>
+                    <div class="collapse {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'show' : '' }}"
+                        id="resourcesModule">
                         <a class="nav-link{{ request()->routeIs('admin.careers.*') ? ' active' : '' }}"
                             href="{{ route('admin.careers.index') }}">
                             <i class="fas fa-briefcase"></i> <span class="nav-text">Careers</span>
@@ -72,6 +86,10 @@
                         <a class="nav-link{{ request()->routeIs('admin.faq_masters.*') ? ' active' : '' }}"
                             href="{{ route('admin.faq_masters.index') }}">
                             <i class="fas fa-question-circle"></i> <span class="nav-text">FAQs</span>
+                        </a>
+                        <a class="nav-link{{ request()->routeIs('admin.media.*') ? ' active' : '' }}"
+                            href="{{ route('admin.media.index') }}">
+                            <i class="fas fa-photo-video"></i> <span class="nav-text">Media</span>
                         </a>
                     </div>
                 </div>
