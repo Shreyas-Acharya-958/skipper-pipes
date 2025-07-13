@@ -72,7 +72,7 @@
                             <!-- <h3 class="faq-col-title">General Questions Faqs</h3> -->
                             <div class="row">
 
-                                @foreach ($media['company'] as $item)
+                                @foreach ($media['Company'] as $item)
                                     <div class="col-lg-4 col-md-6 py-2 px-2">
                                         @if ($item->file_type == 'youtube_link')
                                             <iframe width="100%" height="250px" src="{{ $item->file }}"
@@ -109,63 +109,87 @@
                         <!-- Events -->
                         <div class="media-section d-none" data-category="events">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 py-2 px-2">
-                                    <iframe width="100%" height="250px"
-                                        src="https://www.youtube.com/embed/oFOts2eD0hY?si=tLX4RvjhbuV8-lat"
-                                        title="YouTube video player" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                </div>
-                                <div class="col-lg-4 col-md-6 py-2 px-2">
-                                    <iframe width="100%" height="250px"
-                                        src="https://www.youtube.com/embed/6jKAHTfDsAc?si=qKTwY3m3q5iqsnVY"
-                                        title="YouTube video player" frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                </div>
-
+                                @if (isset($media['Events']) && count($media['Events']) > 0)
+                                    @foreach ($media['Events'] as $item)
+                                        <div class="col-lg-4 col-md-6 py-2 px-2">
+                                            @if ($item->file_type == 'youtube_link')
+                                                <iframe width="100%" height="250px" src="{{ $item->file }}"
+                                                    title="YouTube video player" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerpolicy="strict-origin-when-cross-origin"
+                                                    allowfullscreen></iframe>
+                                            @elseif ($item->file_type == 'pdf')
+                                                @if ($item->thumbnail)
+                                                    <img src="{{ asset('storage/' . $item->thumbnail) }}"
+                                                        alt="{{ $item->title }}" class="img-fluid">
+                                                @endif
+                                                <div class="media-title mt-3">{{ $item->title }}</div>
+                                                <a href="{{ asset('storage/' . $item->file) }}"
+                                                    class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
+                                            @elseif ($item->file_type == 'image')
+                                                <img src="{{ asset('storage/' . $item->file) }}" alt="{{ $item->title }}"
+                                                    class="img-fluid">
+                                                <div class="media-title mt-3">{{ $item->title }}</div>
+                                                <a href="{{ asset('storage/' . $item->file) }}"
+                                                    class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
+                                            @elseif ($item->file_type == 'video')
+                                                <video src="{{ asset('storage/' . $item->file) }}" class="img-fluid"
+                                                    controls></video>
+                                                <div class="media-title mt-3">{{ $item->title }}</div>
+                                                <a href="{{ asset('storage/' . $item->file) }}"
+                                                    class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="col-12 text-center">
+                                        <p>No events media available at the moment.</p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
                         <!-- Awards -->
                         <div class="media-section d-none" data-category="awards">
-                            <!-- <h3 class="faq-col-title">General Questions Faqs</h3> -->
                             <div class="row">
-
-                                <div class="col-lg-3 col-md-6 py-2 px-lg-2 px-md-3">
-                                    <div class="awards-col">
-                                        <div class="awards-img">
-                                            <img src="assets/img/final2/CBIP-award.png" alt="">
+                                @if (isset($media['Awards']) && count($media['Awards']) > 0)
+                                    @foreach ($media['Awards'] as $item)
+                                        <div class="col-lg-3 col-md-6 py-2 px-lg-2 px-md-3">
+                                            <div class="awards-col">
+                                                <div class="awards-img">
+                                                    @if ($item->file_type == 'youtube_link')
+                                                        <iframe width="100%" height="200px" src="{{ $item->file }}"
+                                                            title="YouTube video player" frameborder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                            referrerpolicy="strict-origin-when-cross-origin"
+                                                            allowfullscreen></iframe>
+                                                    @elseif ($item->file_type == 'pdf')
+                                                        @if ($item->thumbnail)
+                                                            <img src="{{ asset('storage/' . $item->thumbnail) }}"
+                                                                alt="{{ $item->title }}" class="img-fluid">
+                                                        @else
+                                                            <img src="{{ asset('assets/img/final2/CBIP-award.png') }}"
+                                                                alt="{{ $item->title }}" class="img-fluid">
+                                                        @endif
+                                                    @elseif ($item->file_type == 'image')
+                                                        <img src="{{ asset('storage/' . $item->file) }}"
+                                                            alt="{{ $item->title }}" class="img-fluid">
+                                                    @elseif ($item->file_type == 'video')
+                                                        <video src="{{ asset('storage/' . $item->file) }}"
+                                                            class="img-fluid" controls></video>
+                                                    @endif
+                                                </div>
+                                                <div class="awards-title mt-3">{{ $item->title }}</div>
+                                                <a href="{{ $item->file_type == 'youtube_link' ? $item->file : asset('storage/' . $item->file) }}"
+                                                    class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
+                                            </div>
                                         </div>
-                                        <div class="awards-title mt-3">CBIP Award 2015</div>
-                                        <a href="assets/img/final2/CBIP-award.pdf" class="btn btn-dark theme theme2 mt-4"
-                                            target="_blank">View</a>
+                                    @endforeach
+                                @else
+                                    <div class="col-12 text-center">
+                                        <p>No awards media available at the moment.</p>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 py-2 px-lg-2 px-md-3">
-                                    <div class="awards-col">
-                                        <div class="awards-img">
-                                            <img src="assets/img/final2/emerging-brand-2016.png" alt="">
-                                        </div>
-                                        <div class="awards-title mt-3">Emerging Brand of 2016</div>
-                                        <a href="assets/img/final2/emerging-brand-2016.pdf"
-                                            class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 py-2 px-lg-2 px-md-3">
-                                    <div class="awards-col">
-                                        <div class="awards-img">
-                                            <img src="assets/img/final2/global-marketing-excellence.jpg" alt="">
-                                        </div>
-                                        <div class="awards-title mt-3">Global Marketing Excellence award for “Innovation in
-                                            Marketing, OOH"</div>
-                                        <a href="assets/img/final2/global-marketing-excellence.pdf"
-                                            class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
-                                    </div>
-                                </div>
-
-
-
+                                @endif
                             </div>
                         </div>
 
