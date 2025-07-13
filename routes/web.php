@@ -104,6 +104,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Banner routes
     Route::resource('banners', BannerController::class);
 
+    // Media routes
+    Route::resource('media', \App\Http\Controllers\MediaController::class)->parameters(['media' => 'media']);
+
 
     // Home Page Management
     Route::get('home-page', [HomePageController::class, 'index'])->name('home-page.index');
