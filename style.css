@@ -2261,6 +2261,11 @@ a.more-btn:hover::after {
 .blog-area .item .info .content h4 a{
   color: var(--primary-color);
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .blog-area .item .info .content h4 a:hover {
@@ -3690,6 +3695,12 @@ Pagination
   margin: 0;
 }
 
+.work-process-area .work-pro-items .item .item-inner img{
+  width: 45px;
+  height: 45px;
+  margin-bottom: 15px;
+}
+
 
 /* Animation */
 .work-process-area .work-pro-items .item::before, 
@@ -3909,6 +3920,11 @@ Pagination
   /* background-color: var(--primary-color); */
   background-color: white;
   z-index: 1;
+}
+
+.services-one__icon img{
+  height: 40px;
+  width: 40px;
 }
 
 .services-one__icon i {
@@ -4419,6 +4435,12 @@ Company - Overview page
   padding: 20px;
 }
 
+.mission-card .mission-icon img{
+  width: 45px;
+  height: 45px;
+
+}
+
 /* Mission animation */
 /* Animation */
 /* .mission-sec--content-wrapper .mission-card::before, 
@@ -4486,6 +4508,12 @@ Company - Overview page
 .company-icon-col .icon{
   font-size: 38px !important;
   color: var(--primary-color);
+  margin-bottom: 15px;
+}
+.philosophy-col img,
+.company-icon-col img{
+  width: 45px;
+  height: 45px;
   margin-bottom: 15px;
 }
 
