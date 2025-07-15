@@ -334,12 +334,13 @@ class FrontController extends Controller
     why_skipper_pipe_section_fours
     why_skipper_pipe_section_threes
     why_skipper_pipe_section_twos*/
-        $whySkipperPipes = WhySkipperPipe::all();
+        $whySkipperPipes = WhySkipperPipe::first();
+
 
         $whySkipperPipesSectionFives = WhySkipperPipeSectionFive::all();
-        $whySkipperPipesSectionFours = WhySkipperPipeSectionFour::get();
+        $whySkipperPipesSectionFours = WhySkipperPipeSectionFour::first();
         $whySkipperPipesSectionThrees = WhySkipperPipeSectionThree::get();
-        $whySkipperPipesSectionTwos = WhySkipperPipeSectionTwo::get();
+        $whySkipperPipesSectionTwos = WhySkipperPipeSectionTwo::first();
 
         return view('front.why-skipper-pipes', compact('whySkipperPipes', 'whySkipperPipesSectionFives', 'whySkipperPipesSectionFours', 'whySkipperPipesSectionThrees', 'whySkipperPipesSectionTwos'));
     }
