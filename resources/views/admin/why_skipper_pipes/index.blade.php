@@ -60,7 +60,7 @@
                                 <button type="button" class="btn btn-primary me-2 edit-btn">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                                <button type="submit" class="btn btn-success save-btn" style="display: none;">
+                                <button type="submit" class="btn btn-success save-btn">
                                     <i class="fas fa-save"></i> Save
                                 </button>
                             </div>
@@ -408,6 +408,8 @@
                     form.find('input:not([type="hidden"]), textarea, select').removeAttr(
                         'readonly disabled');
                     form.find('.save-btn, .remove-image-btn').show();
+                    // Show the add-item-btn if it exists in this form
+                    form.find('.add-item-btn').show();
                     $(this).hide();
                 });
 

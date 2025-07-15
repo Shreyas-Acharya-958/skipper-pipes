@@ -38,6 +38,11 @@ use App\Models\PartnerSectionOne;
 use App\Models\PartnerSectionTwo;
 use App\Models\PartnerPipesOffer;
 use App\Models\Media;
+use App\Models\WhySkipperPipe;
+use App\Models\WhySkipperPipeSectionFive;
+use App\Models\WhySkipperPipeSectionFour;
+use App\Models\WhySkipperPipeSectionThree;
+use App\Models\WhySkipperPipeSectionTwo;
 
 class FrontController extends Controller
 {
@@ -324,6 +329,18 @@ class FrontController extends Controller
 
     public function whySkipperPipes()
     {
-        return view('front.why-skipper-pipes');
+        /*why_skipper_pipes
+    why_skipper_pipe_section_fives
+    why_skipper_pipe_section_fours
+    why_skipper_pipe_section_threes
+    why_skipper_pipe_section_twos*/
+        $whySkipperPipes = WhySkipperPipe::all();
+
+        $whySkipperPipesSectionFives = WhySkipperPipeSectionFive::all();
+        $whySkipperPipesSectionFours = WhySkipperPipeSectionFour::get();
+        $whySkipperPipesSectionThrees = WhySkipperPipeSectionThree::get();
+        $whySkipperPipesSectionTwos = WhySkipperPipeSectionTwo::get();
+
+        return view('front.why-skipper-pipes', compact('whySkipperPipes', 'whySkipperPipesSectionFives', 'whySkipperPipesSectionFours', 'whySkipperPipesSectionThrees', 'whySkipperPipesSectionTwos'));
     }
 }
