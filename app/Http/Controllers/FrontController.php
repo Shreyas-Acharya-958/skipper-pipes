@@ -322,8 +322,8 @@ class FrontController extends Controller
         return view('front.resources.media', compact('media'));
     }
 
-    protected function whySkipperPipes($slug)
+    public function whySkipperPipes()
     {
-        return view('front.product-detail', compact('slug'));
+        return view('front.why-skipper-pipes');
     }
 }

@@ -196,6 +196,7 @@ Route::name('front.')->group(function () {
     Route::get('/careers', [FrontController::class, 'careers'])->name('careers.index');
     Route::get('/news', [FrontController::class, 'news'])->name('news.index');
     Route::get('/media', [FrontController::class, 'media'])->name('media.index');
+    Route::get('/why-skipper-pipes', [FrontController::class, 'whySkipperPipes'])->name('why-skipper-pipes.index');
 });
 
 
