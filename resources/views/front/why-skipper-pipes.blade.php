@@ -49,12 +49,8 @@
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                             @if ($whySkipperPipesSectionThrees->image)
-                                @php
-                                    $images = json_decode($whySkipperPipesSectionThrees->image ?? '', true);
-                                @endphp
-
                                 <ol class="carousel-indicators">
-                                    @foreach ($images as $index => $image)
+                                    @foreach ($whySkipperPipesSectionThrees as $index => $image)
                                         <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"
                                             class="{{ $index == 0 ? 'active' : '' }}"></li>
                                     @endforeach
