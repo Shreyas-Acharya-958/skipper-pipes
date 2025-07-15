@@ -3,6 +3,29 @@
 @section('title', 'Skipper Pipes - Partner')
 
 @section('content')
+
+    <!-- Hero banner-section -->
+    <section class="hero-banner2">
+        <div class="hero-banner2-bg">
+            <img src="{{ asset('assets/img/final/blogs-banner-final1.jpg') }}" alt="">
+        </div>
+        <div class="hero-banner2-overlay"></div>
+        <div class="hero-banner2-content">
+            <h1>{{ $partner->short_title }}</h1>
+            <p>{{ $partner->long_description }}</p>
+        </div>
+    </section>
+
+    <section class="hero-banner2-responsive">
+        <div class="hero-banner2-content-responsive">
+            <h1>{{ $partner->short_title }}</h1>
+            <p>{{ $partner->short_description }}</p>
+        </div>
+        <div class="hero-banner2-img-responsive">
+            <img src="assets/img/final/blogs-banner-final1.jpg" alt="">
+        </div>
+    </section>
+    <!-- Hero banner-section ends -->
     <!-- Why become a Skipper dealer Section -->
     <section class="default-padding">
         <div class="container">
