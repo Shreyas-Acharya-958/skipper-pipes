@@ -48,18 +48,18 @@
                     <div class="col-md-6 order-first order-md-last">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
-                            @if ($whySkipperPipesSectionThrees->image)
+                            @if ($whySkipperPipesSectionThrees->images)
                                 <ol class="carousel-indicators">
-                                    @foreach ($whySkipperPipesSectionThrees as $index => $image)
+                                    @foreach ($whySkipperPipesSectionThrees->images as $index => $image)
                                         <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"
                                             class="{{ $index == 0 ? 'active' : '' }}"></li>
                                     @endforeach
                                 </ol>
                                 <div class="carousel-inner">
-                                    @foreach ($images as $index => $image)
+                                    @foreach ($whySkipperPipesSectionThrees->images as $index => $image)
                                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                             <img class="d-block w-100" src="{{ asset('storage/' . $image) }}"
-                                                alt="Slide {{ $index + 1 }}">
+                                                alt="Slide {{ $index }}" style="height: 300px; object-fit: cover;">
                                         </div>
                                     @endforeach
                                 </div>
