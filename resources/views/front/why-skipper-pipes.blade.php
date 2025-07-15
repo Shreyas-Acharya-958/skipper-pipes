@@ -28,7 +28,7 @@
     <!-- Hero banner-section ends -->
 
     <!-- Skipper Pipes Promise section -->
-    @if ($whySkipperPipesSectionTwos)
+    @if ($whySkipperPipesSectionThrees)
         <section class="product-overview default-padding">
             <div class="container">
                 <div class="row">
@@ -43,14 +43,14 @@
                 <div class="row align-center">
                     <div class="col-md-6 pt-3 pt-md-0">
                         <!-- <h2>Product Overview</h2> -->
-                        <p>{{ $whySkipperPipesSectionTwos->description ?? '' }}</p>
+                        <p>{{ $whySkipperPipesSectionThrees->description ?? '' }}</p>
                     </div>
                     <div class="col-md-6 order-first order-md-last">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
-                            @if ($whySkipperPipesSectionTwos->image)
+                            @if ($whySkipperPipesSectionThrees->image)
                                 @php
-                                    $images = json_decode($whySkipperPipesSectionTwos->image ?? '', true);
+                                    $images = json_decode($whySkipperPipesSectionThrees->image ?? '', true);
                                 @endphp
 
                                 <ol class="carousel-indicators">
@@ -88,7 +88,7 @@
     <!-- Skipper Pipes Promise section ends -->
 
     <!-- India's Infrastrcture section -->
-    @if ($whySkipperPipesSectionThrees)
+    @if ($why_skipper_pipe_section_fours)
         <section class="infrastrcture-banners default-padding bg-gray ">
             <div class="container-fluid">
                 <div class="row">
@@ -100,13 +100,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($whySkipperPipesSectionThrees as $whySkipperPipesSectionThree)
+                    @foreach ($why_skipper_pipe_section_fours as $why_skipper_pipe_section_four)
                         <div class="infrastrcture-banner-col col-12 p-0">
-                            <img src="{{ asset('storage/' . $whySkipperPipesSectionThree->image) }}" alt="">
+                            <img src="{{ asset('storage/' . $why_skipper_pipe_section_four->image) }}" alt="">
                             <div class="infrastructure-img-overlay"></div>
                             <div class="infrastrcture-banner-content">
-                                <h3>{{ $whySkipperPipesSectionThree->title ?? '' }}</h3>
-                                <p class="text-white">{{ $whySkipperPipesSectionThree->description ?? '' }}</p>
+                                <h3>{{ $why_skipper_pipe_section_four->title ?? '' }}</h3>
+                                <p class="text-white">{{ $why_skipper_pipe_section_four->description ?? '' }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -119,7 +119,7 @@
 
 
     <!-- Quality Thats Speak section -->
-    @if ($whySkipperPipesSectionFours)
+    @if ($why_skipper_pipe_section_fives)
         <section class="left-img-col default-padding">
             <div class="container">
                 <div class="row">
@@ -139,10 +139,8 @@
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner">
-                                @php
-                                    $images = json_decode($whySkipperPipesSectionFours->image ?? '', true);
-                                @endphp
-                                @foreach ($images as $index => $image)
+
+                                @foreach ($why_skipper_pipe_section_fives->images as $index => $image)
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                         <img class="d-block w-100" src="{{ asset('storage/' . $image) }}"
                                             alt="First slide">
@@ -163,9 +161,9 @@
                     </div>
                     <div class="col-md-6 pl-4 pt-3 pt-md-0">
                         <!-- <h2>Product Overview</h2> -->
-                        <p>{{ $whySkipperPipesSectionFours->description ?? '' }}</p>
+                        <p>{{ $why_skipper_pipe_section_fives->description ?? '' }}</p>
                         <a class="btn btn-dark theme theme2 btn-md mt-3"
-                            href="{{ $whySkipperPipesSectionFours->button_link ?? '' }}" target="_blank">View Our
+                            href="{{ $why_skipper_pipe_section_fives->button_link ?? '' }}" target="_blank">View Our
                             Certification</a>
                     </div>
                 </div>
@@ -176,7 +174,7 @@
 
 
     <!-- Built for every condition section  -->
-    @if ($whySkipperPipesSectionFives)
+    @if ($why_skipper_pipe_section_twos)
         <section class="company-icon-sec default-padding bg-gray">
             <div class="container">
                 <div class="row">
@@ -188,10 +186,10 @@
                     </div>
                 </div>
                 <div class="row philosophy-wrapper text-center px-3 px-md-0">
-                    @foreach ($whySkipperPipesSectionFives as $whySkipperPipesSectionFive)
+                    @foreach ($why_skipper_pipe_section_twos as $why_skipper_pipe_section_two)
                         <div class="col-12 col-md company-icon-col">
-                            <img src="{{ asset('storage/' . $whySkipperPipesSectionFive->image) }}" alt="">
-                            <h4>{{ $whySkipperPipesSectionFive->title ?? '' }}</h4>
+                            <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
+                            <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
                             <p>{{ $whySkipperPipesSectionFive->description ?? '' }}</p>
                         </div>
                     @endforeach
