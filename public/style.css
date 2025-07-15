@@ -2261,6 +2261,11 @@ a.more-btn:hover::after {
 .blog-area .item .info .content h4 a{
   color: var(--primary-color);
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .blog-area .item .info .content h4 a:hover {
@@ -3690,6 +3695,12 @@ Pagination
   margin: 0;
 }
 
+.work-process-area .work-pro-items .item .item-inner img{
+  width: 45px;
+  height: 45px;
+  margin-bottom: 15px;
+}
+
 
 /* Animation */
 .work-process-area .work-pro-items .item::before, 
@@ -3909,6 +3920,11 @@ Pagination
   /* background-color: var(--primary-color); */
   background-color: white;
   z-index: 1;
+}
+
+.services-one__icon img{
+  height: 40px;
+  width: 40px;
 }
 
 .services-one__icon i {
@@ -4419,6 +4435,12 @@ Company - Overview page
   padding: 20px;
 }
 
+.mission-card .mission-icon img{
+  width: 45px;
+  height: 45px;
+
+}
+
 /* Mission animation */
 /* Animation */
 /* .mission-sec--content-wrapper .mission-card::before, 
@@ -4486,6 +4508,12 @@ Company - Overview page
 .company-icon-col .icon{
   font-size: 38px !important;
   color: var(--primary-color);
+  margin-bottom: 15px;
+}
+.philosophy-col img,
+.company-icon-col img{
+  width: 45px;
+  height: 45px;
   margin-bottom: 15px;
 }
 
@@ -4648,7 +4676,7 @@ Company - Overview page
   }
 
   .hero-banner2-content-responsive{
-    padding: 70px 17px;
+    padding: 50px 17px;
     background-color: var(--bg-light);
   }
 
@@ -4659,7 +4687,7 @@ Company - Overview page
 
   .hero-banner2-content-responsive h1{
     font-weight: 700;
-    font-weight: 28px;
+    font-size: 28px;
     margin-bottom: 10px;
   }
 
@@ -5187,6 +5215,214 @@ Careers
 
 
 /* ================================
+NEWS PAGE
+================================ */
+
+
+.news-overview .news-col .sub-title{
+  background-color: rgba(20, 67, 114, 0.3);
+  font-size: 12px;
+  padding: 6px 15px;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.news-overview .news-col .news-date{
+  display: none;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 15px;
+}
+
+.news-overview .news-col .news-date{
+  display: inline-block;
+}
+
+.news-overview .news-col h3{
+  margin-top: 15px;
+  font-size: 17px;
+  font-weight: 600;
+    text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.news-overview .news-col{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.news-overview .news-col-wrapper .news-col-wrapper {
+  border-right: 1px solid rgba(51, 51, 51, 0.3);
+}
+
+.news-overview .news-col-wrapper:nth-child(3n){
+  border-right: none !important;
+  border: 5px
+}
+
+.news-overview .news-col a:focus{
+  color: white !important;
+}
+
+.news-overview .news-col a{
+  font-size: 12px;
+  padding: 6px 18px !important;
+}
+
+
+
+
+
+
+/* ================================
+CONTACT PAGE
+================================ */
+.map-wrapper .list-group-item{
+  background-color: white;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.map-wrapper .list-group-item.active{
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.map-wrapper .location-info h4{
+  font-weight: 600;
+}
+
+.map-wrapper .location-info a{
+  color: var(--primary-color);
+  display: block;
+  font-weight: 500;
+}
+
+.map-wrapper .location-info a:hover{
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.map-pin {
+  position: absolute;
+  width: 25px;
+  height: 30px;
+  transform: translate(-50%, -100%);
+}
+
+.map-pin span{
+  display: inline-block;
+  width: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-color);
+  /* background-color: var(--secondary-color);
+  text-align: center; */
+}
+
+.pin-west-bengal { 
+  /* top: 48%; */
+  top: 40%;
+  left: 67%;
+}
+
+.pin-west-bengal.d-block.d-none{
+  display: none !important;
+}
+
+.pin-uttar-pradesh{ 
+  top: 31%;
+  left: 41%;
+}
+
+.pin-assam{ 
+  top: 30%;
+  left: 84%;
+}
+
+.pin-telangana{ 
+  top: 61%;
+  left: 37%;
+}
+
+.city-list .list-group-item {
+  cursor: pointer;
+}
+
+
+.contact-details-wrapper .contact-details-content h3{
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+
+.contact-details-wrapper .contact-details-content .contact-desc{
+  font-weight: 400;
+  margin-bottom: 50px !important;
+}
+
+.contact-details-wrapper .contact-details-content li{
+  margin-bottom: 40px;
+}
+
+.contact-details-wrapper .contact-details-content h4{
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.contact-details-wrapper .contact-details-content p{
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.contact-details-wrapper .contact-details-content a{
+  font-weight: 500;
+}
+
+.contact-details-wrapper .contact-details-content a:hover{
+  color: var(--secondary-color);
+}
+
+
+
+/* ================================
+MEDIA PAGE
+================================ */
+.awards-col{
+  background-color: var(--bg-light);
+  padding: 15px;
+  box-shadow: 0px 5px 10px rgba(0 0 0 / 18%);
+}
+.awards-img{
+  border: 1px solid rgba(51, 51, 51, 0.4);
+  padding: 8px;
+  max-height: 327px;
+  overflow: hidden;
+}
+
+.awards-img img{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.awards-title{
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.awards-col a:focus{
+  color: white !important;
+}
+
+
+/* ================================
 LEGAL PAGES  = TERMS Page
 ================================ */
 .legal-sec-content{
@@ -5522,6 +5758,25 @@ Media queries - max-width
   height: auto !important;
 }
   
+.news-overview .news-col-wrapper .news-col-wrapper:nth-child(2n) {
+  border-right: none;
+  /* border-bottom: 1px solid rgba(51, 51, 51, 0.3); */
+  padding-bottom: 20px;
+}
+
+.news-overview .news-col-wrapper:nth-child(3n){
+  border-right: 1px solid rgba(51, 51, 51, 0.3) !important;
+}
+
+.pin-assam{
+  top: 26%;
+  left: 81%;
+}
+
+.pin-west-bengal {
+  top: 37%;
+  left: 66%;
+}
 }
 
 
@@ -5743,6 +5998,16 @@ Media queries - max-width
 }
 .main-faqs-sec .nav.nav-pills li{
   margin-bottom: 10px;
+}
+
+.news-overview .news-col-wrapper .news-col-wrapper {
+  border-right: none;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+  padding-bottom: 20px;
+}
+
+.news-overview .news-col-wrapper:nth-child(3n){
+  border-right: none !important;
 }
 
 }
