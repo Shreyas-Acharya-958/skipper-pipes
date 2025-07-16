@@ -27,7 +27,7 @@
                                     <th>Image</th>
                                     <th>Title</th>
                                     <th>Short Description</th>
-                                    <th>Link</th>
+                                    <th>PDF Document</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -47,9 +47,12 @@
                                             <td>{{ $certification->short_description }}</td>
                                             <td>
                                                 @if ($certification->link)
-                                                    <a href="{{ $certification->link }}" target="_blank">View Link</a>
+                                                    <a href="{{ asset('storage/' . $certification->link) }}" target="_blank"
+                                                        class="btn btn-sm btn-primary">
+                                                        <i class="fas fa-file-pdf"></i> Download PDF
+                                                    </a>
                                                 @else
-                                                    <span class="text-muted">No link</span>
+                                                    <span class="text-muted">No PDF</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -120,8 +123,11 @@
                             <textarea class="form-control" name="long_description" rows="4"></textarea>
                         </div>
                         <div class="form-group mb-3">
-                            <label class="form-label">Link</label>
-                            <input type="url" class="form-control" name="link">
+                            <label class="form-label">PDF Document</label>
+                            <div class="mb-2" id="currentPdf"></div>
+                            <input type="file" class="form-control" name="pdf_file" accept=".pdf">
+                            <input type="hidden" name="remove_pdf" value="0">
+                            <small class="form-text text-muted">Upload a PDF file for this certification</small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -166,6 +172,7 @@
                 $('#certificationForm')[0].reset();
                 $('#certification_id').val('');
                 $('#currentImage').empty();
+                $('#currentPdf').empty();
                 $('#certificationModalLabel').text('Add Certification');
             });
 
@@ -176,7 +183,6 @@
                 $('input[name="title"]').val(data.title);
                 $('textarea[name="short_description"]').val(data.shortDescription);
                 $('textarea[name="long_description"]').val(data.longDescription);
-                $('input[name="link"]').val(data.link);
 
                 if (data.image) {
                     const imageUrl = "{{ asset('storage') }}/" + data.image;
@@ -184,6 +190,18 @@
                         <div class="position-relative d-inline-block">
                             <img src="${imageUrl}" alt="Current Image" style="max-width: 200px; height: auto;">
                             <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn">&times;</button>
+                        </div>
+                    `);
+                }
+
+                if (data.link) {
+                    const pdfUrl = "{{ asset('storage') }}/" + data.link;
+                    $('#currentPdf').html(`
+                        <div class="position-relative d-inline-block">
+                            <a href="${pdfUrl}" target="_blank" class="btn btn-sm btn-primary">
+                                <i class="fas fa-file-pdf"></i> Current PDF
+                            </a>
+                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-pdf-btn">&times;</button>
                         </div>
                     `);
                 }
@@ -203,6 +221,12 @@
             $(document).on('click', '.remove-image-btn', function() {
                 $(this).closest('.position-relative').remove();
                 $('input[name="remove_image"]').val('1');
+            });
+
+            // Handle remove PDF button click
+            $(document).on('click', '.remove-pdf-btn', function() {
+                $(this).closest('.position-relative').remove();
+                $('input[name="remove_pdf"]').val('1');
             });
         });
     </script>

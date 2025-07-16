@@ -39,10 +39,23 @@ class CertificationController extends Controller
                 $certification->image = null;
             }
 
+            // Handle PDF file upload
+            if ($request->hasFile('pdf_file')) {
+                if ($certification->link) {
+                    Storage::disk('public')->delete($certification->link);
+                }
+                $file = $request->file('pdf_file');
+                $filename = 'certification-pdf-' . time() . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('certifications/pdfs', $filename, 'public');
+                $certification->link = $path;
+            } elseif ($request->remove_pdf == '1' && $certification->link) {
+                Storage::disk('public')->delete($certification->link);
+                $certification->link = null;
+            }
+
             $certification->title = $request->title;
             $certification->short_description = $request->short_description;
             $certification->long_description = $request->long_description;
-            $certification->link = $request->link;
             $certification->save();
 
             DB::commit();
@@ -64,6 +77,9 @@ class CertificationController extends Controller
             if ($certification) {
                 if ($certification->image) {
                     Storage::disk('public')->delete($certification->image);
+                }
+                if ($certification->link) {
+                    Storage::disk('public')->delete($certification->link);
                 }
                 $certification->delete();
             }

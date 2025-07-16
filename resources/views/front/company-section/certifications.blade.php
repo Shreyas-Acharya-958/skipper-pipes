@@ -40,8 +40,10 @@
                             <h3 class="certificate-name">{{ $certification->title ?? '' }}</h3>
                             <span class="certificate-type">{{ $certification->short_description ?? '' }}</span>
                             <span class="certificate-desc">{!! $certification->long_description ?? '' !!}</span>
-                            <a class="certificate-link" href="{{ $certification->link ?? '' }}"
-                                target="_blank">Download</a>
+                            @if ($certification->link)
+                                <a class="certificate-link" href="{{ asset('storage/' . $certification->link) }}"
+                                    target="_blank">Download PDF</a>
+                            @endif
                         </div>
                     </div>
                 @endforeach
