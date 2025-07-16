@@ -91,6 +91,10 @@
                             href="{{ route('admin.media.index') }}">
                             <i class="fas fa-photo-video"></i> <span class="nav-text">Media</span>
                         </a>
+                        <a class="nav-link{{ request()->routeIs('admin.networks.*') ? ' active' : '' }}"
+                            href="{{ route('admin.networks.index') }}">
+                            <i class="fas fa-network-wired"></i> <span class="nav-text">Network</span>
+                        </a>
                     </div>
                 </div>
 
