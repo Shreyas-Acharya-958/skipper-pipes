@@ -99,7 +99,7 @@
                                                         data-target="#{{ $collapseId }}"
                                                         aria-expanded="{{ $faqIndex == 1 ? 'true' : 'false' }}"
                                                         aria-controls="{{ $collapseId }}">
-                                                        {{ $faqIndex }}. {{ $faq_list->title }}
+                                                        {{ $faqIndex }}. {{ $faq_list->question }}
                                                     </button>
                                                 </h3>
                                             </div>
@@ -108,7 +108,7 @@
                                                 aria-labelledby="heading-{{ $collapseId }}"
                                                 data-parent="#accordion-{{ $faq_master->id }}">
                                                 <div class="card-body">
-                                                    {{ $faq_list->description }}
+                                                    {{ $faq_list->answer }}
                                                 </div>
                                             </div>
                                         </div>
