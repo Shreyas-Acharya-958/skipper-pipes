@@ -57,15 +57,40 @@ use App\Models\WhySkipperPipeSectionTwo;
 
 class FrontController extends Controller
 {
+    /**
+     * Get SEO data for the current URL from menu_seo_metadata table.
+     * Fallback to default values if not found.
+     */
+    private function getSeoDataForCurrentUrl()
+    {
+        $path = '/' . ltrim(request()->path(), '/');
+        // Try to find a menu with this link or slug
+        $menu = \App\Models\Menu::where('link', $path)
+            ->orWhere('slug', trim($path, '/'))
+            ->first();
+        if ($menu) {
+            $seo = \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
+            if ($seo) {
+                return [
+                    'meta_title' => $seo->meta_title,
+                    'meta_description' => $seo->meta_description,
+                    'meta_keywords' => $seo->meta_keywords,
+                    'meta_author' => 'Skipper Pipes',
+                ];
+            }
+        }
+        // Fallback default
+        return [
+            'meta_title' => 'Skipper Pipes',
+            'meta_description' => 'Discover high-quality pipes and fittings from Skipper Pipes.',
+            'meta_keywords' => 'pipes, plumbing, fittings, skipper pipes, manufacturing',
+            'meta_author' => 'Skipper Pipes',
+        ];
+    }
+
     public function index()
     {
-        // SEO data
-        $seoData = [
-            'meta_title' => 'Home | Skipper Pipes',
-            'meta_description' => 'Discover high-quality pipes and fittings from Skipper Pipes. Leading manufacturer of innovative plumbing solutions for residential and industrial applications.',
-            'meta_keywords' => 'pipes, plumbing, fittings, skipper pipes, manufacturing',
-            'meta_author' => 'Skipper Pipes'
-        ];
+        $seoData = $this->getSeoDataForCurrentUrl();
 
         // Get all active categories with their products
         $categories = ProductCategory::with(['products' => function ($query) {
@@ -115,13 +140,7 @@ class FrontController extends Controller
 
     public function blogs()
     {
-        // SEO data
-        $seoData = [
-            'meta_title' => 'Blog | Skipper Pipes',
-            'meta_description' => 'Stay updated with the latest news, insights, and innovations in plumbing and pipe manufacturing from Skipper Pipes.',
-            'meta_keywords' => 'blog, news, plumbing insights, pipe manufacturing, skipper pipes',
-            'meta_author' => 'Skipper Pipes'
-        ];
+        $seoData = $this->getSeoDataForCurrentUrl();
 
         $blogs = Blog::where('status', 1)->with('category')->paginate(9);
         if (isset($queryParams['tag'])) {
@@ -165,12 +184,14 @@ class FrontController extends Controller
 
     public function products()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         $products = Product::where('status', 1)->paginate(9);
-        return view('front.products', compact('products'));
+        return view('front.products', compact('products', 'seoData'));
     }
 
     public function productDetail($slug)
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
 
         // SEO data
@@ -186,6 +207,7 @@ class FrontController extends Controller
 
     public function companyPage($slug)
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
 
         $page = Company::where('slug', $slug)
             ->where('status', 1)
@@ -264,13 +286,7 @@ class FrontController extends Controller
 
     public function partner($slug)
     {
-        // SEO data
-        $seoData = [
-            'meta_title' => 'Partner | Skipper Pipes',
-            'meta_description' => 'Partner with Skipper Pipes to access our high-quality pipes and fittings for your plumbing needs.',
-            'meta_keywords' => 'partner, pipes, plumbing, fittings, skipper pipes',
-            'meta_author' => 'Skipper Pipes'
-        ];
+        $seoData = $this->getSeoDataForCurrentUrl();
 
         // First get the partner ID
         $partner = Partner::where('slug', $slug)
@@ -326,27 +342,31 @@ class FrontController extends Controller
 
     public function faqs()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         //faq_masters,faq_lists
 
         $faq_masters = FaqMaster::where('status', 1)->get();
         $faq_lists = FaqList::where('status', 1)->get();
-        return view('front.resources.faqs', compact('faq_masters', 'faq_lists'));
+        return view('front.resources.faqs', compact('faq_masters', 'faq_lists', 'seoData'));
     }
 
     public function news()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         $news = News::all();
-        return view('front.resources.news', compact('news'));
+        return view('front.resources.news', compact('news', 'seoData'));
     }
 
     public function media()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         $media = Media::all()->groupBy('media_type');
-        return view('front.resources.media', compact('media'));
+        return view('front.resources.media', compact('media', 'seoData'));
     }
 
     public function whySkipperPipes()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
 
         $whySkipperPipes = WhySkipperPipe::first();
 
@@ -356,12 +376,13 @@ class FrontController extends Controller
         $whySkipperPipesSectionThrees = WhySkipperPipeSectionThree::first();
         $why_skipper_pipe_section_twos = WhySkipperPipeSectionTwo::get();
 
-        return view('front.why-skipper-pipes', compact('whySkipperPipes', 'why_skipper_pipe_section_fives', 'why_skipper_pipe_section_fours', 'whySkipperPipesSectionThrees', 'why_skipper_pipe_section_twos'));
+        return view('front.why-skipper-pipes', compact('whySkipperPipes', 'why_skipper_pipe_section_fives', 'why_skipper_pipe_section_fours', 'whySkipperPipesSectionThrees', 'why_skipper_pipe_section_twos', 'seoData'));
     }
 
     public function contact()
     {
-        return view('front.contact');
+        $seoData = $this->getSeoDataForCurrentUrl();
+        return view('front.contact', compact('seoData'));
     }
 
     public function storeContact(Request $request)
@@ -392,6 +413,7 @@ class FrontController extends Controller
     }
     public function careers()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         /*  careers
   	career_life_at_skippers
 		career_skipper_pipes
@@ -401,7 +423,7 @@ class FrontController extends Controller
         $career_skipper_pipes = CareerSkipperPipe::get();
         $career_why_skippers = CareerWhySkipper::first();
 
-        return view('front.resources.careers', compact('career_life_at_skippers', 'career_skipper_pipes', 'career_why_skippers', 'careers'));
+        return view('front.resources.careers', compact('career_life_at_skippers', 'career_skipper_pipes', 'career_why_skippers', 'careers', 'seoData'));
     }
 
 
@@ -432,8 +454,9 @@ class FrontController extends Controller
 
     public function network()
     {
+        $seoData = $this->getSeoDataForCurrentUrl();
         $mainNetwork = MainNetwork::first();
         $networks = Network::orderBy('sequence', 'asc')->get();
-        return view('front.resources.network', compact('mainNetwork', 'networks'));
+        return view('front.resources.network', compact('mainNetwork', 'networks', 'seoData'));
     }
 }
