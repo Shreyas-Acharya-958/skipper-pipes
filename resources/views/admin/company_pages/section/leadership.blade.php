@@ -64,35 +64,68 @@
                             @csrf
                             <input type="hidden" name="active_tab" value="#section1">
 
-                            <div class="d-flex justify-content-end mb-3">
-                                <button type="button" class="btn btn-primary me-2 edit-btn">
-                                    <i class="fas fa-edit"></i> Edit
+                            <div class="d-flex justify-content-between mb-3">
+                                <button type="button" class="btn btn-warning add-topword-btn" style="display: none;">
+                                    <i class="fas fa-plus"></i> Add Entry
                                 </button>
-                                <button type="submit" class="btn btn-success save-btn" style="display: none;">
-                                    <i class="fas fa-save"></i> Save
-                                </button>
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label class="form-label">Image</label>
-                                <div class="mb-2">
-                                    @if (isset($sectionOne) && $sectionOne->image)
-                                        <div class="position-relative d-inline-block">
-                                            <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Section One Image"
-                                                style="max-width: 200px; height: auto;">
-                                            <button type="button"
-                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
-                                                style="display: none;" data-image="section1_image">&times;</button>
-                                        </div>
-                                    @endif
+                                <div>
+                                    <button type="button" class="btn btn-primary me-2 edit-btn">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button type="submit" class="btn btn-success save-btn" style="display: none;">
+                                        <i class="fas fa-save"></i> Save
+                                    </button>
                                 </div>
-                                <input type="file" class="form-control" name="image" accept="image/*,.svg" disabled>
-                                <input type="hidden" name="remove_image" value="0">
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label for="section1_description" class="form-label">Description</label>
-                                <textarea class="form-control tinymce" id="section1_description" name="description" rows="6">{{ $sectionOne->description ?? '' }}</textarea>
+                            <div id="topword_items_container">
+                                @if (isset($sectionOnes) && $sectionOnes->count() > 0)
+                                    @foreach ($sectionOnes as $index => $item)
+                                        <div class="topword-item border rounded p-3 mb-3">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <h6 class="mb-0">Entry {{ $index + 1 }}</h6>
+                                                <button type="button" class="btn btn-sm btn-danger remove-topword-btn"
+                                                    style="display: none;" data-id="{{ $item->id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                            <input type="hidden" name="sections[{{ $index }}][id]"
+                                                value="{{ $item->id }}">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label">Image</label>
+                                                <div class="mb-2">
+                                                    @if ($item->image)
+                                                        <div class="position-relative d-inline-block">
+                                                            <img src="{{ asset('storage/' . $item->image) }}"
+                                                                alt="Section One Image"
+                                                                style="max-width: 200px; height: auto;">
+                                                            <button type="button"
+                                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                                style="display: none;"
+                                                                data-image="topword_{{ $index }}">&times;</button>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <input type="file" class="form-control"
+                                                    name="sections[{{ $index }}][image]" accept="image/*,.svg"
+                                                    disabled>
+                                                <input type="hidden" name="sections[{{ $index }}][remove_image]"
+                                                    value="0">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="section1_description_{{ $index }}"
+                                                    class="form-label">Description</label>
+                                                <textarea class="form-control tinymce" id="section1_description_{{ $index }}"
+                                                    name="sections[{{ $index }}][description]" rows="6" readonly>{{ $item->description ?? '' }}</textarea>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="text-center py-5">
+                                        <p class="text-muted">No entries added yet. Click Edit and then Add Entry to create
+                                            one.</p>
+                                    </div>
+                                @endif
                             </div>
                         </form>
                     </div>
@@ -102,8 +135,9 @@
                         <div class="alert alert-info mb-4">
                             <span class="fw-bold">Information:</span> Leadership Philosophy Section
                         </div>
-                        <form id="section2Form" class="section-form" action="{{ route('admin.leadership.section2.save') }}"
-                            method="POST" enctype="multipart/form-data">
+                        <form id="section2Form" class="section-form"
+                            action="{{ route('admin.leadership.section2.save') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="active_tab" value="#section2">
 
@@ -391,6 +425,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Initialize TinyMCE for all .tinymce textareas on page load
+            $('.tinymce').each(function() {
+                if (!tinymce.get($(this).attr('id'))) {
+                    tinymce.init({
+                        selector: `#${$(this).attr('id')}`,
+                        height: 300,
+                        menubar: false,
+                        plugins: 'lists link image code',
+                        toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                        verify_html: false,
+                        cleanup: false,
+                        valid_elements: '*[*]',
+                        extended_valid_elements: '*[*]',
+                        valid_children: '+*[*]',
+                        preserve_cdata: true,
+                        entity_encoding: 'raw',
+                        force_br_newlines: false,
+                        force_p_newlines: false,
+                        forced_root_block: '',
+                        keep_styles: true
+                    });
+                }
+            });
+
             // Get the tab ID from URL hash or localStorage
             let activeTab = window.location.hash;
             if (!activeTab) {
@@ -436,13 +494,13 @@
                 form.find('input:not([type="hidden"]), textarea:not(.tinymce), select').removeAttr(
                     'readonly disabled');
                 form.find(
-                    '.save-btn, .remove-image-btn, .add-philosophy-btn, .add-director-btn, .add-head-btn, .remove-philosophy-btn, .remove-director-btn, .remove-head-btn'
+                    '.save-btn, .remove-image-btn, .add-philosophy-btn, .add-director-btn, .add-head-btn, .remove-philosophy-btn, .remove-director-btn, .remove-head-btn, .add-topword-btn, .remove-topword-btn'
                 ).show();
                 $(this).hide();
 
                 // Enable TinyMCE editors
-                editors.forEach(editor => {
-                    const tinyEditor = tinymce.get(editor);
+                form.find('.tinymce').each(function() {
+                    const tinyEditor = tinymce.get($(this).attr('id'));
                     if (tinyEditor) {
                         tinyEditor.mode.set('design');
                     }
@@ -628,6 +686,56 @@
                 container.append(getHeadItemTemplate(index));
             });
 
+            // Add for Section 1 dynamic items
+            function getTopwordItemTemplate(index) {
+                return `
+                    <div class=\"topword-item border rounded p-3 mb-3\">
+                        <div class=\"d-flex justify-content-between mb-2\">
+                            <h6 class=\"mb-0\">Entry ${index + 1}</h6>
+                            <button type=\"button\" class=\"btn btn-sm btn-danger remove-topword-btn\">
+                                <i class=\"fas fa-trash\"></i>
+                            </button>
+                        </div>
+                        <div class=\"form-group mb-3\">
+                            <label class=\"form-label\">Image</label>
+                            <input type=\"file\" class=\"form-control\" name=\"sections[${index}][image]\" accept=\"image/*,.svg\">
+                            <input type=\"hidden\" name=\"sections[${index}][remove_image]\" value=\"0\">
+                        </div>
+                        <div class=\"form-group mb-3\">
+                            <label for=\"section1_description_${index}\" class=\"form-label\">Description</label>
+                            <textarea class=\"form-control tinymce\" id=\"section1_description_${index}\" name=\"sections[${index}][description]\" rows=\"6\"></textarea>
+                        </div>
+                    </div>
+                `;
+            }
+            $('.add-topword-btn').click(function() {
+                const container = $('#topword_items_container');
+                const index = container.children('.topword-item').length;
+                container.find('.text-center').remove();
+                container.append(getTopwordItemTemplate(index));
+                // Re-initialize TinyMCE for new textarea
+                setTimeout(function() {
+                    tinymce.init({
+                        selector: `#section1_description_${index}`,
+                        height: 300,
+                        menubar: false,
+                        plugins: 'lists link image code',
+                        toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                        verify_html: false,
+                        cleanup: false,
+                        valid_elements: '*[*]',
+                        extended_valid_elements: '*[*]',
+                        valid_children: '+*[*]',
+                        preserve_cdata: true,
+                        entity_encoding: 'raw',
+                        force_br_newlines: false,
+                        force_p_newlines: false,
+                        forced_root_block: '',
+                        keep_styles: true
+                    });
+                }, 100);
+            });
+
             // Remove item button click handlers
             $(document).on('click', '.remove-philosophy-btn', function() {
                 const item = $(this).closest('.philosophy-item');
@@ -688,6 +796,26 @@
                 if (container.children('.head-item').length === 0) {
                     container.html(
                         '<div class="text-center py-5"><p class="text-muted">No business heads added yet. Click Edit and then Add Business Head to create one.</p></div>'
+                    );
+                }
+            });
+
+            $(document).on('click', '.remove-topword-btn', function() {
+                const item = $(this).closest('.topword-item');
+                const id = item.find('input[name$="[id]"]').val();
+                if (id) {
+                    const form = item.closest('form');
+                    form.append($('<input>').attr({
+                        type: 'hidden',
+                        name: 'deleted_sections[]',
+                        value: id
+                    }));
+                }
+                item.remove();
+                const container = $('#topword_items_container');
+                if (container.children('.topword-item').length === 0) {
+                    container.html(
+                        '<div class="text-center py-5"><p class="text-muted">No entries added yet. Click Edit and then Add Entry to create one.</p></div>'
                     );
                 }
             });

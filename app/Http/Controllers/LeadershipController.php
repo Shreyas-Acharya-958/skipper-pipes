@@ -15,12 +15,12 @@ class LeadershipController extends Controller
 {
     public function sections()
     {
-        $sectionOne = LeadershipSectionOne::where('company_id', 1)->first();
+        $sectionOnes = LeadershipSectionOne::where('company_id', 1)->get();
         $sectionTwos = LeadershipSectionTwo::where('company_id', 1)->get();
         $sectionThrees = LeadershipSectionThree::where('company_id', 1)->get();
         $sectionFours = LeadershipSectionFour::where('company_id', 1)->get();
 
-        return view('admin.company_pages.section.leadership', compact('sectionOne', 'sectionTwos', 'sectionThrees', 'sectionFours'));
+        return view('admin.company_pages.section.leadership', compact('sectionOnes', 'sectionTwos', 'sectionThrees', 'sectionFours'));
     }
 
     public function saveSectionOne(Request $request)
@@ -28,25 +28,42 @@ class LeadershipController extends Controller
         try {
             DB::beginTransaction();
 
-            $section = LeadershipSectionOne::where('company_id', 1)->first() ?? new LeadershipSectionOne(['company_id' => 1]);
+            if ($request->has('sections')) {
+                foreach ($request->sections as $index => $sectionData) {
+                    $section = isset($sectionData['id'])
+                        ? LeadershipSectionOne::find($sectionData['id'])
+                        : new LeadershipSectionOne(['company_id' => 1]);
 
-            if ($request->hasFile('image')) {
-                if ($section->image) {
-                    Storage::disk('public')->delete($section->image);
+                    if (isset($sectionData['image']) && $sectionData['image'] instanceof \Illuminate\Http\UploadedFile) {
+                        if ($section->image) {
+                            Storage::disk('public')->delete($section->image);
+                        }
+                        $file = $sectionData['image'];
+                        $filename = 'leadership-section1-' . time() . '-' . $index . '.' . $file->getClientOriginalExtension();
+                        $path = $file->storeAs('leadership/section1', $filename, 'public');
+                        $section->image = $path;
+                    }
+
+                    if (isset($sectionData['remove_image']) && $sectionData['remove_image']) {
+                        Storage::disk('public')->delete($section->image);
+                        $section->image = null;
+                    }
+
+                    $section->description = $sectionData['description'] ?? null;
+                    $section->save();
                 }
-                $file = $request->file('image');
-                $filename = 'leadership-section1-' . time() . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('leadership/section1', $filename, 'public');
-                $section->image = $path;
             }
 
-            if ($request->boolean('remove_image')) {
-                Storage::disk('public')->delete($section->image);
-                $section->image = null;
+            // Handle deletions
+            if ($request->has('deleted_sections')) {
+                $deletedSections = LeadershipSectionOne::whereIn('id', $request->deleted_sections)->get();
+                foreach ($deletedSections as $section) {
+                    if ($section->image) {
+                        Storage::disk('public')->delete($section->image);
+                    }
+                    $section->delete();
+                }
             }
-
-            $section->description = $request->description;
-            $section->save();
 
             DB::commit();
             return redirect()->route('admin.leadership.sections', ['tab' => 'section1'])->with('success', 'Section One updated successfully.');

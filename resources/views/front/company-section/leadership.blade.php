@@ -13,12 +13,23 @@
                  </div>
              </div>
              <div class="row align-center">
-                 <div class="col-md-5">
-                     <img src="{{ asset('storage/' . $leadership_section_ones[0]->image ?? '') }}" alt="">
-                 </div>
-                 <div class="col-md-7 pl-5 md-message-content">
-                     {!! $leadership_section_ones[0]->description ?? '' !!}
-                 </div>
+                 @foreach ($leadership_section_ones as $leadership)
+                     @if ($loop->even)
+                         <div class="col-md-7 pl-5 md-message-content">
+                             {!! $leadership->description ?? '' !!}
+                         </div>
+                         <div class="col-md-5">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
+                         </div>
+                     @else
+                         <div class="col-md-5">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
+                         </div>
+                         <div class="col-md-7 pl-5 md-message-content">
+                             {!! $leadership->description ?? '' !!}
+                         </div>
+                     @endif
+                 @endforeach
              </div>
          </div>
      </section>
