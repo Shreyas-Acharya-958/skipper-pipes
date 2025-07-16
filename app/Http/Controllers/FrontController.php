@@ -8,6 +8,11 @@ use App\Models\Product;
 use App\Models\Banner;
 use App\Models\BlogCategory;
 use App\Models\BlogTag;
+use App\Models\Career;
+use App\Models\CareerApplication;
+use App\Models\CareerLifeAtSkipper;
+use App\Models\CareerSkipperPipe;
+use App\Models\CareerWhySkipper;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
 use App\Models\Contact;
@@ -312,10 +317,7 @@ class FrontController extends Controller
     }
 
 
-    public function careers()
-    {
-        return view('front.resources.careers');
-    }
+
 
     public function faqs()
     {
@@ -376,6 +378,45 @@ class FrontController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Thank you! We will contact you shortly.'
+        ]);
+    }
+    public function careers()
+    {
+        /*  careers
+  	career_life_at_skippers
+		career_skipper_pipes
+			career_why_skippers*/
+        $careers = Career::first();
+        $career_life_at_skippers = CareerLifeAtSkipper::get();
+        $career_skipper_pipes = CareerSkipperPipe::get();
+        $career_why_skippers = CareerWhySkipper::first();
+
+        return view('front.resources.careers', compact('career_life_at_skippers', 'career_skipper_pipes', 'career_why_skippers', 'careers'));
+    }
+
+
+    public function storeCareerApplication(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'subject' => 'nullable|string|max:255',
+            'phone' => 'required|string|max:20',
+            'dob' => 'nullable|date',
+            'resume' => 'required|file|mimes:pdf,doc,docx|max:2048',
+            'address' => 'nullable|string'
+        ]);
+
+        // Store resume file
+        $path = $request->file('resume')->store('resumes', 'public');
+
+        $validated['resume_path'] = $path;
+
+        CareerApplication::create($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you! Your application has been submitted.'
         ]);
     }
 }

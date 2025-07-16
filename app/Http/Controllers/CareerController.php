@@ -121,7 +121,7 @@ class CareerController extends Controller
             $section->images = $remainingImages;
         }
 
-        $section->title = $request->title;
+        $section->title = $request->title ?? '';
         $section->description = $request->description;
         $section->save();
 
