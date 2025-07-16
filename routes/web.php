@@ -177,6 +177,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // News Routes
     Route::resource('news', NewsController::class);
     Route::post('news/update-sequence', [NewsController::class, 'updateSequence'])->name('news.update-sequence');
+
+    // Network Routes
+    Route::get('networks', [\App\Http\Controllers\NetworkController::class, 'index'])->name('networks.index');
+    Route::post('networks/store', [\App\Http\Controllers\NetworkController::class, 'store'])->name('networks.store');
+    // Main Network Routes
+    Route::get('networks/main', [\App\Http\Controllers\NetworkController::class, 'showMainNetwork'])->name('networks.main');
+    Route::post('networks/main/save', [\App\Http\Controllers\NetworkController::class, 'saveMainNetwork'])->name('networks.main.save');
 });
 
 
@@ -201,6 +208,8 @@ Route::name('front.')->group(function () {
 
     Route::get('/careers', [FrontController::class, 'careers'])->name('careers.index');
     Route::post('/careers', [FrontController::class, 'storeCareerApplication'])->name('careers.store');
+
+    Route::get('/network', [FrontController::class, 'network'])->name('network.index');
 });
 
 

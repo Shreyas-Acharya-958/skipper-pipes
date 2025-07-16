@@ -427,4 +427,9 @@ class FrontController extends Controller
             'message' => 'Thank you! Your application has been submitted.'
         ]);
     }
+
+    public function network()
+    {
+        return view('front.resources.network');
+    }
 }
