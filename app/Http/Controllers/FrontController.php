@@ -19,6 +19,8 @@ use App\Models\Contact;
 use App\Models\CsrSectionOne;
 use App\Models\CsrSectionThree;
 use App\Models\CsrSectionTwo;
+use App\Models\FaqList;
+use App\Models\FaqMaster;
 use App\Models\ProductCategory;
 use App\Models\HomeSectionOne;
 use App\Models\HomeSectionTwo;
@@ -322,7 +324,11 @@ class FrontController extends Controller
 
     public function faqs()
     {
-        return view('front.resources.faqs');
+        //faq_masters,faq_lists
+
+        $faq_masters = FaqMaster::where('status', 1)->get();
+        $faq_lists = FaqList::where('status', 1)->get();
+        return view('front.resources.faqs', compact('faq_masters', 'faq_lists'));
     }
 
     public function news()
