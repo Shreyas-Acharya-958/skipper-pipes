@@ -184,6 +184,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Main Network Routes
     Route::get('networks/main', [\App\Http\Controllers\NetworkController::class, 'showMainNetwork'])->name('networks.main');
     Route::post('networks/main/save', [\App\Http\Controllers\NetworkController::class, 'saveMainNetwork'])->name('networks.main.save');
+
+
+    // Network Routes
+    // Menu SEO Metadata
+    Route::get('seo', [MenuController::class, 'seoIndex'])->name('seo.index');
+    Route::post('seo', [MenuController::class, 'seoStore'])->name('seo.store');
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use App\Models\MenuSeoMetadata;
 
 class MenuController extends Controller
 {
@@ -78,5 +79,35 @@ class MenuController extends Controller
         }
 
         return response()->json(['message' => 'Menu order updated successfully']);
+    }
+
+    // Show all menu links with SEO metadata and edit option
+    public function seoIndex()
+    {
+        $menus = Menu::orderBy('title')->get();
+        $seoMetadata = MenuSeoMetadata::all()->keyBy('menu_id');
+        return view('admin.menus.seo', compact('menus', 'seoMetadata'));
+    }
+
+    // Add or update SEO metadata for a menu
+    public function seoStore(Request $request)
+    {
+        $request->validate([
+            'menu_id' => 'required|exists:menus,id',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
+            'meta_keywords' => 'nullable|string|max:255',
+        ]);
+
+        $metadata = MenuSeoMetadata::updateOrCreate(
+            ['menu_id' => $request->menu_id],
+            [
+                'meta_title' => $request->meta_title,
+                'meta_description' => $request->meta_description,
+                'meta_keywords' => $request->meta_keywords,
+            ]
+        );
+
+        return response()->json(['message' => 'SEO metadata saved successfully']);
     }
 }
