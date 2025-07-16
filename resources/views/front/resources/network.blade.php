@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/main_networks/' . $mainNetwork->image) }}" alt="">
+            <img src="{{ asset('storage/' . $mainNetwork->image) }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -15,11 +15,11 @@
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
-            <h1>Connecting India, One Pipe at a Time</h1>
-            <p> From remote villages to bustling cities, our network powers every flow.</p>
+            <h1>{{ $mainNetwork->title }}</h1>
+            <p>{{ $mainNetwork->description }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="assets/img/final2/Network/Hero Section/Herosection.png" alt="">
+            <img src="{{ asset('storage/' . $mainNetwork->image) }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
