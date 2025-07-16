@@ -44,6 +44,7 @@ use App\Models\PartnerSectionOne;
 use App\Models\PartnerSectionTwo;
 use App\Models\PartnerPipesOffer;
 use App\Models\Media;
+use App\Models\News;
 use App\Models\WhySkipperPipe;
 use App\Models\WhySkipperPipeSectionFive;
 use App\Models\WhySkipperPipeSectionFour;
@@ -326,7 +327,8 @@ class FrontController extends Controller
 
     public function news()
     {
-        return view('front.resources.news');
+        $news = News::all();
+        return view('front.resources.news', compact('news'));
     }
 
     public function media()
