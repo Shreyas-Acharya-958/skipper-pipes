@@ -1,7 +1,15 @@
 @extends('front.layouts.app')
 
 @section('title', 'Skipper Pipes - Partner')
-
+@section('styles')
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+@endsection
 @section('content')
 
     <!-- Hero banner-section -->
@@ -145,7 +153,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('front.partner.enquiry') }}" method="post" class="partner-application-form">
+                    <form id="partnerForm" action="{{ route('front.partner.enquiry') }}" method="post"
+                        class="partner-application-form">
                         @csrf
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -256,6 +265,7 @@
                         <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Submit Distributor
                             Enquiry</button>
                     </form>
+                    <div id="partnerAlert" class="alert d-none mt-3"></div>
                 </div>
             </div>
         </div>
@@ -294,3 +304,58 @@
         });
     </script>
 @endpush
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#partnerForm').validate({
+                rules: {
+                    name: {
+                        required: true
+                    },
+                    phone: {
+                        required: true
+                    },
+                    pincode: {
+                        required: true
+                    },
+                    occupation: {
+                        required: true
+                    },
+                    email: {
+                        email: true
+                    }
+                },
+                submitHandler: function(form) {
+                    $.ajax({
+                        url: "{{ route('front.partner.enquiry') }}",
+                        type: "POST",
+                        data: $(form).serialize(),
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            $('#partnerAlert')
+                                .removeClass('d-none alert-danger')
+                                .addClass('alert alert-success')
+                                .text(response.message);
+
+                            form.reset();
+                        },
+                        error: function(xhr) {
+                            let message = 'Something went wrong. Please check your inputs.';
+                            if (xhr.responseJSON?.errors) {
+                                message = Object.values(xhr.responseJSON.errors).join(' ');
+                            }
+                            $('#partnerAlert')
+                                .removeClass('d-none alert-success')
+                                .addClass('alert alert-danger')
+                                .text(message);
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+    </script>
+@endsection

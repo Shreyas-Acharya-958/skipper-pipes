@@ -10,6 +10,7 @@ use App\Models\BlogCategory;
 use App\Models\BlogTag;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
+use App\Models\Contact;
 use App\Models\CsrSectionOne;
 use App\Models\CsrSectionThree;
 use App\Models\CsrSectionTwo;
@@ -286,25 +287,30 @@ class FrontController extends Controller
 
     public function storePartnerEnquiry(Request $request)
     {
-        $validated = $request->validate([
+
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
             'phone' => 'required|string|max:20',
             'firm_name' => 'nullable|string|max:255',
-            'gst' => 'nullable|string|max:20',
+            'gst' => 'nullable|string|max:50',
             'pincode' => 'required|string|max:10',
             'occupation' => 'required|string|max:255',
-            'experience' => 'nullable|string|in:1-5,6-10,10+',
-            'dealership_type' => 'nullable|string|in:pipes,tank,bathware',
+            'experience' => 'nullable|string|max:50',
+            'dealership_type' => 'nullable|string|max:100',
             'description' => 'nullable|string',
-            'partner_id' => 'nullable|exists:partners,id'
+            'partner_id' => 'nullable|integer' // ✅ Not just a number
         ]);
 
-        // Create partner enquiry
-        PartnerEnquiry::create($validated);
 
-        return redirect()->back()->with('success', 'Thank you for your interest! We will contact you soon.');
+        PartnerEnquiry::create($request->all()); // Adjust model if needed
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you! We will contact you shortly.'
+        ]);
     }
+
 
     public function careers()
     {
@@ -329,11 +335,7 @@ class FrontController extends Controller
 
     public function whySkipperPipes()
     {
-        /*why_skipper_pipes
-    why_skipper_pipe_section_fives
-    why_skipper_pipe_section_fours
-    why_skipper_pipe_section_threes
-    why_skipper_pipe_section_twos*/
+
         $whySkipperPipes = WhySkipperPipe::first();
 
 
@@ -343,5 +345,37 @@ class FrontController extends Controller
         $why_skipper_pipe_section_twos = WhySkipperPipeSectionTwo::get();
 
         return view('front.why-skipper-pipes', compact('whySkipperPipes', 'why_skipper_pipe_section_fives', 'why_skipper_pipe_section_fours', 'whySkipperPipesSectionThrees', 'why_skipper_pipe_section_twos'));
+    }
+
+    public function contact()
+    {
+        return view('front.contact');
+    }
+
+    public function storeContact(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'message' => 'required|string'
+
+        ]);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'message' => $request->message,
+            'subject' => $request->subject ?? '',
+            'status' => 1,
+        ];
+
+        Contact::create($data);
+
+        // Return JSON response for AJAX
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you! We will contact you shortly.'
+        ]);
     }
 }
