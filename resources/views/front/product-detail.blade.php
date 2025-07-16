@@ -156,8 +156,7 @@
                                 <div class="services-one__shape-1"></div>
                                 <div class="services-one__icon"><img src="{{ asset('storage/' . $application->icon) }}"
                                         alt=""></div>
-                                <a href="mechanical-expert.html" class="services-one__arrow"><i
-                                        class="icon-right-arrow"></i></a>
+                                <a class="services-one__arrow"><i class="icon-right-arrow"></i></a>
                             </div>
                             <div class="services-one__content">
                                 <h3 class="services-one__title">{{ $application->title }}</h3>

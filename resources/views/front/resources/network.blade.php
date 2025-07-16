@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-12 p-0">
                     <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
                         <li class="active">Network</li>
                     </ul>
                 </div>
@@ -104,8 +104,10 @@
                     <h2 class="text-white mb-4">Join India’s Most Trusted Network</h2>
                     <p class="text-white mb-md-4 pb-md-2">Partner with Skipper Pipes to unlock growth, recognition, and
                         unmatched support across India’s largest and most trusted piping network.</p>
-                    <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="become-dealer.html">Become Dealer</a>
-                    <a class="btn btn-light effect btn-md ml-md-3" href="become-distributor.html">Become Distributor</a>
+                    <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become
+                        Dealer</a>
+                    <a class="btn btn-light effect btn-md ml-md-3" href="{{ url('partner/become-distributor') }}">Become
+                        Distributor</a>
                 </div>
             </div>
         </div>

@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-12 p-0">
                     <ul class="breadcrumb">
-                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
                         <li class="active">Contact Us</li>
                     </ul>
                 </div>
@@ -120,8 +120,8 @@
                     </div>
 
                     <!-- <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-uttar-pradesh" data-city="uttar-pradesh" />
-                                                                        <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-assam" data-city="assam" />
-                                                                        <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-telangana" data-city="telangana" /> -->
+                                                                                <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-assam" data-city="assam" />
+                                                                                <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-telangana" data-city="telangana" /> -->
 
                     <!-- Active Pin Overlay -->
                     <div class="map-pin active-pin pin-west-bengal d-block">
@@ -141,8 +141,8 @@
                         <img src="assets/img/final2/blue-pin.svg" />
                     </div>
                     <!-- <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-uttar-pradesh d-none" />
-                                                                        <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-assam d-none" />
-                                                                        <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-telangana d-none" /> -->
+                                                                                <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-assam d-none" />
+                                                                                <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-telangana d-none" /> -->
                 </div>
             </div>
         </div>

@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="text-white mb-4">Need a certificate not listed?</h2>
-                    <a class="btn btn-light effect btn-md" href="#">Contact us</a>
+                    <a class="btn btn-light effect btn-md" href="{{ url('contact-us') }}">Contact us</a>
                 </div>
             </div>
         </div>

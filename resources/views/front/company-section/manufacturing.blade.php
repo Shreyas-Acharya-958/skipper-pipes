@@ -138,7 +138,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="text-white mb-4">Discover how Skipper Pipes contribute to building tomorrow</h2>
-                <a class="btn btn-light effect btn-md" href="csr.html">Explore CSR Initiatives</a>
+                <a class="btn btn-light effect btn-md" href="{{ url('company/csr') }}">Explore CSR Initiatives</a>
             </div>
         </div>
     </div>

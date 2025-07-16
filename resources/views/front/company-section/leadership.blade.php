@@ -158,7 +158,9 @@
          <div class="row">
              <div class="col-12 text-center">
                  <h2 class="text-white mb-4">See how our vision translates into world-class manufacturing.</h2>
-                 <a class="btn btn-light effect btn-md" href="manufacturing.html">Know Our Facilities</a>
+
+                 <a class="btn btn-light effect btn-md" href="{{ url('company/manufacturing') }}">Know Our
+                     Facilities</a>
              </div>
          </div>
      </div>

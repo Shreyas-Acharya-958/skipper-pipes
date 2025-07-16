@@ -97,7 +97,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="text-white mb-4">Join us in shaping safer, healthier communities.</h2>
-                <a class="btn btn-light effect btn-md" href="#">Contact Us</a>
+                <a class="btn btn-light effect btn-md" href="{{ url('contact-us') }}">Contact Us</a>
             </div>
         </div>
     </div>

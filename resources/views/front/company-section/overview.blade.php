@@ -194,7 +194,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <h2 class="text-white mb-4">Ready to meet the people driving our vision?</h2>
-                <a class="btn btn-light effect btn-md" href="leadership.html">Meet Our Leadership</a>
+                <a class="btn btn-light effect btn-md" href="{{ url('company/leadership') }}">Meet Our Leadership</a>
             </div>
         </div>
     </div>
