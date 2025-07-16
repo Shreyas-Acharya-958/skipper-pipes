@@ -67,11 +67,11 @@
                     <div class="blog-content col-lg-8 col-md-12">
                         <div class="single-item">
                             <div class="blog-item-box">
-                                @if ($blog->image_1)
+                                {{-- @if ($blog->image_1)
                                     <div class="thumb">
                                         <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ $blog->title }}">
                                     </div>
-                                @endif
+                                @endif --}}
 
                                 <div class="item">
                                     {!! $blog->long_description !!}
