@@ -1,74 +1,604 @@
-section1
-main
-id
-title
-description
+<!DOCTYPE html>
+<html lang="en">
 
-section3
-Information: Why Skipper Pipes?
-Image(multipel_image)-json
-description
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dustra- Factory & Industrial Template">
 
----
+    <!-- ========== Page Title ========== -->
+    <title>Skipper Pipes - Why Skipper Pipes</title>
 
-section4
-Information:India’s Infrastructure, Powered by Safety dyanmic add++)
-Image
-Title
-description
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="assets/img/final/skipper-pipes-favicon.png" type="image/x-icon">
 
----
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/icofont.min.css" rel="stylesheet" />
+    <link href="assets/css/themify-icons.css" rel="stylesheet" />
+    <link href="assets/css/flaticon-set.css" rel="stylesheet" />
+    <link href="assets/css/magnific-popup.css" rel="stylesheet" />
+    <link href="assets/js/swiper/swiper.min.css" rel="stylesheet"  />
+    <link href="assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.css" rel="stylesheet" />
+    <link href="assets/css/bootsnav.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
 
-section5
-Information: Quality That Speaks
+</head>
+<body>
 
-Title
-(multipel_image)-json
-description
+    <!-- Header  -->
+    <header id="home">
 
----
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default attr-bg navbar-fixed white no-background bootsnav nav-full">
 
-Information: Built for Every Condition (dyanmic add++)
-Image
-Title
-description
+            <!-- Start Top Search -->
+            <div class="top-search">
+                <div class="container-full">
+                    <form method="get">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Top Search -->
 
----
+            <div class="container">
 
-careers
-section1
-main
-id
-images
-title
-description
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <!-- <li class="search"><a href="#"><i class="ti-search"></i></a></li> -->
+                        <li class="side-menu">
+                            <a href="#">
+                                <span class="bar-1"></span>
+                                <span class="bar-2"></span>
+                                <span class="bar-3"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
 
-Information: Why Skipper
-Images
-Content
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="assets/img/final/logo.png" class="logo regular" alt="Logo">
+                        <img src="assets/img/final/logo.png" class="logo logo-responsive" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
 
----
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-center" data-in="#" data-out="#">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Company</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="overview.html">Overview</a></li>
+                                <li><a href="leadership.html">Leadership</a></li>
+                                <li><a href="manufacturing.html">Manufacturing</a></li>
+                                <li><a href="csr.html">CSR</a></li>
+                                <li><a href="certifications.html">Certifications</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" >Products</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="why-skipper-pipes.html">Why Skipper Pipes</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Plumbing & Sewage</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="product-single.html">UPVC Pipes</a></li>
+                                        <li><a href="#">CPVC Pipes</a></li>
+                                        <li><a href="#">SWR Pipes</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Agriculture Pipes</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Borewell</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Casing Pipes</a></li>
+                                        <li><a href="#">Column Pipes</a></li>
+                                        <li><a href="#">Ribbed Strainer Pipes</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">HDPE Pipes</a></li>
+                                <li><a href="#">Marina Tank</a></li>
+                                <li><a href="#">Bath Fittings</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="network.html">Network</a>
+                        </li>
+                         <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Partner</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="become-dealer.html">Become a Dealer</a></li>
+                                <li><a href="become-distributor.html">Become a Distributor</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Resources</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="blogs.html">Blogs</a></li>
+                                <li><a href="media.html">Media</a></li>
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="faqs.html">FAQs</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
 
-Information: Life at Skipper(dyanmic add++)
-Repeated
-Image
-Title
-description
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fas fa-times"></i></a>
+                <div class="widget">
+                    <img src="assets/img/final/Logo-HR (1).png" alt="Logo">
+                    <p>
+                       Trusted piping solutions engineered for strength, hygiene, and long-term durability across infrastructure, agriculture, industrial, and residential applications.
+                    </p>
+                </div>
+                <div class="widget address">
+                    <div>
+                        <ul>
+                            <li>
+                                <div class="content">
+                                    <p>Address</p>
+                                    <strong>3A, Loudon Street Kolkata- 700017</strong>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="content">
+                                    <p>Email</p>
+                                    <strong>enquiry@skipperlimited.com</strong>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="content">
+                                    <p>Contact</p>
+                                    <strong>+91 33 2285 1231/32</strong>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget newsletter">
+                    <h4 class="title">Get Subscribed!</h4>
+                    <form action="#">
+                        <div class="input-group stylish-input-group">
+                            <input type="email" placeholder="Enter your e-mail" class="form-control" name="email">
+                            <span class="input-group-addon">
+                                <button type="submit">
+                                    <i class="fas fa-long-arrow-right"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget social">
+                    <ul class="link">
+                        <li><a href="#" target="_blank">
+                            <?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="22px" height="45px">    <path d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z"/></svg>
+                        </a></li>
 
----
+                        <li><a href="https://www.instagram.com/skipperpipes/" target="_blank">
+                            <img src="assets/img/final2/Icons8/icons8-instagram-100.svg" alt="">
+                        </a></li>
 
-Information: Skipper Pipes(dyanmic add++)
-Repeated
-Image
-Title
-description
+                        <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank">
+                            <img src="assets/img/final2/Icons8/icons8-linkedin-100.svg" alt="">
+                        </a></li>
 
-======
-it's simler copy of banner
-news
-id
-title
-press_release:date
-file (pdf)
+                        <li><a href="https://x.com/SkipperPipes" target="_blank">
+                            <img src="assets/img/final2/Icons8/icons8-x-100.svg" alt="">
+                        </a></li>
+                        <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank">
+                            <img src="assets/img/final2/Icons8/icons8-youtube-100 copy.svg" alt="">
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Side Menu -->
 
----
+        </nav>
+        <!-- End Navigation -->
+
+    </header>
+    <!-- End Header -->
+
+
+     <!-- Hero banner-section -->
+     <section class="hero-banner2">
+        <div class="hero-banner2-bg">
+            <img src="assets/img/final/blogs-banner-final1.jpg" alt="">
+        </div>
+        <div class="hero-banner2-overlay"></div>
+        <div class="hero-banner2-content">
+            <h1>Your Growth Starts Here</h1>
+            <p>Join Skipper Pipes’ extensive dealer network and build with India’s most trusted piping brand.</p>
+        </div>
+     </section>
+
+     <section class="hero-banner2-responsive">
+        <div class="hero-banner2-content-responsive">
+            <h1>Your Growth Starts Here</h1>
+            <p>Join Skipper Pipes’ extensive dealer network and build with India’s most trusted piping brand.</p>
+        </div>
+        <div class="hero-banner2-img-responsive">
+            <img src="assets/img/final/blogs-banner-final1.jpg" alt="">
+        </div>
+     </section>
+    <!-- Hero banner-section ends -->
+
+    <!-- Breadcrumb  -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="active">Partner</li>
+                        <li class="active">Become a Dealer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+     <!-- Why become a Skipper dealer Section -->
+     <section class="default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h4>Skipper Pipes</h4>
+                        <h2>Why Become a Skipper Dealer?</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-center">
+                <div class="col-md-6">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            <img class="d-block w-100" src="assets/img/final/skipper-banner1.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="assets/img/final/skipper-banner2.jpeg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                            <img class="d-block w-100" src="assets/img/final/skipper-banner3.jpeg" alt="Third slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 pt-3 pt-md-0">
+                    <!-- <h2>Product Overview</h2> -->
+                    <p>Skipper Pipes proudly operates on the strength of its extensive network of distributors, dealers, and plumbers spread across India. This trusted ecosystem is backed by a comprehensive product portfolio that caters to diverse sectors — from plumbing and agriculture to infrastructure. With a robust supply chain, reliable inventory, and proactive service, our partners enjoy hassle-free operations. Consistent brand visibility, dealer support programs, and product innovation ensure long-term growth, customer retention, and a rewarding business experience for every Skipper associate.</p>
+                </div>
+            </div>
+        </div>
+     </section>
+     <!-- Why Skipper Section ends -->
+
+
+
+    <!-- What Skipper Pipes offers -->
+    <section class="left-img-col default-padding bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="site-heading text-center">
+                        <h4>Offers</h4>
+                        <h2>What Skipper Pipes Offers?</h2>
+                        <p>Strategic support, product diversity, and shared success.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="partners-tabs col-md-6">
+                    <div class="partners-tab active" data-image="assets/img/final/12344.jpg">
+                        <h3>Certified Quality Assurance</h3>
+                        <p>Our products meet national and international standards, backed by rigorous quality checks.</p>
+                    </div>
+                    <div class="partners-tab" data-image="assets/img/final/Marina Tank.jpeg">
+                        <h3>Strong Brand Backing & Marketing Support</h3>
+                        <p>Skipper invests heavily in branding, visibility, and local marketing to support dealer sales.</p>
+                    </div>
+                    <div class="partners-tab" data-image="assets/img/final/12344.jpg">
+                        <h3>Diverse, High-Demand Product Portfolio</h3>
+                        <p>Pipes, tanks, bath fittings, and more — built for construction, plumbing, and infrastructure projects.</p>
+                    </div>
+                    <div class="partners-tab" data-image="assets/img/final/Marina Tank.jpeg">
+                        <h3>Fast-Growing National Network</h3>
+                        <p>25,000+ dealers and 5 manufacturing plants ensure consistent supply and trust nationwide.</p>
+                    </div>
+                    <div class="partners-tab" data-image="assets/img/final/12344.jpg">
+                        <h3>Lucrative Incentives & Growth Rewards</h3>
+                        <p>Structured bonuses, turnover discounts (TOD), and special recognitions for performance.</p>
+                    </div>
+                    <div class="partners-tab" data-image="img2.jpg">
+                        <h3>Dedicated After-Sales Support</h3>
+                        <p>Technical assistance and service teams are available across India for dealer and customer support.</p>
+                    </div>
+                </div>
+                <div class="image-display col-md-6">
+                    <img src="assets/img/final/12344.jpg" id="tab-image" alt="Image" />
+                    <!-- <img src="assets/img/final/Marina Tank.jpeg" id="tab-image" alt="Image" /> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- What Skipper Pipes offers ends -->
+
+
+
+    <!-- Become a Dealer form -->
+     <section class="partner-form-sec default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="site-heading text-center">
+                        <h4>Skipper Pipes</h4>
+                        <h2>Join Skipper Family</h2>
+                        <p>Fill the form below to become a Dealer.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post" class="partner-application-form">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="full-name">Name <span>*</span></label>
+                                <input type="text" class="form-control" id="full-name" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="phone">Mobile Number <span>*</span></label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                             <div class="form-group col-md-4">
+                                <label for="firm-name">Firm Name</label>
+                                <input type="text" class="form-control" id="firm-name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="firm-name">GST Number</label>
+                                <input type="number" class="form-control" id="firm-name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="pincode">Pincode <span>*</span></label>
+                                <input type="text" class="form-control" id="pincode" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                           <div class="form-group col-md-4">
+                                <label for="occupation">Current Occupation <span>*</span></label>
+                                <input type="text" class="form-control" id="occupation" required>
+                            </div>
+                           <div class="form-group col-md-4">
+                                <label for="experience">Experience:</label>
+                                <select id="experience" class="form-control">
+                                    <option selected>Select Experience...</option>
+                                    <option>1 to 5 Years</option>
+                                    <option>6 to 10 Years</option>
+                                    <option>10+ Years</option>
+                                </select>
+                            </div>
+                           <div class="form-group col-md-4">
+                                <label for="dealership-interest">Select Dealership Option of Interest:</label>
+                                <select id="dealership-interest" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>Pipes</option>
+                                    <option>Tank</option>
+                                    <option>Bathware</option>
+                                    <option>All of the above</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12 form-desc">
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" cols="100%" rows="3"></textarea>
+                            </div>
+                        </div>
+                         <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Submit Dealer Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+     </section>
+    <!-- Become a Dealer form ends -->
+
+
+    <!-- Footer Section  -->
+      <footer>
+        <div class="container">
+            <div class="f-items default-padding">
+                <div class="row">
+                     <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <!-- <h4 class="widget-title">About Us</h4> -->
+                            <img src="assets/img/final/Logo-HR (1).png" class="w-50 mb-3" alt="">
+                            <p>
+                               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum qui minima reiciendis ea, aperiam neque!
+                            </p>
+                            <ul class="footer-social">
+                                <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                <!-- <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li> -->
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Other Links</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">Privacy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Disclaimer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Resources</a>
+                                </li>
+                                <li>
+                                    <a href="#">Network</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Our Products</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">UPVC Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">CPVC Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">SWR Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Agriculture Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Bath Fittings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                     <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <h4 class="widget-title">Contact Us</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, est!
+                            </p>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                   3A, Loudon Street Kolkata- 700017
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope-open"></i>
+                                    <a href="mailto:enquiry@skipperlimited.com">enquiry@skipperlimited.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Fixed Shape -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>&copy; Copyright 2025. All Rights Reserved by <a href="#">Skipper Pipes</a></p>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <ul>
+                            <li>
+                                <a href="#">Terms & Conditions</a>
+                            </li>
+                            <li>
+                                <a href="#">Privacy</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Footer Bottom -->
+
+        <div class="fixed-shape">
+            <img src="assets/img/shape/footer-shape.png" alt="Shape">
+        </div>
+        <!-- End Fixed Shape -->
+    </footer>
+    <!-- Footer Section ends -->
+
+ <!-- jQuery Frameworks
+    ============================================= -->
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.appear.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/modernizr.custom.13711.js"></script>
+    <script src="assets/js/swiper/swiper.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/progress-bar.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/jquery.simpleLoadMore.js"></script>
+    <script src="assets/js/count-to.js"></script>
+    <script src="assets/js/bootsnav.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

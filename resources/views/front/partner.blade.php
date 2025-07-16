@@ -15,22 +15,22 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('assets/img/final/blogs-banner-final1.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
-            <h1>{{ $partner->short_title }}</h1>
+            <h1>{{ $partner->short_description }}</h1>
             <p>{{ $partner->long_description }}</p>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
-            <h1>{{ $partner->short_title }}</h1>
-            <p>{{ $partner->short_description }}</p>
+            <h1>{{ $partner->short_description }}</h1>
+            <p>{{ $partner->long_description }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="assets/img/final/blogs-banner-final1.jpg" alt="">
+            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -120,19 +120,27 @@
                             $titles = json_decode($partner->sectionTwo->title, true);
                             $descriptions = json_decode($partner->sectionTwo->description, true);
                             $images = json_decode($partner->sectionTwo->image, true);
+                            $initialImage = !empty($images[0])
+                                ? url('storage/' . $images[0])
+                                : asset('assets/img/final/12344.jpg');
                         @endphp
+
                         @foreach ($titles as $key => $title)
-                            <div class="partners-tab {{ $key == 0 ? 'active' : '' }}"
-                                data-image="{{ !empty($images[$key]) ? url('storage/' . $images[$key]) : asset('assets/img/final/12344.jpg') }}">
+                            @php
+                                $imageUrl = !empty($images[$key])
+                                    ? url('storage/' . $images[$key])
+                                    : asset('assets/img/final/12344.jpg');
+                            @endphp
+                            <div class="partners-tab {{ $key == 0 ? 'active' : '' }}" data-image="{{ $imageUrl }}">
                                 <h3>{{ $title }}</h3>
                                 <p>{{ $descriptions[$key] }}</p>
                             </div>
                         @endforeach
-
+                    @else
                     @endif
                 </div>
                 <div class="image-display col-md-6">
-                    <img src="" alt="Partner Image" class="img-fluid">
+                    <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid" />
                 </div>
             </div>
         </div>
@@ -277,13 +285,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.partners-tab');
-            const imageDisplay = document.querySelector('.image-display img');
-
-            // Set initial image from active tab
-            const activeTab = document.querySelector('.partners-tab.active');
-            if (activeTab) {
-                imageDisplay.src = activeTab.getAttribute('data-image');
-            }
+            const imageDisplay = document.getElementById('tab-image');
 
             // Add click event to all tabs
             tabs.forEach(tab => {
@@ -296,7 +298,7 @@
 
                     // Update image
                     const imageUrl = this.getAttribute('data-image');
-                    if (imageUrl) {
+                    if (imageUrl && imageDisplay) {
                         imageDisplay.src = imageUrl;
                     }
                 });
