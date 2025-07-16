@@ -174,7 +174,7 @@
                 $('.edit-btn').click(function() {
                     const form = $(this).closest('form');
                     form.find('input:not([type="hidden"]), textarea, select').removeAttr('readonly disabled');
-                    form.find('.save-btn, .remove-image-btn').show();
+                    form.find('.save-btn, .remove-image-btn, .add-item-btn').show();
                     $(this).hide();
                 });
                 // Remove image button logic
@@ -254,3 +254,24 @@
         </script>
     @endpush
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.edit-btn').click(function() {
+                const form = $(this).closest('form');
+                form.find('input:not([type="hidden"]), textarea, select').removeAttr('readonly disabled');
+                form.find('.save-btn, .remove-image-btn, .add-item-btn').show();
+                $(this).hide();
+            });
+            $('.remove-image-btn').click(function() {
+                const imageContainer = $(this).closest('.position-relative');
+                imageContainer.hide();
+                $(this).closest('form').find('input[name="remove_image"]').val(1);
+            });
+            $('.section-form').on('submit', function() {
+                $(this).find('input:not([type="hidden"]), textarea, select').removeAttr(
+                    'readonly disabled');
+            });
+        });
+    </script>
+@endpush
