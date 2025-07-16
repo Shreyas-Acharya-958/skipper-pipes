@@ -30,6 +30,7 @@ use App\Models\LeadershipSectionFour;
 use App\Models\LeadershipSectionOne;
 use App\Models\LeadershipSectionThree;
 use App\Models\LeadershipSectionTwo;
+use App\Models\MainNetwork;
 use App\Models\ManufacturingSectionFour;
 use App\Models\ManufacturingSectionOne;
 use App\Models\ManufacturingSectionThree;
@@ -46,6 +47,7 @@ use App\Models\PartnerSectionOne;
 use App\Models\PartnerSectionTwo;
 use App\Models\PartnerPipesOffer;
 use App\Models\Media;
+use App\Models\Network;
 use App\Models\News;
 use App\Models\WhySkipperPipe;
 use App\Models\WhySkipperPipeSectionFive;
@@ -430,6 +432,8 @@ class FrontController extends Controller
 
     public function network()
     {
-        return view('front.resources.network');
+        $mainNetwork = MainNetwork::first();
+        $networks = Network::orderBy('sequence', 'asc')->get();
+        return view('front.resources.network', compact('mainNetwork', 'networks'));
     }
 }
