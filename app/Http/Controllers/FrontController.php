@@ -158,7 +158,10 @@ class FrontController extends Controller
     public function blogDetail($slug)
     {
         $blog = Blog::where('slug', $slug)
-            ->with(['category.blogs', 'tags', 'comments'])
+            ->with(['category.blogs', 'tags', 'comments' => function ($query) {
+                $query->where('status', 1);
+            }])
+            ->where('status', 1)
             ->firstOrFail();
 
         // SEO data

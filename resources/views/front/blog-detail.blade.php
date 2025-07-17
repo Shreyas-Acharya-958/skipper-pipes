@@ -1,7 +1,15 @@
 @extends('front.layouts.app')
 
 @section('title', $blog->title . ' - Skipper Pipes')
-
+@section('styles')
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+@endsection
 @section('content')
     <!-- Hero Banner -->
     <section class="hero-banner single-blog">
