@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
+            <img src="{{ asset('storage/' . $product->page_image) }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -19,9 +19,10 @@
 
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
+            <img src="{{ asset('storage/' . $product->page_image) }}" alt="">
         </div>
     </section>
+
     <!-- Product Overview -->
     <!-- Product Overview -->
     <section class="product-overview default-padding">
