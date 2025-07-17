@@ -8,18 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--Start meta-->
-    <meta name="description"
-        content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
-    <meta name="title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
-    {{-- <meta name="author" content="{{ $seoData['meta_author'] ?? 'Skipper Pipes' }}">
-    <meta name="keywords" content="{{ $seoData['meta_keywords'] ?? 'pipes, plumbing, fittings, skipper pipes' }}"> --}}
+    @if (isset($seoData))
+        <meta name="description" content="{{ $seoData['meta_description'] ?? '' }}">
+        <meta name="title" content="{{ $seoData['meta_title'] ?? '' }}">
+    @endif
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
-    <meta property="og:description"
-        content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+    <meta property="og:title" content="{{ $seoData['meta_title'] ?? '' }}">
+    <meta property="og:description" content="{{ $seoData['meta_description'] ?? '' }}">
     <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
 
     <!-- Twitter -->
@@ -168,7 +166,8 @@
                 <div class="widget">
                     <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" alt="Logo">
                     <p>
-                        Trusted piping solutions engineered for strength, hygiene, and long-term durability across infrastructure, agriculture, industrial, and residential applications.
+                        Trusted piping solutions engineered for strength, hygiene, and long-term durability across
+                        infrastructure, agriculture, industrial, and residential applications.
                     </p>
                 </div>
                 <div class="widget address">
@@ -241,7 +240,8 @@
                             <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" class="w-50 mb-3"
                                 alt="">
                             <p>
-                               Reliable piping solutions ensuring strength, durability, and hygiene for residential, industrial, and agricultural infrastructure applications.
+                                Reliable piping solutions ensuring strength, durability, and hygiene for residential,
+                                industrial, and agricultural infrastructure applications.
                             </p>
                             <ul class="footer-social">
                                 <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
@@ -283,7 +283,8 @@
                                 <li><a href="{{ url('products/casing-pipes') }}">Casing Pipes</a></li>
                                 <li><a href="{{ url('products/hdpe-pipes') }}">HDPE Pipes</a></li>
                                 <li><a href="{{ url('products/marina-tank') }}">Marina Tank</a></li>
-                                <li><a href="https://skipperbathfittings.com/beta/" target="_blank">Bath Fittings</a></li>
+                                <li><a href="https://skipperbathfittings.com/beta/" target="_blank">Bath Fittings</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -317,7 +318,8 @@
                         <p>&copy; Copyright {{ date('Y') }} Skipper Pipes. All Rights Reserved</p>
                     </div>
                     <div class="col-lg-6 text-right">
-                        <p><a href="{{ url('disclaimer') }}">Disclaimer</a> | <a href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a
+                        <p><a href="{{ url('disclaimer') }}">Disclaimer</a> | <a
+                                href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a
                                 href="{{ url('terms-conditions') }}">Terms & Conditions</a></p>
                     </div>
                 </div>
