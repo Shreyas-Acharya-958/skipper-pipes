@@ -15,7 +15,7 @@
         }
 
         .blog-items .thumb {
-            height: 250px;
+            height: auto;
             overflow: hidden;
             position: relative;
         }
@@ -56,25 +56,30 @@
 @endsection
 
 @section('content')
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-        <div class="container-fluid p-0">
-            <div class="row">
-                <div class="col-12">
-                    <div class="hero-banner-img">
-                        <img src="{{ asset('assets/img/final/blogs-banner2.jpg') }}" alt="hero-banner">
-                    </div>
-                    <div class="hero-bg-overlay"></div>
-                    <div class="hero-banner-content">
-                        <h1>Build Better with Expert Advice</h1>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam dolorum perferendis distinctio
-                            perspiciatis soluta sequi, ducimus aliquam eaque eos nihil?</p>
-                    </div>
-                </div>
-            </div>
+<!-- Hero banner-section -->
+    <section class="hero-banner2">
+        <div class="hero-banner2-bg">
+            <img src="{{ asset('assets/img/final/blogs-hero-section.png') }}" alt="">
+        </div>
+        <div class="hero-banner2-overlay"></div>
+        <div class="hero-banner2-content">
+            <h1>Build Better with Expert Advice</h1>
+            <p>Gain industry insights, professional guidance, and technical knowledge to make smarter, more efficient infrastructure decisions.</p>
         </div>
     </section>
 
+    <section class="hero-banner2-responsive">
+        <div class="hero-banner2-content-responsive">
+            <h1>Build Better with Expert Advice</h1>
+            <p>Gain industry insights, professional guidance, and technical knowledge to make smarter, more efficient infrastructure decisions.</p>
+        </div>
+        <div class="hero-banner2-img-responsive">
+            <img src="{{ asset('assets/img/final/blogs-hero-section.png') }}" alt="">
+        </div>
+    </section>
+    <!-- Hero banner-section ends -->
+
+   
     <section class="main-blogs-grid blog-area home-blog default-padding">
         <div class="container">
             <div class="blog-items">
