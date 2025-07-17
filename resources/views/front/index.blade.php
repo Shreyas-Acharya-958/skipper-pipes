@@ -38,8 +38,8 @@
                         @if ($sectionOne->image)
                             <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
                         @elseif ($sectionOne->video)
-                            <video class="w-100" src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes" loop autoplay
-                                muted></video>
+                            <video class="w-100" src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes"
+                                loop autoplay muted></video>
                         @else
                             <img src="assets/img/final/home-about.jpg" alt="Why Skipper Pipes">
                         @endif
@@ -107,7 +107,7 @@
                             </li>
                         @endif
                     </ul>
-                    <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ url('contact-us') }}">Know More</a>
+                    <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ url('company/overview') }}">Know More</a>
                 </div>
             </div>
         </div>
@@ -402,29 +402,29 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            // Tab switching functionality
-            $('.tab-btn').on('click', function() {
-                var tab = $(this).data('tab');
+        // $(document).ready(function() {
+        //     // Tab switching functionality
+        //     $('.tab-btn').on('click', function() {
+        //         var tab = $(this).data('tab');
 
-                // Remove active classes
-                $('.tab-btn').removeClass('active-btn');
-                $('.tab').removeClass('active-tab');
+        //         // Remove active classes
+        //         $('.tab-btn').removeClass('active-btn');
+        //         $('.tab').removeClass('active-tab');
 
-                // Add active classes
-                $(this).addClass('active-btn');
-                $(tab).addClass('active-tab');
+        //         // Add active classes
+        //         $(this).addClass('active-btn');
+        //         $(tab).addClass('active-tab');
 
-                // Reinitialize carousel for the active tab
-                $(tab).find('.owl-carousel').trigger('destroy.owl.carousel').owlCarousel(
-                    JSON.parse($(tab).find('.owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
-                );
-            });
+        //         // Reinitialize carousel for the active tab
+        //         $(tab).find('.owl-carousel').trigger('destroy.owl.carousel').owlCarousel(
+        //             JSON.parse($(tab).find('.owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
+        //         );
+        //     });
 
-            // Initialize first tab's carousel
-            $('.tab.active-tab .owl-carousel').owlCarousel(
-                JSON.parse($('.tab.active-tab .owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
-            );
-        });
+        //     // Initialize first tab's carousel
+        //     $('.tab.active-tab .owl-carousel').owlCarousel(
+        //         JSON.parse($('.tab.active-tab .owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
+        //     );
+        // });
     </script>
 @endsection
