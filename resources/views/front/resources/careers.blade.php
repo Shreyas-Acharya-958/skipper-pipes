@@ -13,7 +13,9 @@
         <!-- Hero banner-section -->
         <section class="hero-banner2">
             <div class="hero-banner2-bg">
-                <img src="{{ asset('storage/' . $careers->image) }}" alt="">
+                @if (!empty($careers->images) && isset($careers->images[0]))
+                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="">
+                @endif
             </div>
             <div class="hero-banner2-overlay"></div>
             <div class="hero-banner2-content">
@@ -28,7 +30,9 @@
                 <p>{{ $careers->description }}</p>
             </div>
             <div class="hero-banner2-img-responsive">
-                <img src="{{ asset('storage/' . $careers->image) }}" alt="">
+                @if (!empty($careers->images) && isset($careers->images[0]))
+                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="">
+                @endif
             </div>
         </section>
         <!-- Hero banner-section ends -->
