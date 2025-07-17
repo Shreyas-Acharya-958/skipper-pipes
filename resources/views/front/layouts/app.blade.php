@@ -168,7 +168,7 @@
                 <div class="widget">
                     <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" alt="Logo">
                     <p>
-                        Skipper Pipes - Your trusted partner in plumbing solutions.
+                        Trusted piping solutions engineered for strength, hygiene, and long-term durability across infrastructure, agriculture, industrial, and residential applications.
                     </p>
                 </div>
                 <div class="widget address">
@@ -241,8 +241,7 @@
                             <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" class="w-50 mb-3"
                                 alt="">
                             <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum qui minima reiciendis ea,
-                                aperiam neque!
+                               Reliable piping solutions ensuring strength, durability, and hygiene for residential, industrial, and agricultural infrastructure applications.
                             </p>
                             <ul class="footer-social">
                                 <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
@@ -263,11 +262,12 @@
                         <div class="f-item link">
                             <h4 class="widget-title">Other Links</h4>
                             <ul>
-                                <li><a href="{{ url('privacy') }}">Privacy</a></li>
-                                <li><a href="{{ url('disclaimer') }}">Disclaimer</a></li>
-                                <li><a href="{{ url('resources') }}">Resources</a></li>
+                                <li><a href="{{ url('why-skipper-pipes') }}">Why Skipper Pipes</a></li>
+                                <li><a href="{{ url('partner/become-dealer') }}">Become a Dealer</a></li>
+                                <li><a href="{{ url('partner/become-distributor') }}">Become a Distributor</a></li>
                                 <li><a href="{{ url('network') }}">Network</a></li>
-                                <li><a href="{{ url('contact') }}">Contact</a></li>
+                                <li><a href="{{ url('blogs') }}">Blogs</a></li>
+                                <li><a href="{{ url('faqs') }}">FAQs</a></li>
                             </ul>
                         </div>
                     </div>
@@ -279,10 +279,11 @@
                             <h4 class="widget-title">Our Products</h4>
                             <ul>
                                 <li><a href="{{ url('products/upvc-pipes') }}">UPVC Pipes</a></li>
-                                <li><a href="{{ url('products/cpvc-pipes') }}">CPVC Pipes</a></li>
-                                <li><a href="{{ url('products/swr-pipes') }}">SWR Pipes</a></li>
                                 <li><a href="{{ url('products/agriculture-pipes') }}">Agriculture Pipes</a></li>
-                                <li><a href="{{ url('products/bath-fittings') }}">Bath Fittings</a></li>
+                                <li><a href="{{ url('products/casing-pipes') }}">Casing Pipes</a></li>
+                                <li><a href="{{ url('products/hdpe-pipes') }}">HDPE Pipes</a></li>
+                                <li><a href="{{ url('products/marina-tank') }}">Marina Tank</a></li>
+                                <li><a href="https://skipperbathfittings.com/beta/" target="_blank">Bath Fittings</a></li>
                             </ul>
                         </div>
                     </div>
@@ -313,10 +314,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <p>&copy; {{ date('Y') }} Skipper Pipes. All Rights Reserved</p>
+                        <p>&copy; Copyright {{ date('Y') }} Skipper Pipes. All Rights Reserved</p>
                     </div>
-                    <div class="col-lg-6 text-end">
-                        <p><a href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a
+                    <div class="col-lg-6 text-right">
+                        <p><a href="{{ url('disclaimer') }}">Disclaimer</a> | <a href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a
                                 href="{{ url('terms-conditions') }}">Terms & Conditions</a></p>
                     </div>
                 </div>

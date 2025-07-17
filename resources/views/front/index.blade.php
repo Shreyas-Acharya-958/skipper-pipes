@@ -38,7 +38,7 @@
                         @if ($sectionOne->image)
                             <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
                         @elseif ($sectionOne->video)
-                            <video src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes" loop autoplay
+                            <video class="w-100" src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes" loop autoplay
                                 muted></video>
                         @else
                             <img src="assets/img/final/home-about.jpg" alt="Why Skipper Pipes">
@@ -184,31 +184,7 @@
                                     <div class="tab {{ $loop->first ? 'active-tab' : '' }}"
                                         id="{{ Str::slug($category->name) }}">
                                         <div class="home-products__main-tab-content">
-                                            <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel"
-                                                data-owl-options='{
-                                                "items": 1,
-                                                "margin": 30,
-                                                "smartSpeed": 700,
-                                                "loop":true,
-                                                "autoplay": 6000,
-                                                "nav":false,
-                                                "dots":true,
-                                                "navText": ["<span class=\"fa fa-angle-left\"></span>","<span class=\"fa fa-angle-right\"></span>"],
-                                                "responsive":{
-                                                    "0":{
-                                                        "items":1
-                                                    },
-                                                    "768":{
-                                                        "items":2
-                                                    },
-                                                    "992":{
-                                                        "items": 2
-                                                    },
-                                                    "1200":{
-                                                        "items": 2
-                                                    }
-                                                }
-                                            }'>
+                                            <div class="home-products__carousel thm-owl__carousel owl-theme owl-carousel">
                                                 @foreach ($category->products->where('status', 1) as $product)
                                                     <div class="item">
                                                         <div class="home-products__single">

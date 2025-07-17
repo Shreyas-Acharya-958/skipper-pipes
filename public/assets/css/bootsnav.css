@@ -1798,7 +1798,8 @@ nav.navbar.bootsnav {
   }
 
   nav.navbar.bootsnav ul.nav > li.active > a {
-    color: #FF5E14;
+    /* color: #FF5E14; */
+    color: #ffa800;
   }
 
   .yellow nav.navbar.bootsnav ul.nav > li.active > a {
