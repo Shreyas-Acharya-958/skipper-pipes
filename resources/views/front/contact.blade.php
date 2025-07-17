@@ -58,43 +58,36 @@
                 <!-- Left: City List -->
                 <div class="col-md-3 mb-5 mb-md-0">
                     <ul class="list-group city-list">
-                        <li class="list-group-item active" data-city="west-bengal">West Bengal</li>
-                        <li class="list-group-item" data-city="uttar-pradesh">Uttar Pradesh</li>
-                        <li class="list-group-item" data-city="assam">Assam</li>
-                        <li class="list-group-item" data-city="telangana">Telangana</li>
+                        <li class="list-group-item active" data-city="media-queries">Media Queries</li>
+                        <li class="list-group-item " data-city="advertising-queries">Advertising Queries</li>
+                        <li class="list-group-item " data-city="investor-queries">Investor Queries</li>
                     </ul>
                 </div>
 
                 <!-- Center: Location Details -->
                 <div class="col-md-5 mb-5 mb-md-0">
-                    <div class="location-info" id="info-west-bengal">
-                        <h4>Registered & Corporate Office, Ahmedabad, West Bengal</h4>
-                        <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal 700046
-                        </p>
-                        <a>📞 +91-123456789</a>
+                    <div class="location-info" id="info-media-queries">
+                        <h4>Media Queries</h4>
+                        <p class="mb-0">For any Media Query reach out to us on:</p>
                         <a>📧 westbengal@company.com</a>
+                        <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
+                            West Bengal 700046</p>
                     </div>
-                    <div class="location-info d-none" id="info-uttar-pradesh">
-                        <h4>Branch Office, Uttar Pradesh</h4>
-                        <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal 700046
-                        </p>
-                        <p>📞 +91-123456789</p>
-                        <p>📧 uttarpradesh@company.com</p>
+                    <div class="location-info d-none" id="info-advertising-queries">
+                        <h4>Advertising Queries</h4>
+                        <p class="mb-0">For any Advertising Query reach out to us on:</p>
+                        <a>📧 westbengal@company.com</a>
+                        <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
+                            West Bengal 700046</p>
                     </div>
-                    <div class="location-info d-none" id="info-assam">
-                        <h4>Branch Office, Assam</h4>
-                        <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal 700046
-                        </p>
-                        <p>📞 +91-123456789</p>
-                        <p>📧 assam@company.com</p>
+                    <div class="location-info d-none" id="info-investor-queries">
+                        <h4>Investor Queries</h4>
+                        <p class="mb-0">For any Investor Query reach out to us on:</p>
+                        <a>📧 westbengal@company.com</a>
+                        <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
+                            West Bengal 700046</p>
                     </div>
-                    <div class="location-info d-none" id="info-telangana">
-                        <h4>Branch Office, Telangana</h4>
-                        <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal 700046
-                        </p>
-                        <p>📞 +91-123456789</p>
-                        <p>📧 telangana@company.com</p>
-                    </div>
+
                 </div>
 
                 <!-- Right: India Map -->
@@ -102,49 +95,21 @@
                     <img src="assets/img/final2/Map.svg" class="img-fluid" alt="India Map" />
 
                     <!-- Pins -->
-                    <div class="map-pin pin-west-bengal">
+                    <div class="map-pin pin-west-bengal active">
                         <span>West Bengal</span>
-                        <img src="assets/img/final2/gray-pin.svg" data-city="west-bengal" />
-                    </div>
-                    <div class="map-pin pin-uttar-pradesh">
-                        <span>Uttar Pradesh</span>
-                        <img src="assets/img/final2/gray-pin.svg" data-city="uttar-pradesh" />
-                    </div>
-                    <div class="map-pin pin-assam">
-                        <span>Assam</span>
-                        <img src="assets/img/final2/gray-pin.svg" data-city="assam" />
-                    </div>
-                    <div class="map-pin pin-telangana">
-                        <span>Telangana</span>
-                        <img src="assets/img/final2/gray-pin.svg" data-city="telangana" />
+                        <img src="assets/img/final2/blue-pin.svg" data-city="media-queries" />
                     </div>
 
-                    <!-- <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-uttar-pradesh" data-city="uttar-pradesh" />
-                                                                                        <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-assam" data-city="assam" />
-                                                                                        <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-telangana" data-city="telangana" /> -->
 
                     <!-- Active Pin Overlay -->
                     <div class="map-pin active-pin pin-west-bengal d-block">
                         <span>West Bengal</span>
                         <img src="assets/img/final2/blue-pin.svg" />
                     </div>
-                    <div class="map-pin active-pin pin-uttar-pradesh d-none">
-                        <span>Uttar Pradesh</span>
-                        <img src="assets/img/final2/blue-pin.svg" />
-                    </div>
-                    <div class="map-pin active-pin pin-assam d-none">
-                        <span>Assam</span>
-                        <img src="assets/img/final2/blue-pin.svg" />
-                    </div>
-                    <div class="map-pin active-pin pin-telangana d-none">
-                        <span>Telangana</span>
-                        <img src="assets/img/final2/blue-pin.svg" />
-                    </div>
-                    <!-- <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-uttar-pradesh d-none" />
-                                                                                        <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-assam d-none" />
-                                                                                        <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-telangana d-none" /> -->
                 </div>
             </div>
+        </div>
+
         </div>
 
     </section>
