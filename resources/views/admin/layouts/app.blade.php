@@ -174,6 +174,10 @@
                             href="{{ route('admin.menus.index') }}">
                             <i class="fas fa-bars"></i> <span class="nav-text">Menu Management</span>
                         </a>
+                        <a class="nav-link{{ request()->routeIs('admin.seo.*') ? ' active' : '' }}"
+                            href="{{ route('admin.seo.index') }}">
+                            <i class="fas fa-bars"></i> <span class="nav-text">SEO Management</span>
+                        </a>
                         <a class="nav-link{{ request()->routeIs('admin.users.*') ? ' active' : '' }}"
                             href="{{ route('admin.users.index') }}">
                             <i class="fas fa-users"></i> <span class="nav-text">User Management</span>
