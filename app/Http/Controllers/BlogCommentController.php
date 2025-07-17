@@ -72,4 +72,14 @@ class BlogCommentController extends Controller
         return redirect()->route('admin.blog_comments.index')
             ->with('success', 'Blog comment deleted successfully.');
     }
+
+    public function approve(BlogComment $blogComment, Request $request)
+    {
+        $blogComment->status = 1;
+        $blogComment->save();
+        if ($request->expectsJson()) {
+            return response()->json(['success' => true, 'message' => 'Blog comment approved successfully.']);
+        }
+        return redirect()->back()->with('success', 'Blog comment approved successfully.');
+    }
 }

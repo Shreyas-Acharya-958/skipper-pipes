@@ -45,9 +45,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Admin routes (with auth middleware)
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // User Management routes
     Route::resource('users', UserController::class);
@@ -83,6 +81,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Blog Comment routes
     Route::resource('blog-comments', BlogCommentController::class)->names('blog_comments');
+    Route::post('blog-comments/{blogComment}/approve', [BlogCommentController::class, 'approve'])->name('blog_comments.approve');
 
     // Company Page routes
     // Route::resource('company-pages', CompanyPageController::class)->names('company_pages');
