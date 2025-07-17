@@ -101,7 +101,10 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->subject }}</td>
                                     <td><button class="btn btn-sm btn-link text-primary" type="button"
-                                            onclick="toggleRow('career-{{ $item->id }}')">Details</button></td>
+                                            onclick="toggleRow('career-{{ $item->id }}')">Details</button>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="career"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
                                 </tr>
                                 <tr id="career-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="5">
@@ -138,7 +141,10 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->subject }}</td>
                                     <td><button class="btn btn-sm btn-link text-primary" type="button"
-                                            onclick="toggleRow('contact-{{ $item->id }}')">Details</button></td>
+                                            onclick="toggleRow('contact-{{ $item->id }}')">Details</button>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="contact"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
                                 </tr>
                                 <tr id="contact-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="5">
@@ -169,7 +175,10 @@
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->firm_name }}</td>
                                     <td><button class="btn btn-sm btn-link text-primary" type="button"
-                                            onclick="toggleRow('partner-{{ $item->id }}')">Details</button></td>
+                                            onclick="toggleRow('partner-{{ $item->id }}')">Details</button>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="partner"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
                                 </tr>
                                 <tr id="partner-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="5">
@@ -211,7 +220,10 @@
                                         @endif
                                     </td>
                                     <td><button class="btn btn-sm btn-link text-primary" type="button"
-                                            onclick="toggleRow('blogcomment-{{ $item->id }}')">Details</button></td>
+                                            onclick="toggleRow('blogcomment-{{ $item->id }}')">Details</button>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="blog_comment"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
                                 </tr>
                                 <tr id="blogcomment-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="5">
@@ -270,6 +282,44 @@
                                 text: 'Failed to approve comment.'
                             });
                         });
+                });
+            });
+
+            document.querySelectorAll('.delete-inquiry').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    if (!confirm('Are you sure you want to delete this entry?')) return;
+                    var type = this.getAttribute('data-type');
+                    var id = this.getAttribute('data-id');
+                    var row = this.closest('tr');
+                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content');
+                    fetch("{{ route('admin.dashboard.delete-inquiry') }}", {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': token,
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                type: type,
+                                id: id
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Remove both the main row and the details row if present
+                                var detailsRow = row.nextElementSibling;
+                                if (detailsRow && detailsRow.style && detailsRow.style
+                                    .display !== undefined) {
+                                    detailsRow.remove();
+                                }
+                                row.remove();
+                            } else {
+                                alert('Failed to delete.');
+                            }
+                        })
+                        .catch(() => alert('Failed to delete.'));
                 });
             });
         });

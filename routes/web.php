@@ -46,6 +46,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Admin routes (with auth middleware)
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/admin/dashboard/delete-inquiry', [\App\Http\Controllers\DashboardController::class, 'deleteInquiry'])->name('dashboard.delete-inquiry');
 
     // User Management routes
     Route::resource('users', UserController::class);
