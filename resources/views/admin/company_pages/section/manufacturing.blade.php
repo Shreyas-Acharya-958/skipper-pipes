@@ -429,7 +429,7 @@
                 // Remove item button click handlers
                 $(document).on('click', '.remove-manufacturing-unit-btn', function() {
                     const item = $(this).closest('.manufacturing-unit');
-                    const id = item.find('input[name$="[id]""]').val();
+                    const id = item.find('input[name$="\\[id\\]"]').val();
                     if (id) {
                         const form = item.closest('form');
                         form.append($('<input>').attr({
@@ -491,7 +491,7 @@
                 // Remove item button click handlers
                 $(document).on('click', '.remove-quality-control-btn', function() {
                     const item = $(this).closest('.quality-control-item');
-                    const id = item.find('input[name$="[id]""]').val();
+                    const id = item.find('input[name$="\\[id\\]"]').val();
                     if (id) {
                         const form = item.closest('form');
                         form.append($('<input>').attr({
