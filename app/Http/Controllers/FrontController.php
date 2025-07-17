@@ -50,6 +50,7 @@ use App\Models\PartnerPipesOffer;
 use App\Models\Media;
 use App\Models\Network;
 use App\Models\News;
+use App\Models\Section;
 use App\Models\WhySkipperPipe;
 use App\Models\WhySkipperPipeSectionFive;
 use App\Models\WhySkipperPipeSectionFour;
@@ -466,5 +467,24 @@ class FrontController extends Controller
         $mainNetwork = MainNetwork::first();
         $networks = Network::orderBy('sequence', 'asc')->get();
         return view('front.resources.network', compact('mainNetwork', 'networks', 'seoData'));
+    }
+
+    public function section($slug = null)
+    {
+        $seoData = $this->getSeoDataForCurrentUrl();
+        // If no slug, you can show a default page or redirect
+        if (!$slug) {
+            return redirect()->route('home'); // or any default
+        }
+
+        // Example: Fetch from a 'company_pages' table
+        $page = Section::where('slug', $slug)->first();
+
+        if (!$page) {
+            abort(404); // Or show a custom 404 page
+        }
+
+        // Pass the page data to a generic section view
+        return view('front.section', compact('page', 'seoData'));
     }
 }

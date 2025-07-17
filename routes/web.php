@@ -216,13 +216,5 @@ Route::name('front.')->group(function () {
     Route::post('/careers', [FrontController::class, 'storeCareerApplication'])->name('careers.store');
 
     Route::get('/network', [FrontController::class, 'network'])->name('network.index');
+    Route::get('/{slug?}', [FrontController::class, 'section'])->name('section.index');
 });
-
-
-// Route::get('/admin/users', function () {
-//     //redireto admin login page
-//     return redirect()->route('admin.login');
-// });
-// Route::get('/admin', function () {
-//     return redirect()->route('admin.login');
-// });
