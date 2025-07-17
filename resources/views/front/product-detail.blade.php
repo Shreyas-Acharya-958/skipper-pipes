@@ -1,24 +1,27 @@
 @extends('front.layouts.app')
 
 @section('content')
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-        <div class="container-fluid p-0">
-            <div class="row">
-                <div class="col-12">
-                    <div class="hero-banner-img">
-                        <img src="{{ asset('assets/img/final/product-single-banner1.jpg') }}" alt="hero-banner">
-                    </div>
-                    <div class="hero-bg-overlay"></div>
-                    <div class="hero-banner-content">
-                        <h1>{{ $product->title }}</h1>
-                        <p>{{ $product->short_description }}</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Hero banner-section -->
+    <section class="hero-banner2">
+        <div class="hero-banner2-bg">
+            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
+        </div>
+        <div class="hero-banner2-overlay"></div>
+        <div class="hero-banner2-content">
+            <h1>{{ $product->title }}</h1>
+
         </div>
     </section>
 
+    <section class="hero-banner2-responsive">
+        <div class="hero-banner2-content-responsive">
+            <h1>{{ $product->title }}</h1>
+
+        </div>
+        <div class="hero-banner2-img-responsive">
+            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
+        </div>
+    </section>
     <!-- Product Overview -->
     <!-- Product Overview -->
     <section class="product-overview default-padding">

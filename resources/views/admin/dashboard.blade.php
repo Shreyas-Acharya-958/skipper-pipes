@@ -186,7 +186,7 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="blog-comment" role="tabpanel" aria-labelledby="blog-comment-tab">
-                    <h5>Blog Comments (Pending)</h5>
+                    <h5>Blog Comments</h5>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
