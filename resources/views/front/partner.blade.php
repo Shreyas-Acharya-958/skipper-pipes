@@ -273,7 +273,6 @@
                         <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Submit Distributor
                             Enquiry</button>
                     </form>
-                    <div id="partnerAlert" class="alert d-none mt-3"></div>
                 </div>
             </div>
         </div>
@@ -308,6 +307,7 @@
 @endpush
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('#partnerForm').validate({
@@ -329,6 +329,16 @@
                     }
                 },
                 submitHandler: function(form) {
+                    // Show loading state
+                    Swal.fire({
+                        title: 'Submitting...',
+                        text: 'Please wait while we process your enquiry.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
                     $.ajax({
                         url: "{{ route('front.partner.enquiry') }}",
                         type: "POST",
@@ -337,22 +347,39 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            $('#partnerAlert')
-                                .removeClass('d-none alert-danger')
-                                .addClass('alert alert-success')
-                                .text(response.message);
-
-                            form.reset();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.message ||
+                                    'Your enquiry has been submitted successfully!',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#28a745'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.reset();
+                                    // Reset form validation
+                                    $('#partnerForm').validate().resetForm();
+                                    // Remove any validation classes
+                                    $('#partnerForm .form-control').removeClass(
+                                        'is-valid is-invalid');
+                                }
+                            });
                         },
                         error: function(xhr) {
                             let message = 'Something went wrong. Please check your inputs.';
                             if (xhr.responseJSON?.errors) {
                                 message = Object.values(xhr.responseJSON.errors).join(' ');
+                            } else if (xhr.responseJSON?.message) {
+                                message = xhr.responseJSON.message;
                             }
-                            $('#partnerAlert')
-                                .removeClass('d-none alert-success')
-                                .addClass('alert alert-danger')
-                                .text(message);
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#dc3545'
+                            });
                         }
                     });
                     return false;

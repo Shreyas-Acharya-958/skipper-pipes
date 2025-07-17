@@ -215,7 +215,6 @@
                                 <textarea name="address" id="address" class="form-control" rows="3"></textarea>
                             </div>
                         </div>
-                        <div id="careerAlert" class="alert d-none mt-2"></div>
                         <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Submit Application</button>
                     </form>
 
@@ -244,6 +243,7 @@
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.culture-tab-buttons .nav-link');
@@ -289,6 +289,16 @@
                     }
                 },
                 submitHandler: function(form) {
+                    // Show loading state
+                    Swal.fire({
+                        title: 'Submitting...',
+                        text: 'Please wait while we process your application.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
                     let formData = new FormData(form);
 
                     $.ajax({
@@ -301,21 +311,39 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            $('#careerAlert')
-                                .removeClass('d-none alert-danger')
-                                .addClass('alert alert-success')
-                                .text(response.message);
-                            form.reset();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Application Submitted!',
+                                text: response.message ||
+                                    'Your application has been submitted successfully!',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#28a745'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.reset();
+                                    // Reset form validation
+                                    $('#careerForm').validate().resetForm();
+                                    // Remove any validation classes
+                                    $('#careerForm .form-control').removeClass(
+                                        'is-valid is-invalid');
+                                }
+                            });
                         },
                         error: function(xhr) {
-                            let msg = 'Something went wrong.';
+                            let message = 'Something went wrong. Please check your inputs.';
                             if (xhr.responseJSON?.errors) {
-                                msg = Object.values(xhr.responseJSON.errors).join(' ');
+                                message = Object.values(xhr.responseJSON.errors).join(' ');
+                            } else if (xhr.responseJSON?.message) {
+                                message = xhr.responseJSON.message;
                             }
-                            $('#careerAlert')
-                                .removeClass('d-none alert-success')
-                                .addClass('alert alert-danger')
-                                .text(msg);
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#dc3545'
+                            });
                         }
                     });
 

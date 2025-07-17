@@ -120,8 +120,8 @@
                     </div>
 
                     <!-- <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-uttar-pradesh" data-city="uttar-pradesh" />
-                                                                                <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-assam" data-city="assam" />
-                                                                                <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-telangana" data-city="telangana" /> -->
+                                                                                        <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-assam" data-city="assam" />
+                                                                                        <img src="assets/img/final2/gray-pin.svg" class="map-pin pin-telangana" data-city="telangana" /> -->
 
                     <!-- Active Pin Overlay -->
                     <div class="map-pin active-pin pin-west-bengal d-block">
@@ -141,8 +141,8 @@
                         <img src="assets/img/final2/blue-pin.svg" />
                     </div>
                     <!-- <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-uttar-pradesh d-none" />
-                                                                                <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-assam d-none" />
-                                                                                <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-telangana d-none" /> -->
+                                                                                        <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-assam d-none" />
+                                                                                        <img src="assets/img/final2/blue-pin.svg" class="map-pin active-pin pin-telangana d-none" /> -->
                 </div>
             </div>
         </div>
@@ -199,8 +199,6 @@
                             </div>
                         </div>
 
-                        <div id="alertBox" class="alert d-none mt-3"></div>
-
                         <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Submit</button>
                     </form>
 
@@ -211,6 +209,7 @@
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('#contactForm').validate({
@@ -230,6 +229,16 @@
                     }
                 },
                 submitHandler: function(form) {
+                    // Show loading state
+                    Swal.fire({
+                        title: 'Sending...',
+                        text: 'Please wait while we send your message.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
                     $.ajax({
                         url: "{{ route('front.contact.store') }}",
                         type: "POST",
@@ -238,22 +247,39 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            $('#alertBox')
-                                .removeClass('d-none alert-danger')
-                                .addClass('alert-success')
-                                .text('Thank you! We will contact you shortly.');
-
-                            form.reset();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Message Sent!',
+                                text: response.message ||
+                                    'Thank you! We will contact you shortly.',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#28a745'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.reset();
+                                    // Reset form validation
+                                    $('#contactForm').validate().resetForm();
+                                    // Remove any validation classes
+                                    $('#contactForm .form-control').removeClass(
+                                        'is-valid is-invalid');
+                                }
+                            });
                         },
                         error: function(xhr) {
                             let message = 'An error occurred. Please try again.';
                             if (xhr.responseJSON?.errors) {
                                 message = Object.values(xhr.responseJSON.errors).join(' ');
+                            } else if (xhr.responseJSON?.message) {
+                                message = xhr.responseJSON.message;
                             }
-                            $('#alertBox')
-                                .removeClass('d-none alert-success')
-                                .addClass('alert-danger')
-                                .text(message);
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#dc3545'
+                            });
                         }
                     });
                     return false;
