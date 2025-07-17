@@ -123,19 +123,32 @@
                         Expedita aliquam voluptas voluptate.</p>
                     <ul>
                         <li>
-                            <h4>Media Queries</h4>
-                            <p>For Media Queries reach out to us on:</p>
-                            <a href="#">promit.sinha@skipperlimited.com</a>
+                            <h4>Registered & Corporate Office, West Bengal</h4>
+                            <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal
+                                700046</p>
+                            <a href="tel:+91123456789" class="d-block mt-3">📞 +91-123456789</a>
+                            <a href="mailto:westbengal@company.com">📧 westbengal@company.com</a>
                         </li>
-                        <li>
-                            <h4>Advertiser Queries</h4>
-                            <p>For any Advertising Query reach out to us on:</p>
-                            <a href="#">promit.sinha@skipperlimited.com</a>
-                        </li>
-                        <li>
-                            <h4>Investor Queries</h4>
-                            <p>For any Investors Query reach out to us on:</p>
-                            <a href="#">promit.sinha@skipperlimited.com</a>
+                        <li class="contact-pg-icons">
+                            <a href="#">
+                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social Facebook.svg"
+                                    alt="">
+                            </a>
+                            <a href="#">
+                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social Instagram.svg"
+                                    alt="">
+                            </a>
+                            <a href="#">
+                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social Linkedin.svg"
+                                    alt="">
+                            </a>
+                            <a href="#">
+                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social X.svg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social YT.svg"
+                                    alt="">
+                            </a>
                         </li>
                     </ul>
                 </div>
