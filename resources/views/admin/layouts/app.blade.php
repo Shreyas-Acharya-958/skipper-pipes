@@ -22,6 +22,10 @@
         .nav.nav-tabs .nav-link:hover {
             background-color: transparent !important;
         }
+
+        .btn-group .fa-eye {
+            display: none;
+        }
     </style>
 </head>
 
