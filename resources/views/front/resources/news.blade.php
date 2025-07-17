@@ -53,7 +53,7 @@
                     <div class="col-md-6 col-lg-4 mb-lg-5 mb-md-5 mb-3 news-col-wrapper">
                         <div class="news-col">
                             <span class="sub-title">Press Release</span>
-                            <span class="news-date">{{ $item->press_release }}</span>
+                            <span class="news-date">{{ date(,) }}</span>
                             <h3>{{ $item->title }}</h3>
                             <a href="{{ asset('storage/' . $item->file) }}" class="btn btn-dark theme2 theme mt-4"
                                 target="_blank">View Details</a>
