@@ -199,7 +199,7 @@ Route::name('front.')->group(function () {
     Route::get('/', [FrontController::class, 'index'])->name('home');
     Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs.index');
     Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
-    Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeComment'])->name('blogs.comment');
+    Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeBlogComment'])->name('blogs.comment');
     Route::get('/partner/{slug}', [FrontController::class, 'partner'])->name('partner.show');
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');

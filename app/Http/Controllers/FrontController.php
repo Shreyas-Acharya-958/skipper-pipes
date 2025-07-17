@@ -7,6 +7,7 @@ use App\Models\Product;
 
 use App\Models\Banner;
 use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use App\Models\BlogTag;
 use App\Models\Career;
 use App\Models\CareerApplication;
@@ -267,7 +268,7 @@ class FrontController extends Controller
         return view('front.product-detail', compact('product'));
     }
 
-    public function storeComment(Request $request, Blog $blog)
+    public function storeBlogComment(Request $request, Blog $blog)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -278,10 +279,14 @@ class FrontController extends Controller
         $blog->comments()->create([
             'name' => $request->name,
             'email' => $request->email,
-            'content' => $request->content
+            'description' => $request->content,
+            'status' => 0,
         ]);
 
-        return back()->with('success', 'Comment posted successfully!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you! Your comment has been submitted successfully and is pending approval.'
+        ]);
     }
 
     public function partner($slug)

@@ -127,8 +127,7 @@
                             <div class="title">
                                 <h4>Leave a comment</h4>
                             </div>
-                            <form action="{{ route('front.blogs.comment', $blog->id) }}" method="POST"
-                                class="contact-comments">
+                            <form id="commentForm" class="contact-comments">
                                 @csrf
                                 <input type="hidden" name="parent_id" id="reply_to_id">
                                 <div class="row">
@@ -231,9 +230,12 @@
     <!-- End Blog -->
 @endsection
 
-@push('scripts')
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
+            // Reply link functionality
             $('.reply-link').click(function(e) {
                 e.preventDefault();
                 const replyToId = $(this).data('reply-to');
@@ -242,6 +244,115 @@
                     scrollTop: $("#comment-form").offset().top
                 }, 1000);
             });
+
+            // Form validation and submission
+            $('#commentForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 255
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        maxlength: 255
+                    },
+                    content: {
+                        required: true,
+                        minlength: 10
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Name must be at least 2 characters long"
+                    },
+                    email: {
+                        required: "Please enter your email",
+                        email: "Please enter a valid email address"
+                    },
+                    content: {
+                        required: "Please enter your comment",
+                        minlength: "Comment must be at least 10 characters long"
+                    }
+                },
+                errorPlacement: function(error, element) {
+                    error.insertAfter(element);
+                },
+                highlight: function(element) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass('is-invalid');
+                },
+                submitHandler: function(form) {
+                    // Show loading state
+                    Swal.fire({
+                        title: 'Posting Comment...',
+                        text: 'Please wait while we post your comment.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    $.ajax({
+                        url: "{{ route('front.blogs.comment', $blog->id) }}",
+                        type: "POST",
+                        data: $(form).serialize(),
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Comment Posted!',
+                                text: response.message ||
+                                    'Your comment has been posted successfully!',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#28a745'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.reset();
+                                    // Reset form validation
+                                    $('#commentForm').validate().resetForm();
+                                    // Remove any validation classes
+                                    $('#commentForm .form-control').removeClass(
+                                        'is-valid is-invalid');
+                                    // Clear reply to field
+                                    $('#reply_to_id').val('');
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            let message = 'Something went wrong. Please try again.';
+                            if (xhr.responseJSON?.errors) {
+                                message = Object.values(xhr.responseJSON.errors).join(' ');
+                            } else if (xhr.responseJSON?.message) {
+                                message = xhr.responseJSON.message;
+                            }
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#dc3545'
+                            });
+                        }
+                    });
+                    return false; // Prevent form from submitting normally
+                }
+            });
+
+            // Prevent form submission on Enter key
+            $('#commentForm').on('keypress', function(e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    $('#commentForm').submit();
+                }
+            });
         });
     </script>
-@endpush
+@endsection
