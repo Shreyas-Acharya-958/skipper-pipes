@@ -186,7 +186,7 @@
                         <div class="col-12 col-md company-icon-col">
                             <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
                             <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
-                            <p>{{ $whySkipperPipesSectionFive->description ?? '' }}</p>
+                            <p>{{ $why_skipper_pipe_section_two->description ?? '' }}</p>
                         </div>
                     @endforeach
 
