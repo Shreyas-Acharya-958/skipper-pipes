@@ -47,7 +47,14 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="meta_description" class="form-label">Short Description</label>
+                            <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
+                                name="meta_description" rows="3">{{ old('meta_description', $product->meta_description) }}</textarea>
+                            @error('meta_description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
@@ -184,7 +191,7 @@
                             @enderror
                         </div>
 
-                        <div class="card mb-3">
+                        <div class="card mb-3" style="display: none;">
                             <div class="card-header">
                                 <h5 class="mb-0">SEO Meta Information</h5>
                             </div>
@@ -199,14 +206,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="meta_description" class="form-label">Meta Description</label>
-                                    <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
-                                        name="meta_description" rows="3">{{ old('meta_description', $product->meta_description) }}</textarea>
-                                    @error('meta_description')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+
 
                                 <div class="mb-3">
                                     <label for="meta_keywords" class="form-label">Meta Keywords</label>

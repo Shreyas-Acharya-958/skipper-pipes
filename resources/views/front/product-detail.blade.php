@@ -9,7 +9,7 @@
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
             <h1>{{ $product->title }}</h1>
-
+            <p>{{ $product->meta_description }}</p>
         </div>
     </section>
 
@@ -20,6 +20,7 @@
         </div>
         <div class="hero-banner2-img-responsive">
             <img src="{{ asset('storage/' . $product->page_image) }}" alt="">
+            <p>{{ $product->meta_description }}</p>
         </div>
     </section>
 

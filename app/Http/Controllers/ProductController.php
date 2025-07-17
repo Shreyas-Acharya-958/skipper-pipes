@@ -51,7 +51,7 @@ class ProductController extends Controller
             'slug' => 'required|string|max:255|unique:products,slug',
             //'product_overview' => 'required|string',
             //'features_benefits' => 'required|string',
-            //'technical' => 'required|string',
+            'technical' => 'required|string',
             //'application' => 'required|string',
             //'faq' => 'required|string',
             'status' => 'required|boolean',
@@ -59,6 +59,9 @@ class ProductController extends Controller
             'home_image' => 'nullable|image',
             'product_overview_image' => 'nullable|image',
             'brochure' => 'nullable|mimes:pdf,doc,docx',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:255',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
         // Handle file uploads with custom names
@@ -112,7 +115,7 @@ class ProductController extends Controller
             'slug' => 'required|string|max:255|unique:products,slug,' . $product->id,
             // 'product_overview' => 'required|string',
             // 'features_benefits' => 'required|string',
-            // 'technical' => 'required|string',
+            'technical' => 'required|string',
             // 'application' => 'required|string',
             // 'faq' => 'required|string',
             'status' => 'required|boolean',
@@ -120,6 +123,9 @@ class ProductController extends Controller
             'home_image' => 'nullable|image',
             'product_overview_image' => 'nullable|image',
             'brochure' => 'nullable|mimes:pdf,doc,docx',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:255',
+            'meta_keywords' => 'nullable|string|max:255',
         ]);
 
         // Handle file uploads and removals with custom names
