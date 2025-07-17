@@ -51,6 +51,13 @@
     <!-- ========== End Stylesheet ========== -->
 
     @yield('styles')
+    <style>
+        .product-category-col img {
+            width: 50px !important;
+            margin-bottom: 15px;
+        }
+    </style>
+    @yield('styles')
 </head>
 
 <body>
