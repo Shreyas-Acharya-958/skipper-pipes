@@ -4,20 +4,22 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/news/news-banner.jpg') }}" alt="">
+            <img src="{{ asset('/assets/img/final/news-hero-section.png') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
             <h1>News</h1>
+            <p>All the latest announcements, insights, growth stories, and project news here.</p>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>News</h1>
+            <p>All the latest announcements, insights, growth stories, and project news here.</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/news/news-banner.jpg') }}" alt="">
+            <img src="{{ asset('/assets/img/final/news-hero-section.png') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -42,9 +44,8 @@
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
-                        <h2>Lorem ipsum dolor sit amet.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, suscipit laboriosam quos
-                            pariatur unde provident.</p>
+                        <h2>Innovation, Growth, and Brand News</h2>
+                        <p>Discover recent product developments, strategic milestones, market expansions, and impactful updates shaping our journey forward.</p>
                     </div>
                 </div>
             </div>

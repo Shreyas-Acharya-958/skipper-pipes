@@ -12,17 +12,19 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="assets/img/final/blogs-banner-final1.jpg" alt="">
+            <img src="assets/img/final/contact-hero-section.png" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
             <h1>Contact Us</h1>
+            <p>For assistance, dealership queries, technical support, or more details.</p>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>Contact Us</h1>
+            <p>For assistance, dealership queries, technical support, or more details.</p>
         </div>
         <div class="hero-banner2-img-responsive">
             <img src="assets/img/final/blogs-banner1.jpg" alt="">
@@ -50,7 +52,7 @@
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
-                        <h2>Lorem ipsum dolor sit amet.</h2>
+                        <h2>Talk to Our Support Team</h2>
                     </div>
                 </div>
             </div>

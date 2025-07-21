@@ -22,10 +22,10 @@
                              <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
                          </div>
                      @else
-                         <div class="col-md-5">
+                         <div class="col-md-5 order-2 order-md-1">
                              <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
                          </div>
-                         <div class="col-md-7 pl-5 md-message-content">
+                         <div class="col-md-7 pl-5 md-message-content order-1 order-md-2">
                              {!! $leadership->description ?? '' !!}
                          </div>
                      @endif

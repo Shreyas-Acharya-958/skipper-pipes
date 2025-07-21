@@ -181,9 +181,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row philosophy-wrapper text-center px-3 px-md-0">
+                <div class="row philosophy-wrapper text-center px-3 px-md-0 justify-content-center">
                     @foreach ($why_skipper_pipe_section_twos as $why_skipper_pipe_section_two)
-                        <div class="col-12 col-md company-icon-col">
+                        <div class="col-12 col-md-4 company-icon-col">
                             <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
                             <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
                             <p>{{ $why_skipper_pipe_section_two->description ?? '' }}</p>
@@ -206,8 +206,8 @@
                     <h2 class="text-white mb-2">Join Skipper Pipes as a dealer or distributor and </h2>
                     <p class="text-white mb-md-4 pb-md-2">Unlock business growth with trusted products, strong support, and
                         nationwide reach.</p>
-                    <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="#">Become Dealer</a>
-                    <a class="btn btn-light effect btn-md ml-md-3" href="#">Become Distributor</a>
+                    <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become Dealer</a>
+                    <a class="btn btn-light effect btn-md ml-md-3" href="{{ url('partner/become-distributor') }}">Become Distributor</a>
                 </div>
             </div>
         </div>

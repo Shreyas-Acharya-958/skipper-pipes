@@ -16,11 +16,12 @@
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>{{ $product->title }}</h1>
+            <p>{{ $product->meta_description }}</p>
 
         </div>
         <div class="hero-banner2-img-responsive">
             <img src="{{ asset('storage/' . $product->page_image) }}" alt="">
-            <p>{{ $product->meta_description }}</p>
+            
         </div>
     </section>
 
@@ -96,20 +97,18 @@
                 </div>
                 <div class="work-pro-items">
                     <div class="row">
-                        <div class="row">
-                            @foreach ($product->productionFeaturesSections as $feature)
-                                <div class="col-lg-4 col-md-6 single-item">
-                                    <div class="item">
-                                        <div class="item-inner">
-                                            <img src="{{ asset('storage/' . $feature->icon) }}"
-                                                alt="{{ $feature->title }}">
-                                            <h4>{{ $feature->title }} </h4>
-                                            <p>{{ $feature->description }}</p>
-                                        </div>
+                        @foreach ($product->productionFeaturesSections as $feature)
+                            <div class="col-lg-4 col-md-6 single-item">
+                                <div class="item">
+                                    <div class="item-inner">
+                                        <img src="{{ asset('storage/' . $feature->icon) }}"
+                                            alt="{{ $feature->title }}">
+                                        <h4>{{ $feature->title }} </h4>
+                                        <p>{{ $feature->description }}</p>
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -242,10 +241,10 @@
                     <h2 class="text-white">Ready to Install India’s Safest {{ $product->title }}?</h2>
                     <p class="text-white pb-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse nemo
                         assumenda facilis unde debitis, quia quam pariatur. Facilis magni voluptates sint dolorum </p>
-                    <a class="btn btn-light effect btn-md mr-md-3" href="tel:+913322851231"><i
+                    <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0" href="tel:+913322851231"><i
                             class="far fa-phone-alt"></i>
                         +91 33 2285 1231 / 32</a>
-                    <a class="btn btn-light effect btn-md mr-md-3"
+                    <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0"
                         href="mailto:enquiry@skipperpipes.com">enquiry@skipperpipes.com</a>
 
                     <a class="btn btn-light effect btn-md" target="_blank"

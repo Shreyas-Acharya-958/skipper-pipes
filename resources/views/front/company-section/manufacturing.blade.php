@@ -7,13 +7,7 @@
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
                         <h2>Manufacturing Units</h2>
-                        <p>Skipper Pipes operates <b>[Placeholder] state-of-the-art manufacturing units</b>
-                            strategically
-                            located with a combined installed capacity of <b>[Placeholder] MT per annum.</b> This
-                            nationwide
-                            footprint ensures faster lead times, optimized logistics, and consistent product
-                            availability
-                            for projects of every size.</p>
+                        <p>Skipper Pipes operates 3 state-of-the-art manufacturing units strategically located with a combined installed capacity of 51,000 MT per annum. This nationwide footprint ensures faster lead times, optimized logistics, and consistent product availability for projects of every size.</p>
                     </div>
                 </div>
             </div>
