@@ -122,6 +122,7 @@
                     <p class="contact-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, nulla eum.
                         Expedita aliquam voluptas voluptate.</p>
                     <ul>
+                    
                         <li>
                             <h4>Registered & Corporate Office, West Bengal</h4>
                             <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal
