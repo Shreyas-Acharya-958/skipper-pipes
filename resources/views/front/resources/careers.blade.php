@@ -37,6 +37,21 @@
         </section>
         <!-- Hero banner-section ends -->
     @endif
+    
+     <!-- Breadcrumb  -->
+    <div class="breadcrumb-area">
+        <div class="container">
+        <div class="row">
+            <div class="col-12 p-0">
+                <ul class="breadcrumb">
+                    <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="active">Careers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    </div>
     <!-- Why Skipper Section -->
     @if ($career_why_skippers)
         <section class=" default-padding">

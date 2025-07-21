@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('/assets/img/final/news-hero-section.png') }}" alt="">
+            <img src="{{ asset('/assets/img/final/news-hero-section.jpg') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -19,7 +19,7 @@
             <p>All the latest announcements, insights, growth stories, and project news here.</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('/assets/img/final/news-hero-section.png') }}" alt="">
+            <img src="{{ asset('/assets/img/final/news-hero-section.jpg') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->

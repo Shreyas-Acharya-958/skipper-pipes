@@ -25,7 +25,22 @@
         </div>
     </section>
 
-    <!-- Product Overview -->
+   <!-- Breadcrumb  -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li>Products</li>
+                        <li class="active">{{$product -> title}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!-- Product Overview -->
     <section class="product-overview default-padding">
         <div class="container">
@@ -239,8 +254,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="text-white">Ready to Install India’s Safest {{ $product->title }}?</h2>
-                    <p class="text-white pb-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse nemo
-                        assumenda facilis unde debitis, quia quam pariatur. Facilis magni voluptates sint dolorum </p>
+                    
                     <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0" href="tel:+913322851231"><i
                             class="far fa-phone-alt"></i>
                         +91 33 2285 1231 / 32</a>

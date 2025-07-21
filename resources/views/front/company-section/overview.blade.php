@@ -41,7 +41,7 @@
             <div class="row align-items-start">
                 <div class="col-md-5 title text-center mission-left-col">
 
-                    <img src="{{ asset('/assets/img/final/mission1.jpg') }}" class="w-50 mb-4"
+                    <img src="{{ asset('/assets/img/final/mission1.jpg') }}" class="w-75 mb-4"
                         alt="">
                     <div class="site-heading text-center">
                         <h2>Mission</h2>

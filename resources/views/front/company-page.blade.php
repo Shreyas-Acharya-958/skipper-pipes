@@ -31,7 +31,8 @@
         </div>
     </section>
     <!-- Hero banner-section ends -->
-
+    
+     
 
     @if ($slug == 'overview')
         @include('front.company-section.overview', [

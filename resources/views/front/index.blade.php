@@ -251,6 +251,11 @@
     @if ($sectionFour && $sectionFour->title && $sectionFour->reviews->count() > 0)
         <div class="testimonials-area bg-gray default-padding">
             <div class="container">
+                <div class="site-heading text-center">
+                    
+                    <h2>Skipper Samvaad</h2>
+                
+                </div>
                 <div class="testimonial-items">
                     <div class="row align-center">
                         <div class="col-lg-5 title text-center">

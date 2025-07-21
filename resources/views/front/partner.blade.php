@@ -34,6 +34,21 @@
         </div>
     </section>
     <!-- Hero banner-section ends -->
+     <!-- Breadcrumb  -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li>Partner</li>
+                        <li class="active">{{ $partner -> title}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <!-- Why become a Skipper dealer Section -->
     <section class="default-padding">
         <div class="container">

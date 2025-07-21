@@ -12,7 +12,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="assets/img/final/contact-hero-section.png" alt="">
+            <img src="assets/img/final/contact-hero-section1.jpg" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -94,7 +94,7 @@
 
                 <!-- Right: India Map -->
                 <div class="col-md-4 position-relative mb-5 mb-md-0 overflow-hidden">
-                    <img src="assets/img/final2/Map.svg" class="img-fluid" alt="India Map" />
+                    <img src="assets/img/final2/contact-map.png" class="img-fluid" alt="India Map" />
 
                     <!-- Pins -->
                     <div class="map-pin pin-west-bengal active">
@@ -120,9 +120,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 contact-details-content">
-                    <h3>Get In Touch !</h3>
-                    <p class="contact-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, nulla eum.
-                        Expedita aliquam voluptas voluptate.</p>
+                    <h3 class="mb-5">Get In Touch !</h3>
+                  
                     <ul>
                         <li>
                             <h4>Registered & Corporate Office, West Bengal</h4>
