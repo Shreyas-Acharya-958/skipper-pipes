@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Hero section - hero banner -->
-    <div class="carousel-wrapper position-relative">
+    <div class="carousel-wrapper hero-desktop-banner position-relative">
         <!-- Black Overlay -->
         <div class="carousel-overlay"></div>
 
@@ -28,6 +28,34 @@
         </div>
     </div>
     <!-- Hero section ends- hero banner -->
+    
+    
+    <!-- Hero section - hero banner  DYNAMIC PENDING-->
+    <div class="carousel-wrapper homepage-mobile-banner position-relative">
+        <!-- Black Overlay -->
+        <div class="carousel-overlay"></div>
+
+        <!-- Your Carousel -->
+        <div id="carouselExampleFade1" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($banners as $key => $banner)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-interval="3000">
+                        <img src="{{ asset('assets/img/final2/homepage-mobile-hero-section.png') }}" class="d-block w-100" alt="{{ $banner->title }}">
+                    </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleFade1" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleFade1" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Hero section ends- hero banner -->
+
 
     <!-- About section -->
     <div class="home-about-area default-padding">
@@ -118,7 +146,7 @@
     <div class="home-product-category default-padding">
         <div class="container">
             <div class="product-category-sec">
-                <div class="row headings">
+                <div class="row headings px-3 px-md-0">
                     <div class="site-heading text-center">
                         <h4>Product Category</h4>
                         <h2>Explore Solutions for Every Need</h2>

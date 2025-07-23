@@ -984,6 +984,12 @@ nav.navbar.bootsnav ul.nav>li>a:hover {
 }
 
 
+/* Homepage mobile banner */
+.homepage-mobile-banner{
+    display: none;
+}
+
+
 /* homepage - about section */
 .home-about .site-heading {
     margin-bottom: 10px;
@@ -5863,7 +5869,7 @@ Media queries - max-width
     }
 
     .sathi-community-area .inner-items .right-info {
-        padding: 240px 50px;
+        padding: 240px 30px;
     }
 
     /* CAROUSEL PRODUCTS  */
@@ -5989,8 +5995,20 @@ Media queries - max-width
     }
 
     /* hero banner */
+    .hero-desktop-banner{
+        display: block;
+    }
     .carousel-wrapper {
         margin-top: 80px;
+    }
+
+
+    /* Hero mobile banner */
+    .hero-desktop-banner{
+        display: none;
+    }
+    .homepage-mobile-banner{
+    display: block;
     }
 
     .sathi-community-area .inner-items .left-info::before {
@@ -5999,7 +6017,7 @@ Media queries - max-width
     }
 
     .sathi-community-area .inner-items .right-info {
-        padding: 100px 50px;
+        padding: 100px 30px;
     }
 
     .sathi-community-area .inner-items .left-info {
@@ -6008,6 +6026,8 @@ Media queries - max-width
 
     ul.achivement {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .trusted-one {
@@ -6017,6 +6037,16 @@ Media queries - max-width
     .trusted-one__title {
         font-size: 27px;
         line-height: 1.5 !important;
+    }
+
+    .trusted-one__video-icon{
+        width: 90px;
+        height: 90px;
+    }
+    .trusted-one__video-icon span{
+        font-size: 23px;
+        margin-left: 3px;
+
     }
 
     .site-heading p {
