@@ -60,7 +60,7 @@
                 <div class="col-md-5">
                     <img src="{{ asset('storage/' . $manufacturing_section_twos[0]->image) }}" alt="">
                 </div>
-                <div class="col-md-7 pl-5 ">
+                <div class="col-md-7 pl-md-5 pt-4 pt-md-0 ">
                     {!! $manufacturing_section_twos[0]->description ?? '' !!}
 
                 </div>
@@ -83,9 +83,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row philosophy-wrapper text-center mt-5">
+            <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                 @foreach ($manufacturing_section_threes as $manufacturing)
-                    <div class="col-12 col-md philosophy-col">
+                    <div class="col-12 col-md-6 col-lg-3 philosophy-col">
                         <img src="{{ asset('storage/' . $manufacturing->icon) }}"
                             alt="{{ $manufacturing->name ?? '' }}">
 
@@ -114,11 +114,11 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-7 pr-5 ">
+                <div class="col-md-7 pr-5 order-2 order-md-1 pt-4 pt-md-0">
                     {!! $manufacturing_section_fours[0]->description ?? '' !!}
 
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 order-1 order-md-2">
                     <img src="{{ asset('storage/' . $manufacturing_section_fours[0]->image) }}" alt="">
                 </div>
             </div>

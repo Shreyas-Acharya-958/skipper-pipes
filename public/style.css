@@ -4170,6 +4170,9 @@ Pagination
     background-color: var(--primary-color);
 }
 
+.product-faq
+
+
 .main-faqs-sec .faq-wrapper .faq-section .accordion .card-header:hover {
     background-color: var(--primary-color);
 }
@@ -4227,7 +4230,7 @@ Pagination
 
 .main-faqs .card-header .collapse.show,
 .product-faq .card-header .collapse.show {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
     color: white;
 }
 
@@ -4266,6 +4269,7 @@ Company - Overview page
 .hero-banner2-bg img {
     width: 100%;
     height: 100%;
+
 }
 
 .hero-banner2-overlay {
@@ -4719,13 +4723,19 @@ Company - Overview page
 
 @media (max-width: 768px) {
 
-    .hero-banner2 {
+    /* .hero-banner2 {
         display: none;
-    }
+    } */
 
     .hero-banner2-responsive {
-        display: inline-block;
+        display: none;
         margin-top: 80px;
+    }
+
+    /* products pages banner & Single blog banner */
+    .hero-banner2-responsive.products-banner-responsive,
+    .hero-banner2-responsive.single-blog-banner-responsive{
+        display: none;
     }
 
     .hero-banner2-content-responsive {
@@ -5749,14 +5759,39 @@ Media queries - max-width
     }
 
     .hero-banner2 {
-        min-height: auto !important;
+        /* min-height: auto !important; */
+        min-height: 330px !important;
         height: auto !important;
+        margin-top: 80px;
+    }
+
+
+    .hero-banner2-bg, 
+    .hero-banner2-bg img{
+        object-fit: cover;
+        height: 330px;
+    }
+    .hero-banner2-content{
+        left: 6%;
+        bottom: 20%;
+        margin-right: 6%;
     }
 
     /* CAROUSEL PRODUCT */
     .single-item-carousel .item {
         width: 440px !important;
         height: auto !important;
+    }
+
+    /* Single blog */
+    .hero-banner.single-blog{
+        display: none;
+    }
+    .hero-banner2-responsive.single-blog-banner-responsive{
+        display: inline-block;
+    }
+    .hero-banner2-content-responsive.single-blog-responsive{
+        display: none;
     }
 }
 
@@ -5801,11 +5836,7 @@ Media queries - max-width
     }
 
     .mission-sec--content-wrapper {
-        margin-right: 20px;
-    }
-
-    .mission-sec--content-wrapper {
-        margin-right: 20px;
+        margin-right: 0px;
     }
 
     .mission-sec .mission-left-col {
@@ -5835,6 +5866,7 @@ Media queries - max-width
     }
 
     .hero-banner.single-blog {
+        display: none;
         min-height: 380px;
         height: 75%;
     }
@@ -6011,6 +6043,19 @@ Media queries - max-width
     display: block;
     }
 
+    .home-about .site-heading h2::before,
+    .home-about .site-heading h2::after {
+    left: 9%;
+    }
+
+
+    .philosophy-col,
+    .company-icon-col{
+    border: none !important;
+    }
+
+    
+
     .sathi-community-area .inner-items .left-info::before {
         left: 0;
         width: 100%;
@@ -6075,6 +6120,20 @@ Media queries - max-width
         font-size: 20px;
     }
 
+    /* leadership page */
+    .md-message-content p{
+        font-size: 14px !important;
+    }
+
+    /* products page */
+    .hero-banner2-content-responsive{
+        padding: 30px 17px;
+    }
+
+    .hero-banner2-content-responsive h1{
+        font-size: 24px;
+    }
+
     /* network page */
     .left-img_full-col h3,
     .right-img_full-col h3 {
@@ -6106,6 +6165,12 @@ Media queries - max-width
         bottom: 0 !important;
     }
 
+
+    /* products pages banner & Single blog banner */
+    .hero-banner2-responsive.products-banner-responsive,
+    .hero-banner2-responsive.single-blog-banner-responsive{
+        display: inline-block;
+    }
 
     /* single blog */
     .hero-banner.single-blog .hero-banner-img {
@@ -6183,6 +6248,11 @@ Media queries - max-width
     .manufacturing-container .location-swiper{
     margin-left: 0px !important; 
 }
+
+.hero-banner2.products-banner{
+    display: none;
+}
+
 
 }
 .product-category-col img {

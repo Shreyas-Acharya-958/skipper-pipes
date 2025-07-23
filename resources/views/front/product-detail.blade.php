@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Hero banner-section -->
-    <section class="hero-banner2">
+    <section class="hero-banner2 products-banner">
         <div class="hero-banner2-bg">
             <img src="{{ asset('storage/' . $product->page_image) }}" alt="">
         </div>
@@ -13,7 +13,7 @@
         </div>
     </section>
 
-    <section class="hero-banner2-responsive">
+    <section class="hero-banner2-responsive products-banner-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>{{ $product->title }}</h1>
             <p>{{ $product->meta_description }}</p>
@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row px-3 px-md-0">
                 {!! $product->technical !!}
             </div>
         </div>

@@ -41,7 +41,7 @@
             <div class="row align-items-start">
                 <div class="col-md-5 title text-center mission-left-col">
 
-                    <img src="{{ asset('/assets/img/final/mission1.jpg') }}" class="w-75 mb-4"
+                    <img src="{{ asset('/assets/img/final/mission1.jpg') }}" class="w-lg-75 mb-4"
                         alt="">
                     <div class="site-heading text-center">
                         <h2>Mission</h2>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row philosophy-wrapper text-center">
+            <div class="row philosophy-wrapper text-center px-3 px-md-0">
                 @foreach ($overview_section_threes as $overview)
                     @if ($overview->type == 'Philosophy')
                         <div class="col-12 col-md philosophy-col">
@@ -176,7 +176,7 @@
                 {!! $overview_section_fives[0]->description ?? '' !!}
 
             </div>
-            <div class="col-md-6 pan-india-img">
+            <div class="col-md-7 col-lg-6 pan-india-img">
                 <img src="{{ asset('storage/' . $overview_section_fives[0]->image) }}" alt="">
             </div>
             <div class="col"></div>

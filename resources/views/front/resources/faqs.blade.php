@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('assets/img/final/faq-hero-section.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/final2/Resources/faq-hero-section.jpg') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -17,7 +17,7 @@
             <h1>Frequently Asked Questions</h1>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('assets/img/final/faq-hero-section.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/final2/Resources/faq-hero-section.jpg') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->

@@ -11,11 +11,11 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6 p-md-0 pr-md-5">
+                <div class="col-md-6 p-md-0 pr-md-5 order-2 order-md-1">
                     {!! $csr_section_ones[0]->description ?? '' !!}
 
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 order-1 order-md-2 pb-4 pb-md-0">
                     <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" alt="">
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row philosophy-wrapper text-center mt-5">
+            <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                 @foreach ($csr_section_twos as $csr)
                     <div class="col-12 col-md philosophy-col px-3 px-md-0">
                         <img src="{{ asset('storage/' . $csr->icon) }}" alt="{{ $csr->name ?? '' }}">
@@ -64,20 +64,20 @@
             </div>
             @foreach ($csr_section_threes as $csr)
                 @if ($loop->index % 2 == 0)
-                    <div class="row initatives-card">
+                    <div class="row initatives-card mx-2 mx-md-0">
                         <div class="col-md-5">
                             <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 pt-4 pt-md-0">
                             {!! $csr->description ?? '' !!}
                         </div>
                     </div>
                 @else
-                    <div class="row initatives-card">
-                        <div class="col-md-7">
+                    <div class="row initatives-card mx-2 mx-md-0">
+                        <div class="col-md-7 order-2 order-md-1 pt-4 pt-md-0">
                             {!! $csr->description ?? '' !!}
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-5 order-1 order-md-2">
                             <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
                         </div>
 

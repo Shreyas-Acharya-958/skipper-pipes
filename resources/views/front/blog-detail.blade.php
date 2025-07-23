@@ -52,6 +52,18 @@
         </div>
     </section>
 
+    <section class="hero-banner2-responsive single-blog-banner-responsive">
+        <div class="hero-banner2-content-responsive single-blog-responsive">
+            <h1>{{ $blog->title }}</h1>
+            {{-- <p>{{ $product->meta_description }}</p> --}}
+
+        </div>
+        <div class="hero-banner2-img-responsive">
+            <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ $blog->title }}">
+            
+        </div>
+    </section>
+
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">

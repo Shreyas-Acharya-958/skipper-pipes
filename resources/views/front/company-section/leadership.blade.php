@@ -15,17 +15,17 @@
              <div class="row align-center">
                  @foreach ($leadership_section_ones as $leadership)
                      @if ($loop->even)
-                         <div class="col-md-7 pl-5 md-message-content">
+                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1">
                              {!! $leadership->description ?? '' !!}
                          </div>
-                         <div class="col-md-5">
+                         <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0">
                              <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
                          </div>
                      @else
-                         <div class="col-md-5">
+                         <div class="col-md-5 mb-md-5 mb-lg-0">
                              <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
                          </div>
-                         <div class="col-md-7 pl-5 md-message-content">
+                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content">
                              {!! $leadership->description ?? '' !!}
                          </div>
                      @endif
@@ -51,7 +51,7 @@
                      </div>
                  </div>
              </div>
-             <div class="row philosophy-wrapper text-center mt-5">
+             <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                  @foreach ($leadership_section_twos as $leadership)
                      <div class="col-12 col-md philosophy-col">
                          <img src="{{ asset('storage/' . $leadership->icon) }}" alt="{{ $leadership->name ?? '' }}">

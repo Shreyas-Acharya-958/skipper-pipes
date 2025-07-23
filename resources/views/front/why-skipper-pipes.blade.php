@@ -143,11 +143,11 @@
                 </div>
                 <div class="row align-center">
                     <div class="col-md-6">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner">
 
@@ -158,20 +158,19 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button"
                                 data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
                             </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button"
                                 data-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-6 pl-4 pt-3 pt-md-0">
-                        <!-- <h2>Product Overview</h2> -->
+                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0">
                         <p>{{ $why_skipper_pipe_section_fives->description ?? '' }}</p>
                         <a class="btn btn-dark theme theme2 btn-md mt-3"
                             href="{{ $why_skipper_pipe_section_fives->button_link ?? '' }}" target="_blank">View Our
