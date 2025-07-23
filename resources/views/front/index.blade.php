@@ -30,7 +30,7 @@
     <!-- Hero section ends- hero banner -->
     
     
-    <!-- Hero section - hero banner  DYNAMIC PENDING-->
+    <!-- Hero section - hero banner  DYNAMIC PENDINGS-->
     <div class="carousel-wrapper homepage-mobile-banner position-relative">
         <!-- Black Overlay -->
         <div class="carousel-overlay"></div>
