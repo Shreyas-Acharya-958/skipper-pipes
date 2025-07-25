@@ -192,9 +192,7 @@
 
                     <!-- Section 3: Mission & Philosophy -->
                     <div class="tab-pane fade p-3" id="section3" role="tabpanel">
-                        <div class="alert alert-info mb-4">
-                            <span class="fw-bold">Information:</span> Mission & Philosophy Section
-                        </div>
+                        <span class="fw-bold">Information:</span> Mission & Philosophy Section
                         <form id="leftImageForm" action="{{ route('admin.overview.left_image.save') }}" method="POST"
                             enctype="multipart/form-data" class="mb-4">
                             @csrf
