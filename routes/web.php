@@ -128,6 +128,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/company-pages/overview/section3/save', [OverviewController::class, 'saveSectionThree'])->name('overview.section3.save');
     Route::post('/company-pages/overview/section4/save', [OverviewController::class, 'saveSectionFour'])->name('overview.section4.save');
     Route::post('/company-pages/overview/section5/save', [OverviewController::class, 'saveSectionFive'])->name('overview.section5.save');
+    Route::post('/admin/overview/left-image', [App\Http\Controllers\OverviewController::class, 'saveLeftImage'])->name('overview.left_image.save');
 
     // Leadership Page Management
     Route::get('/company-pages/leadership/sections', [LeadershipController::class, 'sections'])->name('leadership.sections');

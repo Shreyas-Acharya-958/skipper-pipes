@@ -56,6 +56,7 @@ use App\Models\MediaSectionOne;
 use App\Models\MediaSectionTwo;
 use App\Models\Network;
 use App\Models\News;
+use App\Models\OverviewLeftImage;
 use App\Models\Section;
 use App\Models\WhySkipperPipe;
 use App\Models\WhySkipperPipeSectionFive;
@@ -236,6 +237,7 @@ class FrontController extends Controller
             $data['overview_section_threes'] = OverviewSectionThree::get();
             $data['overview_section_fours'] = OverviewSectionFour::get();
             $data['overview_section_fives'] = OverviewSectionFive::get();
+            $data['overview_left_image'] = $leftImage = OverviewLeftImage::first();
         }
         if ($slug == 'leadership') {
             $data['leadership_section_ones'] = LeadershipSectionOne::get();

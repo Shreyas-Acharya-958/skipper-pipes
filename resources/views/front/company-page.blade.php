@@ -41,6 +41,7 @@
             'overview_section_threes' => $data['overview_section_threes'],
             'overview_section_fours' => $data['overview_section_fours'],
             'overview_section_fives' => $data['overview_section_fives'],
+            'overview_left_image' => $data['overview_left_image'],
         ])
     @elseif ($slug == 'manufacturing')
         @include('front.company-section.manufacturing', [

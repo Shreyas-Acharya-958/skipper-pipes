@@ -195,8 +195,30 @@
                         <div class="alert alert-info mb-4">
                             <span class="fw-bold">Information:</span> Mission & Philosophy Section
                         </div>
-                        <form id="section3Form" class="section-form" action="{{ route('admin.overview.section3.save') }}"
-                            method="POST" enctype="multipart/form-data">
+                        <form id="leftImageForm" action="{{ route('admin.overview.left_image.save') }}" method="POST"
+                            enctype="multipart/form-data" class="mb-4">
+                            @csrf
+                            <div class="form-group mb-3">
+                                <label class="form-label">Left Image</label>
+                                <div class="mb-2">
+                                    @if (isset($leftImage) && $leftImage->image)
+                                        <div class="position-relative d-inline-block">
+                                            <img src="{{ asset('storage/' . $leftImage->image) }}" alt="Left Image"
+                                                style="max-width: 200px; height: auto;">
+                                        </div>
+                                    @endif
+                                </div>
+                                <input type="file" class="form-control" name="image" accept="image/*,.svg">
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i> Save Left Image
+                                </button>
+                            </div>
+                        </form>
+                        <form id="section3Form" class="section-form"
+                            action="{{ route('admin.overview.section3.save') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="active_tab" value="#section3">
 

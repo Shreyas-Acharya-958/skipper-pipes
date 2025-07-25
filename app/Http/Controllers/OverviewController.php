@@ -11,6 +11,7 @@ use App\Models\OverviewSectionFive;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Models\OverviewLeftImage;
 
 
 class OverviewController extends Controller
@@ -23,8 +24,8 @@ class OverviewController extends Controller
         $sectionThrees = OverviewSectionThree::where('company_id', 1)->get();
         $sectionFours = OverviewSectionFour::where('company_id', 1)->get();
         $sectionFive = OverviewSectionFive::where('company_id', 1)->first();
-
-        return view('admin.company_pages.section.overview', compact('sectionOne', 'sectionTwos', 'sectionThrees', 'sectionFours', 'sectionFive'));
+        $leftImage = \App\Models\OverviewLeftImage::first();
+        return view('admin.company_pages.section.overview', compact('sectionOne', 'sectionTwos', 'sectionThrees', 'sectionFours', 'sectionFive', 'leftImage'));
     }
 
     public function saveSectionOne(Request $request)
@@ -214,5 +215,30 @@ class OverviewController extends Controller
             DB::rollBack();
             return redirect()->route('admin.overview.sections', ['tab' => 'section5'])->with('error', 'Failed to update Section Five: ' . $e->getMessage());
         }
+    }
+
+    public function leftImageForm()
+    {
+        $leftImage = OverviewLeftImage::first() ?? new OverviewLeftImage();
+        return view('admin.company_pages.section.left_image', compact('leftImage'));
+    }
+
+    public function saveLeftImage(Request $request)
+    {
+        $validated = $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $leftImage = OverviewLeftImage::first() ?? new OverviewLeftImage();
+        if ($request->hasFile('image')) {
+            if ($leftImage->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($leftImage->image);
+            }
+            $file = $request->file('image');
+            $filename = 'overview-left-image-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('overview/left', $filename, 'public');
+            $leftImage->image = $path;
+        }
+        $leftImage->save();
+        return redirect()->back()->with('success', 'Left image updated successfully.');
     }
 }
