@@ -334,7 +334,7 @@ class ProductController extends Controller
                             $iconData = base64_decode($iconData);
 
                             // Generate unique filename
-                            $filename = 'application_icon_' . time() . '_' . uniqid() . '.png';
+                            $filename = 'application_icon_' . time() . '_' . uniqid() . '.svg';
 
                             // Store the file
                             Storage::disk('public')->put('products/applications/icons/' . $filename, $iconData);
@@ -425,7 +425,7 @@ class ProductController extends Controller
                             $iconData = base64_decode($iconData);
 
                             // Generate unique filename
-                            $filename = 'feature_icon_' . time() . '_' . uniqid() . '.png';
+                            $filename = 'feature_icon_' . time() . '_' . uniqid() . '.svg';
 
                             // Store the file
                             Storage::disk('public')->put('products/features/icons/' . $filename, $iconData);

@@ -74,7 +74,7 @@ class CsrController extends Controller
                             $iconData = base64_decode($iconData);
 
                             // Generate unique filename
-                            $filename = 'csr-focus-area-icon-' . time() . '_' . uniqid() . '.png';
+                            $filename = 'csr-focus-area-icon-' . time() . '_' . uniqid() . '.svg';
 
                             // Store the file
                             Storage::disk('public')->put('csr/section2/icons/' . $filename, $iconData);
