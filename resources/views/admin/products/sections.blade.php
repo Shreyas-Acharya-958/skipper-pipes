@@ -60,7 +60,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="overview_description" class="form-label">Overview Description</label>
-                                <textarea class="form-control" id="overview_description" name="overview_description" rows="4" readonly>{{ $overview->overview_description ?? '' }}</textarea>
+                                <textarea class="form-control tinymce" id="overview_description" name="overview_description" rows="4" readonly>{{ $overview->overview_description ?? '' }}</textarea>
                             </div>
 
                             <div class="form-group mb-3">
@@ -173,7 +173,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="applications[{{ $index }}][description]" rows="3" readonly>{{ $application->description }}</textarea>
+                                                <textarea class="form-control tinymce" name="applications[{{ $index }}][description]" rows="3"
+                                                    readonly>{{ $application->description }}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -269,7 +270,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="features[{{ $index }}][description]" rows="3" readonly>{{ $feature->description }}</textarea>
+                                                <textarea class="form-control tinymce" name="features[{{ $index }}][description]" rows="3" readonly>{{ $feature->description }}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -326,7 +327,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Answer</label>
-                                                <textarea class="form-control" name="faqs[{{ $index }}][description]" rows="3" readonly>{{ $faq->description }}</textarea>
+                                                <textarea class="form-control tinymce" name="faqs[{{ $index }}][description]" rows="3" readonly>{{ $faq->description }}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -346,6 +347,7 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
     <script>
         $(document).ready(function() {
             // Get the tab ID from URL hash or localStorage
@@ -551,7 +553,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control" name="applications[${index}][description]" rows="3"></textarea>
+                        <textarea class="form-control tinymce" name="applications[${index}][description]" rows="3"></textarea>
                     </div>
                 </div>
             `;
@@ -589,7 +591,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Description</label>
-                        <textarea class="form-control" name="features[${index}][description]" rows="3"></textarea>
+                        <textarea class="form-control tinymce" name="features[${index}][description]" rows="3"></textarea>
                     </div>
                 </div>
             `;
@@ -611,7 +613,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Answer</label>
-                        <textarea class="form-control" name="faqs[${index}][description]" rows="3"></textarea>
+                        <textarea class="form-control tinymce" name="faqs[${index}][description]" rows="3"></textarea>
                     </div>
                 </div>
             `;
@@ -668,6 +670,26 @@
                     });
                 });
             }
+
+            // Initialize TinyMCE for all textareas with class 'tinymce'
+            tinymce.init({
+                selector: 'textarea.tinymce',
+                height: 300,
+                menubar: false,
+                plugins: 'lists link image code',
+                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                verify_html: false,
+                cleanup: false,
+                valid_elements: '*[*]',
+                extended_valid_elements: '*[*]',
+                valid_children: '+*[*]',
+                preserve_cdata: true,
+                entity_encoding: 'raw',
+                force_br_newlines: false,
+                force_p_newlines: false,
+                forced_root_block: '',
+                keep_styles: true
+            });
         });
     </script>
 @endpush
