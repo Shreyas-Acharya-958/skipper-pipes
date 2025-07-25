@@ -9,6 +9,7 @@ use App\Models\ManufacturingSectionThree;
 use App\Models\ManufacturingSectionFour;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Models\ManufacturingSectionOnesHead;
 
 class ManufacturingController extends Controller
 {
@@ -19,8 +20,9 @@ class ManufacturingController extends Controller
         $sectionTwo = ManufacturingSectionTwo::where('company_id', 1)->first();
         $sectionThrees = ManufacturingSectionThree::where('company_id', 1)->get();
         $sectionFour = ManufacturingSectionFour::where('company_id', 1)->first();
+        $sectionHead = ManufacturingSectionOnesHead::first();
 
-        return view('admin.company_pages.section.manufacturing', compact('sectionOnes', 'sectionTwo', 'sectionThrees', 'sectionFour'));
+        return view('admin.company_pages.section.manufacturing', compact('sectionOnes', 'sectionTwo', 'sectionThrees', 'sectionFour', 'sectionHead'));
     }
 
     public function saveSectionOne(Request $request)
@@ -168,5 +170,24 @@ class ManufacturingController extends Controller
             DB::rollBack();
             return redirect()->route('admin.manufacturing.sections', ['tab' => 'section4'])->with('error', 'Failed to update Sustainability Practices: ' . $e->getMessage());
         }
+    }
+
+    public function headSection()
+    {
+        $sectionHead = ManufacturingSectionOnesHead::first();
+        return view('admin.company_pages.section.manufacturing_head', compact('sectionHead'));
+    }
+
+    public function saveHeadSection(Request $request)
+    {
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+        $section = ManufacturingSectionOnesHead::first() ?? new ManufacturingSectionOnesHead();
+        $section->title = $request->title;
+        $section->description = $request->description;
+        $section->save();
+        return redirect()->route('admin.manufacturing.sections', ['tab' => 'head'])->with('success', 'Manufacturing Head updated successfully.');
     }
 }

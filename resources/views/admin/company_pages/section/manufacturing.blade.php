@@ -27,6 +27,12 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs mb-3" id="manufacturingSectionTabs" role="tablist">
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="head-tab" data-bs-toggle="tab" data-bs-target="#head" type="button"
+                            role="tab">
+                            Head part
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="section1-tab" data-bs-toggle="tab" data-bs-target="#section1"
                             type="button" role="tab">
                             Manufacturing Units
@@ -54,6 +60,33 @@
 
                 <!-- Tab content -->
                 <div class="tab-content" id="manufacturingSectionTabsContent">
+                    <div class="tab-pane fade p-3" id="head" role="tabpanel">
+                        <div class="alert alert-info mb-4">
+                            <span class="fw-bold">Information:</span> Manufacturing Head Section
+                        </div>
+                        <form id="headForm" class="section-form" action="{{ route('admin.manufacturing.head.save') }}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" name="active_tab" value="#head">
+                            <div class="d-flex justify-content-end mb-3">
+                                <button type="button" class="btn btn-primary me-2 edit-btn">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button type="submit" class="btn btn-success save-btn" style="display: none;">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="head_title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="head_title" name="title"
+                                    value="{{ $sectionHead->title ?? '' }}" readonly>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="head_description" class="form-label">Description</label>
+                                <textarea class="form-control tinymce" id="head_description" name="description" rows="6" readonly>{{ $sectionHead->description ?? '' }}</textarea>
+                            </div>
+                        </form>
+                    </div>
                     <!-- Section 1: Manufacturing Units -->
                     <div class="tab-pane fade show active p-3" id="section1" role="tabpanel">
                         <div class="alert alert-info mb-4">
@@ -97,8 +130,8 @@
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Title</label>
                                                 <input type="text" class="form-control"
-                                                    name="sections[{{ $index }}][title]" value="{{ $unit->title }}"
-                                                    readonly required>
+                                                    name="sections[{{ $index }}][title]"
+                                                    value="{{ $unit->title }}" readonly required>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label">Image</label>
@@ -343,7 +376,7 @@
                 });
 
                 // Initialize TinyMCE for all textareas with class 'tinymce'
-                const editors = ['section2_description', 'section4_description'];
+                const editors = ['section2_description', 'section4_description', 'head_description'];
                 editors.forEach(editor => {
                     tinymce.init({
                         selector: `#${editor}`,

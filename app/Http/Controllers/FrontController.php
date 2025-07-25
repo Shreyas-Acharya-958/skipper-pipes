@@ -34,6 +34,7 @@ use App\Models\LeadershipSectionTwo;
 use App\Models\MainNetwork;
 use App\Models\ManufacturingSectionFour;
 use App\Models\ManufacturingSectionOne;
+use App\Models\ManufacturingSectionOnesHead;
 use App\Models\ManufacturingSectionThree;
 use App\Models\ManufacturingSectionTwo;
 use App\Models\OverviewSectionFive;
@@ -119,6 +120,7 @@ class FrontController extends Controller
             ->get();
 
         // Get home page sections
+
         $sectionOne = HomeSectionOne::with('features')->first();
         $sectionTwo = HomeSectionTwo::first();
         $sectionThree = HomeSectionThree::first();
@@ -242,6 +244,8 @@ class FrontController extends Controller
             $data['leadership_section_fours'] = LeadershipSectionFour::get();
         }
         if ($slug == 'manufacturing') {
+
+            $data['manufacturing_section_ones_head'] = ManufacturingSectionOnesHead::first();
             $data['manufacturing_section_ones'] = ManufacturingSectionOne::get();
             $data['manufacturing_section_twos'] = ManufacturingSectionTwo::get();
             $data['manufacturing_section_threes'] = ManufacturingSectionThree::get();

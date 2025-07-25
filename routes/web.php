@@ -143,6 +143,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/company-pages/manufacturing/section2/save', [ManufacturingController::class, 'saveSectionTwo'])->name('manufacturing.section2.save');
     Route::post('/company-pages/manufacturing/section3/save', [ManufacturingController::class, 'saveSectionThree'])->name('manufacturing.section3.save');
     Route::post('/company-pages/manufacturing/section4/save', [ManufacturingController::class, 'saveSectionFour'])->name('manufacturing.section4.save');
+    Route::post('/company-pages/manufacturing/head/save', [ManufacturingController::class, 'saveHeadSection'])->name('manufacturing.head.save');
 
     //Certifications
     Route::get('/company-pages/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');

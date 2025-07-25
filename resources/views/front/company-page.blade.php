@@ -31,8 +31,8 @@
         </div>
     </section>
     <!-- Hero banner-section ends -->
-    
-     
+
+
 
     @if ($slug == 'overview')
         @include('front.company-section.overview', [
@@ -44,6 +44,7 @@
         ])
     @elseif ($slug == 'manufacturing')
         @include('front.company-section.manufacturing', [
+            'manufacturing_section_ones_head' => $data['manufacturing_section_ones_head'],
             'manufacturing_section_ones' => $data['manufacturing_section_ones'],
             'manufacturing_section_twos' => $data['manufacturing_section_twos'],
             'manufacturing_section_threes' => $data['manufacturing_section_threes'],
