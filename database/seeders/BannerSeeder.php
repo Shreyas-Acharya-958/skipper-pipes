@@ -17,6 +17,7 @@ class BannerSeeder extends Seeder
             [
                 'title' => 'banner 1',
                 'image' => 'banners/test-banner-1751114625.jpg',
+                'mobile_image' => null,
                 'sequence' => 1,
                 'link' => null,
                 'status' => 1,
@@ -26,6 +27,7 @@ class BannerSeeder extends Seeder
             [
                 'title' => 'banner2',
                 'image' => 'banners/banner2-banner-1751114646.jpeg',
+                'mobile_image' => null,
                 'sequence' => 2,
                 'link' => null,
                 'status' => 1,
@@ -35,6 +37,7 @@ class BannerSeeder extends Seeder
             [
                 'title' => 'banner 3',
                 'image' => 'banners/banner-3-banner-1751121402.jpeg',
+                'mobile_image' => null,
                 'sequence' => 3,
                 'link' => null,
                 'status' => 1,

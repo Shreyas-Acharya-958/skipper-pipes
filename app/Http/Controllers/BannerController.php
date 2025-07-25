@@ -42,6 +42,7 @@ class BannerController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'mobile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'sequence' => 'required|integer|min:0',
             'link' => 'nullable|string|max:255',
             'status' => 'required|boolean',
@@ -52,6 +53,12 @@ class BannerController extends Controller
             $filename = Str::slug($request->title) . '-banner-' . time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('banners', $filename, 'public');
             $validated['image'] = $path;
+        }
+        if ($request->hasFile('mobile_image')) {
+            $file = $request->file('mobile_image');
+            $filename = Str::slug($request->title) . '-mobile-banner-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('banners', $filename, 'public');
+            $validated['mobile_image'] = $path;
         }
 
         Banner::create($validated);
@@ -84,6 +91,7 @@ class BannerController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'mobile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'sequence' => 'required|integer|min:0',
             'link' => 'nullable|string|max:255',
             'status' => 'required|boolean',
@@ -102,6 +110,20 @@ class BannerController extends Controller
             $filename = Str::slug($request->title) . '-banner-' . time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('banners', $filename, 'public');
             $validated['image'] = $path;
+        }
+        if ($request->has('remove_mobile_image') && $request->remove_mobile_image) {
+            if ($banner->mobile_image) {
+                Storage::disk('public')->delete($banner->mobile_image);
+            }
+            $validated['mobile_image'] = null;
+        } elseif ($request->hasFile('mobile_image')) {
+            if ($banner->mobile_image) {
+                Storage::disk('public')->delete($banner->mobile_image);
+            }
+            $file = $request->file('mobile_image');
+            $filename = Str::slug($request->title) . '-mobile-banner-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('banners', $filename, 'public');
+            $validated['mobile_image'] = $path;
         }
 
         $banner->update($validated);

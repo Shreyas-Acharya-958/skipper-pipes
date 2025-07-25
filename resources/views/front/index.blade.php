@@ -28,8 +28,8 @@
         </div>
     </div>
     <!-- Hero section ends- hero banner -->
-    
-    
+
+
     <!-- Hero section - hero banner  DYNAMIC PENDINGS-->
     <div class="carousel-wrapper homepage-mobile-banner position-relative">
         <!-- Black Overlay -->
@@ -40,7 +40,8 @@
             <div class="carousel-inner">
                 @foreach ($banners as $key => $banner)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-interval="3000">
-                        <img src="{{ asset('assets/img/final2/homepage-mobile-hero-section.png') }}" class="d-block w-100" alt="{{ $banner->title }}">
+                        <img src="{{ asset('storage/' . $banner->mobile_image) }}" class="d-block w-100"
+                            alt="{{ $banner->title }}">
                     </div>
                 @endforeach
             </div>
@@ -89,7 +90,8 @@
                                 <li class="about-li">
                                     <div class="icon">
                                         @if ($feature->icon)
-                                            <img src="{{ asset('storage/' . $feature->icon) }}" alt="{{ $feature->title }}">
+                                            <img src="{{ asset('storage/' . $feature->icon) }}"
+                                                alt="{{ $feature->title }}">
                                         @else
                                             <img src="{{ asset('storage/' . $feature->image) }}"
                                                 alt="{{ $feature->title }}">
@@ -159,7 +161,8 @@
                 <div class="row">
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col">
-                            <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
+                            <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});">
+                            </div>
                             <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
                             <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
                             <h4>{{ $category->name }}</h4>
@@ -280,9 +283,9 @@
         <div class="testimonials-area bg-gray default-padding">
             <div class="container">
                 <div class="site-heading text-center">
-                    
+
                     <h2>Skipper Samvaad</h2>
-                
+
                 </div>
                 <div class="testimonial-items">
                     <div class="row align-center">

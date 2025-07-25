@@ -12,6 +12,7 @@
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="remove_image" value="0" id="remove_image_input">
+                        <input type="hidden" name="remove_mobile_image" value="0" id="remove_mobile_image_input">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -81,6 +82,27 @@
                                     <input type="file" class="form-control" id="image" name="image"
                                         accept="image/*,.svg">
                                     @error('image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="mobile_image" class="form-label">Mobile Banner Image</label>
+                                    @if ($banner->mobile_image)
+                                        <div class="mb-2 position-relative d-inline-block">
+                                            <img src="{{ asset('storage/' . $banner->mobile_image) }}"
+                                                alt="{{ $banner->title }} Mobile" style="max-width: 200px; height: auto;">
+                                            <button type="button"
+                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                data-field="mobile_image">&times;</button>
+                                        </div>
+                                    @endif
+                                    <input type="file" class="form-control" id="mobile_image" name="mobile_image"
+                                        accept="image/*,.svg">
+                                    @error('mobile_image')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

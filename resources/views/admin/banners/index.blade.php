@@ -25,6 +25,7 @@
                                     <th>ID</th>
                                     <th>Title</th>
                                     <th>Image</th>
+                                    <th>Mobile Image</th>
                                     <th>Sequence</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -39,6 +40,15 @@
                                             @if ($banner->image)
                                                 <img src="{{ asset('storage/' . $banner->image) }}"
                                                     alt="{{ $banner->title }}" style="max-width: 100px; height: auto;">
+                                            @else
+                                                No Image
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($banner->mobile_image)
+                                                <img src="{{ asset('storage/' . $banner->mobile_image) }}"
+                                                    alt="{{ $banner->title }} Mobile"
+                                                    style="max-width: 100px; height: auto;">
                                             @else
                                                 No Image
                                             @endif

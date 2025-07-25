@@ -73,6 +73,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="mobile_image" class="form-label">Mobile Banner Image</label>
+                                    <input type="file" class="form-control @error('mobile_image') is-invalid @enderror"
+                                        id="mobile_image" name="mobile_image" accept="image/*,.svg">
+                                    @error('mobile_image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row mt-3">
                             <div class="col-12">
