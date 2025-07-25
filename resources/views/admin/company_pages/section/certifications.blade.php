@@ -12,6 +12,10 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button type="button" class="btn btn-outline-info me-2" data-bs-toggle="modal"
+                            data-bs-target="#headPartModal">
+                            + Head Part
+                        </button>
                         <div class="d-flex" style="max-width: 400px;">
                             <!-- Add search functionality if needed -->
                         </div>
@@ -162,11 +166,94 @@
             </div>
         </div>
     </div>
+
+    <!-- Head Part Modal -->
+    <div class="modal fade" id="headPartModal" tabindex="-1" aria-labelledby="headPartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="headPartForm" action="{{ route('admin.certifications.head.save') }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="headPartModalLabel">{{ isset($certificationHead) ? 'Edit' : 'Add' }}
+                            Head Part</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title"
+                                value="{{ $certificationHead->title ?? '' }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control tinymce" id="head_description" name="description" rows="4">{{ $certificationHead->description ?? '' }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
     <script>
+        function initHeadTinyMCE() {
+            if (tinymce.get('head_description')) {
+                tinymce.get('head_description').remove();
+            }
+            tinymce.init({
+                selector: '#head_description',
+                height: 200,
+                menubar: false,
+                plugins: 'lists link image code',
+                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                verify_html: false,
+                cleanup: false,
+                valid_elements: '*[*]',
+                extended_valid_elements: '*[*]',
+                valid_children: '+*[*]',
+                preserve_cdata: true,
+                entity_encoding: 'raw',
+                force_br_newlines: false,
+                force_p_newlines: false,
+                forced_root_block: '',
+                keep_styles: true
+            });
+        }
         $(document).ready(function() {
+            // Init TinyMCE when modal is shown
+            $('#headPartModal').on('shown.bs.modal', function() {
+                initHeadTinyMCE();
+            });
+            // Remove TinyMCE instance when modal is hidden
+            $('#headPartModal').on('hidden.bs.modal', function() {
+                if (tinymce.get('head_description')) {
+                    tinymce.get('head_description').remove();
+                }
+            });
+            tinymce.init({
+                selector: '#head_description',
+                height: 200,
+                menubar: false,
+                plugins: 'lists link image code',
+                toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                verify_html: false,
+                cleanup: false,
+                valid_elements: '*[*]',
+                extended_valid_elements: '*[*]',
+                valid_children: '+*[*]',
+                preserve_cdata: true,
+                entity_encoding: 'raw',
+                force_br_newlines: false,
+                force_p_newlines: false,
+                forced_root_block: '',
+                keep_styles: true
+            });
             // Reset form when modal is closed
             $('#certificationModal').on('hidden.bs.modal', function() {
                 $('#certificationForm')[0].reset();

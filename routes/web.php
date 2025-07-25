@@ -149,6 +149,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/company-pages/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');
     Route::post('/company-pages/certifications/section1/save', [CertificationController::class, 'saveSectionOne'])->name('certifications.section1.save');
     Route::delete('/company-pages/certifications/section1/delete', [CertificationController::class, 'delete'])->name('certifications.section1.delete');
+    Route::post('/company-pages/certifications/head/save', [CertificationController::class, 'saveHeadSection'])->name('certifications.head.save');
 
     //
     Route::get('why-skipper-pipes', [WhySkipperPipeController::class, 'index'])->name('why-skipper-pipes.index');

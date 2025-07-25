@@ -14,6 +14,7 @@ use App\Models\CareerApplication;
 use App\Models\CareerLifeAtSkipper;
 use App\Models\CareerSkipperPipe;
 use App\Models\CareerWhySkipper;
+use App\Models\CertificationHeadSection;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
 use App\Models\Contact;
@@ -258,6 +259,7 @@ class FrontController extends Controller
         }
         if ($slug == 'certifications') {
             $data['certifications_section_ones'] = CertificationSectionOne::get();
+            $data['certifications_section_head'] = CertificationHeadSection::first();
         }
         //leadership
 

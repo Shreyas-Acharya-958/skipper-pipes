@@ -5,11 +5,8 @@
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
-                        <h2>Why Certifications Matter</h2>
-                        <p>At Skipper Pipes, certifications are more than badges—they are <b>promises of performance,
-                                safety, and regulatory compliance.</b> Aligning with national (BIS, IS) and
-                            international (ASTM, ISO) standards ensures our customers—engineers, contractors, and
-                            homeowners—receive products they can trust in the most critical installations.</p>
+                        <h2>{{ $certifications_section_head->title }}</h2>
+                        <p> {!! $certifications_section_head->description !!}</p>
                     </div>
                 </div>
             </div>

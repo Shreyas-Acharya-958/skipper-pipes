@@ -65,6 +65,7 @@
         ])
     @elseif ($slug == 'certifications')
         @include('front.company-section.certifications', [
+            'certifications_section_head' => $data['certifications_section_head'],
             'certifications_section_ones' => $data['certifications_section_ones'],
         ])
     @endif

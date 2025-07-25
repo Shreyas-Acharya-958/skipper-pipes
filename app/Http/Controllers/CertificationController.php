@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CertificationSectionOne;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Models\CertificationHeadSection;
 
 class CertificationController extends Controller
 {
@@ -13,8 +14,8 @@ class CertificationController extends Controller
     public function sections()
     {
         $certifications = CertificationSectionOne::where('company_id', 1)->get();
-
-        return view('admin.company_pages.section.certifications', compact('certifications'));
+        $certificationHead = CertificationHeadSection::first();
+        return view('admin.company_pages.section.certifications', compact('certifications', 'certificationHead'));
     }
 
     public function saveSectionOne(Request $request)
@@ -66,6 +67,19 @@ class CertificationController extends Controller
             return redirect()->route('admin.certifications.sections')
                 ->with('error', 'Failed to save certification: ' . $e->getMessage());
         }
+    }
+
+    public function saveHeadSection(Request $request)
+    {
+        $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+        $section = CertificationHeadSection::first() ?? new CertificationHeadSection();
+        $section->title = $request->title;
+        $section->description = $request->description;
+        $section->save();
+        return redirect()->route('admin.certifications.sections')->with('success', 'Certification Head updated successfully.');
     }
 
     public function delete(Request $request)
