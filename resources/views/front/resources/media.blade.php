@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('assets/img/final2/Resources/media-hero-section1.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -19,7 +19,7 @@
             <p>Where our brand speaks — through visuals, coverage, and industry collaborations.</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('assets/img/final/media-hero-section.png') }}" alt="">
+            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -47,8 +47,11 @@
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
-                        <h2>Brand Stories, Coverage and Highlights</h2>
-                        <p>Explore our latest achievements, celebrated campaigns, and featured media appearances that showcase our brand’s continued excellence.</p>
+                        <h2>{{ $mediaSectionOne->title ?? 'Frequently Asked Questions' }}</h2>
+                        <p>{!! $mediaSectionOne->description ??
+                            ' Explore our latest achievements, celebrated campaigns, and
+                                                                                                    featured media appearances that
+                                                                                                    showcase our brand’s continued excellence.' !!}</p>
                     </div>
                 </div>
             </div>

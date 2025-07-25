@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
+use App\Models\MediaSectionOne;
+use App\Models\MediaSectionTwo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
@@ -73,13 +75,7 @@ class MediaController extends Controller
             ->with('success', 'Media created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Media $media)
-    {
-        return view('admin.media.show', compact('media'));
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -180,5 +176,48 @@ class MediaController extends Controller
             Log::error('PDF thumbnail generation failed: ' . $e->getMessage());
             return null;
         }
+    }
+
+
+    public function show()
+    {
+        $mediaSectionOne = MediaSectionOne::first();
+        $mediaSectionTwo = MediaSectionTwo::first();
+        return view('admin.media.section', compact('mediaSectionOne', 'mediaSectionTwo'));
+    }
+
+    public function saveSectionOne(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+        $section = MediaSectionOne::first() ?? new MediaSectionOne();
+        $section->fill($validated);
+        $section->save();
+        return redirect()->back()->with('success', 'Media Head Section saved successfully.');
+    }
+
+    public function saveSectionTwo(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $section = \App\Models\MediaSectionTwo::first() ?? new \App\Models\MediaSectionTwo();
+        if ($request->hasFile('image')) {
+            if ($section->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($section->image);
+            }
+            $file = $request->file('image');
+            $filename = 'media-section2-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('media/section2', $filename, 'public');
+            $section->image = $path;
+        }
+        $section->title = $validated['title'] ?? $section->title;
+        $section->description = $validated['description'] ?? $section->description;
+        $section->save();
+        return redirect()->back()->with('success', 'Media Main Section saved successfully.');
     }
 }

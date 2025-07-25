@@ -14,9 +14,14 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        <a href="{{ route('admin.media.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add New Media
-                        </a>
+                        <div class="d-flex gap-2 ms-auto">
+                            <a href="{{ route('admin.media.create') }}" class="btn btn-warning">
+                                <i class="fas fa-plus"></i> Add New Media
+                            </a>
+                            <a href="{{ url('admin/media/sections') }}" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add Section
+                            </a>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

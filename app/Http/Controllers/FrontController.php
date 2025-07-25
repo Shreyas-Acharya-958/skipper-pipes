@@ -52,6 +52,8 @@ use App\Models\PartnerSectionOne;
 use App\Models\PartnerSectionTwo;
 use App\Models\PartnerPipesOffer;
 use App\Models\Media;
+use App\Models\MediaSectionOne;
+use App\Models\MediaSectionTwo;
 use App\Models\Network;
 use App\Models\News;
 use App\Models\Section;
@@ -382,7 +384,10 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
         $media = Media::all()->groupBy('media_type');
-        return view('front.resources.media', compact('media', 'seoData'));
+        $mediaSectionOne = MediaSectionOne::first();
+        $mediaSectionTwo = MediaSectionTwo::first();
+
+        return view('front.resources.media', compact('media', 'seoData', 'mediaSectionOne', 'mediaSectionTwo'));
     }
 
     public function whySkipperPipes()
