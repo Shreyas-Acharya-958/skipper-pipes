@@ -97,6 +97,11 @@
                                 <label for="description1" class="form-label">Description</label>
                                 <textarea class="form-control" id="description1" name="description" rows="4" readonly>{{ $sectionOne->description ?? '' }}</textarea>
                             </div>
+                            <div class="form-group mb-3">
+                                <label for="now_more1" class="form-label">Know More (Link/URL)</label>
+                                <input type="text" class="form-control" id="now_more1" name="now_more"
+                                    value="{{ $sectionOne->now_more ?? '' }}" readonly>
+                            </div>
 
                             <div class="form-group mb-3">
                                 <label class="form-label">Features</label>
@@ -636,11 +641,11 @@
                         <div class="image-section" style="width: 150px;">
                             <label class="form-label small">Photo</label>
                             ${review.person_image ? `
-                                                                                                                                                                                                                                                                            <div class="mb-2">
-                                                                                                                                                                                                                                                                                <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
-                                                                                                                                                                                                                                                                                    alt="Person Image" style="max-width: 100px;">
-                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                        ` : ''}
+                                                                                                                                                                                                                                                                                    <div class="mb-2">
+                                                                                                                                                                                                                                                                                        <img src="${review.person_image.startsWith('http') ? review.person_image : '/storage/' + review.person_image}"
+                                                                                                                                                                                                                                                                                            alt="Person Image" style="max-width: 100px;">
+                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                ` : ''}
                             <input type="file" class="form-control form-control-sm"
                                 name="reviews[${index}][person_image]" disabled>
                         </div>

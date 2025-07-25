@@ -10,7 +10,8 @@ class HomeSectionOne extends Model
         'title',
         'description',
         'image',
-        'video'
+        'video',
+        'now_more'
     ];
 
     public function features()

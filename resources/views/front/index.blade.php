@@ -137,7 +137,9 @@
                             </li>
                         @endif
                     </ul>
-                    <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ url('company/overview') }}">Know More</a>
+                    @if ($sectionOne->now_more)
+                        <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ $sectionOne->now_more }}">Know More</a>
+                    @endif
                 </div>
             </div>
         </div>

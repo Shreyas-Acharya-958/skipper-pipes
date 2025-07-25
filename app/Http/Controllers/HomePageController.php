@@ -30,7 +30,7 @@ class HomePageController extends Controller
             DB::beginTransaction();
 
             $section = HomeSectionOne::firstOrNew();
-            $section->fill($request->only(['title', 'description']));
+            $section->fill($request->only(['title', 'description', 'now_more']));
 
             // Handle media upload based on type
             if ($request->input('media_type') === 'video') {
