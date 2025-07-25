@@ -90,7 +90,7 @@
 
                             <div class="form-group mb-3">
                                 <label for="main_description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" rows="6" readonly required>{{ $mainSection->description ?? '' }}</textarea>
+                                <textarea class="form-control tinymce" id="main_description" name="description" rows="6" readonly required>{{ $mainSection->description ?? '' }}</textarea>
                             </div>
                         </form>
                     </div>
@@ -146,7 +146,8 @@
 
                             <div class="form-group mb-3">
                                 <label for="section3_description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" rows="6" readonly required>{{ $sectionThrees->first()->description ?? '' }}</textarea>
+                                <textarea class="form-control tinymce" id="section3_description" name="description" rows="6" readonly
+                                    required>{{ $sectionThrees->first()->description ?? '' }}</textarea>
                             </div>
                         </form>
                     </div>
@@ -223,7 +224,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
+                                                <textarea class="form-control tinymce" id="section4_description_{{ $index }}"
+                                                    name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -288,7 +290,8 @@
 
                             <div class="form-group mb-3">
                                 <label for="section5_description" class="form-label">Description</label>
-                                <textarea class="form-control" name="description" rows="6" readonly required>{{ $sectionFives->first()->description ?? '' }}</textarea>
+                                <textarea class="form-control tinymce" id="section5_description" name="description" rows="6" readonly
+                                    required>{{ $sectionFives->first()->description ?? '' }}</textarea>
                             </div>
                         </form>
                     </div>
@@ -365,7 +368,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Description</label>
-                                                <textarea class="form-control" name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
+                                                <textarea class="form-control tinymce" id="built_for_condition_description_{{ $index }}"
+                                                    name="sections[{{ $index }}][description]" rows="3" readonly required>{{ $item->description }}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
@@ -384,8 +388,36 @@
     </div>
 
     @push('scripts')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
         <script>
+            function initWhySkipperTinyMCE() {
+                $('.tinymce').each(function() {
+                    const id = $(this).attr('id');
+                    if (tinymce.get(id)) {
+                        tinymce.get(id).remove();
+                    }
+                    tinymce.init({
+                        selector: `#${id}`,
+                        height: 200,
+                        menubar: false,
+                        plugins: 'lists link image code',
+                        toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                        verify_html: false,
+                        cleanup: false,
+                        valid_elements: '*[*]',
+                        extended_valid_elements: '*[*]',
+                        valid_children: '+*[*]',
+                        preserve_cdata: true,
+                        entity_encoding: 'raw',
+                        force_br_newlines: false,
+                        force_p_newlines: false,
+                        forced_root_block: '',
+                        keep_styles: true
+                    });
+                });
+            }
             $(document).ready(function() {
+                initWhySkipperTinyMCE();
                 // Get the tab ID from URL hash or localStorage
                 let activeTab = window.location.hash;
                 if (!activeTab) {
@@ -400,6 +432,7 @@
                     const targetTab = $(e.target).data('bs-target');
                     localStorage.setItem('activeWhySkipperPipesTab', targetTab);
                     window.location.hash = targetTab;
+                    setTimeout(initWhySkipperTinyMCE, 200); // Re-init TinyMCE on tab change
                 });
 
                 // Edit button click handler
@@ -411,6 +444,7 @@
                     // Show the add-item-btn if it exists in this form
                     form.find('.add-item-btn').show();
                     $(this).hide();
+                    setTimeout(initWhySkipperTinyMCE, 200); // Re-init TinyMCE on edit
                 });
 
                 // Remove image button click handler for sections 3 and 5
@@ -451,7 +485,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Description</label>
-                                <textarea class="form-control" name="sections[${index}][description]" rows="3" required></textarea>
+                                <textarea class="form-control tinymce" name="sections[${index}][description]" rows="3" required></textarea>
                             </div>
                         </div>
                     `;
@@ -496,6 +530,15 @@
                     // Update active tab
                     const activeTab = localStorage.getItem('activeWhySkipperPipesTab') || '#main';
                     $(this).find('input[name="active_tab"]').val(activeTab);
+
+                    // Update textarea values from TinyMCE
+                    $(this).find('.tinymce').each(function() {
+                        const id = $(this).attr('id');
+                        const editor = tinymce.get(id);
+                        if (editor) {
+                            $(this).val(editor.getContent());
+                        }
+                    });
                 });
             });
         </script>
