@@ -67,10 +67,17 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        <a href="{{ route('admin.faq_masters.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add New FAQ Master
-                        </a>
+                        <div class="d-flex gap-2 ms-auto">
+                            <a href="{{ route('admin.faq_masters.create') }}" class="btn btn-warning">
+                                <i class="fas fa-plus"></i> Add New FAQ Master
+                            </a>
+                            <a href="{{ url('admin/faq-masters/sections') }}" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add Section
+                            </a>
+                        </div>
                     </div>
+
+
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>

@@ -4,20 +4,20 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('assets/img/final2/Resources/faq-hero-section.jpg') }}" alt="">
+            <img src="{{ asset($faqSectionTwo->image ?? '') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
-            <h1>Frequently Asked Questions</h1>
+            <h1>{{ $faqSectionOne->title ?? 'Frequently Asked Questions' }}</h1>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
-            <h1>Frequently Asked Questions</h1>
+            <h1>{{ $faqSectionOne->title ?? 'Frequently Asked Questions' }}</h1>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('assets/img/final2/Resources/faq-hero-section.jpg') }}" alt="">
+            <img src="{{ asset($faqSectionTwo->image ?? '') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -42,10 +42,11 @@
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
-                        <h2>India’s Safest Pipes</h2>
-                        <p class="p-0">At Skipper Pipes, we are committed to transparency, customer support, and industry
-                            leadership. Whether you're a homeowner, contractor, distributor, or architect — this FAQ section
-                            addresses your most common queries about our products, services, and installation practices</p>
+                        <h2>{{ $faqSectionOne->title ?? 'Frequently Asked Questions' }}</h2>
+                        <p class="p-0">
+                            {!! $faqSectionOne->description ??
+                                'At Skipper Pipes, we are committed to transparency, customer support, and industry leadership. Whether you\'re a homeowner, contractor, distributor, or architect — this FAQ section addresses your most common queries about our products, services, and installation practices' !!}
+                        </p>
                     </div>
                 </div>
             </div>

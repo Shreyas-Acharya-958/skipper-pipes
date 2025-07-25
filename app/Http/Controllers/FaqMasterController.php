@@ -144,4 +144,46 @@ class FaqMasterController extends Controller
         $faq->delete();
         return response()->json(['message' => 'FAQ deleted successfully']);
     }
+
+
+    public function show()
+    {
+        $faqSectionOne = \App\Models\FaqSectionOne::first();
+        $faqSectionTwo = \App\Models\FaqSectionTwo::first();
+        return view('admin.faq_masters.section', compact('faqSectionOne', 'faqSectionTwo'));
+    }
+    public function saveSectionOne(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+        $section = \App\Models\FaqSectionOne::first() ?? new \App\Models\FaqSectionOne();
+        $section->fill($validated);
+        $section->save();
+        return redirect()->back()->with('success', 'FAQ Head Section saved successfully.');
+    }
+
+    public function saveSectionTwo(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $section = \App\Models\FaqSectionTwo::first() ?? new \App\Models\FaqSectionTwo();
+        if ($request->hasFile('image')) {
+            if ($section->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($section->image);
+            }
+            $file = $request->file('image');
+            $filename = 'faq-section2-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('faq/section2', $filename, 'public');
+            $section->image = $path;
+        }
+        $section->title = $validated['title'] ?? $section->title;
+        $section->description = $validated['description'] ?? $section->description;
+        $section->save();
+        return redirect()->back()->with('success', 'FAQ Main Section saved successfully.');
+    }
 }

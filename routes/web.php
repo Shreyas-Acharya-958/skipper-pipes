@@ -168,10 +168,18 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     //Faq
     Route::resource('faq-masters', FaqMasterController::class)->names('faq_masters');
+
+
     Route::get('faq-masters/{faqMaster}/faqs', [FaqMasterController::class, 'getFaqs']);
     Route::post('faq-masters/{faqMaster}/faqs', [FaqMasterController::class, 'storeFaq']);
     Route::put('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'updateFaq']);
     Route::delete('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'deleteFaq']);
+
+
+    Route::post('/faq-masters/section1/save', [FaqMasterController::class, 'saveSectionOne'])->name('faq.section1.save');
+    Route::post('/faq-masters/section2/save', [FaqMasterController::class, 'saveSectionTwo'])->name('faq.section2.save');
+
+
 
     // Sections Routes
     Route::resource('sections', SectionController::class);
