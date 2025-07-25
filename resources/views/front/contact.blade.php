@@ -71,21 +71,21 @@
                     <div class="location-info" id="info-media-queries">
                         <h4>Media Queries</h4>
                         <p class="mb-0">For any Media Query reach out to us on:</p>
-                        <a>📧 westbengal@company.com</a>
+                        <a>📧 enquiry@skipperlimited.com</a>
                         <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
                             West Bengal 700046</p>
                     </div>
                     <div class="location-info d-none" id="info-advertising-queries">
                         <h4>Advertising Queries</h4>
                         <p class="mb-0">For any Advertising Query reach out to us on:</p>
-                        <a>📧 westbengal@company.com</a>
+                        <a>📧 enquiry@skipperlimited.com</a>
                         <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
                             West Bengal 700046</p>
                     </div>
                     <div class="location-info d-none" id="info-investor-queries">
                         <h4>Investor Queries</h4>
                         <p class="mb-0">For any Investor Query reach out to us on:</p>
-                        <a>📧 westbengal@company.com</a>
+                        <a>📧 enquiry@skipperlimited.com</a>
                         <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
                             West Bengal 700046</p>
                     </div>
@@ -121,14 +121,14 @@
             <div class="row">
                 <div class="col-md-6 contact-details-content">
                     <h3 class="mb-5">Get In Touch !</h3>
-                  
+
                     <ul>
                         <li>
                             <h4>Registered & Corporate Office, West Bengal</h4>
                             <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal
                                 700046</p>
                             <a href="tel:+91123456789" class="d-block mt-3">📞 +91-123456789</a>
-                            <a href="mailto:westbengal@company.com">📧 westbengal@company.com</a>
+                            <a href="mailto:enquiry@skipperlimited.com">📧 enquiry@skipperlimited.com</a>
                         </li>
                         <li class="contact-pg-icons">
                             <a href="#">
