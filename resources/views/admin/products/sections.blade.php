@@ -624,6 +624,29 @@
                 const container = $('#applications_container');
                 const index = container.find('.application-item').length;
                 container.append(getNewApplicationTemplate(index));
+                tinymce.init({
+                    selector: 'textarea.tinymce:not(.mce-initialized)',
+                    height: 300,
+                    menubar: false,
+                    plugins: 'lists link image code',
+                    toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                    verify_html: false,
+                    cleanup: false,
+                    valid_elements: '*[*]',
+                    extended_valid_elements: '*[*]',
+                    valid_children: '+*[*]',
+                    preserve_cdata: true,
+                    entity_encoding: 'raw',
+                    force_br_newlines: false,
+                    force_p_newlines: false,
+                    forced_root_block: '',
+                    keep_styles: true,
+                    setup: function(editor) {
+                        editor.on('init', function() {
+                            $(editor.getElement()).addClass('mce-initialized');
+                        });
+                    }
+                });
             });
 
             // Add new feature
@@ -631,6 +654,29 @@
                 const container = $('#features_container');
                 const index = container.find('.feature-item').length;
                 container.append(getNewFeatureTemplate(index));
+                tinymce.init({
+                    selector: 'textarea.tinymce:not(.mce-initialized)',
+                    height: 300,
+                    menubar: false,
+                    plugins: 'lists link image code',
+                    toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                    verify_html: false,
+                    cleanup: false,
+                    valid_elements: '*[*]',
+                    extended_valid_elements: '*[*]',
+                    valid_children: '+*[*]',
+                    preserve_cdata: true,
+                    entity_encoding: 'raw',
+                    force_br_newlines: false,
+                    force_p_newlines: false,
+                    forced_root_block: '',
+                    keep_styles: true,
+                    setup: function(editor) {
+                        editor.on('init', function() {
+                            $(editor.getElement()).addClass('mce-initialized');
+                        });
+                    }
+                });
             });
 
             // Add new FAQ
@@ -638,6 +684,29 @@
                 const container = $('#faqs_container');
                 const index = container.find('.faq-item').length;
                 container.append(getNewFaqTemplate(index));
+                tinymce.init({
+                    selector: 'textarea.tinymce:not(.mce-initialized)',
+                    height: 300,
+                    menubar: false,
+                    plugins: 'lists link image code',
+                    toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
+                    verify_html: false,
+                    cleanup: false,
+                    valid_elements: '*[*]',
+                    extended_valid_elements: '*[*]',
+                    valid_children: '+*[*]',
+                    preserve_cdata: true,
+                    entity_encoding: 'raw',
+                    force_br_newlines: false,
+                    force_p_newlines: false,
+                    forced_root_block: '',
+                    keep_styles: true,
+                    setup: function(editor) {
+                        editor.on('init', function() {
+                            $(editor.getElement()).addClass('mce-initialized');
+                        });
+                    }
+                });
             });
 
             // Remove application
@@ -673,7 +742,7 @@
 
             // Initialize TinyMCE for all textareas with class 'tinymce'
             tinymce.init({
-                selector: 'textarea.tinymce',
+                selector: 'textarea.tinymce:not(.mce-initialized)',
                 height: 300,
                 menubar: false,
                 plugins: 'lists link image code',
@@ -688,7 +757,12 @@
                 force_br_newlines: false,
                 force_p_newlines: false,
                 forced_root_block: '',
-                keep_styles: true
+                keep_styles: true,
+                setup: function(editor) {
+                    editor.on('init', function() {
+                        $(editor.getElement()).addClass('mce-initialized');
+                    });
+                }
             });
         });
     </script>
