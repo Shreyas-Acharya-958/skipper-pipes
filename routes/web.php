@@ -25,6 +25,7 @@ use App\Http\Controllers\WhySkipperPipeController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqMasterController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\SectionController;
 
@@ -204,6 +205,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Menu SEO Metadata
     Route::get('seo', [MenuController::class, 'seoIndex'])->name('seo.index');
     Route::post('seo', [MenuController::class, 'seoStore'])->name('seo.store');
+
+    Route::get('footer/edit', [FooterController::class, 'edit'])->name('footer.edit');
+    Route::post('footer/update', [FooterController::class, 'update'])->name('footer.update');
 });
 
 

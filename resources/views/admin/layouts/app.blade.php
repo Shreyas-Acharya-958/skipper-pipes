@@ -190,6 +190,10 @@
                             href="{{ route('admin.sections.index') }}">
                             <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Sections</span>
                         </a>
+                        <a class="nav-link{{ request()->routeIs('admin.footer.*') ? ' active' : '' }}"
+                            href="{{ route('admin.footer.edit') }}">
+                            <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Footer</span>
+                        </a>
                     </div>
                 </div>
             </nav>
