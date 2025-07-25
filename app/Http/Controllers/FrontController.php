@@ -226,12 +226,7 @@ class FrontController extends Controller
             ->where('is_active', 1)
             ->firstOrFail();
 
-        // SEO data
-        $seoData = [
-            'meta_title' => $page->meta_title ?? $page->title,
-            'meta_description' => $page->meta_description,
-            'meta_keywords' => $page->meta_keywords,
-        ];
+
 
         $data = [];
 
