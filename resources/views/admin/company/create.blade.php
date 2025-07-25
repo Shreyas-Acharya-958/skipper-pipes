@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-
+@dd('');
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -51,7 +51,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none;">
                                 <div class="form-group mb-3">
                                     <label for="meta_title">Meta Title</label>
                                     <input type="text" class="form-control @error('meta_title') is-invalid @enderror"
@@ -61,7 +61,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none;">
                                 <div class="form-group mb-3">
                                     <label for="meta_description">Meta Description</label>
                                     <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
@@ -71,7 +71,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none;">
                                 <div class="form-group mb-3">
                                     <label for="meta_keywords">Meta Keywords</label>
                                     <input type="text" class="form-control @error('meta_keywords') is-invalid @enderror"

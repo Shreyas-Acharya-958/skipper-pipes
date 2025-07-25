@@ -52,7 +52,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none;">
                                 <div class="form-group mb-3">
                                     <label for="meta_title">Meta Title</label>
                                     <input type="text" class="form-control @error('meta_title') is-invalid @enderror"
@@ -63,7 +63,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none;">
                                 <div class="form-group mb-3">
                                     <label for="meta_description">Meta Description</label>
                                     <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
@@ -73,7 +73,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none;">
                                 <div class="form-group mb-3">
                                     <label for="meta_keywords">Meta Keywords</label>
                                     <input type="text" class="form-control @error('meta_keywords') is-invalid @enderror"
@@ -100,7 +100,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="display:none">
                                 <div class="form-group mb-3">
                                     <label for="status">Status <span class="text-danger">*</span></label>
                                     <select class="form-control @error('status') is-invalid @enderror" id="status"
@@ -117,7 +117,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" style="display: none">
                                 <div class="form-group mb-3">
                                     <label for="is_active">Is Active <span class="text-danger">*</span></label>
                                     <select class="form-control @error('is_active') is-invalid @enderror" id="is_active"

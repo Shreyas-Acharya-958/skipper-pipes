@@ -242,26 +242,79 @@
         <div class="container">
             <div class="f-items default-padding">
                 <div class="row">
-                    @php
-                        $Footer = \App\Models\Footer::first();
-                    @endphp
-                    @if ($Footer)
-                        <!-- Single Item -->
-                        {!! $Footer->section1 !!}
-                        <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" class="w-50 mb-3"
+                                alt="">
+                            <p>
+                                Reliable piping solutions ensuring strength, durability, and hygiene for residential,
+                                industrial, and agricultural infrastructure applications.
+                            </p>
+                            <ul class="footer-social">
+                                <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i
+                                            class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i
+                                            class="fab fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
 
-                        <!-- Single Item -->
-                        {!! $Footer->section2 !!}
-                        <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Other Links</h4>
+                            <ul>
+                                <li><a href="{{ url('why-skipper-pipes') }}">Why Skipper Pipes</a></li>
+                                <li><a href="{{ url('partner/become-dealer') }}">Become a Dealer</a></li>
+                                <li><a href="{{ url('partner/become-distributor') }}">Become a Distributor</a></li>
+                                <li><a href="{{ url('network') }}">Network</a></li>
+                                <li><a href="{{ url('blogs') }}">Blogs</a></li>
+                                <li><a href="{{ url('faqs') }}">FAQs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
 
-                        <!-- Single Item -->
-                        {!! $Footer->section3 !!}
-                        <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Our Products</h4>
+                            <ul>
+                                <li><a href="{{ url('products/upvc-pipes') }}">UPVC Pipes</a></li>
+                                <li><a href="{{ url('products/agriculture-pipes') }}">Agriculture Pipes</a></li>
+                                <li><a href="{{ url('products/casing-pipes') }}">Casing Pipes</a></li>
+                                <li><a href="{{ url('products/hdpe-pipes') }}">HDPE Pipes</a></li>
+                                <li><a href="{{ url('products/marina-tank') }}">Marina Tank</a></li>
+                                <li><a href="https://skipperbathfittings.com/beta/" target="_blank">Bath Fittings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
 
-                        <!-- Single Item -->
-                        {!! $Footer->section4 !!}
-                        <!-- End Single Item -->
-                    @endif
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <h4 class="widget-title">Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    3A, Loudon Street Kolkata- 700017
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope-open"></i>
+                                    <a href="mailto:enquiry@skipperlimited.com">enquiry@skipperlimited.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
                 </div>
             </div>
         </div>
