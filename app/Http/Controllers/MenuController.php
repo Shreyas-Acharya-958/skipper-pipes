@@ -64,6 +64,15 @@ class MenuController extends Controller
 
     public function updateOrder(Request $request)
     {
+        $items = collect($request->input('items', []))
+            ->filter(function ($item) {
+                return isset($item['id']);
+            })
+            ->values()
+            ->all();
+
+        $request->merge(['items' => $items]);
+
         $request->validate([
             'items' => 'required|array',
             'items.*.id' => 'required|exists:menus,id',
