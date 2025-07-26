@@ -56,30 +56,28 @@
 @endsection
 
 @section('content')
-<!-- Hero banner-section -->
+    <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('assets/img/final2/Resources/blogs-hero-section.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $blogs_section_one->image ?? '') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
-            <h1>Build Better with Expert Advice</h1>
-            <p>Gain industry insights, professional guidance, and technical knowledge to make smarter, more efficient infrastructure decisions.</p>
+            <h1>{{ $blogs_section_one->title ?? 'Blogs' }}</h1>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
-            <h1>Build Better with Expert Advice</h1>
-            <p>Gain industry insights, professional guidance, and technical knowledge to make smarter, more efficient infrastructure decisions.</p>
+            <h1>{{ $blogs_section_one->title ?? 'Blogs' }}</h1>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('assets/img/final/blogs-hero-section.png') }}" alt="">
+            <img src="{{ asset('storage/' . $blogs_section_one->image ?? '') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
 
-   
+
     <section class="main-blogs-grid blog-area home-blog default-padding">
         <div class="container">
             <div class="blog-items">

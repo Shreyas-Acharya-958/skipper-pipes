@@ -4,22 +4,20 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('/assets/img/final2/Resources/news-hero-section.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $news_section_one->image ?? '') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
-            <h1>News</h1>
-            <p>All the latest announcements, insights, growth stories, and project news here.</p>
+            <h1>{{ $news_section_one->title ?? 'News' }}</h1>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
-            <h1>News</h1>
-            <p>All the latest announcements, insights, growth stories, and project news here.</p>
+            <h1>{{ $news_section_one->title ?? 'News' }}</h1>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('/assets/img/final2/Resources/news-hero-section.jpg') }}" alt="">
+            <img src="{{ asset('storage/' . $news_section_one->image ?? '') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -44,8 +42,11 @@
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
-                        <h2>Innovation, Growth, and Brand News</h2>
-                        <p>Discover recent product developments, strategic milestones, market expansions, and impactful updates shaping our journey forward.</p>
+                        <h2>{{ $news_section_one->title ?? 'News' }}</h2>
+                        <p class="p-0">
+                            {!! $news_section_one->description ??
+                                'All the latest announcements, insights, growth stories, and project news here.' !!}
+                        </p>
                     </div>
                 </div>
             </div>

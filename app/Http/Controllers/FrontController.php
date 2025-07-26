@@ -153,6 +153,9 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
 
+        $blogs_section_one = \App\Models\BlogSectionOne::first();
+        $blogs_section_two = \App\Models\BlogSectionTwo::first();
+
         $blogs = Blog::where('status', 1)->with('category')->paginate(9);
         if (isset($queryParams['tag'])) {
             $blog_id = BlogTag::where('name', $queryParams['tag'])->pluck('blog_id');
@@ -162,7 +165,7 @@ class FrontController extends Controller
             $blogs = Blog::where('status', 1)->where('cat_id', $queryParams['category'])->with('category')->paginate(9);
         }
 
-        return view('front.blogs', compact('blogs', 'seoData'));
+        return view('front.blogs', compact('blogs', 'seoData', 'blogs_section_one', 'blogs_section_two'));
     }
 
     public function blogDetail($slug)
@@ -374,8 +377,10 @@ class FrontController extends Controller
     public function news()
     {
         $seoData = $this->getSeoDataForCurrentUrl();
+        $news_section_one = \App\Models\NewsSectionOne::first();
+        $news_section_two = \App\Models\NewsSectionTwo::first();
         $news = News::all();
-        return view('front.resources.news', compact('news', 'seoData'));
+        return view('front.resources.news', compact('news', 'seoData', 'news_section_one', 'news_section_two'));
     }
 
     public function media()
