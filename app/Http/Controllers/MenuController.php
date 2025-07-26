@@ -94,9 +94,9 @@ class MenuController extends Controller
     // Show all menu links with SEO metadata and edit option
     public function seoIndex()
     {
-        $menus = Menu::orderBy('title')->get();
-        $seoMetadata = MenuSeoMetadata::all()->keyBy('menu_id');
-        return view('admin.menus.seo', compact('menus', 'seoMetadata'));
+        $menus = Menu::with('seoMetadata')->orderBy('title')->get();
+
+        return view('admin.menus.seo', compact('menus'));
     }
 
     // Add or update SEO metadata for a menu

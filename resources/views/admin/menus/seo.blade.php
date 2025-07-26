@@ -18,7 +18,7 @@
                         <h5 class="mb-4">Manage SEO Metadata for Each Menu</h5>
                         <div class="accordion" id="menuSeoAccordion">
                             @foreach ($menus as $menu)
-                                @php $meta = $seoMetadata[$menu->id] ?? null; @endphp
+                                @php $meta = $menu->seoMetadata; @endphp
                                 <div class="accordion-item mb-2">
                                     <h2 class="accordion-header" id="heading-{{ $menu->id }}">
                                         <button

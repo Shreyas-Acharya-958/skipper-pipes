@@ -41,6 +41,12 @@ class Menu extends Model
         return $this->children()->with('descendants');
     }
 
+    // Get SEO metadata for this menu
+    public function seoMetadata()
+    {
+        return $this->hasOne(MenuSeoMetadata::class);
+    }
+
     // Get root level menus
     public static function root()
     {
