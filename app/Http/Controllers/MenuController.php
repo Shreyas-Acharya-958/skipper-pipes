@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Models\MenuSeoMetadata;
+use Illuminate\Support\Facades\Log;
 
 class MenuController extends Controller
 {
@@ -101,32 +102,41 @@ class MenuController extends Controller
     // Add or update SEO metadata for a menu
     public function seoStore(Request $request)
     {
-
-        $request->validate([
-            'menu_id' => 'required|exists:menus,id',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'meta_keywords' => 'nullable|string|max:255',
-        ]);
-
-        $first = MenuSeoMetadata::where('menu_id', $request->menu_id)->first();
-        if ($first) {
-            $first->update([
-                'meta_title' => $request->meta_title ?? '',
-                'meta_description' => $request->meta_description ?? '',
-                'meta_keywords' => $request->meta_keywords ?? '',
+        try {
+            $request->validate([
+                'menu_id' => 'required|exists:menus,id',
+                'meta_title' => 'nullable|string|max:255',
+                'meta_description' => 'nullable|string',
+                'meta_keywords' => 'nullable|string|max:255',
             ]);
-        } else {
-            MenuSeoMetadata::create([
-                'menu_id' => $request->menu_id,
-                'meta_title' => $request->meta_title ?? '',
-                'meta_description' => $request->meta_description ?? '',
-                'meta_keywords' => $request->meta_keywords ?? '',
-            ]);
+
+            $first = MenuSeoMetadata::where('menu_id', $request->menu_id)->first();
+            if ($first) {
+                $first->update([
+                    'meta_title' => $request->meta_title ?? '',
+                    'meta_description' => $request->meta_description ?? '',
+                    'meta_keywords' => $request->meta_keywords ?? '',
+                ]);
+            } else {
+                MenuSeoMetadata::create([
+                    'menu_id' => $request->menu_id,
+                    'meta_title' => $request->meta_title ?? '',
+                    'meta_description' => $request->meta_description ?? '',
+                    'meta_keywords' => $request->meta_keywords ?? '',
+                ]);
+            }
+
+            return response()->json(['message' => 'SEO metadata saved successfully']);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'error' => 'Validation failed',
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            Log::error('SEO metadata save error: ' . $e->getMessage());
+            return response()->json([
+                'error' => 'An error occurred while saving SEO metadata. Please try again.'
+            ], 500);
         }
-
-
-
-        return response()->json(['message' => 'SEO metadata saved successfully']);
     }
 }
