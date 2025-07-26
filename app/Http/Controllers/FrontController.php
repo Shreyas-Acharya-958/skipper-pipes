@@ -74,7 +74,7 @@ class FrontController extends Controller
     {
         $path = '/' . ltrim(request()->path(), '/');
         // Try to find a menu with this link or slug
-        $menu = \App\Models\Menu::where('link', $path)
+        $menu = \App\Models\Menu::where('link', trim($path, '/'))
             ->orWhere('slug', trim($path, '/'))
             ->first();
         if ($menu) {
