@@ -1,5 +1,16 @@
  <!-- MD Directors message -->
-
+ <div class="breadcrumb-area">
+     <div class="container">
+         <div class="row">
+             <div class="col-12">
+                 <ul class="breadcrumb">
+                     <li><a href="{{ route('front.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                     <li class="active">leadership </li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </div>
 
  @if ($leadership_section_ones->count() > 0)
      <section class="md-message default-padding bg-gray">
@@ -15,7 +26,8 @@
              <div class="row align-center">
                  @foreach ($leadership_section_ones as $leadership)
                      @if ($loop->even)
-                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1">
+                         <div
+                             class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1">
                              {!! $leadership->description ?? '' !!}
                          </div>
                          <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0">
