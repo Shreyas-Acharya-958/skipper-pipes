@@ -4,20 +4,20 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $news_section_one->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
-            <h1>{{ $news_section_one->title ?? 'News' }}</h1>
+            <h1>{{ $news_section_two->title ?? 'News' }}</h1>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
-            <h1>{{ $news_section_one->title ?? 'News' }}</h1>
+            <h1>{{ $news_section_two->title ?? 'News' }}</h1>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $news_section_one->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="">
         </div>
     </section>
     <!-- Hero banner-section ends -->
