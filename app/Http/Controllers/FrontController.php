@@ -175,9 +175,9 @@ class FrontController extends Controller
 
         // SEO data
         $seoData = [
-            'meta_title' => $blog->meta_title ?? $blog->title . ' | Skipper Pipes Blog',
-            'meta_description' => $blog->meta_description ?? substr(strip_tags($blog->content), 0, 160),
-            'meta_keywords' => $blog->meta_keywords ?? implode(', ', $blog->tags->pluck('name')->toArray()),
+            'meta_title' => $blog->meta_title ?? '',
+            'meta_description' => $blog->meta_description ?? "",
+            'meta_keywords' => $blog->meta_keywords ?? "",
             'meta_author' => $blog->author ?? 'Skipper Pipes'
         ];
 
