@@ -18,6 +18,7 @@ use App\Models\CertificationHeadSection;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
 use App\Models\Contact;
+use App\Models\ContactUsSection;
 use App\Models\CsrSectionOne;
 use App\Models\CsrSectionThree;
 use App\Models\CsrSectionTwo;
@@ -404,8 +405,10 @@ class FrontController extends Controller
 
     public function contact()
     {
+
+        $contactUsSection = ContactUsSection::first() ?? new ContactUsSection();
         $seoData = $this->getSeoDataForCurrentUrl();
-        return view('front.contact', compact('seoData'));
+        return view('front.contact', compact('seoData',));
     }
 
     public function storeContact(Request $request)

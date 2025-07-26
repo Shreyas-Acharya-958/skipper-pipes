@@ -116,53 +116,55 @@
                             $menus = App\Models\Menu::tree();
                         @endphp
                         @foreach ($menus as $menu)
-                            @if ($menu->children->isEmpty())
-                                <li class="{{ request()->is($menu->link) ? 'active' : '' }}">
-                                    <a
-                                        href="{{ $menu->link == '#' ? '#' : url($menu->link) }}">{{ $menu->title }}</a>
-                                </li>
-                            @else
-                                <li class="dropdown {{ request()->is($menu->link . '/*') ? 'active' : '' }}">
-                                    <a href="#" class="dropdown-toggle"
-                                        data-toggle="dropdown">{{ $menu->title }}</a>
-                                    <ul class="dropdown-menu">
-                                        @foreach ($menu->children as $child)
-                                            @if ($child->children->isEmpty())
-                                                <li>
-                                                    <a href="{{ url($child->link) }}">{{ $child->title }}</a>
-                                                </li>
-                                            @else
-                                                <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle"
-                                                        data-toggle="dropdown">{{ $child->title }}</a>
-                                                    <ul class="dropdown-menu">
-                                                        @foreach ($child->children as $grandchild)
-                                                            @if ($grandchild->children->isEmpty())
-                                                                <li>
-                                                                    <a
-                                                                        href="{{ url($grandchild->link) }}">{{ $grandchild->title }}</a>
-                                                                </li>
-                                                            @else
-                                                                <li class="dropdown">
-                                                                    <a href="#" class="dropdown-toggle"
-                                                                        data-toggle="dropdown">{{ $grandchild->title }}</a>
-                                                                    <ul class="dropdown-menu">
-                                                                        @foreach ($grandchild->children as $greatgrandchild)
-                                                                            <li>
-                                                                                <a
-                                                                                    href="{{ url($greatgrandchild->link) }}">{{ $greatgrandchild->title }}</a>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                </li>
-                                                            @endif
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @endif
-                                        @endforeach
-                                    </ul>
-                                </li>
+                            @if ($menu->status == 1)
+                                @if ($menu->children->isEmpty())
+                                    <li class="{{ request()->is($menu->link) ? 'active' : '' }}">
+                                        <a
+                                            href="{{ $menu->link == '#' ? '#' : url($menu->link) }}">{{ $menu->title }}</a>
+                                    </li>
+                                @else
+                                    <li class="dropdown {{ request()->is($menu->link . '/*') ? 'active' : '' }}">
+                                        <a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown">{{ $menu->title }}</a>
+                                        <ul class="dropdown-menu">
+                                            @foreach ($menu->children as $child)
+                                                @if ($child->children->isEmpty())
+                                                    <li>
+                                                        <a href="{{ url($child->link) }}">{{ $child->title }}</a>
+                                                    </li>
+                                                @else
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle"
+                                                            data-toggle="dropdown">{{ $child->title }}</a>
+                                                        <ul class="dropdown-menu">
+                                                            @foreach ($child->children as $grandchild)
+                                                                @if ($grandchild->children->isEmpty())
+                                                                    <li>
+                                                                        <a
+                                                                            href="{{ url($grandchild->link) }}">{{ $grandchild->title }}</a>
+                                                                    </li>
+                                                                @else
+                                                                    <li class="dropdown">
+                                                                        <a href="#" class="dropdown-toggle"
+                                                                            data-toggle="dropdown">{{ $grandchild->title }}</a>
+                                                                        <ul class="dropdown-menu">
+                                                                            @foreach ($grandchild->children as $greatgrandchild)
+                                                                                <li>
+                                                                                    <a
+                                                                                        href="{{ url($greatgrandchild->link) }}">{{ $greatgrandchild->title }}</a>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endif
                             @endif
                         @endforeach
                     </ul>

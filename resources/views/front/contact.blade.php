@@ -58,57 +58,13 @@
             </div>
             <div class="row mt-5">
                 <!-- Left: City List -->
-                <div class="col-md-3 mb-5 mb-md-0">
-                    <ul class="list-group city-list">
-                        <li class="list-group-item active" data-city="media-queries">Media Queries</li>
-                        <li class="list-group-item " data-city="advertising-queries">Advertising Queries</li>
-                        <li class="list-group-item " data-city="investor-queries">Investor Queries</li>
-                    </ul>
-                </div>
+                {!! $contact_us_section_one->section1 !!}
 
                 <!-- Center: Location Details -->
-                <div class="col-md-5 mb-5 mb-md-0">
-                    <div class="location-info" id="info-media-queries">
-                        <h4>Media Queries</h4>
-                        <p class="mb-0">For any Media Query reach out to us on:</p>
-                        <a>📧 enquiry@skipperlimited.com</a>
-                        <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
-                            West Bengal 700046</p>
-                    </div>
-                    <div class="location-info d-none" id="info-advertising-queries">
-                        <h4>Advertising Queries</h4>
-                        <p class="mb-0">For any Advertising Query reach out to us on:</p>
-                        <a>📧 enquiry@skipperlimited.com</a>
-                        <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
-                            West Bengal 700046</p>
-                    </div>
-                    <div class="location-info d-none" id="info-investor-queries">
-                        <h4>Investor Queries</h4>
-                        <p class="mb-0">For any Investor Query reach out to us on:</p>
-                        <a>📧 enquiry@skipperlimited.com</a>
-                        <p class="mt-4">12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata,
-                            West Bengal 700046</p>
-                    </div>
-
-                </div>
+                {!! $contact_us_section_one->section2 !!}
 
                 <!-- Right: India Map -->
-                <div class="col-md-4 position-relative mb-5 mb-md-0 overflow-hidden">
-                    <img src="assets/img/final2/contact-map.png" class="img-fluid" alt="India Map" />
-
-                    <!-- Pins -->
-                    <div class="map-pin pin-west-bengal active">
-                        <span>West Bengal</span>
-                        <img src="assets/img/final2/blue-pin.svg" data-city="media-queries" />
-                    </div>
-
-
-                    <!-- Active Pin Overlay -->
-                    <div class="map-pin active-pin pin-west-bengal d-block">
-                        <span>West Bengal</span>
-                        <img src="assets/img/final2/blue-pin.svg" />
-                    </div>
-                </div>
+                {!! $contact_us_section_one->section3 !!}
             </div>
         </div>
 
@@ -119,40 +75,7 @@
     <section class="contact-details-wrapper default-padding ">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 contact-details-content">
-                    <h3 class="mb-5">Get In Touch !</h3>
-
-                    <ul>
-                        <li>
-                            <h4>Registered & Corporate Office, West Bengal</h4>
-                            <p>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal
-                                700046</p>
-                            <a href="tel:+91123456789" class="d-block mt-3">📞 +91-123456789</a>
-                            <a href="mailto:enquiry@skipperlimited.com">📧 enquiry@skipperlimited.com</a>
-                        </li>
-                        <li class="contact-pg-icons">
-                            <a href="#">
-                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social Facebook.svg"
-                                    alt="">
-                            </a>
-                            <a href="#">
-                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social Instagram.svg"
-                                    alt="">
-                            </a>
-                            <a href="#">
-                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social Linkedin.svg"
-                                    alt="">
-                            </a>
-                            <a href="#">
-                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social X.svg" alt="">
-                            </a>
-                            <a href="#">
-                                <img src="assets/img/final2/Skipper Website Home Icons/Skipper Social YT.svg"
-                                    alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                {!! $contact_us_section_one->section4 !!}
                 <div class="col-md-6 contact-details-form">
                     <form id="contactForm" class="partner-application-form">
                         <div class="form-row">
