@@ -156,14 +156,8 @@ class FrontController extends Controller
         $blogs_section_one = \App\Models\BlogSectionOne::first();
         $blogs_section_two = \App\Models\BlogSectionTwo::first();
 
-        $blogs = Blog::where('status', 1)->with('category')->paginate(9);
-        if (isset($queryParams['tag'])) {
-            $blog_id = BlogTag::where('name', $queryParams['tag'])->pluck('blog_id');
-            $blogs = Blog::where('status', 1)->whereIn('id', $blog_id)->with('category')->paginate(9);
-        }
-        if (isset($queryParams['category'])) {
-            $blogs = Blog::where('status', 1)->where('cat_id', $queryParams['category'])->with('category')->paginate(9);
-        }
+        // Get all blogs without pagination
+        $blogs = Blog::where('status', 1)->with('category')->get();
 
         return view('front.blogs', compact('blogs', 'seoData', 'blogs_section_one', 'blogs_section_two'));
     }
