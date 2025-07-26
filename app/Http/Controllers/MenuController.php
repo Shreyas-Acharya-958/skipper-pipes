@@ -101,6 +101,7 @@ class MenuController extends Controller
     // Add or update SEO metadata for a menu
     public function seoStore(Request $request)
     {
+
         $request->validate([
             'menu_id' => 'required|exists:menus,id',
             'meta_title' => 'nullable|string|max:255',
@@ -111,9 +112,9 @@ class MenuController extends Controller
         $metadata = MenuSeoMetadata::updateOrCreate(
             ['menu_id' => $request->menu_id],
             [
-                'meta_title' => $request->meta_title,
-                'meta_description' => $request->meta_description,
-                'meta_keywords' => $request->meta_keywords,
+                'meta_title' => $request->meta_title ?? '',
+                'meta_description' => $request->meta_description ?? '',
+                'meta_keywords' => $request->meta_keywords ?? '',
             ]
         );
 
