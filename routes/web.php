@@ -219,6 +219,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Contact Us Sections Routes
     Route::get('contact-us-sections/edit', [ContactUsSectionController::class, 'edit'])->name('contact-us-sections.edit');
     Route::post('contact-us-sections/update', [ContactUsSectionController::class, 'update'])->name('contact-us-sections.update');
+
+    // Image Upload Route for TinyMCE
+    Route::post('upload/image', [ContactUsSectionController::class, 'uploadImage'])->name('upload.image');
 });
 
 

@@ -58,7 +58,77 @@
                     force_br_newlines: false,
                     force_p_newlines: false,
                     forced_root_block: '',
-                    keep_styles: true
+                    keep_styles: true,
+
+                    // Image upload configuration
+                    images_upload_url: '{{ route('admin.upload.image') }}',
+                    images_upload_handler: function(blobInfo, progress, failure) {
+                        return new Promise(function(resolve, reject) {
+                            var xhr, formData;
+                            xhr = new XMLHttpRequest();
+                            xhr.withCredentials = false;
+                            xhr.open('POST', '{{ route('admin.upload.image') }}');
+
+                            // Add CSRF token
+                            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+                            xhr.setRequestHeader('Accept', 'application/json');
+
+                            xhr.onload = function() {
+                                var json;
+                                if (xhr.status != 200) {
+                                    reject('HTTP Error: ' + xhr.status + ' - ' + xhr
+                                        .responseText);
+                                    return;
+                                }
+                                try {
+                                    json = JSON.parse(xhr.responseText);
+                                    if (!json || typeof json.location != 'string') {
+                                        reject('Invalid JSON: ' + xhr.responseText);
+                                        return;
+                                    }
+                                    resolve(json.location);
+                                } catch (e) {
+                                    reject('Invalid JSON response: ' + xhr
+                                        .responseText);
+                                }
+                            };
+
+                            xhr.onerror = function() {
+                                reject('Network error occurred');
+                            };
+
+                            formData = new FormData();
+                            formData.append('file', blobInfo.blob(), blobInfo
+                            .filename());
+                            formData.append('_token', '{{ csrf_token() }}');
+
+                            xhr.send(formData);
+                        });
+                    },
+
+                    // Image upload settings
+                    automatic_uploads: true,
+                    file_picker_types: 'image',
+                    images_upload_credentials: true,
+                    images_reuse_filename: true,
+
+                    // Image dialog settings
+                    image_title: true,
+                    image_description: false,
+                    image_dimensions: true,
+                    image_class_list: [{
+                            title: 'Responsive',
+                            value: 'img-fluid'
+                        },
+                        {
+                            title: 'Thumbnail',
+                            value: 'img-thumbnail'
+                        },
+                        {
+                            title: 'Rounded',
+                            value: 'rounded'
+                        }
+                    ]
                 });
             });
         });
