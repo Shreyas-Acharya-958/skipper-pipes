@@ -26,6 +26,7 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqMasterController;
 use App\Http\Controllers\FooterController;
+use App\Http\Controllers\ContactUsSectionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\SectionController;
 
@@ -214,6 +215,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::get('footer/edit', [FooterController::class, 'edit'])->name('footer.edit');
     Route::post('footer/update', [FooterController::class, 'update'])->name('footer.update');
+
+    // Contact Us Sections Routes
+    Route::get('contact-us-sections/edit', [ContactUsSectionController::class, 'edit'])->name('contact-us-sections.edit');
+    Route::post('contact-us-sections/update', [ContactUsSectionController::class, 'update'])->name('contact-us-sections.update');
 });
 
 

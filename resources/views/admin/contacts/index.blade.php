@@ -14,9 +14,10 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        {{-- <a href="{{ route('admin.contacts.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add New Contact
-                        </a> --}}
+                        <a href="{{ route('admin.contact-us-sections.edit') }}" class="btn btn-info">
+                            <i class="fas fa-plus"></i> Add Contact section
+                        </a>
+
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

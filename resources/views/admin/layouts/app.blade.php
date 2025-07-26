@@ -165,14 +165,14 @@
 
                 <!-- Settings -->
                 <div
-                    class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*') ? 'open' : '' }}">
+                    class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*', 'admin.footer.*', 'admin.contact-us-sections.*') ? 'open' : '' }}">
                     <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#settingsModule">
                         <span class="nav-section-title">
                             <i class="fas fa-chevron-right nav-section-arrow"></i>
                             Settings
                         </span>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*') ? 'show' : '' }}"
+                    <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*', 'admin.footer.*', 'admin.contact-us-sections.*') ? 'show' : '' }}"
                         id="settingsModule">
                         <a class="nav-link{{ request()->routeIs('admin.menus.*') ? ' active' : '' }}"
                             href="{{ route('admin.menus.index') }}">
@@ -194,6 +194,7 @@
                             href="{{ route('admin.footer.edit') }}">
                             <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Footer</span>
                         </a>
+
                     </div>
                 </div>
             </nav>
