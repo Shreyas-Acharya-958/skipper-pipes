@@ -10,7 +10,7 @@
             <div class="hero-banner2-overlay"></div>
             <div class="hero-banner2-content">
                 <h1>{{ $whySkipperPipes->title ?? '' }}</h1>
-                <p>{{ $whySkipperPipes->description ?? '' }}</p>
+                <p>{!! $whySkipperPipes->description ?? '' !!}</p>
             </div>
         </section>
     @endif
@@ -18,7 +18,7 @@
         <section class="hero-banner2-responsive">
             <div class="hero-banner2-content-responsive">
                 <h1>{{ $whySkipperPipes->title ?? '' }}</h1>
-                <p>{{ $whySkipperPipes->description ?? '' }}</p>
+                <p>{!! $whySkipperPipes->description ?? '' !!}</p>
             </div>
             <div class="hero-banner2-img-responsive">
                 <img src="{{ asset('storage/' . $whySkipperPipes->image) }}" alt="">
@@ -26,8 +26,8 @@
         </section>
     @endif
     <!-- Hero banner-section ends -->
-    
-     <!-- Breadcrumb  -->
+
+    <!-- Breadcrumb  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -58,7 +58,7 @@
                 <div class="row align-center">
                     <div class="col-md-6 pt-3 pt-md-0">
                         <!-- <h2>Product Overview</h2> -->
-                        <p>{{ $whySkipperPipesSectionThrees->description ?? '' }}</p>
+                        <p>{!! $whySkipperPipesSectionThrees->description ?? '' !!}</p>
                     </div>
                     <div class="col-md-6 order-first order-md-last">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -117,7 +117,7 @@
                             <div class="infrastructure-img-overlay"></div>
                             <div class="infrastrcture-banner-content">
                                 <h3>{{ $why_skipper_pipe_section_four->title ?? '' }}</h3>
-                                <p class="text-white">{{ $why_skipper_pipe_section_four->description ?? '' }}</p>
+                                <p class="text-white">{!! $why_skipper_pipe_section_four->description ?? '' !!}</p>
                             </div>
                         </div>
                     @endforeach
@@ -200,7 +200,7 @@
                         <div class="col-12 col-md-4 company-icon-col">
                             <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
                             <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
-                            <p>{{ $why_skipper_pipe_section_two->description ?? '' }}</p>
+                            <p>{!! $why_skipper_pipe_section_two->description ?? '' !!}</p>
                         </div>
                     @endforeach
 
@@ -220,8 +220,10 @@
                     <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor </h2>
                     <p class="text-white mb-md-4 pb-md-2">Unlock business growth with trusted products, strong support, and
                         nationwide reach.</p>
-                    <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become Dealer</a>
-                    <a class="btn btn-light effect btn-md ml-md-3" href="{{ url('partner/become-distributor') }}">Become Distributor</a>
+                    <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become
+                        Dealer</a>
+                    <a class="btn btn-light effect btn-md ml-md-3" href="{{ url('partner/become-distributor') }}">Become
+                        Distributor</a>
                 </div>
             </div>
         </div>
