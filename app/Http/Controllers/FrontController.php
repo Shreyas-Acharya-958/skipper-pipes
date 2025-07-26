@@ -205,13 +205,7 @@ class FrontController extends Controller
         $seoData = $this->getSeoDataForCurrentUrl();
         $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
 
-        // SEO data
-        $seoData = [
-            'meta_title' => $product->meta_title ?? $product->name . ' | Skipper Pipes Products',
-            'meta_description' => $product->meta_description ?? substr(strip_tags($product->description), 0, 160),
-            'meta_keywords' => $product->meta_keywords ?? $product->name . ', ' . $product->productCategory->name . ', skipper pipes',
-            'meta_author' => 'Skipper Pipes'
-        ];
+
 
         return view('front.product-detail', compact('product', 'seoData'));
     }
