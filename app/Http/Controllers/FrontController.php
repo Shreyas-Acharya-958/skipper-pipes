@@ -406,9 +406,9 @@ class FrontController extends Controller
     public function contact()
     {
 
-        $contactUsSection = ContactUsSection::first() ?? new ContactUsSection();
+        $contact_us_section_one = ContactUsSection::first();
         $seoData = $this->getSeoDataForCurrentUrl();
-        return view('front.contact', compact('seoData',));
+        return view('front.contact', compact('seoData', 'contact_us_section_one'));
     }
 
     public function storeContact(Request $request)
