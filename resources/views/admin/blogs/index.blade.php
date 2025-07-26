@@ -16,9 +16,14 @@
                                 value="{{ request('search') }}">
 
                         </form>
-                        <a href="{{ route('admin.blogs.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add New Blog
-                        </a>
+                        <div class="d-flex gap-2 ms-auto">
+                            <a href="{{ route('admin.blogs.create') }}" class="btn btn-warning">
+                                <i class="fas fa-plus"></i> Add New Blog
+                            </a>
+                            <a href="{{ url('admin/blogs/section') }}" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add Section
+                            </a>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

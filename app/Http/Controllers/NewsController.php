@@ -51,10 +51,7 @@ class NewsController extends Controller
             ->with('success', 'News created successfully.');
     }
 
-    public function show(News $news)
-    {
-        return view('admin.news.form', compact('news'));
-    }
+
 
     public function edit(News $news)
     {
@@ -116,5 +113,56 @@ class NewsController extends Controller
         }
 
         return response()->json(['success' => true]);
+    }
+
+    public function show()
+    {
+        $newsSectionOne = \App\Models\NewsSectionOne::first();
+        $newsSectionTwo = \App\Models\NewsSectionTwo::first();
+        return view('admin.news.section', compact('newsSectionOne', 'newsSectionTwo'));
+    }
+    public function saveSectionOne(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $section = \App\Models\NewsSectionOne::first() ?? new \App\Models\NewsSectionOne();
+        $section->fill($validated);
+        $section->save();
+
+        return redirect()->back()->with('success', 'News Section One saved successfully.');
+    }
+
+    public function saveSectionTwo(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $section = \App\Models\NewsSectionTwo::first() ?? new \App\Models\NewsSectionTwo();
+
+        if ($request->hasFile('image')) {
+            // Delete existing image
+            if ($section->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($section->image);
+            }
+
+            // Upload new image
+            $file = $request->file('image');
+            $filename = 'news-section2-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('news/section2', $filename, 'public');
+            $section->image = $path;
+        }
+
+        // Update other fields
+        $section->title = $validated['title'] ?? $section->title;
+        $section->description = $validated['description'] ?? $section->description;
+        $section->save();
+
+        return redirect()->back()->with('success', 'News Section Two saved successfully.');
     }
 }

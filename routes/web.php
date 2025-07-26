@@ -65,6 +65,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Blog routes
     Route::resource('blogs', BlogController::class)->names('blogs');
 
+    Route::post('/blogs/section1/save', [BlogController::class, 'saveSectionOne'])->name('blog.section1.save');
+    Route::post('/blogs/section2/save', [BlogController::class, 'saveSectionTwo'])->name('blog.section2.save');
+
     // Company routes
     Route::resource('company', CompanyController::class)->names('company');
 
@@ -192,6 +195,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // News Routes
     Route::resource('news', NewsController::class);
+    Route::post('/news/section1/save', [NewsController::class, 'saveSectionOne'])->name('news.section1.save');
+    Route::post('/news/section2/save', [NewsController::class, 'saveSectionTwo'])->name('news.section2.save');
     Route::post('news/update-sequence', [NewsController::class, 'updateSequence'])->name('news.update-sequence');
 
     // Network Routes
@@ -217,6 +222,8 @@ Route::name('front.')->group(function () {
 
     Route::get('/', [FrontController::class, 'index'])->name('home');
     Route::get('/blogs', [FrontController::class, 'blogs'])->name('blogs.index');
+
+
     Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
     Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeBlogComment'])->name('blogs.comment');
     Route::get('/partner/{slug}', [FrontController::class, 'partner'])->name('partner.show');

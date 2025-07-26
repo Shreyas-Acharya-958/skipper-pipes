@@ -14,9 +14,14 @@
                             <input type="text" name="search" class="form-control me-2" placeholder="Search..."
                                 value="{{ request('search') }}">
                         </form>
-                        <a href="{{ route('admin.news.create') }}" class="btn btn-warning">
-                            <i class="fas fa-plus"></i> Add News
-                        </a>
+                        <div class="d-flex gap-2 ms-auto">
+                            <a href="{{ route('admin.news.create') }}" class="btn btn-warning">
+                                <i class="fas fa-plus"></i> Add News
+                            </a>
+                            <a href="{{ url('admin/news/section') }}" class="btn btn-info">
+                                <i class="fas fa-plus"></i> Add Section
+                            </a>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

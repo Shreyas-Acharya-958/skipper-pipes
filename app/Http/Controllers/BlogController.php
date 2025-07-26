@@ -75,14 +75,6 @@ class BlogController extends Controller
         return redirect()->route('admin.blogs.index')->with('success', 'Blog created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Blog $blog)
-    {
-        $blog->load(['category', 'tags']);
-        return view('admin.blogs.show', compact('blog'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -159,5 +151,57 @@ class BlogController extends Controller
         $blog->delete();
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog deleted successfully.');
+    }
+    public function show()
+    {
+        $blogSectionOne = \App\Models\BlogSectionOne::first();
+        $blogSectionTwo = \App\Models\BlogSectionTwo::first();
+        return view('admin.blogs.section', compact('blogSectionOne', 'blogSectionTwo'));
+    }
+    public function saveSectionOne(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        // Correct model used here
+        $section = \App\Models\BlogSectionOne::first() ?? new \App\Models\BlogSectionOne();
+        $section->fill($validated);
+        $section->save();
+
+        return redirect()->back()->with('success', 'Blog Section One saved successfully.');
+    }
+
+    public function saveSectionTwo(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        // Correct model used here
+        $section = \App\Models\BlogSectionTwo::first() ?? new \App\Models\BlogSectionTwo();
+
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($section->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($section->image);
+            }
+
+            // Store new image
+            $file = $request->file('image');
+            $filename = 'blog-section2-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('blog/section2', $filename, 'public');
+            $section->image = $path;
+        }
+
+        // Update other fields
+        $section->title = $validated['title'] ?? $section->title;
+        $section->description = $validated['description'] ?? $section->description;
+        $section->save();
+
+        return redirect()->back()->with('success', 'Blog Section Two saved successfully.');
     }
 }
