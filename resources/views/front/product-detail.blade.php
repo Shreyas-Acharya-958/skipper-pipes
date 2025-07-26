@@ -21,11 +21,11 @@
         </div>
         <div class="hero-banner2-img-responsive">
             <img src="{{ asset('storage/' . $product->page_image) }}" alt="">
-            
+
         </div>
     </section>
 
-   <!-- Breadcrumb  -->
+    <!-- Breadcrumb  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -33,7 +33,7 @@
                     <ul class="breadcrumb">
                         <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
                         <li>Products</li>
-                        <li class="active">{{$product -> title}}</li>
+                        <li class="active">{{ $product->title }}</li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="row align-center">
                 <div class="col-md-6">
-                    <p>{{ $product->productionOverviewSection->overview_description ?? '' }}</p>
+                    <p>{!! $product->productionOverviewSection->overview_description ?? '' !!}</p>
                 </div>
                 <div class="col-md-6">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -116,10 +116,9 @@
                             <div class="col-lg-4 col-md-6 single-item">
                                 <div class="item">
                                     <div class="item-inner">
-                                        <img src="{{ asset('storage/' . $feature->icon) }}"
-                                            alt="{{ $feature->title }}">
+                                        <img src="{{ asset('storage/' . $feature->icon) }}" alt="{{ $feature->title }}">
                                         <h4>{{ $feature->title }} </h4>
-                                        <p>{{ $feature->description }}</p>
+                                        <p>{!! $feature->description !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +178,7 @@
                             </div>
                             <div class="services-one__content">
                                 <h3 class="services-one__title">{{ $application->title }}</h3>
-                                <p>{{ $application->description }}</p>
+                                <p>{!! $application->description !!}</p>
                             </div>
                         </div>
                     </div>
@@ -236,7 +235,7 @@
                                 <div id="collapse{{ $index }}" class="collapse {{ $index == 0 ? 'show' : '' }}"
                                     aria-labelledby="heading{{ $index }}" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        {{ $faq->description }}
+                                        {!! $faq->description !!}
                                     </div>
                                 </div>
                             </div>
@@ -254,7 +253,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="text-white">Ready to Install India’s Safest {{ $product->title }}?</h2>
-                    
+
                     <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0" href="tel:+913322851231"><i
                             class="far fa-phone-alt"></i>
                         +91 33 2285 1231 / 32</a>
