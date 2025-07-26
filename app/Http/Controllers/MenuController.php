@@ -109,14 +109,23 @@ class MenuController extends Controller
             'meta_keywords' => 'nullable|string|max:255',
         ]);
 
-        $metadata = MenuSeoMetadata::updateOrCreate(
-            ['menu_id' => $request->menu_id],
-            [
+        $first = MenuSeoMetadata::where('menu_id', $request->menu_id)->first();
+        if ($first) {
+            $first->update([
                 'meta_title' => $request->meta_title ?? '',
                 'meta_description' => $request->meta_description ?? '',
                 'meta_keywords' => $request->meta_keywords ?? '',
-            ]
-        );
+            ]);
+        } else {
+            MenuSeoMetadata::create([
+                'menu_id' => $request->menu_id,
+                'meta_title' => $request->meta_title ?? '',
+                'meta_description' => $request->meta_description ?? '',
+                'meta_keywords' => $request->meta_keywords ?? '',
+            ]);
+        }
+
+
 
         return response()->json(['message' => 'SEO metadata saved successfully']);
     }
