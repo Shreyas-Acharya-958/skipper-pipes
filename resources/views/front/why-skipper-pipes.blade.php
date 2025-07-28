@@ -58,9 +58,10 @@
                 <div class="row align-center">
                     <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                         <!-- <h2>Product Overview</h2> -->
-                        <p >{!! $whySkipperPipesSectionThrees->description ?? '' !!}</p>
+                        <p>{!! $whySkipperPipesSectionThrees->description ?? '' !!}</p>
                     </div>
-                    <div class="col-md-6 order-first order-md-last" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-6 order-first order-md-last" data-aos="fade-left" data-aos-duration="1000"
+                        data-aos-delay="100">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                             @if ($whySkipperPipesSectionThrees->images)
@@ -169,10 +170,11 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
-                        <p>{{ $why_skipper_pipe_section_fives->description ?? '' }}</p>
-                        <a class="btn btn-dark theme theme2 btn-md mt-3"
-                            href="{{ $why_skipper_pipe_section_fives->button_link ?? '' }}" >View Our
+                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000"
+                        data-aos-delay="100">
+                        <p>{!! $why_skipper_pipe_section_fives->description ?? '' !!}</p>
+                        <a class="btn btn-dark theme theme2 btn-md mt-3" href="{{ url('company/certifications') }}">View
+                            Our
                             Certification</a>
                     </div>
                 </div>
@@ -196,7 +198,8 @@
                 </div>
                 <div class="row philosophy-wrapper text-center px-3 px-md-0 justify-content-center">
                     @foreach ($why_skipper_pipe_section_twos as $why_skipper_pipe_section_two)
-                        <div class="col-12 col-md-4 company-icon-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="col-12 col-md-4 company-icon-col" data-aos="fade-up" data-aos-duration="1000"
+                            data-aos-delay="100">
                             <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
                             <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
                             <p>{!! $why_skipper_pipe_section_two->description ?? '' !!}</p>
