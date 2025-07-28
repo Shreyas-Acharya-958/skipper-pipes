@@ -34,7 +34,7 @@
         </div>
     </section>
     <!-- Hero banner-section ends -->
-     <!-- Breadcrumb  -->
+    <!-- Breadcrumb  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -42,7 +42,7 @@
                     <ul class="breadcrumb">
                         <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
                         <li>Partner</li>
-                        <li class="active">{{ $partner -> title}}</li>
+                        <li class="active">{{ $partner->title }}</li>
                     </ul>
                 </div>
             </div>
@@ -286,8 +286,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Submit Distributor
-                            Enquiry</button>
+                        <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">
+                            {{ $partner->id == 1 ? 'Submit Dealer Enquiry' : 'Submit Distributor Enquiry' }}
+                        </button>
                     </form>
                 </div>
             </div>
