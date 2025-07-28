@@ -78,6 +78,12 @@ class FrontController extends Controller
         $menu = \App\Models\Menu::where('link', trim($path, '/'))
             ->orWhere('slug', trim($path, '/'))
             ->first();
+        if ($path == '/') {
+            //home page
+            $menu = \App\Models\Menu::where('link', $path)
+                ->first();
+        }
+
         if ($menu) {
             $seo = \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
             if ($seo) {
