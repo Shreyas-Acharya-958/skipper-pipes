@@ -82,7 +82,12 @@
             </ul>
             <div class="tab-content p-3 border border-top-0" id="inquiryTabsContent">
                 <div class="tab-pane fade show active" id="career" role="tabpanel" aria-labelledby="career-tab">
-                    <h5>Career Applications</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Career Applications</h5>
+                        <a href="{{ route('admin.dashboard.export.career') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export CSV
+                        </a>
+                    </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -111,7 +116,8 @@
                                         <strong>DOB:</strong> {{ $item->dob }}<br>
                                         <strong>Resume:</strong>
                                         @if ($item->resume_path)
-                                            <a href="{{ asset('storage/' . $item->resume_path) }}" target="_blank">View</a>
+                                            <a href="{{ asset('storage/' . $item->resume_path) }}" target="_blank"
+                                                class="btn btn-sm btn-primary">Download Resume</a>
                                         @endif
                                         <br>
                                         <strong>Address:</strong> {{ $item->address }}
@@ -122,7 +128,12 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <h5>Contacts</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Contacts</h5>
+                        <a href="{{ route('admin.dashboard.export.contacts') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export CSV
+                        </a>
+                    </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -156,7 +167,12 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="partner" role="tabpanel" aria-labelledby="partner-tab">
-                    <h5>Partner Enquiries</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Partner Enquiries</h5>
+                        <a href="{{ route('admin.dashboard.export.partner') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export CSV
+                        </a>
+                    </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -195,7 +211,12 @@
                     </table>
                 </div>
                 <div class="tab-pane fade" id="blog-comment" role="tabpanel" aria-labelledby="blog-comment-tab">
-                    <h5>Blog Comments</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Blog Comments</h5>
+                        <a href="{{ route('admin.dashboard.export.blog-comments') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export CSV
+                        </a>
+                    </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>

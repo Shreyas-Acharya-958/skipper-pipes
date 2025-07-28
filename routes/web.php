@@ -51,6 +51,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::post('/admin/dashboard/delete-inquiry', [\App\Http\Controllers\DashboardController::class, 'deleteInquiry'])->name('dashboard.delete-inquiry');
 
+    // Dashboard export routes
+    Route::get('/dashboard/export/career-applications', [\App\Http\Controllers\DashboardController::class, 'exportCareerApplications'])->name('dashboard.export.career');
+    Route::get('/dashboard/export/contacts', [\App\Http\Controllers\DashboardController::class, 'exportContacts'])->name('dashboard.export.contacts');
+    Route::get('/dashboard/export/partner-enquiries', [\App\Http\Controllers\DashboardController::class, 'exportPartnerEnquiries'])->name('dashboard.export.partner');
+    Route::get('/dashboard/export/blog-comments', [\App\Http\Controllers\DashboardController::class, 'exportBlogComments'])->name('dashboard.export.blog-comments');
+
     // User Management routes
     Route::resource('users', UserController::class);
 
