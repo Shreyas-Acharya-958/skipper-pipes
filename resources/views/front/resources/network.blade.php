@@ -42,12 +42,13 @@
     <!-- Manufacturing Overview -->
     <section class="manufacturing-overview default-padding">
         <div class="container">
-            <div class="row" >
+            <div class="row">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4 data-aos="fade-up" data-aos-duration="1000">SKipper Pipes</h4>
                         <h2 data-aos="fade-up" data-aos-duration="1000">Network Overview</h2>
-                        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="p-0">{{ $mainNetwork->overview }}</p>
+                        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="p-0">
+                            {{ $mainNetwork->overview }}</p>
                     </div>
                 </div>
             </div>
@@ -71,7 +72,8 @@
                     $isEven = $index % 2 === 0;
                 @endphp
 
-                <div class="row {{ $isEven ? 'left-img_full-col' : 'right-img_full-col' }} p-md-0 align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <div class="row {{ $isEven ? 'left-img_full-col' : 'right-img_full-col' }} p-md-0 align-items-center"
+                    data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     @if ($isEven)
                         <div class="col-md-5 p-0">
                             <img src="{{ asset('storage/' . $network->image) }}" alt="{{ $network->title }}">
@@ -101,7 +103,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-4">Join India’s Most Trusted Network</h2>
+                    <h2 class="text-white mb-4">Join India’s Most Trusted Network.</h2>
                     <p class="text-white mb-md-4 pb-md-2">Partner with Skipper Pipes to unlock growth, recognition, and
                         unmatched support across India’s largest and most trusted piping network.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become

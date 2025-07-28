@@ -54,7 +54,8 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6 order-2 order-md-1 pt-2 " data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                <div class="col-md-6 order-2 order-md-1 pt-2 " data-aos="fade-right" data-aos-duration="1000"
+                    data-aos-delay="100">
                     <p>{!! $product->productionOverviewSection->overview_description ?? '' !!}</p>
                 </div>
                 <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
@@ -113,7 +114,7 @@
                 <div class="work-pro-items">
                     <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         @foreach ($product->productionFeaturesSections as $feature)
-                            <div class="col-lg-4 col-md-6 single-item" >
+                            <div class="col-lg-4 col-md-6 single-item">
                                 <div class="item">
                                     <div class="item-inner">
                                         <img src="{{ asset('storage/' . $feature->icon) }}" alt="{{ $feature->title }}">
@@ -166,7 +167,8 @@
             </div>
             <div class="row">
                 @foreach ($product->productionApplicationSections as $application)
-                    <div class="col-xl-4 col-lg-6 col-md-6" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-xl-4 col-lg-6 col-md-6" data-aos="flip-right" data-aos-duration="1000"
+                        data-aos-delay="100">
                         <div class="services-one__single">
                             <div class="services-one__img-box">
                                 <div class="services-one__img"><img src="{{ asset('storage/' . $application->image) }}"
@@ -255,13 +257,14 @@
                     <h2 class="text-white">Ready to Install India’s Safest {{ $product->title }}?</h2>
 
                     <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0" href="tel:+913322851231"><i
-                            class="far fa-phone-alt"></i>
+                            class="fa-solid fa-phone"></i>
                         +91 33 2285 1231 / 32</a>
-                    <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0"
-                        href="mailto:enquiry@skipperpipes.com">enquiry@skipperpipes.com</a>
+                    <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-lg-0" href="mailto:enquiry@skipperlimited.com">
+                        <i class="fa-solid fa-envelope"></i> enquiry@skipperlimited.com</a>
 
                     <a class="btn btn-light effect btn-md" target="_blank"
-                        href="{{ asset('storage/' . $product->brochure) }}" download>Download
+                        href="{{ asset('storage/' . $product->brochure) }}" download> <i
+                            class="fa-solid fa-download"></i> Download
                         Brochure</a>
                 </div>
             </div>

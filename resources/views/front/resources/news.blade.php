@@ -9,14 +9,17 @@
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
             <h1>{{ $news_section_two->title ?? 'News' }}</h1>
-            <p>{{ $news_section_two->description ?? 'All the latest announcements, insights, growth stories, and project news here.' }}</p>
+            <p>{!! $news_section_two->description ??
+                'All the latest announcements, insights, growth stories, and project news here.' !!}
+            </p>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>{{ $news_section_two->title ?? 'News' }}</h1>
-            <p>{{ $news_section_two->description ?? 'All the latest announcements, insights, growth stories, and project news here.' }}</p>
+            <p>{!! $news_section_two->description ??
+                'All the latest announcements, insights, growth stories, and project news here.' !!}</p>
         </div>
         <div class="hero-banner2-img-responsive">
             <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="news-banner-image">
@@ -54,7 +57,8 @@
             </div>
             <div class="row news-col-wrapper mt-4">
                 @foreach ($news as $item)
-                    <div class="col-md-6 col-lg-4 mb-lg-5 mb-md-5 mb-3 news-col-wrapper" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-6 col-lg-4 mb-lg-5 mb-md-5 mb-3 news-col-wrapper" data-aos="fade-up"
+                        data-aos-duration="1000" data-aos-delay="100">
                         <div class="news-col">
                             <span class="sub-title">Press Release</span>
                             {{-- 25th april 2025 --}}

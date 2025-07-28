@@ -52,7 +52,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-4">Join India’s Most Trusted Network</h2>
+                    <h2 class="text-white mb-4">Join India’s Most Trusted Network.</h2>
                     <p class="text-white mb-md-4 pb-md-2">Partner with Skipper Pipes to unlock growth, recognition, and
                         unmatched support across India’s largest and most trusted piping network.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('/partner/become-dealer') }}">Become
