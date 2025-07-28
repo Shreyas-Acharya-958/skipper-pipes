@@ -12,7 +12,7 @@
     </div>
     <section class="who-we-are-sec default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>Skipper Pipes</h4>
@@ -21,11 +21,11 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6 p-md-0">
+                <div class="col-md-6 p-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                     <p>{!! $overview_section_ones[0]->description ?? '' !!}</p>
                 </div>
-                <div class="col-md-6">
-                    <img src="{{ asset('storage/' . $overview_section_ones[0]->image) }}" alt="">
+                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <img src="{{ asset('storage/' . $overview_section_ones[0]->image) }}" class="shadow" alt="who-we-are-image">
 
                 </div>
             </div>
@@ -40,8 +40,8 @@
         <img src="{{ asset('storage/' . $overview_section_twos[0]->image) }}" alt="skipper vision">
         <div class="img-overlay"></div>
         <div class="vision-sec-content">
-            <h2>{{ $overview_section_twos[0]->title ?? '' }}</h2>
-            <p>{{ $overview_section_twos[0]->description ?? '' }}</p>
+            <h2 data-aos="fade-right" data-aos-duration="1000">{{ $overview_section_twos[0]->title ?? '' }}</h2>
+            <p data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">{{ $overview_section_twos[0]->description ?? '' }}</p>
         </div>
     </section>
     <!-- Our Vision ends -->
@@ -51,9 +51,9 @@
         <section class="mission-sec default-padding bg-gray">
             <div class="container">
                 <div class="row align-items-start">
-                    <div class="col-md-5 title text-center mission-left-col">
+                    <div class="col-md-5 title text-center mission-left-col" data-aos="fade-right" data-aos-duration="1000">
 
-                        <img src="{{ asset('storage/' . $overview_left_image->image ?? '') }}" class="w-lg-75 mb-4"
+                        <img src="{{ asset('storage/' . $overview_left_image->image ?? '') }}" class="w-lg-75 shadow mb-4"
                             alt="">
                         <div class="site-heading text-center">
                             <h2>Mission</h2>
@@ -97,7 +97,7 @@
     @if ($overview_section_threes->count() > 0)
         <section class="philosophy-sec default-padding">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes</h4>
@@ -108,7 +108,7 @@
                 <div class="row philosophy-wrapper text-center px-3 px-md-0">
                     @foreach ($overview_section_threes as $overview)
                         @if ($overview->type == 'Philosophy')
-                            <div class="col-12 col-md philosophy-col">
+                            <div class="col-12 col-md philosophy-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                                 <img src="{{ asset('storage/' . $overview->icon) }}"
                                     alt="{{ $overview->title ?? '' }}">
 
@@ -129,7 +129,7 @@
     @if ($overview_section_fives->count() > 0)
         <section class="timeline-carousel bg-gray default-padding">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes</h4>
@@ -175,7 +175,7 @@
     <!-- Pan-India section -->
     <section class="pan-india-sec default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>Skipper Pipes</h4>
@@ -185,12 +185,12 @@
             </div>
             <div class="row align-center">
                 <div class="col"></div>
-                <div class="col-md-3 pan-india-wrapper">
+                <div class="col-md-3 pan-india-wrapper" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                     {!! $overview_section_fives[0]->description ?? '' !!}
 
                 </div>
-                <div class="col-md-7 col-lg-6 pan-india-img">
-                    <img src="{{ asset('storage/' . $overview_section_fives[0]->image) }}" alt="">
+                <div class="col-md-7 col-lg-6 pan-india-img" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <img src="{{ asset('storage/' . $overview_section_fives[0]->image) }}" alt="india-map">
                 </div>
                 <div class="col"></div>
             </div>

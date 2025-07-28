@@ -4,20 +4,22 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="news-banner-image">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
             <h1>{{ $news_section_two->title ?? 'News' }}</h1>
+            <p>{{ $news_section_two->description ?? 'All the latest announcements, insights, growth stories, and project news here.' }}</p>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>{{ $news_section_two->title ?? 'News' }}</h1>
+            <p>{{ $news_section_two->description ?? 'All the latest announcements, insights, growth stories, and project news here.' }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="news-banner-image">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -38,7 +40,7 @@
 
     <section class="news-overview default-padding bg-gray">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
@@ -52,7 +54,7 @@
             </div>
             <div class="row news-col-wrapper mt-4">
                 @foreach ($news as $item)
-                    <div class="col-md-6 col-lg-4 mb-lg-5 mb-md-5 mb-3 news-col-wrapper">
+                    <div class="col-md-6 col-lg-4 mb-lg-5 mb-md-5 mb-3 news-col-wrapper" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <div class="news-col">
                             <span class="sub-title">Press Release</span>
                             {{-- 25th april 2025 --}}
@@ -60,7 +62,7 @@
                                 {{ date('M', strtotime($item->press_release)) }}
                                 {{ date('Y', strtotime($item->press_release)) }}</span>
                             <h3>{{ $item->title }}</h3>
-                            <a href="{{ asset('storage/' . $item->file) }}" class="btn btn-dark theme2 theme mt-4"
+                            <a href="{{ asset('storage/' . $item->file) }}" class="btn btn-dark theme2 theme mt-2"
                                 target="_blank">View Details</a>
                         </div>
                     </div>
@@ -78,7 +80,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor</h2>
+                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor.</h2>
                     <p class="text-white mb-md-4 pb-md-2">Unlock business growth with trusted products, strong support, and
                         nationwide reach.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become

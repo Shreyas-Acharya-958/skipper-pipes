@@ -44,7 +44,7 @@
     <!-- Product Overview -->
     <section class="product-overview default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
                         <h4>{{ $product->title }}</h4>
@@ -54,10 +54,10 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6">
+                <div class="col-md-6 order-2 order-md-1 pt-2 " data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                     <p>{!! $product->productionOverviewSection->overview_description ?? '' !!}</p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         @if ($product->productionOverviewSection && $product->productionOverviewSection->overview_image)
                             @php
@@ -72,7 +72,7 @@
                             <div class="carousel-inner">
                                 @foreach ($images as $index => $image)
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                        <img class="d-block w-100" src="{{ asset('storage/' . $image) }}"
+                                        <img class="d-block w-100 shadow" src="{{ asset('storage/' . $image) }}"
                                             alt="Slide {{ $index + 1 }}">
                                     </div>
                                 @endforeach
@@ -101,7 +101,7 @@
     <section class="key-features-benefits bg-gray">
         <div class="work-process-area relative default-padding bottom-less bg-fixed">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12">
                         <div class="site-heading text-center">
                             <h4>{{ $product->title }}</h4>
@@ -111,9 +111,9 @@
 
                 </div>
                 <div class="work-pro-items">
-                    <div class="row">
+                    <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         @foreach ($product->productionFeaturesSections as $feature)
-                            <div class="col-lg-4 col-md-6 single-item">
+                            <div class="col-lg-4 col-md-6 single-item" >
                                 <div class="item">
                                     <div class="item-inner">
                                         <img src="{{ asset('storage/' . $feature->icon) }}" alt="{{ $feature->title }}">
@@ -134,7 +134,7 @@
     <!-- Product Technical Table -->
     <section class="product-technical default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
                         <h4>{{ $product->title }}</h4>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row px-3 px-md-0">
+            <div class="row px-3 px-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 {!! $product->technical !!}
             </div>
         </div>
@@ -154,7 +154,7 @@
     <!-- Product Application -->
     <section class="services-page-one bg-gray default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
                         <h4>{{ $product->title }}</h4>
@@ -166,7 +166,7 @@
             </div>
             <div class="row">
                 @foreach ($product->productionApplicationSections as $application)
-                    <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="col-xl-4 col-lg-6 col-md-6" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
                         <div class="services-one__single">
                             <div class="services-one__img-box">
                                 <div class="services-one__img"><img src="{{ asset('storage/' . $application->image) }}"
@@ -193,7 +193,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-4">Everything You Need to Know</h2>
+                    <h2 class="text-white mb-4">Everything You Need to Know!</h2>
                     <a class="btn btn-light effect btn-md" target="_blank"
                         href="{{ asset('storage/' . $product->brochure) }}" download>Download
                         Brochure</a>
@@ -206,7 +206,7 @@
     <!-- Product Faq  -->
     <section class="product-faq default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
                         <h4>{{ $product->title }}</h4>
@@ -216,7 +216,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <div class="accordion" id="accordionExample">
                         @foreach ($product->productionFaqSections as $index => $faq)
                             <div class="card">

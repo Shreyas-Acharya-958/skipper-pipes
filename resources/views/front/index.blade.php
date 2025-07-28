@@ -62,7 +62,7 @@
     <div class="home-about-area default-padding">
         <div class="container">
             <div class="row align-center">
-                <div class="home-about col-lg-5">
+                <div class="home-about col-lg-5" data-aos="fade-right" data-aos-duration="1000">
                     <div class="thumb">
                         @if ($sectionOne->image)
                             <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
@@ -74,17 +74,17 @@
                         @endif
                     </div>
                 </div>
-                <div class="home-about col-lg-6 offset-lg-1">
-                    <div class="site-heading">
+                <div class="home-about col-lg-6 offset-lg-1" >
+                    <div class="site-heading" data-aos="fade-left" data-aos-duration="1000">
                         <h4>Why Skipper Pipes</h4>
                         <h2>{{ $sectionOne->title ?? '' }}</h2>
                     </div>
 
-                    <blockquote>
+                    <blockquote data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                         {{ $sectionOne->description ?? '' }}
                     </blockquote>
 
-                    <ul>
+                    <ul data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                         @if ($sectionOne && $sectionOne->features->count() > 0)
                             @foreach ($sectionOne->features as $feature)
                                 <li class="about-li">
@@ -138,7 +138,7 @@
                         @endif
                     </ul>
                     @if ($sectionOne->now_more)
-                        <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ $sectionOne->now_more }}">Know More</a>
+                        <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ $sectionOne->now_more }}" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">Know More</a>
                     @endif
                 </div>
             </div>
@@ -150,7 +150,7 @@
     <div class="home-product-category default-padding">
         <div class="container">
             <div class="product-category-sec">
-                <div class="row headings px-3 px-md-0">
+                <div class="row headings px-3 px-md-0" data-aos="fade-up" data-aos-duration="1000">
                     <div class="site-heading text-center">
                         <h4>Product Category</h4>
                         <h2>Explore Solutions for Every Need</h2>
@@ -162,7 +162,7 @@
                 </div>
                 <div class="row">
                     @foreach ($categories as $category)
-                        <div class="col-lg-4 col-md-6 product-category-col">
+                        <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});">
                             </div>
                             <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
@@ -187,7 +187,7 @@
     <!-- our products section -->
     <section class="home-products">
         <div class="container">
-            <div class="site-heading text-center">
+            <div class="site-heading text-center" data-aos="fade-up" data-aos-duration="1000">
                 <h4>Our Products</h4>
                 <h2>Pipes Built for Every Purpose</h2>
                 <p>
@@ -267,9 +267,9 @@
                         </div>
                         <div class="col-lg-6 right-info"
                             style="background-image: url({{ asset('storage/' . $sectionTwo->image) }});">
-                            <h2> {{ $sectionTwo->image_title }} </h2>
+                            <h2 data-aos="fade-up" data-aos-duration="1000"> {{ $sectionTwo->image_title }} </h2>
 
-                            <a class="btn btn-light effect btn-md" href="{{ $sectionTwo->link }}">
+                            <a class="btn btn-light effect btn-md" href="{{ $sectionTwo->link }}" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                                 {{ $sectionTwo->image_button }} </a>
                         </div>
                     </div>
@@ -284,14 +284,14 @@
     @if ($sectionFour && $sectionFour->title && $sectionFour->reviews->count() > 0)
         <div class="testimonials-area bg-gray default-padding">
             <div class="container">
-                <div class="site-heading text-center">
+                <div class="site-heading text-center" data-aos="fade-up" data-aos-duration="1000">
 
                     <h2>Skipper Samvaad</h2>
 
                 </div>
                 <div class="testimonial-items">
                     <div class="row align-center">
-                        <div class="col-lg-5 title text-center">
+                        <div class="col-lg-5 title text-center" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="100">
                             <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
                             <img src="{{ asset('storage/' . $sectionFour->image) }}" class="w-50 mb-4" alt="">
                             <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
@@ -300,7 +300,7 @@
                                 <h2>{{ $sectionFour->title }}</h2>
                             </div>
                         </div>
-                        <div class="col-lg-7 testimonial-box">
+                        <div class="col-lg-7 testimonial-box" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="100">
                             <div class="testimonial-content testimonials-carousel owl-carousel owl-theme">
                                 @foreach ($sectionFour->reviews as $review)
                                     <!-- Single Item -->
@@ -348,7 +348,7 @@
                 style="background-image: url(assets/img/home-video-banner.png);">
             </div>
             <div class="container">
-                <div class="trusted-one__inner">
+                <div class="trusted-one__inner" data-aos="fade-up" data-aos-duration="1000">
                     <div class="trusted-one__video-link">
                         <a href="{{ $sectionThree->video_link }}" class="video-popup">
                             <div class="trusted-one__video-icon">
@@ -369,7 +369,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="site-heading text-center">
+                    <div class="site-heading text-center" data-aos="fade-up" data-aos-duration="1000">
                         <h4>Blogs</h4>
                         <h2>Build Better with Expert Advice</h2>
                         <p>
@@ -383,7 +383,7 @@
                 <div class="row">
                     @foreach ($blogs as $blog)
                         <!-- Single Item -->
-                        <div class="col-lg-4 col-md-6 single-item">
+                        <div class="col-lg-4 col-md-6 single-item" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
                             <div class="item">
                                 <div class="thumb">
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}">

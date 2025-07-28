@@ -16,9 +16,9 @@
           <div class="row">
               <div class="col-12 text-center">
                   <div class="site-heading headings">
-                      <h4>SKipper Pipes</h4>
-                      <h2>{{ $certifications_section_head->title }}</h2>
-                      <p> {!! $certifications_section_head->description !!}</p>
+                      <h4 data-aos="fade-up" data-aos-duration="1000">SKipper Pipes</h4>
+                      <h2 data-aos="fade-up" data-aos-duration="1000">{{ $certifications_section_head->title }}</h2>
+                      <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"> {!! $certifications_section_head->description !!}</p>
                   </div>
               </div>
           </div>
@@ -31,7 +31,7 @@
   <!-- Certifications Section -->
   <section class="certifications-sec default-padding bg-gray">
       <div class="container">
-          <div class="row">
+          <div class="row" data-aos="fade-up" data-aos-duration="1000">
               <div class="col-12 text-center">
                   <div class="site-heading headings">
                       <h4>Skipper Pipes</h4>
@@ -44,7 +44,7 @@
                   <div class="col-md-4">
                       <div class="certificate-col">
                           <div class="certificate-img">
-                              <img src="{{ asset('storage/' . $certification->image ?? '') }}" alt="">
+                              <img src="{{ asset('storage/' . $certification->image ?? '') }}" alt="{{ $certification->title }}">
                           </div>
                           <h3 class="certificate-name">{{ $certification->title ?? '' }}</h3>
                           <span class="certificate-type">{{ $certification->short_description ?? '' }}</span>

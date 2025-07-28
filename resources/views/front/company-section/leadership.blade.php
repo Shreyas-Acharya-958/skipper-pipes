@@ -17,7 +17,7 @@
          <div class="container">
              <div class="row">
                  <div class="col-12 text-center">
-                     <div class="site-heading headings">
+                     <div class="site-heading headings" data-aos="fade-up" data-aos-duration="1000">
                          <h4>SKipper Pipes</h4>
                          <h2>Words from the Top!</h2>
                      </div>
@@ -27,17 +27,17 @@
                  @foreach ($leadership_section_ones as $leadership)
                      @if ($loop->even)
                          <div
-                             class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1">
+                             class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1" data-aos="fade-right" data-aos-duration="1000">
                              {!! $leadership->description ?? '' !!}
                          </div>
-                         <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0">
-                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
+                         <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0" data-aos="fade-left" data-aos-duration="1000">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="">
                          </div>
                      @else
                          <div class="col-md-5 mb-md-5 mb-lg-0">
-                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="" data-aos="fade-right" data-aos-duration="1000">
                          </div>
-                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content">
+                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content" data-aos="fade-left" data-aos-duration="1000">
                              {!! $leadership->description ?? '' !!}
                          </div>
                      @endif
@@ -52,7 +52,7 @@
      <!-- Our Philosophy  -->
      <section class="philosophy-sec default-padding">
          <div class="container">
-             <div class="row">
+             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                  <div class="col-12 text-center">
                      <div class="site-heading headings">
                          <h4>Skipper Pipes</h4>
@@ -65,7 +65,7 @@
              </div>
              <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                  @foreach ($leadership_section_twos as $leadership)
-                     <div class="col-12 col-md philosophy-col">
+                     <div class="col-12 col-md philosophy-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                          <img src="{{ asset('storage/' . $leadership->icon) }}" alt="{{ $leadership->name ?? '' }}">
 
                          {{-- <i class="{{ $leadership->icon ?? 'fas fa-hard-hat' }} icon"></i> --}}

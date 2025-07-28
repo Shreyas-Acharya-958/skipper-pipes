@@ -14,7 +14,7 @@
       <!-- CSR Philossphy Section -->
       <section class="csr-philosophy-sec default-padding bg-gray">
           <div class="container">
-              <div class="row">
+              <div class="row" data-aos="fade-up" data-aos-duration="1000">
                   <div class="col-12 text-center">
                       <div class="site-heading headings">
                           <h4>Skipper Pipes</h4>
@@ -23,12 +23,12 @@
                   </div>
               </div>
               <div class="row align-center">
-                  <div class="col-md-6 p-md-0 pr-md-5 order-2 order-md-1">
+                  <div class="col-md-6 p-md-0 pr-md-5 order-2 order-md-1" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                       {!! $csr_section_ones[0]->description ?? '' !!}
 
                   </div>
-                  <div class="col-md-6 order-1 order-md-2 pb-4 pb-md-0">
-                      <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" alt="">
+                  <div class="col-md-6 order-1 order-md-2 pb-4 pb-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                      <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" class="shadow" alt="csr-philosophy-overview">
                   </div>
               </div>
           </div>
@@ -39,7 +39,7 @@
       <!-- CSR Key Areas Philosophy  -->
       <section class="csr-key-areas-sec default-padding">
           <div class="container">
-              <div class="row">
+              <div class="row" data-aos="fade-up" data-aos-duration="1000">
                   <div class="col-12 text-center">
                       <div class="site-heading headings">
                           <h4>CSR</h4>
@@ -49,7 +49,7 @@
               </div>
               <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                   @foreach ($csr_section_twos as $csr)
-                      <div class="col-12 col-md philosophy-col px-3 px-md-0">
+                      <div class="col-12 col-md philosophy-col px-3 px-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                           <img src="{{ asset('storage/' . $csr->icon) }}" alt="{{ $csr->name ?? '' }}">
                           <h4>{{ $csr->title ?? '' }}</h4>
                           <p>{!! $csr->description ?? '' !!}</p>
@@ -66,7 +66,7 @@
       <!-- Ongoing Initatives Section -->
       <section class="ongoing-initatives-sec default-padding bg-gray">
           <div class="container">
-              <div class="row">
+              <div class="row" data-aos="fade-up" data-aos-duration="1000">
                   <div class="col-12 text-center">
                       <div class="site-heading headings">
                           <h4>CSR</h4>
@@ -76,7 +76,7 @@
               </div>
               @foreach ($csr_section_threes as $csr)
                   @if ($loop->index % 2 == 0)
-                      <div class="row initatives-card mx-2 mx-md-0">
+                      <div class="row initatives-card mx-2 mx-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                           <div class="col-md-5">
                               <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
                           </div>
@@ -85,7 +85,7 @@
                           </div>
                       </div>
                   @else
-                      <div class="row initatives-card mx-2 mx-md-0">
+                      <div class="row initatives-card mx-2 mx-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                           <div class="col-md-7 order-2 order-md-1 pt-4 pt-md-0">
                               {!! $csr->description ?? '' !!}
                           </div>

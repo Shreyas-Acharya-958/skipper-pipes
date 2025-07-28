@@ -360,7 +360,7 @@
             # Testimonials Carousel
          ===============================================*/
         $('.testimonials-carousel').owlCarousel({
-            loop: false,
+            loop: true,
             nav: true,
             dots: false,
             items: 1,
@@ -766,6 +766,12 @@ $(".partners-tab").click(function() {
       $(this).attr("src", newImg).fadeIn(200);
     });
   });
+
+
+  // AOS Animate
+   AOS.init({
+    disable: 'mobile'
+   });
 
 
 })(jQuery); // End jQuery

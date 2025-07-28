@@ -52,7 +52,7 @@
     <!-- Why become a Skipper dealer Section -->
     <section class="default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
                         <h4>Skipper Pipes</h4>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6">
+                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         @if ($partner && $partner->sectionOne && $partner->sectionOne->image)
                             @php
@@ -107,7 +107,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 pt-3 pt-md-0">
+                <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                     <p>{{ $partner->sectionOne->description ?? 'With a vast and growing network of distributors, dealers, and plumbers across India, Skipper Pipes has become a trusted force in the piping industry. Our consistent brand visibility, advanced manufacturing capabilities, and deep-rooted technical know-how equip our partners with a strong foundation for success. Whether it\'s navigating competitive markets or meeting evolving customer needs, we ensure that every stakeholder benefits from seamless support, timely delivery, and product excellence — enabling long-term growth, loyalty, and shared success across the value chain.' }}
                     </p>
                 </div>
@@ -119,7 +119,7 @@
     <!-- What Skipper Pipes offers -->
     <section class="left-img-col default-padding bg-gray">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading text-center">
                         <h4>Offers</h4>
@@ -129,7 +129,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="partners-tabs col-md-6">
+                <div class="partners-tabs col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                     @if ($partner && $partner->sectionTwo)
                         @php
                             $titles = json_decode($partner->sectionTwo->title, true);
@@ -154,8 +154,8 @@
                     @else
                     @endif
                 </div>
-                <div class="image-display col-md-6">
-                    <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid" />
+                <div class="image-display col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid shadow" />
                 </div>
             </div>
         </div>
@@ -165,7 +165,7 @@
     <!-- Become a Dealer form -->
     <section class="partner-form-sec default-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading text-center">
                         <h4>Skipper Pipes</h4>
@@ -174,7 +174,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <form id="partnerForm" action="{{ route('front.partner.enquiry') }}" method="post"
                         class="partner-application-form">
@@ -271,6 +271,7 @@
                                     <option value="pipes">Pipes</option>
                                     <option value="tank">Tank</option>
                                     <option value="bathware">Bathware</option>
+                                    <option value="all of the above">All of the above</option>
                                 </select>
                                 @error('dealership_type')
                                     <div class="invalid-feedback">{{ $message }}</div>

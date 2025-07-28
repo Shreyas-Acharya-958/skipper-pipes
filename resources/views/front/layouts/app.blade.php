@@ -38,7 +38,7 @@
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" />
@@ -47,6 +47,8 @@
     <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ time() }}">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
@@ -187,7 +189,7 @@
                             <li>
                                 <div class="content">
                                     <p>Address</p>
-                                    <strong>3A, Loudon Street Kolkata- 700017</strong>
+                                    <strong>12th Floor, Tirumala Building, 22, E Topsia Rd, East Topsia, Tiljala, Kolkata, West Bengal 700046.</strong>
                                 </div>
                             </li>
                             <li>
@@ -205,30 +207,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="widget newsletter">
-                    <h4 class="title">Get Subscribed!</h4>
-                    <form action="#">
-                        <div class="input-group stylish-input-group">
-                            <input type="email" placeholder="Enter your e-mail" class="form-control"
-                                name="email">
-                            <span class="input-group-addon">
-                                <button type="submit">
-                                    <i class="fas fa-long-arrow-right"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
+                
                 <div class="widget social">
                     <ul class="link">
-                        <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
-                                    class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i
-                                    class="fab fa-instagram"></i></a></li>
-                        <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i
-                                    class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i
-                                    class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="https://x.com/skipperpipes" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -241,7 +227,7 @@
     @yield('content')
 
     <!-- Footer Section  -->
-    <footer>
+    {{-- <footer>
         <div class="container">
             <div class="f-items default-padding">
                 <div class="row">
@@ -282,7 +268,7 @@
             </div>
         </div>
         <!-- End Footer Bottom -->
-    </footer>
+    </footer> --}}
     <!-- End Footer -->
 
     <!-- jQuery Frameworks
@@ -303,6 +289,8 @@
     <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}"></script>
     <script src="{{ asset('assets/js/count-to.js') }}"></script>
     <script src="{{ asset('assets/js/bootsnav.js') }}"></script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 

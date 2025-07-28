@@ -46,7 +46,7 @@
     @if ($whySkipperPipesSectionThrees)
         <section class="product-overview default-padding">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12">
                         <div class="site-heading text-center">
                             <h4>Our Promise</h4>
@@ -56,11 +56,11 @@
                 </div>
 
                 <div class="row align-center">
-                    <div class="col-md-6 pt-3 pt-md-0">
+                    <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                         <!-- <h2>Product Overview</h2> -->
-                        <p>{!! $whySkipperPipesSectionThrees->description ?? '' !!}</p>
+                        <p >{!! $whySkipperPipesSectionThrees->description ?? '' !!}</p>
                     </div>
-                    <div class="col-md-6 order-first order-md-last">
+                    <div class="col-md-6 order-first order-md-last" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                             @if ($whySkipperPipesSectionThrees->images)
@@ -102,7 +102,7 @@
     @if ($why_skipper_pipe_section_fours)
         <section class="infrastrcture-banners default-padding bg-gray ">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12">
                         <div class="site-heading text-center">
                             <h4>Skipper Pipes</h4>
@@ -133,7 +133,7 @@
     @if ($why_skipper_pipe_section_fives)
         <section class="left-img-col default-padding">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading text-center">
                             <h4>Skipper Pipes</h4>
@@ -142,12 +142,11 @@
                     </div>
                 </div>
                 <div class="row align-center">
-                    <div class="col-md-6">
+                    <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                         <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner">
 
@@ -170,10 +169,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0">
+                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                         <p>{{ $why_skipper_pipe_section_fives->description ?? '' }}</p>
                         <a class="btn btn-dark theme theme2 btn-md mt-3"
-                            href="{{ $why_skipper_pipe_section_fives->button_link ?? '' }}" target="_blank">View Our
+                            href="{{ $why_skipper_pipe_section_fives->button_link ?? '' }}" >View Our
                             Certification</a>
                     </div>
                 </div>
@@ -187,7 +186,7 @@
     @if ($why_skipper_pipe_section_twos)
         <section class="company-icon-sec default-padding bg-gray">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes</h4>
@@ -197,7 +196,7 @@
                 </div>
                 <div class="row philosophy-wrapper text-center px-3 px-md-0 justify-content-center">
                     @foreach ($why_skipper_pipe_section_twos as $why_skipper_pipe_section_two)
-                        <div class="col-12 col-md-4 company-icon-col">
+                        <div class="col-12 col-md-4 company-icon-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                             <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
                             <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
                             <p>{!! $why_skipper_pipe_section_two->description ?? '' !!}</p>
@@ -217,7 +216,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor </h2>
+                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor. </h2>
                     <p class="text-white mb-md-4 pb-md-2">Unlock business growth with trusted products, strong support, and
                         nationwide reach.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become

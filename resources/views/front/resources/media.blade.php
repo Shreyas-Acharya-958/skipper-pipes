@@ -50,8 +50,8 @@
                         <h2>{{ $mediaSectionOne->title ?? 'Frequently Asked Questions' }}</h2>
                         <p>{!! $mediaSectionOne->description ??
                             ' Explore our latest achievements, celebrated campaigns, and
-                                                                                                    featured media appearances that
-                                                                                                    showcase our brand’s continued excellence.' !!}</p>
+                            featured media appearances that
+                            showcase our brand’s continued excellence.' !!}</p>
                     </div>
                 </div>
             </div>
@@ -215,7 +215,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor </h2>
+                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor. </h2>
                     <p class="text-white mb-md-4 pb-md-2">Unlock business growth with trusted products, strong support, and
                         nationwide reach.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become

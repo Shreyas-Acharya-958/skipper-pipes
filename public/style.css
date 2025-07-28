@@ -496,6 +496,7 @@ input {
 
 .product-cta h2 {
     font-weight: 700;
+    text-transform: capitalize;
 }
 
 .btn-light:hover::after {
@@ -1039,8 +1040,14 @@ nav.navbar.bootsnav ul.nav>li>a:hover {
 }
 
 .home-about ul li:nth-child(3) img {
-    margin-right: 50px !important;
+    margin-right: 12px !important;
 }
+
+.home-about ul li:nth-child(4) img {
+    margin-right: 15px !important;
+}
+
+
 
 .home-about ul li img:hover {
     color: var(--secondary-color);
@@ -2009,7 +2016,7 @@ ul.achivement li .medium {
 .testimonials-area .testimonial-content.testimonials-carousel .owl-nav .owl-next {
     background: transparent;
     color: var(--primary-color);
-    font-size: 24px;
+    font-size: 22px !important;
     margin: 0;
     padding: 10px;
 }
@@ -2916,6 +2923,12 @@ Blogs - Single Blog
     box-shadow: inherit;
 }
 
+.blog-area.full-blog .blog-items .item em,
+.blog-area.full-blog .blog-items .item strong{
+    font-weight: 600 !important;
+}
+
+
 .blog-area .item blockquote {
     position: relative;
     z-index: 1;
@@ -3380,6 +3393,7 @@ footer .contact {
 
 footer .contact ul li {
     margin-bottom: 15px;
+    display: flex !important;
 }
 
 footer .contact ul li:hover {
@@ -3400,7 +3414,7 @@ footer .contact ul {
 
 footer .contact ul li i {
     margin-right: 15px;
-    min-width: 20px;
+    min-width: 40px;
     display: inline-block;
     height: 40px;
     width: 40px;
@@ -4346,11 +4360,14 @@ Company - Overview page
 /* overview - vision section */
 .vision-sec {
     position: relative;
+    min-height: 280px !important;
 }
 
 .vision-sec img {
     width: 100%;
     height: auto;
+    min-height: 280px !important;
+    object-fit: cover !important;
 }
 
 .vision-sec .img-overlay {
@@ -4630,6 +4647,13 @@ Company - Overview page
 .manufacturing-container .location-swiper{
     margin-left: 40px !important;
 }
+
+.manufacturing-container .swiper-button-prev,
+.manufacturing-container .swiper-button-next,
+.manufacturing-container .swiper-pagination-bullets{
+    display: none;
+}
+
 
 .timeline-swiper,
 .location-swiper {
@@ -4928,6 +4952,10 @@ LEADERSHIP
 /* ================================
 MANUFACTURING
 ================================ */
+.manufacturing-overview .site-heading.headings{
+    margin-left: -25px !important;
+}
+
 .technology-machinery-sec ul li,
 .sustainability-practice-sec ul li {
     margin-bottom: 10px;
@@ -5576,6 +5604,10 @@ MEDIA QUERIES
         min-height: auto !important;
         height: auto !important;
     }
+
+    .w-lg-75{
+        width: 75% !important;
+    }
 }
 
 @media (min-width:992px) {
@@ -5957,6 +5989,8 @@ Media queries - max-width
         left: 0;
     }
 
+
+
     .timeline-slide,
     .location-slide {
         max-width: 100%;
@@ -6008,6 +6042,17 @@ Media queries - max-width
     .manufacturing-container .location-swiper{
     margin-left: 20px !important;
     }
+
+    .manufacturing-overview .site-heading.headings{
+    margin-left: 0px !important;
+    }
+
+    .manufacturing-container .swiper-button-prev,
+    .manufacturing-container .swiper-button-next,
+    .manufacturing-container .swiper-pagination-bullets{
+        display: block;
+    }
+
 
 
 }
@@ -6071,8 +6116,12 @@ Media queries - max-width
 
     ul.achivement {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 20px;
         align-items: flex-start;
+    }
+    .text-light ul.achivement li .counter{
+        font-size: 30px;
     }
 
     .trusted-one {
@@ -6096,6 +6145,12 @@ Media queries - max-width
 
     .site-heading p {
         padding: 0 5%;
+    }
+
+
+    .testimonials-area .testimonial-content p{
+        font-size: 16px;
+        line-height: 28px;
     }
 
     .vision-sec .vision-sec-content h2 {
@@ -6157,6 +6212,12 @@ Media queries - max-width
 
     .partner-application-form {
         padding: 20px;
+    }
+
+    /* careers page */
+    .skipper-tab-content-area .culture-tab-pane-content p{
+        font-size: 16px;
+        line-height: 1.4;
     }
 
     /* CAROUSEL PROUDCTS */

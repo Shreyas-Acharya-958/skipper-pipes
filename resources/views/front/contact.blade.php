@@ -12,7 +12,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="assets/img/final/contact-hero-section1.jpg" alt="">
+            <img src="assets/img/final/contact-hero-section1.jpg" alt="contact-us-banner">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -27,7 +27,7 @@
             <p>For assistance, dealership queries, technical support, or more details.</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="assets/img/final/blogs-banner1.jpg" alt="">
+            <img src="assets/img/final/blogs-banner1.jpg" alt="contact-us-banner">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -48,7 +48,7 @@
 
     <section class="map-wrapper default-padding bg-gray">
         <div class="container py-5">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <!-- Left: City List -->
                 {!! $contact_us_section_one->section1 !!}
 
@@ -74,7 +74,7 @@
 
     <section class="contact-details-wrapper default-padding ">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 {!! $contact_us_section_one->section4 !!}
                 <div class="col-md-6 contact-details-form">
                     <form id="contactForm" class="partner-application-form">

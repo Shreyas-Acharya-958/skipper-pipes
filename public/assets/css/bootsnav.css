@@ -1275,7 +1275,7 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
   text-align: center;
   width: 45px;
   border-radius: 50%;
-  border: 1px solid #e7e7e7;
+  border: 1px solid var(--primary-color);
 }
 
 .navbar .side .widget.social li a:hover {

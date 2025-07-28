@@ -56,7 +56,7 @@
     @if ($career_why_skippers)
         <section class=" default-padding">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12">
                         <div class="site-heading text-center">
                             <h4>Why Skipper</h4>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="row align-center">
-                    <div class="col-md-6">
+                    <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" >
                         @if ($career_why_skippers->images)
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
@@ -96,7 +96,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-md-6 pt-3 pt-md-0">
+                    <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                         <!-- <h2>Product Overview</h2> -->
                         <p>{{ $career_why_skippers->description }}</p>
                     </div>
@@ -109,7 +109,7 @@
         <!-- Life at Skipper section -->
         <section class="left-img-col default-padding bg-gray">
             <div class="container py-5">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading text-center">
                             <h4>Life at Skipper</h4>
@@ -120,7 +120,7 @@
 
                 <div class="row align-items-center text-center text-md-left">
                     <!-- LEFT: Tab Content -->
-                    <div class="col-lg-4 col-md-6 skipper-tab-content-area order-3 order-md-2 order-lg-1 mt-4 mt-md-0">
+                    <div class="col-lg-4 col-md-6 skipper-tab-content-area order-3 order-md-2 order-lg-1 mt-4 mt-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                         @foreach ($career_life_at_skippers as $key => $item)
                             <div class="culture-tab-pane-content {{ $loop->first ? '' : 'd-none' }}"
                                 id="content-{{ $key }}">
@@ -130,7 +130,7 @@
                     </div>
 
                     <!-- CENTER: Tabs -->
-                    <div class="col-lg-3 col-md-12 order-1 order-lg-2 mb-md-4 mb-lg-0">
+                    <div class="col-lg-3 col-md-12 order-1 order-lg-2 mb-md-4 mb-lg-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <div class="nav flex-column nav-pills culture-tab-buttons" role="tablist">
                             @foreach ($career_life_at_skippers as $key => $item)
                                 <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-target="{{ $key }}">
@@ -141,7 +141,7 @@
                     </div>
 
                     <!-- RIGHT: Tab Images -->
-                    <div class="col-lg-5 col-md-6 tab-image-area order-2 order-md-3 order-lg-3">
+                    <div class="col-lg-5 col-md-6 tab-image-area order-2 order-md-3 order-lg-3" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
                         @foreach ($career_life_at_skippers as $key => $item)
                             <img src="{{ asset('storage/' . $item->image) }}"
                                 class="img-fluid shadow culture-tab-image {{ $loop->first ? '' : 'd-none' }}"
@@ -159,7 +159,7 @@
     @if ($career_skipper_pipes)
         <section class="company-icon-sec default-padding">
             <div class="container">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes</h4>
@@ -169,7 +169,7 @@
                 </div>
                 <div class="row philosophy-wrapper text-center px-3 px-md-0">
                     @foreach ($career_skipper_pipes as $item)
-                        <div class="col-md-4 col-md company-icon-col">
+                        <div class="col-md-4 col-md company-icon-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
                             <h4>{{ $item->title }}</h4>
                             <p>{{ $item->description }}</p>
@@ -185,7 +185,7 @@
     <!-- Apply online form -->
     <section class="career-form-sec default-padding bg-gray">
         <div class="container">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading text-center">
                         <h4>Skipper Pipes</h4>
@@ -195,18 +195,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <div class="col-12">
                     <form id="careerForm" action="{{ route('front.careers.store') }}" method="post"
                         class="career-application-form" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="full-name">Name</label>
+                                <label for="full-name">Name <span>*</span></label>
                                 <input type="text" class="form-control" id="full-name" name="name" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="email">Email</label>
+                                <label for="email">Email <span>*</span></label>
                                 <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                         </div>
@@ -216,7 +216,7 @@
                                 <input type="text" class="form-control" id="subject" name="subject">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="phone">Mobile Number</label>
+                                <label for="phone">Mobile Number <span>*</span></label>
                                 <input type="tel" class="form-control" id="phone" name="phone" required>
                             </div>
                             <div class="form-group col-md-4">
@@ -226,7 +226,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-12 form-resume-upload">
-                                <label for="resume">Upload Resume</label>
+                                <label for="resume">Upload Resume <span>*</span></label>
                                 <input type="file" class="form-control" id="resume" name="resume" required>
                             </div>
                             <div class="form-group col-md-12 form-address">
@@ -249,7 +249,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor </h2>
+                    <h2 class="text-white mb-2">Join Skipper Pipes as a Dealer or Distributor.</h2>
                     <p class="text-white mb-md-4 pb-md-2">Unlock business growth with trusted products, strong support, and
                         nationwide reach.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('partner/become-dealer') }}">Become Dealer</a>

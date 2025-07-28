@@ -64,12 +64,14 @@
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
             <h1>{{ $blogs_section_two->title ?? 'Blogs' }}</h1>
+            <p>{{ $blogs_section_two->description ?? 'Gain industry insights, professional guidance, and technical knowledge to make smarter, more efficient infrastructure decisions.' }}</p>
         </div>
     </section>
 
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-content-responsive">
             <h1>{{ $blogs_section_two->title ?? 'Blogs' }}</h1>
+            <p>{{ $blogs_section_two->description ?? 'Gain industry insights, professional guidance, and technical knowledge to make smarter, more efficient infrastructure decisions.' }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
             <img src="{{ asset('storage/' . $blogs_section_two->image ?? '') }}" alt="">
