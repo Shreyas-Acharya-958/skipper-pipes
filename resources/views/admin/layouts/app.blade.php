@@ -61,10 +61,10 @@
                             href="{{ route('admin.blog_categories.index') }}">
                             <i class="fas fa-tags"></i> <span class="nav-text">Blog Categories</span>
                         </a>
-                        <a class="nav-link{{ request()->routeIs('admin.blog_comments.*') ? ' active' : '' }}"
+                        {{-- <a class="nav-link{{ request()->routeIs('admin.blog_comments.*') ? ' active' : '' }}"
                             href="{{ route('admin.blog_comments.index') }}">
                             <i class="fas fa-comments"></i> <span class="nav-text">Blog Comments</span>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
 

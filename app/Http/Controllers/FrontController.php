@@ -311,10 +311,6 @@ class FrontController extends Controller
         $partner->setRelation('sectionTwo', $sectionTwo);
         $partner->setRelation('pipesOffers', $pipesOffers);
 
-        // Update SEO data with partner specific info
-        $seoData['meta_title'] = $partner->meta_title ?? $partner->title . ' | Skipper Pipes';
-        $seoData['meta_description'] = $partner->meta_description ?? substr(strip_tags($partner->description), 0, 160);
-        $seoData['meta_keywords'] = $partner->meta_keywords ?? $partner->title . ', partner, skipper pipes';
 
         return view('front.partner', compact('seoData', 'partner'));
     }

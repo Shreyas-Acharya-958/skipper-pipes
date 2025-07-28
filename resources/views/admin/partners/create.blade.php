@@ -93,7 +93,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none">
                                 <div class="mb-3">
                                     <label for="meta_title" class="form-label">Meta Title</label>
                                     <input type="text" class="form-control @error('meta_title') is-invalid @enderror"
@@ -103,7 +103,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none">
                                 <div class="mb-3">
                                     <label for="meta_description" class="form-label">Meta Description</label>
                                     <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
@@ -113,7 +113,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4" style="display: none">
                                 <div class="mb-3">
                                     <label for="meta_keywords" class="form-label">Meta Keywords</label>
                                     <input type="text"
