@@ -43,7 +43,7 @@
 
     <section class="main-faqs-sec default-padding">
         <div class="container py-4">
-            <div class="row">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
                         <h4>SKipper Pipes</h4>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row ">
+            <div class="row"  data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <!-- FAQ Category Tabs -->
                     <ul class="nav nav-pills mb-4 pb-3 mt-4 media-tabs">

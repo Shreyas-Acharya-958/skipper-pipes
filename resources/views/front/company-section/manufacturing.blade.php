@@ -19,7 +19,7 @@
                         <div class="site-heading headings" >
                             <h4 data-aos="fade-up" data-aos-duration="1000">SKipper Pipes</h4>
                             <h2 data-aos="fade-up" data-aos-duration="1000">{{ $manufacturing_section_ones_head->title }} </h2>
-                            <p data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">{!! $manufacturing_section_ones_head->description !!}</p>
+                            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">{!! $manufacturing_section_ones_head->description !!}</p>
                         </div>
                     </div>
                 </div>
@@ -66,10 +66,10 @@
                     </div>
                 </div>
                 <div class="row align-center">
-                    <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <img src="{{ asset('storage/' . $manufacturing_section_twos[0]->image) }}" alt="">
                     </div>
-                    <div class="col-md-7 pl-md-5 pt-4 pt-md-0 " data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-7 pl-md-5 pt-4 pt-md-0 " data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         {!! $manufacturing_section_twos[0]->description ?? '' !!}
 
                     </div>
@@ -123,11 +123,11 @@
                     </div>
                 </div>
                 <div class="row align-center">
-                    <div class="col-md-7 pr-5 order-2 order-md-1 pt-4 pt-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-7 pr-5 order-2 order-md-1 pt-4 pt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         {!! $manufacturing_section_fours[0]->description ?? '' !!}
 
                     </div>
-                    <div class="col-md-5 order-1 order-md-2" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-5 order-1 order-md-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <img src="{{ asset('storage/' . $manufacturing_section_fours[0]->image) }}" alt="">
                     </div>
                 </div>

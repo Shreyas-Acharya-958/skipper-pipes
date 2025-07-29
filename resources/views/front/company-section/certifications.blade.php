@@ -18,7 +18,7 @@
                   <div class="site-heading headings">
                       <h4 data-aos="fade-up" data-aos-duration="1000">SKipper Pipes</h4>
                       <h2 data-aos="fade-up" data-aos-duration="1000">{{ $certifications_section_head->title }}</h2>
-                      <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"> {!! $certifications_section_head->description !!}</p>
+                      <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"> {!! $certifications_section_head->description ?? '' !!}</p>
                   </div>
               </div>
           </div>

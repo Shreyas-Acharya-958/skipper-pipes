@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         @if ($partner && $partner->sectionOne && $partner->sectionOne->image)
                             @php
@@ -107,7 +107,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <p>{{ $partner->sectionOne->description ?? 'With a vast and growing network of distributors, dealers, and plumbers across India, Skipper Pipes has become a trusted force in the piping industry. Our consistent brand visibility, advanced manufacturing capabilities, and deep-rooted technical know-how equip our partners with a strong foundation for success. Whether it\'s navigating competitive markets or meeting evolving customer needs, we ensure that every stakeholder benefits from seamless support, timely delivery, and product excellence — enabling long-term growth, loyalty, and shared success across the value chain.' }}
                     </p>
                 </div>
@@ -129,7 +129,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="partners-tabs col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                <div class="partners-tabs col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     @if ($partner && $partner->sectionTwo)
                         @php
                             $titles = json_decode($partner->sectionTwo->title, true);
@@ -154,7 +154,7 @@
                     @else
                     @endif
                 </div>
-                <div class="image-display col-md-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                <div class="image-display col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid shadow" />
                 </div>
             </div>

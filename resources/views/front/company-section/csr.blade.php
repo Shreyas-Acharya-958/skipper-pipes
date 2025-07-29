@@ -23,11 +23,11 @@
                   </div>
               </div>
               <div class="row align-center">
-                  <div class="col-md-6 p-md-0 pr-md-5 order-2 order-md-1" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                  <div class="col-md-6 p-md-0 pr-md-5 order-2 order-md-1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                       {!! $csr_section_ones[0]->description ?? '' !!}
 
                   </div>
-                  <div class="col-md-6 order-1 order-md-2 pb-4 pb-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                  <div class="col-md-6 order-1 order-md-2 pb-4 pb-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                       <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" class="shadow" alt="csr-philosophy-overview">
                   </div>
               </div>

@@ -56,11 +56,11 @@
                 </div>
 
                 <div class="row align-center">
-                    <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <!-- <h2>Product Overview</h2> -->
                         <p>{!! $whySkipperPipesSectionThrees->description ?? '' !!}</p>
                     </div>
-                    <div class="col-md-6 order-first order-md-last" data-aos="fade-left" data-aos-duration="1000"
+                    <div class="col-md-6 order-first order-md-last" data-aos="fade-up" data-aos-duration="1000"
                         data-aos-delay="100">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="row align-center">
-                    <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
@@ -170,7 +170,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000"
+                    <div class="col-md-6 pl-md-4 pt-3 pt-md-0" data-aos="fade-up" data-aos-duration="1000"
                         data-aos-delay="100">
                         <p>{!! $why_skipper_pipe_section_fives->description ?? '' !!}</p>
                         <a class="btn btn-dark theme theme2 btn-md mt-3" href="{{ url('company/certifications') }}">View

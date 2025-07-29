@@ -27,17 +27,17 @@
                  @foreach ($leadership_section_ones as $leadership)
                      @if ($loop->even)
                          <div
-                             class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1" data-aos="fade-right" data-aos-duration="1000">
+                             class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content order-2 order-md-1" data-aos="fade-up" data-aos-duration="1000">
                              {!! $leadership->description ?? '' !!}
                          </div>
-                         <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0" data-aos="fade-left" data-aos-duration="1000">
+                         <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0" data-aos="fade-up" data-aos-duration="1000">
                              <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="">
                          </div>
                      @else
                          <div class="col-md-5 mb-md-5 mb-lg-0">
-                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="" data-aos="fade-right" data-aos-duration="1000">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="" data-aos="fade-up" data-aos-duration="1000">
                          </div>
-                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content" data-aos="fade-left" data-aos-duration="1000">
+                         <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content" data-aos="fade-up" data-aos-duration="1000">
                              {!! $leadership->description ?? '' !!}
                          </div>
                      @endif

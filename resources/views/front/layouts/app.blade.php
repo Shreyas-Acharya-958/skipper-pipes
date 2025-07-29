@@ -227,7 +227,7 @@
     @yield('content')
 
     <!-- Footer Section  -->
-    <footer>
+    {{-- <footer>
         <div class="container">
             <div class="f-items default-padding">
                 <div class="row">
@@ -268,7 +268,7 @@
             </div>
         </div>
         <!-- End Footer Bottom -->
-    </footer>
+    </footer> --}}
     <!-- End Footer -->
 
     <!-- jQuery Frameworks

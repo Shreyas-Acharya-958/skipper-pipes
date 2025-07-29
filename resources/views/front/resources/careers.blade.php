@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="row align-center">
-                    <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100" >
+                    <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" >
                         @if ($career_why_skippers->images)
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
@@ -96,7 +96,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <!-- <h2>Product Overview</h2> -->
                         <p>{{ $career_why_skippers->description }}</p>
                     </div>
@@ -120,7 +120,7 @@
 
                 <div class="row align-items-center text-center text-md-left">
                     <!-- LEFT: Tab Content -->
-                    <div class="col-lg-4 col-md-6 skipper-tab-content-area order-3 order-md-2 order-lg-1 mt-4 mt-md-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 skipper-tab-content-area order-3 order-md-2 order-lg-1 mt-4 mt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         @foreach ($career_life_at_skippers as $key => $item)
                             <div class="culture-tab-pane-content {{ $loop->first ? '' : 'd-none' }}"
                                 id="content-{{ $key }}">
@@ -141,7 +141,7 @@
                     </div>
 
                     <!-- RIGHT: Tab Images -->
-                    <div class="col-lg-5 col-md-6 tab-image-area order-2 order-md-3 order-lg-3" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                    <div class="col-lg-5 col-md-6 tab-image-area order-2 order-md-3 order-lg-3" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         @foreach ($career_life_at_skippers as $key => $item)
                             <img src="{{ asset('storage/' . $item->image) }}"
                                 class="img-fluid shadow culture-tab-image {{ $loop->first ? '' : 'd-none' }}"

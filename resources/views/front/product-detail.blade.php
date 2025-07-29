@@ -54,11 +54,11 @@
                 </div>
             </div>
             <div class="row align-center">
-                <div class="col-md-6 order-2 order-md-1 pt-2 " data-aos="fade-right" data-aos-duration="1000"
+                <div class="col-md-6 order-2 order-md-1 pt-2 " data-aos="fade-up" data-aos-duration="1000"
                     data-aos-delay="100">
                     <p>{!! $product->productionOverviewSection->overview_description ?? '' !!}</p>
                 </div>
-                <div class="col-md-6 order-md-2" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                <div class="col-md-6 order-md-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         @if ($product->productionOverviewSection && $product->productionOverviewSection->overview_image)
                             @php

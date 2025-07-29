@@ -769,9 +769,7 @@ $(".partners-tab").click(function() {
 
 
   // AOS Animate
-   AOS.init({
-    disable: 'mobile'
-   });
+   AOS.init();
 
 
 })(jQuery); // End jQuery
