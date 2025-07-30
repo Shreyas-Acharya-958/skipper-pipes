@@ -91,7 +91,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Career Applications</h5>
                         <a href="{{ route('admin.dashboard.export.career') }}" class="btn btn-success btn-sm">
-                            <i class="fas fa-download"></i> Export CSV
+                            <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
                     <table class="table table-bordered table-striped">
@@ -137,7 +137,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Contacts</h5>
                         <a href="{{ route('admin.dashboard.export.contacts') }}" class="btn btn-success btn-sm">
-                            <i class="fas fa-download"></i> Export CSV
+                            <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
                     <table class="table table-bordered table-striped">
@@ -176,7 +176,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Become Dealer</h5>
                         <a href="{{ route('admin.dashboard.export.dealer') }}" class="btn btn-success btn-sm">
-                            <i class="fas fa-download"></i> Export CSV
+                            <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
                     <table class="table table-bordered table-striped">
@@ -220,7 +220,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Become Distributor</h5>
                         <a href="{{ route('admin.dashboard.export.distributor') }}" class="btn btn-success btn-sm">
-                            <i class="fas fa-download"></i> Export CSV
+                            <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
                     <table class="table table-bordered table-striped">
@@ -264,7 +264,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Blog Comments</h5>
                         <a href="{{ route('admin.dashboard.export.blog-comments') }}" class="btn btn-success btn-sm">
-                            <i class="fas fa-download"></i> Export CSV
+                            <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
                     <table class="table table-bordered table-striped">

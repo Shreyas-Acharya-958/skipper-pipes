@@ -8,6 +8,12 @@ use App\Models\Contact;
 use App\Models\PartnerEnquiry;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Exports\CareerApplicationsExport;
+use App\Exports\ContactsExport;
+use App\Exports\DealerEnquiriesExport;
+use App\Exports\DistributorEnquiriesExport;
+use App\Exports\BlogCommentsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -51,194 +57,31 @@ class DashboardController extends Controller
 
     public function exportCareerApplications()
     {
-        $careers = CareerApplication::all();
-
-        $filename = 'career_applications_' . date('Y-m-d_H-i-s') . '.csv';
-
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ];
-
-        $callback = function () use ($careers) {
-            $file = fopen('php://output', 'w');
-
-            // Add headers
-            fputcsv($file, ['Name', 'Email', 'Phone', 'Subject', 'DOB', 'Address', 'Resume Download Link', 'Created At']);
-
-            // Add data
-            foreach ($careers as $career) {
-                $resumeLink = '';
-                if ($career->resume_path) {
-                    $resumeLink = url('storage/' . $career->resume_path);
-                }
-
-                fputcsv($file, [
-                    $career->name,
-                    $career->email,
-                    $career->phone,
-                    $career->subject,
-                    $career->dob ? date('Y-m-d', strtotime($career->dob)) : '',
-                    $career->address,
-                    $resumeLink,
-                    $career->created_at ? date('Y-m-d H:i:s', strtotime($career->created_at)) : ''
-                ]);
-            }
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $filename = 'career_applications_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new CareerApplicationsExport, $filename);
     }
 
     public function exportContacts()
     {
-        $contacts = Contact::all();
-
-        $filename = 'contacts_' . date('Y-m-d_H-i-s') . '.csv';
-
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ];
-
-        $callback = function () use ($contacts) {
-            $file = fopen('php://output', 'w');
-
-            // Add headers
-            fputcsv($file, ['Name', 'Email', 'Phone', 'Subject', 'Message', 'Status', 'Is Active', 'Created At']);
-
-            // Add data
-            foreach ($contacts as $contact) {
-                fputcsv($file, [
-                    $contact->name,
-                    $contact->email,
-                    $contact->phone,
-                    $contact->subject,
-                    $contact->message,
-                    $contact->status ? 'Active' : 'Inactive',
-                    $contact->is_active ? 'Yes' : 'No',
-                    $contact->created_at ? date('Y-m-d H:i:s', strtotime($contact->created_at)) : ''
-                ]);
-            }
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $filename = 'contacts_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new ContactsExport, $filename);
     }
 
     public function exportDealerEnquiries()
     {
-        $dealers = PartnerEnquiry::where('partner_id', 1)->get();
-
-        $filename = 'dealer_enquiries_' . date('Y-m-d_H-i-s') . '.csv';
-
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ];
-
-        $callback = function () use ($dealers) {
-            $file = fopen('php://output', 'w');
-
-            // Add headers
-            fputcsv($file, ['Name', 'Email', 'Phone', 'Firm Name', 'GST', 'Pincode', 'Occupation', 'Experience', 'Dealership Type', 'Description', 'Created At']);
-
-            // Add data
-            foreach ($dealers as $dealer) {
-                fputcsv($file, [
-                    $dealer->name,
-                    $dealer->email,
-                    $dealer->phone,
-                    $dealer->firm_name,
-                    $dealer->gst,
-                    $dealer->pincode,
-                    $dealer->occupation,
-                    $dealer->experience,
-                    $dealer->dealership_type,
-                    $dealer->description,
-                    $dealer->created_at ? date('Y-m-d H:i:s', strtotime($dealer->created_at)) : ''
-                ]);
-            }
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $filename = 'dealer_enquiries_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new DealerEnquiriesExport, $filename);
     }
 
     public function exportDistributorEnquiries()
     {
-        $distributors = PartnerEnquiry::where('partner_id', 2)->get();
-
-        $filename = 'distributor_enquiries_' . date('Y-m-d_H-i-s') . '.csv';
-
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ];
-
-        $callback = function () use ($distributors) {
-            $file = fopen('php://output', 'w');
-
-            // Add headers
-            fputcsv($file, ['Name', 'Email', 'Phone', 'Firm Name', 'GST', 'Pincode', 'Occupation', 'Experience', 'Dealership Type', 'Description', 'Created At']);
-
-            // Add data
-            foreach ($distributors as $distributor) {
-                fputcsv($file, [
-                    $distributor->name,
-                    $distributor->email,
-                    $distributor->phone,
-                    $distributor->firm_name,
-                    $distributor->gst,
-                    $distributor->pincode,
-                    $distributor->occupation,
-                    $distributor->experience,
-                    $distributor->dealership_type,
-                    $distributor->description,
-                    $distributor->created_at ? date('Y-m-d H:i:s', strtotime($distributor->created_at)) : ''
-                ]);
-            }
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $filename = 'distributor_enquiries_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new DistributorEnquiriesExport, $filename);
     }
 
     public function exportBlogComments()
     {
-        $comments = BlogComment::all();
-
-        $filename = 'blog_comments_' . date('Y-m-d_H-i-s') . '.csv';
-
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
-        ];
-
-        $callback = function () use ($comments) {
-            $file = fopen('php://output', 'w');
-
-            // Add headers
-            fputcsv($file, ['Name', 'Email', 'Description', 'Status', 'Created At']);
-
-            // Add data
-            foreach ($comments as $comment) {
-                fputcsv($file, [
-                    $comment->name,
-                    $comment->email,
-                    $comment->description,
-                    $comment->status == 0 ? 'Pending' : 'Approved',
-                    $comment->created_at ? date('Y-m-d H:i:s', strtotime($comment->created_at)) : ''
-                ]);
-            }
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        $filename = 'blog_comments_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new BlogCommentsExport, $filename);
     }
 }
