@@ -16,7 +16,8 @@ class DashboardController extends Controller
         $inquiries = [
             'career' => CareerApplication::count(),
             'contact' => Contact::count(),
-            'partner' => PartnerEnquiry::count(),
+            'dealer' => PartnerEnquiry::where('partner_id', 1)->count(),
+            'distributor' => PartnerEnquiry::where('partner_id', 2)->count(),
             'blog_comment' => BlogComment::count(),
         ];
         return view('admin.dashboard', compact('inquiries'));
@@ -127,37 +128,77 @@ class DashboardController extends Controller
         return response()->stream($callback, 200, $headers);
     }
 
-    public function exportPartnerEnquiries()
+    public function exportDealerEnquiries()
     {
-        $partners = PartnerEnquiry::all();
+        $dealers = PartnerEnquiry::where('partner_id', 1)->get();
 
-        $filename = 'partner_enquiries_' . date('Y-m-d_H-i-s') . '.csv';
+        $filename = 'dealer_enquiries_' . date('Y-m-d_H-i-s') . '.csv';
 
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
 
-        $callback = function () use ($partners) {
+        $callback = function () use ($dealers) {
             $file = fopen('php://output', 'w');
 
             // Add headers
             fputcsv($file, ['Name', 'Email', 'Phone', 'Firm Name', 'GST', 'Pincode', 'Occupation', 'Experience', 'Dealership Type', 'Description', 'Created At']);
 
             // Add data
-            foreach ($partners as $partner) {
+            foreach ($dealers as $dealer) {
                 fputcsv($file, [
-                    $partner->name,
-                    $partner->email,
-                    $partner->phone,
-                    $partner->firm_name,
-                    $partner->gst,
-                    $partner->pincode,
-                    $partner->occupation,
-                    $partner->experience,
-                    $partner->dealership_type,
-                    $partner->description,
-                    $partner->created_at ? date('Y-m-d H:i:s', strtotime($partner->created_at)) : ''
+                    $dealer->name,
+                    $dealer->email,
+                    $dealer->phone,
+                    $dealer->firm_name,
+                    $dealer->gst,
+                    $dealer->pincode,
+                    $dealer->occupation,
+                    $dealer->experience,
+                    $dealer->dealership_type,
+                    $dealer->description,
+                    $dealer->created_at ? date('Y-m-d H:i:s', strtotime($dealer->created_at)) : ''
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    public function exportDistributorEnquiries()
+    {
+        $distributors = PartnerEnquiry::where('partner_id', 2)->get();
+
+        $filename = 'distributor_enquiries_' . date('Y-m-d_H-i-s') . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+
+        $callback = function () use ($distributors) {
+            $file = fopen('php://output', 'w');
+
+            // Add headers
+            fputcsv($file, ['Name', 'Email', 'Phone', 'Firm Name', 'GST', 'Pincode', 'Occupation', 'Experience', 'Dealership Type', 'Description', 'Created At']);
+
+            // Add data
+            foreach ($distributors as $distributor) {
+                fputcsv($file, [
+                    $distributor->name,
+                    $distributor->email,
+                    $distributor->phone,
+                    $distributor->firm_name,
+                    $distributor->gst,
+                    $distributor->pincode,
+                    $distributor->occupation,
+                    $distributor->experience,
+                    $distributor->dealership_type,
+                    $distributor->description,
+                    $distributor->created_at ? date('Y-m-d H:i:s', strtotime($distributor->created_at)) : ''
                 ]);
             }
 

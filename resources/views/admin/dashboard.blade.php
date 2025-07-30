@@ -68,9 +68,15 @@
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="partner-tab" data-bs-toggle="tab" data-bs-target="#partner" type="button"
-                        role="tab" aria-controls="partner" aria-selected="false">
-                        Partner Enquiries <span class="badge bg-secondary">{{ $inquiries['partner'] }}</span>
+                    <button class="nav-link" id="dealer-tab" data-bs-toggle="tab" data-bs-target="#dealer" type="button"
+                        role="tab" aria-controls="dealer" aria-selected="false">
+                        Become Dealer <span class="badge bg-secondary">{{ $inquiries['dealer'] }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="distributor-tab" data-bs-toggle="tab" data-bs-target="#distributor"
+                        type="button" role="tab" aria-controls="distributor" aria-selected="false">
+                        Become Distributor <span class="badge bg-secondary">{{ $inquiries['distributor'] }}</span>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -166,10 +172,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="partner" role="tabpanel" aria-labelledby="partner-tab">
+                <div class="tab-pane fade" id="dealer" role="tabpanel" aria-labelledby="dealer-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5>Partner Enquiries</h5>
-                        <a href="{{ route('admin.dashboard.export.partner') }}" class="btn btn-success btn-sm">
+                        <h5>Become Dealer</h5>
+                        <a href="{{ route('admin.dashboard.export.dealer') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export CSV
                         </a>
                     </div>
@@ -184,19 +190,63 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (\App\Models\PartnerEnquiry::latest()->take(20)->get() as $item)
+                            @foreach (\App\Models\PartnerEnquiry::where('partner_id', 1)->latest()->take(20)->get() as $item)
                                 <tr>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->firm_name }}</td>
                                     <td><button class="btn btn-sm btn-link text-primary" type="button"
-                                            onclick="toggleRow('partner-{{ $item->id }}')">Details</button>
+                                            onclick="toggleRow('dealer-{{ $item->id }}')">Details</button>
                                         <button class="btn btn-sm btn-danger delete-inquiry" data-type="partner"
                                             data-id="{{ $item->id }}">Delete</button>
                                     </td>
                                 </tr>
-                                <tr id="partner-{{ $item->id }}" style="display:none; background:#f9f9f9;">
+                                <tr id="dealer-{{ $item->id }}" style="display:none; background:#f9f9f9;">
+                                    <td colspan="5">
+                                        <strong>GST:</strong> {{ $item->gst }}<br>
+                                        <strong>Pincode:</strong> {{ $item->pincode }}<br>
+                                        <strong>Occupation:</strong> {{ $item->occupation }}<br>
+                                        <strong>Experience:</strong> {{ $item->experience }}<br>
+                                        <strong>Dealership Type:</strong> {{ $item->dealership_type }}<br>
+                                        <strong>Description:</strong> {{ $item->description }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="distributor" role="tabpanel" aria-labelledby="distributor-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Become Distributor</h5>
+                        <a href="{{ route('admin.dashboard.export.distributor') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export CSV
+                        </a>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Firm Name</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (\App\Models\PartnerEnquiry::where('partner_id', 2)->latest()->take(20)->get() as $item)
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->firm_name }}</td>
+                                    <td><button class="btn btn-sm btn-link text-primary" type="button"
+                                            onclick="toggleRow('distributor-{{ $item->id }}')">Details</button>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="partner"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr id="distributor-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="5">
                                         <strong>GST:</strong> {{ $item->gst }}<br>
                                         <strong>Pincode:</strong> {{ $item->pincode }}<br>
