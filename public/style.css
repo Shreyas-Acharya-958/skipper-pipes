@@ -4802,7 +4802,7 @@ Company - Overview page
     .overview-counters .counter-text {
         font-size: 16px;
     }
-    
+
 }
 
 
@@ -5798,7 +5798,7 @@ Media queries - max-width
     }
 
 
-    .hero-banner2-bg, 
+    .hero-banner2-bg,
     .hero-banner2-bg img{
         object-fit: cover;
         height: 330px;
@@ -6099,7 +6099,7 @@ Media queries - max-width
     border: none !important;
     }
 
-    
+
 
     .sathi-community-area .inner-items .left-info::before {
         left: 0;
@@ -6293,7 +6293,7 @@ Media queries - max-width
         border-right: none !important;
     }
     .carousel-item img{
-        height: auto !important; 
+        height: auto !important;
     }
     .md-message-content p{
         font-size: 16px !important;
@@ -6307,7 +6307,7 @@ Media queries - max-width
         padding: 15px !important;
     }
     .manufacturing-container .location-swiper{
-    margin-left: 0px !important; 
+    margin-left: 0px !important;
 }
 
 .hero-banner2.products-banner{
@@ -6319,6 +6319,10 @@ Media queries - max-width
 .product-category-col img {
     width: 50px !important;
     margin-bottom: 15px;
-    
+
 }
 
+.blog-area.full-blog .blog-items .item ul {
+    padding-left: 20px;
+    list-style-type: disc !important;
+}
