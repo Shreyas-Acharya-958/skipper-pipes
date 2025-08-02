@@ -74,7 +74,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="home-about col-lg-6 offset-lg-1" >
+                <div class="home-about col-lg-6 offset-lg-1">
                     <div class="site-heading" data-aos="fade-up" data-aos-duration="1000">
                         <h4>Why Skipper Pipes</h4>
                         <h2>{{ $sectionOne->title ?? '' }}</h2>
@@ -138,7 +138,8 @@
                         @endif
                     </ul>
                     @if ($sectionOne->now_more)
-                        <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ $sectionOne->now_more }}" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">Know More</a>
+                        <a class="btn btn-dark theme theme2 btn-md mt-5" href="{{ $sectionOne->now_more }}"
+                            data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">Know More</a>
                     @endif
                 </div>
             </div>
@@ -162,7 +163,8 @@
                 </div>
                 <div class="row">
                     @foreach ($categories as $category)
-                        <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000"
+                            data-aos-delay="100">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});">
                             </div>
                             <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
@@ -195,7 +197,8 @@
                     and field-tested performance, trusted by professionals across India.
                 </p>
             </div>
-            <div class="home-products__main-tab-box tabs-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+            <div class="home-products__main-tab-box tabs-box" data-aos="fade-up" data-aos-duration="1000"
+                data-aos-delay="100">
                 <div class="row">
                     <div class="col-xl-3 col-lg-4">
                         <div class="home-products__left">
@@ -235,8 +238,13 @@
                                                                     <p class="home-products__sub-title">
                                                                         {{ $category->name }}</p>
                                                                     <h4 class="home-products__title">
-                                                                        <a
-                                                                            href="{{ route('front.products.show', $product->slug) }}">{{ $product->title }}</a>
+                                                                        @if ($product->slug == 'bath-fittings')
+                                                                            <a
+                                                                                href="https://skipperbathfittings.com/beta/">{{ $product->title }}</a>
+                                                                        @else
+                                                                            <a
+                                                                                href="{{ route('front.products.show', $product->slug) }}">{{ $product->title }}</a>
+                                                                        @endif
                                                                     </h4>
                                                                 </div>
                                                             </div>
@@ -269,7 +277,8 @@
                             style="background-image: url({{ asset('storage/' . $sectionTwo->image) }});">
                             <h2 data-aos="fade-up" data-aos-duration="1000"> {{ $sectionTwo->image_title }} </h2>
 
-                            <a class="btn btn-light effect btn-md" href="{{ $sectionTwo->link }}" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <a class="btn btn-light effect btn-md" href="{{ $sectionTwo->link }}" data-aos="fade-up"
+                                data-aos-duration="1000" data-aos-delay="200">
                                 {{ $sectionTwo->image_button }} </a>
                         </div>
                     </div>
@@ -291,7 +300,8 @@
                 </div>
                 <div class="testimonial-items">
                     <div class="row align-center">
-                        <div class="col-lg-5 title text-center" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                        <div class="col-lg-5 title text-center" data-aos="fade-up" data-aos-duration="1500"
+                            data-aos-delay="100">
                             <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
                             <img src="{{ asset('storage/' . $sectionFour->image) }}" class="w-50 mb-4" alt="">
                             <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
@@ -300,7 +310,8 @@
                                 <h2>{{ $sectionFour->title }}</h2>
                             </div>
                         </div>
-                        <div class="col-lg-7 testimonial-box" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">
+                        <div class="col-lg-7 testimonial-box" data-aos="fade-up" data-aos-duration="1500"
+                            data-aos-delay="100">
                             <div class="testimonial-content testimonials-carousel owl-carousel owl-theme">
                                 @foreach ($sectionFour->reviews as $review)
                                     <!-- Single Item -->
@@ -383,7 +394,8 @@
                 <div class="row">
                     @foreach ($blogs as $blog)
                         <!-- Single Item -->
-                        <div class="col-lg-4 col-md-6 single-item" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="col-lg-4 col-md-6 single-item" data-aos="flip-right" data-aos-duration="1000"
+                            data-aos-delay="100">
                             <div class="item">
                                 <div class="thumb">
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}">
