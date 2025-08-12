@@ -54,6 +54,16 @@
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
 
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-V8XGVP5J7B');
+    </script>
     @yield('styles')
     <style>
         .product-category-col img {
