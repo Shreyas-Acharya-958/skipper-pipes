@@ -14,6 +14,15 @@ use App\Models\CareerApplication;
 use App\Models\CareerLifeAtSkipper;
 use App\Models\CareerSkipperPipe;
 use App\Models\CareerWhySkipper;
+use App\Models\JalRakshakMenu;
+use App\Models\JalRakshakBanner;
+use App\Models\JalRakshakInitiative;
+use App\Models\JalRakshakActivity;
+use App\Models\JalRakshakGallery;
+use App\Models\JalRakshakVideo;
+use App\Models\JalRakshakConservation;
+use App\Models\JalRakshakInvolvement;
+use App\Models\JalRakshakSeo;
 use App\Models\CertificationHeadSection;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
@@ -498,5 +507,32 @@ class FrontController extends Controller
 
         // Pass the page data to a generic section view
         return view('front.section', compact('page', 'seoData'));
+    }
+
+    public function jalRakshak()
+    {
+        $seoData = $this->getSeoDataForCurrentUrl();
+
+        $menus = JalRakshakMenu::orderBy('sequence', 'asc')->get();
+        $banners = JalRakshakBanner::first();
+        $initiative = JalRakshakInitiative::first();
+        $activities = JalRakshakActivity::orderBy('sequence', 'asc')->get();
+        $gallery = JalRakshakGallery::orderBy('sequence', 'asc')->get();
+        $videos = JalRakshakVideo::orderBy('sequence', 'asc')->get();
+        $conservations = JalRakshakConservation::orderBy('sequence', 'asc')->get();
+        $involvement = JalRakshakInvolvement::first();
+        $seo = JalRakshakSeo::first();
+
+        return view('front.jal-rakshak', compact(
+            'menus',
+            'banners',
+            'initiative',
+            'activities',
+            'gallery',
+            'videos',
+            'conservations',
+            'involvement',
+            'seo'
+        ));
     }
 }

@@ -263,11 +263,13 @@ Route::name('front.')->group(function () {
     Route::get('/news', [FrontController::class, 'news'])->name('news.index');
     Route::get('/media', [FrontController::class, 'media'])->name('media.index');
     Route::get('/why-skipper-pipes', [FrontController::class, 'whySkipperPipes'])->name('why-skipper-pipes.index');
+    Route::get('/jal-rakshak', [FrontController::class, 'jalRakshak'])->name('jal-rakshak.index');
     Route::get('/contact-us', [FrontController::class, 'contact'])->name('contact.index');
     Route::post('/contact-us', [FrontController::class, 'storeContact'])->name('contact.store');
 
     Route::get('/careers', [FrontController::class, 'careers'])->name('careers.index');
     Route::post('/careers', [FrontController::class, 'storeCareerApplication'])->name('careers.store');
+
 
     Route::get('/network', [FrontController::class, 'network'])->name('network.index');
     Route::get('/{slug?}', [FrontController::class, 'section'])->name('section.index');
