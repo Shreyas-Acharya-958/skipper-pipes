@@ -32,234 +32,277 @@
 
 
     <style>
-        .bg-primary-blue{
-            background-color: #144372 !important;
-        }
+    /* lp-logo */
+    .lp-logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    }
 
-        html{
-            scroll-behavior: smooth;
-        }
-        .lp-h3-heading{
-            font-weight: 600;
-            margin-top: 40px;
-        }
-        .lp-site-sub_heading{
-            font-weight: 500;
-            font-size: 18px;
-        }
+    /* lp-navbar */
+    .lp-navbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    }
 
-        .lp-heading{
-            display: inline-block;
-            font-size: 18px;
-            font-weight: 600;
-            color: #144372;
-            /* margin-bottom: 10px; */
-        }
+    .lp-nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    }
 
-        .lp-para-heading{
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+    .lp-nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    }
 
-        .lp-para-text{
-            font-weight: 500;
-            font-size: 18px;
-        }
+    .lp-nav-links li a:hover {
+    color: #144372;
+    }
 
-        .lp-para-text.italic{
-            font-style: italic;
-        }
+    /* Hamburger menu (hidden by default) */
+    .menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-left: 20px;
+    }
 
-        .lp-para-bold{
-            color: #144372;
-        }
+    /* hero banner */
+   
+    .lp-hero-mobile-banner{
+        display: none;
+    }
 
-        .venue-desc li{
-            color: #144372;
-            font-weight: 600;
-        }
+    .bg-primary-blue{
+        background-color: #144372 !important;
+    }
 
-        .jal-rakshak-form{
-            color: white !important;
-        }
+    html{
+        scroll-behavior: smooth;
+    }
+    .lp-h3-heading{
+        font-weight: 600;
+        margin-top: 40px;
+    }
+    .lp-site-sub_heading{
+        font-weight: 500;
+        font-size: 18px;
+    }
 
-        .jal-rakshak-cta,
-        .jal-rakshak-cta h2,
-        .jal-rakshak-cta p{
-            color: white !important;
-        }
-
-        .jal-rakshak-cta h2{
-            font-weight: 600;
-        }
-
-        .jal-rakshak-form .form-control{
-            border-radius: 0px;
-        }
-
-        .jal-rakshak-btn{
-            background-color: #FFA800;
-            padding: 12px 30px;
-        }
-
-        .jal-rakshak-btn-secondary{
-            padding: 12px 30px;
-            background-color: #144372;
-            color: white;
-            font-weight: 600;
-        }
-
-        .jal-rakshak-btn-secondary:hover{
-            background-color: #FFA800;
-            color: #144372;
-        }
-
-        .site-heading h4.text-white{
-            color: white !important;
-
-        }
-
-        .testimonial-card {
-            border: 1px solid #ddd;
-            /* border-radius: 10px; */
-            padding: 20px;
-            margin: 10px;
-            background: #fff;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .testimonial-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-            /* Only apply styles inside testimonial carousel */
-        #testimonialCarousel .carousel-control-prev,
-        #testimonialCarousel .carousel-control-next {
-            width: 50px;
-            height: 50px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #007bff; /* Bootstrap blue */
-            border-radius: 50%;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-        }
-
-        #testimonialCarousel .carousel-control-prev {
-            left: 0px; /* move outside card area */
-        }
-
-        #testimonialCarousel .carousel-control-next {
-            right: 0px;
-        }
-
-        #testimonialCarousel .carousel-control-prev:hover,
-        #testimonialCarousel .carousel-control-next:hover {
-            background: #0056b3; /* darker blue */
-            opacity: 1;
-        }
-
-        #testimonialCarousel .carousel-control-prev-icon,
-        #testimonialCarousel .carousel-control-next-icon {
-            background-size: 60% 60%;
-        }
-
-
-        /* Lightbox modal content */
-        #lightboxModal .modal-content {
-        background: transparent !important;
-        border: 3px solid #144372;  /* blue border */
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* subtle blue glow */
-        }
-
-        /* Lightbox modal content */
-        #lightboxModal .modal-content .modal-body{
-            padding: 0 !important;
-            border: 5px solid #fff;
-
-        }
-
-        /* Image inside modal */
-        #lightboxImage {
-        max-height: 100%;
-        width: 1500px;
-        display: block;
-        margin: 0 auto;
-        border-radius: 6px;
-        }
-
-        /* Left/right arrows - move outside */
-        #lightboxModal .lightbox-control {
-        position: fixed; /* make them stay outside image */
-        top: 50%;
-        transform: translateY(-20%);
-        font-size: 2rem;
+    .lp-heading{
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 600;
         color: #144372;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 20px 25px;
-        user-select: none;
-        background: rgba(255,255,255,0.95);
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        z-index: 1055; /* above modal */
-        }
+        /* margin-bottom: 10px; */
+    }
 
-        #lightboxModal .lightbox-control.left {
-        left: 100px; /* outside left */
-        }
+    .lp-para-heading{
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
 
-        #lightboxModal .lightbox-control.right {
-        right: 100px; /* outside right */
-        }
+    .lp-para-text{
+        font-weight: 500;
+        font-size: 18px;
+    }
 
-        #lightboxModal .lightbox-control:hover {
-        background: #144372;
-        color: #fff;
-        }
+    .lp-para-text.italic{
+        font-style: italic;
+    }
 
-        #footer-cta h3{
-            font-weight: 600;
+    .lp-para-bold{
+        color: #144372;
+    }
+
+    .venue-desc li{
+        color: #144372;
+        font-weight: 600;
+    }
+
+    .jal-rakshak-form{
+        color: white !important;
+    }
+
+    .jal-rakshak-cta,
+    .jal-rakshak-cta h2,
+    .jal-rakshak-cta p{
+        color: white !important;
+    }
+
+    .jal-rakshak-cta h2{
+        font-weight: 600;
+    }
+
+    .jal-rakshak-form .form-control{
+        border-radius: 0px;
+    }
+
+    .jal-rakshak-btn{
+        background-color: #FFA800;
+        padding: 12px 30px;
+    }
+
+    .jal-rakshak-btn-secondary{
+        padding: 12px 30px;
+        background-color: #144372;
+        color: white;
+        font-weight: 600;
+    }
+
+    .jal-rakshak-btn-secondary:hover{
+        background-color: #FFA800;
+        color: #144372;
+    }
+
+    .site-heading h4.text-white{
+        color: white !important;
+
+    }
+
+
+    /* Lightbox modal content */
+    #lightboxModal .modal-content {
+    background: transparent !important;
+    border: 3px solid #144372;  /* blue border */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* subtle blue glow */
+    }
+
+    /* Lightbox modal content */
+    #lightboxModal .modal-content .modal-body{
+        padding: 0 !important;
+        border: 5px solid #fff;
+
+    }
+
+    /* Image inside modal */
+    #lightboxImage {
+    max-height: 100%;
+    width: 1500px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    }
+
+    /* Left/right arrows - move outside */
+    #lightboxModal .lightbox-control {
+    position: fixed; /* make them stay outside image */
+    top: 50%;
+    transform: translateY(-20%);
+    font-size: 2rem;
+    color: #144372;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 20px 25px;
+    user-select: none;
+    background: rgba(255,255,255,0.95);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 1055; /* above modal */
+    }
+
+    #lightboxModal .lightbox-control.left {
+    left: 100px; /* outside left */
+    }
+
+    #lightboxModal .lightbox-control.right {
+    right: 100px; /* outside right */
+    }
+
+    #lightboxModal .lightbox-control:hover {
+    background: #144372;
+    color: #fff;
+    }
+
+    #footer-cta h3{
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    .lp-nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        border-left: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        position: absolute;
+        z-index: 999;
+    }
+
+    .lp-nav-links.active {
+        display: flex;
+        margin-right: 15px;
+        padding: 15px 15px 15px 25px;
+    }
+
+    .lp-nav-links.active li a{
+        color: #144372;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+    }
+
+    @media( max-width: 576px){
+        #lightboxModal .lightbox-control{
+            top: 75%;
         }
+        .lp-hero-mobile-banner{
+            display: block;
+        }
+         .lp-hero-banner{
+            display: none;
+        }
+    }
     </style>
-    
 
 </head>
 <body>
 
-    <header class="my-3">
-        <div class="container p-0">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="assets/img/skipper-logo.png" width="100px"  alt="">
-                </div>
-                <div class="col-md-6 d-flex justify-content-end align-items-center">
-                    <ul class="d-flex align-center justify-content-end">
-                        <li class="pl-3"><a href="#initiative">Initiative</a></li>
-                        <li class="pl-3"><a href="#activities">Activities</a></li>
-                        <li class="pl-3"><a href="#facts">Facts & Tips</a></li>
-                        <li class="pl-3"><a href="#Involved">Get Involved</a></li>
-                    </ul>
-                </div>
+    <header class="py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="lp-logo">
+            <a href="#"><img src="assets/img/skipper-logo.png" width="120px" alt=""></a>
             </div>
 
+            <nav class="lp-navbar">
+            <ul class="lp-nav-links">
+                <li><a href="#initiative">Initiative</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#facts">Facts & Tips</a></li>
+                <li><a href="#Involved">Get Involved</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            </nav>
         </div>
     </header>
+
+
     <section id="hero-banner-lp">
         <div class="container-fluid p-0">
-            <img src="assets/img/hero-banner-lp-final.jpg" class="w-100" alt="">
+            <img src="assets/img/lp/hero-banner-lp-final.jpg" class="w-100 lp-hero-banner" alt="">
+            <img src="assets/img/lp/hero-mobile-banner-lp.png" class="w-100 lp-hero-mobile-banner" alt="">
         </div>
     </section>
 
     <!-- About the Initiative Section -->
     <section id="initiative" class="default-padding">
-        <div class="container p-0">
+        <div class="container p-md-0">
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
@@ -269,10 +312,10 @@
                 </div>
             </div>
             <div class="row align-items-center">
-                <div class="col-md-6 pr-5">
+                <div class="col-md-6 pr-md-5">
                     <img src="assets/img/lp/Jalraksha_AboutInitiative_579x687.png" class="shadow" alt="">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mt-4 mt-md-0">
                     <h3 class="lp-para-heading">Why #JalRakshak?</h3>
                     <!-- <span class="lp-para-text italic">Skipper Jalrakshak - SAVE WATER, SAVE LIFE</span> -->
                     <p class="mt-4">Skipper Pipes is proud to launch a very special initiative on water conservation <b>Skipper Jalrakshak - SAVE WATER, SAVE LIFE.</b> </p>
@@ -292,7 +335,7 @@
 
     <!-- Offline Acitivies Section -->
     <section id="activities" class="default-padding bg-gray">
-        <div class="container p-0">
+        <div class="container p-md-0">
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
@@ -303,21 +346,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <div class="lp-card">
                         <img src="assets/img/lp/Jalraksha_Activities_ArtFair_1000x667.png" class="shadow" alt="">
                         <span class="lp-heading pt-4 mb-2">Creative Art Fair</span>
                         <p>For children (6–16 years), encouraging young imaginations to shape powerful messages about saving water.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <div class="lp-card">
                         <img src="assets/img/lp/Jalraksha_Activities_Theater_1000x667.png" class="shadow" alt="">
                         <span class="lp-heading pt-4 mb-2">Immersive Theatre Performance</span>
                         <p>Presenting a vibrant act on water conservation through storytelling, art, and performance by Jaladharsha.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-4 mb-md-0">
                     <div class="lp-card">
                         <img src="assets/img/lp/Jalraksha_Activities_Collage&AV_1000x667.png" class="shadow" alt="">
                         <span class="lp-heading pt-4 mb-2">Grand Collage & AV Showcase</span>
@@ -340,22 +383,22 @@
                 </div>
             </div>
             <div class="row" id="gallery">
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-3">
                 <img src="assets/img/jal-rakshak3.jpg" class="img-fluid gallery-item" alt="">
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-3">
                 <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-item" alt="">
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-3">
                 <img src="assets/img/jal-rakshak3.jpg" class="img-fluid gallery-item" alt="">
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-3">
                 <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-item" alt="">
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-3">
                 <img src="assets/img/jal-rakshak3.jpg" class="img-fluid gallery-item" alt="">
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-4 p-3">
                 <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-item" alt="">
                 </div>
 
@@ -392,22 +435,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 p-2">
+                <div class="col-md-6 col-lg-4 p-3 p-md-2">
                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-D4wACwiaWY?si=ZjONCl6JYnhbJSMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-6 col-lg-4 p-3 p-md-2">
                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-D4wACwiaWY?si=ZjONCl6JYnhbJSMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-6 col-lg-4 p-3 p-md-2">
                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-D4wACwiaWY?si=ZjONCl6JYnhbJSMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-6 col-lg-4 p-3 p-md-2">
                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-D4wACwiaWY?si=ZjONCl6JYnhbJSMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-6 col-lg-4 p-3 p-md-2">
                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-D4wACwiaWY?si=ZjONCl6JYnhbJSMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="col-md-4 p-2">
+                <div class="col-md-6 col-lg-4 p-3 p-md-2">
                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-D4wACwiaWY?si=ZjONCl6JYnhbJSMX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
                 <div class="col-md-12 text-center mt-4">
@@ -420,7 +463,7 @@
 
     <!-- Water Conservation Facts & Tips -->
     <section id="facts" class="default-padding">
-        <div class="container p-0">
+        <div class="container p-md-0">
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
@@ -430,11 +473,11 @@
                 </div>
             </div>
             <div class="row align-items-center">
-                <div class="col-md-6 pr-5">
+                <div class="col-md-6 pr-md-5">
                     <!-- <img src="assets/img/initiative-sec1.jpg" class="shadow" alt=""> -->
                     <img src="assets/img/lp/Jalraksha_5Facts_1000x667.png" class="shadow" alt="">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 mt-3 mt-md-0">
                     <h3 class="lp-para-heading">Top 5 Facts - Water Conservation</h3>
                     <p>Discover the top five essential facts highlighting the urgency of water conservation, its scarcity, and the importance of collective responsibility.</p>
                     <ol class="pl-4">
@@ -447,7 +490,7 @@
                 </div>
             </div>
             <div class="row align-items-center pt-5 mt-4" id="tips">
-                <div class="col-md-6">
+                <div class="col-md-6 order-2 order-md-1 mt-3 mt-md-0">
                     <h3 class="lp-para-heading">Top 5 Tips - Water Conservation</h3>
                     <p>Learn five practical and effective tips that help conserve water daily, reduce wastage, and safeguard this precious resource for future generations.</p>
                     <ol class="pl-4">
@@ -458,7 +501,7 @@
                         <li>Opt for water-efficient fixtures in kitchens and bathrooms.</li>
                     </ol>
                 </div>
-                <div class="col-md-6 pl-5">
+                <div class="col-md-6 pl-md-5 order-1 order-md-2">
                     <!-- <img src="assets/img/initiative-sec1.jpg" class="shadow" alt=""> -->
                     <img src="assets/img/lp/Jalraksha_5Tipss_1000x667.png" class="shadow" alt="">
                 </div>
@@ -467,8 +510,8 @@
     </section>
      
     <!-- Get Involved Section -->
-    <section id="Involved" class=" my-5 pb-5 jal-rakshak-cta">
-    <div class="container p-0 bg-primary-blue">
+    <section id="Involved" class=" my-md-5 pb-5 jal-rakshak-cta">
+    <div class="container p-md-0 bg-primary-blue">
         <div class="row pt-5">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
@@ -481,10 +524,10 @@
             <div class="col-md-6">
                 <img src="assets/img/lp/Jalraksha_GetInvolve_579x687.png" alt="">
             </div>
-            <div class="col-md-6 p-4">
+            <div class="col-md-6 py-4 py-md-0">
                 <h2 class="mb-2">Be a Jal Rakshak</h2>
                 <p class="mb-4">Take the pledge and be part of this movement.</p>
-                <form action="#" method="post" class="jal-rakshak-form pr-5">
+                <form action="#" method="post" class="jal-rakshak-form pr-md-5">
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="full-name">Name <span>*</span></label>
@@ -500,7 +543,7 @@
                             </div>
                              <div class="form-group col-md-12">
                                 <label for="Your Water-Saving Commitment">Your Water-Saving Commitment</label>
-                                <textarea name="description" id="description" cols="61%" rows="3"></textarea>
+                                <textarea name="description" id="description" class="form-control" rows="3"></textarea>
                             </div>
                         </div>
                     
@@ -567,6 +610,24 @@
             e.preventDefault();
             showImage(currentIndex + 1);
         });
+        </script>
+
+        <script>
+             const toggle = document.getElementById("menu-toggle");
+            const navLinks = document.querySelector(".lp-nav-links");
+            const links = document.querySelectorAll(".lp-nav-links a");
+
+            // Toggle menu open/close
+            toggle.addEventListener("click", () => {
+                navLinks.classList.toggle("active");
+            });
+
+            // Close menu on nav-link click
+            links.forEach(link => {
+                link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                });
+            });
         </script>
 </body>
 </html>
