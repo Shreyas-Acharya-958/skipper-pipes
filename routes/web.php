@@ -22,6 +22,7 @@ use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\WhySkipperPipeController;
+use App\Http\Controllers\JalRakshakController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqMasterController;
@@ -175,6 +176,18 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('why-skipper-pipes/section4/save', [WhySkipperPipeController::class, 'saveSection4'])->name('why-skipper-pipes.section4.save');
     Route::post('why-skipper-pipes/section5/save', [WhySkipperPipeController::class, 'saveSection5'])->name('why-skipper-pipes.section5.save');
     Route::post('why-skipper-pipes/built-for-condition/save', [WhySkipperPipeController::class, 'saveBuiltForCondition'])->name('why-skipper-pipes.built-for-condition.save');
+
+    // Jal Rakshak Routes
+    Route::get('jal-rakshak', [JalRakshakController::class, 'index'])->name('jal-rakshak.index');
+    Route::post('jal-rakshak/menus/save', [JalRakshakController::class, 'saveMenus'])->name('jal-rakshak.menus.save');
+    Route::post('jal-rakshak/banners/save', [JalRakshakController::class, 'saveBanners'])->name('jal-rakshak.banners.save');
+    Route::post('jal-rakshak/initiative/save', [JalRakshakController::class, 'saveInitiative'])->name('jal-rakshak.initiative.save');
+    Route::post('jal-rakshak/activities/save', [JalRakshakController::class, 'saveActivities'])->name('jal-rakshak.activities.save');
+    Route::post('jal-rakshak/gallery/save', [JalRakshakController::class, 'saveGallery'])->name('jal-rakshak.gallery.save');
+    Route::post('jal-rakshak/videos/save', [JalRakshakController::class, 'saveVideos'])->name('jal-rakshak.videos.save');
+    Route::post('jal-rakshak/conservations/save', [JalRakshakController::class, 'saveConservations'])->name('jal-rakshak.conservations.save');
+    Route::post('jal-rakshak/involvement/save', [JalRakshakController::class, 'saveInvolvement'])->name('jal-rakshak.involvement.save');
+    Route::post('jal-rakshak/seo/save', [JalRakshakController::class, 'saveSeo'])->name('jal-rakshak.seo.save');
 
     // Career Routes
     Route::get('careers', [CareerController::class, 'index'])->name('careers.index');
