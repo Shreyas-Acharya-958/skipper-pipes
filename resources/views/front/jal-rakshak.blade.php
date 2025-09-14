@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @if (isset($seo) && $seo)
         <meta name="description" content="{{ $seo->meta_description }}">
         <meta name="keywords" content="{{ $seo->meta_keywords }}">
@@ -13,12 +14,12 @@
     @endif
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="assets/img/final/skipper-pipes-favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/icofont.min.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" />
@@ -27,9 +28,14 @@
     <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" />
-    <link href="{{ asset('style.css') }}" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ time() }}">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
+
+
 
 
     <style>
@@ -529,23 +535,27 @@
                         @if ($involvement->description)
                             <p class="mb-4">{!! $involvement->description !!}</p>
                         @endif
-                        <form action="#" method="post" class="jal-rakshak-form pr-md-5">
+                        <form action="{{ route('front.jal-rakshak.submission') }}" method="post"
+                            class="jal-rakshak-form pr-md-5" id="jalRakshakForm">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="full-name">Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="full-name" required>
+                                    <label for="name">Name <span>*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="phone">Mobile Number <span>*</span></label>
-                                    <input type="tel" class="form-control" id="phone" required>
+                                    <input type="tel" class="form-control" id="phone" name="phone"
+                                        required>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="Your Water-Saving Commitment">Your Water-Saving Commitment</label>
-                                    <textarea name="description" id="description" class="form-control" rows="3"></textarea>
+                                    <label for="water_saving_commitment">Your Water-Saving Commitment</label>
+                                    <textarea name="water_saving_commitment" id="water_saving_commitment" class="form-control" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -581,8 +591,9 @@
     <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}"></script>
     <script src="{{ asset('assets/js/count-to.js') }}"></script>
     <script src="{{ asset('assets/js/bootsnav.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    {{-- <script src="{{ asset('assets/js/main.js') }}"></script> --}}
 
     <script>
         const galleryItems = document.querySelectorAll('.gallery-item');
@@ -629,6 +640,131 @@
         links.forEach(link => {
             link.addEventListener("click", () => {
                 navLinks.classList.remove("active");
+            });
+        });
+    </script>
+
+    <!-- jQuery Validation CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Jal Rakshak Form Handling -->
+    <script>
+        $(document).ready(function() {
+            // Prevent default form submission
+            $('#jalRakshakForm').on('submit', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            $('#jalRakshakForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 255
+                    },
+                    email: {
+                        email: true,
+                        maxlength: 255
+                    },
+                    phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 15
+                    },
+                    water_saving_commitment: {
+                        maxlength: 1000
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Name must be at least 2 characters long",
+                        maxlength: "Name cannot exceed 255 characters"
+                    },
+                    email: {
+                        email: "Please enter a valid email address",
+                        maxlength: "Email cannot exceed 255 characters"
+                    },
+                    phone: {
+                        required: "Please enter your mobile number",
+                        minlength: "Mobile number must be at least 10 digits",
+                        maxlength: "Mobile number cannot exceed 15 characters"
+                    },
+                    water_saving_commitment: {
+                        maxlength: "Commitment cannot exceed 1000 characters"
+                    }
+                },
+                errorElement: 'div',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid').removeClass('is-valid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid').addClass('is-valid');
+                },
+                submitHandler: function(form) {
+                    // Show loading state with SweetAlert
+                    Swal.fire({
+                        title: 'Submitting...',
+                        text: 'Please wait while we process your commitment.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    $.ajax({
+                        url: "{{ route('front.jal-rakshak.submission') }}",
+                        type: "POST",
+                        data: $(form).serialize(),
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.message ||
+                                    'Thank you for your commitment to water conservation!',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#FFA800'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.reset();
+                                    // Reset form validation
+                                    $('#jalRakshakForm').validate().resetForm();
+                                    // Remove any validation classes
+                                    $('#jalRakshakForm .form-control').removeClass(
+                                        'is-valid is-invalid');
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            let message = 'Something went wrong. Please check your inputs.';
+                            if (xhr.responseJSON?.errors) {
+                                message = Object.values(xhr.responseJSON.errors).join(' ');
+                            } else if (xhr.responseJSON?.message) {
+                                message = xhr.responseJSON.message;
+                            }
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#dc3545'
+                            });
+                        }
+                    });
+
+                    return false; // Prevent form submission
+                }
             });
         });
     </script>

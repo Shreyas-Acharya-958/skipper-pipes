@@ -264,6 +264,7 @@ Route::name('front.')->group(function () {
     Route::get('/media', [FrontController::class, 'media'])->name('media.index');
     Route::get('/why-skipper-pipes', [FrontController::class, 'whySkipperPipes'])->name('why-skipper-pipes.index');
     Route::get('/jal-rakshak', [FrontController::class, 'jalRakshak'])->name('jal-rakshak.index');
+    Route::post('/jal-rakshak-submission', [FrontController::class, 'storeJalRakshakSubmission'])->name('jal-rakshak.submission');
     Route::get('/contact-us', [FrontController::class, 'contact'])->name('contact.index');
     Route::post('/contact-us', [FrontController::class, 'storeContact'])->name('contact.store');
 

@@ -23,6 +23,7 @@ use App\Models\JalRakshakVideo;
 use App\Models\JalRakshakConservation;
 use App\Models\JalRakshakInvolvement;
 use App\Models\JalRakshakSeo;
+use App\Models\JalRakshakSubmission;
 use App\Models\CertificationHeadSection;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
@@ -534,5 +535,22 @@ class FrontController extends Controller
             'involvement',
             'seo'
         ));
+    }
+
+    public function storeJalRakshakSubmission(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'required|string|max:20',
+            'water_saving_commitment' => 'nullable|string'
+        ]);
+
+        JalRakshakSubmission::create($request->all());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you for your commitment to water conservation! We will contact you shortly.'
+        ]);
     }
 }
