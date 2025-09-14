@@ -240,6 +240,27 @@
             margin-bottom: 0;
         }
 
+        /* Gallery and Video View All functionality */
+        .gallery-hidden,
+        .video-hidden {
+            display: none !important;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .gallery-item-wrapper,
+        .video-item-wrapper {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .gallery-item-wrapper.show,
+        .video-item-wrapper.show {
+            display: block !important;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
 
 
         /* Responsive */
@@ -401,9 +422,10 @@
                         </div>
                     </div>
                     <div class="row" id="gallery">
-                        @foreach ($gallery as $galleryItem)
+                        @foreach ($gallery as $index => $galleryItem)
                             @if ($galleryItem->image)
-                                <div class="col-md-4 p-3">
+                                <div
+                                    class="col-md-4 p-3 gallery-item-wrapper {{ $index >= 6 ? 'gallery-hidden' : '' }}">
                                     <img src="{{ asset('storage/' . $galleryItem->image) }}"
                                         class="img-fluid gallery-item"
                                         alt="{{ $galleryItem->title ?? 'Gallery Image' }}">
@@ -411,6 +433,12 @@
                             @endif
                         @endforeach
                     </div>
+                    @if ($gallery->count() > 6)
+                        <div class="col-md-12 text-center mt-4">
+                            <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllGallery">View
+                                All</button>
+                        </div>
+                    @endif
                 </div>
             @endif
 
@@ -441,17 +469,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($videos as $video)
-                        <div class="col-md-6 col-lg-4 p-3 p-md-2">
+                    @foreach ($videos as $index => $video)
+                        <div
+                            class="col-md-6 col-lg-4 p-3 p-md-2 video-item-wrapper {{ $index >= 6 ? 'video-hidden' : '' }}">
                             <iframe width="100%" height="315" src="{{ $video->video_url }}"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     @endforeach
-                    <div class="col-md-12 text-center mt-4">
-                        <a href="#" class="btn jal-rakshak-btn-secondary">View All</a>
-                    </div>
+                    @if ($videos->count() > 6)
+                        <div class="col-md-12 text-center mt-4">
+                            <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllVideos">View
+                                All</button>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -613,6 +645,53 @@
         document.getElementById('nextImage').addEventListener('click', (e) => {
             e.preventDefault();
             showImage(currentIndex + 1);
+        });
+    </script>
+
+    <!-- View All functionality for Gallery and Videos -->
+    <script>
+        $(document).ready(function() {
+            // Gallery View All functionality
+            $('#viewAllGallery').on('click', function() {
+                const hiddenItems = $('.gallery-hidden');
+                const button = $(this);
+
+                if (hiddenItems.length > 0) {
+                    // Show hidden items with smooth animation
+                    hiddenItems.each(function(index) {
+                        const item = $(this);
+                        setTimeout(function() {
+                            item.removeClass('gallery-hidden').addClass('show');
+                        }, index * 100); // Stagger the animation
+                    });
+
+                    // Change button text and hide it
+                    setTimeout(function() {
+                        button.text('All Items Shown').addClass('disabled');
+                    }, hiddenItems.length * 100 + 200);
+                }
+            });
+
+            // Videos View All functionality
+            $('#viewAllVideos').on('click', function() {
+                const hiddenItems = $('.video-hidden');
+                const button = $(this);
+
+                if (hiddenItems.length > 0) {
+                    // Show hidden items with smooth animation
+                    hiddenItems.each(function(index) {
+                        const item = $(this);
+                        setTimeout(function() {
+                            item.removeClass('video-hidden').addClass('show');
+                        }, index * 100); // Stagger the animation
+                    });
+
+                    // Change button text and hide it
+                    setTimeout(function() {
+                        button.text('All Videos Shown').addClass('disabled');
+                    }, hiddenItems.length * 100 + 200);
+                }
+            });
         });
     </script>
 
