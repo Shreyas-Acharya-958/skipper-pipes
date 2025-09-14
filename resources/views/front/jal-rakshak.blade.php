@@ -459,7 +459,6 @@
     @endif
 
     @if (isset($conservations) && $conservations->count() > 0)
-        <!-- Water Conservation Facts & Tips -->
         <section id="facts" class="default-padding">
             <div class="container p-md-0">
                 <div class="row">
@@ -470,45 +469,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-md-6 pr-md-5">
-                        <!-- <img src="assets/img/initiative-sec1.jpg" class="shadow" alt=""> -->
-                        <img src="assets/img/lp/Jalraksha_5Facts_1000x667.png" class="shadow" alt="">
+
+                @foreach ($conservations as $key => $item)
+                    <div class="row align-items-center pt-5 mt-4">
+                        {{-- Left Image --}}
+                        <div class="col-md-6 {{ $key % 2 == 0 ? 'pr-md-5 order-1' : 'pl-md-5 order-2' }}">
+                            @if ($item->image)
+                                <img src="{{ asset('storage/' . $item->image) }}" class="shadow img-fluid"
+                                    alt="{{ $item->title }}">
+                            @endif
+                        </div>
+
+                        {{-- Right Content --}}
+                        <div class="col-md-6 mt-3 mt-md-0 {{ $key % 2 == 0 ? 'order-2' : 'order-1' }}">
+                            <h3 class="lp-para-heading">{{ $item->title }}</h3>
+                            <p>{!! $item->description !!}</p>
+
+                            @if (!empty($item->points))
+                                <ol class="pl-4">
+                                    @foreach (json_decode($item->points, true) as $point)
+                                        <li>{{ $point }}</li>
+                                    @endforeach
+                                </ol>
+                            @endif
+                        </div>
                     </div>
-                    <div class="col-md-6 mt-3 mt-md-0">
-                        <h3 class="lp-para-heading">Top 5 Facts - Water Conservation</h3>
-                        <p>Discover the top five essential facts highlighting the urgency of water conservation, its
-                            scarcity, and the importance of collective responsibility.</p>
-                        <ol class="pl-4">
-                            <li>India has 18% of the world’s population but only 4% of water.</li>
-                            <li>Nearly 70% of freshwater sources are contaminated.</li>
-                            <li>A dripping tap can waste up to 20 litres daily.</li>
-                            <li>Agriculture consumes over 80% of India’s water supply.</li>
-                            <li>By 2030, India’s water demand is expected to double supply.</li>
-                        </ol>
-                    </div>
-                </div>
-                <div class="row align-items-center pt-5 mt-4" id="tips">
-                    <div class="col-md-6 order-2 order-md-1 mt-3 mt-md-0">
-                        <h3 class="lp-para-heading">Top 5 Tips - Water Conservation</h3>
-                        <p>Learn five practical and effective tips that help conserve water daily, reduce wastage, and
-                            safeguard this precious resource for future generations.</p>
-                        <ol class="pl-4">
-                            <li>Fix leaks immediately – even small drips matter.</li>
-                            <li>Use buckets instead of showers for bathing.</li>
-                            <li>Turn off taps while brushing or washing utensils</li>
-                            <li>Reuse RO wastewater for cleaning or gardening.</li>
-                            <li>Opt for water-efficient fixtures in kitchens and bathrooms.</li>
-                        </ol>
-                    </div>
-                    <div class="col-md-6 pl-md-5 order-1 order-md-2">
-                        <!-- <img src="assets/img/initiative-sec1.jpg" class="shadow" alt=""> -->
-                        <img src="assets/img/lp/Jalraksha_5Tipss_1000x667.png" class="shadow" alt="">
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
     @endif
+
 
     @if (isset($involvement) && $involvement)
         <!-- Get Involved Section -->

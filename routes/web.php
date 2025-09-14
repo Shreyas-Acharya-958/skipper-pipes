@@ -58,6 +58,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard/export/dealer-enquiries', [\App\Http\Controllers\DashboardController::class, 'exportDealerEnquiries'])->name('dashboard.export.dealer');
     Route::get('/dashboard/export/distributor-enquiries', [\App\Http\Controllers\DashboardController::class, 'exportDistributorEnquiries'])->name('dashboard.export.distributor');
     Route::get('/dashboard/export/blog-comments', [\App\Http\Controllers\DashboardController::class, 'exportBlogComments'])->name('dashboard.export.blog-comments');
+    Route::get('/dashboard/export/jal-rakshak-submissions', [\App\Http\Controllers\DashboardController::class, 'exportJalRakshakSubmissions'])->name('dashboard.export.jal-rakshak');
 
     // User Management routes
     Route::resource('users', UserController::class);

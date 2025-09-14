@@ -2,54 +2,69 @@
 @extends('admin.layouts.app')
 
 @section('content')
+    <style>
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+    </style>
     <div class="row mb-4">
         <div class="col-sm-6 col-lg-3">
-            <div class="card mb-4 text-white bg-primary">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                    <div>
-                        <div class="fs-4 fw-semibold">
-                            {{ \App\Models\Product::count() }}
+            <a href="{{ route('admin.products.index') }}" class="text-decoration-none">
+                <div class="card mb-4 text-white bg-primary card-hover">
+                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="fs-4 fw-semibold">
+                                {{ \App\Models\Product::count() }}
+                            </div>
+                            <div>Products</div>
                         </div>
-                        <div>Products</div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-sm-6 col-lg-3">
-            <div class="card mb-4 text-white bg-info">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                    <div>
-                        <div class="fs-4 fw-semibold">
-                            {{ \App\Models\Blog::count() }}
+            <a href="{{ route('admin.blogs.index') }}" class="text-decoration-none">
+                <div class="card mb-4 text-white bg-info card-hover">
+                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="fs-4 fw-semibold">
+                                {{ \App\Models\Blog::count() }}
+                            </div>
+                            <div>Blogs</div>
                         </div>
-                        <div>Blogs</div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-sm-6 col-lg-3">
-            <div class="card mb-4 text-white bg-success">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                    <div>
-                        <div class="fs-4 fw-semibold">
-                            {{ \App\Models\ProductCategory::count() }}
+            <a href="{{ route('admin.product_categories.index') }}" class="text-decoration-none">
+                <div class="card mb-4 text-white bg-success card-hover">
+                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="fs-4 fw-semibold">
+                                {{ \App\Models\ProductCategory::count() }}
+                            </div>
+                            <div>Product Categories</div>
                         </div>
-                        <div>Product Categories</div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-sm-6 col-lg-3">
-            <div class="card mb-4 text-white bg-warning">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                    <div>
-                        <div class="fs-4 fw-semibold">
-                            {{ \App\Models\BlogCategory::count() }}
+            <a href="{{ route('admin.blog_categories.index') }}" class="text-decoration-none">
+                <div class="card mb-4 text-white bg-warning card-hover">
+                    <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="fs-4 fw-semibold">
+                                {{ \App\Models\BlogCategory::count() }}
+                            </div>
+                            <div>Blog Categories</div>
                         </div>
-                        <div>Blog Categories</div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="row mb-4">
@@ -58,7 +73,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="career-tab" data-bs-toggle="tab" data-bs-target="#career"
                         type="button" role="tab" aria-controls="career" aria-selected="true">
-                        Career Applications <span class="badge bg-secondary">{{ $inquiries['career'] }}</span>
+                        Career<span class="badge bg-secondary">{{ $inquiries['career'] }}</span>
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -83,6 +98,12 @@
                     <button class="nav-link" id="blog-comment-tab" data-bs-toggle="tab" data-bs-target="#blog-comment"
                         type="button" role="tab" aria-controls="blog-comment" aria-selected="false">
                         Blog Comments <span class="badge bg-secondary">{{ $inquiries['blog_comment'] }}</span>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="jal-rakshak-tab" data-bs-toggle="tab" data-bs-target="#jal-rakshak"
+                        type="button" role="tab" aria-controls="jal-rakshak" aria-selected="false">
+                        Jal Rakshak <span class="badge bg-secondary">{{ $inquiries['jal_rakshak'] }}</span>
                     </button>
                 </li>
             </ul>
@@ -299,6 +320,49 @@
                                 <tr id="blogcomment-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="5">
                                         <strong>Full Comment:</strong> {{ $item->description }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="jal-rakshak" role="tabpanel" aria-labelledby="jal-rakshak-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Jal Rakshak</h5>
+                        <a href="{{ route('admin.dashboard.export.jal-rakshak') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export Excel
+                        </a>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Water Saving Commitment</th>
+                                <th>Created At</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (\App\Models\JalRakshakSubmission::latest()->take(20)->get() as $item)
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ Str::limit($item->water_saving_commitment, 50) }}</td>
+                                    <td>{{ $item->created_at ? date('Y-m-d H:i:s', strtotime($item->created_at)) : '' }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-link text-primary" type="button"
+                                            onclick="toggleRow('jalrakshak-{{ $item->id }}')">Details</button>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="jal_rakshak"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr id="jalrakshak-{{ $item->id }}" style="display:none; background:#f9f9f9;">
+                                    <td colspan="6">
+                                        <strong>Water Saving Commitment:</strong> {{ $item->water_saving_commitment }}
                                     </td>
                                 </tr>
                             @endforeach

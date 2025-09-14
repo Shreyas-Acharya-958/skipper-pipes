@@ -6,6 +6,7 @@ use App\Models\BlogComment;
 use App\Models\CareerApplication;
 use App\Models\Contact;
 use App\Models\PartnerEnquiry;
+use App\Models\JalRakshakSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Exports\CareerApplicationsExport;
@@ -13,6 +14,7 @@ use App\Exports\ContactsExport;
 use App\Exports\DealerEnquiriesExport;
 use App\Exports\DistributorEnquiriesExport;
 use App\Exports\BlogCommentsExport;
+use App\Exports\JalRakshakSubmissionsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
@@ -25,6 +27,7 @@ class DashboardController extends Controller
             'dealer' => PartnerEnquiry::where('partner_id', 1)->count(),
             'distributor' => PartnerEnquiry::where('partner_id', 2)->count(),
             'blog_comment' => BlogComment::count(),
+            'jal_rakshak' => JalRakshakSubmission::count(),
         ];
         return view('admin.dashboard', compact('inquiries'));
     }
@@ -46,6 +49,9 @@ class DashboardController extends Controller
                 break;
             case 'blog_comment':
                 $model = \App\Models\BlogComment::find($id);
+                break;
+            case 'jal_rakshak':
+                $model = \App\Models\JalRakshakSubmission::find($id);
                 break;
         }
         if ($model) {
@@ -83,5 +89,11 @@ class DashboardController extends Controller
     {
         $filename = 'blog_comments_' . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new BlogCommentsExport, $filename);
+    }
+
+    public function exportJalRakshakSubmissions()
+    {
+        $filename = 'jal_rakshak_submissions_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new JalRakshakSubmissionsExport, $filename);
     }
 }
