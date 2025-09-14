@@ -729,6 +729,14 @@
                                 if (textarea.length && textarea.val()) {
                                     editor.setContent(textarea.val());
                                 }
+
+                                // Set readonly state based on textarea readonly attribute
+                                const isReadonly = textarea.prop('readonly');
+                                if (isReadonly) {
+                                    editor.mode.set('readonly');
+                                } else {
+                                    editor.mode.set('design');
+                                }
                             });
                         }
                     });
@@ -765,6 +773,19 @@
                     // Show the add-item-btn if it exists in this form
                     form.find('.add-item-btn').show();
                     $(this).hide();
+
+                    // Enable TinyMCE editors
+                    form.find('.tinymce').each(function() {
+                        const id = $(this).attr('id');
+                        if (id) {
+                            const editor = tinymce.get(id);
+                            if (editor) {
+                                editor.mode.set('design');
+                                editor.setMode('design');
+                            }
+                        }
+                    });
+
                     setTimeout(initJalRakshakTinyMCE, 200); // Re-init TinyMCE on edit
                 });
 
