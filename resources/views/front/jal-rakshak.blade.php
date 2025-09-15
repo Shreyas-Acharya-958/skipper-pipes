@@ -316,7 +316,7 @@
     <header class="py-3">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="lp-logo">
-                <a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" width="120px"
+                <a href="{{ url('/') }}"><img src="{{ asset('assets/img/skipper-logo.png') }}" width="120px"
                         alt=""></a>
             </div>
 
