@@ -346,8 +346,10 @@
         <section id="hero-banner-lp">
             <div class="container-fluid p-0">
                 @foreach ($banners->images as $index => $image)
-                    <img src="{{ asset('storage/' . $image) }}" class="w-100 lp-hero-banner"
-                        alt="{{ $banners->title ?? 'Hero Banner' }}">
+                    @if ($index === 1)
+                        <img src="{{ asset('storage/' . $image) }}" class="w-100 lp-hero-banner"
+                            alt="{{ $banners->title ?? 'Hero Banner' }}">
+                    @endif
                     @if ($index === 0)
                         <img src="{{ asset('storage/' . $image) }}" class="w-100 lp-hero-mobile-banner"
                             alt="{{ $banners->title ?? 'Hero Banner' }}">

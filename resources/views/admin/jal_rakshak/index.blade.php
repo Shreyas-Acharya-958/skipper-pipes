@@ -163,6 +163,14 @@
 
                             <div class="form-group mb-3">
                                 <label class="form-label">Images</label>
+                                <div class="alert alert-info mb-3">
+                                    <small>
+                                        <strong>Note:</strong><br>
+                                        • First image: Mobile banner<br>
+                                        • Second image: Main banner
+                                    </small>
+                                </div>
+
                                 <div class="mb-2 d-flex flex-wrap gap-3">
                                     @if (isset($banners->images))
                                         @foreach ($banners->images as $index => $image)
