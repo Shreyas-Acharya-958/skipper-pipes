@@ -292,6 +292,10 @@
             .menu-toggle {
                 display: block;
             }
+
+            #facts .order-2 {
+                order: 1
+            }
         }
 
         @media(max-width: 576px) {
@@ -305,6 +309,10 @@
 
             .lp-hero-banner {
                 display: none;
+            }
+
+            #facts .order-2 {
+                order: 1
             }
         }
     </style>
