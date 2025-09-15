@@ -162,12 +162,11 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="form-label">Images</label>
+                                <label class="form-label">Desktop Images</label>
                                 <div class="alert alert-info mb-3">
                                     <small>
                                         <strong>Note:</strong><br>
-                                        • First image: Mobile banner<br>
-                                        • Second image: Main banner
+                                        • Upload multiple desktop banner images
                                     </small>
                                 </div>
 
@@ -176,7 +175,7 @@
                                         @foreach ($banners->images as $index => $image)
                                             <div class="position-relative d-inline-block">
                                                 <img src="{{ asset('storage/' . $image) }}"
-                                                    alt="Banner Image {{ $index + 1 }}"
+                                                    alt="Desktop Banner Image {{ $index + 1 }}"
                                                     style="max-width: 200px; height: auto;">
                                                 <button type="button"
                                                     class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
@@ -190,6 +189,31 @@
                                 </div>
                                 <input type="file" class="form-control" name="images[]" accept="image/*,.svg"
                                     multiple disabled>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="form-label">Mobile Image</label>
+                                <div class="alert alert-info mb-3">
+                                    <small>
+                                        <strong>Note:</strong><br>
+                                        • Upload a separate mobile banner image
+                                    </small>
+                                </div>
+
+                                <div class="mb-2">
+                                    @if (isset($banners) && $banners->mobile_image)
+                                        <div class="position-relative d-inline-block">
+                                            <img src="{{ asset('storage/' . $banners->mobile_image) }}"
+                                                alt="Mobile Banner Image" style="max-width: 200px; height: auto;">
+                                            <button type="button"
+                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-mobile-image-btn"
+                                                style="display: none;" data-image="mobile_image">&times;</button>
+                                        </div>
+                                    @endif
+                                </div>
+                                <input type="file" class="form-control" name="mobile_image" accept="image/*,.svg"
+                                    disabled>
+                                <input type="hidden" name="remove_mobile_image" value="0">
                             </div>
                         </form>
                     </div>
@@ -777,7 +801,7 @@
                     const form = $(this).closest('form');
                     form.find('input:not([type="hidden"]), textarea, select').removeAttr(
                         'readonly disabled');
-                    form.find('.save-btn, .remove-image-btn').show();
+                    form.find('.save-btn, .remove-image-btn, .remove-mobile-image-btn').show();
                     // Show the add-item-btn if it exists in this form
                     form.find('.add-item-btn').show();
                     $(this).hide();
@@ -805,6 +829,16 @@
 
                     // Mark image for deletion
                     deletedInput.val(imagePath);
+                    imageContainer.hide();
+                });
+
+                // Remove mobile image button click handler
+                $(document).on('click', '#banners .remove-mobile-image-btn', function() {
+                    const imageContainer = $(this).closest('.position-relative');
+                    const removeInput = $('input[name="remove_mobile_image"]');
+
+                    // Mark mobile image for removal
+                    removeInput.val('1');
                     imageContainer.hide();
                 });
 

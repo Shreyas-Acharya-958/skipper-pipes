@@ -8,7 +8,8 @@ class JalRakshakBanner extends Model
 {
     protected $fillable = [
         'title',
-        'images'
+        'images',
+        'mobile_image'
     ];
 
     protected $casts = [

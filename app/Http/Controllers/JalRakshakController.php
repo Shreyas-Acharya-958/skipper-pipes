@@ -89,6 +89,21 @@ class JalRakshakController extends Controller
             $banner->images = $images;
         }
 
+        // Handle mobile image upload
+        if ($request->hasFile('mobile_image')) {
+            // Delete old mobile image if it exists
+            if ($banner->mobile_image) {
+                Storage::disk('public')->delete($banner->mobile_image);
+            }
+            $banner->mobile_image = $request->file('mobile_image')->store('jal-rakshak/banners', 'public');
+        }
+
+        // Handle mobile image removal
+        if ($request->remove_mobile_image && $banner->mobile_image) {
+            Storage::disk('public')->delete($banner->mobile_image);
+            $banner->mobile_image = null;
+        }
+
         // Handle image deletions
         if ($request->has('deleted_images')) {
             foreach ($request->deleted_images as $deletedImage) {

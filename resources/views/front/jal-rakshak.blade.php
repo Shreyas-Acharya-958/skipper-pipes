@@ -348,11 +348,17 @@
                 @foreach ($banners->images as $index => $image)
                     <img src="{{ asset('storage/' . $image) }}" class="w-100 lp-hero-banner"
                         alt="{{ $banners->title ?? 'Hero Banner' }}">
-                    @if ($index === 0)
-                        <img src="{{ asset('storage/' . $image) }}" class="w-100 lp-hero-mobile-banner"
-                            alt="{{ $banners->title ?? 'Hero Banner' }}">
-                    @endif
                 @endforeach
+
+                {{-- Mobile Banner --}}
+                @if ($banners->mobile_image)
+                    <img src="{{ asset('storage/' . $banners->mobile_image) }}" class="w-100 lp-hero-mobile-banner"
+                        alt="{{ $banners->title ?? 'Mobile Hero Banner' }}">
+                @elseif (isset($banners->images) && count($banners->images) > 0)
+                    {{-- Fallback to first desktop image if no mobile image is set --}}
+                    <img src="{{ asset('storage/' . $banners->images[0]) }}" class="w-100 lp-hero-mobile-banner"
+                        alt="{{ $banners->title ?? 'Mobile Hero Banner' }}">
+                @endif
             </div>
         </section>
     @endif
