@@ -433,7 +433,7 @@
                     @endforeach
                 </div>
             </div>
-            @if (true)
+            @if (false)
                 @if (isset($gallery) && $gallery->count() > 0)
                     <!-- photo gallery -->
                     <div class="container">
