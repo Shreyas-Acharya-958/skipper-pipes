@@ -596,8 +596,9 @@
                                         required>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <label for="email">Email <span>*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        required>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="phone">Mobile Number <span>*</span></label>
@@ -764,6 +765,7 @@
                         maxlength: 255
                     },
                     email: {
+                        required: true,
                         email: true,
                         maxlength: 255
                     },
@@ -783,6 +785,7 @@
                         maxlength: "Name cannot exceed 255 characters"
                     },
                     email: {
+                        required: "Please enter your email address",
                         email: "Please enter a valid email address",
                         maxlength: "Email cannot exceed 255 characters"
                     },
