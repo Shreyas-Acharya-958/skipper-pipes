@@ -732,7 +732,7 @@
                         tinymce.get(id).remove();
                     }
 
-                    // Initialize TinyMCE for all tinymce elements
+                    // Initialize TinyMCE for all tinymce elements - always enabled
                     tinymce.init({
                         selector: `#${id}`,
                         height: 200,
@@ -750,7 +750,6 @@
                         force_p_newlines: false,
                         forced_root_block: '',
                         keep_styles: true,
-                        readonly: $(this).prop('readonly'),
                         setup: function(editor) {
                             editor.on('change', function() {
                                 editor.save();
@@ -760,14 +759,6 @@
                                 const textarea = $('#' + id);
                                 if (textarea.length && textarea.val()) {
                                     editor.setContent(textarea.val());
-                                }
-
-                                // Set readonly state based on textarea readonly attribute
-                                const isReadonly = textarea.prop('readonly');
-                                if (isReadonly) {
-                                    editor.mode.set('readonly');
-                                } else {
-                                    editor.mode.set('design');
                                 }
                             });
                         }
@@ -806,19 +797,7 @@
                     form.find('.add-item-btn').show();
                     $(this).hide();
 
-                    // Enable TinyMCE editors
-                    form.find('.tinymce').each(function() {
-                        const id = $(this).attr('id');
-                        if (id) {
-                            const editor = tinymce.get(id);
-                            if (editor) {
-                                editor.mode.set('design');
-                                editor.setMode('design');
-                            }
-                        }
-                    });
-
-                    setTimeout(initJalRakshakTinyMCE, 200); // Re-init TinyMCE on edit
+                    // TinyMCE editors are always enabled, no need to modify them
                 });
 
                 // Remove image button click handler for banners and gallery
