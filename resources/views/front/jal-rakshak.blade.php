@@ -378,7 +378,7 @@
         <!-- About the Initiative Section -->
         <section id="initiative" class="default-padding">
             <div class="container p-md-0">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes - Jal Rakshak</h4>
@@ -386,7 +386,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center">
+                <div class="row align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
                     <div class="col-md-6 pr-md-5">
                         @if ($initiative->image)
                             <img src="{{ asset('storage/' . $initiative->image) }}" class="shadow" alt="">
@@ -409,7 +409,7 @@
         <!-- Offline Acitivies Section -->
         <section id="activities" class="default-padding bg-gray">
             <div class="container p-md-0">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes - Jal Rakshak</h4>
@@ -419,8 +419,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($activities as $activity)
-                        <div class="col-md-4 mb-4 mb-md-0">
+                    @foreach ($activities as $index => $activity)
+                        <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-up" data-aos-duration="1000"
+                            data-aos-delay="{{ 150 + $index * 150 }}">
                             <div class="lp-card">
                                 @if ($activity->image)
                                     <img src="{{ asset('storage/' . $activity->image) }}" class="shadow"
@@ -437,7 +438,7 @@
                 @if (isset($gallery) && $gallery->count() > 0)
                     <!-- photo gallery -->
                     <div class="container">
-                        <div class="row mt-5">
+                        <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
                             <div class="col-12 text-center">
                                 <div class="site-heading headings">
                                     <!-- <p class="lp-site-sub_heading">Photo Gallery</p> -->
@@ -446,7 +447,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="gallery">
+                        <div class="row" id="gallery" data-aos="fade-up" data-aos-duration="1000"
+                            data-aos-delay="150">
                             @foreach ($gallery as $index => $galleryItem)
                                 @if ($galleryItem->image)
                                     <div
@@ -485,7 +487,7 @@
 
                 <!-- Youtube videos -->
                 <div class="container">
-                    <div class="row mt-5">
+                    <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
                         <div class="col-12 text-center">
                             <div class="site-heading headings">
                                 <h3 class="lp-h3-heading">Videos</h3>
@@ -493,7 +495,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
                         @foreach ($videos as $index => $video)
                             <div
                                 class="col-md-6 col-lg-4 p-3 p-md-2 video-item-wrapper {{ $index >= 6 ? 'video-hidden' : '' }}">
@@ -518,7 +520,7 @@
     @if (isset($conservations) && $conservations->count() > 0)
         <section id="facts" class="default-padding">
             <div class="container p-md-0">
-                <div class="row">
+                <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4>Skipper Pipes - Jal Rakshak</h4>
@@ -528,7 +530,8 @@
                 </div>
 
                 @foreach ($conservations as $key => $item)
-                    <div class="row align-items-center pt-5 mt-4">
+                    <div class="row align-items-center pt-5 mt-4" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="{{ 300 + $key * 200 }}">
                         {{-- Left Image --}}
                         <div class="col-md-6 {{ $key % 2 == 0 ? 'pr-md-5 order-1' : 'pl-md-5 order-2' }}">
                             @if ($item->image)
@@ -561,7 +564,7 @@
         <!-- Get Involved Section -->
         <section id="Involved" class=" my-md-5 pb-5 jal-rakshak-cta">
             <div class="container p-md-0 bg-primary-blue">
-                <div class="row pt-5">
+                <div class="row pt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
                             <h4 class="text-white">Skipper Pipes - Jal Rakshak</h4>
@@ -569,7 +572,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center">
+                <div class="row align-items-center" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="300">
                     <div class="col-md-6">
                         @if ($involvement->image)
                             <img src="{{ asset('storage/' . $involvement->image) }}" alt="">
@@ -860,6 +864,15 @@
                     return false; // Prevent form submission
                 }
             });
+        });
+    </script>
+
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
         });
     </script>
 </body>
