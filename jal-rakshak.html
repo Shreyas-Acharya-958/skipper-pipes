@@ -269,6 +269,41 @@
             display: none;
         }
     }
+
+
+    /* popup */
+    /* Wrapper */
+    #scrollPopup .popup-form-wrapper {
+    position: relative;
+    overflow: hidden;
+    }
+
+    /* Close Button */
+    #scrollPopup .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: #144372;
+    opacity: 0.8;
+    z-index: 10;
+    }
+
+    #scrollPopup .popup-close:hover {
+    opacity: 1;
+    }
+
+    /* Image Side */
+    #scrollPopup .popup-img img {
+    height: 100%;
+    object-fit: cover;
+    }
+
+    /* Form Side */
+    #scrollPopup .popup-form {
+    background: #fff;
+    }
+
     </style>
 
 </head>
@@ -290,6 +325,48 @@
             <div class="menu-toggle" id="menu-toggle">&#9776;</div>
             </nav>
         </div>
+
+        <!-- popup form -->
+         <!-- Popup Modal -->
+        <div class="modal fade" id="scrollPopup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content popup-form-wrapper">
+            <button type="button" class="close popup-close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <div class="row no-gutters">
+                <!-- Left Image -->
+                <div class="col-md-6 popup-img">
+                <img src="assets/img/lp/Jalraksha_AboutInitiative_579x687.png" class="img-fluid" alt="Popup Image">
+                </div>
+
+                <!-- Right Form -->
+                <div class="col-md-6 p-4 popup-form">
+                <h3 class="mb-3 lp-para-heading">Take A Pledge to Become a Jal Rakshak</h3>
+                <p class="mb-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam voluptatibus neque dignissimos</p>
+                
+                <form>
+                    <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                    <input type="tel" class="form-control" placeholder="Your Phone" required>
+                    </div>
+                    <div class="form-group">
+                    <textarea class="form-control" rows="3" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn jal-rakshak-btn-secondary">Submit</button>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
     </header>
 
 
@@ -629,5 +706,23 @@
                 });
             });
         </script>
+
+        <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let popupShown = false;
+
+    window.addEventListener("scroll", function () {
+      let scrollTop = window.scrollY;
+      let docHeight = document.body.scrollHeight - window.innerHeight;
+      let scrolled = (scrollTop / docHeight) * 100;
+
+      if (scrolled > 15 && !popupShown) {
+        $("#scrollPopup").modal("show");
+        popupShown = true; // prevent multiple triggers
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
