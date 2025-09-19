@@ -251,6 +251,39 @@
             margin-bottom: 0;
         }
 
+        /* popup */
+        /* Wrapper */
+        #scrollPopup .popup-form-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Close Button */
+        #scrollPopup .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 28px;
+            color: #144372;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        #scrollPopup .popup-close:hover {
+            opacity: 1;
+        }
+
+        /* Image Side */
+        #scrollPopup .popup-img img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Form Side */
+        #scrollPopup .popup-form {
+            background: #fff;
+        }
+
         /* Gallery and Video View All functionality */
         .gallery-hidden,
         .video-hidden {
@@ -352,6 +385,53 @@
         </div>
     </header>
 
+    <!-- popup form -->
+    <!-- Popup Modal -->
+    <div class="modal fade" id="scrollPopup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content popup-form-wrapper">
+                <button type="button" class="close popup-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="row no-gutters">
+                    <!-- Left Image -->
+                    <div class="col-md-6 popup-img">
+                        <img src="{{ asset('assets/img/lp/Jalraksha_PopUpForm_579x687.png') }}" class="img-fluid"
+                            alt="Popup Image">
+                    </div>
+
+                    <!-- Right Form -->
+                    <div class="col-md-6 p-4 popup-form">
+                        <h3 class="mb-3 lp-para-heading">Take A Pledge to Become a Jal Rakshak</h3>
+                        <p class="mb-4">Every drop matters—and so does your pledge. Join fellow Jal Rakshaks in
+                            conserving water and protecting our environment.</p>
+
+                        <form action="{{ route('front.jal-rakshak.submission') }}" method="post"
+                            id="popupJalRakshakForm">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" placeholder="Your Name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control" name="phone" placeholder="Your Phone"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" name="water_saving_commitment" placeholder="Your Water-Saving Commitment"></textarea>
+                            </div>
+                            <button type="submit" class="btn jal-rakshak-btn-secondary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @if (isset($banners) && $banners && isset($banners->images) && count($banners->images) > 0)
         <section id="hero-banner-lp">
@@ -386,7 +466,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+                <div class="row align-items-center" data-aos="fade-up" data-aos-duration="1000"
+                    data-aos-delay="150">
                     <div class="col-md-6 pr-md-5">
                         @if ($initiative->image)
                             <img src="{{ asset('storage/' . $initiative->image) }}" class="shadow" alt="">
@@ -876,6 +957,150 @@
             duration: 1000,
             once: true,
             offset: 100
+        });
+    </script>
+
+    <!-- Popup Scroll Trigger Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let popupShown = false;
+
+            window.addEventListener("scroll", function() {
+                let scrollTop = window.scrollY;
+                let docHeight = document.body.scrollHeight - window.innerHeight;
+                let scrolled = (scrollTop / docHeight) * 100;
+
+                if (scrolled > 15 && !popupShown) {
+                    $("#scrollPopup").modal("show");
+                    popupShown = true; // prevent multiple triggers
+                }
+            });
+        });
+    </script>
+
+    <!-- Popup Form Handling -->
+    <script>
+        $(document).ready(function() {
+            // Prevent default form submission
+            $('#popupJalRakshakForm').on('submit', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            $('#popupJalRakshakForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 255
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                        maxlength: 255
+                    },
+                    phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 15
+                    },
+                    water_saving_commitment: {
+                        maxlength: 1000
+                    }
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name",
+                        minlength: "Name must be at least 2 characters long",
+                        maxlength: "Name cannot exceed 255 characters"
+                    },
+                    email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address",
+                        maxlength: "Email cannot exceed 255 characters"
+                    },
+                    phone: {
+                        required: "Please enter your mobile number",
+                        minlength: "Mobile number must be at least 10 digits",
+                        maxlength: "Mobile number cannot exceed 15 characters"
+                    },
+                    water_saving_commitment: {
+                        maxlength: "Commitment cannot exceed 1000 characters"
+                    }
+                },
+                errorElement: 'div',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid').removeClass('is-valid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid').addClass('is-valid');
+                },
+                submitHandler: function(form) {
+                    // Show loading state with SweetAlert
+                    Swal.fire({
+                        title: 'Submitting...',
+                        text: 'Please wait while we process your commitment.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    $.ajax({
+                        url: "{{ route('front.jal-rakshak.submission') }}",
+                        type: "POST",
+                        data: $(form).serialize(),
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: response.message ||
+                                    'Thank you for your commitment to water conservation!',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#FFA800'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    form.reset();
+                                    // Reset form validation
+                                    $('#popupJalRakshakForm').validate()
+                                        .resetForm();
+                                    // Remove any validation classes
+                                    $('#popupJalRakshakForm .form-control')
+                                        .removeClass(
+                                            'is-valid is-invalid');
+                                    // Close the modal
+                                    $('#scrollPopup').modal('hide');
+                                }
+                            });
+                        },
+                        error: function(xhr) {
+                            let message = 'Something went wrong. Please check your inputs.';
+                            if (xhr.responseJSON?.errors) {
+                                message = Object.values(xhr.responseJSON.errors).join(' ');
+                            } else if (xhr.responseJSON?.message) {
+                                message = xhr.responseJSON.message;
+                            }
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: message,
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#dc3545'
+                            });
+                        }
+                    });
+
+                    return false; // Prevent form submission
+                }
+            });
         });
     </script>
 </body>
