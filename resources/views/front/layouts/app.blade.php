@@ -127,6 +127,14 @@
         #scrollPopup .popup-form {
             background: #fff;
         }
+
+        /* Popup CTA Link */
+        .popup-cta-link,
+        .popup-cta-link:hover {
+            color: #144372;
+            text-decoration: underline;
+            display: inline-block;
+        }
     </style>
     @yield('styles')
 </head>
@@ -317,6 +325,8 @@
                         <h3 class="mb-3 lp-para-heading">Take A Pledge to Become a Jal Rakshak</h3>
                         <p class="mb-4">Every drop matters—and so does your pledge. Join fellow Jal Rakshaks in
                             conserving water and protecting our environment.</p>
+                        <a href="https://skipperpipes.in/jal-rakshak" class="mb-3 popup-cta-link">Know more about the
+                            initiative</a>
 
                         <form action="{{ route('front.jal-rakshak.submission') }}" method="post"
                             id="popupJalRakshakForm">
