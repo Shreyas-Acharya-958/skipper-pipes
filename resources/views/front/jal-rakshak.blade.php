@@ -515,41 +515,41 @@
                     @endforeach
                 </div>
             </div>
-            @if (false)
-                @if (isset($gallery) && $gallery->count() > 0)
-                    <!-- photo gallery -->
-                    <div class="container">
-                        <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="col-12 text-center">
-                                <div class="site-heading headings">
-                                    <!-- <p class="lp-site-sub_heading">Photo Gallery</p> -->
-                                    <h3 class="lp-h3-heading">Photo Gallery</h3>
-                                    <p>Active participation from the community.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" id="gallery" data-aos="fade-up" data-aos-duration="1000"
-                            data-aos-delay="150">
-                            @foreach ($gallery as $index => $galleryItem)
-                                @if ($galleryItem->image)
-                                    <div
-                                        class="col-md-4 p-3 gallery-item-wrapper {{ $index >= 6 ? 'gallery-hidden' : '' }}">
-                                        <img src="{{ asset('storage/' . $galleryItem->image) }}"
-                                            class="img-fluid gallery-item"
-                                            alt="{{ $galleryItem->title ?? 'Gallery Image' }}">
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
-                        @if ($gallery->count() > 6)
-                            <div class="col-md-12 text-center mt-4">
-                                <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllGallery">View
-                                    All</button>
-                            </div>
-                        @endif
-                    </div>
-                @endif
 
+            @if (isset($gallery) && $gallery->count() > 0)
+                <!-- photo gallery -->
+                <div class="container">
+                    <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="col-12 text-center">
+                            <div class="site-heading headings">
+                                <!-- <p class="lp-site-sub_heading">Photo Gallery</p> -->
+                                <h3 class="lp-h3-heading">Photo Gallery</h3>
+                                <p>Active participation from the community.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="gallery" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="150">
+                        @foreach ($gallery as $index => $galleryItem)
+                            @if ($galleryItem->image)
+                                <div
+                                    class="col-md-4 p-3 gallery-item-wrapper {{ $index >= 6 ? 'gallery-hidden' : '' }}">
+                                    <img src="{{ asset('storage/' . $galleryItem->image) }}"
+                                        class="img-fluid gallery-item"
+                                        alt="{{ $galleryItem->title ?? 'Gallery Image' }}">
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    @if ($gallery->count() > 6)
+                        <div class="col-md-12 text-center mt-4">
+                            <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllGallery">View
+                                All</button>
+                        </div>
+                    @endif
+                </div>
+            @endif
+            @if (false)
                 <!-- Lightbox Modal -->
                 <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -564,37 +564,37 @@
                     </div>
                 </div>
 
-            @endif
 
-            <!-- Youtube videos -->
-            <div class="container">
-                <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="col-12 text-center">
-                        <div class="site-heading headings">
-                            <h3 class="lp-h3-heading">Videos</h3>
-                            <p>Active participation from the community.</p>
+
+                <!-- Youtube videos -->
+                <div class="container">
+                    <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="col-12 text-center">
+                            <div class="site-heading headings">
+                                <h3 class="lp-h3-heading">Videos</h3>
+                                <p>Active participation from the community.</p>
+                            </div>
                         </div>
                     </div>
+                    <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+                        @foreach ($videos as $index => $video)
+                            <div
+                                class="col-md-6 col-lg-4 p-3 p-md-2 video-item-wrapper {{ $index >= 6 ? 'video-hidden' : '' }}">
+                                <iframe width="100%" height="315" src="{{ $video->video_url }}"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        @endforeach
+                        @if ($videos->count() > 6)
+                            <div class="col-md-12 text-center mt-4">
+                                <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllVideos">View
+                                    All</button>
+                            </div>
+                        @endif
+                    </div>
                 </div>
-                <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
-                    @foreach ($videos as $index => $video)
-                        <div
-                            class="col-md-6 col-lg-4 p-3 p-md-2 video-item-wrapper {{ $index >= 6 ? 'video-hidden' : '' }}">
-                            <iframe width="100%" height="315" src="{{ $video->video_url }}"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                    @endforeach
-                    @if ($videos->count() > 6)
-                        <div class="col-md-12 text-center mt-4">
-                            <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllVideos">View
-                                All</button>
-                        </div>
-                    @endif
-                </div>
-            </div>
-
+            @endif
         </section>
     @endif
 
