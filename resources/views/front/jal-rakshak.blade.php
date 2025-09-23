@@ -564,37 +564,37 @@
                     </div>
                 </div>
 
+            @endif
 
-
-                <!-- Youtube videos -->
-                <div class="container">
-                    <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="col-12 text-center">
-                            <div class="site-heading headings">
-                                <h3 class="lp-h3-heading">Videos</h3>
-                                <p>Active participation from the community.</p>
-                            </div>
+            <!-- Youtube videos -->
+            <div class="container">
+                <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="col-12 text-center">
+                        <div class="site-heading headings">
+                            <h3 class="lp-h3-heading">Videos</h3>
+                            <p>Active participation from the community.</p>
                         </div>
                     </div>
-                    <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
-                        @foreach ($videos as $index => $video)
-                            <div
-                                class="col-md-6 col-lg-4 p-3 p-md-2 video-item-wrapper {{ $index >= 6 ? 'video-hidden' : '' }}">
-                                <iframe width="100%" height="315" src="{{ $video->video_url }}"
-                                    title="YouTube video player" frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        @endforeach
-                        @if ($videos->count() > 6)
-                            <div class="col-md-12 text-center mt-4">
-                                <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllVideos">View
-                                    All</button>
-                            </div>
-                        @endif
-                    </div>
                 </div>
-            @endif
+                <div class="row" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">
+                    @foreach ($videos as $index => $video)
+                        <div
+                            class="col-md-6 col-lg-4 p-3 p-md-2 video-item-wrapper {{ $index >= 6 ? 'video-hidden' : '' }}">
+                            <iframe width="100%" height="315" src="{{ $video->video_url }}"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    @endforeach
+                    @if ($videos->count() > 6)
+                        <div class="col-md-12 text-center mt-4">
+                            <button type="button" class="btn jal-rakshak-btn-secondary" id="viewAllVideos">View
+                                All</button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
         </section>
     @endif
 
