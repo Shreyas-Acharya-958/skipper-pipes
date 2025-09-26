@@ -456,7 +456,9 @@ class JalRakshakController extends Controller
             'total_chunks' => 'required|integer',
             'file_name' => 'required|string',
             'file_size' => 'required|integer',
-            'upload_id' => 'required|string'
+            'upload_id' => 'required|string',
+            'title' => 'nullable|string',
+            'auto_save' => 'nullable|boolean'
         ]);
 
         $chunk = $request->file('chunk');
@@ -465,6 +467,8 @@ class JalRakshakController extends Controller
         $fileName = $request->file_name;
         $fileSize = $request->file_size;
         $uploadId = $request->upload_id;
+        $title = $request->title ?? '';
+        $autoSave = $request->auto_save ?? false;
 
         // Create temporary directory for this upload
         $tempDir = storage_path('app/temp/video_uploads/' . $uploadId);
@@ -509,12 +513,34 @@ class JalRakshakController extends Controller
             // Return the final file path relative to storage/app/public
             $relativePath = 'jal-rakshak/videos/' . basename($finalPath);
 
-            return response()->json([
+            $response = [
                 'success' => true,
                 'message' => 'File uploaded successfully',
                 'file_path' => $relativePath,
                 'upload_complete' => true
-            ]);
+            ];
+
+            // Auto-save video record if requested
+            if ($autoSave) {
+                try {
+                    // Get the next sequence number
+                    $nextSequence = JalRakshakVideo::max('sequence') + 1;
+
+                    $video = JalRakshakVideo::create([
+                        'video_url' => null,
+                        'video_file' => $relativePath,
+                        'title' => $title,
+                        'sequence' => $nextSequence
+                    ]);
+
+                    $response['video_id'] = $video->id;
+                    $response['message'] = 'File uploaded and saved successfully';
+                } catch (\Exception $e) {
+                    $response['message'] = 'File uploaded but failed to save record: ' . $e->getMessage();
+                }
+            }
+
+            return response()->json($response);
         }
 
         return response()->json([

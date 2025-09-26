@@ -1253,7 +1253,7 @@
             });
 
             // Chunked Video Upload Functionality
-            function uploadVideoInChunks(file, progressCallback, successCallback, errorCallback) {
+            function uploadVideoInChunks(file, title, progressCallback, successCallback, errorCallback) {
                 const chunkSize = 2 * 1024 * 1024; // 2MB chunks
                 const totalChunks = Math.ceil(file.size / chunkSize);
                 const uploadId = 'upload_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -1272,6 +1272,8 @@
                     formData.append('file_name', file.name);
                     formData.append('file_size', file.size);
                     formData.append('upload_id', uploadId);
+                    formData.append('title', title);
+                    formData.append('auto_save', '1');
                     formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
 
                     $.ajax({
@@ -1285,7 +1287,7 @@
                                 uploadedChunks++;
 
                                 if (response.upload_complete) {
-                                    successCallback(response.file_path);
+                                    successCallback(response.file_path, response.video_id);
                                 } else {
                                     const progress = (uploadedChunks / totalChunks) * 100;
                                     progressCallback(progress);
@@ -1320,6 +1322,9 @@
                 const $input = $(this);
                 const $container = $input.closest('.section-item');
 
+                // Get the title from the title input field
+                const title = $container.find('input[name*="[title]"]').val() || '';
+
                 // Create progress bar
                 let $progressBar = $container.find('.upload-progress');
                 if ($progressBar.length === 0) {
@@ -1343,26 +1348,34 @@
 
                 uploadVideoInChunks(
                     file,
+                    title,
                     function(progress) {
                         // Progress callback
                         $progressBar.find('.progress-bar').css('width', progress + '%');
                         $progressBar.find('.upload-status').text(`Uploading... ${Math.round(progress)}%`);
                     },
-                    function(filePath) {
+                    function(filePath, videoId) {
                         // Success callback
                         $progressBar.find('.progress-bar').css('width', '100%');
-                        $progressBar.find('.upload-status').text('Upload completed!');
+                        $progressBar.find('.upload-status').text('Upload completed and saved!');
 
-                        // Create hidden input to store the file path
-                        $input.after(
-                            `<input type="hidden" name="${$input.attr('name').replace('[video_file]', '[uploaded_file_path]')}" value="${filePath}">`
-                        );
+                        // If video was auto-saved, reload the page to show the new video
+                        if (videoId) {
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            // Create hidden input to store the file path for manual save
+                            $input.after(
+                                `<input type="hidden" name="${$input.attr('name').replace('[video_file]', '[uploaded_file_path]')}" value="${filePath}">`
+                            );
 
-                        // Show success message
-                        setTimeout(() => {
-                            $progressBar.hide();
-                            $input.prop('disabled', false);
-                        }, 2000);
+                            // Show success message
+                            setTimeout(() => {
+                                $progressBar.hide();
+                                $input.prop('disabled', false);
+                            }, 2000);
+                        }
                     },
                     function(error) {
                         // Error callback
