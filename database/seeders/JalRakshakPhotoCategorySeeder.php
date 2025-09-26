@@ -16,27 +16,19 @@ class JalRakshakPhotoCategorySeeder extends Seeder
         $categories = [
             [
                 'name' => 'BHARAT CHAKRA',
-                'slug' => 'bharat-chakra',
-                'description' => 'Bharat Chakra category',
-                'is_active' => true
+                'description' => 'Bharat Chakra category'
             ],
             [
                 'name' => 'SAMAJ SEBI',
-                'slug' => 'samaj-sebi',
-                'description' => 'Samaj Sebi category',
-                'is_active' => true
+                'description' => 'Samaj Sebi category'
             ],
             [
                 'name' => 'MUDIALI CLUB',
-                'slug' => 'mudiali-club',
-                'description' => 'Mudiali Club category',
-                'is_active' => true
+                'description' => 'Mudiali Club category'
             ],
             [
                 'name' => 'COMMUNITY EVENTS',
-                'slug' => 'community-events',
-                'description' => 'Community Events category',
-                'is_active' => true
+                'description' => 'Community Events category'
             ],
         ];
 

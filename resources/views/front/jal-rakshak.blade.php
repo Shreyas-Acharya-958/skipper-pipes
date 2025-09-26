@@ -559,14 +559,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="gallery" data-aos="fade-up" data-aos-duration="1000"
-                        data-aos-delay="150">
+                    <!-- Filter buttons -->
+                    @if (isset($categories) && $categories->count() > 0)
+                        <div class="row justify-content-center text-center mb-3" data-aos="fade-up"
+                            data-aos-duration="1000" data-aos-delay="150">
+                            <div id="galleryFilter">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                @foreach ($categories as $category)
+                                    <button class="filter-btn"
+                                        data-filter="{{ strtolower(str_replace(' ', '-', $category->name)) }}">{{ $category->name }}</button>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- Gallery Grid -->
+                    <div class="row g-3" id="gallery" data-aos="fade-up" data-aos-duration="1000"
+                        data-aos-delay="200">
                         @foreach ($gallery as $index => $galleryItem)
                             @if ($galleryItem->image)
                                 <div
-                                    class="col-md-4 p-3 gallery-item-wrapper {{ $index >= 6 ? 'gallery-hidden' : '' }}">
+                                    class="col-12 col-sm-6 col-lg-4 gallery-item {{ $galleryItem->category ? strtolower(str_replace(' ', '-', $galleryItem->category->name)) : 'uncategorized' }} {{ $index >= 6 ? 'gallery-hidden' : '' }}">
                                     <img src="{{ asset('storage/' . $galleryItem->image) }}"
-                                        class="img-fluid gallery-item"
+                                        class="img-fluid gallery-img"
                                         alt="{{ $galleryItem->title ?? 'Gallery Image' }}">
                                 </div>
                             @endif

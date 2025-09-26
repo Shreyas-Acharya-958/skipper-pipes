@@ -520,7 +520,7 @@ class FrontController extends Controller
         $initiative = JalRakshakInitiative::first();
         $activities = JalRakshakActivity::orderBy('sequence', 'asc')->get();
         $gallery = JalRakshakGallery::with('category')->orderBy('sequence', 'asc')->get();
-        $categories = JalRakshakPhotoCategory::where('is_active', true)->orderBy('name', 'asc')->get();
+        $categories = JalRakshakPhotoCategory::orderBy('name', 'asc')->get();
         $videos = JalRakshakVideo::orderBy('sequence', 'asc')->get();
         $conservations = JalRakshakConservation::orderBy('sequence', 'asc')->get();
         $involvement = JalRakshakInvolvement::first();
