@@ -7,12 +7,14 @@ use App\Models\JalRakshakBanner;
 use App\Models\JalRakshakInitiative;
 use App\Models\JalRakshakActivity;
 use App\Models\JalRakshakGallery;
+use App\Models\JalRakshakPhotoCategory;
 use App\Models\JalRakshakVideo;
 use App\Models\JalRakshakConservation;
 use App\Models\JalRakshakInvolvement;
 use App\Models\JalRakshakSeo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class JalRakshakController extends Controller
 {
@@ -22,7 +24,8 @@ class JalRakshakController extends Controller
         $banners = JalRakshakBanner::first();
         $initiative = JalRakshakInitiative::first();
         $activities = JalRakshakActivity::orderBy('sequence', 'asc')->get();
-        $gallery = JalRakshakGallery::orderBy('sequence', 'asc')->get();
+        $gallery = JalRakshakGallery::with('category')->orderBy('sequence', 'asc')->get();
+        $categories = JalRakshakPhotoCategory::where('is_active', true)->orderBy('name', 'asc')->get();
         $videos = JalRakshakVideo::orderBy('sequence', 'asc')->get();
         $conservations = JalRakshakConservation::orderBy('sequence', 'asc')->get();
         $involvement = JalRakshakInvolvement::first();
@@ -34,6 +37,7 @@ class JalRakshakController extends Controller
             'initiative',
             'activities',
             'gallery',
+            'categories',
             'videos',
             'conservations',
             'involvement',
@@ -198,14 +202,13 @@ class JalRakshakController extends Controller
         // Save new gallery items
         if ($request->has('gallery')) {
             foreach ($request->gallery as $index => $galleryData) {
-                if (!empty($galleryData['image_file']) || !empty($galleryData['title'])) {
+                if (!empty($galleryData['image_file']) || !empty($galleryData['category_id'])) {
                     $galleryItem = null;
 
                     // If this is an existing gallery item (has ID), update it
                     if (isset($galleryData['id']) && $galleryData['id']) {
                         $galleryItem = $existingGallery->get($galleryData['id']);
                         if ($galleryItem) {
-                            $galleryItem->title = $galleryData['title'] ?? '';
                             $galleryItem->sequence = $index;
                         }
                     }
@@ -213,8 +216,14 @@ class JalRakshakController extends Controller
                     // If no existing gallery item or ID not found, create new one
                     if (!$galleryItem) {
                         $galleryItem = new JalRakshakGallery();
-                        $galleryItem->title = $galleryData['title'] ?? '';
                         $galleryItem->sequence = $index;
+                    }
+
+                    // Handle category assignment
+                    if (isset($galleryData['category_id']) && !empty($galleryData['category_id'])) {
+                        $galleryItem->category_id = $galleryData['category_id'];
+                    } else {
+                        $galleryItem->category_id = null;
                     }
 
                     // Handle image upload
@@ -335,5 +344,46 @@ class JalRakshakController extends Controller
         $seo->save();
 
         return redirect()->back()->with('success', 'SEO settings updated successfully');
+    }
+
+    public function saveCategory(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        if ($request->id) {
+            // Update existing category
+            $category = JalRakshakPhotoCategory::findOrFail($request->id);
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->slug = Str::slug($request->name);
+            $category->save();
+        } else {
+            // Create new category
+            JalRakshakPhotoCategory::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'slug' => Str::slug($request->name),
+                'is_active' => true
+            ]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Category saved successfully']);
+    }
+
+    public function deleteCategory(Request $request)
+    {
+        $category = JalRakshakPhotoCategory::findOrFail($request->id);
+
+        // Check if category has associated galleries
+        if ($category->galleries()->count() > 0) {
+            return response()->json(['success' => false, 'message' => 'Cannot delete category with associated galleries']);
+        }
+
+        $category->delete();
+
+        return response()->json(['success' => true, 'message' => 'Category deleted successfully']);
     }
 }

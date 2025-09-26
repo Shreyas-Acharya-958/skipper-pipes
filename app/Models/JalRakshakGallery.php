@@ -9,6 +9,12 @@ class JalRakshakGallery extends Model
     protected $fillable = [
         'image',
         'title',
-        'sequence'
+        'sequence',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(JalRakshakPhotoCategory::class, 'category_id');
+    }
 }

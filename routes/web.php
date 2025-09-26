@@ -185,6 +185,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('jal-rakshak/initiative/save', [JalRakshakController::class, 'saveInitiative'])->name('jal-rakshak.initiative.save');
     Route::post('jal-rakshak/activities/save', [JalRakshakController::class, 'saveActivities'])->name('jal-rakshak.activities.save');
     Route::post('jal-rakshak/gallery/save', [JalRakshakController::class, 'saveGallery'])->name('jal-rakshak.gallery.save');
+    Route::post('jal-rakshak/categories/save', [JalRakshakController::class, 'saveCategory'])->name('jal-rakshak.categories.save');
+    Route::post('jal-rakshak/categories/delete', [JalRakshakController::class, 'deleteCategory'])->name('jal-rakshak.categories.delete');
     Route::post('jal-rakshak/videos/save', [JalRakshakController::class, 'saveVideos'])->name('jal-rakshak.videos.save');
     Route::post('jal-rakshak/conservations/save', [JalRakshakController::class, 'saveConservations'])->name('jal-rakshak.conservations.save');
     Route::post('jal-rakshak/involvement/save', [JalRakshakController::class, 'saveInvolvement'])->name('jal-rakshak.involvement.save');

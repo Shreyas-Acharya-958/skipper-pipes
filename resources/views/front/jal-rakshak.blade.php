@@ -180,6 +180,37 @@
             color: #144372;
         }
 
+        /* Photo gallery filter styles */
+        .gallery-item {
+            margin-bottom: 30px;
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            margin: 5px;
+            padding: 8px 15px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #144372;
+            color: #fff;
+        }
+
+        .filter-btn:hover {
+            background: #144372;
+            color: #fff;
+        }
+
+        /* Hide filtered items */
+        .gallery-item.hide {
+            display: none !important;
+        }
+
         .site-heading h4.text-white {
             color: white !important;
 
@@ -729,33 +760,52 @@
     {{-- <script src="{{ asset('assets/js/main.js') }}"></script> --}}
 
     <script>
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const lightboxModal = $('#lightboxModal');
-        const lightboxImage = document.getElementById('lightboxImage');
-        let currentIndex = 0;
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const galleryItems = document.querySelectorAll(".gallery-item");
+            const lightboxModal = $('#lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            let currentIndex = -1;
+            const images = document.querySelectorAll(".gallery-img");
 
-        function showImage(index) {
-            if (index < 0) index = galleryItems.length - 1;
-            if (index >= galleryItems.length) index = 0;
-            currentIndex = index;
-            lightboxImage.src = galleryItems[currentIndex].src;
-            lightboxModal.modal('show');
-        }
+            // Filtering functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    filterBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
 
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                showImage(index);
+                    const filter = btn.getAttribute("data-filter");
+                    galleryItems.forEach(item => {
+                        if (filter === "all" || item.classList.contains(filter)) {
+                            item.classList.remove("hide");
+                        } else {
+                            item.classList.add("hide");
+                        }
+                    });
+                });
             });
-        });
 
-        document.getElementById('prevImage').addEventListener('click', (e) => {
-            e.preventDefault();
-            showImage(currentIndex - 1);
-        });
+            // Lightbox functionality
+            images.forEach((img, index) => {
+                img.addEventListener("click", () => {
+                    currentIndex = index;
+                    lightboxImage.src = img.src;
+                    lightboxModal.modal('show');
+                });
+            });
 
-        document.getElementById('nextImage').addEventListener('click', (e) => {
-            e.preventDefault();
-            showImage(currentIndex + 1);
+            // Lightbox navigation
+            document.getElementById('prevImage').addEventListener('click', (e) => {
+                e.preventDefault();
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                lightboxImage.src = images[currentIndex].src;
+            });
+
+            document.getElementById('nextImage').addEventListener('click', (e) => {
+                e.preventDefault();
+                currentIndex = (currentIndex + 1) % images.length;
+                lightboxImage.src = images[currentIndex].src;
+            });
         });
     </script>
 

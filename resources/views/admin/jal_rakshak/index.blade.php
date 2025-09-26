@@ -369,9 +369,14 @@
                             <input type="hidden" name="active_tab" value="#gallery">
 
                             <div class="d-flex justify-content-between mb-3">
-                                <button type="button" class="btn btn-warning add-item-btn" style="display: none;">
-                                    <i class="fas fa-plus"></i> Add Gallery Item
-                                </button>
+                                <div>
+                                    <button type="button" class="btn btn-warning add-item-btn" style="display: none;">
+                                        <i class="fas fa-plus"></i> Add Gallery Item
+                                    </button>
+                                    <button type="button" class="btn btn-info add-category-btn" style="display: none;">
+                                        <i class="fas fa-tags"></i> Add Category
+                                    </button>
+                                </div>
                                 <div>
                                     <button type="button" class="btn btn-primary me-2 edit-btn">
                                         <i class="fas fa-edit"></i> Edit
@@ -420,10 +425,19 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Title (Optional)</label>
-                                                        <input type="text" class="form-control"
-                                                            name="gallery[{{ $index }}][title]"
-                                                            value="{{ $galleryItem->title }}" readonly>
+                                                        <label class="form-label">Categories</label>
+                                                        <select class="form-control"
+                                                            name="gallery[{{ $index }}][category_id]" readonly>
+                                                            <option value="">Select Category</option>
+                                                            @if (isset($categories))
+                                                                @foreach ($categories as $category)
+                                                                    <option value="{{ $category->id }}"
+                                                                        @if ($galleryItem->category_id == $category->id) selected @endif>
+                                                                        {{ $category->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -437,6 +451,75 @@
                                 @endif
                             </div>
                         </form>
+
+                        <!-- Category Management Modal -->
+                        <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog"
+                            aria-labelledby="categoryModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="categoryModalLabel">Manage Categories</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="categoryForm">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="category_name">Category Name</label>
+                                                <input type="text" class="form-control" id="category_name"
+                                                    name="name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="category_description">Description (Optional)</label>
+                                                <textarea class="form-control" id="category_description" name="description" rows="3"></textarea>
+                                            </div>
+                                            <input type="hidden" id="category_id" name="id">
+                                        </form>
+
+                                        <!-- Existing Categories List -->
+                                        <div class="mt-4">
+                                            <h6>Existing Categories</h6>
+                                            <div id="categoriesList">
+                                                @if (isset($categories))
+                                                    @foreach ($categories as $category)
+                                                        <div class="d-flex justify-content-between align-items-center border-bottom py-2"
+                                                            data-category-id="{{ $category->id }}">
+                                                            <div>
+                                                                <strong>{{ $category->name }}</strong>
+                                                                @if ($category->description)
+                                                                    <br><small
+                                                                        class="text-muted">{{ $category->description }}</small>
+                                                                @endif
+                                                            </div>
+                                                            <div>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-primary edit-category-btn"
+                                                                    data-category="{{ json_encode($category) }}">
+                                                                    <i class="fas fa-edit"></i>
+                                                                </button>
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-danger delete-category-btn"
+                                                                    data-category-id="{{ $category->id }}">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="saveCategoryBtn">Save
+                                            Category</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Videos Tab -->
@@ -793,8 +876,9 @@
                     form.find('input:not([type="hidden"]), textarea, select').removeAttr(
                         'readonly disabled');
                     form.find('.save-btn, .remove-image-btn, .remove-mobile-image-btn').show();
-                    // Show the add-item-btn if it exists in this form
+                    // Show the add-item-btn and add-category-btn if they exist in this form
                     form.find('.add-item-btn').show();
+                    form.find('.add-category-btn').show();
                     $(this).hide();
 
                     // TinyMCE editors are always enabled, no need to modify them
@@ -952,8 +1036,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Title (Optional)</label>
-                                            <input type="text" class="form-control" name="gallery[${index}][title]">
+                                            <label class="form-label">Categories</label>
+                                            <select class="form-control" name="gallery[${index}][category_id]">
+                                                <option value="">Select Category</option>
+                                                @if (isset($categories))
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -1013,6 +1104,76 @@
                             if (editor && !editor.isHidden()) {
                                 $(this).val(editor.getContent());
                             }
+                        }
+                    });
+                });
+
+                // Category Management Functions
+                $('.add-category-btn').click(function() {
+                    $('#categoryModal').modal('show');
+                    $('#categoryForm')[0].reset();
+                    $('#category_id').val('');
+                    $('#categoryModalLabel').text('Add New Category');
+                });
+
+                $(document).on('click', '.edit-category-btn', function() {
+                    const category = JSON.parse($(this).data('category'));
+                    $('#category_name').val(category.name);
+                    $('#category_description').val(category.description);
+                    $('#category_id').val(category.id);
+                    $('#categoryModalLabel').text('Edit Category');
+                    $('#categoryModal').modal('show');
+                });
+
+                $(document).on('click', '.delete-category-btn', function() {
+                    if (confirm('Are you sure you want to delete this category?')) {
+                        const categoryId = $(this).data('category-id');
+                        $.ajax({
+                            url: '{{ route('admin.jal-rakshak.categories.delete') }}',
+                            method: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                id: categoryId
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    $(`[data-category-id="${categoryId}"]`).remove();
+                                    // Refresh the page to update category dropdowns
+                                    location.reload();
+                                } else {
+                                    alert('Error deleting category: ' + response.message);
+                                }
+                            },
+                            error: function() {
+                                alert('Error deleting category');
+                            }
+                        });
+                    }
+                });
+
+                $('#saveCategoryBtn').click(function() {
+                    const formData = {
+                        _token: '{{ csrf_token() }}',
+                        name: $('#category_name').val(),
+                        description: $('#category_description').val(),
+                        id: $('#category_id').val()
+                    };
+
+                    $.ajax({
+                        url: '{{ route('admin.jal-rakshak.categories.save') }}',
+                        method: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            if (response.success) {
+                                $('#categoryModal').modal('hide');
+                                // Refresh the page to update category dropdowns
+                                location.reload();
+                            } else {
+                                alert('Error saving category: ' + response.message);
+                            }
+                        },
+                        error: function() {
+                            alert('Error saving category');
                         }
                     });
                 });

@@ -19,6 +19,7 @@ use App\Models\JalRakshakBanner;
 use App\Models\JalRakshakInitiative;
 use App\Models\JalRakshakActivity;
 use App\Models\JalRakshakGallery;
+use App\Models\JalRakshakPhotoCategory;
 use App\Models\JalRakshakVideo;
 use App\Models\JalRakshakConservation;
 use App\Models\JalRakshakInvolvement;
@@ -518,7 +519,8 @@ class FrontController extends Controller
         $banners = JalRakshakBanner::first();
         $initiative = JalRakshakInitiative::first();
         $activities = JalRakshakActivity::orderBy('sequence', 'asc')->get();
-        $gallery = JalRakshakGallery::orderBy('sequence', 'asc')->get();
+        $gallery = JalRakshakGallery::with('category')->orderBy('sequence', 'asc')->get();
+        $categories = JalRakshakPhotoCategory::where('is_active', true)->orderBy('name', 'asc')->get();
         $videos = JalRakshakVideo::orderBy('sequence', 'asc')->get();
         $conservations = JalRakshakConservation::orderBy('sequence', 'asc')->get();
         $involvement = JalRakshakInvolvement::first();
@@ -530,6 +532,7 @@ class FrontController extends Controller
             'initiative',
             'activities',
             'gallery',
+            'categories',
             'videos',
             'conservations',
             'involvement',
