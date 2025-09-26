@@ -251,7 +251,7 @@ class JalRakshakController extends Controller
         // Save new videos
         if ($request->has('videos')) {
             foreach ($request->videos as $index => $videoData) {
-                if (!empty($videoData['video_file']) || !empty($videoData['title'])) {
+                if (!empty($videoData['video_file']) || !empty($videoData['uploaded_file_path']) || !empty($videoData['title'])) {
                     $video = null;
 
                     // If this is an existing video (has ID), update it
@@ -270,7 +270,7 @@ class JalRakshakController extends Controller
                         $video->sequence = $index;
                     }
 
-                    // Handle video file upload
+                    // Handle video file upload (regular upload)
                     if (isset($videoData['video_file']) && $videoData['video_file']) {
                         // Delete old video file if exists
                         if ($video->video_file) {
@@ -281,6 +281,17 @@ class JalRakshakController extends Controller
                         $fileName = time() . '_' . $videoFile->getClientOriginalName();
                         $videoPath = $videoFile->storeAs('jal-rakshak/videos', $fileName, 'public');
                         $video->video_file = $videoPath;
+                        $video->video_url = null; // Set to null since we're using video_file now
+                    }
+
+                    // Handle chunked upload file path
+                    if (isset($videoData['uploaded_file_path']) && $videoData['uploaded_file_path']) {
+                        // Delete old video file if exists
+                        if ($video->video_file) {
+                            Storage::disk('public')->delete($video->video_file);
+                        }
+
+                        $video->video_file = $videoData['uploaded_file_path'];
                         $video->video_url = null; // Set to null since we're using video_file now
                     }
 
@@ -435,5 +446,107 @@ class JalRakshakController extends Controller
         $category->delete();
 
         return response()->json(['success' => true, 'message' => 'Category deleted successfully']);
+    }
+
+    public function uploadVideoChunk(Request $request)
+    {
+        $request->validate([
+            'chunk' => 'required|file',
+            'chunk_index' => 'required|integer',
+            'total_chunks' => 'required|integer',
+            'file_name' => 'required|string',
+            'file_size' => 'required|integer',
+            'upload_id' => 'required|string'
+        ]);
+
+        $chunk = $request->file('chunk');
+        $chunkIndex = $request->chunk_index;
+        $totalChunks = $request->total_chunks;
+        $fileName = $request->file_name;
+        $fileSize = $request->file_size;
+        $uploadId = $request->upload_id;
+
+        // Create temporary directory for this upload
+        $tempDir = storage_path('app/temp/video_uploads/' . $uploadId);
+        if (!file_exists($tempDir)) {
+            mkdir($tempDir, 0755, true);
+        }
+
+        // Clean up old temp directories (older than 1 hour)
+        $this->cleanupOldTempDirectories();
+
+        // Save chunk
+        $chunkPath = $tempDir . '/chunk_' . $chunkIndex;
+        $chunk->move($tempDir, 'chunk_' . $chunkIndex);
+
+        // Check if this is the last chunk
+        if ($chunkIndex == $totalChunks - 1) {
+            // Combine all chunks
+            $finalPath = storage_path('app/public/jal-rakshak/videos/' . time() . '_' . $fileName);
+
+            // Ensure the videos directory exists
+            $videosDir = dirname($finalPath);
+            if (!file_exists($videosDir)) {
+                mkdir($videosDir, 0755, true);
+            }
+
+            $finalFile = fopen($finalPath, 'wb');
+
+            for ($i = 0; $i < $totalChunks; $i++) {
+                $chunkFile = $tempDir . '/chunk_' . $i;
+                if (file_exists($chunkFile)) {
+                    $chunkData = file_get_contents($chunkFile);
+                    fwrite($finalFile, $chunkData);
+                    unlink($chunkFile); // Delete chunk after writing
+                }
+            }
+
+            fclose($finalFile);
+
+            // Clean up temp directory
+            rmdir($tempDir);
+
+            // Return the final file path relative to storage/app/public
+            $relativePath = 'jal-rakshak/videos/' . basename($finalPath);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'File uploaded successfully',
+                'file_path' => $relativePath,
+                'upload_complete' => true
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Chunk uploaded successfully',
+            'upload_complete' => false,
+            'progress' => round(($chunkIndex + 1) / $totalChunks * 100, 2)
+        ]);
+    }
+
+    private function cleanupOldTempDirectories()
+    {
+        $tempBaseDir = storage_path('app/temp/video_uploads');
+        if (!file_exists($tempBaseDir)) {
+            return;
+        }
+
+        $directories = glob($tempBaseDir . '/*', GLOB_ONLYDIR);
+        $oneHourAgo = time() - 3600; // 1 hour ago
+
+        foreach ($directories as $dir) {
+            if (filemtime($dir) < $oneHourAgo) {
+                // Remove all files in directory
+                $files = glob($dir . '/*');
+                foreach ($files as $file) {
+                    if (is_file($file)) {
+                        unlink($file);
+                    }
+                }
+                // Remove directory
+                rmdir($dir);
+            }
+        }
     }
 }

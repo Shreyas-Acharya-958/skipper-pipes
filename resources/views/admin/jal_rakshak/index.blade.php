@@ -1251,6 +1251,128 @@
                     });
                 });
             });
+
+            // Chunked Video Upload Functionality
+            function uploadVideoInChunks(file, progressCallback, successCallback, errorCallback) {
+                const chunkSize = 2 * 1024 * 1024; // 2MB chunks
+                const totalChunks = Math.ceil(file.size / chunkSize);
+                const uploadId = 'upload_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                let uploadedChunks = 0;
+
+                function uploadChunk(chunkIndex) {
+                    const start = chunkIndex * chunkSize;
+                    const end = Math.min(start + chunkSize, file.size);
+                    const chunk = file.slice(start, end);
+
+                    const formData = new FormData();
+                    formData.append('chunk', chunk);
+                    formData.append('chunk_index', chunkIndex);
+                    formData.append('total_chunks', totalChunks);
+                    formData.append('file_name', file.name);
+                    formData.append('file_size', file.size);
+                    formData.append('upload_id', uploadId);
+                    formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+
+                    $.ajax({
+                        url: '{{ route('admin.jal-rakshak.videos.upload-chunk') }}',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            if (response.success) {
+                                uploadedChunks++;
+
+                                if (response.upload_complete) {
+                                    successCallback(response.file_path);
+                                } else {
+                                    const progress = (uploadedChunks / totalChunks) * 100;
+                                    progressCallback(progress);
+                                    uploadChunk(chunkIndex + 1);
+                                }
+                            } else {
+                                errorCallback('Upload failed: ' + response.message);
+                            }
+                        },
+                        error: function(xhr) {
+                            errorCallback('Upload failed: ' + xhr.responseText);
+                        }
+                    });
+                }
+
+                uploadChunk(0);
+            }
+
+            // Override video file input change event
+            $(document).on('change', '.video-file-input', function() {
+                const file = this.files[0];
+                if (!file) return;
+
+                // Check file size (optional - you can set a limit)
+                const maxSize = 100 * 1024 * 1024; // 100MB
+                if (file.size > maxSize) {
+                    alert('File size too large. Maximum allowed size is 100MB.');
+                    this.value = '';
+                    return;
+                }
+
+                const $input = $(this);
+                const $container = $input.closest('.section-item');
+
+                // Create progress bar
+                let $progressBar = $container.find('.upload-progress');
+                if ($progressBar.length === 0) {
+                    $progressBar = $(`
+                        <div class="upload-progress mt-2" style="display: none;">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <small class="upload-status text-muted">Uploading...</small>
+                        </div>
+                    `);
+                    $input.after($progressBar);
+                }
+
+                // Show progress bar
+                $progressBar.show();
+                $progressBar.find('.upload-status').text('Uploading...');
+
+                // Disable input during upload
+                $input.prop('disabled', true);
+
+                uploadVideoInChunks(
+                    file,
+                    function(progress) {
+                        // Progress callback
+                        $progressBar.find('.progress-bar').css('width', progress + '%');
+                        $progressBar.find('.upload-status').text(`Uploading... ${Math.round(progress)}%`);
+                    },
+                    function(filePath) {
+                        // Success callback
+                        $progressBar.find('.progress-bar').css('width', '100%');
+                        $progressBar.find('.upload-status').text('Upload completed!');
+
+                        // Create hidden input to store the file path
+                        $input.after(
+                            `<input type="hidden" name="${$input.attr('name').replace('[video_file]', '[uploaded_file_path]')}" value="${filePath}">`
+                        );
+
+                        // Show success message
+                        setTimeout(() => {
+                            $progressBar.hide();
+                            $input.prop('disabled', false);
+                        }, 2000);
+                    },
+                    function(error) {
+                        // Error callback
+                        $progressBar.find('.upload-status').text('Upload failed: ' + error);
+                        $progressBar.find('.progress-bar').addClass('bg-danger');
+                        $input.prop('disabled', false);
+                        alert('Upload failed: ' + error);
+                    }
+                );
+            });
         </script>
     @endpush
 @endsection
