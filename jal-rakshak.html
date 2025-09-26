@@ -166,65 +166,70 @@
     }
 
 
-    /* Lightbox modal content */
-    #lightboxModal .modal-content {
-    background: transparent !important;
-    border: 3px solid #144372;  /* blue border */
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* subtle blue glow */
-    }
+   /* Photo gallery */
+   .gallery-item{
+    margin-bottom: 30px;
+   }
+   /* Filter buttons */
+.filter-btn {
+  margin: 5px;
+  padding: 8px 15px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.filter-btn.active {
+  background: #144372;
+  color: #fff;
+}
 
-    /* Lightbox modal content */
-    #lightboxModal .modal-content .modal-body{
-        padding: 0 !important;
-        border: 5px solid #fff;
+/* Hide filtered items */
+.gallery-item.hide {
+  display: none !important;
+}
 
-    }
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  text-align: center;
+}
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+}
+.lightbox-close {
+  position: absolute;
+  top: 20px; right: 35px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+.lightbox-prev, .lightbox-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  color: white !important;
+  border-radius: 50%;
+  background-color: #144372;
+  padding: 16px 20px;
+  transform: translateY(-50%);
+}
+.lightbox-prev { left: 10%; }
+.lightbox-next { right: 10%; }
 
-    /* Image inside modal */
-    #lightboxImage {
-    max-height: 100%;
-    width: 1500px;
-    display: block;
-    margin: 0 auto;
-    border-radius: 6px;
-    }
-
-    /* Left/right arrows - move outside */
-    #lightboxModal .lightbox-control {
-    position: fixed; /* make them stay outside image */
-    top: 50%;
-    transform: translateY(-20%);
-    font-size: 2rem;
-    color: #144372;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 20px 25px;
-    user-select: none;
-    background: rgba(255,255,255,0.95);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    z-index: 1055; /* above modal */
-    }
-
-    #lightboxModal .lightbox-control.left {
-    left: 100px; /* outside left */
-    }
-
-    #lightboxModal .lightbox-control.right {
-    right: 100px; /* outside right */
-    }
-
-    #lightboxModal .lightbox-control:hover {
-    background: #144372;
-    color: #fff;
-    }
 
     #footer-cta h3{
         font-weight: 600;
         margin-bottom: 0;
     }
-
 
 
     /* Responsive */
@@ -344,7 +349,7 @@
                 <!-- Right Form -->
                 <div class="col-md-6 p-4 popup-form">
                 <h3 class="mb-3 lp-para-heading">Take A Pledge to Become a Jal Rakshak</h3>
-                <p class="mb-4">Every drop matters—and so does your pledge. Join fellow Jal Rakshaks in conserving water and protecting our environment.</p>
+                <p class="mb-1">Every drop matters—and so does your pledge. Join fellow Jal Rakshaks in conserving water and protecting our environment.</p>
                 
                 <form>
                     <div class="form-group">
@@ -449,58 +454,59 @@
         </div>
 
         <!-- photo gallery -->
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <div class="site-heading headings">
-                        <!-- <p class="lp-site-sub_heading">Photo Gallery</p> -->
-                        <h3 class="lp-h3-heading">Photo Gallery</h3>
-                        <p>Active participation from the community.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row" id="gallery">
-                <div class="col-md-4 p-3">
-                <img src="assets/img/jal-rakshak3.jpg" class="img-fluid gallery-item" alt="">
-                </div>
-                <div class="col-md-4 p-3">
-                <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-item" alt="">
-                </div>
-                <div class="col-md-4 p-3">
-                <img src="assets/img/jal-rakshak3.jpg" class="img-fluid gallery-item" alt="">
-                </div>
-                <div class="col-md-4 p-3">
-                <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-item" alt="">
-                </div>
-                <div class="col-md-4 p-3">
-                <img src="assets/img/jal-rakshak3.jpg" class="img-fluid gallery-item" alt="">
-                </div>
-                <div class="col-md-4 p-3">
-                <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-item" alt="">
-                </div>
+         <div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-12">
+      <div class="site-heading headings">
+        <h3 class="lp-h3-heading">Photo Gallery</h3>
+        <p>Active participation from the community.</p>
+      </div>
+    </div>
+  </div>
 
-                <div class="col-md-12 text-center mt-4">
-                    <a href="#" class="btn jal-rakshak-btn-secondary">View All</a>
-                </div>
-            </div>
-        </div>
+  <!-- Filter buttons -->
+  <div class="row justify-content-center text-center mb-3">
+    <div id="galleryFilter">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="people">People</button>
+      <button class="filter-btn" data-filter="abstract">Abstract</button>
+      <button class="filter-btn" data-filter="nature">Nature</button>
+      <button class="filter-btn" data-filter="places">Places</button>
+    </div>
+  </div>
 
-        <!-- Lightbox Modal -->
-        <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content bg-transparent border-0">
-            <div class="modal-body text-center">
-                <img id="lightboxImage" src="" class="img-fluid rounded" alt="">
-                <!-- Controls -->
-                <a class="lightbox-control left" href="#" id="prevImage">&#10094;</a>
-                <a class="lightbox-control right" href="#" id="nextImage">&#10095;</a>
-            </div>
-            </div>
-        </div>
-        </div>
+  <!-- Gallery Grid -->
+  <div class="row g-3">
+    <div class="col-12 col-sm-6 col-lg-4 gallery-item people">
+      <img src="assets/img/jal-rakshak1.jpg" class="img-fluid gallery-img" alt="">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 gallery-item nature">
+      <img src="https://picsum.photos/id/1015/400/300" class="img-fluid gallery-img" alt="">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 gallery-item abstract">
+      <img src="https://picsum.photos/id/1025/400/300" class="img-fluid gallery-img" alt="">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 gallery-item places">
+      <img src="https://picsum.photos/id/1040/400/300" class="img-fluid gallery-img" alt="">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 gallery-item nature">
+      <img src="https://picsum.photos/id/1043/400/300" class="img-fluid gallery-img" alt="">
+    </div>
+    <div class="col-md-12 text-center mt-4">
+        <a href="#" class="btn jal-rakshak-btn-secondary">View All</a>
+    </div>
+  </div>
 
+  <!-- ✅ Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightboxImg">
+    <a class="lightbox-prev">&#10094;</a>
+    <a class="lightbox-next">&#10095;</a>
+  </div>
+</div>
 
-
+       
         <!-- Youtube videos -->
         <div class="container">
             <div class="row mt-5">
@@ -657,37 +663,63 @@
     <script src="assets/js/bootsnav.js"></script>
     <script src="assets/js/main.js"></script>
 
+    <!-- photo gallery script - updated -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    const lightbox = document.getElementById("lightboxModal");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeBtn = document.querySelector(".lightbox-close");
+    const nextBtn = document.querySelector(".lightbox-next");
+    const prevBtn = document.querySelector(".lightbox-prev");
 
-    <script>
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const lightboxModal = $('#lightboxModal');
-        const lightboxImage = document.getElementById('lightboxImage');
-        let currentIndex = 0;
+    let currentIndex = -1;
+    const images = document.querySelectorAll(".gallery-img");
 
-        function showImage(index) {
-            if (index < 0) index = galleryItems.length - 1;
-            if (index >= galleryItems.length) index = 0;
-            currentIndex = index;
-            lightboxImage.src = galleryItems[currentIndex].src;
-            lightboxModal.modal('show');
-        }
+    // ✅ Filtering
+    filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => {
-            showImage(index);
-            });
+        const filter = btn.getAttribute("data-filter");
+        galleryItems.forEach(item => {
+            if (filter === "all" || item.classList.contains(filter)) {
+            item.classList.remove("hide");
+            } else {
+            item.classList.add("hide");
+            }
         });
-
-        document.getElementById('prevImage').addEventListener('click', (e) => {
-            e.preventDefault();
-            showImage(currentIndex - 1);
         });
+    });
 
-        document.getElementById('nextImage').addEventListener('click', (e) => {
-            e.preventDefault();
-            showImage(currentIndex + 1);
-        });
-        </script>
+  // ✅ Lightbox
+  images.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      currentIndex = index;
+      lightbox.style.display = "block";
+      lightboxImg.src = img.src;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  });
+
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  });
+});
+</script>
+
+
 
         <script>
              const toggle = document.getElementById("menu-toggle");
