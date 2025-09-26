@@ -550,12 +550,21 @@
                                 @if (isset($videos) && $videos->count() > 0)
                                     @foreach ($videos as $index => $video)
                                         <div class="section-item border rounded p-3 mb-3">
+                                            <input type="hidden" name="videos[{{ $index }}][id]"
+                                                value="{{ $video->id }}">
                                             <div class="d-flex justify-content-between mb-2">
                                                 <h6 class="mb-0">Video {{ $index + 1 }}</h6>
-                                                <button type="button" class="btn btn-sm btn-danger remove-item-btn"
-                                                    style="display: none;">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
+                                                <div>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-danger remove-existing-video-btn me-2"
+                                                        data-video-id="{{ $video->id }}" style="display: none;">
+                                                        <i class="fas fa-trash"></i> Remove
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-danger remove-item-btn"
+                                                        style="display: none;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -889,7 +898,9 @@
                     const form = $(this).closest('form');
                     form.find('input:not([type="hidden"]), textarea, select').removeAttr(
                         'readonly disabled');
-                    form.find('.save-btn, .remove-image-btn, .remove-mobile-image-btn').show();
+                    form.find(
+                        '.save-btn, .remove-image-btn, .remove-mobile-image-btn, .remove-existing-video-btn'
+                    ).show();
                     // Show the add-item-btn and add-category-btn if they exist in this form
                     form.find('.add-item-btn').show();
                     form.find('.add-category-btn').show();
@@ -1097,6 +1108,54 @@
                         container.html(
                             '<div class="text-center py-5"><p class="text-muted">No items added yet. Click Edit and then Add Item to create one.</p></div>'
                         );
+                    }
+                });
+
+                // Remove existing video button click handler
+                $(document).on('click', '.remove-existing-video-btn', function() {
+                    const videoId = $(this).data('video-id');
+                    const item = $(this).closest('.section-item');
+
+                    if (confirm('Are you sure you want to delete this video? This action cannot be undone.')) {
+                        $.ajax({
+                            url: `/admin/jal-rakshak/videos/delete/${videoId}`,
+                            type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(response) {
+                                if (response.success) {
+                                    item.fadeOut(300, function() {
+                                        $(this).remove();
+
+                                        const container = item.closest(
+                                            '[id$="_items_container"]');
+                                        if (container.children('.section-item').length ===
+                                            0) {
+                                            container.html(
+                                                '<div class="text-center py-5"><p class="text-muted">No videos added yet. Click Edit and then Add Video to create one.</p></div>'
+                                            );
+                                        }
+                                    });
+
+                                    // Show success message
+                                    if (typeof toastr !== 'undefined') {
+                                        toastr.success(response.message);
+                                    } else {
+                                        alert(response.message);
+                                    }
+                                } else {
+                                    alert('Error: ' + response.message);
+                                }
+                            },
+                            error: function(xhr) {
+                                let message = 'Error deleting video';
+                                if (xhr.responseJSON && xhr.responseJSON.message) {
+                                    message = xhr.responseJSON.message;
+                                }
+                                alert(message);
+                            }
+                        });
                     }
                 });
 

@@ -245,28 +245,76 @@ class JalRakshakController extends Controller
 
     public function saveVideos(Request $request)
     {
-        // Delete existing videos
-        JalRakshakVideo::truncate();
+        // Get existing videos
+        $existingVideos = JalRakshakVideo::all()->keyBy('id');
 
         // Save new videos
         if ($request->has('videos')) {
             foreach ($request->videos as $index => $videoData) {
-                if (!empty($videoData['video_file'])) {
-                    $videoFile = $videoData['video_file'];
-                    $fileName = time() . '_' . $videoFile->getClientOriginalName();
-                    $videoPath = $videoFile->storeAs('jal-rakshak/videos', $fileName, 'public');
+                if (!empty($videoData['video_file']) || !empty($videoData['title'])) {
+                    $video = null;
 
-                    JalRakshakVideo::create([
-                        'video_url' => null, // Set to null since we're using video_file now
-                        'video_file' => $videoPath,
-                        'title' => $videoData['title'] ?? '',
-                        'sequence' => $index
-                    ]);
+                    // If this is an existing video (has ID), update it
+                    if (isset($videoData['id']) && $videoData['id']) {
+                        $video = $existingVideos->get($videoData['id']);
+                        if ($video) {
+                            $video->title = $videoData['title'] ?? '';
+                            $video->sequence = $index;
+                        }
+                    }
+
+                    // If no existing video or ID not found, create new one
+                    if (!$video) {
+                        $video = new JalRakshakVideo();
+                        $video->title = $videoData['title'] ?? '';
+                        $video->sequence = $index;
+                    }
+
+                    // Handle video file upload
+                    if (isset($videoData['video_file']) && $videoData['video_file']) {
+                        // Delete old video file if exists
+                        if ($video->video_file) {
+                            Storage::disk('public')->delete($video->video_file);
+                        }
+
+                        $videoFile = $videoData['video_file'];
+                        $fileName = time() . '_' . $videoFile->getClientOriginalName();
+                        $videoPath = $videoFile->storeAs('jal-rakshak/videos', $fileName, 'public');
+                        $video->video_file = $videoPath;
+                        $video->video_url = null; // Set to null since we're using video_file now
+                    }
+
+                    $video->save();
                 }
             }
         }
 
         return redirect()->back()->with('success', 'Videos updated successfully');
+    }
+
+    public function deleteVideo($id)
+    {
+        try {
+            $video = JalRakshakVideo::findOrFail($id);
+
+            // Delete the video file from storage if it exists
+            if ($video->video_file && Storage::disk('public')->exists($video->video_file)) {
+                Storage::disk('public')->delete($video->video_file);
+            }
+
+            // Delete the database record
+            $video->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Video deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error deleting video: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     public function saveConservations(Request $request)
