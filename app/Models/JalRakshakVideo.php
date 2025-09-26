@@ -8,6 +8,7 @@ class JalRakshakVideo extends Model
 {
     protected $fillable = [
         'video_url',
+        'video_file',
         'title',
         'sequence'
     ];

@@ -251,9 +251,14 @@ class JalRakshakController extends Controller
         // Save new videos
         if ($request->has('videos')) {
             foreach ($request->videos as $index => $videoData) {
-                if (!empty($videoData['video_url'])) {
+                if (!empty($videoData['video_file'])) {
+                    $videoFile = $videoData['video_file'];
+                    $fileName = time() . '_' . $videoFile->getClientOriginalName();
+                    $videoPath = $videoFile->storeAs('jal-rakshak/videos', $fileName, 'public');
+
                     JalRakshakVideo::create([
-                        'video_url' => $videoData['video_url'],
+                        'video_url' => null, // Set to null since we're using video_file now
+                        'video_file' => $videoPath,
                         'title' => $videoData['title'] ?? '',
                         'sequence' => $index
                     ]);

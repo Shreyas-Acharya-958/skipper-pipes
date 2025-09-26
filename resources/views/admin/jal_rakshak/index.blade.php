@@ -528,7 +528,7 @@
                             <span class="fw-bold">Information:</span> Videos
                         </div>
                         <form id="videosForm" class="section-form" action="{{ route('admin.jal-rakshak.videos.save') }}"
-                            method="POST">
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="active_tab" value="#videos">
 
@@ -560,10 +560,24 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group mb-3">
-                                                        <label class="form-label">Video URL</label>
-                                                        <input type="url" class="form-control"
-                                                            name="videos[{{ $index }}][video_url]"
-                                                            value="{{ $video->video_url }}" readonly required>
+                                                        <label class="form-label">Video File</label>
+                                                        <input type="file" class="form-control video-file-input"
+                                                            name="videos[{{ $index }}][video_file]"
+                                                            accept="video/*" readonly>
+                                                        @if ($video->video_file)
+                                                            <div class="mt-2">
+                                                                <small class="text-muted">Current:
+                                                                    {{ basename($video->video_file) }}</small>
+                                                                <br>
+                                                                <video width="200" height="120" controls
+                                                                    class="mt-1">
+                                                                    <source
+                                                                        src="{{ asset('storage/' . $video->video_file) }}"
+                                                                        type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -974,8 +988,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mb-3">
-                                            <label class="form-label">Video URL</label>
-                                            <input type="url" class="form-control" name="videos[${index}][video_url]" required>
+                                            <label class="form-label">Video File</label>
+                                            <input type="file" class="form-control video-file-input" name="videos[${index}][video_file]" accept="video/*" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
