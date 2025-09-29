@@ -446,8 +446,8 @@
                                     required>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email"
-                                    required>
+                                <input type="email" class="form-control" name="email"
+                                    placeholder="Your Email (Optional)">
                             </div>
                             <div class="form-group">
                                 <input type="tel" class="form-control" name="phone" placeholder="Your Phone"
@@ -738,9 +738,8 @@
                                         required>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="email">Email <span>*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        required>
+                                    <label for="email">Email (Optional)</label>
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="phone">Mobile Number <span>*</span></label>
@@ -926,7 +925,6 @@
                         maxlength: 255
                     },
                     email: {
-                        required: true,
                         email: true,
                         maxlength: 255
                     },
@@ -946,7 +944,6 @@
                         maxlength: "Name cannot exceed 255 characters"
                     },
                     email: {
-                        required: "Please enter your email address",
                         email: "Please enter a valid email address",
                         maxlength: "Email cannot exceed 255 characters"
                     },
@@ -1075,7 +1072,6 @@
                         maxlength: 255
                     },
                     email: {
-                        required: true,
                         email: true,
                         maxlength: 255
                     },
@@ -1095,7 +1091,6 @@
                         maxlength: "Name cannot exceed 255 characters"
                     },
                     email: {
-                        required: "Please enter your email address",
                         email: "Please enter a valid email address",
                         maxlength: "Email cannot exceed 255 characters"
                     },
