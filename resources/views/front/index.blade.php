@@ -422,7 +422,7 @@
     @if ($sectionThree && $sectionThree->title)
         <section class="trusted-one">
             <div class="trusted-one__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
-                style="background-image: url(assets/img/home-video-banner.png);">
+                style="background-image: url(assets/img/skipper-pipes-videos.png);">
             </div>
             <div class="container">
                 <div class="trusted-one__inner" data-aos="fade-up" data-aos-duration="1000">
