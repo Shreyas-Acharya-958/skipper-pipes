@@ -380,7 +380,7 @@ class FrontController extends Controller
         $seoData = $this->getSeoDataForCurrentUrl();
         $news_section_one = \App\Models\NewsSectionOne::first();
         $news_section_two = \App\Models\NewsSectionTwo::first();
-        $news = News::all();
+        $news = News::where('status', 1)->orderBy('sequence')->get();
         return view('front.resources.news', compact('news', 'seoData', 'news_section_one', 'news_section_two'));
     }
 
