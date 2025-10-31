@@ -31,20 +31,36 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $baseValidated = $request->validate([
             'title' => 'required|string|max:255',
             'press_release' => 'required|date',
             'sequence' => 'required|integer|min:0',
             'status' => 'required|boolean',
-            'file' => 'required|file|mimes:pdf|max:10240', // Max 10MB
+            'content_type' => 'required|in:pdf,image,link',
         ]);
 
-        if ($request->hasFile('file')) {
+        $data = $baseValidated;
+
+        if ($request->input('content_type') === 'link') {
+            $request->validate([
+                'file_link' => 'required|url|max:2048',
+            ]);
+            $data['file'] = $request->input('file_link');
+        } elseif ($request->input('content_type') === 'pdf') {
+            $request->validate([
+                'file' => 'required|file|mimes:pdf|max:10240',
+            ]);
             $path = $request->file('file')->store('news', 'public');
-            $validated['file'] = $path;
+            $data['file'] = $path;
+        } else { // image
+            $request->validate([
+                'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            ]);
+            $path = $request->file('file')->store('news', 'public');
+            $data['file'] = $path;
         }
 
-        News::create($validated);
+        News::create($data);
 
         return redirect()
             ->route('admin.news.index')
@@ -60,27 +76,60 @@ class NewsController extends Controller
 
     public function update(Request $request, News $news)
     {
-        $validated = $request->validate([
+        $baseValidated = $request->validate([
             'title' => 'required|string|max:255',
             'press_release' => 'required|date',
             'sequence' => 'required|integer|min:0',
             'status' => 'required|boolean',
-            'file' => 'nullable|file|mimes:pdf|max:10240', // Max 10MB
+            'content_type' => 'required|in:pdf,image,link',
         ]);
 
-        if ($request->hasFile('file')) {
-            // Delete old file if exists
-            if ($news->file) {
+        $data = $baseValidated;
+
+        if ($request->input('content_type') === 'link') {
+            $request->validate([
+                'file_link' => 'required|url|max:2048',
+            ]);
+            // Delete old stored file if it was a storage path
+            if ($news->file && !preg_match('/^https?:\/\//i', $news->file)) {
                 Storage::disk('public')->delete($news->file);
             }
-            $path = $request->file('file')->store('news', 'public');
-            $validated['file'] = $path;
-        } elseif ($request->input('remove_file') == 1 && $news->file) {
-            Storage::disk('public')->delete($news->file);
-            $validated['file'] = null;
+            $data['file'] = $request->input('file_link');
+        } elseif ($request->input('content_type') === 'pdf') {
+            $request->validate([
+                'file' => 'nullable|file|mimes:pdf|max:10240',
+            ]);
+            if ($request->hasFile('file')) {
+                if ($news->file && !preg_match('/^https?:\/\//i', $news->file)) {
+                    Storage::disk('public')->delete($news->file);
+                }
+                $path = $request->file('file')->store('news', 'public');
+                $data['file'] = $path;
+            } elseif ($request->input('remove_file') == 1) {
+                if ($news->file && !preg_match('/^https?:\/\//i', $news->file)) {
+                    Storage::disk('public')->delete($news->file);
+                }
+                $data['file'] = null;
+            }
+        } else { // image
+            $request->validate([
+                'file' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+            ]);
+            if ($request->hasFile('file')) {
+                if ($news->file && !preg_match('/^https?:\/\//i', $news->file)) {
+                    Storage::disk('public')->delete($news->file);
+                }
+                $path = $request->file('file')->store('news', 'public');
+                $data['file'] = $path;
+            } elseif ($request->input('remove_file') == 1) {
+                if ($news->file && !preg_match('/^https?:\/\//i', $news->file)) {
+                    Storage::disk('public')->delete($news->file);
+                }
+                $data['file'] = null;
+            }
         }
 
-        $news->update($validated);
+        $news->update($data);
 
         return redirect()
             ->route('admin.news.index')

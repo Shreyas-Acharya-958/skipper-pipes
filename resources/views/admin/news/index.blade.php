@@ -44,9 +44,36 @@
                                         <td>{{ $newsItem->press_release->format('Y-m-d') }}</td>
                                         <td>
                                             @if ($newsItem->file)
-                                                <a href="{{ asset('storage/' . $newsItem->file) }}" target="_blank"
-                                                    class="btn btn-sm btn-info">
-                                                    <i class="fas fa-file-pdf"></i> View PDF
+                                                @php
+                                                    $isExternal = preg_match(
+                                                        '/^https?:\\/\\//i',
+                                                        $newsItem->file ?? '',
+                                                    );
+                                                    $href = $isExternal
+                                                        ? $newsItem->file
+                                                        : asset('storage/' . $newsItem->file);
+                                                    $label = 'View File';
+                                                    $icon = 'fas fa-file';
+                                                    if ($isExternal) {
+                                                        $label = 'View Link';
+                                                        $icon = 'fas fa-link';
+                                                    } else {
+                                                        $ext = strtolower(
+                                                            pathinfo($newsItem->file, PATHINFO_EXTENSION),
+                                                        );
+                                                        if (
+                                                            in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'])
+                                                        ) {
+                                                            $label = 'View Image';
+                                                            $icon = 'fas fa-image';
+                                                        } elseif ($ext === 'pdf') {
+                                                            $label = 'View PDF';
+                                                            $icon = 'fas fa-file-pdf';
+                                                        }
+                                                    }
+                                                @endphp
+                                                <a href="{{ $href }}" target="_blank" class="btn btn-sm btn-info">
+                                                    <i class="{{ $icon }}"></i> {{ $label }}
                                                 </a>
                                             @else
                                                 No File

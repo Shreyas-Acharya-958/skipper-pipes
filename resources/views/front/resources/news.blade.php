@@ -66,8 +66,18 @@
                                 {{ date('M', strtotime($item->press_release)) }}
                                 {{ date('Y', strtotime($item->press_release)) }}</span>
                             <h3>{{ $item->title }}</h3>
-                            <a href="{{ asset('storage/' . $item->file) }}" class="btn btn-dark theme2 theme mt-2"
-                                target="_blank">View Details</a>
+                            @php
+                                $isExternal = $item->file && preg_match('/^https?:\/\//i', $item->file);
+                                $href = $isExternal
+                                    ? $item->file
+                                    : ($item->file
+                                        ? asset('storage/' . $item->file)
+                                        : '#');
+                            @endphp
+                            @if ($item->file)
+                                <a href="{{ $href }}" class="btn btn-dark theme2 theme mt-2" target="_blank">View
+                                    Details</a>
+                            @endif
                         </div>
                     </div>
                 @endforeach
