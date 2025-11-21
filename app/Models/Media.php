@@ -15,5 +15,10 @@ class Media extends Model
         'file',
         'thumbnail',
         'media_type',
+        'sequence',
+    ];
+
+    protected $casts = [
+        'sequence' => 'integer',
     ];
 }

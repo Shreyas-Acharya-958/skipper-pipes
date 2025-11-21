@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class BlogCategoryController extends Controller
 {
     public function index()
     {
-        $categories = BlogCategory::latest()->paginate(10);
+        $categories = BlogCategory::latest()->orderBy('id', 'desc')->paginate(100);
         return view('admin.blog_categories.index', compact('categories'));
     }
 
@@ -21,20 +20,12 @@ class BlogCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:blog_categories',
-            'description' => 'required|string',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
             'status' => 'required|boolean',
-            'is_active' => 'required|boolean',
         ]);
 
-        $data = $request->all();
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name']);
-        }
-
-        BlogCategory::create($data);
+        BlogCategory::create($validated);
 
         return redirect()->route('admin.blog_categories.index')
             ->with('success', 'Blog category created successfully.');
@@ -52,20 +43,12 @@ class BlogCategoryController extends Controller
 
     public function update(Request $request, BlogCategory $blog_category)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:blog_categories,slug,' . $blog_category->id,
-            'description' => 'required|string',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
             'status' => 'required|boolean',
-            'is_active' => 'required|boolean',
         ]);
 
-        $data = $request->all();
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name']);
-        }
-
-        $blog_category->update($data);
+        $blog_category->update($validated);
 
         return redirect()->route('admin.blog_categories.index')
             ->with('success', 'Blog category updated successfully.');

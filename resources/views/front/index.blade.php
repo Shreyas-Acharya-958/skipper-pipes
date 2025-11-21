@@ -147,7 +147,7 @@
                     </div>
 
                     <blockquote data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        {{ $sectionOne->description ?? '' }}
+                        {!! $sectionOne->description ?? '' !!}
                     </blockquote>
 
                     <ul data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">

@@ -15,6 +15,9 @@
                                 value="{{ request('search') }}">
                         </form>
                         <div class="d-flex gap-2 ms-auto">
+                            <button type="button" class="btn btn-primary" id="openMediaSequenceModalBtn">
+                                <i class="fas fa-arrows-alt"></i> Set Sequence
+                            </button>
                             <a href="{{ route('admin.media.create') }}" class="btn btn-warning">
                                 <i class="fas fa-plus"></i> Add New Media
                             </a>
@@ -29,6 +32,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Title</th>
+                                    <th>Sequence</th>
                                     <th>Media Type</th>
                                     <th>File Type</th>
                                     <th>File</th>
@@ -40,6 +44,7 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->title }}</td>
+                                        <td>{{ $item->sequence ?? 0 }}</td>
                                         <td>{{ ucfirst($item->media_type) }}</td>
                                         <td>{{ ucfirst($item->file_type) }}</td>
                                         <td>
@@ -111,3 +116,151 @@
         </div>
     </div>
 @endsection
+
+<div class="modal fade" id="mediaSequenceModal" tabindex="-1" aria-labelledby="mediaSequenceModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediaSequenceModalLabel">Set Media Sequence</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small mb-3">Drag and drop the media items to update their order.</p>
+                <ul class="list-group" id="mediaSequenceList">
+                    <li class="list-group-item text-center text-muted">No media found.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveMediaSequenceBtn">
+                    <i class="fas fa-save"></i> Save Order
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const openModalBtn = document.getElementById('openMediaSequenceModalBtn');
+        const sequenceList = document.getElementById('mediaSequenceList');
+        const saveSequenceBtn = document.getElementById('saveMediaSequenceBtn');
+        const modalEl = document.getElementById('mediaSequenceModal');
+        const mediaSequenceModal = modalEl ? new bootstrap.Modal(modalEl) : null;
+        let sortableInstance = null;
+
+        function initializeSortable() {
+            if (!sequenceList) return;
+            if (sortableInstance) {
+                sortableInstance.destroy();
+            }
+            sortableInstance = Sortable.create(sequenceList, {
+                animation: 150,
+                handle: '.drag-handle',
+                filter: '.sequence-group-header'
+            });
+        }
+
+        function renderSequenceItems(items) {
+            if (!sequenceList) {
+                return;
+            }
+            if (!items.length) {
+                sequenceList.innerHTML =
+                    '<li class="list-group-item text-center text-muted">No media found.</li>';
+                return;
+            }
+            let currentType = null;
+            const htmlParts = [];
+            items.forEach(item => {
+                if (item.media_type !== currentType) {
+                    currentType = item.media_type;
+                    htmlParts.push(`
+                        <li class="list-group-item sequence-group-header text-uppercase fw-semibold text-muted small">
+                            ${currentType}
+                        </li>
+                    `);
+                }
+                htmlParts.push(`
+                    <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${item.id}">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-grip-vertical me-3 drag-handle text-muted"></i>
+                            <div>
+                                <span class="badge bg-secondary me-2">ID #${item.id}</span>
+                                <span class="fw-semibold">${item.title}</span>
+                            </div>
+                        </div>
+                        <span class="badge bg-light text-dark">#${item.sequence}</span>
+                    </li>
+                `);
+            });
+            sequenceList.innerHTML = htmlParts.join('');
+        }
+
+        function fetchSequenceData() {
+            if (!sequenceList) return;
+            sequenceList.innerHTML = '<li class="list-group-item text-center text-muted">Loading...</li>';
+            fetch('{{ route('admin.media.sequence.list') }}', {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    renderSequenceItems(data.data || []);
+                    initializeSortable();
+                    mediaSequenceModal?.show();
+                })
+                .catch(() => {
+                    sequenceList.innerHTML =
+                        '<li class="list-group-item text-center text-danger">Failed to load media items.</li>';
+                });
+        }
+
+        function saveSequence() {
+            if (!sequenceList) return;
+            const items = Array.from(sequenceList.querySelectorAll('li[data-id]')).map((item, index) => ({
+                id: item.getAttribute('data-id'),
+                sequence: index + 1
+            }));
+
+            if (!items.length) {
+                return;
+            }
+
+            saveSequenceBtn.disabled = true;
+            fetch('{{ route('admin.media.update-sequence') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        items
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to update sequence');
+                    }
+                    return response.json();
+                })
+                .then(() => {
+                    mediaSequenceModal?.hide();
+                    window.location.reload();
+                })
+                .catch(() => {
+                    alert('Unable to update sequence. Please try again.');
+                })
+                .finally(() => {
+                    saveSequenceBtn.disabled = false;
+                });
+        }
+
+        openModalBtn?.addEventListener('click', fetchSequenceData);
+        saveSequenceBtn?.addEventListener('click', saveSequence);
+    });
+</script>

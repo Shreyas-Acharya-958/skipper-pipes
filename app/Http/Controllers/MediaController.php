@@ -23,7 +23,9 @@ class MediaController extends Controller
             $search = $request->input('search');
             $query->where('title', 'like', "%{$search}%");
         }
-        $media = $query->latest()->paginate(10);
+        $media = $query->orderBy('sequence')
+            ->orderByDesc('created_at')
+            ->paginate(10);
         return view('admin.media.index', compact('media'));
     }
 
@@ -68,6 +70,8 @@ class MediaController extends Controller
         } elseif ($request->file_type === 'youtube_link') {
             $validated['file'] = $request->input('file'); // store the link as string
         }
+
+        $validated['sequence'] = (Media::max('sequence') ?? 0) + 1;
 
         Media::create($validated);
 
@@ -219,5 +223,35 @@ class MediaController extends Controller
         $section->description = $validated['description'] ?? $section->description;
         $section->save();
         return redirect()->back()->with('success', 'Media Main Section saved successfully.');
+    }
+
+    public function sequenceList()
+    {
+        $media = Media::orderBy('sequence')
+            ->orderBy('title')
+            ->get(['id', 'title', 'sequence', 'media_type']);
+
+        return response()->json([
+            'data' => $media
+        ]);
+    }
+
+    public function updateSequence(Request $request)
+    {
+        $validated = $request->validate([
+            'items' => 'required|array',
+            'items.*.id' => 'required|exists:media,id',
+        ]);
+
+        foreach ($validated['items'] as $index => $item) {
+            Media::where('id', $item['id'])->update([
+                'sequence' => $index + 1,
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Media sequence updated successfully.'
+        ]);
     }
 }

@@ -139,7 +139,7 @@ class FrontController extends Controller
         // Get recent blogs
         $blogs = Blog::where('status', '1')
             ->with('category')
-            ->latest('published_at')
+            ->orderBy('sequence')
             ->take(3)
             ->get();
 
@@ -391,7 +391,10 @@ class FrontController extends Controller
     public function media()
     {
         $seoData = $this->getSeoDataForCurrentUrl();
-        $media = Media::all()->groupBy('media_type');
+        $media = Media::orderBy('sequence')
+            ->orderByDesc('created_at')
+            ->get()
+            ->groupBy('media_type');
         $mediaSectionOne = MediaSectionOne::first();
         $mediaSectionTwo = MediaSectionTwo::first();
 

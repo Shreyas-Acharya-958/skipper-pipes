@@ -123,6 +123,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Media routes
     Route::resource('media', MediaController::class)->parameters(['media' => 'media']);
+    Route::get('media/sequence/list', [MediaController::class, 'sequenceList'])->name('media.sequence.list');
+    Route::post('media/update-sequence', [MediaController::class, 'updateSequence'])->name('media.update-sequence');
     Route::post('/media/section1/save', [MediaController::class, 'saveSectionOne'])->name('media.section1.save');
     Route::post('/media/section2/save', [MediaController::class, 'saveSectionTwo'])->name('media.section2.save');
 

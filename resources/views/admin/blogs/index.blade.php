@@ -208,7 +208,10 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center" data-id="${item.id}">
                     <div class="d-flex align-items-center">
                         <i class="fas fa-grip-vertical me-3 drag-handle text-muted"></i>
-                        <span class="fw-semibold">${item.title}</span>
+                        <div>
+                            <span class="badge bg-secondary me-2">ID #${item.id}</span>
+                            <span class="fw-semibold">${item.title}</span>
+                        </div>
                     </div>
                     <span class="badge bg-light text-dark">#${item.sequence}</span>
                 </li>
