@@ -21,7 +21,10 @@ class BlogController extends Controller
             $search = $request->input('search');
             $query->where('title', 'like', "%{$search}%");
         }
-        $blogs = $query->with(['category', 'tags'])->paginate(10);
+        $blogs = $query->with(['category', 'tags'])
+            ->orderBy('sequence')
+            ->orderByDesc('published_at')
+            ->paginate(10);
         return view('admin.blogs.index', compact('blogs'));
     }
 
@@ -67,6 +70,8 @@ class BlogController extends Controller
                 $validated[$field] = $path;
             }
         }
+
+        $validated['sequence'] = (Blog::max('sequence') ?? 0) + 1;
 
         $blog = Blog::create($validated);
 
@@ -157,6 +162,36 @@ class BlogController extends Controller
         $blog->delete();
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog deleted successfully.');
+    }
+
+    public function sequenceList()
+    {
+        $blogs = Blog::orderBy('sequence')
+            ->orderBy('title')
+            ->get(['id', 'title', 'sequence']);
+
+        return response()->json([
+            'data' => $blogs
+        ]);
+    }
+
+    public function updateSequence(Request $request)
+    {
+        $validated = $request->validate([
+            'items' => 'required|array',
+            'items.*.id' => 'required|exists:blogs,id',
+        ]);
+
+        foreach ($validated['items'] as $index => $item) {
+            Blog::where('id', $item['id'])->update([
+                'sequence' => $index + 1,
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Blog sequence updated successfully.'
+        ]);
     }
     public function show()
     {

@@ -174,7 +174,11 @@ class FrontController extends Controller
         $blogs_section_two = \App\Models\BlogSectionTwo::first();
 
         // Get all blogs without pagination
-        $blogs = Blog::where('status', 1)->with('category')->get();
+        $blogs = Blog::where('status', 1)
+            ->with('category')
+            ->orderBy('sequence')
+            ->orderByDesc('published_at')
+            ->get();
 
         return view('front.blogs', compact('blogs', 'seoData', 'blogs_section_one', 'blogs_section_two'));
     }
@@ -299,7 +303,7 @@ class FrontController extends Controller
         $blog->comments()->create([
             'name' => $request->name,
             'email' => $request->email,
-            'description' => $request->content,
+            'description' => $request->input('content'),
             'status' => 0,
         ]);
 

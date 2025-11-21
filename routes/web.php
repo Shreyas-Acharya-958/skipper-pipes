@@ -74,6 +74,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Blog routes
     Route::resource('blogs', BlogController::class)->names('blogs');
+    Route::get('blogs/sequence/list', [BlogController::class, 'sequenceList'])->name('blogs.sequence.list');
+    Route::post('blogs/update-sequence', [BlogController::class, 'updateSequence'])->name('blogs.update-sequence');
 
     Route::post('/blogs/section1/save', [BlogController::class, 'saveSectionOne'])->name('blog.section1.save');
     Route::post('/blogs/section2/save', [BlogController::class, 'saveSectionTwo'])->name('blog.section2.save');

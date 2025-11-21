@@ -25,13 +25,15 @@ class Blog extends Model
         'meta_description',
         'meta_keywords',
         'status',
+        'sequence',
         'published_at'
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
+        'sequence' => 'integer'
     ];
 
     public function comments(): HasMany
