@@ -1750,7 +1750,7 @@ ul.achivement li .medium {
     position: relative;
     display: block;
     text-align: center;
-    padding: 120px 0 180px;
+    padding: 150px 0 200px;
     background-color: #101c30;
     z-index: 1;
 }
@@ -1859,6 +1859,7 @@ ul.achivement li .medium {
 }
 
 .trusted-one__title {
+    display: none;
     font-size: 50px;
     font-weight: 700;
     color: white;
@@ -2237,7 +2238,7 @@ a.more-btn:hover::after {
 .blog-area.home-blog .item .info {
     padding: 0;
     padding-top: 20px;
-    padding-right: 20px;
+    /* padding-right: 20px; */
 }
 
 .blog-area.home-blog.date-less .item .info {
@@ -2267,7 +2268,7 @@ a.more-btn:hover::after {
     position: relative;
     font-weight: 600;
     text-transform: capitalize;
-    font-size: 15px;
+    font-size: 14px;
     color: #999;
 }
 
