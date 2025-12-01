@@ -5,10 +5,9 @@
 
     RewriteEngine On
 
-    # Redirect uppercase URLs to lowercase (before other rules)
-    RewriteCond %{REQUEST_URI} [A-Z]
-    RewriteRule (.*) ${lowercase:$1} [R=301,L]
-    RewriteMap lowercase int:tolower
+    # Note: Uppercase to lowercase URL redirects are handled by Laravel middleware
+    # (ForceLowercaseUrls middleware in app/Http/Middleware/)
+    # Apache-level redirects would require RewriteMap which only works in server config
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
