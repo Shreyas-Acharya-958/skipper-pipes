@@ -13,6 +13,9 @@
         <title>{{ $seo->meta_title ?: 'Jal Rakshak - Water Conservation Initiative' }}</title>
     @endif
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
 
