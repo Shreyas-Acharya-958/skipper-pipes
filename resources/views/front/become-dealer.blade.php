@@ -49,122 +49,6 @@
         </div>
 
     </div>
-    <!-- Why become a Skipper dealer Section -->
-    <section class="default-padding">
-        <div class="container">
-            <div class="row" data-aos="fade-up" data-aos-duration="1000">
-                <div class="col-12">
-                    <div class="site-heading text-center">
-                        <h4>Skipper Pipes</h4>
-                        <h2>Why Become a Skipper Dealer?</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row align-center">
-                <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        @if ($partner && $partner->sectionOne && $partner->sectionOne->image)
-                            @php
-                                $images = explode(',', $partner->sectionOne->image);
-                            @endphp
-                            <ol class="carousel-indicators">
-                                @foreach ($images as $key => $image)
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
-                                        class="{{ $key == 0 ? 'active' : '' }}"></li>
-                                @endforeach
-                            </ol>
-                            <div class="carousel-inner">
-                                @foreach ($images as $key => $image)
-                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                        <img class="d-block w-100" src="{{ asset('storage/' . trim($image)) }}"
-                                            alt="Slide {{ $key + 1 }}">
-                                    </div>
-                                @endforeach
-                            </div>
-                        @else
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="/assets/img/final/skipper-banner1.jpg"
-                                        alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="/assets/img/final/skipper-banner2.jpeg"
-                                        alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="/assets/img/final/skipper-banner3.jpeg"
-                                        alt="Third slide">
-                                </div>
-                            </div>
-                        @endif
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <p>{{ $partner->sectionOne->description ?? 'With a vast and growing network of distributors, dealers, and plumbers across India, Skipper Pipes has become a trusted force in the piping industry. Our consistent brand visibility, advanced manufacturing capabilities, and deep-rooted technical know-how equip our partners with a strong foundation for success. Whether it\'s navigating competitive markets or meeting evolving customer needs, we ensure that every stakeholder benefits from seamless support, timely delivery, and product excellence — enabling long-term growth, loyalty, and shared success across the value chain.' }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Why Skipper Section ends -->
-
-    <!-- What Skipper Pipes offers -->
-    <section class="left-img-col default-padding bg-gray">
-        <div class="container">
-            <div class="row" data-aos="fade-up" data-aos-duration="1000">
-                <div class="col-12 text-center">
-                    <div class="site-heading text-center">
-                        <h4>Offers</h4>
-                        <h2>What Skipper Pipes Offers?</h2>
-                        <p>Strategic support, product diversity, and shared success.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="partners-tabs col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    @php
-                        $initialImage = asset('assets/img/final/12344.jpg');
-                    @endphp
-                    @if ($partner && $partner->sectionTwo)
-                        @php
-                            $titles = json_decode($partner->sectionTwo->title, true);
-                            $descriptions = json_decode($partner->sectionTwo->description, true);
-                            $images = json_decode($partner->sectionTwo->image, true);
-                            $initialImage = !empty($images[0])
-                                ? url('storage/' . $images[0])
-                                : asset('assets/img/final/12344.jpg');
-                        @endphp
-
-                        @foreach ($titles as $key => $title)
-                            @php
-                                $imageUrl = !empty($images[$key])
-                                    ? url('storage/' . $images[$key])
-                                    : asset('assets/img/final/12344.jpg');
-                            @endphp
-                            <div class="partners-tab {{ $key == 0 ? 'active' : '' }}" data-image="{{ $imageUrl }}">
-                                <h3>{{ $title }}</h3>
-                                <p>{{ $descriptions[$key] }}</p>
-                            </div>
-                        @endforeach
-                    @else
-                    @endif
-                </div>
-                <div class="image-display col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid shadow" />
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- What Skipper Pipes offers ends -->
-
     <!-- Become a Dealer form -->
     <section class="partner-form-sec default-padding">
         <div class="container">
@@ -228,8 +112,8 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="gst">GST Number</label>
-                                <input type="text" class="form-control @error('gst') is-invalid @enderror"
-                                    id="gst" name="gst">
+                                <input type="text" class="form-control @error('gst') is-invalid @enderror" id="gst"
+                                    name="gst">
                                 @error('gst')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -266,7 +150,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="dealership-interest">Select Dealership Option of Interest:</label>
+                                <label for="dealership-interest">Select Option of Interest:</label>
                                 <select id="dealership-interest"
                                     class="form-control @error('dealership_type') is-invalid @enderror"
                                     name="dealership_type">
@@ -298,6 +182,123 @@
         </div>
     </section>
     <!-- Become a Dealer form ends -->
+    <!-- Why become a Skipper dealer Section -->
+    <section class="default-padding">
+        <div class="container">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h4>Skipper Pipes</h4>
+                        <h2>Why Become a Skipper Dealer?</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-center">
+                <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        @if ($partner && $partner->sectionOne && $partner->sectionOne->image)
+                            @php
+                                $images = explode(',', $partner->sectionOne->image);
+                            @endphp
+                            <ol class="carousel-indicators">
+                                @foreach ($images as $key => $image)
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
+                                        class="{{ $key == 0 ? 'active' : '' }}"></li>
+                                @endforeach
+                            </ol>
+                            <div class="carousel-inner">
+                                @foreach ($images as $key => $image)
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <img class="d-block w-100" src="{{ asset('storage/' . trim($image)) }}"
+                                            alt="Slide {{ $key + 1 }}">
+                                    </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="/assets/img/final/skipper-banner1.jpg"
+                                        alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="/assets/img/final/skipper-banner2.jpeg"
+                                        alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="/assets/img/final/skipper-banner3.jpeg"
+                                        alt="Third slide">
+                                </div>
+                            </div>
+                        @endif
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 pt-3 pt-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <p>{{ $partner->sectionOne->description ?? 'With a vast and growing network of distributors, dealers, and plumbers across India, Skipper Pipes has become a trusted force in the piping industry. Our consistent brand visibility, advanced manufacturing capabilities, and deep-rooted technical know-how equip our partners with a strong foundation for success. Whether it\'s navigating competitive markets or meeting evolving customer needs, we ensure that every stakeholder benefits from seamless support, timely delivery, and product excellence — enabling long-term growth, loyalty, and shared success across the value chain.' }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why Skipper Section ends -->
+
+    <!-- What Skipper Pipes offers -->
+    <section class="left-img-col default-padding bg-gray">
+        <div class="container">
+            <div class="row" data-aos="fade-up" data-aos-duration="1000">
+                <div class="col-12 text-center">
+                    <div class="site-heading text-center">
+                        <h4>Offers</h4>
+                        <h2>What Skipper Pipes Offers?</h2>
+                        <p>Strategic support, product diversity, and shared success.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="partners-tabs col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    @php
+                        $initialImage = asset('assets/img/final/12344.jpg');
+                    @endphp
+                    @if ($partner && $partner->sectionTwo)
+                        @php
+                            $titles = json_decode($partner->sectionTwo->title, true);
+                            $descriptions = json_decode($partner->sectionTwo->description, true);
+                            $images = json_decode($partner->sectionTwo->image, true);
+                            $initialImage = !empty($images[0])
+                                ? url('storage/' . $images[0])
+                                : asset('assets/img/final/12344.jpg');
+                        @endphp
+
+                        @foreach ($titles as $key => $title)
+                            @php
+                                $imageUrl = !empty($images[$key])
+                                    ? url('storage/' . $images[$key])
+                                    : asset('assets/img/final/12344.jpg');
+                            @endphp
+                            <div class="partners-tab {{ $key == 0 ? 'active' : '' }}" data-image="{{ $imageUrl }}">
+                                <h3>{{ $title }}</h3>
+                                <p>{{ $descriptions[$key] }}</p>
+                            </div>
+                        @endforeach
+                    @else
+                    @endif
+                </div>
+                <div class="image-display col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                    <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid shadow" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- What Skipper Pipes offers ends -->
 @endsection
 
 @push('scripts')
