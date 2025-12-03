@@ -266,7 +266,7 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="dealership-interest">Select Dealership Option of Interest:</label>
+                                <label for="dealership-interest">Select Option of Interest:</label>
                                 <select id="dealership-interest"
                                     class="form-control @error('dealership_type') is-invalid @enderror"
                                     name="dealership_type">
