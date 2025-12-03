@@ -363,10 +363,27 @@ class FrontController extends Controller
 
         PartnerEnquiry::create($request->all()); // Adjust model if needed
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Thank you! We will contact you shortly.'
-        ]);
+        // Redirect to appropriate thank you page based on partner_id
+        $partnerId = $request->input('partner_id');
+
+        // Determine redirect URL
+        if ($partnerId == 1) {
+            $redirectUrl = route('front.dealer.thankyou');
+        } else {
+            $redirectUrl = route('front.distributor.thankyou');
+        }
+
+        // If AJAX request, return JSON response with redirect URL
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Your enquiry has been submitted successfully!',
+                'redirect' => $redirectUrl
+            ]);
+        }
+
+        // For non-AJAX requests, redirect normally
+        return redirect($redirectUrl);
     }
 
 
@@ -569,5 +586,15 @@ class FrontController extends Controller
             'success' => true,
             'message' => 'Thank you for your commitment to water conservation! We will contact you shortly.'
         ]);
+    }
+
+    public function dealerThankyou()
+    {
+        return view('front.dealer-thankyou');
+    }
+
+    public function distributorThankyou()
+    {
+        return view('front.distributor-thankyou');
     }
 }

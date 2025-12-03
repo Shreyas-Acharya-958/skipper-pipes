@@ -267,6 +267,8 @@ Route::name('front.')->group(function () {
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
     Route::post('/partner-enquiry', [FrontController::class, 'storePartnerEnquiry'])->name('partner.enquiry');
+    Route::get('/dealer-thankyou', [FrontController::class, 'dealerThankyou'])->name('dealer.thankyou');
+    Route::get('/distributor-thankyou', [FrontController::class, 'distributorThankyou'])->name('distributor.thankyou');
 
     Route::get('/faqs', [FrontController::class, 'faqs'])->name('faqs.index');
     Route::get('/news', [FrontController::class, 'news'])->name('news.index');

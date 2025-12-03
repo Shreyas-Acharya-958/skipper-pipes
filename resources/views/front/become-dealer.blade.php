@@ -336,16 +336,39 @@
                         required: true
                     },
                     phone: {
-                        required: true
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
                     },
                     pincode: {
-                        required: true
+                        required: true,
+                        digits: true,
+                        minlength: 6,
+                        maxlength: 6
                     },
                     occupation: {
                         required: true
                     },
                     email: {
                         email: true
+                    }
+                },
+                messages: {
+                    phone: {
+                        required: "Please enter your phone number",
+                        digits: "Phone number must contain only digits",
+                        minlength: "Phone number must be exactly 10 digits",
+                        maxlength: "Phone number must be exactly 10 digits"
+                    },
+                    pincode: {
+                        required: "Please enter your pincode",
+                        digits: "Pincode must contain only digits",
+                        minlength: "Pincode must be exactly 6 digits",
+                        maxlength: "Pincode must be exactly 6 digits"
+                    },
+                    email: {
+                        email: "Please enter a valid email address"
                     }
                 },
                 submitHandler: function(form) {
@@ -367,23 +390,17 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: response.message ||
-                                    'Your enquiry has been submitted successfully!',
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#28a745'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    form.reset();
-                                    // Reset form validation
-                                    $('#partnerForm').validate().resetForm();
-                                    // Remove any validation classes
-                                    $('#partnerForm .form-control').removeClass(
-                                        'is-valid is-invalid');
-                                }
-                            });
+                            // Direct redirect if redirect URL is provided
+                            if (response.redirect) {
+                                window.location.href = response.redirect;
+                            } else {
+                                form.reset();
+                                // Reset form validation
+                                $('#partnerForm').validate().resetForm();
+                                // Remove any validation classes
+                                $('#partnerForm .form-control').removeClass(
+                                    'is-valid is-invalid');
+                            }
                         },
                         error: function(xhr) {
                             let message = 'Something went wrong. Please check your inputs.';
