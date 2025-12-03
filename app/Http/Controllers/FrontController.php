@@ -332,8 +332,15 @@ class FrontController extends Controller
         $partner->setRelation('sectionTwo', $sectionTwo);
         $partner->setRelation('pipesOffers', $pipesOffers);
 
+        // Determine which view to use based on slug
+        $viewName = 'front.partner'; // default
+        if ($slug === 'become-distributor') {
+            $viewName = 'front.become-distributor';
+        } elseif ($slug === 'become-dealer') {
+            $viewName = 'front.become-dealer';
+        }
 
-        return view('front.partner', compact('seoData', 'partner'));
+        return view($viewName, compact('seoData', 'partner'));
     }
 
     public function storePartnerEnquiry(Request $request)
