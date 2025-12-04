@@ -38,6 +38,39 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label for="role_id" class="form-label">Role</label>
+                                    @if($user->id === auth()->id())
+                                        <select class="form-select" id="role_id" name="role_id" disabled>
+                                            <option value="{{ $user->role_id }}" selected>
+                                                {{ $user->role->name ?? 'No Role' }}
+                                            </option>
+                                        </select>
+                                        <input type="hidden" name="role_id" value="{{ $user->role_id }}">
+                                        <small class="form-text text-muted">
+                                            <i class="fas fa-info-circle"></i> You cannot change your own role.
+                                        </small>
+                                    @else
+                                        <select class="form-select @error('role_id') is-invalid @enderror" id="role_id"
+                                            name="role_id" required>
+                                            <option value="">Select Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}"
+                                                    {{ old('role_id', $user->role_id) == $role->id ? 'selected' : '' }}>
+                                                    {{ $role->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('role_id')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label for="password" class="form-label">Password (Leave blank to keep current)</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
                                         id="password" name="password">

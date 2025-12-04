@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -36,7 +37,8 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        return view('admin.users.create');
+        $roles = Role::orderBy('name')->get();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -48,6 +50,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::defaults()],
+            'role_id' => 'required|exists:roles,id',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -71,7 +74,8 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::orderBy('name')->get();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -82,6 +86,7 @@ class UserController extends Controller
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'role_id' => 'required|exists:roles,id',
         ];
 
         // Only validate password if it's being updated
