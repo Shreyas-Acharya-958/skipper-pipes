@@ -16,8 +16,13 @@
         @if ($isContentManagement)
             Content Management
         @elseif($isLeadManagement)
-            Lead Management@elseAdmin Panel
-        @endif - @yield('title')
+            Lead Management
+        @else
+            Admin Panel
+        @endif
+        @if (View::hasSection('title'))
+            - @yield('title')
+        @endif
     </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -281,7 +286,9 @@
                 &copy; {{ date('Y') }} @if ($isContentManagement)
                     Content Management
                 @elseif($isLeadManagement)
-                    Lead Management@elseAdmin
+                    Lead Management
+                @else
+                    Admin
                 @endif Panel
             </footer>
         </div>
