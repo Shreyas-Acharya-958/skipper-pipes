@@ -11,9 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->web(prepend: [
-            \App\Http\Middleware\ForceLowercaseUrls::class,
-        ]);
+        // Commented out - lowercase redirect now handled by nginx
+        // $middleware->web(prepend: [
+        //     \App\Http\Middleware\ForceLowercaseUrls::class,
+        // ]);
         
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,

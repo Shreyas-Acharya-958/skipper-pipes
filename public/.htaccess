@@ -7,9 +7,10 @@
 
     # ------------------------------------------
     # FORCE LOWERCASE URL (IMPORTANT)
+    # Commented out - lowercase redirect now handled by nginx
     # ------------------------------------------
-    RewriteCond %{REQUEST_URI} [A-Z]
-    RewriteRule (.*) ${lc:$1} [R=301,L]
+    # RewriteCond %{REQUEST_URI} [A-Z]
+    # RewriteRule (.*) ${lc:$1} [R=301,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
