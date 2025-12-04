@@ -25,6 +25,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -34,6 +35,13 @@
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>
+                                            @if($user->role)
+                                                <span class="badge bg-primary">{{ $user->role->name }}</span>
+                                            @else
+                                                <span class="badge bg-secondary">No Role</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="{{ route('admin.users.show', $user) }}" class="me-2"
