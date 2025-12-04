@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(prepend: [
             \App\Http\Middleware\ForceLowercaseUrls::class,
         ]);
+        
+        $middleware->alias([
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e, \Illuminate\Http\Request $request) {

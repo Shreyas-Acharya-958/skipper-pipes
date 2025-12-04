@@ -8,7 +8,6 @@ use App\Models\Contact;
 use App\Models\PartnerEnquiry;
 use App\Models\JalRakshakSubmission;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Exports\CareerApplicationsExport;
 use App\Exports\ContactsExport;
 use App\Exports\DealerEnquiriesExport;
@@ -17,38 +16,10 @@ use App\Exports\BlogCommentsExport;
 use App\Exports\JalRakshakSubmissionsExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class DashboardController extends Controller
+class LeadManagementController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
-        $user = auth()->user();
-        $userRole = $user->role->slug ?? null;
-        
-        // Lead Management: Show inquiries dashboard
-        if ($userRole === 'lead-management') {
-            $inquiries = [
-                'career' => CareerApplication::count(),
-                'contact' => Contact::count(),
-                'dealer' => PartnerEnquiry::where('partner_id', 1)->count(),
-                'distributor' => PartnerEnquiry::where('partner_id', 2)->count(),
-                'blog_comment' => BlogComment::count(),
-                'jal_rakshak' => JalRakshakSubmission::count(),
-            ];
-            return view('admin.dashboard', compact('inquiries'));
-        }
-        
-        // Content Management: Show blog/product stats
-        if ($userRole === 'content-management') {
-            $stats = [
-                'blogs' => \App\Models\Blog::count(),
-                'blog_categories' => \App\Models\BlogCategory::count(),
-                'products' => \App\Models\Product::count(),
-                'product_categories' => \App\Models\ProductCategory::count(),
-            ];
-            return view('admin.dashboard', compact('stats'));
-        }
-        
-        // Admin: Show full dashboard with inquiries
         $inquiries = [
             'career' => CareerApplication::count(),
             'contact' => Contact::count(),
@@ -57,7 +28,7 @@ class DashboardController extends Controller
             'blog_comment' => BlogComment::count(),
             'jal_rakshak' => JalRakshakSubmission::count(),
         ];
-        return view('admin.dashboard', compact('inquiries'));
+        return view('lead-management.dashboard', compact('inquiries'));
     }
 
     public function deleteInquiry(Request $request)

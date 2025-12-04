@@ -25,6 +25,19 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            
+            $user = Auth::user();
+            
+            // Redirect based on role
+            if (!$user->role) {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Your account does not have a role assigned. Please contact administrator.',
+                ])->withInput($request->only('email'));
+            }
+
+            // All users redirect to /admin/dashboard
+            // Menu visibility is controlled by role in the layout
             return redirect()->intended(route('admin.dashboard'));
         }
 

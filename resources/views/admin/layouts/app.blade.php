@@ -1,3 +1,10 @@
+@php
+    // Get user role to show appropriate menus
+    $userRole = Auth::user()->role->slug ?? null;
+    $isAdmin = $userRole === 'admin';
+    $isContentManagement = $userRole === 'content-management';
+    $isLeadManagement = $userRole === 'lead-management';
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +12,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin Panel - @yield('title')</title>
+    <title>
+        @if ($isContentManagement)
+            Content Management
+        @elseif($isLeadManagement)
+            Lead Management@elseAdmin Panel
+        @endif - @yield('title')
+    </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -42,165 +55,171 @@
                     <i class="fas fa-tachometer-alt"></i> <span class="nav-text">Dashboard</span>
                 </a>
 
-                <!-- Blog Module -->
-                <div
-                    class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#blogModule">
-                        <span class="nav-section-title">
-                            <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Blog Module
-                        </span>
+                <!-- Blog Module - Show only for Admin and Content Management -->
+                @if ($isAdmin || $isContentManagement)
+                    <div
+                        class="nav-section {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*') ? 'open' : '' }}">
+                        <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#blogModule">
+                            <span class="nav-section-title">
+                                <i class="fas fa-chevron-right nav-section-arrow"></i>
+                                Blog Module
+                            </span>
+                        </div>
+                        <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*') ? 'show' : '' }}"
+                            id="blogModule">
+                            <a class="nav-link{{ request()->routeIs('admin.blogs.*') ? ' active' : '' }}"
+                                href="{{ route('admin.blogs.index') }}">
+                                <i class="fas fa-newspaper"></i> <span class="nav-text">Blogs</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.blog_categories.*') ? ' active' : '' }}"
+                                href="{{ route('admin.blog_categories.index') }}">
+                                <i class="fas fa-tags"></i> <span class="nav-text">Blog Categories</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.blogs.*', 'admin.blog_categories.*', 'admin.blog_comments.*') ? 'show' : '' }}"
-                        id="blogModule">
-                        <a class="nav-link{{ request()->routeIs('admin.blogs.*') ? ' active' : '' }}"
-                            href="{{ route('admin.blogs.index') }}">
-                            <i class="fas fa-newspaper"></i> <span class="nav-text">Blogs</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.blog_categories.*') ? ' active' : '' }}"
-                            href="{{ route('admin.blog_categories.index') }}">
-                            <i class="fas fa-tags"></i> <span class="nav-text">Blog Categories</span>
-                        </a>
-                        {{-- <a class="nav-link{{ request()->routeIs('admin.blog_comments.*') ? ' active' : '' }}"
-                            href="{{ route('admin.blog_comments.index') }}">
-                            <i class="fas fa-comments"></i> <span class="nav-text">Blog Comments</span>
-                        </a> --}}
-                    </div>
-                </div>
+                @endif
 
-                <!-- Resources Module -->
-                <div
-                    class="nav-section {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#resourcesModule">
-                        <span class="nav-section-title">
-                            <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Resources Module
-                        </span>
+                <!-- Resources Module - Show only for Admin -->
+                @if ($isAdmin)
+                    <div
+                        class="nav-section {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'open' : '' }}">
+                        <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#resourcesModule">
+                            <span class="nav-section-title">
+                                <i class="fas fa-chevron-right nav-section-arrow"></i>
+                                Resources Module
+                            </span>
+                        </div>
+                        <div class="collapse {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'show' : '' }}"
+                            id="resourcesModule">
+                            <a class="nav-link{{ request()->routeIs('admin.careers.*') ? ' active' : '' }}"
+                                href="{{ route('admin.careers.index') }}">
+                                <i class="fas fa-briefcase"></i> <span class="nav-text">Careers</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.news.*') ? ' active' : '' }}"
+                                href="{{ route('admin.news.index') }}">
+                                <i class="fas fa-newspaper"></i> <span class="nav-text">News</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.faq_masters.*') ? ' active' : '' }}"
+                                href="{{ route('admin.faq_masters.index') }}">
+                                <i class="fas fa-question-circle"></i> <span class="nav-text">FAQs</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.media.*') ? ' active' : '' }}"
+                                href="{{ route('admin.media.index') }}">
+                                <i class="fas fa-photo-video"></i> <span class="nav-text">Media</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.networks.*') ? ' active' : '' }}"
+                                href="{{ route('admin.networks.index') }}">
+                                <i class="fas fa-network-wired"></i> <span class="nav-text">Network</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'show' : '' }}"
-                        id="resourcesModule">
-                        <a class="nav-link{{ request()->routeIs('admin.careers.*') ? ' active' : '' }}"
-                            href="{{ route('admin.careers.index') }}">
-                            <i class="fas fa-briefcase"></i> <span class="nav-text">Careers</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.news.*') ? ' active' : '' }}"
-                            href="{{ route('admin.news.index') }}">
-                            <i class="fas fa-newspaper"></i> <span class="nav-text">News</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.faq_masters.*') ? ' active' : '' }}"
-                            href="{{ route('admin.faq_masters.index') }}">
-                            <i class="fas fa-question-circle"></i> <span class="nav-text">FAQs</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.media.*') ? ' active' : '' }}"
-                            href="{{ route('admin.media.index') }}">
-                            <i class="fas fa-photo-video"></i> <span class="nav-text">Media</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.networks.*') ? ' active' : '' }}"
-                            href="{{ route('admin.networks.index') }}">
-                            <i class="fas fa-network-wired"></i> <span class="nav-text">Network</span>
-                        </a>
-                    </div>
-                </div>
+                @endif
 
-                <!-- Product Module -->
-                <div
-                    class="nav-section {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#productModule">
-                        <span class="nav-section-title">
-                            <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Product Module
-                        </span>
+                <!-- Product Module - Show only for Admin and Content Management -->
+                @if ($isAdmin || $isContentManagement)
+                    <div
+                        class="nav-section {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'open' : '' }}">
+                        <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#productModule">
+                            <span class="nav-section-title">
+                                <i class="fas fa-chevron-right nav-section-arrow"></i>
+                                Product Module
+                            </span>
+                        </div>
+                        <div class="collapse {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'show' : '' }}"
+                            id="productModule">
+                            <a class="nav-link{{ request()->routeIs('admin.products.*') ? ' active' : '' }}"
+                                href="{{ route('admin.products.index') }}">
+                                <i class="fas fa-box"></i> <span class="nav-text">Products</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.product_categories.*') ? ' active' : '' }}"
+                                href="{{ route('admin.product_categories.index') }}">
+                                <i class="fas fa-tags"></i> <span class="nav-text">Product Categories</span>
+                            </a>
+                        </div>
                     </div>
-                    <div class="collapse {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'show' : '' }}"
-                        id="productModule">
-                        <a class="nav-link{{ request()->routeIs('admin.products.*') ? ' active' : '' }}"
-                            href="{{ route('admin.products.index') }}">
-                            <i class="fas fa-box"></i> <span class="nav-text">Products</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.product_categories.*') ? ' active' : '' }}"
-                            href="{{ route('admin.product_categories.index') }}">
-                            <i class="fas fa-tags"></i> <span class="nav-text">Product Categories</span>
-                        </a>
-                    </div>
-                </div>
+                @endif
 
-                <!-- Content Module -->
-                <div
-                    class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*', 'admin.overview.*', 'admin.csr.*', 'admin.manufacturing.*', 'admin.certifications.*', 'admin.why-skipper-pipes.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#contentModule">
-                        <span class="nav-section-title">
-                            <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Content Module
-                        </span>
-                    </div>
-                    <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*', 'admin.overview.*', 'admin.csr.*', 'admin.manufacturing.*', 'admin.certifications.*', 'admin.why-skipper-pipes.*') ? 'show' : '' }}"
-                        id="contentModule">
-                        <a class="nav-link{{ request()->routeIs('admin.home-page.*') ? ' active' : '' }}"
-                            href="{{ route('admin.home-page.index') }}">
-                            <i class="fas fa-home"></i> <span class="nav-text">Home Page Management</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.partners.*') ? ' active' : '' }}"
-                            href="{{ route('admin.partners.index') }}">
-                            <i class="fas fa-handshake"></i> <span class="nav-text">Partners</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.company.*') ? ' active' : '' }}"
-                            href="{{ route('admin.company.index') }}">
-                            <i class="fas fa-building"></i> <span class="nav-text">Company Pages</span>
-                        </a>
+                <!-- Content Module - Show only for Admin -->
+                @if ($isAdmin)
+                    <div
+                        class="nav-section {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*', 'admin.overview.*', 'admin.csr.*', 'admin.manufacturing.*', 'admin.certifications.*', 'admin.why-skipper-pipes.*') ? 'open' : '' }}">
+                        <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#contentModule">
+                            <span class="nav-section-title">
+                                <i class="fas fa-chevron-right nav-section-arrow"></i>
+                                Content Module
+                            </span>
+                        </div>
+                        <div class="collapse {{ request()->routeIs('admin.company_pages.*', 'admin.contacts.*', 'admin.banners.*', 'admin.home-page.*', 'admin.leadership.*', 'admin.partners.*', 'admin.overview.*', 'admin.csr.*', 'admin.manufacturing.*', 'admin.certifications.*', 'admin.why-skipper-pipes.*') ? 'show' : '' }}"
+                            id="contentModule">
+                            <a class="nav-link{{ request()->routeIs('admin.home-page.*') ? ' active' : '' }}"
+                                href="{{ route('admin.home-page.index') }}">
+                                <i class="fas fa-home"></i> <span class="nav-text">Home Page Management</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.partners.*') ? ' active' : '' }}"
+                                href="{{ route('admin.partners.index') }}">
+                                <i class="fas fa-handshake"></i> <span class="nav-text">Partners</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.company.*') ? ' active' : '' }}"
+                                href="{{ route('admin.company.index') }}">
+                                <i class="fas fa-building"></i> <span class="nav-text">Company Pages</span>
+                            </a>
 
-                        <a class="nav-link{{ request()->routeIs('admin.why-skipper-pipes.*') ? ' active' : '' }}"
-                            href="{{ route('admin.why-skipper-pipes.index') }}">
-                            <i class="fas fa-star"></i> <span class="nav-text">Why Skipper Pipes</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.contacts.*') ? ' active' : '' }}"
-                            href="{{ route('admin.contacts.index') }}">
-                            <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.banners.*') ? ' active' : '' }}"
-                            href="{{ route('admin.banners.index') }}">
-                            <i class="fas fa-images"></i> <span class="nav-text">Banners</span>
-                        </a>
+                            <a class="nav-link{{ request()->routeIs('admin.why-skipper-pipes.*') ? ' active' : '' }}"
+                                href="{{ route('admin.why-skipper-pipes.index') }}">
+                                <i class="fas fa-star"></i> <span class="nav-text">Why Skipper Pipes</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.contacts.*') ? ' active' : '' }}"
+                                href="{{ route('admin.contacts.index') }}">
+                                <i class="fas fa-envelope"></i> <span class="nav-text">Contacts</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.banners.*') ? ' active' : '' }}"
+                                href="{{ route('admin.banners.index') }}">
+                                <i class="fas fa-images"></i> <span class="nav-text">Banners</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endif
 
-                <!-- Settings -->
-                <div
-                    class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*', 'admin.footer.*', 'admin.contact-us-sections.*', 'admin.jal-rakshak.*') ? 'open' : '' }}">
-                    <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#settingsModule">
-                        <span class="nav-section-title">
-                            <i class="fas fa-chevron-right nav-section-arrow"></i>
-                            Settings
-                        </span>
-                    </div>
-                    <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*', 'admin.footer.*', 'admin.contact-us-sections.*', 'admin.jal-rakshak.*') ? 'show' : '' }}"
-                        id="settingsModule">
-                        <a class="nav-link{{ request()->routeIs('admin.menus.*') ? ' active' : '' }}"
-                            href="{{ route('admin.menus.index') }}">
-                            <i class="fas fa-bars"></i> <span class="nav-text">Menu Management</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.jal-rakshak.*') ? ' active' : '' }}"
-                            href="{{ route('admin.jal-rakshak.index') }}">
-                            <i class="fas fa-tint"></i> <span class="nav-text">Jal Rakshak</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.seo.*') ? ' active' : '' }}"
-                            href="{{ route('admin.seo.index') }}">
-                            <i class="fas fa-bars"></i> <span class="nav-text">SEO Management</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.users.*') ? ' active' : '' }}"
-                            href="{{ route('admin.users.index') }}">
-                            <i class="fas fa-users"></i> <span class="nav-text">User Management</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.sections.*') ? ' active' : '' }}"
-                            href="{{ route('admin.sections.index') }}">
-                            <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Sections</span>
-                        </a>
-                        <a class="nav-link{{ request()->routeIs('admin.footer.*') ? ' active' : '' }}"
-                            href="{{ route('admin.footer.edit') }}">
-                            <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Footer</span>
-                        </a>
+                <!-- Settings - Show only for Admin -->
+                @if ($isAdmin)
+                    <div
+                        class="nav-section {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*', 'admin.footer.*', 'admin.contact-us-sections.*', 'admin.jal-rakshak.*') ? 'open' : '' }}">
+                        <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#settingsModule">
+                            <span class="nav-section-title">
+                                <i class="fas fa-chevron-right nav-section-arrow"></i>
+                                Settings
+                            </span>
+                        </div>
+                        <div class="collapse {{ request()->routeIs('admin.menus.*', 'admin.users.*', 'admin.sections.*', 'admin.footer.*', 'admin.contact-us-sections.*', 'admin.jal-rakshak.*') ? 'show' : '' }}"
+                            id="settingsModule">
+                            <a class="nav-link{{ request()->routeIs('admin.menus.*') ? ' active' : '' }}"
+                                href="{{ route('admin.menus.index') }}">
+                                <i class="fas fa-bars"></i> <span class="nav-text">Menu Management</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.jal-rakshak.*') ? ' active' : '' }}"
+                                href="{{ route('admin.jal-rakshak.index') }}">
+                                <i class="fas fa-tint"></i> <span class="nav-text">Jal Rakshak</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.seo.*') ? ' active' : '' }}"
+                                href="{{ route('admin.seo.index') }}">
+                                <i class="fas fa-bars"></i> <span class="nav-text">SEO Management</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.users.*') ? ' active' : '' }}"
+                                href="{{ route('admin.users.index') }}">
+                                <i class="fas fa-users"></i> <span class="nav-text">User Management</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.sections.*') ? ' active' : '' }}"
+                                href="{{ route('admin.sections.index') }}">
+                                <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Sections</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.footer.*') ? ' active' : '' }}"
+                                href="{{ route('admin.footer.edit') }}">
+                                <i class="fas fa-puzzle-piece"></i> <span class="nav-text">Footer</span>
+                            </a>
 
+                        </div>
                     </div>
-                </div>
+                @endif
             </nav>
             <div class="logout">
                 <form action="{{ route('admin.logout') }}" method="POST">
@@ -259,7 +278,11 @@
                 @yield('content')
             </main>
             <footer class="footer">
-                &copy; {{ date('Y') }} Admin Panel
+                &copy; {{ date('Y') }} @if ($isContentManagement)
+                    Content Management
+                @elseif($isLeadManagement)
+                    Lead Management@elseAdmin
+                @endif Panel
             </footer>
         </div>
     </div>

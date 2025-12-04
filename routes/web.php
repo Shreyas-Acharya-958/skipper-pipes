@@ -47,9 +47,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-// Admin routes (with auth middleware)
+// Admin routes (with auth middleware - all roles can access, but middleware will control specific routes)
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('/', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::redirect('/', '/admin/dashboard'); // Redirect /admin to /admin/dashboard
     Route::post('/admin/dashboard/delete-inquiry', [\App\Http\Controllers\DashboardController::class, 'deleteInquiry'])->name('dashboard.delete-inquiry');
 
     // Dashboard export routes
@@ -251,6 +252,182 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Image Upload Route for TinyMCE
     Route::post('upload/image', [ContactUsSectionController::class, 'uploadImage'])->name('upload.image');
+    
+    // Routes that require Admin role only
+    Route::middleware('role:admin')->group(function () {
+        // User Management routes
+        Route::resource('users', UserController::class);
+        
+        // Partner routes
+        Route::resource('partners', PartnerController::class)->names('partners');
+        Route::get('partners-section/{partner}', [PartnerController::class, 'sections'])->name('partners.sections');
+        Route::post('partners-section/{partner}/section-one', [PartnerController::class, 'saveSectionOne'])->name('partners.sections.one.save');
+        Route::post('partners-section/{partner}/section-one/delete-image', [PartnerController::class, 'deleteImage'])->name('partners.sections.one.delete-image');
+        Route::post('partners-section/{partner}/section-two', [PartnerController::class, 'saveSectionTwo'])->name('partners.sections.two.save');
+        Route::post('partners-section/{partner}/pipes-offers', [PartnerController::class, 'savePipesOffers'])->name('partners.sections.pipes-offers.save');
+        Route::delete('partners-section/{partner}/pipes-offers/{offer}', [PartnerController::class, 'deletePipesOffer'])->name('partners.sections.pipes-offers.delete');
+
+        // Company routes
+        Route::resource('company', CompanyController::class)->names('company');
+
+        // Contact routes
+        Route::resource('contacts', ContactController::class)->names('contacts');
+
+        // Menu Management Routes
+        Route::resource('menus', MenuController::class);
+        Route::post('menus/update-order', [MenuController::class, 'updateOrder'])->name('menus.update-order');
+
+        // Banner routes
+        Route::resource('banners', BannerController::class);
+
+        // Media routes
+        Route::resource('media', MediaController::class)->parameters(['media' => 'media']);
+        Route::get('media/sequence/list', [MediaController::class, 'sequenceList'])->name('media.sequence.list');
+        Route::post('media/update-sequence', [MediaController::class, 'updateSequence'])->name('media.update-sequence');
+        Route::post('/media/section1/save', [MediaController::class, 'saveSectionOne'])->name('media.section1.save');
+        Route::post('/media/section2/save', [MediaController::class, 'saveSectionTwo'])->name('media.section2.save');
+
+        // Home Page Management
+        Route::get('home-page', [HomePageController::class, 'index'])->name('home-page.index');
+        Route::post('home-page/section1', [HomePageController::class, 'saveSection1'])->name('home-page.section1.save');
+        Route::post('home-page/section2', [HomePageController::class, 'saveSection2'])->name('home-page.section2.save');
+        Route::post('home-page/section3', [HomePageController::class, 'saveSection3'])->name('home-page.section3.save');
+        Route::post('home-page/section4', [HomePageController::class, 'saveSection4'])->name('home-page.section4.save');
+        Route::post('home-page/add-review', [HomePageController::class, 'addReview'])->name('home-page.add-review');
+
+        // Overview Page Management
+        Route::get('/company-pages/overview/sections', [OverviewController::class, 'sections'])->name('overview.sections');
+        Route::post('/company-pages/overview/section1/save', [OverviewController::class, 'saveSectionOne'])->name('overview.section1.save');
+        Route::post('/company-pages/overview/section2/save', [OverviewController::class, 'saveSectionTwo'])->name('overview.section2.save');
+        Route::post('/company-pages/overview/section3/save', [OverviewController::class, 'saveSectionThree'])->name('overview.section3.save');
+        Route::post('/company-pages/overview/section4/save', [OverviewController::class, 'saveSectionFour'])->name('overview.section4.save');
+        Route::post('/company-pages/overview/section5/save', [OverviewController::class, 'saveSectionFive'])->name('overview.section5.save');
+        Route::post('/admin/overview/left-image', [App\Http\Controllers\OverviewController::class, 'saveLeftImage'])->name('overview.left_image.save');
+
+        // Leadership Page Management
+        Route::get('/company-pages/leadership/sections', [LeadershipController::class, 'sections'])->name('leadership.sections');
+        Route::post('/company-pages/leadership/section1/save', [LeadershipController::class, 'saveSectionOne'])->name('leadership.section1.save');
+        Route::post('/company-pages/leadership/section2/save', [LeadershipController::class, 'saveSectionTwo'])->name('leadership.section2.save');
+        Route::post('/company-pages/leadership/section3/save', [LeadershipController::class, 'saveSectionThree'])->name('leadership.section3.save');
+        Route::post('/company-pages/leadership/section4/save', [LeadershipController::class, 'saveSectionFour'])->name('leadership.section4.save');
+
+        Route::get('/company-pages/csr/sections', [CsrController::class, 'sections'])->name('csr.sections');
+        Route::post('/company-pages/csr/section1/save', [CsrController::class, 'saveSectionOne'])->name('csr.section1.save');
+        Route::post('/company-pages/csr/section2/save', [CsrController::class, 'saveSectionTwo'])->name('csr.section2.save');
+        Route::post('/company-pages/csr/section3/save', [CsrController::class, 'saveSectionThree'])->name('csr.section3.save');
+        Route::delete('/company-pages/csr/section3/delete', [CsrController::class, 'deleteSectionThree'])->name('csr.section3.delete');
+
+        // manufacturing
+        Route::get('/company-pages/manufacturing/sections', [ManufacturingController::class, 'sections'])->name('manufacturing.sections');
+        Route::post('/company-pages/manufacturing/section1/save', [ManufacturingController::class, 'saveSectionOne'])->name('manufacturing.section1.save');
+        Route::post('/company-pages/manufacturing/section2/save', [ManufacturingController::class, 'saveSectionTwo'])->name('manufacturing.section2.save');
+        Route::post('/company-pages/manufacturing/section3/save', [ManufacturingController::class, 'saveSectionThree'])->name('manufacturing.section3.save');
+        Route::post('/company-pages/manufacturing/section4/save', [ManufacturingController::class, 'saveSectionFour'])->name('manufacturing.section4.save');
+        Route::post('/company-pages/manufacturing/head/save', [ManufacturingController::class, 'saveHeadSection'])->name('manufacturing.head.save');
+
+        //Certifications
+        Route::get('/company-pages/certifications/sections', [CertificationController::class, 'sections'])->name('certifications.sections');
+        Route::post('/company-pages/certifications/section1/save', [CertificationController::class, 'saveSectionOne'])->name('certifications.section1.save');
+        Route::delete('/company-pages/certifications/section1/delete', [CertificationController::class, 'delete'])->name('certifications.section1.delete');
+        Route::post('/company-pages/certifications/head/save', [CertificationController::class, 'saveHeadSection'])->name('certifications.head.save');
+
+        //
+        Route::get('why-skipper-pipes', [WhySkipperPipeController::class, 'index'])->name('why-skipper-pipes.index');
+        Route::post('why-skipper-pipes/main/save', [WhySkipperPipeController::class, 'saveMain'])->name('why-skipper-pipes.main.save');
+        Route::post('why-skipper-pipes/section3/save', [WhySkipperPipeController::class, 'saveSection3'])->name('why-skipper-pipes.section3.save');
+        Route::post('why-skipper-pipes/section4/save', [WhySkipperPipeController::class, 'saveSection4'])->name('why-skipper-pipes.section4.save');
+        Route::post('why-skipper-pipes/section5/save', [WhySkipperPipeController::class, 'saveSection5'])->name('why-skipper-pipes.section5.save');
+        Route::post('why-skipper-pipes/built-for-condition/save', [WhySkipperPipeController::class, 'saveBuiltForCondition'])->name('why-skipper-pipes.built-for-condition.save');
+
+        // Jal Rakshak Routes
+        Route::get('jal-rakshak', [JalRakshakController::class, 'index'])->name('jal-rakshak.index');
+        Route::post('jal-rakshak/menus/save', [JalRakshakController::class, 'saveMenus'])->name('jal-rakshak.menus.save');
+        Route::post('jal-rakshak/banners/save', [JalRakshakController::class, 'saveBanners'])->name('jal-rakshak.banners.save');
+        Route::post('jal-rakshak/initiative/save', [JalRakshakController::class, 'saveInitiative'])->name('jal-rakshak.initiative.save');
+        Route::post('jal-rakshak/activities/save', [JalRakshakController::class, 'saveActivities'])->name('jal-rakshak.activities.save');
+        Route::post('jal-rakshak/gallery/save', [JalRakshakController::class, 'saveGallery'])->name('jal-rakshak.gallery.save');
+        Route::post('jal-rakshak/categories/save', [JalRakshakController::class, 'saveCategory'])->name('jal-rakshak.categories.save');
+        Route::post('jal-rakshak/categories/delete', [JalRakshakController::class, 'deleteCategory'])->name('jal-rakshak.categories.delete');
+        Route::post('jal-rakshak/videos/save', [JalRakshakController::class, 'saveVideos'])->name('jal-rakshak.videos.save');
+        Route::post('jal-rakshak/videos/upload-chunk', [JalRakshakController::class, 'uploadVideoChunk'])->name('jal-rakshak.videos.upload-chunk');
+        Route::delete('jal-rakshak/videos/delete/{id}', [JalRakshakController::class, 'deleteVideo'])->name('jal-rakshak.videos.delete');
+        Route::post('jal-rakshak/conservations/save', [JalRakshakController::class, 'saveConservations'])->name('jal-rakshak.conservations.save');
+        Route::post('jal-rakshak/involvement/save', [JalRakshakController::class, 'saveInvolvement'])->name('jal-rakshak.involvement.save');
+        Route::post('jal-rakshak/seo/save', [JalRakshakController::class, 'saveSeo'])->name('jal-rakshak.seo.save');
+
+        // Career Routes
+        Route::get('careers', [CareerController::class, 'index'])->name('careers.index');
+        Route::post('careers/main/save', [CareerController::class, 'saveMain'])->name('careers.main.save');
+        Route::post('careers/why-skipper/save', [CareerController::class, 'saveWhySkipper'])->name('careers.why-skipper.save');
+        Route::post('careers/life-at-skipper/save', [CareerController::class, 'saveLifeAtSkipper'])->name('careers.life-at-skipper.save');
+        Route::post('careers/skipper-pipes/save', [CareerController::class, 'saveSkipperPipes'])->name('careers.skipper-pipes.save');
+
+        //Faq
+        Route::resource('faq-masters', FaqMasterController::class)->names('faq_masters');
+        Route::get('faq-masters/{faqMaster}/faqs', [FaqMasterController::class, 'getFaqs']);
+        Route::post('faq-masters/{faqMaster}/faqs', [FaqMasterController::class, 'storeFaq']);
+        Route::put('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'updateFaq']);
+        Route::delete('faq-masters/{faqMaster}/faqs/{faq}', [FaqMasterController::class, 'deleteFaq']);
+        Route::post('/faq-masters/section1/save', [FaqMasterController::class, 'saveSectionOne'])->name('faq.section1.save');
+        Route::post('/faq-masters/section2/save', [FaqMasterController::class, 'saveSectionTwo'])->name('faq.section2.save');
+
+        // Sections Routes
+        Route::resource('sections', SectionController::class);
+
+        // News Routes
+        Route::resource('news', NewsController::class);
+        Route::post('/news/section1/save', [NewsController::class, 'saveSectionOne'])->name('news.section1.save');
+        Route::post('/news/section2/save', [NewsController::class, 'saveSectionTwo'])->name('news.section2.save');
+        Route::post('news/update-sequence', [NewsController::class, 'updateSequence'])->name('news.update-sequence');
+
+        // Network Routes
+        Route::get('networks', [\App\Http\Controllers\NetworkController::class, 'index'])->name('networks.index');
+        Route::post('networks/store', [\App\Http\Controllers\NetworkController::class, 'store'])->name('networks.store');
+        // Main Network Routes
+        Route::get('networks/main', [\App\Http\Controllers\NetworkController::class, 'showMainNetwork'])->name('networks.main');
+        Route::post('networks/main/save', [\App\Http\Controllers\NetworkController::class, 'saveMainNetwork'])->name('networks.main.save');
+
+        // Menu SEO Metadata
+        Route::get('seo', [MenuController::class, 'seoIndex'])->name('seo.index');
+        Route::post('seo', [MenuController::class, 'seoStore'])->name('seo.store');
+
+        Route::get('footer/edit', [FooterController::class, 'edit'])->name('footer.edit');
+        Route::post('footer/update', [FooterController::class, 'update'])->name('footer.update');
+
+        // Contact Us Sections Routes
+        Route::get('contact-us-sections/edit', [ContactUsSectionController::class, 'edit'])->name('contact-us-sections.edit');
+        Route::post('contact-us-sections/update', [ContactUsSectionController::class, 'update'])->name('contact-us-sections.update');
+    });
+    
+    // Routes accessible by Admin and Content Management (Blog & Product modules)
+    Route::middleware('role:admin,content-management')->group(function () {
+        // Blog routes
+        Route::resource('blogs', BlogController::class)->names('blogs');
+        Route::get('blogs/sequence/list', [BlogController::class, 'sequenceList'])->name('blogs.sequence.list');
+        Route::post('blogs/update-sequence', [BlogController::class, 'updateSequence'])->name('blogs.update-sequence');
+        Route::post('/blogs/section1/save', [BlogController::class, 'saveSectionOne'])->name('blog.section1.save');
+        Route::post('/blogs/section2/save', [BlogController::class, 'saveSectionTwo'])->name('blog.section2.save');
+
+        // Blog Category routes
+        Route::resource('blog-categories', BlogCategoryController::class)->names('blog_categories');
+
+        // Product routes
+        Route::resource('products', ProductController::class)->names('products');
+        Route::get('products-section/{product}', [ProductController::class, 'sections'])->name('products.sections');
+        Route::post('products-section/{product}/overview', [ProductController::class, 'saveOverview'])->name('products.sections.overview.save');
+        Route::post('products-section/{product}/applications', [ProductController::class, 'saveApplications'])->name('products.sections.applications.save');
+        Route::post('products-section/{product}/features', [ProductController::class, 'saveFeatures'])->name('products.sections.features.save');
+        Route::post('products-section/{product}/faq', [ProductController::class, 'saveFaq'])->name('products.sections.faq.save');
+
+        // Product Category routes
+        Route::resource('product-categories', ProductCategoryController::class)->names('product_categories');
+    });
+    
+    // Routes accessible by Admin and Lead Management (Dashboard module)
+    Route::middleware('role:admin,lead-management')->group(function () {
+        // Dashboard routes are already defined above, but export routes need role check
+        // These are already accessible to all authenticated users above
+    });
 });
 
 

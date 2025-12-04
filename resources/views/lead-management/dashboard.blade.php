@@ -1,12 +1,7 @@
-@php 
-    use Illuminate\Support\Str;
-    $userRole = Auth::user()->role->slug ?? null;
-    $isAdmin = $userRole === 'admin';
-    $isContentManagement = $userRole === 'content-management';
-    $isLeadManagement = $userRole === 'lead-management';
-@endphp
-@extends('admin.layouts.app')
+@php use Illuminate\Support\Str; @endphp
+@extends('lead-management.layouts.app')
 
+@section('title', 'Dashboard')
 @section('content')
     <style>
         .card-hover:hover {
@@ -15,132 +10,11 @@
             transition: all 0.3s ease;
         }
     </style>
-    
-    @if($isContentManagement)
-        {{-- Content Management Dashboard: Show Blog & Product Stats --}}
-        <div class="row mb-4">
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.blogs.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-info card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ $stats['blogs'] ?? 0 }}
-                                </div>
-                                <div>Blogs</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.blog_categories.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-warning card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ $stats['blog_categories'] ?? 0 }}
-                                </div>
-                                <div>Blog Categories</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.products.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-primary card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ $stats['products'] ?? 0 }}
-                                </div>
-                                <div>Products</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.product_categories.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-success card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ $stats['product_categories'] ?? 0 }}
-                                </div>
-                                <div>Product Categories</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="mb-4">Lead Management Dashboard</h2>
         </div>
-    @else
-        {{-- Admin & Lead Management Dashboard: Show Product/Blog Stats (Admin only) and Inquiries --}}
-        @if($isAdmin)
-        <div class="row mb-4">
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.products.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-primary card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ \App\Models\Product::count() }}
-                                </div>
-                                <div>Products</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.blogs.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-info card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ \App\Models\Blog::count() }}
-                                </div>
-                                <div>Blogs</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.product_categories.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-success card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ \App\Models\ProductCategory::count() }}
-                                </div>
-                                <div>Product Categories</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <a href="{{ route('admin.blog_categories.index') }}" class="text-decoration-none">
-                    <div class="card mb-4 text-white bg-warning card-hover">
-                        <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                            <div>
-                                <div class="fs-4 fw-semibold">
-                                    {{ \App\Models\BlogCategory::count() }}
-                                </div>
-                                <div>Blog Categories</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        @endif
-    @endif
-    
-    @if($isAdmin || $isLeadManagement)
+    </div>
     <div class="row mb-4">
         <div class="col-12">
             <ul class="nav nav-tabs" id="inquiryTabs" role="tablist">
@@ -185,7 +59,7 @@
                 <div class="tab-pane fade show active" id="career" role="tabpanel" aria-labelledby="career-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Career Applications</h5>
-                        <a href="{{ route('admin.dashboard.export.career') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.career') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -231,7 +105,7 @@
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Contacts</h5>
-                        <a href="{{ route('admin.dashboard.export.contacts') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.contacts') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -270,7 +144,7 @@
                 <div class="tab-pane fade" id="dealer" role="tabpanel" aria-labelledby="dealer-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Become Dealer</h5>
-                        <a href="{{ route('admin.dashboard.export.dealer') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.dealer') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -314,7 +188,7 @@
                 <div class="tab-pane fade" id="distributor" role="tabpanel" aria-labelledby="distributor-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Become Distributor</h5>
-                        <a href="{{ route('admin.dashboard.export.distributor') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.distributor') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -358,7 +232,7 @@
                 <div class="tab-pane fade" id="blog-comment" role="tabpanel" aria-labelledby="blog-comment-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Blog Comments</h5>
-                        <a href="{{ route('admin.dashboard.export.blog-comments') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.blog-comments') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -380,10 +254,6 @@
                                     <td>{{ Str::limit($item->description, 30) }}</td>
                                     <td id="status-{{ $item->id }}">
                                         {{ $item->status == 0 ? 'Pending' : 'Approved' }}
-                                        @if ($item->status == 0)
-                                            <button type="button" class="btn btn-sm btn-success ms-2 approve-btn"
-                                                data-id="{{ $item->id }}">Approve</button>
-                                        @endif
                                     </td>
                                     <td><button class="btn btn-sm btn-link text-primary" type="button"
                                             onclick="toggleRow('blogcomment-{{ $item->id }}')">Details</button>
@@ -403,7 +273,7 @@
                 <div class="tab-pane fade" id="jal-rakshak" role="tabpanel" aria-labelledby="jal-rakshak-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Jal Rakshak</h5>
-                        <a href="{{ route('admin.dashboard.export.jal-rakshak') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.jal-rakshak') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -458,51 +328,14 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.approve-btn').forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var commentId = this.getAttribute('data-id');
-                    var url = '/admin/blog-comments/' + commentId + '/approve';
-                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute(
-                        'content');
-                    fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': token,
-                                'Accept': 'application/json',
-                            },
-                        })
-                        .then(response => {
-                            if (!response.ok) throw new Error('Network response was not ok');
-                            return response.json ? response.json() : response.text();
-                        })
-                        .then(() => {
-                            document.getElementById('status-' + commentId).innerHTML =
-                                'Approved';
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Approved!',
-                                text: 'Blog comment approved successfully.'
-                            });
-                        })
-                        .catch(() => {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: 'Failed to approve comment.'
-                            });
-                        });
-                });
-            });
-
             document.querySelectorAll('.delete-inquiry').forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     if (!confirm('Are you sure you want to delete this entry?')) return;
                     var type = this.getAttribute('data-type');
                     var id = this.getAttribute('data-id');
                     var row = this.closest('tr');
-                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute(
-                        'content');
-                    fetch("{{ route('admin.dashboard.delete-inquiry') }}", {
+                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    fetch("{{ route('lead-management.dashboard.delete-inquiry') }}", {
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': token,
@@ -517,10 +350,8 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
-                                // Remove both the main row and the details row if present
                                 var detailsRow = row.nextElementSibling;
-                                if (detailsRow && detailsRow.style && detailsRow.style
-                                    .display !== undefined) {
+                                if (detailsRow && detailsRow.style && detailsRow.style.display !== undefined) {
                                     detailsRow.remove();
                                 }
                                 row.remove();
@@ -533,5 +364,5 @@
             });
         });
     </script>
-    @endif
 @endsection
+
