@@ -155,7 +155,7 @@
                      <!-- Popup Content (hidden) -->
                      <div id="team-popup-siddarth31" class="mfp-hide team-popup">
                          <button title="Close" class="mfp-close">&times;</button>
-                         <img src="assets/img/final/anirban-paul.png" alt="Mr. Siddharth Bansal">
+                         <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="{{ $leadership->name ?? '' }}">
                          <h4>Mr. Anirban P</h4>
                          <p class="designation">CMO</p>
                          <p>{!! $leadership->description ?? '' !!}</p>

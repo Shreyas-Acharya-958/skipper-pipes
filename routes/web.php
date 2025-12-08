@@ -463,3 +463,42 @@ Route::name('front.')->group(function () {
     Route::get('/network', [FrontController::class, 'network'])->name('network.index');
     Route::get('/{slug?}', [FrontController::class, 'section'])->name('section.index');
 });
+
+
+// 301 Redirects
+Route::permanentRedirect('/plumbing-is-an-import', '/blogs/a-useful-guide-on-plumbing-pipe-size-calculation');
+Route::permanentRedirect('/4-uses-of-pvc-pipes/', '/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know');
+Route::permanentRedirect('/4-uses-of-pvc-pipes-keywords-pvc-pipe-suppliers-agriculture-pipes-and-fittings-500words/', '/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know');
+Route::permanentRedirect('/5-ways-skipper-cpvc-pipes-have-an-edge-over-other-industry-players/', '/blogs/what-makes-skipper-pipes-the-best-cpvc-pipes-in-india');
+Route::permanentRedirect('/6-top-benefits-of-pvc-pipes-every-plumber-should-know/', '/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know');
+Route::permanentRedirect('/awards-certificates/', '/company/certifications');
+Route::permanentRedirect('/benefits-of-using-pvc-over-other-materials/', '/blogs/pvc-pipe-vs-other-materials-pros-and-cons-simplified');
+Route::permanentRedirect('/benefits-of-using-pvc-pipes/', '/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard');
+Route::permanentRedirect('/best-plumbing-pipe-in-india/', '/blogs/a-useful-guide-on-plumbing-pipe-size-calculation');
+Route::permanentRedirect('/durastream-technology-the-tech-behind-robustness-of-cpvc-pipes/', '/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard');
+Route::permanentRedirect('/exploring-the-various-types-of-plumbing-fittings/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/exploring-the-various-types-of-plumbing-pipes-and-fittings/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/factors-that-make-cpvc-pipes-ideal-for-residential-plumbing/', '/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard');
+Route::permanentRedirect('/factors-to-consider-when-choosing-bathroom-fittings/', '/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard');
+Route::permanentRedirect('/facts-about-upvc-pipes-that-you-should-know/', '/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024');
+Route::permanentRedirect('/facts-about-upvc-pipes-that-you-should-know//1000', '/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024');
+Route::permanentRedirect('/facts-about-upvc-pipes-that-you-should-know/1000', '/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024');
+Route::permanentRedirect('/features-and-benefits-of-hdpe-pipes/', '/blogs/why-are-hdpe-pipes-so-versatile-know-the-features-benefits');
+Route::permanentRedirect('/heres-what-you-need-to-know-before-choosing-a-plumbing-contractor/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/home-buyers-guide-to-complete-residential-plumbing-solutions/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/how-is-skipper-pipes-helping-housing-complexes-in-water-transportation/', '/blogs/flagbearers-of-safe-water-skipper-pipes-leading-the-way');
+Route::permanentRedirect('/how-to-choose-the-right-pipe-for-plumbing-applications/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/how-to-choose-the-right-pipe-for-plumbing-applications//1000', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/how-to-choose-the-right-plumbing-pipes/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/how-to-perform-easy-diy-plumbing-pipe-fixes-at-home/', '/blogs/how-to-perform-easy-diy-plumbing-pipe-fixes-at-home');
+Route::permanentRedirect('/innovation-in-piping-the-rise-of-smart-plumbing-systems/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/know-the-differences-between-piping-systems/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/know-the-differences-between-piping-systems//1000', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/know-the-differences-between-piping-systems/1000', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/main-advantages-of-using-upvc-pipes-in-2024/', '/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024');
+Route::permanentRedirect('/pvc-pipes-manufacturer-in-india/', '/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know');
+Route::permanentRedirect('/pvc-pipes-vs-other-materials-pros-and-cons-simplified/', '/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know');
+Route::permanentRedirect('/the-various-uses-of-cpvc-pipes-in-construction-plumbing-industry/', '/blogs/innovation-in-plumbing-the-future-of-pipe-systems');
+Route::permanentRedirect('/top-6-advantage-and-applications-of-cpvc-pipes/', '/blogs/what-makes-skipper-pipes-the-best-cpvc-pipes-in-india');
+Route::permanentRedirect('/top-7-advantages-of-using-skipper-upvc-pipes-over-metal-pipes/', '/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024');
+Route::permanentRedirect('/top-benefits-and-applications-of-swr-pipes-and-fittings/', '/blogs/the-top-benefits-and-applications-of-swr-pipes-and-fittings');
