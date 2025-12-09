@@ -68,15 +68,15 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                        <div class="table-responsive" style="overflow-x: auto;">
+                            <table class="table table-striped table-hover" style="min-width: 1200px;">
                                 <thead>
                                     <tr>
                                         <th width="80">Preview</th>
-                                        <th>File Name</th>
-                                        <th>Directory</th>
-                                        <th>Path</th>
-                                        <th width="40%">Alt Text</th>
+                                        <th style="min-width: 150px;">File Name</th>
+                                        <th style="min-width: 120px;">Directory</th>
+                                        <th style="min-width: 200px;">Path</th>
+                                        <th style="min-width: 350px;">Alt Text</th>
                                         <th width="100">Actions</th>
                                     </tr>
                                 </thead>
@@ -107,9 +107,10 @@
                                                 <input type="hidden" name="images[{{ $loop->index }}][id]"
                                                     value="{{ $image->id }}">
                                                 <input type="text" name="images[{{ $loop->index }}][alt_text]"
-                                                    class="form-control form-control-sm alt-text-input"
-                                                    value="{{ $image->alt_text }}" placeholder="Enter alternative text..."
-                                                    data-image-id="{{ $image->id }}">
+                                                    class="form-control alt-text-input" value="{{ $image->alt_text }}"
+                                                    placeholder="Enter alternative text..."
+                                                    data-image-id="{{ $image->id }}"
+                                                    style="min-width: 300px; width: 100%;">
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-sm btn-primary save-single-btn"

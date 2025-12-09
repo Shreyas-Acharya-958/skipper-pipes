@@ -41,32 +41,65 @@ class ScanImagesForAltText extends Command
      */
     public function handle()
     {
-        $this->info('Starting image scan...');
+        $this->info('═══════════════════════════════════════════════════════════');
+        $this->info('  Starting Image Scan for Alt Text Management');
+        $this->info('═══════════════════════════════════════════════════════════');
+        $this->newLine();
 
         $force = $this->option('force');
+        if ($force) {
+            $this->warn('Force mode enabled: Will update existing entries');
+        }
+        $this->newLine();
+
         $scanned = 0;
         $added = 0;
         $updated = 0;
+        $skipped = 0;
 
         foreach ($this->directories as $dir) {
             $fullPath = base_path($dir);
 
             if (!File::exists($fullPath)) {
-                $this->warn("Directory not found: {$dir}");
+                $this->warn("  ⚠ Directory not found: {$dir}");
+                $this->newLine();
                 continue;
             }
 
-            $this->info("Scanning: {$dir}");
+            $this->info("  📁 Scanning: {$dir}");
             $result = $this->scanDirectory($fullPath, $dir, $force);
             $scanned += $result['scanned'];
             $added += $result['added'];
             $updated += $result['updated'];
+            $skipped += $result['skipped'];
+
+            $this->line("     ✓ Found: {$result['scanned']} images");
+            $this->line("     ✓ Added: {$result['added']} new entries");
+            if ($result['updated'] > 0) {
+                $this->line("     ✓ Updated: {$result['updated']} existing entries");
+            }
+            if ($result['skipped'] > 0) {
+                $this->line("     ⊘ Skipped: {$result['skipped']} existing entries (use --force to update)");
+            }
+            $this->newLine();
         }
 
-        $this->info("\nScan complete!");
-        $this->info("Total images scanned: {$scanned}");
-        $this->info("New images added: {$added}");
-        $this->info("Existing images updated: {$updated}");
+        $this->info('═══════════════════════════════════════════════════════════');
+        $this->info('  Scan Complete!');
+        $this->info('═══════════════════════════════════════════════════════════');
+        $this->newLine();
+        $this->table(
+            ['Metric', 'Count'],
+            [
+                ['Total Images Scanned', $scanned],
+                ['New Images Added', $added],
+                ['Existing Images Updated', $updated],
+                ['Existing Images Skipped', $skipped],
+            ]
+        );
+        $this->newLine();
+        $this->info("  💡 Tip: Visit /admin/image-alt-texts to manage alt text");
+        $this->newLine();
 
         return 0;
     }
@@ -79,6 +112,7 @@ class ScanImagesForAltText extends Command
         $scanned = 0;
         $added = 0;
         $updated = 0;
+        $skipped = 0;
 
         $files = File::allFiles($fullPath);
 
@@ -107,16 +141,27 @@ class ScanImagesForAltText extends Command
                     $imageAltText->file_size = $file->getSize();
                     $imageAltText->save();
                     $updated++;
+                } else {
+                    $skipped++;
                 }
             } else {
+                // Generate default alt text from filename (remove extension, replace underscores/hyphens with spaces)
+                $fileName = $file->getFilename();
+                $fileNameWithoutExt = pathinfo($fileName, PATHINFO_FILENAME);
+                // Replace underscores, hyphens, and multiple spaces with single space
+                $defaultAltText = preg_replace('/[_\-\s]+/', ' ', $fileNameWithoutExt);
+                // Trim and capitalize first letter of each word
+                $defaultAltText = trim($defaultAltText);
+                $defaultAltText = ucwords(strtolower($defaultAltText));
+
                 // Create new entry
                 ImageAltText::create([
                     'image_path' => '/' . $relativePath,
                     'normalized_path' => $normalizedPath,
-                    'file_name' => $file->getFilename(),
+                    'file_name' => $fileName,
                     'directory' => dirname($relativePath),
                     'file_size' => $file->getSize(),
-                    'alt_text' => null,
+                    'alt_text' => $defaultAltText,
                 ]);
                 $added++;
             }
@@ -126,6 +171,7 @@ class ScanImagesForAltText extends Command
             'scanned' => $scanned,
             'added' => $added,
             'updated' => $updated,
+            'skipped' => $skipped,
         ];
     }
 }
