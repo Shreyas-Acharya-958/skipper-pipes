@@ -4,7 +4,7 @@
         <div class="item">
             <div class="thumb">
                 <a href="{{ route('front.blogs.show', $blog->slug) }}">
-                    <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ $blog->title }}">
+                    <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
                 </a>
             </div>
             <div class="info">

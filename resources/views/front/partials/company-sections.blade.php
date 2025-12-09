@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row align-items-start">
             <div class="col-md-5 title text-center mission-left-col">
-                <img src="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}" class="w-50 mb-4" alt="Skipper Logo">
+                <img src="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}" class="w-50 mb-4" alt="{{ image_alt_text('assets/img/final/skipper-pipes-s-logo.png', 'Skipper Logo') }}">
                 <div class="site-heading text-center">
                     <h2>Mission</h2>
                 </div>
@@ -137,7 +137,7 @@
                                 <p class="timeline-desc">{!! $event['description'] !!}</p>
                                 <div class="timeline-img">
                                     <img src="{{ asset('assets/img/final/HDPE-pipes.jpeg') }}"
-                                        alt="{{ $event['year'] }} Event">
+                                        alt="{{ image_alt_text('assets/img/final/HDPE-pipes.jpeg', $event['year'] . ' Event') }}">
                                 </div>
                             </div>
                         @endforeach
@@ -177,7 +177,7 @@
                 @endforeach
             </div>
             <div class="col-md-6 pan-india-img">
-                <img src="{{ asset('assets/img/final/map.jpeg') }}" alt="Pan India Map">
+                <img src="{{ asset('assets/img/final/map.jpeg') }}" alt="{{ image_alt_text('assets/img/final/map.jpeg', 'Pan India Map') }}">
             </div>
             <div class="col"></div>
         </div>

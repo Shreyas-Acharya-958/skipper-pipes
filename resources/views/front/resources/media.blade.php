@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($mediaSectionTwo->image ?? ''), '') }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -19,7 +19,7 @@
             <p>Where our brand speaks — through visuals, coverage, and industry collaborations.</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($mediaSectionTwo->image ?? ''), '') }}">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -88,13 +88,13 @@
                                         @elseif ($item->file_type == 'pdf')
                                             @if ($item->thumbnail)
                                                 <img src="{{ asset('storage/' . $item->thumbnail) }}"
-                                                    alt="{{ $item->title }}" class="img-fluid">
+                                                    alt="{{ image_alt_text('storage/' . $item->thumbnail, $item->title) }}" class="img-fluid">
                                             @endif
                                             <div class="media-title mt-3">{{ $item->title }}</div>
                                             <a href="{{ asset('storage/' . $item->file) }}"
                                                 class="btn btn-dark theme theme2 mt-4" target="_blank">View</a>
                                         @elseif ($item->file_type == 'image')
-                                            <img src="{{ asset('storage/' . $item->file) }}" alt="{{ $item->title }}"
+                                            <img src="{{ asset('storage/' . $item->file) }}" alt="{{ image_alt_text('storage/' . $item->file, $item->title) }}"
                                                 class="img-fluid">
                                             <div class="media-title mt-3">{{ $item->title }}</div>
                                             <a href="{{ asset('storage/' . $item->file) }}"
@@ -175,7 +175,7 @@
                                                                 alt="{{ $item->title }}" class="img-fluid">
                                                         @else
                                                             <img src="{{ asset('assets/img/final2/CBIP-award.png') }}"
-                                                                alt="{{ $item->title }}" class="img-fluid">
+                                                                alt="{{ image_alt_text('assets/img/final2/CBIP-award.png', $item->title) }}" class="img-fluid">
                                                         @endif
                                                     @elseif ($item->file_type == 'image')
                                                         <img src="{{ asset('storage/' . $item->file) }}"

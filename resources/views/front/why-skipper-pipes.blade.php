@@ -5,7 +5,7 @@
     @if ($whySkipperPipes)
         <section class="hero-banner2">
             <div class="hero-banner2-bg">
-                <img src="{{ asset('storage/' . $whySkipperPipes->image) }}" alt="">
+                <img src="{{ asset('storage/' . $whySkipperPipes->image) }}" alt="{{ image_alt_text('storage/' . $whySkipperPipes->image, $whySkipperPipes->title ?? '') }}">
             </div>
             <div class="hero-banner2-overlay"></div>
             <div class="hero-banner2-content">
@@ -21,7 +21,7 @@
                 <p>{!! $whySkipperPipes->description ?? '' !!}</p>
             </div>
             <div class="hero-banner2-img-responsive">
-                <img src="{{ asset('storage/' . $whySkipperPipes->image) }}" alt="">
+                <img src="{{ asset('storage/' . $whySkipperPipes->image) }}" alt="{{ image_alt_text('storage/' . $whySkipperPipes->image, $whySkipperPipes->title ?? '') }}">
             </div>
         </section>
     @endif
@@ -75,7 +75,7 @@
                                     @foreach ($whySkipperPipesSectionThrees->images as $index => $image)
                                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                             <img class="d-block w-100" src="{{ asset('storage/' . $image) }}"
-                                                alt="Slide {{ $index }}" style="height: 300px; object-fit: cover;">
+                                                alt="{{ image_alt_text('storage/' . $image, 'Slide ' . $index) }}" style="height: 300px; object-fit: cover;">
                                         </div>
                                     @endforeach
                                 </div>
@@ -114,7 +114,7 @@
                 <div class="row">
                     @foreach ($why_skipper_pipe_section_fours as $why_skipper_pipe_section_four)
                         <div class="infrastrcture-banner-col col-12 p-0">
-                            <img src="{{ asset('storage/' . $why_skipper_pipe_section_four->image) }}" alt="">
+                            <img src="{{ asset('storage/' . $why_skipper_pipe_section_four->image) }}" alt="{{ image_alt_text('storage/' . $why_skipper_pipe_section_four->image, $why_skipper_pipe_section_four->title ?? '') }}">
                             <div class="infrastructure-img-overlay"></div>
                             <div class="infrastrcture-banner-content">
                                 <h3>{{ $why_skipper_pipe_section_four->title ?? '' }}</h3>
@@ -154,7 +154,7 @@
                                 @foreach ($why_skipper_pipe_section_fives->images as $index => $image)
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                         <img class="d-block w-100" src="{{ asset('storage/' . $image) }}"
-                                            alt="First slide">
+                                            alt="{{ image_alt_text('storage/' . $image, 'First slide') }}">
                                     </div>
                                 @endforeach
                             </div>
@@ -200,7 +200,7 @@
                     @foreach ($why_skipper_pipe_section_twos as $why_skipper_pipe_section_two)
                         <div class="col-12 col-md-4 company-icon-col" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="100">
-                            <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="">
+                            <img src="{{ asset('storage/' . $why_skipper_pipe_section_two->image) }}" alt="{{ image_alt_text('storage/' . $why_skipper_pipe_section_two->image, $why_skipper_pipe_section_two->title ?? '') }}">
                             <h4>{{ $why_skipper_pipe_section_two->title ?? '' }}</h4>
                             <p>{!! $why_skipper_pipe_section_two->description ?? '' !!}</p>
                         </div>

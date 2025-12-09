@@ -235,9 +235,9 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('assets/img/final/logo.png') }}" class="logo regular" alt="Logo">
+                        <img src="{{ asset('assets/img/final/logo.png') }}" class="logo regular" alt="{{ image_alt_text('assets/img/final/logo.png', 'Logo') }}">
                         <img src="{{ asset('assets/img/final/logo.png') }}" class="logo logo-responsive"
-                            alt="Logo">
+                            alt="{{ image_alt_text('assets/img/final/logo.png', 'Logo') }}">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -308,7 +308,7 @@
             <div class="side">
                 <a href="#" class="close-side"><i class="fas fa-times"></i></a>
                 <div class="widget">
-                    <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" alt="Logo">
+                    <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" alt="{{ image_alt_text('assets/img/final/Logo-HR (1).png', 'Logo') }}">
                     <p>
                         Trusted piping solutions engineered for strength, hygiene, and long-term durability across
                         infrastructure, agriculture, industrial, and residential applications.

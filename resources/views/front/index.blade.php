@@ -79,7 +79,7 @@
             <div class="carousel-inner">
                 @foreach ($banners as $key => $banner)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-interval="3000">
-                        <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="{{ $banner->title }}">
+                        <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="{{ image_alt_text('storage/' . $banner->image, $banner->title) }}">
                     </div>
                 @endforeach
             </div>
@@ -107,7 +107,7 @@
                 @foreach ($banners as $key => $banner)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-interval="3000">
                         <img src="{{ asset('storage/' . $banner->mobile_image) }}" class="d-block w-100"
-                            alt="{{ $banner->title }}">
+                            alt="{{ image_alt_text('storage/' . $banner->mobile_image, $banner->title) }}">
                     </div>
                 @endforeach
             </div>
@@ -131,12 +131,12 @@
                 <div class="home-about col-lg-5" data-aos="fade-up" data-aos-duration="1000">
                     <div class="thumb">
                         @if ($sectionOne->image)
-                            <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="Why Skipper Pipes">
+                            <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="{{ image_alt_text('storage/' . $sectionOne->image, 'Why Skipper Pipes') }}">
                         @elseif ($sectionOne->video)
                             <video class="w-100" src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes"
                                 loop autoplay muted></video>
                         @else
-                            <img src="assets/img/final/home-about.jpg" alt="Why Skipper Pipes">
+                            <img src="assets/img/final/home-about.jpg" alt="{{ image_alt_text('assets/img/final/home-about.jpg', 'Why Skipper Pipes') }}">
                         @endif
                     </div>
                 </div>
@@ -157,10 +157,10 @@
                                     <div class="icon">
                                         @if ($feature->icon)
                                             <img src="{{ asset('storage/' . $feature->icon) }}"
-                                                alt="{{ $feature->title }}">
+                                                alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
                                         @else
                                             <img src="{{ asset('storage/' . $feature->image) }}"
-                                                alt="{{ $feature->title }}">
+                                                alt="{{ image_alt_text('storage/' . $feature->image, $feature->title) }}">
                                         @endif
                                     </div>
                                     <div class="content">
@@ -171,7 +171,7 @@
                         @else
                             <li class="about-li">
                                 <div class="icon">
-                                    <img src="assets/img/energy/cashback.png" alt="Icon">
+                                    <img src="assets/img/energy/cashback.png" alt="{{ image_alt_text('assets/img/energy/cashback.png', 'Icon') }}">
                                 </div>
                                 <div class="content">
                                     <h5>16+ Years of Industry Expertise</h5>
@@ -179,7 +179,7 @@
                             </li>
                             <li class="about-li">
                                 <div class="icon">
-                                    <img src="assets/img/energy/eco-house.png" alt="Icon">
+                                    <img src="assets/img/energy/eco-house.png" alt="{{ image_alt_text('assets/img/energy/eco-house.png', 'Icon') }}">
                                 </div>
                                 <div class="content">
                                     <h5>Pan India Presence</h5>
@@ -187,7 +187,7 @@
                             </li>
                             <li class="about-li">
                                 <div class="icon">
-                                    <img src="assets/img/energy/eco-house.png" alt="Icon">
+                                    <img src="assets/img/energy/eco-house.png" alt="{{ image_alt_text('assets/img/energy/eco-house.png', 'Icon') }}">
                                 </div>
                                 <div class="content">
                                     <h5>Wide Range of Products</h5>
@@ -195,7 +195,7 @@
                             </li>
                             <li class="about-li">
                                 <div class="icon">
-                                    <img src="assets/img/energy/eco-house.png" alt="Icon">
+                                    <img src="assets/img/energy/eco-house.png" alt="{{ image_alt_text('assets/img/energy/eco-house.png', 'Icon') }}">
                                 </div>
                                 <div class="content">
                                     <h5>Best Quality Products</h5>
@@ -233,7 +233,7 @@
                             data-aos-delay="100">
                             <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});">
                             </div>
-                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ $category->name }}">
+                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ image_alt_text('storage/' . $category->icon, $category->name) }}">
                             <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
                             <h4>{{ $category->name }}</h4>
                             <p>
@@ -294,10 +294,10 @@
                                                                 <div class="home-products__img">
                                                                     @if ($product->home_image)
                                                                         <img src="{{ asset('storage/' . $product->home_image) }}"
-                                                                            alt="{{ $product->title }}">
+                                                                            alt="{{ image_alt_text('storage/' . $product->home_image, $product->title) }}">
                                                                     @else
                                                                         <img src="{{ asset('assets/img/final/project1.jpg') }}"
-                                                                            alt="{{ $product->title }}">
+                                                                            alt="{{ image_alt_text('assets/img/final/project1.jpg', $product->title) }}">
                                                                     @endif
                                                                 </div>
                                                                 <div class="home-products__content-box">
@@ -369,7 +369,7 @@
                         <div class="col-lg-5 title text-center" data-aos="fade-up" data-aos-duration="1500"
                             data-aos-delay="100">
                             <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
-                            <img src="{{ asset('storage/' . $sectionFour->image) }}" class="w-50 mb-4" alt="">
+                            <img src="{{ asset('storage/' . $sectionFour->image) }}" class="w-50 mb-4" alt="{{ image_alt_text('storage/' . $sectionFour->image, '') }}">
                             <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
                             <div class="site-heading text-center">
                                 <!-- <h4>Our Feedbacks</h4> -->
@@ -397,7 +397,7 @@
                                         <div class="provider">
                                             <div class="thumb">
                                                 <img src="{{ asset('storage/' . $review->person_image) ?? '/assets/img/final/testimonial1.png' }}"
-                                                    alt="{{ $review->person_name }}">
+                                                    alt="{{ image_alt_text('storage/' . ($review->person_image ?? ''), $review->person_name) }}">
                                             </div>
                                             <div class="info">
                                                 <h5>{{ $review->person_name }}</h5>
@@ -467,10 +467,10 @@
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}">
                                         @if ($blog->page_image)
                                             <img src="{{ asset('storage/' . $blog->image_1) }}"
-                                                alt="{{ $blog->title }}">
+                                                alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
                                         @else
                                             <img src="{{ asset('assets/img/final/blog1.jpeg') }}"
-                                                alt="{{ $blog->title }}">
+                                                alt="{{ image_alt_text('assets/img/final/blog1.jpeg', $blog->title) }}">
                                         @endif
                                     </a>
                                 </div>
@@ -527,7 +527,7 @@
                     <!-- Left Image -->
                     <div class="col-md-6 popup-img">
                         <img src="{{ asset('assets/img/lp/Jalraksha_PopUpForm_579x687.png') }}" class="img-fluid"
-                            alt="Popup Image">
+                            alt="{{ image_alt_text('assets/img/lp/Jalraksha_PopUpForm_579x687.png', 'Popup Image') }}">
                     </div>
 
                     <!-- Right Form -->
