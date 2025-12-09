@@ -170,6 +170,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/media/section1/save', [MediaController::class, 'saveSectionOne'])->name('media.section1.save');
     Route::post('/media/section2/save', [MediaController::class, 'saveSectionTwo'])->name('media.section2.save');
 
+    // Image Alt Text Management routes
+    Route::get('image-alt-texts', [\App\Http\Controllers\Admin\ImageAltTextController::class, 'index'])->name('image-alt-texts.index');
+    Route::put('image-alt-texts/update-batch', [\App\Http\Controllers\Admin\ImageAltTextController::class, 'updateBatch'])->name('image-alt-texts.update-batch');
+    Route::put('image-alt-texts/{imageAltText}', [\App\Http\Controllers\Admin\ImageAltTextController::class, 'update'])->name('image-alt-texts.update');
+    Route::post('image-alt-texts/scan', [\App\Http\Controllers\Admin\ImageAltTextController::class, 'scan'])->name('image-alt-texts.scan');
+    Route::get('image-alt-texts/{imageAltText}', [\App\Http\Controllers\Admin\ImageAltTextController::class, 'show'])->name('image-alt-texts.show');
+
 
 
     // Home Page Management
@@ -293,12 +300,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Image Upload Route for TinyMCE
     Route::post('upload/image', [ContactUsSectionController::class, 'uploadImage'])->name('upload.image');
-    
+
     // Routes that require Admin role only
     Route::middleware('role:admin')->group(function () {
         // User Management routes
         Route::resource('users', UserController::class);
-        
+
         // Partner routes
         Route::resource('partners', PartnerController::class)->names('partners');
         Route::get('partners-section/{partner}', [PartnerController::class, 'sections'])->name('partners.sections');
@@ -439,7 +446,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('contact-us-sections/edit', [ContactUsSectionController::class, 'edit'])->name('contact-us-sections.edit');
         Route::post('contact-us-sections/update', [ContactUsSectionController::class, 'update'])->name('contact-us-sections.update');
     });
-    
+
     // Routes accessible by Admin and Content Management (Blog & Product modules)
     Route::middleware('role:admin,content-management')->group(function () {
         // Blog routes
@@ -463,7 +470,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         // Product Category routes
         Route::resource('product-categories', ProductCategoryController::class)->names('product_categories');
     });
-    
+
     // Routes accessible by Admin and Lead Management (Dashboard module)
     Route::middleware('role:admin,lead-management')->group(function () {
         // Dashboard routes are already defined above, but export routes need role check
@@ -504,5 +511,3 @@ Route::name('front.')->group(function () {
     Route::get('/network', [FrontController::class, 'network'])->name('network.index');
     Route::get('/{slug?}', [FrontController::class, 'section'])->name('section.index');
 });
-
-

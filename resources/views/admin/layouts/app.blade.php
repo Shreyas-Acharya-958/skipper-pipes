@@ -87,14 +87,14 @@
                 <!-- Resources Module - Show only for Admin -->
                 @if ($isAdmin)
                     <div
-                        class="nav-section {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'open' : '' }}">
+                        class="nav-section {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*', 'admin.image-alt-texts.*') ? 'open' : '' }}">
                         <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#resourcesModule">
                             <span class="nav-section-title">
                                 <i class="fas fa-chevron-right nav-section-arrow"></i>
                                 Resources Module
                             </span>
                         </div>
-                        <div class="collapse {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*') ? 'show' : '' }}"
+                        <div class="collapse {{ request()->routeIs('admin.careers.*', 'admin.news.*', 'admin.faq_masters.*', 'admin.media.*', 'admin.image-alt-texts.*') ? 'show' : '' }}"
                             id="resourcesModule">
                             <a class="nav-link{{ request()->routeIs('admin.careers.*') ? ' active' : '' }}"
                                 href="{{ route('admin.careers.index') }}">
@@ -111,6 +111,10 @@
                             <a class="nav-link{{ request()->routeIs('admin.media.*') ? ' active' : '' }}"
                                 href="{{ route('admin.media.index') }}">
                                 <i class="fas fa-photo-video"></i> <span class="nav-text">Media</span>
+                            </a>
+                            <a class="nav-link{{ request()->routeIs('admin.image-alt-texts.*') ? ' active' : '' }}"
+                                href="{{ route('admin.image-alt-texts.index') }}">
+                                <i class="fas fa-image"></i> <span class="nav-text">Image Alt Text</span>
                             </a>
                             <a class="nav-link{{ request()->routeIs('admin.networks.*') ? ' active' : '' }}"
                                 href="{{ route('admin.networks.index') }}">
