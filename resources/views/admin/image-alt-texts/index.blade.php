@@ -43,7 +43,7 @@
                             @endif
                         </form>
 
-                        <div class="d-flex gap-2">
+                        <div class="d-flex gap-2 flex-wrap">
                             <form action="{{ route('admin.image-alt-texts.scan') }}" method="POST" class="d-inline">
                                 @csrf
                                 <button type="submit" class="btn btn-info"
@@ -53,6 +53,10 @@
                             </form>
                             <button type="button" class="btn btn-success" id="saveAllBtn" style="display: none;">
                                 <i class="fas fa-save"></i> Save All Changes
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="togglePathBtn"
+                                title="Show/Hide Path Column">
+                                <i class="fas fa-eye"></i> <span class="d-none d-md-inline">Toggle Path</span>
                             </button>
                         </div>
                     </div>
@@ -68,16 +72,16 @@
                         @csrf
                         @method('PUT')
 
-                        <div class="table-responsive" style="overflow-x: auto;">
-                            <table class="table table-striped table-hover" style="min-width: 1200px;">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th width="80">Preview</th>
-                                        <th style="min-width: 150px;">File Name</th>
-                                        <th style="min-width: 120px;">Directory</th>
-                                        <th style="min-width: 200px;">Path</th>
-                                        <th style="min-width: 350px;">Alt Text</th>
-                                        <th width="100">Actions</th>
+                                        <th width="70">Preview</th>
+                                        <th>File Name</th>
+                                        <th width="150" class="d-none d-md-table-cell">Directory</th>
+                                        <th width="100" class="toggle-path-column" style="display: none;">Path</th>
+                                        <th>Alt Text</th>
+                                        <th width="120">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,22 +90,29 @@
                                             <td>
                                                 <img src="{{ asset($image->image_path) }}"
                                                     alt="{{ $image->alt_text ?? 'Image' }}"
-                                                    style="max-width: 60px; height: 60px; object-fit: cover; border-radius: 4px;"
-                                                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\'%3E%3Crect fill=\'%23ddd\' width=\'60\' height=\'60\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-size=\'10\'%3ENo Image%3C/text%3E%3C/svg%3E';">
+                                                    style="max-width: 50px; height: 50px; object-fit: cover; border-radius: 4px;"
+                                                    onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'%3E%3Crect fill=\'%23ddd\' width=\'50\' height=\'50\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-size=\'9\'%3ENo Image%3C/text%3E%3C/svg%3E';">
                                             </td>
                                             <td>
-                                                <strong>{{ $image->file_name }}</strong>
-                                                @if ($image->file_size)
-                                                    <br><small
-                                                        class="text-muted">{{ number_format($image->file_size / 1024, 2) }}
-                                                        KB</small>
-                                                @endif
+                                                <div class="d-flex flex-column">
+                                                    <strong class="text-truncate" style="max-width: 200px;"
+                                                        title="{{ $image->file_name }}">{{ $image->file_name }}</strong>
+                                                    <small class="text-muted">
+                                                        @if ($image->file_size)
+                                                            {{ number_format($image->file_size / 1024, 2) }} KB
+                                                        @endif
+                                                        <span
+                                                            class="d-md-none ms-2">{{ $image->directory ?? 'Root' }}</span>
+                                                    </small>
+                                                </div>
                                             </td>
-                                            <td>
-                                                <small class="text-muted">{{ $image->directory ?? 'Root' }}</small>
+                                            <td class="d-none d-md-table-cell">
+                                                <small class="text-muted text-truncate d-block" style="max-width: 150px;"
+                                                    title="{{ $image->directory ?? 'Root' }}">{{ $image->directory ?? 'Root' }}</small>
                                             </td>
-                                            <td>
-                                                <code class="small">{{ $image->image_path }}</code>
+                                            <td class="toggle-path-column" style="display: none;">
+                                                <code class="small text-truncate d-block" style="max-width: 200px;"
+                                                    title="{{ $image->image_path }}">{{ $image->image_path }}</code>
                                             </td>
                                             <td>
                                                 <input type="hidden" name="images[{{ $loop->index }}][id]"
@@ -109,14 +120,29 @@
                                                 <input type="text" name="images[{{ $loop->index }}][alt_text]"
                                                     class="form-control alt-text-input" value="{{ $image->alt_text }}"
                                                     placeholder="Enter alternative text..."
-                                                    data-image-id="{{ $image->id }}"
-                                                    style="min-width: 300px; width: 100%;">
+                                                    data-image-id="{{ $image->id }}">
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-primary save-single-btn"
-                                                    data-image-id="{{ $image->id }}" title="Save this image">
-                                                    <i class="fas fa-save"></i>
-                                                </button>
+                                                <div class="d-flex gap-1">
+                                                    <button type="button" class="btn btn-sm btn-primary save-single-btn"
+                                                        data-image-id="{{ $image->id }}" title="Save this image">
+                                                        <i class="fas fa-save"></i>
+                                                    </button>
+                                                    <button type="button"
+                                                        class="btn btn-sm btn-secondary toggle-details-btn"
+                                                        data-image-id="{{ $image->id }}" title="Show/Hide Details">
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="details-panel mt-2 p-2 bg-light rounded d-none"
+                                                    id="details-{{ $image->id }}">
+                                                    <small class="d-block"><strong>Path:</strong>
+                                                        <code>{{ $image->image_path }}</code></small>
+                                                    <small class="d-block"><strong>Directory:</strong>
+                                                        {{ $image->directory ?? 'Root' }}</small>
+                                                    <small class="d-block"><strong>Size:</strong>
+                                                        {{ $image->file_size ? number_format($image->file_size / 1024, 2) . ' KB' : 'N/A' }}</small>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty
@@ -212,6 +238,69 @@
                     bulkUpdateForm.submit();
                 }
             });
+
+            // Toggle details panel for each row
+            document.querySelectorAll('.toggle-details-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const imageId = this.getAttribute('data-image-id');
+                    const detailsPanel = document.getElementById('details-' + imageId);
+                    const icon = this.querySelector('i');
+
+                    if (detailsPanel.classList.contains('d-none')) {
+                        detailsPanel.classList.remove('d-none');
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    } else {
+                        detailsPanel.classList.add('d-none');
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    }
+                });
+            });
+
+            // Toggle path column visibility
+            const togglePathBtn = document.getElementById('togglePathBtn');
+            const pathColumns = document.querySelectorAll('.toggle-path-column');
+            let pathVisible = false;
+
+            if (togglePathBtn) {
+                togglePathBtn.addEventListener('click', function() {
+                    pathVisible = !pathVisible;
+                    pathColumns.forEach(col => {
+                        col.style.display = pathVisible ? 'table-cell' : 'none';
+                    });
+                    const icon = this.querySelector('i');
+                    if (pathVisible) {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            }
         });
     </script>
+    <style>
+        .alt-text-input {
+            min-width: 250px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .alt-text-input {
+                min-width: 200px;
+            }
+        }
+
+        .details-panel {
+            font-size: 0.85rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .details-panel code {
+            font-size: 0.8rem;
+            word-break: break-all;
+        }
+    </style>
 @endpush
