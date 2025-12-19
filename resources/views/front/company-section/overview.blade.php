@@ -25,7 +25,7 @@
                     <p>{!! $overview_section_ones[0]->description ?? '' !!}</p>
                 </div>
                 <div class="col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <img src="{{ asset('storage/' . $overview_section_ones[0]->image) }}" class="shadow" alt="who-we-are-image">
+                    <img src="{{ asset('storage/' . $overview_section_ones[0]->image) }}" class="shadow" alt="{{ image_alt_text('storage/' . $overview_section_ones[0]->image, 'Who We Are') }}">
 
                 </div>
             </div>
@@ -37,7 +37,7 @@
 
     <!-- Our Vision -->
     <section class="vision-sec">
-        <img src="{{ asset('storage/' . $overview_section_twos[0]->image) }}" alt="skipper vision">
+        <img src="{{ asset('storage/' . $overview_section_twos[0]->image) }}" alt="{{ image_alt_text('storage/' . $overview_section_twos[0]->image, $overview_section_twos[0]->title ?? 'Skipper Vision') }}">
         <div class="img-overlay"></div>
         <div class="vision-sec-content">
             <h2 data-aos="fade-up" data-aos-duration="1000">{{ $overview_section_twos[0]->title ?? '' }}</h2>
@@ -54,7 +54,7 @@
                     <div class="col-md-5 title text-center mission-left-col" data-aos="fade-up" data-aos-duration="1000">
 
                         <img src="{{ asset('storage/' . $overview_left_image->image ?? '') }}" class="w-lg-75 shadow mb-4"
-                            alt="">
+                            alt="{{ image_alt_text('storage/' . ($overview_left_image->image ?? ''), 'Mission') }}">
                         <div class="site-heading text-center">
                             <h2>Mission</h2>
                         </div>
@@ -73,7 +73,7 @@
 
                                                         <img style="width: 50px; height: 50px;"
                                                             src="{{ asset('storage/' . $overview->icon) }}"
-                                                            alt="{{ $overview->name ?? '' }}">
+                                                            alt="{{ image_alt_text('storage/' . $overview->icon, $overview->name ?? $overview->title ?? '') }}">
                                                     </div>
                                                     <h4>{{ $overview->title }}</h4>
                                                     <p>{!! $overview->description !!}</p>
@@ -110,7 +110,7 @@
                         @if ($overview->type == 'Philosophy')
                             <div class="col-12 col-md philosophy-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                                 <img src="{{ asset('storage/' . $overview->icon) }}"
-                                    alt="{{ $overview->title ?? '' }}">
+                                    alt="{{ image_alt_text('storage/' . $overview->icon, $overview->title ?? '') }}">
 
                                 <h4>{{ $overview->title }}</h4>
                                 <p>{!! $overview->description !!}</p>
@@ -149,7 +149,7 @@
                                         <p class="timeline-desc">{!! $overview->description !!}</p>
                                         <div class="timeline-img">
                                             <img src="{{ asset('storage/' . $overview->image) }}"
-                                                alt="{{ $overview->title }}">
+                                                alt="{{ image_alt_text('storage/' . $overview->image, $overview->title) }}">
                                         </div>
                                     </div>
                                 @endforeach
@@ -190,7 +190,7 @@
 
                 </div>
                 <div class="col-md-7 col-lg-6 pan-india-img" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <img src="{{ asset('storage/' . $overview_section_fives[0]->image) }}" alt="india-map">
+                    <img src="{{ asset('storage/' . $overview_section_fives[0]->image) }}" alt="{{ image_alt_text('storage/' . $overview_section_fives[0]->image, 'Pan India Map') }}">
                 </div>
                 <div class="col"></div>
             </div>

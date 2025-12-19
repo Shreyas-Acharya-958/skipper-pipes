@@ -4,7 +4,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $mainNetwork->image) }}" alt="">
+            <img src="{{ asset('storage/' . $mainNetwork->image) }}" alt="{{ image_alt_text('storage/' . $mainNetwork->image, $mainNetwork->title) }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -19,7 +19,7 @@
             <p>{{ $mainNetwork->description }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $mainNetwork->image) }}" alt="">
+            <img src="{{ asset('storage/' . $mainNetwork->image) }}" alt="{{ image_alt_text('storage/' . $mainNetwork->image, $mainNetwork->title) }}">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -76,7 +76,7 @@
                     data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                     @if ($isEven)
                         <div class="col-md-5 p-0">
-                            <img src="{{ asset('storage/' . $network->image) }}" alt="{{ $network->title }}">
+                            <img src="{{ asset('storage/' . $network->image) }}" alt="{{ image_alt_text('storage/' . $network->image, $network->title) }}">
                         </div>
                         <div class="col-md-7 p-lg-0 py-4 py-lg-0">
                             <h3>{{ $network->title }}</h3>
@@ -88,7 +88,7 @@
                             <p>{{ $network->description }}</p>
                         </div>
                         <div class="col-md-5 p-0 order-first order-md-last">
-                            <img src="{{ asset('storage/' . $network->image) }}" alt="{{ $network->title }}">
+                            <img src="{{ asset('storage/' . $network->image) }}" alt="{{ image_alt_text('storage/' . $network->image, $network->title) }}">
                         </div>
                     @endif
                 </div>

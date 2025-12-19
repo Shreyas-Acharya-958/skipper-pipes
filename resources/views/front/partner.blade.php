@@ -15,7 +15,8 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
+            <img src="{{ asset('storage/' . $partner->page_image) }}"
+                alt="{{ image_alt_text('storage/' . $partner->page_image, $partner->short_description ?? '') }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -30,7 +31,8 @@
             <p>{{ $partner->long_description }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="">
+            <img src="{{ asset('storage/' . $partner->page_image) }}"
+                alt="{{ image_alt_text('storage/' . $partner->page_image, $partner->short_description ?? '') }}">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -77,7 +79,7 @@
                                 @foreach ($images as $key => $image)
                                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                         <img class="d-block w-100" src="{{ asset('storage/' . trim($image)) }}"
-                                            alt="Slide {{ $key + 1 }}">
+                                            alt="{{ image_alt_text('storage/' . trim($image), 'Slide ' . ($key + 1)) }}">
                                     </div>
                                 @endforeach
                             </div>
@@ -85,15 +87,15 @@
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
                                     <img class="d-block w-100" src="/assets/img/final/skipper-banner1.jpg"
-                                        alt="First slide">
+                                        alt="{{ image_alt_text('assets/img/final/skipper-banner1.jpg', 'First slide') }}">
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="/assets/img/final/skipper-banner2.jpeg"
-                                        alt="Second slide">
+                                        alt="{{ image_alt_text('assets/img/final/skipper-banner2.jpeg', 'Second slide') }}">
                                 </div>
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src="/assets/img/final/skipper-banner3.jpeg"
-                                        alt="Third slide">
+                                        alt="{{ image_alt_text('assets/img/final/skipper-banner3.jpeg', 'Third slide') }}">
                                 </div>
                             </div>
                         @endif
@@ -155,7 +157,9 @@
                     @endif
                 </div>
                 <div class="image-display col-md-6" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                    <img src="{{ $initialImage }}" id="tab-image" alt="Image" class="img-fluid shadow" />
+                    <img src="{{ $initialImage }}" id="tab-image"
+                        alt="{{ image_alt_text(str_replace([asset(''), url('')], '', $initialImage), 'Image') }}"
+                        class="img-fluid shadow" />
                 </div>
             </div>
         </div>

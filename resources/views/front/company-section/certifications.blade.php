@@ -44,7 +44,8 @@
                   <div class="col-md-4">
                       <div class="certificate-col">
                           <div class="certificate-img">
-                              <img src="{{ asset('storage/' . $certification->image ?? '') }}" alt="{{ $certification->title }}">
+                              <img src="{{ asset('storage/' . $certification->image ?? '') }}"
+                                  alt="{{ image_alt_text('storage/' . ($certification->image ?? ''), $certification->title) }}">
                           </div>
                           <h3 class="certificate-name">{{ $certification->title ?? '' }}</h3>
                           <span class="certificate-type">{{ $certification->short_description ?? '' }}</span>

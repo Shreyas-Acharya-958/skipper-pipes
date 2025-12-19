@@ -14,7 +14,7 @@
         <section class="hero-banner2">
             <div class="hero-banner2-bg">
                 @if (!empty($careers->images) && isset($careers->images[0]))
-                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="">
+                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="{{ image_alt_text('storage/' . $careers->images[0], $careers->title) }}">
                 @endif
             </div>
             <div class="hero-banner2-overlay"></div>
@@ -31,7 +31,7 @@
             </div>
             <div class="hero-banner2-img-responsive">
                 @if (!empty($careers->images) && isset($careers->images[0]))
-                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="">
+                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="{{ image_alt_text('storage/' . $careers->images[0], $careers->title) }}">
                 @endif
             </div>
         </section>
@@ -79,7 +79,7 @@
                                     @foreach ($career_why_skippers->images as $image)
                                         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                             <img class="d-block w-100" src="{{ asset('storage/' . $image) }}"
-                                                alt="First slide">
+                                                alt="{{ image_alt_text('storage/' . $image, 'Slide ' . ($loop->index + 1)) }}">
                                         </div>
                                     @endforeach
                                 </div>
@@ -145,7 +145,7 @@
                         @foreach ($career_life_at_skippers as $key => $item)
                             <img src="{{ asset('storage/' . $item->image) }}"
                                 class="img-fluid shadow culture-tab-image {{ $loop->first ? '' : 'd-none' }}"
-                                id="img-{{ $key }}" alt="{{ $item->title }}">
+                                id="img-{{ $key }}" alt="{{ image_alt_text('storage/' . $item->image, $item->title) }}">
                         @endforeach
                     </div>
                 </div>
@@ -170,7 +170,7 @@
                 <div class="row philosophy-wrapper text-center px-3 px-md-0">
                     @foreach ($career_skipper_pipes as $item)
                         <div class="col-md-4 col-md company-icon-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ image_alt_text('storage/' . $item->image, $item->title) }}">
                             <h4>{{ $item->title }}</h4>
                             <p>{{ $item->description }}</p>
                         </div>

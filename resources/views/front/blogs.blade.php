@@ -59,7 +59,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $blogs_section_two->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $blogs_section_two->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($blogs_section_two->image ?? ''), $blogs_section_two->title ?? 'Blogs') }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -80,7 +80,7 @@
             </p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $blogs_section_two->image ?? '') }}" alt="">
+            <img src="{{ asset('storage/' . $blogs_section_two->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($blogs_section_two->image ?? ''), $blogs_section_two->title ?? 'Blogs') }}">
         </div>
     </section>
     <!-- Hero banner-section ends -->
@@ -97,7 +97,7 @@
                             <div class="item">
                                 <div class="thumb">
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}">
-                                        <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ $blog->title }}">
+                                        <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
                                     </a>
                                 </div>
                                 <div class="info">

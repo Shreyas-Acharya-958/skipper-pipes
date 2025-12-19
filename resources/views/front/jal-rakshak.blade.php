@@ -403,7 +403,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <div class="lp-logo">
                 <a href="{{ url('/') }}"><img src="{{ asset('assets/img/skipper-logo.png') }}" width="120px"
-                        alt=""></a>
+                        alt="{{ image_alt_text('assets/img/skipper-logo.png', 'Skipper Logo') }}"></a>
             </div>
 
             <nav class="lp-navbar">
@@ -432,7 +432,7 @@
                     <!-- Left Image -->
                     <div class="col-md-6 popup-img">
                         <img src="{{ asset('assets/img/lp/Jalraksha_PopUpForm_579x687.png') }}" class="img-fluid"
-                            alt="Popup Image">
+                            alt="{{ image_alt_text('assets/img/lp/Jalraksha_PopUpForm_579x687.png', 'Popup Image') }}">
                     </div>
 
                     <!-- Right Form -->
@@ -457,7 +457,8 @@
                                     required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" name="water_saving_commitment" placeholder="Your Water-Saving Commitment"></textarea>
+                                <textarea class="form-control" rows="3" name="water_saving_commitment"
+                                    placeholder="Your Water-Saving Commitment"></textarea>
                             </div>
                             <button type="submit" class="btn jal-rakshak-btn-secondary">Submit</button>
                         </form>
@@ -472,17 +473,17 @@
             <div class="container-fluid p-0">
                 @foreach ($banners->images as $index => $image)
                     <img src="{{ asset('storage/' . $image) }}" class="w-100 lp-hero-banner"
-                        alt="{{ $banners->title ?? 'Hero Banner' }}">
+                        alt="{{ image_alt_text('storage/' . $image, $banners->title ?? 'Hero Banner') }}">
                 @endforeach
 
                 {{-- Mobile Banner --}}
                 @if ($banners->mobile_image)
                     <img src="{{ asset('storage/' . $banners->mobile_image) }}" class="w-100 lp-hero-mobile-banner"
-                        alt="{{ $banners->title ?? 'Mobile Hero Banner' }}">
+                        alt="{{ image_alt_text('storage/' . $banners->mobile_image, $banners->title ?? 'Mobile Hero Banner') }}">
                 @elseif (isset($banners->images) && count($banners->images) > 0)
                     {{-- Fallback to first desktop image if no mobile image is set --}}
                     <img src="{{ asset('storage/' . $banners->images[0]) }}" class="w-100 lp-hero-mobile-banner"
-                        alt="{{ $banners->title ?? 'Mobile Hero Banner' }}">
+                        alt="{{ image_alt_text('storage/' . $banners->images[0], $banners->title ?? 'Mobile Hero Banner') }}">
                 @endif
             </div>
         </section>
@@ -504,7 +505,8 @@
                     data-aos-delay="150">
                     <div class="col-md-6 pr-md-5">
                         @if ($initiative->image)
-                            <img src="{{ asset('storage/' . $initiative->image) }}" class="shadow" alt="">
+                            <img src="{{ asset('storage/' . $initiative->image) }}" class="shadow"
+                                alt="{{ image_alt_text('storage/' . $initiative->image, $initiative->title ?? '') }}">
                         @endif
                     </div>
                     <div class="col-md-6 mt-4 mt-md-0">
@@ -540,7 +542,7 @@
                             <div class="lp-card">
                                 @if ($activity->image)
                                     <img src="{{ asset('storage/' . $activity->image) }}" class="shadow"
-                                        alt="{{ $activity->title }}">
+                                        alt="{{ image_alt_text('storage/' . $activity->image, $activity->title) }}">
                                 @endif
                                 <span class="lp-heading pt-4 mb-2">{{ $activity->title }}</span>
                                 <p>{{ $activity->description }}</p>
@@ -585,7 +587,7 @@
                                     class="col-12 col-sm-6 col-lg-4 gallery-item {{ $galleryItem->category ? strtolower(str_replace(' ', '-', $galleryItem->category->name)) : 'uncategorized' }} {{ $index >= 6 ? 'gallery-hidden' : '' }}">
                                     <img src="{{ asset('storage/' . $galleryItem->image) }}"
                                         class="img-fluid gallery-img"
-                                        alt="{{ $galleryItem->title ?? 'Gallery Image' }}">
+                                        alt="{{ image_alt_text('storage/' . $galleryItem->image, $galleryItem->title ?? 'Gallery Image') }}">
                                 </div>
                             @endif
                         @endforeach
@@ -604,7 +606,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content bg-transparent border-0">
                         <div class="modal-body text-center">
-                            <img id="lightboxImage" src="" class="img-fluid rounded" alt="">
+                            <img id="lightboxImage" src="" class="img-fluid rounded" alt="Gallery Image">
                             <!-- Controls -->
                             <a class="lightbox-control left" href="#" id="prevImage">&#10094;</a>
                             <a class="lightbox-control right" href="#" id="nextImage">&#10095;</a>
@@ -681,7 +683,7 @@
                         <div class="col-md-6 {{ $key % 2 == 0 ? 'pr-md-5 order-1' : 'pl-md-5 order-2' }}">
                             @if ($item->image)
                                 <img src="{{ asset('storage/' . $item->image) }}" class="shadow img-fluid"
-                                    alt="{{ $item->title }}">
+                                    alt="{{ image_alt_text('storage/' . $item->image, $item->title) }}">
                             @endif
                         </div>
 
@@ -721,7 +723,8 @@
                     data-aos-delay="300">
                     <div class="col-md-6">
                         @if ($involvement->image)
-                            <img src="{{ asset('storage/' . $involvement->image) }}" alt="">
+                            <img src="{{ asset('storage/' . $involvement->image) }}"
+                                alt="{{ image_alt_text('storage/' . $involvement->image, $involvement->head_title ?? '') }}">
                         @endif
                     </div>
                     <div class="col-md-6 py-4 py-md-0">

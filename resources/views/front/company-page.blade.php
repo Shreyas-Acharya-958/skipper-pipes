@@ -13,7 +13,8 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $page->page_image) }}" alt="{{ $page->title }}">
+            <img src="{{ asset('storage/' . $page->page_image) }}"
+                alt="{{ image_alt_text('storage/' . $page->page_image, $page->title) }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -27,7 +28,8 @@
             <p>{{ $page->short_description }}</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $page->page_image) }}" alt="{{ $page->title }}">
+            <img src="{{ asset('storage/' . $page->page_image) }}"
+                alt="{{ image_alt_text('storage/' . $page->page_image, $page->title) }}">
         </div>
     </section>
     <!-- Hero banner-section ends -->

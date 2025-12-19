@@ -31,11 +31,11 @@
                              {!! $leadership->description ?? '' !!}
                          </div>
                          <div class="col-md-5 mb-md-5 mb-lg-0 order-1 order-md-2 mt-5 mt-md-0" data-aos="fade-up" data-aos-duration="1000">
-                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="{{ image_alt_text('storage/' . ($leadership->image ?? ''), $leadership->title ?? '') }}">
                          </div>
                      @else
                          <div class="col-md-5 mb-md-5 mb-lg-0">
-                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="" data-aos="fade-up" data-aos-duration="1000">
+                             <img src="{{ asset('storage/' . $leadership->image ?? '') }}" class="shadow" alt="{{ image_alt_text('storage/' . ($leadership->image ?? ''), $leadership->title ?? '') }}" data-aos="fade-up" data-aos-duration="1000">
                          </div>
                          <div class="col-md-7 mb-md-5 mb-lg-0 pl-md-5 pt-4 pt-md-0 md-message-content" data-aos="fade-up" data-aos-duration="1000">
                              {!! $leadership->description ?? '' !!}
@@ -66,7 +66,7 @@
              <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                  @foreach ($leadership_section_twos as $leadership)
                      <div class="col-12 col-md philosophy-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                         <img src="{{ asset('storage/' . $leadership->icon) }}" alt="{{ $leadership->name ?? '' }}">
+                         <img src="{{ asset('storage/' . $leadership->icon) }}" alt="{{ image_alt_text('storage/' . $leadership->icon, $leadership->name ?? $leadership->title ?? '') }}">
 
                          {{-- <i class="{{ $leadership->icon ?? 'fas fa-hard-hat' }} icon"></i> --}}
                          <h4>{{ $leadership->title ?? '' }}</h4>
@@ -97,7 +97,7 @@
                      <div class="col-md-3">
                          <div class="business-dir-card">
                              <div class="business-dir-img">
-                                 <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="">
+                                 <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($leadership->image ?? ''), $leadership->name ?? '') }}">
                              </div>
                              <div class="business-dir-content">
                                  <h3 class="dir-name">{{ $leadership->name ?? '' }}</h3>
@@ -111,7 +111,7 @@
                          <div id="team-popup-siddarth" class="mfp-hide team-popup">
                              <button title="Close" class="mfp-close">&times;</button>
                              <img src="{{ asset('storage/' . $leadership->image ?? '') }}"
-                                 alt="{{ $leadership->name ?? '' }}">
+                                 alt="{{ image_alt_text('storage/' . ($leadership->image ?? ''), $leadership->name ?? '') }}">
                              <h4>{{ $leadership->name ?? '' }}</h4>
                              <p class="designation">{{ $leadership->role ?? '' }}</p>
                              <p>{!! $leadership->description ?? '' !!}</p>
@@ -143,7 +143,7 @@
                  <div class="col-md-3">
                      <div class="business-heads-card">
                          <div class="business-heads-img">
-                             <img src="{{ asset('storage/' . $leadership->image) }}" alt="">
+                             <img src="{{ asset('storage/' . $leadership->image) }}" alt="{{ image_alt_text('storage/' . $leadership->image, $leadership->name ?? '') }}">
                          </div>
                          <div class="business-heads-content">
                              <h3 class="heads-name">{{ $leadership->name }} </h3>
@@ -155,7 +155,7 @@
                      <!-- Popup Content (hidden) -->
                      <div id="team-popup-siddarth31" class="mfp-hide team-popup">
                          <button title="Close" class="mfp-close">&times;</button>
-                         <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="{{ $leadership->name ?? '' }}">
+                         <img src="{{ asset('storage/' . $leadership->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($leadership->image ?? ''), $leadership->name ?? '') }}">
                          <h4>Mr. Anirban P</h4>
                          <p class="designation">CMO</p>
                          <p>{!! $leadership->description ?? '' !!}</p>

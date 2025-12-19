@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="hero-banner-img">
-                        <img src="{{ asset('storage/' . $blog->page_image) }}" alt="hero-banner">
+                        <img src="{{ asset('storage/' . $blog->page_image) }}" alt="{{ image_alt_text('storage/' . $blog->page_image, $blog->title) }}">
                     </div>
                     <div class="hero-bg-overlay"></div>
                     <div class="hero-banner-contents2">
@@ -39,7 +39,7 @@
                                 <div class="col-lg-6">
                                     @if ($blog->image_1)
                                         <div class="hero-banner-img">
-                                            <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ $blog->title }}"
+                                            <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}"
                                                 class="img-fluid">
                                         </div>
                                     @endif
@@ -89,7 +89,7 @@
                             <div class="blog-item-box">
                                 {{-- @if ($blog->image_1)
                                     <div class="thumb">
-                                        <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ $blog->title }}">
+                                        <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
                                     </div>
                                 @endif --}}
 
@@ -122,7 +122,7 @@
                                             @foreach ($blog->comments as $comment)
                                                 <div class="commen-item {{ $comment->parent_id ? 'reply' : '' }}">
                                                     <div class="avatar">
-                                                        <img src="{{ asset('assets/img/100x100.png') }}" alt="Author">
+                                                        <img src="{{ asset('assets/img/100x100.png') }}" alt="{{ image_alt_text('assets/img/100x100.png', 'Author') }}">
                                                     </div>
                                                     <div class="content">
                                                         <div class="title">
@@ -189,7 +189,7 @@
                                             <div class="thumb">
                                                 <a href="{{ route('front.blogs.show', $recentBlog->slug) }}">
                                                     <img src="{{ asset('storage/' . $recentBlog->image_1) }}"
-                                                        alt="{{ $recentBlog->title }}">
+                                                        alt="{{ image_alt_text('storage/' . $recentBlog->image_1, $recentBlog->title) }}">
                                                 </a>
                                             </div>
                                             <div class="info">

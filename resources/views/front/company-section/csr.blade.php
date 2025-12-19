@@ -28,7 +28,7 @@
 
                   </div>
                   <div class="col-md-6 order-1 order-md-2 pb-4 pb-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                      <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" class="shadow" alt="csr-philosophy-overview">
+                      <img src="{{ asset('storage/' . $csr_section_ones[0]->image ?? '') }}" class="shadow" alt="{{ image_alt_text('storage/' . ($csr_section_ones[0]->image ?? ''), 'CSR Philosophy') }}">
                   </div>
               </div>
           </div>
@@ -50,7 +50,7 @@
               <div class="row philosophy-wrapper text-center mt-5 px-3 px-md-0">
                   @foreach ($csr_section_twos as $csr)
                       <div class="col-12 col-md philosophy-col px-3 px-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                          <img src="{{ asset('storage/' . $csr->icon) }}" alt="{{ $csr->name ?? '' }}">
+                          <img src="{{ asset('storage/' . $csr->icon) }}" alt="{{ image_alt_text('storage/' . $csr->icon, $csr->name ?? $csr->title ?? '') }}">
                           <h4>{{ $csr->title ?? '' }}</h4>
                           <p>{!! $csr->description ?? '' !!}</p>
                       </div>
@@ -78,7 +78,7 @@
                   @if ($loop->index % 2 == 0)
                       <div class="row initatives-card mx-2 mx-md-0" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                           <div class="col-md-5">
-                              <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
+                              <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($csr->image ?? ''), $csr->title ?? '') }}">
                           </div>
                           <div class="col-md-7 pt-4 pt-md-0">
                               {!! $csr->description ?? '' !!}
@@ -90,7 +90,7 @@
                               {!! $csr->description ?? '' !!}
                           </div>
                           <div class="col-md-5 order-1 order-md-2">
-                              <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="">
+                              <img src="{{ asset('storage/' . $csr->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($csr->image ?? ''), $csr->title ?? '') }}">
                           </div>
 
                       </div>

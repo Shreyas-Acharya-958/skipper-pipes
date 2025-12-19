@@ -27,7 +27,7 @@
             <p>For assistance, dealership queries, technical support, or more details.</p>
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="assets/img/final/blogs-banner1.jpg" alt="contact-us-banner">
+            <img src="assets/img/final/blogs-banner1.jpg" alt="{{ image_alt_text('assets/img/final/blogs-banner1.jpg', 'Contact Us Banner') }}">
         </div>
     </section>
     <!-- Hero banner-section ends -->

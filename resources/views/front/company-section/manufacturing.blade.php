@@ -31,7 +31,7 @@
                                     <div class="swiper-slide location-slide">
                                         <div class="location-img">
                                             <img src="{{ asset('storage/' . $manufacturing->image) }}"
-                                                alt="{{ $manufacturing->title ?? '' }}">
+                                                alt="{{ image_alt_text('storage/' . $manufacturing->image, $manufacturing->title ?? '') }}">
                                         </div>
                                         <span class="location-title">{{ $manufacturing->title ?? '' }}</span>
                                         <span class="location-work">{{ $manufacturing->description ?? '' }}</span>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="row align-center">
                     <div class="col-md-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <img src="{{ asset('storage/' . $manufacturing_section_twos[0]->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $manufacturing_section_twos[0]->image) }}" alt="{{ image_alt_text('storage/' . $manufacturing_section_twos[0]->image, $manufacturing_section_twos[0]->title ?? '') }}">
                     </div>
                     <div class="col-md-7 pl-md-5 pt-4 pt-md-0 " data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         {!! $manufacturing_section_twos[0]->description ?? '' !!}
@@ -96,7 +96,7 @@
                     @foreach ($manufacturing_section_threes as $manufacturing)
                         <div class="col-12 col-md-6 col-lg-3 philosophy-col" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                             <img src="{{ asset('storage/' . $manufacturing->icon) }}"
-                                alt="{{ $manufacturing->name ?? '' }}">
+                                alt="{{ image_alt_text('storage/' . $manufacturing->icon, $manufacturing->name ?? $manufacturing->title ?? '') }}">
 
                             <h4>{{ $manufacturing->title ?? '' }}</h4>
                             <p>{!! $manufacturing->description ?? '' !!}</p>
@@ -128,7 +128,7 @@
 
                     </div>
                     <div class="col-md-5 order-1 order-md-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <img src="{{ asset('storage/' . $manufacturing_section_fours[0]->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $manufacturing_section_fours[0]->image) }}" alt="{{ image_alt_text('storage/' . $manufacturing_section_fours[0]->image, $manufacturing_section_fours[0]->title ?? '') }}">
                     </div>
                 </div>
             </div>
