@@ -85,14 +85,19 @@ class FrontController extends Controller
      */
     private function getSeoDataForCurrentUrl()
     {
-        $path = '/' . ltrim(request()->path(), '/');
+        $path = request()->path();
+        $pathWithoutSlash = ltrim($path, '/');
+        
         // Try to find a menu with this link or slug
-        $menu = \App\Models\Menu::where('link', trim($path, '/'))
-            ->orWhere('slug', trim($path, '/'))
+        $menu = \App\Models\Menu::where('link', $pathWithoutSlash)
+            ->orWhere('slug', $pathWithoutSlash)
+            ->orWhere('link', '/' . $pathWithoutSlash)
             ->first();
-        if ($path == '/') {
+            
+        if ($path == '' || $path == '/') {
             //home page
-            $menu = \App\Models\Menu::where('link', $path)
+            $menu = \App\Models\Menu::where('link', '/')
+                ->orWhere('link', '')
                 ->first();
         }
 

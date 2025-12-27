@@ -354,15 +354,6 @@
                     $(element).removeClass('is-invalid').addClass('is-valid');
                 },
                 submitHandler: function(form) {
-                    Swal.fire({
-                        title: 'Submitting...',
-                        text: 'Please wait while we process your enquiry.',
-                        allowOutsideClick: false,
-                        didOpen: () => {
-                            Swal.showLoading();
-                        }
-                    });
-
                     $.ajax({
                         url: $(form).attr('action'),
                         type: "POST",
@@ -371,18 +362,9 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Success!',
-                                text: response.message ||
-                                    'Thank you for your interest!',
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#144372'
-                            }).then((result) => {
-                                if (result.isConfirmed && response.redirect) {
-                                    window.location.href = response.redirect;
-                                }
-                            });
+                            // Redirect directly to thank you page
+                            window.location.href =
+                                '{{ route('front.private-projects.thankyou') }}';
                         },
                         error: function(xhr) {
                             let errorMessage = 'Something went wrong. Please try again.';
