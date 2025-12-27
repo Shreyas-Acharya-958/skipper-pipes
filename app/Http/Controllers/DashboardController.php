@@ -59,6 +59,7 @@ class DashboardController extends Controller
             'distributor' => PartnerEnquiry::where('partner_id', 2)->count(),
             'blog_comment' => BlogComment::count(),
             'jal_rakshak' => JalRakshakSubmission::count(),
+            'private_project' => PrivateProjectEnquiry::count(),
         ];
         return view('admin.dashboard', compact('inquiries'));
     }

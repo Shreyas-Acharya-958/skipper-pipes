@@ -183,7 +183,7 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="private-project-tab" data-bs-toggle="tab" data-bs-target="#private-project"
                         type="button" role="tab" aria-controls="private-project" aria-selected="false">
-                        Private Projects <span class="badge bg-secondary">{{ $inquiries['private_project'] }}</span>
+                        Private Projects <span class="badge bg-secondary">{{ $inquiries['private_project'] ?? 0 }}</span>
                     </button>
                 </li>
             </ul>
