@@ -54,6 +54,12 @@
                         Jal Rakshak <span class="badge bg-secondary">{{ $inquiries['jal_rakshak'] }}</span>
                     </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="private-project-tab" data-bs-toggle="tab" data-bs-target="#private-project"
+                        type="button" role="tab" aria-controls="private-project" aria-selected="false">
+                        Private Projects <span class="badge bg-secondary">{{ $inquiries['private_project'] }}</span>
+                    </button>
+                </li>
             </ul>
             <div class="tab-content p-3 border border-top-0" id="inquiryTabsContent">
                 <div class="tab-pane fade show active" id="career" role="tabpanel" aria-labelledby="career-tab">
@@ -105,7 +111,8 @@
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Contacts</h5>
-                        <a href="{{ route('lead-management.dashboard.export.contacts') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.contacts') }}"
+                            class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -188,7 +195,8 @@
                 <div class="tab-pane fade" id="distributor" role="tabpanel" aria-labelledby="distributor-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Become Distributor</h5>
-                        <a href="{{ route('lead-management.dashboard.export.distributor') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.distributor') }}"
+                            class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -232,7 +240,8 @@
                 <div class="tab-pane fade" id="blog-comment" role="tabpanel" aria-labelledby="blog-comment-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Blog Comments</h5>
-                        <a href="{{ route('lead-management.dashboard.export.blog-comments') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.blog-comments') }}"
+                            class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -273,7 +282,8 @@
                 <div class="tab-pane fade" id="jal-rakshak" role="tabpanel" aria-labelledby="jal-rakshak-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5>Jal Rakshak</h5>
-                        <a href="{{ route('lead-management.dashboard.export.jal-rakshak') }}" class="btn btn-success btn-sm">
+                        <a href="{{ route('lead-management.dashboard.export.jal-rakshak') }}"
+                            class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
                     </div>
@@ -313,6 +323,40 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="tab-pane fade" id="private-project" role="tabpanel" aria-labelledby="private-project-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Private Project Enquiries</h5>
+                        <a href="{{ route('admin.dashboard.export.private-project') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export Excel
+                        </a>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Project Name/Company</th>
+                                <th>Phone</th>
+                                <th>Created At</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (\App\Models\PrivateProjectEnquiry::latest()->take(20)->get() as $item)
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->project_name ?? 'N/A' }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->created_at ? date('Y-m-d H:i:s', strtotime($item->created_at)) : '' }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="private_project"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -334,7 +378,8 @@
                     var type = this.getAttribute('data-type');
                     var id = this.getAttribute('data-id');
                     var row = this.closest('tr');
-                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    var token = document.querySelector('meta[name="csrf-token"]').getAttribute(
+                        'content');
                     fetch("{{ route('lead-management.dashboard.delete-inquiry') }}", {
                             method: 'POST',
                             headers: {
@@ -351,7 +396,8 @@
                         .then(data => {
                             if (data.success) {
                                 var detailsRow = row.nextElementSibling;
-                                if (detailsRow && detailsRow.style && detailsRow.style.display !== undefined) {
+                                if (detailsRow && detailsRow.style && detailsRow.style
+                                    .display !== undefined) {
                                     detailsRow.remove();
                                 }
                                 row.remove();
@@ -365,4 +411,3 @@
         });
     </script>
 @endsection
-

@@ -180,6 +180,12 @@
                         Jal Rakshak <span class="badge bg-secondary">{{ $inquiries['jal_rakshak'] }}</span>
                     </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="private-project-tab" data-bs-toggle="tab" data-bs-target="#private-project"
+                        type="button" role="tab" aria-controls="private-project" aria-selected="false">
+                        Private Projects <span class="badge bg-secondary">{{ $inquiries['private_project'] }}</span>
+                    </button>
+                </li>
             </ul>
             <div class="tab-content p-3 border border-top-0" id="inquiryTabsContent">
                 <div class="tab-pane fade show active" id="career" role="tabpanel" aria-labelledby="career-tab">
@@ -437,6 +443,40 @@
                                 <tr id="jalrakshak-{{ $item->id }}" style="display:none; background:#f9f9f9;">
                                     <td colspan="6">
                                         <strong>Water Saving Commitment:</strong> {{ $item->water_saving_commitment }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="private-project" role="tabpanel" aria-labelledby="private-project-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Private Project Enquiries</h5>
+                        <a href="{{ route('admin.dashboard.export.private-project') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export Excel
+                        </a>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Project Name/Company</th>
+                                <th>Phone</th>
+                                <th>Created At</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (\App\Models\PrivateProjectEnquiry::latest()->take(20)->get() as $item)
+                                <tr>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->project_name ?? 'N/A' }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $item->created_at ? date('Y-m-d H:i:s', strtotime($item->created_at)) : '' }}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger delete-inquiry" data-type="private_project"
+                                            data-id="{{ $item->id }}">Delete</button>
                                     </td>
                                 </tr>
                             @endforeach

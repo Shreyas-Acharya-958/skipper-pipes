@@ -25,6 +25,7 @@ use App\Models\JalRakshakConservation;
 use App\Models\JalRakshakInvolvement;
 use App\Models\JalRakshakSeo;
 use App\Models\JalRakshakSubmission;
+use App\Models\PrivateProjectEnquiry;
 use App\Models\CertificationHeadSection;
 use App\Models\CertificationSectionOne;
 use App\Models\Company;
@@ -596,5 +597,33 @@ class FrontController extends Controller
     public function distributorThankyou()
     {
         return view('front.distributor-thankyou');
+    }
+
+    public function privateProject()
+    {
+        $seoData = $this->getSeoDataForCurrentUrl();
+        return view('front.private-project', compact('seoData'));
+    }
+
+    public function storePrivateProjectEnquiry(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'project_name' => 'nullable|string|max:255',
+            'phone' => 'required|string|max:20',
+        ]);
+
+        PrivateProjectEnquiry::create($request->all());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you for your interest! We will contact you shortly.',
+            'redirect' => route('front.private-projects.thankyou')
+        ]);
+    }
+
+    public function privateProjectsThankyou()
+    {
+        return view('front.private-projects-thankyou');
     }
 }

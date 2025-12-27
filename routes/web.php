@@ -101,6 +101,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard/export/distributor-enquiries', [\App\Http\Controllers\DashboardController::class, 'exportDistributorEnquiries'])->name('dashboard.export.distributor');
     Route::get('/dashboard/export/blog-comments', [\App\Http\Controllers\DashboardController::class, 'exportBlogComments'])->name('dashboard.export.blog-comments');
     Route::get('/dashboard/export/jal-rakshak-submissions', [\App\Http\Controllers\DashboardController::class, 'exportJalRakshakSubmissions'])->name('dashboard.export.jal-rakshak');
+    Route::get('/dashboard/export/private-project-enquiries', [\App\Http\Controllers\DashboardController::class, 'exportPrivateProjectEnquiries'])->name('dashboard.export.private-project');
 
     // User Management routes
     Route::resource('users', UserController::class);
@@ -501,6 +502,9 @@ Route::name('front.')->group(function () {
     Route::get('/why-skipper-pipes', [FrontController::class, 'whySkipperPipes'])->name('why-skipper-pipes.index');
     Route::get('/jal-rakshak', [FrontController::class, 'jalRakshak'])->name('jal-rakshak.index');
     Route::post('/jal-rakshak-submission', [FrontController::class, 'storeJalRakshakSubmission'])->name('jal-rakshak.submission');
+    Route::get('/private-project', [FrontController::class, 'privateProject'])->name('private-project.index');
+    Route::post('/private-project-enquiry', [FrontController::class, 'storePrivateProjectEnquiry'])->name('private-project.enquiry');
+    Route::get('/private-projects-thankyou', [FrontController::class, 'privateProjectsThankyou'])->name('private-projects.thankyou');
     Route::get('/contact-us', [FrontController::class, 'contact'])->name('contact.index');
     Route::post('/contact-us', [FrontController::class, 'storeContact'])->name('contact.store');
 

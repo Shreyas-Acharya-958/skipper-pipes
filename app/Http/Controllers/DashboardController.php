@@ -7,6 +7,7 @@ use App\Models\CareerApplication;
 use App\Models\Contact;
 use App\Models\PartnerEnquiry;
 use App\Models\JalRakshakSubmission;
+use App\Models\PrivateProjectEnquiry;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Exports\CareerApplicationsExport;
@@ -15,6 +16,7 @@ use App\Exports\DealerEnquiriesExport;
 use App\Exports\DistributorEnquiriesExport;
 use App\Exports\BlogCommentsExport;
 use App\Exports\JalRakshakSubmissionsExport;
+use App\Exports\PrivateProjectEnquiriesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
@@ -33,6 +35,7 @@ class DashboardController extends Controller
                 'distributor' => PartnerEnquiry::where('partner_id', 2)->count(),
                 'blog_comment' => BlogComment::count(),
                 'jal_rakshak' => JalRakshakSubmission::count(),
+                'private_project' => PrivateProjectEnquiry::count(),
             ];
             return view('admin.dashboard', compact('inquiries'));
         }
@@ -81,6 +84,9 @@ class DashboardController extends Controller
             case 'jal_rakshak':
                 $model = \App\Models\JalRakshakSubmission::find($id);
                 break;
+            case 'private_project':
+                $model = \App\Models\PrivateProjectEnquiry::find($id);
+                break;
         }
         if ($model) {
             $model->delete();
@@ -123,5 +129,11 @@ class DashboardController extends Controller
     {
         $filename = 'jal_rakshak_submissions_' . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new JalRakshakSubmissionsExport, $filename);
+    }
+
+    public function exportPrivateProjectEnquiries()
+    {
+        $filename = 'private_project_enquiries_' . date('Y-m-d_H-i-s') . '.xlsx';
+        return Excel::download(new PrivateProjectEnquiriesExport, $filename);
     }
 }
