@@ -4,7 +4,8 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2 products-banner">
         <div class="hero-banner2-bg">
-            <img src="{{ asset('storage/' . $product->page_image) }}" alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
+            <img src="{{ asset('storage/' . $product->page_image) }}"
+                alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -20,7 +21,8 @@
 
         </div>
         <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $product->page_image) }}" alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
+            <img src="{{ asset('storage/' . $product->page_image) }}"
+                alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
 
         </div>
     </section>
@@ -48,7 +50,7 @@
                 <div class="col-12">
                     <div class="site-heading text-center">
                         <h4>{{ $product->title }}</h4>
-                        <h2>Product Overview</h2>
+                        <h1>{{ $product->h1_title }}</h1>
 
                     </div>
                 </div>
@@ -117,7 +119,8 @@
                             <div class="col-lg-4 col-md-6 single-item">
                                 <div class="item">
                                     <div class="item-inner">
-                                        <img src="{{ asset('storage/' . $feature->icon) }}" alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
+                                        <img src="{{ asset('storage/' . $feature->icon) }}"
+                                            alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
                                         <h4>{{ $feature->title }} </h4>
                                         <p>{!! $feature->description !!}</p>
                                     </div>
@@ -172,10 +175,12 @@
                         <div class="services-one__single">
                             <div class="services-one__img-box">
                                 <div class="services-one__img"><img src="{{ asset('storage/' . $application->image) }}"
-                                        alt="{{ image_alt_text('storage/' . $application->image, $application->title) }}"></div>
+                                        alt="{{ image_alt_text('storage/' . $application->image, $application->title) }}">
+                                </div>
                                 <div class="services-one__shape-1"></div>
                                 <div class="services-one__icon"><img src="{{ asset('storage/' . $application->icon) }}"
-                                        alt="{{ image_alt_text('storage/' . $application->icon, $application->title) }}"></div>
+                                        alt="{{ image_alt_text('storage/' . $application->icon, $application->title) }}">
+                                </div>
                                 <a class="services-one__arrow"><i class="icon-right-arrow"></i></a>
                             </div>
                             <div class="services-one__content">

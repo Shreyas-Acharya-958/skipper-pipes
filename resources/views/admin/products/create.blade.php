@@ -39,8 +39,17 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="meta_description" class="form-label">Short Description</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="h1_title" class="form-label">H1 Title</label>
+                            <input type="text" class="form-control @error('h1_title') is-invalid @enderror"
+                                id="h1_title" name="h1_title" value="{{ old('h1_title') }}">
+                            @error('h1_title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="meta_description" class="form-label">Short Description</label>
                                 <textarea class="form-control @error('meta_description') is-invalid @enderror" id="meta_description"
                                     name="meta_description" rows="3">{{ old('meta_description') }}</textarea>
                                 @error('meta_description')
