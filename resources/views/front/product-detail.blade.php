@@ -7,25 +7,10 @@
             <img src="{{ asset('storage/' . $product->page_image) }}"
                 alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
         </div>
-        <div class="hero-banner2-overlay"></div>
-        <div class="hero-banner2-content">
-            <h1>{{ $product->title }}</h1>
-            <p>{{ $product->meta_description }}</p>
-        </div>
+        
+        
     </section>
 
-    <section class="hero-banner2-responsive products-banner-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>{{ $product->title }}</h1>
-            <p>{{ $product->meta_description }}</p>
-
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $product->page_image) }}"
-                alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
-
-        </div>
-    </section>
 
     <!-- Breadcrumb  -->
     <div class="breadcrumb-area">
@@ -49,8 +34,9 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>{{ $product->title }}</h4>
+                        {{-- <h4>{{ $product->title }}</h4> --}}
                         <h1>{{ $product->h1_title }}</h1>
+                        <p class="product-overview-text">Product Overview</p>
 
                     </div>
                 </div>
@@ -107,7 +93,7 @@
                 <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12">
                         <div class="site-heading text-center">
-                            <h4>{{ $product->title }}</h4>
+                            <p>{{ $product->title }}</p>
                             <h2>Key Features & Benefits</h2>
                         </div>
                     </div>
@@ -141,7 +127,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>{{ $product->title }}</h4>
+                        <p>{{ $product->title }}</p>
                         <h2>Product Technical</h2>
 
                     </div>
@@ -161,7 +147,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>{{ $product->title }}</h4>
+                        <p>{{ $product->title }}</p>
                         <h2>Product Application</h2>
 
                     </div>
@@ -216,7 +202,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12">
                     <div class="site-heading text-center">
-                        <h4>{{ $product->title }}</h4>
+                        <p>{{ $product->title }}</p>
                         <h2>Frequently Asked Questions</h2>
 
                     </div>

@@ -182,7 +182,7 @@
             <div class="row p-0">
                 <div class="col-12 p-0">
                     <div class="pp-hero-wrapper">
-                        <img src="assets/img/private-project-hero-bg.jpg" alt="">
+                        <img src="{{ asset('assets/img/final2/private-project-hero-bg.jpg') }}" alt="Private Project Banner">
                         <div class="pp-hero-bg-overlay"></div>
 
                         <div class="pp-hero-content">
