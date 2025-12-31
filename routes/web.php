@@ -502,7 +502,7 @@ Route::name('front.')->group(function () {
     Route::get('/why-skipper-pipes', [FrontController::class, 'whySkipperPipes'])->name('why-skipper-pipes.index');
     Route::get('/jal-rakshak', [FrontController::class, 'jalRakshak'])->name('jal-rakshak.index');
     Route::post('/jal-rakshak-submission', [FrontController::class, 'storeJalRakshakSubmission'])->name('jal-rakshak.submission');
-    Route::get('/private-project', [FrontController::class, 'privateProject'])->name('private-project.index');
+    Route::get('/private-projects', [FrontController::class, 'privateProject'])->name('private-project.index');
     Route::post('/private-project-enquiry', [FrontController::class, 'storePrivateProjectEnquiry'])->name('private-project.enquiry');
     Route::get('/private-projects-thankyou', [FrontController::class, 'privateProjectsThankyou'])->name('private-projects.thankyou');
     Route::get('/contact-us', [FrontController::class, 'contact'])->name('contact.index');
