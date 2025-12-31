@@ -182,7 +182,7 @@
             <div class="row p-0">
                 <div class="col-12 p-0">
                     <div class="pp-hero-wrapper">
-                        <img src="assets/img/private-project-hero-bg.jpg" alt="">
+                        <img src="{{ asset('assets/img/final2/private-project-hero-bg.jpg') }}" alt="Private Project Banner">
                         <div class="pp-hero-bg-overlay"></div>
 
                         <div class="pp-hero-content">
@@ -267,11 +267,7 @@
                             <img src="{{ asset('assets/img/final2/Our-Product/OurProduct-BathFittings.png') }}"
                                 alt="Bath Fittings Collections">
                             <h3 class="mt-4">Bath Fittings Collections</h3>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur eaque voluptatum sed
-                                asperiores reprehenderit quas eius sapiente ipsum, quibusdam libero aspernatur ducimus
-                                eveniet itaque sit ab. Minus, expedita rerum ex accusamus nesciunt dolores beatae? Unde
-                                labore aliquam perspiciatis quae, sapiente saepe quam fugiat, tempora, voluptatibus ullam
-                                quas inventore tenetur debitis. </p>
+                            <p>Skipper Pipes presents a beautiful series of Bath fittings that brings to you design innovations, powered by flawless functionality. The products combine futuristic science and modern design to create unique features that are tailored to the specific needs of your bathroom. </p>
                         </div>
                     </div>
 

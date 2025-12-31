@@ -142,8 +142,8 @@
                 </div>
                 <div class="home-about col-lg-6 offset-lg-1">
                     <div class="site-heading" data-aos="fade-up" data-aos-duration="1000">
-                        <h4>Why Skipper Pipes</h4>
-                        <h2>{{ $sectionOne->title ?? '' }}</h2>
+                        <h1>{{ $sectionOne->title ?? '' }}</h1>
+                        <p>Why Skipper Pipes</p>
                     </div>
 
                     <blockquote data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
