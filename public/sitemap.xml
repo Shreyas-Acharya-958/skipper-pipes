@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<url>
 		<loc>https://skipperpipes.in/</loc>
@@ -36,21 +35,6 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://skipperpipes.in/products/upvc-pipes</loc>
-		<changefreq>daily</changefreq>
-		<priority>0.9</priority>
-	</url>
-	<url>
-		<loc>https://skipperpipes.in/products/cpvc-pipes</loc>
-		<changefreq>daily</changefreq>
-		<priority>0.9</priority>
-	</url>
-	<url>
-		<loc>https://skipperpipes.in/products/swr-pipes</loc>
-		<changefreq>daily</changefreq>
-		<priority>0.9</priority>
-	</url>
-	<url>
 		<loc>https://skipperpipes.in/products/agriculture-pipes</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.9</priority>
@@ -72,11 +56,6 @@
 	</url>
 	<url>
 		<loc>https://skipperpipes.in/products/hdpe-pipes</loc>
-		<changefreq>daily</changefreq>
-		<priority>0.9</priority>
-	</url>
-	<url>
-		<loc>https://skipperpipes.in/products/marina-tank</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.9</priority>
 	</url>
@@ -229,5 +208,51 @@
 		<loc>https://skipperpipes.in/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/a-complete-guide-to-agriculture-pipes-in-india-types-uses-and-benefits</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/a-comprehensive-buyers-guide-to-hdpe-pipes-in-india</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/top-reasons-why-indian-households-rely-on-skipper-marina-water-tanks</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/why-skipper-hdpe-agriculture-pipes-are-the-best-choice-for-indian-farms-and-infrastructure</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/products/cpvc-pipes-and-fittings</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/products/swr-pipes-and-fittings</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/products/upvc-pipes-and-fittings</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/products/water-storage-tank</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
+
+	<url>
+		<loc>https://skipperpipes.in/private-projects</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
 	</url>
 </urlset>

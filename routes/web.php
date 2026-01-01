@@ -69,6 +69,10 @@ Route::permanentRedirect('/the-various-uses-of-cpvc-pipes-in-construction-plumbi
 Route::permanentRedirect('/top-6-advantage-and-applications-of-cpvc-pipes/', '/blogs/what-makes-skipper-pipes-the-best-cpvc-pipes-in-india');
 Route::permanentRedirect('/top-7-advantages-of-using-skipper-upvc-pipes-over-metal-pipes/', '/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024');
 Route::permanentRedirect('/top-benefits-and-applications-of-swr-pipes-and-fittings/', '/blogs/the-top-benefits-and-applications-of-swr-pipes-and-fittings');
+Route::permanentRedirect('/products/upvc-pipes', '/products/upvc-pipes-and-fittings');
+Route::permanentRedirect('/products/cpvc-pipes', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/products/swr-pipes', '/products/swr-pipes-and-fittings');
+Route::permanentRedirect('/products/marina-tank', '/products/water-storage-tank');
 
 // ----------------------------------------------------------------------
 
