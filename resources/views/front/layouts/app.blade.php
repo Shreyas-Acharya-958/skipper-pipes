@@ -17,24 +17,30 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $seoData['meta_title'] ?? '' }}">
-    <meta property="og:description" content="{{ $seoData['meta_description'] ?? '' }}">
-    <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+    {{-- Open graph / Twitter --}}
+    @hasSection ('og-tags')
+        @yield('og-tags')
+        
+    @else
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:site_name" content="Skipper Pipes">
+        <meta property="og:title" content="{{ $seoData['meta_title'] ?? '' }}">
+        <meta property="og:description" content="{{ $seoData['meta_description'] ?? '' }}">
+        <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
-    <meta property="twitter:description"
-        content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
-    <meta property="twitter:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
-
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url()->current() }}">
+        <meta property="twitter:title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
+        <meta property="twitter:description"
+            content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+        <meta property="twitter:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+        <!--End meta-->
+    @endif
+    
     <title>{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}</title>
-    <!--End meta-->
-
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
 

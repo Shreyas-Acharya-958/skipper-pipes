@@ -1,4 +1,22 @@
 @extends('front.layouts.app')
+
+@section('og-tags')
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Skipper Pipes">
+    <meta property="og:title" content="Private Projects by Skipper Pipes – CPVC, UPVC, HDPE & SWR Infrastructure Pipes">
+    <meta property="og:description" content="Skipper Pipes Private Projects – contact experts for specialized piping systems, from plumbing to agriculture and infrastructure applications. Engineered for strength, durability, and leak-proof performance.">
+    <meta property="og:image" content="{{ asset('assets/img/final2/private-project-og-img.png') }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="Private Projects by Skipper Pipes – CPVC, UPVC, HDPE & SWR Infrastructure Pipes">
+    <meta name="twitter:description" content="Skipper Pipes Private Projects – contact experts for specialized piping systems, from plumbing to agriculture and infrastructure applications. Engineered for strength, durability, and leak-proof performance.">
+    <meta name="twitter:image" content="{{ asset('assets/img/final2/private-project-og-img.png') }}">
+
+@endsection
+
 @section('styles')
     <style>
         /* HERO SECTION */

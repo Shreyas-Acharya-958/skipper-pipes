@@ -73,6 +73,7 @@ Route::permanentRedirect('/products/upvc-pipes', '/products/upvc-pipes-and-fitti
 Route::permanentRedirect('/products/cpvc-pipes', '/products/cpvc-pipes-and-fittings');
 Route::permanentRedirect('/products/swr-pipes', '/products/swr-pipes-and-fittings');
 Route::permanentRedirect('/products/marina-tank', '/products/water-storage-tank');
+Route::permanentRedirect('/private-project', '/private-projects');
 
 // ----------------------------------------------------------------------
 
