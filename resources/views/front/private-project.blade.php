@@ -7,6 +7,9 @@
     <meta property="og:title" content="Private Projects by Skipper Pipes – CPVC, UPVC, HDPE & SWR Infrastructure Pipes">
     <meta property="og:description" content="Skipper Pipes Private Projects – contact experts for specialized piping systems, from plumbing to agriculture and infrastructure applications. Engineered for strength, durability, and leak-proof performance.">
     <meta property="og:image" content="{{ asset('assets/img/final2/private-project-og-img.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
