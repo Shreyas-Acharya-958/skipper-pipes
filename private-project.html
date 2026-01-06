@@ -295,11 +295,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-12">
                                 <label for="full-name">Your Name <span>*</span></label>
-                                <input type="text" class="form-control" id="full-name" required>
+                                <input type="text" class="form-control" id="name" required>
                             </div>
                              <div class="form-group col-md-12">
                                 <label for="full-name">Project Name/Company Details <span>*</span></label>
-                                <input type="text" class="form-control" id="full-name" required>
+                                <input type="text" class="form-control" id="company" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="phone">Your Phone Number <span>*</span></label>
@@ -380,6 +380,33 @@
     }
   });
 </script>
+
+<script>
+document.getElementById("partner-application-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const company = document.getElementById("company").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+
+    if (!name || !company || !phone) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    const message =
+        `My name is ${name}\n` +
+        `I have an enquiry for Project / Company: ${company}\n` +
+        `You can reach out to me on my contact number: ${phone}`;
+
+    const whatsappNumber = "918689920521"; // countrycode + number
+    const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+});
+</script>
+
 
 
 </body>
