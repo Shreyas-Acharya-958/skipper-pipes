@@ -294,27 +294,22 @@
 
                 </div>
                 <div class="col-md-5 pp-form order-1 order-md-2 mb-5 mb-md-0" id="enquire">
-                    <form action="{{ route('front.private-project.enquiry') }}" method="post"
-                        class="partner-application-form" id="privateProjectForm">
-                        @csrf
+                    <form class="partner-application-form" id="partner-application-form">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label for="name">Your Name <span>*</span></label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <label for="full-name">Your Name <span>*</span></label>
+                                <input type="text" class="form-control" id="name" required>
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="project_name">Project Name/Company Details</label>
-                                <input type="text" class="form-control" id="project_name" name="project_name">
+                             <div class="form-group col-md-12">
+                                <label for="full-name">Project Name/Company Details <span>*</span></label>
+                                <input type="text" class="form-control" id="company" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="phone">Your Phone Number <span>*</span></label>
-                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                                <input type="tel" class="form-control" id="phone" required>
                             </div>
-
-
                         </div>
-
-                        <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Enquire Now</button>
+                         <button type="submit" class="btn btn-dark theme theme2 btn-md mt-2">Enquire Now</button>
                     </form>
                 </div>
             </div>
@@ -326,85 +321,31 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $(document).ready(function() {
-            $('#privateProjectForm').on('submit', function(e) {
-                e.preventDefault();
-            });
+    document.getElementById("partner-application-form").addEventListener("submit", function(e) {
+        e.preventDefault();
 
-            $('#privateProjectForm').validate({
-                rules: {
-                    name: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 255
-                    },
-                    project_name: {
-                        maxlength: 255
-                    },
-                    phone: {
-                        required: true,
-                        minlength: 10,
-                        maxlength: 20
-                    }
-                },
-                messages: {
-                    name: {
-                        required: "Please enter your name",
-                        minlength: "Name must be at least 2 characters long",
-                        maxlength: "Name cannot exceed 255 characters"
-                    },
-                    phone: {
-                        required: "Please enter your phone number",
-                        minlength: "Phone number must be at least 10 digits",
-                        maxlength: "Phone number cannot exceed 20 characters"
-                    }
-                },
-                errorElement: 'div',
-                errorPlacement: function(error, element) {
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid').removeClass('is-valid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid').addClass('is-valid');
-                },
-                submitHandler: function(form) {
-                    $.ajax({
-                        url: $(form).attr('action'),
-                        type: "POST",
-                        data: $(form).serialize(),
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        success: function(response) {
-                            // Redirect directly to thank you page
-                            window.location.href =
-                                '{{ route('front.private-projects.thankyou') }}';
-                        },
-                        error: function(xhr) {
-                            let errorMessage = 'Something went wrong. Please try again.';
-                            if (xhr.responseJSON && xhr.responseJSON.message) {
-                                errorMessage = xhr.responseJSON.message;
-                            } else if (xhr.responseJSON && xhr.responseJSON.errors) {
-                                const errors = xhr.responseJSON.errors;
-                                const firstError = Object.values(errors)[0];
-                                errorMessage = Array.isArray(firstError) ? firstError[0] :
-                                    firstError;
-                            }
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error',
-                                text: errorMessage,
-                                confirmButtonText: 'OK',
-                                confirmButtonColor: '#144372'
-                            });
-                        }
-                    });
-                }
-            });
-        });
+        const name = document.getElementById("name").value.trim();
+        const company = document.getElementById("company").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+
+        if (!name || !company || !phone) {
+            alert("Please fill all fields");
+            return;
+        }
+
+        const message =
+            `My name is ${name}\n` +
+            `I have an enquiry for Project / Company: ${company}\n` +
+            `You can reach out to me on my contact number: ${phone}`;
+
+        const whatsappNumber = "919147711352"; // countrycode + number
+        const whatsappURL =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappURL, "_blank");
+    });
     </script>
+
     <script>
         // Back to top button
         window.addEventListener('scroll', function() {
