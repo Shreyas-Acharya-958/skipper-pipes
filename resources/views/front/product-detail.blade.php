@@ -3,7 +3,7 @@
 @section('content')
     <!-- Hero banner-section -->
     <section class="hero-banner2 products-banner">
-        <div class="hero-banner2-bg">
+        <div class="hero-banner2-bg product-banner-bg">
             <img src="{{ asset('storage/' . $product->page_image) }}"
                 alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
         </div>

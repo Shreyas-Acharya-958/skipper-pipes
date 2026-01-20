@@ -5847,8 +5847,15 @@ Media queries - max-width
     .hero-banner2-bg,
     .hero-banner2-bg img{
         object-fit: cover;
-        /* height: 330px; */
+        height: 330px;
     }
+
+    .hero-banner2-bg.product-banner-bg,
+    .hero-banner2-bg.product-banner-bg img{
+        object-fit: cover;
+        height: 100% !important;
+    }
+
     .hero-banner2-content{
         left: 6%;
         bottom: 20%;
