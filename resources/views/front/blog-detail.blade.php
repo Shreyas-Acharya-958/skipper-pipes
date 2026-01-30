@@ -43,7 +43,7 @@
 
     <section class="hero-banner2-responsive single-blog-banner-responsive">
         <div class="hero-banner2-content-responsive single-blog-responsive">
-            <h1>{{ $blog->title }}</h1>
+            
             {{-- <p>{{ $product->meta_description }}</p> --}}
 
         </div>
