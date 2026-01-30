@@ -23,20 +23,8 @@
                     <div class="hero-banner-contents2">
                         <div class="container">
                             <div class="row align-items-center">
-                                <div class="col-lg-6">
-                                    <div class="hero-banner-text">
-                                        <h1>{{ $blog->title }}</h1>
-                                        <div class="meta">
-                                            <ul>
-                                                <li>
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                    {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col"></div>
+                                <div class="col-10 p-0">
                                     @if ($blog->image_1)
                                         <div class="hero-banner-img">
                                             <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}"
@@ -44,6 +32,7 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="col"></div>
                             </div>
                         </div>
                     </div>
@@ -94,6 +83,17 @@
                                 @endif --}}
 
                                 <div class="item">
+                                    <div class="blog-h1_heading">
+                                        <h1>{{ $blog->title }}</h1>
+                                        <div class="meta">
+                                            <ul>
+                                                <li>
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                    {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     {!! $blog->long_description !!}
 
                                     @if ($blog->tags->isNotEmpty())

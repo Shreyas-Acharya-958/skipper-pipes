@@ -11,15 +11,7 @@
             <h1>{{ $faqSectionOne->title ?? 'Frequently Asked Questions' }}</h1>
         </div>
     </section>
-
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>{{ $faqSectionOne->title ?? 'Frequently Asked Questions' }}</h1>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $faqSectionTwo->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($faqSectionTwo->image ?? ''), $faqSectionOne->title ?? 'Frequently Asked Questions') }}">
-        </div>
-    </section>
+   
     <!-- Hero banner-section ends -->
 
     <!-- Breadcrumb  -->

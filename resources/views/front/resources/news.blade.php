@@ -15,16 +15,7 @@
         </div>
     </section>
 
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>{{ $news_section_two->title ?? 'News' }}</h1>
-            <p>{!! $news_section_two->description ??
-                'All the latest announcements, insights, growth stories, and project news here.' !!}</p>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $news_section_two->image ?? '') }}" alt="{{ image_alt_text('storage/' . ($news_section_two->image ?? ''), $news_section_two->title ?? 'News') }}">
-        </div>
-    </section>
+    
     <!-- Hero banner-section ends -->
 
     <!-- Breadcrumb  -->

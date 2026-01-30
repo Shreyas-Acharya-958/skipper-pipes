@@ -14,17 +14,7 @@
             </div>
         </section>
     @endif
-    @if ($whySkipperPipes)
-        <section class="hero-banner2-responsive">
-            <div class="hero-banner2-content-responsive">
-                <h1>{{ $whySkipperPipes->title ?? '' }}</h1>
-                <p>{!! $whySkipperPipes->description ?? '' !!}</p>
-            </div>
-            <div class="hero-banner2-img-responsive">
-                <img src="{{ asset('storage/' . $whySkipperPipes->image) }}" alt="{{ image_alt_text('storage/' . $whySkipperPipes->image, $whySkipperPipes->title ?? '') }}">
-            </div>
-        </section>
-    @endif
+    
     <!-- Hero banner-section ends -->
 
     <!-- Breadcrumb  -->
