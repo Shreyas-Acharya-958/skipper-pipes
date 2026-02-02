@@ -12,14 +12,6 @@
         </div>
     </section>
 
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>{{ $page->title }}</h1>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $page->image) }}" alt="{{ image_alt_text('storage/' . $page->image, $page->title) }}">
-        </div>
-    </section>
     <!-- Hero banner-section ends -->
 
     <!-- Breadcrumb  -->
