@@ -255,21 +255,27 @@
                             $menus = App\Models\Menu::tree();
                         @endphp
                         @foreach ($menus as $menu)
+                            @php
+                                $menuLink = $menu->link == 'https://skipperbathfittings.com/beta/' ? 'products/bath-fittings' : $menu->link;
+                            @endphp
                             @if ($menu->status == 1)
                                 @if ($menu->children->isEmpty())
-                                    <li class="{{ request()->is($menu->link) ? 'active' : '' }}">
+                                    <li class="{{ request()->is($menuLink) ? 'active' : '' }}">
                                         <a
-                                            href="{{ $menu->link == '#' ? '#' : url($menu->link) }}">{{ $menu->title }}</a>
+                                            href="{{ $menuLink == '#' ? '#' : url($menuLink) }}">{{ $menu->title }}</a>
                                     </li>
                                 @else
-                                    <li class="dropdown {{ request()->is($menu->link . '/*') ? 'active' : '' }}">
+                                    <li class="dropdown {{ request()->is($menuLink . '/*') ? 'active' : '' }}">
                                         <a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown">{{ $menu->title }}</a>
                                         <ul class="dropdown-menu">
                                             @foreach ($menu->children as $child)
+                                                @php
+                                                    $childLink = $child->link == 'https://skipperbathfittings.com/beta/' ? 'products/bath-fittings' : $child->link;
+                                                @endphp
                                                 @if ($child->children->isEmpty())
                                                     <li>
-                                                        <a href="{{ url($child->link) }}">{{ $child->title }}</a>
+                                                        <a href="{{ url($childLink) }}">{{ $child->title }}</a>
                                                     </li>
                                                 @else
                                                     <li class="dropdown">
@@ -277,10 +283,13 @@
                                                             data-toggle="dropdown">{{ $child->title }}</a>
                                                         <ul class="dropdown-menu">
                                                             @foreach ($child->children as $grandchild)
+                                                                @php
+                                                                    $grandchildLink = $grandchild->link == 'https://skipperbathfittings.com/beta/' ? 'products/bath-fittings' : $grandchild->link;
+                                                                @endphp
                                                                 @if ($grandchild->children->isEmpty())
                                                                     <li>
                                                                         <a
-                                                                            href="{{ url($grandchild->link) }}">{{ $grandchild->title }}</a>
+                                                                            href="{{ url($grandchildLink) }}">{{ $grandchild->title }}</a>
                                                                     </li>
                                                                 @else
                                                                     <li class="dropdown">
@@ -288,9 +297,12 @@
                                                                             data-toggle="dropdown">{{ $grandchild->title }}</a>
                                                                         <ul class="dropdown-menu">
                                                                             @foreach ($grandchild->children as $greatgrandchild)
+                                                                                @php
+                                                                                    $greatgrandchildLink = $greatgrandchild->link == 'https://skipperbathfittings.com/beta/' ? 'products/bath-fittings' : $greatgrandchild->link;
+                                                                                @endphp
                                                                                 <li>
                                                                                     <a
-                                                                                        href="{{ url($greatgrandchild->link) }}">{{ $greatgrandchild->title }}</a>
+                                                                                        href="{{ url($greatgrandchildLink) }}">{{ $greatgrandchild->title }}</a>
                                                                                 </li>
                                                                             @endforeach
                                                                         </ul>
@@ -379,19 +391,19 @@
                         $footer = \App\Models\Footer::select('section1', 'section2', 'section3', 'section4')->first();
                     @endphp
                     <!-- Single Item -->
-                    {!! $footer->section1 !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section1) !!}
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    {!! $footer->section2 !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section2) !!}
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    {!! $footer->section3 !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section3) !!}
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    {!! $footer->section4 !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section4) !!}
                     <!-- End Single Item -->
                 </div>
             </div>

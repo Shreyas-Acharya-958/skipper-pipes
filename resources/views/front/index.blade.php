@@ -304,13 +304,8 @@
                                                                     <p class="home-products__sub-title">
                                                                         {{ $category->name }}</p>
                                                                     <h4 class="home-products__title">
-                                                                        @if ($product->slug == 'bath-fittings')
-                                                                            <a
-                                                                                href="https://skipperpipes.in/products/bath-fittings">{{ $product->title }}</a>
-                                                                        @else
-                                                                            <a
-                                                                                href="{{ route('front.products.show', $product->slug) }}">{{ $product->title }}</a>
-                                                                        @endif
+                                                                        <a
+                                                                            href="{{ route('front.products.show', $product->slug) }}">{{ $product->title }}</a>
                                                                     </h4>
                                                                 </div>
                                                             </div>
