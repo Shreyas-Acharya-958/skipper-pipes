@@ -306,7 +306,7 @@
                                                                     <h4 class="home-products__title">
                                                                         @if ($product->slug == 'bath-fittings')
                                                                             <a
-                                                                                href="https://skipperbathfittings.com/beta/">{{ $product->title }}</a>
+                                                                                href="https://skipperpipes.in/products/bath-fittings">{{ $product->title }}</a>
                                                                         @else
                                                                             <a
                                                                                 href="{{ route('front.products.show', $product->slug) }}">{{ $product->title }}</a>
