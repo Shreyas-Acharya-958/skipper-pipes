@@ -14,16 +14,7 @@
         </div>
     </section>
 
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>Media</h1>
-            <p>Where our brand speaks — through visuals, coverage, and industry collaborations.</p>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $mediaSectionTwo->image ?? '') }}"
-                alt="{{ image_alt_text('storage/' . ($mediaSectionTwo->image ?? ''), '') }}">
-        </div>
-    </section>
+
     <!-- Hero banner-section ends -->
 
     <!-- Breadcrumb  -->

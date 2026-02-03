@@ -24,15 +24,7 @@
         </div>
     </section>
 
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>{{ $partner->short_description }}</h1>
-            <p>{{ $partner->long_description }}</p>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $partner->page_image) }}" alt="{{ image_alt_text('storage/' . $partner->page_image, $partner->short_description ?? '') }}">
-        </div>
-    </section>
+    
     <!-- Hero banner-section ends -->
     <!-- Breadcrumb  -->
     <div class="breadcrumb-area">

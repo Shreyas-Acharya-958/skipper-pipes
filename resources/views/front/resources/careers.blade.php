@@ -23,18 +23,7 @@
                 <p>{{ $careers->description }}</p>
             </div>
         </section>
-
-        <section class="hero-banner2-responsive">
-            <div class="hero-banner2-content-responsive">
-                <h1>{{ $careers->title }}</h1>
-                <p>{{ $careers->description }}</p>
-            </div>
-            <div class="hero-banner2-img-responsive">
-                @if (!empty($careers->images) && isset($careers->images[0]))
-                    <img src="{{ asset('storage/' . $careers->images[0]) }}" alt="{{ image_alt_text('storage/' . $careers->images[0], $careers->title) }}">
-                @endif
-            </div>
-        </section>
+        
         <!-- Hero banner-section ends -->
     @endif
     

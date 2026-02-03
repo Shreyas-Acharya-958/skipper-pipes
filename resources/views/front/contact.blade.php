@@ -12,7 +12,7 @@
     <!-- Hero banner-section -->
     <section class="hero-banner2">
         <div class="hero-banner2-bg">
-            <img src="assets/img/final/contact-hero-section1.jpg" alt="contact-us-banner">
+            <img src="assets/img/final/contact-hero-section1.jpg" alt="{{ image_alt_text('assets/img/final/blogs-banner1.jpg', 'Contact Us Banner') }}">
         </div>
         <div class="hero-banner2-overlay"></div>
         <div class="hero-banner2-content">
@@ -21,15 +21,6 @@
         </div>
     </section>
 
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>Contact Us</h1>
-            <p>For assistance, dealership queries, technical support, or more details.</p>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="assets/img/final/blogs-banner1.jpg" alt="{{ image_alt_text('assets/img/final/blogs-banner1.jpg', 'Contact Us Banner') }}">
-        </div>
-    </section>
     <!-- Hero banner-section ends -->
 
     <!-- Breadcrumb  -->

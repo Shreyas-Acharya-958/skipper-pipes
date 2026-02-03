@@ -780,7 +780,7 @@ CONTAINER CSS
     display: inline-block;
     font-weight: 700 !important;
     padding-bottom: 20px;
-    margin-bottom: 0;
+    margin-bottom: 15px;
     position: relative;
     text-transform: capitalize;
 
@@ -824,17 +824,18 @@ CONTAINER CSS
     color: var(--primary-color);
 }
 
-.site-heading p,
+.site-heading p{
+    margin: 0;
+    /* margin-top: 20px; */
+    padding: 0 10%;
+}
+
 .site-heading .product-overview-text {
     margin: 0;
     margin-top: 20px;
     padding: 0 10%;
     font-weight: 600;
     color: #144372;
-}
-
-
-.site-heading .product-overview-text{
     font-size: 20px;
 }
 
@@ -2366,6 +2367,34 @@ Blogs - Single Blog
     border: 1px solid var(--bg-dark);
 }
 
+.blog-area.full-blog .blog-items .item .blog-h1_heading h1{
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 0px;
+    line-height: 1.2;
+}
+
+.blog-area.full-blog .blog-items .item .blog-h1_heading .meta{
+    width: 200px;
+    border-bottom: 1px solid #144372;
+    border-width: 2px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.blog-area.full-blog .blog-items .item .blog-h1_heading .meta ul{
+    padding-left: 0;
+}
+
+.blog-area.full-blog .blog-items .item .blog-h1_heading .meta ul li{
+    list-style: none;
+    color: #144372;
+    font-weight: 600;
+
+}
+
 .blog-area.full-blog .blog-items .item h2{
     font-size: 26px; 
     font-weight: bold; 
@@ -3561,8 +3590,10 @@ Common Hero Banner
 
 /* blogs single */
 .hero-banner.single-blog {
-    min-height: 620px;
-    height: 75%;
+    /* min-height: 620px; */
+    /* height: 75%; */
+    max-height: 630px;
+    height: 87%;
     overflow: hidden;
 }
 
@@ -3598,7 +3629,8 @@ Common Hero Banner
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 30%;
+    /* bottom: 30%; */
+    top: 100px !important;
 }
 
 .hero-banner-contents2 .hero-banner-text h1,
@@ -5786,16 +5818,6 @@ MEDIA QUERIES
     }
 }
 
-@media (min-width: 1920px) {
-
-    /* .owl-stage{
-    width: 100% !important;
-    max-width: 2560px !important;
-  } */
-    .hero-banner-contents2 {
-        bottom: 40% !important;
-    }
-}
 
 
 
@@ -5805,6 +5827,14 @@ Media queries - max-width
 ==========================*/
 
 /* Small Screens Pcs */
+@media (max-width: 1024px){
+    .hero-banner.single-blog{
+        max-height: 515px !important;
+        height: 87% !important;
+        min-height: auto !important;
+    }
+}
+
 @media (max-width: 1023px) {
 
     /* header-navbar */
@@ -5952,13 +5982,11 @@ Media queries - max-width
 
     .hero-banner.single-blog {
         display: none;
-        min-height: 380px;
-        height: 75%;
+        /* min-height: 380px;
+        height: 75%; */
     }
 
-    .hero-banner-contents2 {
-        bottom: 0%;
-    }
+    
 
     .hero-banner-contents2 .hero-banner-text h1 {
         font-size: 22px;
@@ -6289,6 +6317,13 @@ Media queries - max-width
     }
 
     /* single blog */
+    .blog-area.full-blog .blog-items .item .blog-h1_heading h1{
+        font-size: 26px;
+    }
+    .blog-area.full-blog .blog-items .item h2{
+        font-size: 22px;
+    }
+
     .hero-banner.single-blog .hero-banner-img {
         display: none;
     }
@@ -6303,7 +6338,7 @@ Media queries - max-width
 
 
     .hero-banner-contents2 {
-        bottom: 4%;
+        /* bottom: 4%; */
         padding: 15px;
     }
 
@@ -6311,11 +6346,7 @@ Media queries - max-width
         font-size: 18px;
     }
 
-    .hero-banner.single-blog {
-        min-height: auto;
-        height: 75%;
-        margin-top: 80px;
-    }
+
 
 
     .contact-comments {

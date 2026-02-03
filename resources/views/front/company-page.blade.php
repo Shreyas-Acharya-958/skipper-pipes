@@ -22,16 +22,7 @@
             <p>{{ $page->short_description }}</p>
         </div>
     </section>
-    <section class="hero-banner2-responsive">
-        <div class="hero-banner2-content-responsive">
-            <h1>{{ $page->title }}</h1>
-            <p>{{ $page->short_description }}</p>
-        </div>
-        <div class="hero-banner2-img-responsive">
-            <img src="{{ asset('storage/' . $page->page_image) }}"
-                alt="{{ image_alt_text('storage/' . $page->page_image, $page->title) }}">
-        </div>
-    </section>
+    
     <!-- Hero banner-section ends -->
 
 

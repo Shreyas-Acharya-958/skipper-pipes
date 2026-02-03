@@ -251,8 +251,35 @@
 	</url>
 
 	<url>
+		<loc>https://skipperpipes.in/products/bath-fittings</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.9</priority>
+	</url>
+
+	<url>
 		<loc>https://skipperpipes.in/private-projects</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.9</priority>
+	</url>
+
+	<url>
+		<loc>https://skipperpipes.in/blogs/upvc-pipe-uses-plumbing-agriculture-industrial-applications</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/cpvc-pipes-uses-in-residential-commercial-plumbing</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/what-are-swr-pipes-and-how-do-they-work</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/what-is-the-difference-between-swr-pipe-and-pvc-pipes</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
 	</url>
 </urlset>
