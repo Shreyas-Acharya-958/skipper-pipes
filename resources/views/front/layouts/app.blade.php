@@ -47,6 +47,8 @@
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//unpkg.com">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" />
@@ -56,28 +58,14 @@
     <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" />
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ time() }}">
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
-
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-V8XGVP5J7B');
-    </script>
-
-    <!-- Google Tag Manager -->
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-V8XGVP5J7B");</script>
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -113,76 +101,18 @@
     src="https://www.facebook.com/tr?id=1237639624382812&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-
-
     @yield('styles')
     <style>
-        .product-category-col img {
-            width: 50px !important;
-            margin-bottom: 15px;
-        }
-
-        /* Jal Rakshak Popup Styles */
-        .jal-rakshak-btn-secondary {
-            padding: 12px 30px;
-            background-color: #144372;
-            color: white;
-            font-weight: 600;
-            border: none;
-            border-radius: 0;
-        }
-
-        .jal-rakshak-btn-secondary:hover {
-            background-color: #FFA800;
-            color: #144372;
-        }
-
-        .lp-para-heading {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        /* popup */
-        /* Wrapper */
-        #scrollPopup .popup-form-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Close Button */
-        #scrollPopup .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            color: #144372;
-            opacity: 0.8;
-            z-index: 10;
-        }
-
-        #scrollPopup .popup-close:hover {
-            opacity: 1;
-        }
-
-        /* Image Side */
-        #scrollPopup .popup-img img {
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Form Side */
-        #scrollPopup .popup-form {
-            background: #fff;
-        }
-
-        /* Popup CTA Link */
-        .popup-cta-link,
-        .popup-cta-link:hover {
-            color: #144372;
-            text-decoration: underline;
-            display: inline-block;
-        }
+    .product-category-col img { width: 50px !important; margin-bottom: 15px; }
+    .jal-rakshak-btn-secondary { padding: 12px 30px; background-color: #144372; color: #fff; font-weight: 600; border: 0; border-radius: 0; }
+    .jal-rakshak-btn-secondary:hover { background-color: #ffa800; color: #144372; }
+    .lp-para-heading { font-weight: 600; margin-bottom: 10px; color: #333; }
+    #scrollPopup .popup-form-wrapper { position: relative; overflow: hidden; }
+    #scrollPopup .popup-close { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #144372; opacity: .8; z-index: 10; }
+    #scrollPopup .popup-close:hover { opacity: 1; }
+    #scrollPopup .popup-img img { height: 100%; object-fit: cover; }
+    #scrollPopup .popup-form { background: #fff; }
+    .popup-cta-link, .popup-cta-link:hover { color: #144372; text-decoration: underline; display: inline-block; }
     </style>
     @yield('styles')
 </head>
@@ -436,13 +366,8 @@
     <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}"></script>
     <script src="{{ asset('assets/js/count-to.js') }}"></script>
     <script src="{{ asset('assets/js/bootsnav.js') }}"></script>
-
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
-
     @yield('scripts')
-
 </body>
-
 </html>
