@@ -590,7 +590,7 @@
     </script>
 
     <!-- Jal Rakshak Popup Scripts -->
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             let popupShown = false;
 
@@ -605,7 +605,7 @@
                 }
             });
         });
-    </script>
+    </script> --}}
 
     <!-- jQuery Validation and SweetAlert for Popup Form -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
