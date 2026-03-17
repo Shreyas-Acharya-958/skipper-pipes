@@ -302,4 +302,14 @@
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/buying-guide-for-water-tank-in-india</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/different-types-of-plumbing-pipes-and-their-uses</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
 </urlset>
