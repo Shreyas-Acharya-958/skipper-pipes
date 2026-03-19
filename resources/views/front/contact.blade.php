@@ -38,7 +38,7 @@
     </div>
 
     <section class="map-wrapper default-padding bg-gray">
-        <div class="container py-5">
+        <div class="container">
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
@@ -49,7 +49,7 @@
             </div>
             <div class="row mt-5" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                 <!-- Left: City List -->
-                {!! $contact_us_section_one->section1 !!}
+                {{-- {!! $contact_us_section_one->section1 !!} --}}
 
                 <!-- Center: Location Details -->
                 {!! $contact_us_section_one->section2 !!}
