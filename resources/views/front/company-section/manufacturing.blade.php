@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-12 text-center">
                         <div class="site-heading headings" >
-                            <h4 data-aos="fade-up" data-aos-duration="1000">SKipper Pipes</h4>
+                            <h4 data-aos="fade-up" data-aos-duration="1000">Skipper Pipes</h4>
                             <h2 data-aos="fade-up" data-aos-duration="1000">{{ $manufacturing_section_ones_head->title }} </h2>
                             <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">{!! $manufacturing_section_ones_head->description !!}</p>
                         </div>

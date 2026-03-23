@@ -42,7 +42,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
-                        <h4>SKipper Pipes</h4>
+                        <h4>Skipper Pipes</h4>
                         <h2>Talk to Our Support Team</h2>
                     </div>
                 </div>

@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
-                        <h4 data-aos="fade-up" data-aos-duration="1000">SKipper Pipes</h4>
+                        <h4 data-aos="fade-up" data-aos-duration="1000">Skipper Pipes</h4>
                         <h2 data-aos="fade-up" data-aos-duration="1000">Network Overview</h2>
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" class="p-0">
                             {{ $mainNetwork->overview }}</p>
@@ -54,7 +54,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
-                        <h4>SKipper Pipes</h4>
+                        <h4>Skipper Pipes</h4>
                         <h2>How We Engage and Empower Our Network:</h2>
                     </div>
                 </div>

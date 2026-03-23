@@ -33,7 +33,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
-                        <h4>SKipper Pipes</h4>
+                        <h4>Skipper Pipes</h4>
                         <h2>{{ $faqSectionOne->title ?? 'Frequently Asked Questions' }}</h2>
                         <p class="p-0">
                             {!! $faqSectionOne->description ??
@@ -52,7 +52,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
-                        <h4>SKipper Pipes</h4>
+                        <h4>Skipper Pipes</h4>
                         <h2>Frequently Asked Questions</h2>
                     </div>
                 </div>

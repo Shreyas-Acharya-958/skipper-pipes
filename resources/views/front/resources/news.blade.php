@@ -37,7 +37,7 @@
             <div class="row" data-aos="fade-up" data-aos-duration="1000">
                 <div class="col-12 text-center">
                     <div class="site-heading headings">
-                        <h4>SKipper Pipes</h4>
+                        <h4>Skipper Pipes</h4>
                         <h2>{{ $news_section_one->title ?? 'News' }}</h2>
                         <p class="p-0">
                             {!! $news_section_one->description ??

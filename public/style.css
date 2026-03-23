@@ -115,7 +115,7 @@ nav.navbar.bootsnav li.dropdown ul.dropdown-menu>li>a { font-weight: 500 !import
 nav.navbar.bootsnav li.dropdown ul.dropdown-menu>li>a:hover { background-color: var(--primary-color); color: var(--secondary-color); }
 nav.navbar.bootsnav ul.nav>li>a:hover { color: var(--secondary-color) !important; }
 .carousel-wrapper { position: relative; }
-.carousel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.15); z-index: 1; pointer-events: none; }
+.carousel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background:linear-gradient(to bottom,rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0,0.1) 10%, rgba(0, 0, 0, 0) 100%); z-index: 1; pointer-events: none; }
 .carousel-inner, .carousel-item img { position: relative; z-index: 0; }
 .carousel-control-prev, .carousel-control-next { background: transparent; border: none; }
 .carousel-fade .carousel-inner .item { -webkit-transition-property: opacity; transition-property: opacity; }

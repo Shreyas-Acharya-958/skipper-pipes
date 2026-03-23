@@ -18,7 +18,7 @@
              <div class="row">
                  <div class="col-12 text-center">
                      <div class="site-heading headings" data-aos="fade-up" data-aos-duration="1000">
-                         <h4>SKipper Pipes</h4>
+                         <h4>Skipper Pipes</h4>
                          <h2>Words from the Top!</h2>
                      </div>
                  </div>

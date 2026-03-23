@@ -76,6 +76,10 @@ Route::permanentRedirect('/products/marina-tank', '/products/water-storage-tank'
 Route::permanentRedirect('/private-project', '/private-projects');
 Route::permanentRedirect('/blogs/flagbearers-of-safe-water-skipper-pipes-leading-the-way', '/blogs/skipper-safe-water-distribution-piping-solutions');
 Route::permanentRedirect('/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard', '/blogs/cpvc-pipes-industry-standard-plumbing');
+Route::permanentRedirect('/hdpe-pipes/', '/products/hdpe-pipes');
+Route::permanentRedirect('/marina-tank/', '/products/water-storage-tank');
+Route::permanentRedirect('/blogs/reasons-why-industry-experts-choose-skipper-pipes-for-large-scale-projects', '/blogs/safe-piping-solutions-large-scale-projects');
+Route::permanentRedirect('/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024', '/blogs/advantages-of-upvc-pipes-vs-metal-pipes');
 
 // ----------------------------------------------------------------------
 
