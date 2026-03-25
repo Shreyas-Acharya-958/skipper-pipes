@@ -70,7 +70,7 @@
                   <div class="col-12 text-center">
                       <div class="site-heading headings">
                           <h4>CSR</h4>
-                          <h2>Ongoing Initatives</h2>
+                          <h2>Ongoing Initiatives</h2>
                       </div>
                   </div>
               </div>

@@ -123,8 +123,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <h2 class="text-white mb-4">Still Have Questions?</h2>
-                    <p class="text-white mb-md-4 pb-md-2">We’re here to help. Reach out to our team anytime via the contact
-                        us page.</p>
+                    <p class="text-white mb-md-4 pb-md-2">We’re here to help. Reach out to our team anytime via the Contact
+                        Us page.</p>
                     <a class="btn btn-light effect btn-md mb-3 mb-md-0" href="{{ url('contact-us') }}">Contact Us</a>
                 </div>
             </div>
