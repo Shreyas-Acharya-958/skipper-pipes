@@ -160,7 +160,7 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://skipperpipes.in/blogs/why-are-hdpe-pipes-so-versatile-know-the-features-benefits</loc>
+		<loc>https://skipperpipes.in/blogs/hdpe-pipes-features-benefits-applications</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -170,7 +170,7 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://skipperpipes.in/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know</loc>
+		<loc>https://skipperpipes.in/blogs/pvc-pipe-benefits-plumbing-guide</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -190,7 +190,7 @@
 		<priority>0.8</priority>
 	</url>
 	<url>
-		<loc>https://skipperpipes.in/blogs/the-top-benefits-and-applications-of-swr-pipes-and-fittings</loc>
+		<loc>https://skipperpipes.in/blogs/swr-pipes-fittings-benefits-applications-guide</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>
@@ -309,6 +309,11 @@
 	</url>
 	<url>
 		<loc>https://skipperpipes.in/blogs/different-types-of-plumbing-pipes-and-their-uses</loc>
+		<changefreq>daily</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://skipperpipes.in/blogs/a-new-milestone-for-skipper-pipes-celebrating-the-national-launch-of-flowsafe-cpvc-at-guwahati</loc>
 		<changefreq>daily</changefreq>
 		<priority>0.8</priority>
 	</url>

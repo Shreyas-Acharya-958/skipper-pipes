@@ -80,6 +80,10 @@ Route::permanentRedirect('/hdpe-pipes/', '/products/hdpe-pipes');
 Route::permanentRedirect('/marina-tank/', '/products/water-storage-tank');
 Route::permanentRedirect('/blogs/reasons-why-industry-experts-choose-skipper-pipes-for-large-scale-projects', '/blogs/safe-piping-solutions-large-scale-projects');
 Route::permanentRedirect('/blogs/what-are-the-main-advantages-of-using-upvc-pipes-in-2024', '/blogs/advantages-of-upvc-pipes-vs-metal-pipes');
+Route::permanentRedirect('/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know', '/blogs/pvc-pipe-benefits-plumbing-guide');
+Route::permanentRedirect('/blogs/the-top-benefits-and-applications-of-swr-pipes-and-fittings', '/blogs/swr-pipes-fittings-benefits-applications-guide');
+Route::permanentRedirect('/blogs/why-are-hdpe-pipes-so-versatile-know-the-features-benefits', '/blogs/hdpe-pipes-features-benefits-applications');
+
 
 // ----------------------------------------------------------------------
 
