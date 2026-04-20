@@ -231,19 +231,18 @@
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="100">
-                            <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});">
-                            </div>
-                            <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ image_alt_text('storage/' . $category->icon, $category->name) }}">
-                            <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
-                            <h4>{{ $category->name }}</h4>
-                            <p>
-                                {{ $category->description }}
-                            </p>
-                            <ul>
-                                @foreach ($category->products->where('status', 1) as $product)
-                                    <li>{{ $product->name }}</li>
-                                @endforeach
-                            </ul>
+                            <a href="{{ $category->products()->where('title', $category->name)->exists() ? route('front.products.show', ['slug' => Str::slug($category->name)]) : '#' }}">
+                                <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
+                                <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ image_alt_text('storage/' . $category->icon, $category->name) }}">
+                                <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
+                                <h4>{{ $category->name }}</h4>
+                                <p> {{ $category->description }}</p>
+                                <ul>
+                                    @foreach ($category->products->where('status', 1) as $product)
+                                        <li>{{ $product->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </a>
                         </div>
                     @endforeach
                 </div>

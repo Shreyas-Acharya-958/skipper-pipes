@@ -109,6 +109,16 @@ class FrontController extends Controller
                     'meta_description' => $seo->meta_description,
                     'meta_keywords' => $seo->meta_keywords,
                     'meta_author' => 'Skipper Pipes',
+                    'canonical_url' => $seo->canonical_url ?? '',
+                    'robots' => $seo->robots ?? '',
+                    'og_title' => $seo->og_title ?? '',
+                    'og_description' => $seo->og_description ?? '',
+                    'og_type' => $seo->og_type ?? 'website',
+                    'twitter_title' => $seo->twitter_title ?? '',
+                    'twitter_description' => $seo->twitter_description ?? '',
+                    'twitter_card' => $seo->twitter_card ?? 'summary_large_image',
+                    'custom_schema_json' => $seo->custom_schema_json ?? null,
+                    'schema_json' => $seo->schema_json ?? null,
                 ];
             }
         }
@@ -133,9 +143,10 @@ class FrontController extends Controller
             ->get();
 
         // Get featured categories for the static section
-        $featuredCategories = ProductCategory::where('status', '1')
-            ->take(6)
-            ->get();
+        $featuredCategories = $categories;
+        //ProductCategory::where('status', '1')
+            // ->take(6)
+            // ->get();
 
         // Get banners
         $banners = Banner::where('status', '1')
@@ -203,7 +214,17 @@ class FrontController extends Controller
             'meta_title' => $blog->meta_title ?? '',
             'meta_description' => $blog->meta_description ?? "",
             'meta_keywords' => $blog->meta_keywords ?? "",
-            'meta_author' => $blog->author ?? 'Skipper Pipes'
+            'meta_author' => $blog->author ?? 'Skipper Pipes',
+            'canonical_url' => $blog->canonical_url ?? '',
+            'robots' => $blog->robots ?? '',
+            'og_title' => $blog->og_title ?? '',
+            'og_description' => $blog->og_description ?? '',
+            'og_type' => $blog->og_type ?? 'website',
+            'twitter_title' => $blog->twitter_title ?? '',
+            'twitter_description' => $blog->twitter_description ?? '',
+            'twitter_card' => $blog->twitter_card ?? 'summary_large_image',
+            'custom_schema_json' => $blog->custom_schema_json ?? null,
+            'schema_json' => $blog->schema_json ?? null,
         ];
 
         $recentBlogs = Blog::where('status', 1)
@@ -231,9 +252,6 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
         $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
-
-
-
         return view('front.product-detail', compact('product', 'seoData'));
     }
 
@@ -531,7 +549,7 @@ class FrontController extends Controller
 
     public function section($slug = null)
     {
-        $seoData = $this->getSeoDataForCurrentUrl();
+        // $seoData = $this->getSeoDataForCurrentUrl();
         // If no slug, you can show a default page or redirect
         if (!$slug) {
             return redirect()->route('home'); // or any default
@@ -539,6 +557,25 @@ class FrontController extends Controller
 
         // Example: Fetch from a 'company_pages' table
         $page = Section::where('slug', $slug)->first();
+
+
+        // SEO data
+        $seoData = [
+            'meta_title' => $page->meta_title ?? '',
+            'meta_description' => $page->meta_description ?? "",
+            'meta_keywords' => $page->meta_keywords ?? "",
+            'meta_author' => $page->author ?? 'Skipper Pipes',
+            'canonical_url' => $page->canonical_url ?? '',
+            'robots' => $page->robots ?? '',
+            'og_title' => $page->og_title ?? '',
+            'og_description' => $page->og_description ?? '',
+            'og_type' => $page->og_type ?? 'website',
+            'twitter_title' => $page->twitter_title ?? '',
+            'twitter_description' => $page->twitter_description ?? '',
+            'twitter_card' => $page->twitter_card ?? 'summary_large_image',
+            'custom_schema_json' => $page->custom_schema_json ?? null,
+            'schema_json' => $page->schema_json ?? null,
+        ];
 
         if (!$page) {
             abort(404); // Or show a custom 404 page

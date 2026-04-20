@@ -28,15 +28,31 @@
         <meta property="og:site_name" content="Skipper Pipes">
         <meta property="og:title" content="{{ $seoData['meta_title'] ?? '' }}">
         <meta property="og:description" content="{{ $seoData['meta_description'] ?? '' }}">
-        <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+        <meta property="og:title" content="{{ $seoData['og_title'] ?? $seoData['meta_title'] ?? '' }}">
+        <meta property="og:description" content="{{ $seoData['og_description'] ?? $seoData['meta_description'] ?? '' }}">
+        <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
+        @if(!empty($seoData['og_image']))
+            <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
+            @else 
+            <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+        @endif
 
         <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:card" content="{{ $seoData['twitter_card'] ?? 'summary_large_image' }}">
+        <meta name="twitter:title" content="{{ $seoData['twitter_title'] ?? $seoData['og_title'] ?? '' }}">
         <meta property="twitter:url" content="{{ url()->current() }}">
-        <meta property="twitter:title" content="{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}">
         <meta property="twitter:description"
             content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+        @if(!empty($seoData['twitter_image']))
+        <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
+        @else
         <meta property="twitter:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+        @endif
+        @if(!empty($seoData['schema_json']))
+            <script type="application/ld+json">
+                {!! $seoData['schema_json'] !!}
+            </script>
+        @endif
         <!--End meta-->
     @endif
     

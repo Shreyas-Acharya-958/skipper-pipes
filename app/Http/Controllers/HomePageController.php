@@ -7,6 +7,7 @@ use App\Models\HomeSectionOneFeature;
 use App\Models\HomeSectionTwo;
 use App\Models\HomeSectionThree;
 use App\Models\HomeSectionFour;
+use App\Models\HomePageSEO;
 use App\Models\HomeSectionFourReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +21,9 @@ class HomePageController extends Controller
         $sectionTwo = HomeSectionTwo::first();
         $sectionThree = HomeSectionThree::first();
         $sectionFour = HomeSectionFour::first();
-
-        return view('admin.home-page.index', compact('sectionOne', 'sectionTwo', 'sectionThree', 'sectionFour'));
+        $seo = HomePageSEO::first();
+        
+        return view('admin.home-page.index', compact('sectionOne', 'sectionTwo', 'sectionThree', 'sectionFour','seo'));
     }
 
     public function saveSection1(Request $request)
@@ -173,6 +175,49 @@ class HomePageController extends Controller
                     ->whereNotIn('id', $existingIds)
                     ->delete();
             }
+
+            DB::commit();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
+    public function saveSEOData(Request $request){
+        try {
+            DB::beginTransaction();
+
+            $section = HomePageSEO::firstOrNew();
+            
+            $section->fill($request->only(['meta_title','meta_description','meta_keywords','canonical_url','robots','og_title','og_description','og_image','og_type','twitter_title','twitter_description','twitter_image','twitter_card','schema_json','custom_schema_json','faq_json']));
+
+            if ($request->hasFile('twitter_image')) {
+                $section->twitter_image = $request->file('twitter_image')->store('seo', 'public');
+            }
+            if ($request->hasFile('og_image')) {
+                $section->og_image = $request->file('og_image')->store('seo', 'public');
+            }
+
+            $generatedSchema = [
+                [
+                    "@context" => "https://schema.org",
+                    "@type" => "Organization",
+                    "name" => config('app.name'),
+                    "url" => url('/'),
+                    "logo" => asset('logo.png'), // update this
+                    "sameAs" => [
+                        "https://facebook.com/yourpage",
+                        "https://instagram.com/yourpage",
+                        "https://twitter.com/yourpage"
+                    ]
+                ]
+            ];
+
+            $section->schema_json = $request->custom_schema_json
+                ? $request->custom_schema_json
+                : json_encode($generatedSchema, JSON_UNESCAPED_SLASHES);
+
+            $section->save();
 
             DB::commit();
             return response()->json(['success' => true]);

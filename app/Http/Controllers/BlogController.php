@@ -75,6 +75,46 @@ class BlogController extends Controller
 
         $blog = Blog::create($validated);
 
+        $blog->fill($request->only(['canonical_url','robots','og_title','og_description','og_image','og_type','twitter_title','twitter_description','twitter_image','twitter_card']));
+
+        $generatedSchema = [
+        [
+            "@context" => "https://schema.org",
+            "@type" => "BlogPosting",
+
+            "headline" => $blog->title,
+            "description" => $blog->short_description,
+
+            "image" => [
+                asset($blog->page_image)
+            ],
+
+            "author" => [
+                "@type" => "Person",
+                "name" => $blog->author ?? "Admin"
+            ],
+
+            "publisher" => [
+                "@type" => "Organization",
+                "name" => config('app.name'),
+                "logo" => [
+                    "@type" => "ImageObject",
+                    "url" => asset('logo.png')
+                ]
+            ],
+
+            "datePublished" => \Carbon\Carbon::parse($blog->published_at)->toIso8601String(),
+            "dateModified" => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+
+            "mainEntityOfPage" => [
+                "@type" => "WebPage",
+                "@id" => url()->current()
+            ]
+        ]
+    ];
+        $blog->schema_json = $request->custom_schema_json ? $request->custom_schema_json  : json_encode($generatedSchema, JSON_UNESCAPED_SLASHES);
+
+        $blog->save();
         // Sync tags
         if ($request->has('tags')) {
             $blog->tags()->sync($request->input('tags'));
@@ -138,6 +178,47 @@ class BlogController extends Controller
         }
 
         $blog->update($validated);
+
+        $blog->fill($request->only(['canonical_url','robots','og_title','og_description','og_image','og_type','twitter_title','twitter_description','twitter_image','twitter_card']));
+
+        $generatedSchema = [
+            [
+                "@context" => "https://schema.org",
+                "@type" => "BlogPosting",
+
+                "headline" => $blog->title,
+                "description" => $blog->short_description,
+
+                "image" => [
+                    asset($blog->page_image)
+                ],
+
+                "author" => [
+                    "@type" => "Person",
+                    "name" => $blog->author ?? "Admin"
+                ],
+
+                "publisher" => [
+                    "@type" => "Organization",
+                    "name" => config('app.name'),
+                    "logo" => [
+                        "@type" => "ImageObject",
+                        "url" => asset('logo.png')
+                    ]
+                ],
+
+                "datePublished" => \Carbon\Carbon::parse($blog->published_at)->toIso8601String(),
+                "dateModified" => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+
+                "mainEntityOfPage" => [
+                    "@type" => "WebPage",
+                    "@id" => url()->current()
+                ]
+            ]
+        ];
+        $blog->schema_json = $request->custom_schema_json ? $request->custom_schema_json  : json_encode($generatedSchema, JSON_UNESCAPED_SLASHES);
+
+        $blog->save();
 
         // Sync tags
         $blog->tags()->sync($request->input('tags', []));

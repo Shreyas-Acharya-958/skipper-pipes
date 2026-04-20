@@ -109,23 +109,60 @@ class MenuController extends Controller
                 'meta_description' => 'nullable|string',
                 'meta_keywords' => 'nullable|string|max:255',
             ]);
+            $data = [
+                'meta_title' => $request->meta_title ?? '',
+                'meta_description' => $request->meta_description ?? '',
+                'meta_keywords' => $request->meta_keywords ?? '',
+                'canonical_url' => $request->canonical_url ?? '',
+                'robots' => $request->robots ?? '',
 
-            $first = MenuSeoMetadata::where('menu_id', $request->menu_id)->first();
-            if ($first) {
-                $first->update([
-                    'meta_title' => $request->meta_title ?? '',
-                    'meta_description' => $request->meta_description ?? '',
-                    'meta_keywords' => $request->meta_keywords ?? '',
-                ]);
-            } else {
-                MenuSeoMetadata::create([
-                    'menu_id' => $request->menu_id,
-                    'meta_title' => $request->meta_title ?? '',
-                    'meta_description' => $request->meta_description ?? '',
-                    'meta_keywords' => $request->meta_keywords ?? '',
-                ]);
+                // OPEN GRAPH
+                'og_title' => $request->og_title ?? '',
+                'og_description' => $request->og_description ?? '',
+                'og_type' => $request->og_type ?? 'website',
+
+                // TWITTER
+                'twitter_title' => $request->twitter_title ?? '',
+                'twitter_description' => $request->twitter_description ?? '',
+                'twitter_card' => $request->twitter_card ?? 'summary_large_image',
+
+                // CUSTOM SCHEMA (override)
+                'custom_schema_json' => $request->custom_schema_json ?? null,
+            ];
+
+            if ($request->hasFile('og_image')) {
+                $data['og_image'] = $request->file('og_image')->store('seo', 'public');
             }
 
+            if ($request->hasFile('twitter_image')) {
+                $data['twitter_image'] = $request->file('twitter_image')->store('seo', 'public');
+            }
+            $generatedSchema = [
+                [
+                    "@context" => "https://schema.org",
+                    "@type" => "WebPage",
+                    "name" => $data['meta_title'],
+                    "description" => $data['meta_description'],
+                    "url" => url()->current(),
+                ]
+            ];
+
+            $data['schema_json'] = $request->custom_schema_json
+                ? $request->custom_schema_json
+                : json_encode($generatedSchema, JSON_UNESCAPED_SLASHES);
+
+            MenuSeoMetadata::updateOrCreate(
+                ['menu_id' => $request->menu_id],
+                $data
+            );
+            // $first = MenuSeoMetadata::where('menu_id', $request->menu_id)->first();
+            // if ($first) {
+            //     $first->update($data);
+            // } else {
+            //     MenuSeoMetadata::create([
+            //         'menu_id' => $request->menu_id,
+            //     ] + $data);
+            // }
             return response()->json(['message' => 'SEO metadata saved successfully']);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([

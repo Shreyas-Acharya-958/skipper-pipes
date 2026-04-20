@@ -55,11 +55,11 @@
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Section Image</label>
                                     @if ($section->image)
-                                        <div class="mb-2 position-relative d-inline-block">
+                                        <div class="position-relative d-inline-block mb-2">
                                             <img src="{{ asset('storage/' . $section->image) }}"
                                                 alt="{{ $section->title }}" style="max-width: 200px; height: auto;">
                                             <button type="button"
-                                                class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-image-btn"
+                                                class="btn btn-sm btn-danger position-absolute remove-image-btn end-0 top-0"
                                                 data-field="image">&times;</button>
                                         </div>
                                     @endif
@@ -90,6 +90,116 @@
                                         <img src="" alt="Preview" class="img-fluid">
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <label class="form-label mb-1">Meta Title</label>
+                                <input type="text" name="meta_title" class="form-control"
+                                    value="{{ old('meta_title', $section->meta_title ?? '') }}"
+                                    placeholder="Enter meta title">
+                            </div>
+                            <div class="col-12 mb-2">
+                                <label class="form-label mb-1">Meta Description</label>
+                                <textarea type="text" name="meta_description" class="form-control"
+                                    placeholder="Enter meta description">{{ old('meta_description', $section->meta_description ?? '') }} </textarea>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <label class="form-label mb-1">Meta Keywords</label>
+                                <input type="text" name="meta_keywords" class="form-control"
+                                    value="{{ old('meta_keywords', $section->meta_keywords ?? '') }}"
+                                    placeholder="Enter meta keywords">
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Canonical URL</label>
+                                <input type="text" name="canonical_url" class="form-control"
+                                    value="{{ old('canonical_url', $section->canonical_url ?? '') }}">
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Robots</label>
+                                <input type="text" name="robots" class="form-control" placeholder="index, follow"
+                                    value="{{ old('robots', $section->robots ?? '') }}">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <h6 class="text-success">Open Graph (Facebook)</h6>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">OG Title</label>
+                                <input type="text" name="og_title" class="form-control"
+                                    value="{{ old('og_title', $section->og_title ?? '') }}">
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">OG Type</label>
+                                <input type="text" name="og_type" class="form-control"
+                                    placeholder="website / article"
+                                    value="{{ old('og_type', $section->og_type ?? '') }}">
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">OG Description</label>
+                                <textarea name="og_description" class="form-control">{{ old('og_description', $section->og_description ?? '') }}</textarea>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">OG Image</label>
+                                <input type="file" name="og_image" class="form-control">
+                                @if (!empty($meta->og_image))
+                                    <small class="text-muted">Current: {{ $section->og_image }}</small>
+                                @endif
+                            </div>
+
+                            <!-- ================= TWITTER ================= -->
+                            <div class="col-12 mt-3">
+                                <h6 class="text-info">Twitter Tags</h6>
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Twitter Title</label>
+                                <input type="text" name="twitter_title" class="form-control"
+                                    value="{{ old('twitter_title', $section->twitter_title ?? '') }}">
+                            </div>
+
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label">Twitter Card</label>
+                                <input type="text" name="twitter_card" class="form-control"
+                                    placeholder="summary_large_image"
+                                    value="{{ old('twitter_card', $section->twitter_card ?? '') }}">
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">Twitter Description</label>
+                                <textarea name="twitter_description" class="form-control">{{ old('twitter_description', $section->twitter_description ?? '') }}</textarea>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">Twitter Image</label>
+                                <input type="file" name="twitter_image" class="form-control">
+                                @if (!empty($meta->twitter_image))
+                                    <small class="text-muted">Current: {{ $section->twitter_image }}</small>
+                                @endif
+                            </div>
+
+                            <!-- ================= SCHEMA ================= -->
+                            <div class="col-12 mt-3">
+                                <h6 class="text-danger">Schema (JSON-LD)</h6>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">Auto Generated Schema</label>
+                                <textarea name="schema_json" class="form-control" rows="4" readonly>
+                                            {{ $section->schema_json ?? '' }}
+                                    </textarea>
+                                <small class="text-muted">This is auto-generated (read-only)</small>
+                            </div>
+
+                            <div class="col-12 mb-2">
+                                <label class="form-label">Custom Schema Override</label>
+                                <textarea name="custom_schema_json" class="form-control" rows="5" placeholder='Paste custom JSON schema here'>
+                                    {{ old('custom_schema_json', $section->custom_schema_json ?? '') }}
+                                </textarea>
                             </div>
                         </div>
 

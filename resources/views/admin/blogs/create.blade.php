@@ -133,6 +133,98 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Canonical URL</label>
+                                        <input type="text" name="canonical_url" class="form-control"
+                                            value="{{ old('canonical_url', $seo->canonical_url ?? '') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Robots</label>
+                                        <input type="text" name="robots" class="form-control"
+                                            placeholder="index, follow" value="{{ old('robots', $seo->robots ?? '') }}">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <h6 class="text-success">Open Graph (Facebook)</h6>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">OG Title</label>
+                                        <input type="text" name="og_title" class="form-control"
+                                            value="{{ old('og_title', $seo->og_title ?? '') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">OG Type</label>
+                                        <input type="text" name="og_type" class="form-control"
+                                            placeholder="website / article"
+                                            value="{{ old('og_type', $seo->og_type ?? '') }}">
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="form-label">OG Description</label>
+                                        <textarea name="og_description" class="form-control">{{ old('og_description', $seo->og_description ?? '') }}</textarea>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="form-label">OG Image</label>
+                                        <input type="file" name="og_image" class="form-control">
+                                        @if (!empty($meta->og_image))
+                                            <small class="text-muted">Current: {{ $seo->og_image }}</small>
+                                        @endif
+                                    </div>
+
+                                    <!-- ================= TWITTER ================= -->
+                                    <div class="col-12 mt-3">
+                                        <h6 class="text-info">Twitter Tags</h6>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Twitter Title</label>
+                                        <input type="text" name="twitter_title" class="form-control"
+                                            value="{{ old('twitter_title', $seo->twitter_title ?? '') }}">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2">
+                                        <label class="form-label">Twitter Card</label>
+                                        <input type="text" name="twitter_card" class="form-control"
+                                            placeholder="summary_large_image"
+                                            value="{{ old('twitter_card', $seo->twitter_card ?? '') }}">
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="form-label">Twitter Description</label>
+                                        <textarea name="twitter_description" class="form-control">{{ old('twitter_description', $seo->twitter_description ?? '') }}</textarea>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="form-label">Twitter Image</label>
+                                        <input type="file" name="twitter_image" class="form-control">
+                                        @if (!empty($meta->twitter_image))
+                                            <small class="text-muted">Current: {{ $seo->twitter_image }}</small>
+                                        @endif
+                                    </div>
+
+                                    <!-- ================= SCHEMA ================= -->
+                                    <div class="col-12 mt-3">
+                                        <h6 class="text-danger">Schema (JSON-LD)</h6>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="form-label">Auto Generated Schema</label>
+                                        <textarea name="schema_json" class="form-control" rows="4" readonly>
+                                            {{ $seo->schema_json ?? '' }}
+                                    </textarea>
+                                        <small class="text-muted">This is auto-generated (read-only)</small>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label class="form-label">Custom Schema Override</label>
+                                        <textarea name="custom_schema_json" class="form-control" rows="5" placeholder='Paste custom JSON schema here'>
+                                            {{ old('custom_schema_json', $seo->custom_schema_json ?? '') }}
+                                        </textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

@@ -357,6 +357,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('home-page/section2', [HomePageController::class, 'saveSection2'])->name('home-page.section2.save');
         Route::post('home-page/section3', [HomePageController::class, 'saveSection3'])->name('home-page.section3.save');
         Route::post('home-page/section4', [HomePageController::class, 'saveSection4'])->name('home-page.section4.save');
+        Route::post('home-page/seo-data', [HomePageController::class, 'saveSEOData'])->name('home-page.seo.save');
         Route::post('home-page/add-review', [HomePageController::class, 'addReview'])->name('home-page.add-review');
 
         // Overview Page Management

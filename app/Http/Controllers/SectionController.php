@@ -50,7 +50,7 @@ class SectionController extends Controller
             'long_description' => 'required|string',
             'status' => 'required|boolean',
         ]);
-
+        
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = Str::slug($request->title) . '-' . time() . '.' . $file->getClientOriginalExtension();
@@ -61,7 +61,24 @@ class SectionController extends Controller
         // Use user-provided slug or auto-generate if empty
         $validated['slug'] = $request->filled('slug') ? Str::slug($request->slug) : Str::slug($request->title);
 
-        Section::create($validated);
+        $section = Section::create($validated);
+        $section ->fill($request->only(['meta_title','meta_description','meta_keywords','meta_title','meta_description','meta_keywords','canonical_url','robots','og_title','og_description','og_image','og_type','twitter_title','twitter_description','twitter_image','twitter_card']));
+
+        $generatedSchema = [
+            [
+                "@context" => "https://schema.org",
+                "@type" => trim($section->title),
+                "name" => $section->title,
+                "description" => $request->meta_description ?? 'Privacy Policy page',
+                "url" => url($section->slug),
+                "publisher" => [
+                    "@type" => "Organization",
+                    "name" => config('app.name'),
+                ]
+            ]
+        ];
+
+        $section->schema_json = $request->custom_schema_json ? $request->custom_schema_json  : json_encode($generatedSchema, JSON_UNESCAPED_SLASHES);
 
         return redirect()->route('admin.sections.index')
             ->with('success', 'Section created successfully.');
@@ -107,7 +124,26 @@ class SectionController extends Controller
         // Use user-provided slug or auto-generate if empty
         $validated['slug'] = $request->filled('slug') ? Str::slug($request->slug) : Str::slug($request->title);
 
+        
+        $section ->fill($request->only(['meta_title','meta_description','meta_keywords','canonical_url','robots','og_title','og_description','og_image','og_type','twitter_title','twitter_description','twitter_image','twitter_card']));
+
+        $generatedSchema = [
+            [
+                "@context" => "https://schema.org",
+                "@type" => trim($section->title),
+                "name" => $section->title,
+                "description" => $request->meta_description ?? 'Privacy Policy page',
+                "url" => url($section->slug),
+                "publisher" => [
+                    "@type" => "Organization",
+                    "name" => config('app.name'),
+                ]
+            ]
+        ];
+
+        $section->schema_json = $request->custom_schema_json ? $request->custom_schema_json  : json_encode($generatedSchema, JSON_UNESCAPED_SLASHES);
         $section->update($validated);
+        
 
         return redirect()->route('admin.sections.index')
             ->with('success', 'Section updated successfully.');

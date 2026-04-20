@@ -35,7 +35,7 @@
                                             </span>
                                         </button>
                                     </h2>
-                                    <div id="collapse-{{ $menu->id }}" class="accordion-collapse collapse show"
+                                    <div id="collapse-{{ $menu->id }}" class="accordion-collapse collapse"
                                         aria-labelledby="heading-{{ $menu->id }}" data-bs-parent="#menuSeoAccordion">
                                         <div class="accordion-body bg-white">
                                             @if ($meta)
@@ -73,6 +73,92 @@
                                                         value="{{ old('meta_keywords', $meta->meta_keywords ?? '') }}"
                                                         placeholder="Enter meta keywords">
                                                 </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <label class="form-label">Canonical URL</label>
+                                                    <input type="text" name="canonical_url" class="form-control"
+                                                        value="{{ old('canonical_url', $meta->canonical_url ?? '') }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-2">
+                                                    <label class="form-label">Robots</label>
+                                                    <input type="text" name="robots" class="form-control"
+                                                        placeholder="index, follow"
+                                                        value="{{ old('robots', $meta->robots ?? '') }}">
+                                                </div>
+                                                 <div class="col-12 mt-3"><h6 class="text-success">Open Graph (Facebook)</h6></div>
+                                                    <div class="col-md-6 mb-2">
+                                                        <label class="form-label">OG Title</label>
+                                                        <input type="text" name="og_title" class="form-control"
+                                                            value="{{ old('og_title', $meta->og_title ?? '') }}">
+                                                    </div>
+
+                                                    <div class="col-md-6 mb-2">
+                                                        <label class="form-label">OG Type</label>
+                                                        <input type="text" name="og_type" class="form-control"
+                                                            placeholder="website / article"
+                                                            value="{{ old('og_type', $meta->og_type ?? '') }}">
+                                                    </div>
+
+                                                    <div class="col-12 mb-2">
+                                                        <label class="form-label">OG Description</label>
+                                                        <textarea name="og_description" class="form-control">{{ old('og_description', $meta->og_description ?? '') }}</textarea>
+                                                    </div>
+
+                                                    <div class="col-12 mb-2">
+                                                        <label class="form-label">OG Image</label>
+                                                        <input type="file" name="og_image" class="form-control">
+                                                        @if(!empty($meta->og_image))
+                                                            <small class="text-muted">Current: {{ $meta->og_image }}</small>
+                                                        @endif
+                                                    </div>
+
+                                                    <!-- ================= TWITTER ================= -->
+                                                    <div class="col-12 mt-3"><h6 class="text-info">Twitter Tags</h6></div>
+
+                                                    <div class="col-md-6 mb-2">
+                                                        <label class="form-label">Twitter Title</label>
+                                                        <input type="text" name="twitter_title" class="form-control"
+                                                            value="{{ old('twitter_title', $meta->twitter_title ?? '') }}">
+                                                    </div>
+
+                                                    <div class="col-md-6 mb-2">
+                                                        <label class="form-label">Twitter Card</label>
+                                                        <input type="text" name="twitter_card" class="form-control"
+                                                            placeholder="summary_large_image"
+                                                            value="{{ old('twitter_card', $meta->twitter_card ?? '') }}">
+                                                    </div>
+
+                                                    <div class="col-12 mb-2">
+                                                        <label class="form-label">Twitter Description</label>
+                                                        <textarea name="twitter_description" class="form-control">{{ old('twitter_description', $meta->twitter_description ?? '') }}</textarea>
+                                                    </div>
+
+                                                    <div class="col-12 mb-2">
+                                                        <label class="form-label">Twitter Image</label>
+                                                        <input type="file" name="twitter_image" class="form-control">
+                                                        @if(!empty($meta->twitter_image))
+                                                            <small class="text-muted">Current: {{ $meta->twitter_image }}</small>
+                                                        @endif
+                                                    </div>
+
+                                                    <!-- ================= SCHEMA ================= -->
+                                                    <div class="col-12 mt-3"><h6 class="text-danger">Schema (JSON-LD)</h6></div>
+
+                                                    <div class="col-12 mb-2">
+                                                        <label class="form-label">Auto Generated Schema</label>
+                                                        <textarea name="schema_json" class="form-control" rows="4" readonly>
+                                                {{ $meta->schema_json ?? '' }}
+                                                        </textarea>
+                                                        <small class="text-muted">This is auto-generated (read-only)</small>
+                                                    </div>
+
+                                                    <div class="col-12 mb-2">
+                                                        <label class="form-label">Custom Schema Override</label>
+                                                        <textarea name="custom_schema_json" class="form-control" rows="5"
+                                                            placeholder='Paste custom JSON schema here'>
+                                                {{ old('custom_schema_json', $meta->custom_schema_json ?? '') }}
+                                                        </textarea>
+                                                    </div>
                                                 <div class="col-12 text-end">
                                                     <button type="submit"
                                                         class="btn {{ $meta ? 'btn-success' : 'btn-primary' }}">

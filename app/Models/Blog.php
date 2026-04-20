@@ -26,7 +26,19 @@ class Blog extends Model
         'meta_keywords',
         'status',
         'sequence',
-        'published_at'
+        'published_at',
+        'canonical_url',
+        'robots',
+        'og_title',
+        'og_description',
+        'og_image',
+        'og_type',
+        'twitter_title',
+        'twitter_description',
+        'twitter_image',
+        'twitter_card',
+        'schema_json',
+        'custom_schema_json'
     ];
 
     protected $casts = [

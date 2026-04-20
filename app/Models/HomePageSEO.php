@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MenuSeoMetadata extends Model
+class HomePageSEO extends Model
 {
+    protected $table = 'homepageseo';
     protected $fillable = [
-        'menu_id',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -23,10 +23,6 @@ class MenuSeoMetadata extends Model
         'twitter_card',
         'schema_json',
         'custom_schema_json',
+        'faq_json'
     ];
-
-    public function menu()
-    {
-        return $this->belongsTo(Menu::class);
-    }
 }
