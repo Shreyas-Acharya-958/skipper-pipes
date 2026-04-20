@@ -52,15 +52,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" /> --}}
     <link href="{{ asset('assets/js/swiper/swiper.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" /> --}}
+    {{-- <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" /> --}}
+    {{-- <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" /> --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}?v={{ time() }}">   
     <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ time() }}">
+    
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
     <!-- Google tag (gtag.js) -->
