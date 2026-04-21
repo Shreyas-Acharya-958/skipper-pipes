@@ -42,7 +42,7 @@
         <meta property="twitter:site" content="@skipperpipes">
         
         <meta property="twitter:description"
-            content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+            content="{{ $seoData['meta_description'] ?? $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
         @if(!empty($seoData['twitter_image']))
         <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
         @else
