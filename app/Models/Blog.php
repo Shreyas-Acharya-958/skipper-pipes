@@ -76,4 +76,32 @@ class Blog extends Model
 
         return Str::limit(trim($content), 156);
     }
+    public function getOgDescriptionAttribute(){
+        if (!empty($this->attributes['og_description'])) {
+            return $this->attributes['og_description'];
+        }
+        if (!empty($this->attributes['meta_description'])) {
+            return $this->attributes['meta_description'];
+        }
+
+        // Fallback: generate from content
+        $content = strip_tags($this->long_description); // remove HTML
+        $content = preg_replace('/\s+/', ' ', $content); // normalize whitespace
+
+        return Str::limit(trim($content), 156);
+    }
+    public function getTwitterDescriptionAttribute(){
+        if (!empty($this->attributes['twitter_description'])) {
+            return $this->attributes['twitter_description'];
+        }
+        if (!empty($this->attributes['meta_description'])) {
+            return $this->attributes['meta_description'];
+        }
+
+        // Fallback: generate from content
+        $content = strip_tags($this->long_description); // remove HTML
+        $content = preg_replace('/\s+/', ' ', $content); // normalize whitespace
+
+        return Str::limit(trim($content), 156);
+    }
 }
