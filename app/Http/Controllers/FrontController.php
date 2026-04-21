@@ -211,20 +211,22 @@ class FrontController extends Controller
 
         // SEO data
         $seoData = [
-            'meta_title' => $blog->meta_title ?? '',
+            'meta_title' => $blog->meta_title ?? $blog->title,
             'meta_description' => $blog->meta_description ?? "",
             'meta_keywords' => $blog->meta_keywords ?? "",
             'meta_author' => $blog->author ?? 'Skipper Pipes',
             'canonical_url' => $blog->canonical_url ?? '',
             'robots' => $blog->robots ?? '',
-            'og_title' => $blog->og_title ?? '',
-            'og_description' => $blog->og_description ?? '',
+            'og_title' => $blog->og_title ?? $blog->title,
+            'og_description' => $blog->og_description ?? $blog->meta_description,
             'og_type' => $blog->og_type ?? 'website',
-            'twitter_title' => $blog->twitter_title ?? '',
-            'twitter_description' => $blog->twitter_description ?? '',
+            'twitter_title' => $blog->twitter_title ?? $blog->title,
+            'twitter_description' => $blog->twitter_description ?? $blog->meta_description,
             'twitter_card' => $blog->twitter_card ?? 'summary_large_image',
             'custom_schema_json' => $blog->custom_schema_json ?? null,
             'schema_json' => $blog->schema_json ?? null,
+            'og_image' => !empty($blog->og_image) ? asset('storage/' . $blog->page_image) : asset('storage/' . $blog->page_image),
+            'twitter_image' => !empty($blog->twitter_image) ? asset('storage/' . $blog->page_image) : asset('storage/' . $blog->page_image)
         ];
 
         $recentBlogs = Blog::where('status', 1)
