@@ -258,8 +258,8 @@ class FrontController extends Controller
         $seoData['twitter_image'] = !empty($seoData['twitter_image']) ? $seoData['twitter_image']:$product->page_image;
         $seoData['og_description'] = $seoData['og_description'] ?? $seoData['meta_description'];
         $seoData['twitter_description'] = $seoData['twitter_description'] ?? $seoData['meta_description'];
-        $seoData['og_title'] = $seoData['og_title'] ?? $seoData['meta_title'];
-        $seoData['twitter_title'] = $seoData['twitter_title'] ?? $seoData['meta_title'];
+        $seoData['og_title'] = $seoData['og_title'] ?? $seoData['meta_title'] ?? $product->title;
+        $seoData['twitter_title'] = $seoData['twitter_title'] ?? $seoData['meta_title'] ?? $product->title;
         return view('front.product-detail', compact('product', 'seoData'));
     }
 
