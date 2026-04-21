@@ -254,6 +254,8 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
         $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
+        $seoData['og_image'] = !empty($blog->og_image) ? $blog->og_image : $blog->page_image;
+        $seoData['twitter_image'] = !empty($blog->twitter_image) ? $blog->twitter_image:$blog->page_image;
         return view('front.product-detail', compact('product', 'seoData'));
     }
 
