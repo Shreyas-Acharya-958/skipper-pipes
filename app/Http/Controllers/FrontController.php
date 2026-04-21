@@ -260,6 +260,7 @@ class FrontController extends Controller
         $seoData['twitter_description'] = $seoData['twitter_description'] ?? $seoData['meta_description'];
         $seoData['og_title'] = $seoData['og_title'] ?? $seoData['meta_title'] ?? $product->title;
         $seoData['twitter_title'] = $seoData['twitter_title'] ?? $seoData['meta_title'] ?? $product->title;
+        \Log::info('product seo'.json_encode($seoData));
         return view('front.product-detail', compact('product', 'seoData'));
     }
 
