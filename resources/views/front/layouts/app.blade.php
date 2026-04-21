@@ -75,12 +75,10 @@
     {{-- <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" /> --}}
     {{-- <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" /> --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}?v={{ time() }}">   
-    <link rel="stylesheet" href="{{ asset('style.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">   
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
     
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" />
-    <!-- ========== End Stylesheet ========== -->
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
     <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-V8XGVP5J7B");</script>
     <script>
