@@ -392,22 +392,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <!-- jQuery Frameworks
     ============================================= -->
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.appear.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}"></script>
-    <script src="{{ asset('assets/js/swiper/swiper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/progress-bar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}"></script>
-    <script src="{{ asset('assets/js/count-to.js') }}"></script>
-    <script src="{{ asset('assets/js/bootsnav.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
+    <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/swiper/swiper.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/wow.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/progress-bar.min.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}" defer></script>
+    <script src="{{ asset('assets/js/count-to.js') }}" defer></script>
+
+    <script src="{{ asset('assets/js/bootsnav.js') }}" defer></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @yield('scripts')
