@@ -77,7 +77,15 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">   
     <link rel="stylesheet" href="{{ asset('style.min.php') }}">   
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" /> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preload"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    as="style"
+    onload="this.rel='stylesheet'">
+
+    <noscript>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    </noscript>
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
     <link rel="preload" href="{{ asset('assets/css/style.php') }}" as="style" onload="this.rel='stylesheet'">
