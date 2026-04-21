@@ -280,10 +280,19 @@
                         <i class="fa-solid fa-envelope"></i> enquiry@skipperlimited.com</a>
 
                     @if ($product->brochure && !empty($product->brochure))
-                        <a class="btn btn-light effect btn-md" target="_blank"
-                            href="{{ asset('storage/' . $product->brochure) }}" download> <i
-                                class="fa-solid fa-download"></i> Download
-                            Brochure</a>
+                        @php
+                            $fileName = $product->brochure;
+                            $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+                        @endphp
+                         <a class="btn btn-light effect btn-md js-download-brochure"
+                            target="_blank"
+                            href="{{ asset('storage/' . $product->brochure) }}"
+                            data-file-name="{{ $fileName }}"
+                            data-file-extension="{{ $fileExtension }}"
+                            data-text="Download Brochure"
+                            download>
+                            Download Brochure
+                        </a>
                     @endif
                 </div>
             </div>
