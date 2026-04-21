@@ -61,11 +61,10 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" /> --}}
     {{--  <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" /> --}}
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//unpkg.com">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     {{-- <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" /> --}}
     {{-- <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" /> --}}
     {{-- <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" /> --}}
@@ -81,6 +80,8 @@
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
     <link rel="preload" href="{{ asset('assets/css/style.php') }}" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     <link rel="preload" href="{{ asset('style.min.php') }}" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="{{ asset('assets/css/responsive.css') }}" as="style" onload="this.rel='stylesheet'">
 
