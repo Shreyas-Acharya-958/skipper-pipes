@@ -392,9 +392,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <!-- jQuery Frameworks
     ============================================= -->
-    <script src="{{ asset('assets/js/jquery.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}" ></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" ></script>
 
     <script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
