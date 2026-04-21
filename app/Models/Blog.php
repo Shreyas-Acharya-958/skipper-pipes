@@ -62,4 +62,16 @@ class Blog extends Model
     {
         return $this->belongsToMany(BlogTag::class, 'blog_tag', 'blog_id', 'tag_id');
     }
+
+    public function getMetaDescriptionAttribute(){
+        if (!empty($this->attributes['meta_description'])) {
+            return $this->attributes['meta_description'];
+        }
+
+        // Fallback: generate from content
+        $content = strip_tags($this->long_description); // remove HTML
+        $content = preg_replace('/\s+/', ' ', $content); // normalize whitespace
+
+        return Str::limit(trim($content), 156);
+    }
 }
