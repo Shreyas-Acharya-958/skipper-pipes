@@ -384,6 +384,9 @@ class FrontController extends Controller
             $viewName = 'front.become-dealer';
         }
 
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        
         return view($viewName, compact('seoData', 'partner'));
     }
 
@@ -475,11 +478,12 @@ class FrontController extends Controller
 
         $whySkipperPipes = WhySkipperPipe::first();
 
-
         $why_skipper_pipe_section_fives = WhySkipperPipeSectionFive::first();
         $why_skipper_pipe_section_fours = WhySkipperPipeSectionFour::get();
         $whySkipperPipesSectionThrees = WhySkipperPipeSectionThree::first();
         $why_skipper_pipe_section_twos = WhySkipperPipeSectionTwo::get();
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
 
         return view('front.why-skipper-pipes', compact('whySkipperPipes', 'why_skipper_pipe_section_fives', 'why_skipper_pipe_section_fours', 'whySkipperPipesSectionThrees', 'why_skipper_pipe_section_twos', 'seoData'));
     }
