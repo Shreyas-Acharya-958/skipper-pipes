@@ -458,7 +458,7 @@
                             data-aos-delay="100">
                             <div class="item">
                                 <div class="thumb">
-                                    <a href="{{ route('front.blogs.show', $blog->slug) }}">
+                                    <a href="{{ route('front.blogs.show', $blog->slug) }}" aria-label="Read more {{ $blog->title }}">
                                         @if ($blog->page_image)
                                             <img src="{{ asset('storage/' . $blog->image_1) }}"
                                                 alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
