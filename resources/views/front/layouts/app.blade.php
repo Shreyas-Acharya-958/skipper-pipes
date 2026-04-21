@@ -9,8 +9,8 @@
 
     <!--Start meta-->
     @if (isset($seoData))
-        <meta name="description" content="{{ $seoData['meta_description'] ?? '' }}">
         <meta name="title" content="{{ $seoData['meta_title'] ?? '' }}">
+        <meta name="description" content="{{ $seoData['meta_description'] ?? '' }}">
         <meta name="keywords" content="{{ $seoData['meta_keywords'] ?? '' }}">
     @endif
 
