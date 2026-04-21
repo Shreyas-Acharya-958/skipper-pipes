@@ -225,8 +225,8 @@ class FrontController extends Controller
             'twitter_card' => $blog->twitter_card ?? 'summary_large_image',
             'custom_schema_json' => $blog->custom_schema_json ?? null,
             'schema_json' => $blog->schema_json ?? null,
-            'og_image' => !empty($blog->og_image) ? asset('storage/' . $blog->page_image) : asset('storage/' . $blog->page_image),
-            'twitter_image' => !empty($blog->twitter_image) ? asset('storage/' . $blog->page_image) : asset('storage/' . $blog->page_image)
+            'og_image' => !empty($blog->og_image) ? asset('storage/' . $blog->image_1) : asset('storage/' . $blog->image_1),
+            'twitter_image' => !empty($blog->twitter_image) ? asset('storage/' . $blog->image_1) : asset('storage/' . $blog->image_1)
         ];
 
         $recentBlogs = Blog::where('status', 1)
