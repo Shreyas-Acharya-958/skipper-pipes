@@ -23,7 +23,6 @@
         
     @else
         <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:site_name" content="Skipper Pipes">
         <meta property="og:title" content="{{ $seoData['og_title'] ?? $seoData['meta_title'] ?? '' }}">
