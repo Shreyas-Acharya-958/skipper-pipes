@@ -61,7 +61,8 @@
     <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
-    {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    {{-- 
     <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" /> --}}
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//unpkg.com">

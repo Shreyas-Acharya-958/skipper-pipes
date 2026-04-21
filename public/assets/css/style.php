@@ -3,7 +3,6 @@ header("Content-Type: text/css");
 header("Cache-Control: public, max-age=86400");
 
 $cssFiles = [
-    'bootstrap.min.css',
     'font-awesome.min.css',
     'animate.css',
     'owl.carousel.min.css',
