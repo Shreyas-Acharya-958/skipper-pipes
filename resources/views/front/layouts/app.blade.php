@@ -41,7 +41,7 @@
         <meta name="twitter:card" content="{{ $seoData['twitter_card'] ?? 'summary_large_image' }}">
         <meta name="twitter:title" content="{{ $seoData['twitter_title'] ?? $seoData['og_title'] ?? '' }}">
         <meta property="twitter:url" content="{{ url()->current() }}">
-        <meta property="twitter:site" content="@skipperpipes">
+        {{-- <meta property="twitter:site" content="{{ url()->current() }}"> --}}
         
         <meta property="twitter:description"
             content="{{ $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
