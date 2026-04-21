@@ -85,8 +85,8 @@
     <link rel="preload" href="{{ asset('assets/css/responsive.css') }}" as="style" onload="this.rel='stylesheet'">
 
     <noscript>
-        <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">
         <link rel="stylesheet" href="{{ asset('style.min.php') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     </noscript>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
