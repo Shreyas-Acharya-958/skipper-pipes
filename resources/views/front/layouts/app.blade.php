@@ -398,7 +398,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}" defer></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}" defer></script>
 
