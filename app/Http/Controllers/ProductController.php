@@ -82,7 +82,17 @@ class ProductController extends Controller
             $validated['brochure'] = $path;
         }
 
-        Product::create($validated);
+        $product = Product::create($validated);
+        if ($request->hasFile('brochure')) {
+            $file = $request->file('brochure');
+            $path = $file->store('brochures', 'public');
+            $product->update([
+                'brochure_file' => $path,
+                'brochure_name' => $file->getClientOriginalName(),
+                'brochure_extension' => $file->getClientOriginalExtension(),
+                'brochure_text' => 'Download Brochure',
+            ]);
+        }
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }

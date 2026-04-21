@@ -197,11 +197,21 @@
         <section class="product-cta bg-theme text-white default-padding">
             <div class="container">
                 <div class="row">
+                    @php
+                        $fileName = $product->brochure;
+                        $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+                    @endphp
                     <div class="col-12 text-center">
                         <h2 class="text-white mb-4">Everything You Need to Know!</h2>
-                        <a class="btn btn-light effect btn-md" target="_blank"
-                            href="{{ asset('storage/' . $product->brochure) }}" download>Download
-                            Brochure</a>
+                            <a class="btn btn-light effect btn-md js-download-brochure"
+                                target="_blank"
+                                href="{{ asset('storage/' . $product->brochure) }}"
+                                data-file-name="{{ $fileName }}"
+                                data-file-extension="{{ $fileExtension }}"
+                                data-text="Download Brochure"
+                                download>
+                                Download Brochure
+                            </a>
                     </div>
                 </div>
             </div>

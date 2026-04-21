@@ -387,5 +387,27 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @yield('scripts')
+
+    <script>
+        document.addEventListener('click', function(e) {
+            const el = e.target.closest('.js-download-brochure');
+            if (!el) return;
+
+            const fileUrl = el.getAttribute('href');
+            e.preventDefault();
+
+            gtag('event', 'download_brochure', {
+                file_extension: el.dataset.fileExtension,
+                file_name: el.dataset.fileName,
+                link: fileUrl,
+                text: el.dataset.text,
+                url: window.location.href
+            });
+
+            setTimeout(() => {
+                window.open(fileUrl, '_blank');
+            }, 150);
+        });
+    </script>
 </body>
 </html>
