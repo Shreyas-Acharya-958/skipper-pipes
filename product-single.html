@@ -29,7 +29,49 @@
     <link href="style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet" />
     <!-- ========== End Stylesheet ========== -->
+<style>
+    /* Base styles */
+.sticky-brochure-cta {
+    position: fixed;
+    z-index: 9999;
+}
 
+/* Desktop view */
+@media (min-width: 768px) {
+    .sticky-brochure-cta {
+        right: 10px;
+        bottom: 45%;
+        transform: translateY(50%);
+    }
+
+    .sticky-brochure-cta a {
+        display: inline-block;
+        transform: rotate(-90deg);
+        transform-origin: right bottom;
+        white-space: nowrap;
+        margin-right: -10px; /* adjust to pull it closer to edge */
+        background-color: #144372 !important;
+        color: white !important;
+    }
+}
+
+/* Mobile view */
+@media (max-width: 767px) {
+    .sticky-brochure-cta {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .sticky-brochure-cta a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        border-radius: 0;
+    }
+}
+</style>
 
     
 
@@ -760,6 +802,18 @@
         </div>
      </section>
     <!-- product cta ends -->
+
+    <div class="sticky-brochure-cta">
+    <a class="btn btn-light effect btn-md js-download-brochure"
+        target="_blank"
+        href="{{ asset('storage/' . $product->brochure) }}"
+        data-file-name="{{ $fileName }}"
+        data-file-extension="{{ $fileExtension }}"
+        data-text="Download Brochure"
+        download>
+        Download Brochure
+    </a>
+</div>
 
 
 
