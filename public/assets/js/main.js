@@ -514,7 +514,7 @@
                 $(".scroll-to-top").fadeOut(500);
             }
         }
-        OnePageMenuScroll();
+        // OnePageMenuScroll();
     });
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
