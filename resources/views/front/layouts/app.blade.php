@@ -28,10 +28,14 @@
         <meta property="og:title" content="{{ $seoData['og_title'] ?? $seoData['meta_title'] ?? '' }}">
         <meta property="og:description" content="{{ $seoData['og_description'] ?? $seoData['meta_description'] ?? '' }}">
         <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
+        @php 
+        $banner = \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
+        @endphp
+        
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
-            <meta property="og:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+            <meta property="og:image" content="{{ asset('storage/' .$banner->image) }}">
         @endif
 
         <!-- Twitter -->
@@ -45,7 +49,7 @@
         @if(!empty($seoData['twitter_image']))
         <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
         @else
-        <meta property="twitter:image" content="{{ asset('assets/img/final/skipper-pipes-s-logo.png') }}">
+        <meta property="twitter:image" content="{{ asset('storage/' .$banner->image) }}">
         @endif
         @if(!empty($seoData['schema_json']))
             <script type="application/ld+json">

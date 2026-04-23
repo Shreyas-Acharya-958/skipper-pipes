@@ -197,6 +197,11 @@ class FrontController extends Controller
             ->orderByDesc('published_at')
             ->get();
 
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $blogs_section_one->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $blogs_section_one->title);
+            
         return view('front.blogs', compact('blogs', 'seoData', 'blogs_section_one', 'blogs_section_two'));
     }
 
@@ -386,7 +391,6 @@ class FrontController extends Controller
 
         $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
         $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
-        
         return view($viewName, compact('seoData', 'partner'));
     }
 
@@ -439,13 +443,34 @@ class FrontController extends Controller
     public function faqs()
     {
         $seoData = $this->getSeoDataForCurrentUrl();
-        //faq_masters,faq_lists
-
+        
         $faq_masters = FaqMaster::where('status', 1)->get();
         $faq_lists = FaqList::where('status', 1)->get();
         $faqSectionOne = FaqSectionOne::first();
         $faqSectionTwo = FaqSectionTwo::first();
 
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $faqSectionOne->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $faqSectionOne->title);
+        
+        $schema_json = [
+            "@context" => "https://schema.org",
+            "@type" => "FAQPage",
+            "mainEntity" => []
+        ];
+
+        foreach ($faq_lists as $faq) {
+            $schema_json["mainEntity"][] = [
+                "@type" => "Question",
+                "name" => $faq->question,
+                "acceptedAnswer" => [
+                    "@type" => "Answer",
+                    "text" => $faq->answer
+                ]
+            ];
+        }
+        $seoData['schema_json'] = json_encode($schema_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 
         return view('front.resources.faqs', compact('faq_masters', 'faq_lists', 'seoData', 'faqSectionOne', 'faqSectionTwo'));
     }
@@ -456,6 +481,10 @@ class FrontController extends Controller
         $news_section_one = \App\Models\NewsSectionOne::first();
         $news_section_two = \App\Models\NewsSectionTwo::first();
         $news = News::where('status', 1)->orderBy('sequence', 'DESC')->get();
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $news->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $news->title);
         return view('front.resources.news', compact('news', 'seoData', 'news_section_one', 'news_section_two'));
     }
 
@@ -468,7 +497,11 @@ class FrontController extends Controller
             ->groupBy('media_type');
         $mediaSectionOne = MediaSectionOne::first();
         $mediaSectionTwo = MediaSectionTwo::first();
-
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $mediaSectionOne->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $mediaSectionOne->title);
+        
         return view('front.resources.media', compact('media', 'seoData', 'mediaSectionOne', 'mediaSectionTwo'));
     }
 
@@ -533,6 +566,10 @@ class FrontController extends Controller
         $career_life_at_skippers = CareerLifeAtSkipper::get();
         $career_skipper_pipes = CareerSkipperPipe::get();
         $career_why_skippers = CareerWhySkipper::first();
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $careers->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $careers->title);
 
         return view('front.resources.careers', compact('career_life_at_skippers', 'career_skipper_pipes', 'career_why_skippers', 'careers', 'seoData'));
     }
