@@ -517,7 +517,8 @@ class FrontController extends Controller
         $why_skipper_pipe_section_twos = WhySkipperPipeSectionTwo::get();
         $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
         $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
-
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $whySkipperPipes->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $whySkipperPipes->title);
         return view('front.why-skipper-pipes', compact('whySkipperPipes', 'why_skipper_pipe_section_fives', 'why_skipper_pipe_section_fours', 'whySkipperPipesSectionThrees', 'why_skipper_pipe_section_twos', 'seoData'));
     }
 
