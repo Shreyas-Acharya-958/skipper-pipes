@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: text/css");
-header("Cache-Control: public, max-age=86400");
+header("Cache-Control: public, max-age=2592000");
 
 $cssFiles = [
     'style.css'
