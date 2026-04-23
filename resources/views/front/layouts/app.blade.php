@@ -109,8 +109,8 @@
         <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     </noscript>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
-    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-V8XGVP5J7B");</script>
+    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
+    <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-V8XGVP5J7B");</script> --}}
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
