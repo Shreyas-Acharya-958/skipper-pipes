@@ -405,7 +405,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
     <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}" defer></script>
 
-    <script src="{{ asset('assets/js/swiper/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper/swiper.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/wow.min.js') }}" defer></script>
