@@ -412,49 +412,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}" defer></script>
     <script src="{{ asset('assets/js/count-to.js') }}" defer></script>
     <script src="{{ asset('assets/js/bootsnav.js') }}" defer></script>
-     <script src="{{ asset('assets/js/main.js') }}" defer></script>
+    <script src="{{ asset('assets/js/main.js') }}" defer></script>
     @yield('scripts')
-
     <script>
-        document.addEventListener('click', function(e) {
-            const el = e.target.closest('.js-download-brochure');
-            if (!el) return;
-
-            const fileUrl = el.getAttribute('href');
-            e.preventDefault();
-
-            gtag('event', 'download_brochure', {
-                file_extension: el.dataset.fileExtension,
-                file_name: el.dataset.fileName,
-                link: fileUrl,
-                text: el.dataset.text,
-                url: window.location.href
-            });
-
-            setTimeout(() => {
-                window.open(fileUrl, '_blank');
-            }, 150);
-        });
-    </script>
-    <script id="n1k9q2">
-const lazyElements = document.querySelectorAll(".lazy-bg");
-
-const observer = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const bg = el.getAttribute("data-bg");
-
-      if (bg) {
-        el.style.backgroundImage = `url(${bg})`;
-      }
-
-      obs.unobserve(el);
-    }
-  });
-});
-
-lazyElements.forEach(el => observer.observe(el));
+        document.addEventListener("click",function(e){const t=e.target.closest(".js-download-brochure");if(!t)return;const n=t.getAttribute("href");e.preventDefault(),gtag("event","download_brochure",{file_extension:t.dataset.fileExtension,file_name:t.dataset.fileName,link:n,text:t.dataset.text,url:window.location.href}),setTimeout(()=>{window.open(n,"_blank")},150)});const lazyElements=document.querySelectorAll(".lazy-bg"),observer=new IntersectionObserver((e,t)=>{e.forEach(e=>{if(e.isIntersecting){const n=e.target,o=n.getAttribute("data-bg");o&&(n.style.backgroundImage=`url(${o})`),t.unobserve(n)}})});lazyElements.forEach(e=>observer.observe(e));
 </script>
 </body>
 </html>
