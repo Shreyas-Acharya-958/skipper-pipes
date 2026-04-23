@@ -103,7 +103,6 @@
     </noscript> --}}
     <link rel="preload" href="{{ asset('style.min.php') }}" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="{{ asset('assets/css/responsive.css') }}" as="style" onload="this.rel='stylesheet'">
-
     <noscript>
         <link rel="stylesheet" href="{{ asset('style.min.php') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">
