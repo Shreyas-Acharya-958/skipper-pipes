@@ -292,10 +292,10 @@
                                                             <div class="home-products__img-box">
                                                                 <div class="home-products__img">
                                                                     @if ($product->home_image)
-                                                                        <img src="{{ asset('storage/' . $product->home_image) }}"
+                                                                        <img src="{{ asset('storage/' . $product->home_image) }}" loading="lazy" 
                                                                             alt="{{ image_alt_text('storage/' . $product->home_image, $product->title) }}">
                                                                     @else
-                                                                        <img src="{{ asset('assets/img/final/project1.jpg') }}"
+                                                                        <img src="{{ asset('assets/img/final/project1.jpg') }}" loading="lazy" 
                                                                             alt="{{ image_alt_text('assets/img/final/project1.jpg', $product->title) }}">
                                                                     @endif
                                                                 </div>
@@ -460,10 +460,10 @@
                                 <div class="thumb">
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}" aria-label="Read more {{ $blog->title }}">
                                         @if ($blog->page_image)
-                                            <img src="{{ asset('storage/' . $blog->image_1) }}"
+                                            <img src="{{ asset('storage/' . $blog->image_1) }}"  loading="lazy" 
                                                 alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
                                         @else
-                                            <img src="{{ asset('assets/img/final/blog1.jpeg') }}"
+                                            <img src="{{ asset('assets/img/final/blog1.jpeg') }}" loading="lazy" 
                                                 alt="{{ image_alt_text('assets/img/final/blog1.jpeg', $blog->title) }}">
                                         @endif
                                     </a>
