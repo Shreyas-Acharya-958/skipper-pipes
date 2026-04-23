@@ -232,7 +232,11 @@
                         <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="100">
                             <a href="{{ $category->products()->where('title', $category->name)->exists() ? route('front.products.show', ['slug' => Str::slug($category->name)]) : '#' }}">
-                                <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div>
+                                {{-- <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div> --}}
+                                <div 
+                                class="thumb lazy-bg" 
+                                data-bg="{{ asset('storage/' . $category->image) }}">
+                                </div>
                                 <img src="{{ asset('storage/' . $category->icon) }}" alt="{{ image_alt_text('storage/' . $category->icon, $category->name) }}">
                                 <i class="{{ $category->icon ?? 'flaticon-bridge' }}"></i>
                                 <h4>{{ $category->name }}</h4>

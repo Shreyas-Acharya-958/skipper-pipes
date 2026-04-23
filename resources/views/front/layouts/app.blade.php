@@ -443,5 +443,25 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
             }, 150);
         });
     </script>
+    <script id="n1k9q2">
+const lazyElements = document.querySelectorAll(".lazy-bg");
+
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const bg = el.getAttribute("data-bg");
+
+      if (bg) {
+        el.style.backgroundImage = `url(${bg})`;
+      }
+
+      obs.unobserve(el);
+    }
+  });
+});
+
+lazyElements.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
