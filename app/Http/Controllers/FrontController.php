@@ -286,8 +286,8 @@ class FrontController extends Controller
 
         $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
         $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
-        $seoData['og_image'] = !empty($seoData['og_image']) ? $seoData['og_image'] : $page->page_image;
-        $seoData['twitter_image'] = !empty($seoData['twitter_image']) ? $seoData['twitter_image'] : $page->page_image;
+        // $seoData['og_image'] = !empty($seoData['og_image']) ? $seoData['og_image'] : $page->page_image;
+        // $seoData['twitter_image'] = !empty($seoData['twitter_image']) ? $seoData['twitter_image'] : $page->page_image;
         $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $page->title);
         $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $page->title);
 
