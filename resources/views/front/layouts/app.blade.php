@@ -402,7 +402,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>   
     <script src="{{ asset('assets/js/swiper/swiper.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}" defer></script>
@@ -413,6 +412,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}" defer></script>
     <script src="{{ asset('assets/js/count-to.js') }}" defer></script>
     <script src="{{ asset('assets/js/bootsnav.js') }}" defer></script>
+     <script src="{{ asset('assets/js/main.js') }}" defer></script>
     @yield('scripts')
 
     <script>
