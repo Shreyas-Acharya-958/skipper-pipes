@@ -15,6 +15,6 @@ foreach ($cssFiles as $file) {
 
 // Basic minification
 $combined = preg_replace('!/\*.*?\*/!s', '', $combined);
-$combined = preg_replace('/\s+/', '', $combined);
+$combined = preg_replace('/\s+/', ' ', $combined);
 
 echo $combined;
