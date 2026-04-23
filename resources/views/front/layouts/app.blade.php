@@ -293,13 +293,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                 <a href="#" class="close-side"><i class="fas fa-times"></i></a>
                 <div class="widget">
                     <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" alt="{{ image_alt_text('assets/img/final/Logo-HR (1).png', 'Logo') }}">
-                    <p>
-                        Trusted piping solutions engineered for strength, hygiene, and long-term durability across
-                        infrastructure, agriculture, industrial, and residential applications.
-                    </p>
+                    <p>Trusted piping solutions engineered for strength, hygiene, and long-term durability across infrastructure, agriculture, industrial, and residential applications.</p>
                 </div>
                 <div class="widget address">
-                    <div>
+                    {{-- <div> --}}
                         <ul>
                             <li>
                                 <div class="content">
@@ -321,35 +318,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    {{-- </div> --}}
                 </div>
 
                 <div class="widget social">
                     <ul class="link">
-                        <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
-                                    class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i
-                                    class="fa-brands fa-instagram"></i></a></li>
-                        <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i
-                                    class="fa-brands fa-linkedin-in"></i></a></li>
-                        <li><a href="https://x.com/skipperpipes" target="_blank"><i
-                                    class="fa-brands fa-x-twitter"></i></a></li>
-                        <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i
-                                    class="fa-brands fa-youtube"></i></a></li>
+                        <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="https://x.com/skipperpipes" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
                     </ul>
                 </div>
             </div>
-            <!-- End Side Menu -->
         </nav>
-        <!-- End Navigation -->
     </header>
-    <!-- End Header -->
-
-
     @yield('content')
-
-    <!-- Footer Section  -->
-    <footer>
+   <footer>
         <div class="container">
             <div class="f-items default-padding">
                 <div class="row">
@@ -382,9 +367,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
                         <p>&copy; Copyright {{ date('Y') }} Skipper Pipes. All Rights Reserved</p>
                     </div>
                     <div class="col-lg-6 text-right">
-                        <p><a href="{{ url('disclaimer') }}">Disclaimer</a> | <a
+                        {{-- <p> --}}
+                            <a href="{{ url('disclaimer') }}">Disclaimer</a> | <a
                                 href="{{ url('privacy-policy') }}">Privacy Policy</a> | <a
-                                href="{{ url('terms-conditions') }}">Terms & Conditions</a></p>
+                                href="{{ url('terms-conditions') }}">Terms & Conditions</a>
+                            {{-- </p> --}}
                     </div>
                 </div>
             </div>
