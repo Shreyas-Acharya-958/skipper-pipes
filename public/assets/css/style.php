@@ -4,7 +4,7 @@ header("Cache-Control: public, max-age=2592000");
 
 $cssFiles = [
     'font-awesome.min.css',
-    // 'animate.css',
+    'animate.css',
     'owl.carousel.min.css',
     'owl.theme.default.min.css',
     'swiper.min.css',
