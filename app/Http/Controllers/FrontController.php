@@ -168,6 +168,12 @@ class FrontController extends Controller
         $sectionFour = HomeSectionFour::with(['reviews' => function ($query) {
             $query->where('status', 1)->orderBy('sequence');
         }])->first();
+
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? "Skipper Pipes - Home");
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? "Skipper Pipes - Home");
+        
         // dd($sectionFour->toArray());
         // dd($categories->toArray());
         return view('front.index', compact(
@@ -527,6 +533,10 @@ class FrontController extends Controller
 
         $contact_us_section_one = ContactUsSection::first();
         $seoData = $this->getSeoDataForCurrentUrl();
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? "Skipper Pipes Contact Us | Get in Touch");
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? "Skipper Pipes Contact Us | Get in Touch");
         return view('front.contact', compact('seoData', 'contact_us_section_one'));
     }
 
@@ -606,6 +616,10 @@ class FrontController extends Controller
         $seoData = $this->getSeoDataForCurrentUrl();
         $mainNetwork = MainNetwork::first();
         $networks = Network::orderBy('sequence', 'asc')->get();
+        $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
+        $seoData['og_title'] = !empty($seoData['og_title']) ? $seoData['og_title'] : ($seoData['meta_title'] ?? $mainNetwork->title);
+        $seoData['twitter_title'] = !empty($seoData['twitter_title']) ? $seoData['twitter_title'] : ($seoData['meta_title'] ?? $mainNetwork->title);
         return view('front.resources.network', compact('mainNetwork', 'networks', 'seoData'));
     }
 
