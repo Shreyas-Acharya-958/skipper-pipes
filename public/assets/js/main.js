@@ -1,14 +1,4 @@
-/* ===================================================================
-    
-    Author          : Valid Theme
-    Template Name   : Dustra - Factory & Industrial Template
-    Version         : 1.0
-    
-* ================================================================= */
 !function(e){"use strict";e(document).ready((function(){
-/* ==================================================
-            # Banner Animation
-        ===============================================*/
 function doAnimations(a){a.each((function(){var a=e(this),t=a.data("animation");a.addClass(t).one("webkitAnimationEnd animationend",(function(){a.removeClass(t)}))}))}
 //Variables on page load
 new WOW({boxClass:"wow",// animated element css class (default is wow)
@@ -22,9 +12,6 @@ a.carousel(),
 doAnimations(t),
 //Other slides to be animated on carousel slide event
 a.on("slide.bs.carousel",(function(a){doAnimations(e(a.relatedTarget).find("[data-animation ^= 'animated']"))})),
-/* ==================================================
-            # imagesLoaded active
-        ===============================================*/
 e("#portfolio-grid,.blog-masonry").imagesLoaded((function(){
 /* Filter menu */
 e(".mix-item-menu").on("click","button",(function(){var t=e(this).attr("data-filter");a.isotope({filter:t})})),
@@ -33,65 +20,20 @@ e(".mix-item-menu button").on("click",(function(a){e(this).siblings(".active").r
 /* Filter active */
 var a=e("#portfolio-grid").isotope({itemSelector:".pf-item",percentPosition:!0,masonry:{columnWidth:".pf-item"}});
 /* Filter active */e(".blog-masonry").isotope({itemSelector:".blog-item",percentPosition:!0,masonry:{columnWidth:".blog-item"}})})),
-/* ==================================================
-            # Fun Factor Init
-        ===============================================*/
 e(".timer").countTo(),e(".fun-fact").appear((function(){e(".timer").countTo()}),{accY:-100}),
-/* ==================================================
-            # Load More
-        ===============================================*/
 e(".portfolio-list").simpleLoadMore({item:".pf-item",count:3,counterInBtn:!0,btnText:"View More {showing}/{total}"}),
-/* ==================================================
-            # Magnific popup init
-         ===============================================*/
 e(".popup-link").magnificPopup({type:"image"}),e(".popup-gallery").magnificPopup({type:"image",gallery:{enabled:!0}}),e(".popup-youtube, .popup-vimeo, .popup-gmaps").magnificPopup({type:"iframe",mainClass:"mfp-fade",removalDelay:160,preloader:!1,fixedContentPos:!1}),e(".magnific-mix-gallery").each((function(){var a=e(this).find(".item"),t=[];a.each((function(){var a=e(this),i="image";a.hasClass("magnific-iframe")&&(i="iframe");var s={src:a.attr("href"),type:i};s.title=a.data("title"),t.push(s)})),a.magnificPopup({mainClass:"mfp-fade",items:t,gallery:{enabled:!0,tPrev:e(this).data("prev-text"),tNext:e(this).data("next-text")},type:"image",callbacks:{beforeOpen:function(){var e=a.index(this.st.el);-1!==e&&this.goTo(e)}}})})),
-/* ==================================================
-            # Services Carousel
-         ===============================================*/
 e(".services-carousel").owlCarousel({loop:!1,margin:30,nav:!1,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],dots:!0,autoplay:!1,responsive:{0:{items:1},800:{items:2},1e3:{items:3}}}),
-/* ==================================================
-            # Portfolio Carousel
-         ===============================================*/
 e(".portfolio-carousel").owlCarousel({loop:!0,margin:30,nav:!1,navText:["<i class='fal fa-long-arrow-left'></i>","<i class='fal fa-long-arrow-right'></i>"],dots:!1,autoplay:!0,responsive:{0:{items:1},800:{items:2},1300:{items:3,margin:15}}}),
-/* ==================================================
-            # Clients Carousel
-        ===============================================*/
 e(".clients-items").owlCarousel({loop:!1,margin:30,nav:!1,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],dots:!1,autoplay:!0,responsive:{0:{items:2},600:{items:2},1e3:{items:3}}}),
-/* ==================================================
-            # Team Carousel
-        ===============================================*/
 e(".team-carousel").owlCarousel({loop:!1,margin:30,nav:!1,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],dots:!0,autoplay:!0,responsive:{0:{items:1},700:{items:2},1e3:{items:3}}}),
-/* ==================================================
-            # Car Services Carousel
-        ===============================================*/
 e(".car-ser-carousel").owlCarousel({loop:!0,margin:1,nav:!1,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],dots:!1,autoplay:!0,responsive:{0:{items:1},800:{items:2}}}),
-/* ==================================================
-            # Projects Carousel
-         ===============================================*/
 e(".projects-carousel").owlCarousel({loop:!1,nav:!0,dots:!1,items:1,autoplay:!0,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]}),
-/* ==================================================
-            # Default One Colums Carousel
-         ===============================================*/
 e(".default-one-col-carousel").owlCarousel({loop:!1,nav:!0,dots:!1,items:1,autoplay:!0,navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"]}),
-/* ==================================================
-            # Testimonials Carousel
-         ===============================================*/
 e(".testimonials-carousel").owlCarousel({loop:!0,nav:!0,dots:!1,items:1,autoplay:!0,navText:["<i class='fas fa-long-arrow-alt-left'></i>","<i class='fas fa-long-arrow-alt-right'></i>"]}),
-/* ==================================================
-            Contact Form Validations
-        ================================================== */
 e(".contact-form").each((function(){e(this).submit((function(){var a=e(this).attr("action");return e("#message").slideUp(750,(function(){e("#message").hide(),e("#submit").after('<img src="assets/img/ajax-loader.gif" class="loader" />').attr("disabled","disabled"),e.post(a,{name:e("#name").val(),email:e("#email").val(),phone:e("#phone").val(),comments:e("#comments").val()},(function(a){document.getElementById("message").innerHTML=a,e("#message").slideDown("slow"),e(".contact-form img.loader").fadeOut("slow",(function(){e(this).remove()})),e("#submit").removeAttr("disabled")}))})),!1}))}))})),// end document ready function
-/* ==================================================
-        # Smooth Scroll
-    ===============================================*/
 e("body").scrollspy({target:".navbar-collapse",offset:200}),e("a.smooth-menu").on("click",(function(a){var t=e(this);e("html, body").stop().animate({scrollTop:e(t.attr("href")).offset().top-"75"+"px"},1500,"easeInOutExpo"),a.preventDefault()})),
-/* ==================================================
-        Navbar Logo
-     ===============================================*/
 e(window).on("scroll",(function(){var a=e("nav.navbar.bootsnav.nav-full");e(this).scrollTop()>10?(a.addClass("scrolled"),a.removeClass("no-background")):(a.removeClass("scrolled"),a.addClass("no-background"))})),
-/* ==================================================
-        Preloader Init
-     ===============================================*/
 e(window).on("load",(function(){
 // Animate loader off screen
 e(".se-pre-con").fadeOut("slow")})),
@@ -101,7 +43,6 @@ e(".tabs-box").length&&e(".tabs-box .tab-buttons .tab-btn").on("click",(function
 e(".home-products__carousel").each((function(){var a=e(this),t=a.find(".item").length;a.owlCarousel({items:1,margin:30,smartSpeed:700,loop:t>1,// ✅ Enable loop only if more than 1 item
 autoplay:6e3,nav:!0,dots:!0,responsive:{0:{items:1},768:{items:Math.min(2,t)},992:{items:Math.min(2,t)},1200:{items:Math.min(2,t)}}}),t<=1&&a.addClass("single-item-carousel")})),e(window).on("load",(function(){
 // home products carousel/swiper
-!
 // home products carousel/swiper - homepage
 function thmOwlInit(){
 // owl slider
