@@ -88,11 +88,9 @@
                                 <li class="about-li">
                                     <div class="icon">
                                         @if ($feature->icon)
-                                            <img src="{{ asset('storage/' . $feature->icon) }}"
-                                                alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
-                                        @else
-                                            <img src="{{ asset('storage/' . $feature->image) }}"
-                                                alt="{{ image_alt_text('storage/' . $feature->image, $feature->title) }}">
+                                            <img width="40" height="40" src="{{ asset('storage/' . $feature->icon) }}" alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
+                                        @else 
+                                            <img src="{{ asset('storage/' . $feature->image) }}" alt="{{ image_alt_text('storage/' . $feature->image, $feature->title) }}">
                                         @endif
                                     </div>
                                     <div class="content">
@@ -295,11 +293,8 @@
                     <div class="row align-center">
                         <div class="col-lg-5 title text-center" data-aos="fade-up" data-aos-duration="1500"
                             data-aos-delay="100">
-                            <!-- <h1 style="background-image: url(assets/img/final/skipper-pipes-s-logo.png);">S</h1> -->
-                            <img src="{{ asset('storage/' . $sectionFour->image) }}" class="w-50 mb-4" alt="{{ image_alt_text('storage/' . $sectionFour->image, '') }}">
-                            <!-- <h1 style="background-image: url(assets/img/final/testimonials-number-bg.jpg);">85</h1> -->
+                            <img src="{{ asset('storage/' . $sectionFour->image) }}" width="224" height="309" class="w-50 mb-4" alt="{{ image_alt_text('storage/' . $sectionFour->image, '') }}">
                             <div class="site-heading text-center">
-                                <!-- <h4>Our Feedbacks</h4> -->
                                 <h2>{{ $sectionFour->title }}</h2>
                             </div>
                         </div>
