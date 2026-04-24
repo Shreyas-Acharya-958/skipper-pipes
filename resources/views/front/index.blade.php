@@ -14,7 +14,7 @@
             <div class="carousel-inner">
                 @foreach ($banners as $key => $banner)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" data-interval="3000">
-                        <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="{{ image_alt_text('storage/' . $banner->image, $banner->title) }}" {{ $key != 0 ? 'loading=lazy' : 'fetchpriority="high"' }}>
+                        <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="{{ image_alt_text('storage/' . $banner->image, $banner->title) }}" {{ $key != 0 ? 'loading=lazy' : 'fetchpriority=high' }}>
                     </div>
                 @endforeach
             </div>
