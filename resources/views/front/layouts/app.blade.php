@@ -29,15 +29,12 @@
         <meta property="og:description" content="{{ $seoData['og_description'] ?? $seoData['meta_description'] ?? '' }}">
         <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
         @php 
-        $banner = \Cache::remember('active_banners', 86400, function () {
-                   \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
-                });
+        $banner = \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
         @endphp
         
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
-            @if($banner)
             <meta property="og:image" content="{{ asset('storage/' .$banner->image) }}">
         @endif
 
