@@ -88,7 +88,7 @@
                                 <li class="about-li">
                                     <div class="icon">
                                         @if ($feature->icon)
-                                            <img width="40" height="40" src="{{ asset('storage/' . $feature->icon) }}" alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
+                                            <img width="40" height= src="{{ asset('storage/' . $feature->icon) }}" alt="{{ image_alt_text('storage/' . $feature->icon, $feature->title) }}">
                                         @else 
                                             <img src="{{ asset('storage/' . $feature->image) }}" alt="{{ image_alt_text('storage/' . $feature->image, $feature->title) }}">
                                         @endif

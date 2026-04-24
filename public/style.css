@@ -294,7 +294,7 @@ ul.achivement li .medium { font-weight: 600; text-align: right; }
 .blog-area .btn { margin-top: 5px; }
 .blog-area .item .info .meta ul li { margin-right: 15px; position: relative; font-weight: 600; text-transform: capitalize; font-size: 14px; color: #999; }
 .blog-area .item .info .meta ul li i { margin-right: 5px; font-size: 16px; position: relative; top: 1px; font-weight: 600; }
-.blog-area .item .info .meta ul li a { color: #999; font-weight: 600; }
+.blog-area .item .info .meta ul li a { color: #595959; font-weight: 600; }
 .blog-area .item .info .meta ul li a:hover { color: var(--secondary-color); }
 .blog-area .item .info h2, .blog-area .item .info h3, .blog-area .item .info h4 { font-weight: 600; line-height: 1.4; }
 .blog-area .item .info h2 a:hover, .blog-area .item .info h3 a:hover, .blog-area .item .info h4 a:hover { color: var(--primary-color); }

@@ -189,7 +189,7 @@
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
                     <ul>
-                        <li class="side-menu">
+                        <li class="side-menu" aria-label="Mobile Navigation Menu">
                             <a href="#">
                                 <span class="bar-1"></span>
                                 <span class="bar-2"></span>
@@ -202,7 +202,7 @@
 
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                    <button type="button" class="navbar-toggle" aria-label="Mobile Navigation Menu" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">
