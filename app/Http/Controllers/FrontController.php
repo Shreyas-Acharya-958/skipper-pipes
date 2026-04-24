@@ -95,8 +95,8 @@ class FrontController extends Controller
         
         if ($menu) {
             $seo = \Cache::remember('active_menu_seo', 86400, function () use ($menu) {
-                        \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
-                    });
+                \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
+            });
             if ($seo) {
                 return [
                     'meta_title' => $seo->meta_title,
