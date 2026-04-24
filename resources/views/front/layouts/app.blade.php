@@ -6,24 +6,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!--Start meta-->
     @if (isset($seoData))
         <meta name="title" content="{{ $seoData['meta_title'] ?? '' }}">
         <meta name="description" content="{{ $seoData['meta_description'] ?? '' }}">
         <meta name="keywords" content="{{ $seoData['meta_keywords'] ?? '' }}">
     @endif
-
-    <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="preconnect" href="{{ url('/') }}">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    {{-- Open graph / Twitter --}}
     @hasSection ('og-tags')
-        @yield('og-tags')
-        
+        @yield('og-tags')       
     @else
-        <!-- Open Graph / Facebook -->
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:site_name" content="Skipper Pipes">
         <meta property="og:title" content="{{ $seoData['og_title'] ?? $seoData['meta_title'] ?? '' }}">
@@ -31,8 +25,7 @@
         <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
         @php 
         $banner = \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
-        @endphp
-        
+        @endphp      
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
@@ -44,9 +37,7 @@
         <meta name="twitter:title" content="{{ $seoData['twitter_title'] ?? $seoData['og_title'] ?? '' }}">
         <meta property="twitter:url" content="{{ url()->current() }}">
         <meta property="twitter:site" content="@skipperpipes">
-        
-        <meta property="twitter:description"
-            content="{{ $seoData['meta_description'] ?? $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+        <meta property="twitter:description" content="{{ $seoData['meta_description'] ?? $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
         @if(!empty($seoData['twitter_image']))
         <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
         @else
@@ -57,30 +48,14 @@
                 {!! $seoData['schema_json'] !!}
             </script>
         @endif
-        <!--End meta-->
     @endif
     
     <title>{{ $seoData['meta_title'] ?? 'Skipper Pipes' }}</title>
     <!-- ========== Favicon Icon ========== -->
     <link rel="shortcut icon" href="{{ asset('assets/img/final/skipper-pipes-favicon.png') }}" type="image/x-icon">
 
-    <!-- ========== Start Stylesheet ========== -->
-    {{-- <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" /> --}}
-    {{--  <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet" /> --}}
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//unpkg.com">
-    {{-- <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="{{ asset('assets/css/flaticon-set.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="{{ asset('assets/js/swiper/swiper.min.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="{{ asset('assets/css/bootsnav.css') }}" rel="stylesheet" /> --}}
-    {{-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">   
-    <link rel="stylesheet" href="{{ asset('style.min.php') }}">   
-    <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet" /> --}}
     <link rel="preload"
     href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
     as="style"
@@ -93,15 +68,6 @@
     <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
     <link rel="preload" href="{{ asset('assets/css/style.php') }}" as="style" onload="this.rel='stylesheet'">
-    {{-- <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    media="print"
-    onload="this.media='all'"> --}}
-
-    {{-- <noscript>
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    </noscript> --}}
     <link rel="preload" href="{{ asset('style.min.php') }}" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="{{ asset('assets/css/responsive.css') }}" as="style" onload="this.rel='stylesheet'">
     <noscript>
@@ -111,41 +77,11 @@
     </noscript>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
     <script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-V8XGVP5J7B");</script>
+    <script>!function(e,t,a,n){e[n]=e[n]||[],e[n].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var g=t.getElementsByTagName(a)[0],m=t.createElement(a);m.async=!0,m.src="https://www.googletagmanager.com/gtm.js?id=GTM-P387H72N",g.parentNode.insertBefore(m,g)}(window,document,"script","dataLayer");</script>
     <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-P387H72N');
+    !function(e,t,n,c,o,a,f){e.fbq||(o=e.fbq=function(){o.callMethod?o.callMethod.apply(o,arguments):o.queue.push(arguments)},e._fbq||(e._fbq=o),o.push=o,o.loaded=!0,o.version="2.0",o.queue=[],(a=t.createElement(n)).async=!0,a.src="https://connect.facebook.net/en_US/fbevents.js",(f=t.getElementsByTagName(n)[0]).parentNode.insertBefore(a,f))}(window,document,"script"),fbq("init","1237639624382812"),fbq("track","PageView");
     </script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1237639624382812');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1237639624382812&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1237639624382812&ev=PageView&noscript=1"/></noscript>
     @yield('styles')
     <style>
     .product-category-col img { width: 50px !important; margin-bottom: 15px; }
@@ -159,13 +95,10 @@
     #scrollPopup .popup-form { background: #fff; }
     .popup-cta-link, .popup-cta-link:hover { color: #144372; text-decoration: underline; display: inline-block; }
     </style>
-    @yield('styles')
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P387H72N" height="0" width="0"style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Header  -->
     <header id="home">
         <!-- Start Navigation -->
         <nav class="navbar navbar-default attr-bg navbar-fixed white no-background bootsnav nav-full">
