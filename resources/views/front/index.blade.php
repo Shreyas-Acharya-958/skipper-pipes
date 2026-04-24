@@ -438,7 +438,7 @@
     <!-- Blog Section ends -->
 
     <!-- Jal Rakshak Popup Modal -->
-    <div class="modal fade" id="scrollPopup" tabindex="-1" role="dialog" aria-hidden="true">
+    {{-- <div class="modal fade" id="scrollPopup" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content popup-form-wrapper">
                 <button type="button" class="close popup-close" data-dismiss="modal" aria-label="Close">
@@ -485,7 +485,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('scripts')
