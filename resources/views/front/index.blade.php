@@ -65,8 +65,17 @@
                         @if ($sectionOne->image)
                             <img src="{{ asset('storage/' . $sectionOne->image) }}" alt="{{ image_alt_text('storage/' . $sectionOne->image, 'Why Skipper Pipes') }}">
                         @elseif ($sectionOne->video)
-                            <video class="w-100" src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes"
-                                loop autoplay muted></video>
+                            {{-- <video class="w-100" src="{{ asset('storage/' . $sectionOne->video) }}" alt="Why Skipper Pipes" loop muted></video> --}}
+                            <video 
+                                class="w-100 lazy-video"
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                preload="none"
+                            >
+                                <source src="{{ asset('storage/' . $sectionOne->video) }}" type="video/mp4">
+                            </video>
                         @else
                             <img src="assets/img/final/home-about.jpg" alt="{{ image_alt_text('assets/img/final/home-about.jpg', 'Why Skipper Pipes') }}">
                         @endif
@@ -495,5 +504,6 @@
     <script>
     $(document).ready(function(){$('#popupJalRakshakForm').on('submit',function(e){e.preventDefault();return!1});$('#popupJalRakshakForm').validate({rules:{name:{required:!0,minlength:2,maxlength:255},email:{email:!0,maxlength:255},phone:{required:!0,minlength:10,maxlength:15},water_saving_commitment:{maxlength:1000}},messages:{name:{required:"Please enter your name",minlength:"Name must be at least 2 characters long",maxlength:"Name cannot exceed 255 characters"},email:{email:"Please enter a valid email address",maxlength:"Email cannot exceed 255 characters"},phone:{required:"Please enter your mobile number",minlength:"Mobile number must be at least 10 digits",maxlength:"Mobile number cannot exceed 15 characters"},water_saving_commitment:{maxlength:"Commitment cannot exceed 1000 characters"}},errorElement:'div',errorPlacement:function(error,element){error.addClass('invalid-feedback');element.closest('.form-group').append(error)},highlight:function(element,errorClass,validClass){$(element).addClass('is-invalid').removeClass('is-valid')},unhighlight:function(element,errorClass,validClass){$(element).removeClass('is-invalid').addClass('is-valid')},submitHandler:function(form){Swal.fire({title:'Submitting...',text:'Please wait while we process your commitment.',allowOutsideClick:!1,didOpen:()=>{Swal.showLoading()}});$.ajax({url:"{{ route('front.jal-rakshak.submission') }}",type:"POST",data:$(form).serialize(),headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'},success:function(response){Swal.fire({icon:'success',title:'Success!',text:response.message||'Thank you for your commitment to water conservation!',confirmButtonText:'OK',confirmButtonColor:'#FFA800'}).then((result)=>{if(result.isConfirmed){form.reset();$('#popupJalRakshakForm').validate().resetForm();$('#popupJalRakshakForm .form-control').removeClass('is-valid is-invalid');$('#scrollPopup').modal('hide')}})},error:function(xhr){let message='Something went wrong. Please check your inputs.';if(xhr.responseJSON?.errors){message=Object.values(xhr.responseJSON.errors).join(' ')}else if(xhr.responseJSON?.message){message=xhr.responseJSON.message}
     Swal.fire({icon:'error',title:'Error!',text:message,confirmButtonText:'OK',confirmButtonColor:'#dc3545'})}});return!1}})})
+    document.addEventListener("DOMContentLoaded", function () { const video = document.querySelector(".lazy-video"); video.src = video.dataset.src; });
     </script>
 @endsection
