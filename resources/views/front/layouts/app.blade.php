@@ -373,7 +373,7 @@
             </div>
         </div>
     </footer>
-    <script src="{{ asset('assets/js/merged_js.php') }}" ></script>
+    <script src="{{ asset('assets/js/merged.js') }}" ></script>
     {{-- <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" ></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
