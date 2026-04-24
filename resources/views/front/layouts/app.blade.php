@@ -37,6 +37,7 @@
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
+            @if($banner)
             <meta property="og:image" content="{{ asset('storage/' .$banner->image) }}">
         @endif
 
