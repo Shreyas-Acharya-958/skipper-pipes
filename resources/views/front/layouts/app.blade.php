@@ -373,11 +373,11 @@
             </div>
         </div>
     </footer>
-    <script src="{{ asset('assets/js/jquery.min.js') }}" ></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/merged_js.php') }}" ></script>
+    {{-- <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" ></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script> --}}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>   
     <script src="{{ asset('assets/js/swiper/swiper.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
