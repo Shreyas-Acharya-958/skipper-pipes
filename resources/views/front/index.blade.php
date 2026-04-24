@@ -293,7 +293,7 @@
                     <div class="row align-center">
                         <div class="col-lg-5 title text-center" data-aos="fade-up" data-aos-duration="1500"
                             data-aos-delay="100">
-                            <img src="{{ asset('storage/' . $sectionFour->image) }}" width="109" height="309" class="w-50 mb-4" alt="{{ image_alt_text('storage/' . $sectionFour->image, '') }}">
+                            <img src="{{ asset('storage/' . $sectionFour->image) }}" width="191" height="309" class="w-50 mb-4" alt="{{ image_alt_text('storage/' . $sectionFour->image, '') }}">
                             <div class="site-heading text-center">
                                 <h2>{{ $sectionFour->title }}</h2>
                             </div>
