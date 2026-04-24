@@ -83,7 +83,7 @@
                             style="display: {{ $index < 6 ? 'block' : 'none' }};">
                             <div class="item">
                                 <div class="thumb">
-                                    <a href="{{ route('front.blogs.show', $blog->slug) }}">
+                                    <a href="{{ route('front.blogs.show', $blog->slug) }}" aria-label="Read more about {{ $blog->title}}">
                                         <img src="{{ asset('storage/' . $blog->image_1) }}" alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
                                     </a>
                                 </div>

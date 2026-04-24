@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-12 p-0">
                     <ul class="breadcrumb">
-                        <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="{{ url('/') }}" aria-label="Home Page"><i class="fas fa-home"></i> Home</a></li>
                         <li>Partner</li>
                         <li class="active">{{ $partner->title }}</li>
                     </ul>
