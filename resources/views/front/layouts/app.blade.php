@@ -16,7 +16,7 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
-    <link rel="preconnect" href="://skipperpipes.in">
+    <link rel="preconnect" href="{{ url() }}">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     {{-- Open graph / Twitter --}}
     @hasSection ('og-tags')
