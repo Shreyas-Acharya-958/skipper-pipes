@@ -375,12 +375,7 @@
                 </div>
             </div>
         </div>
-        <!-- End Footer Bottom -->
     </footer>
-    <!-- End Footer -->
-
-    <!-- jQuery Frameworks
-    ============================================= -->
     <script src="{{ asset('assets/js/jquery.min.js') }}" ></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}" ></script>
@@ -400,9 +395,7 @@
     <script src="{{ asset('assets/js/bootsnav.js') }}" defer></script>
     <script src="{{ asset('assets/js/main.js') }}" defer></script>
     @yield('scripts')
-    <script>
-        // document.addEventListener("click",function(e){const t=e.target.closest(".js-download-brochure");if(!t)return;const n=t.getAttribute("href");e.preventDefault(),gtag("event","download_brochure",{file_extension:t.dataset.fileExtension,file_name:t.dataset.fileName,link:n,text:t.dataset.text,url:window.location.href}),setTimeout(()=>{window.open(n,"_blank")},150)});
-        const lazyElements=document.querySelectorAll(".lazy-bg"),observer=new IntersectionObserver((e,t)=>{e.forEach(e=>{if(e.isIntersecting){const n=e.target,o=n.getAttribute("data-bg");o&&(n.style.backgroundImage=`url(${o})`),t.unobserve(n)}})});lazyElements.forEach(e=>observer.observe(e));
+    <script> const lazyElements=document.querySelectorAll(".lazy-bg"),observer=new IntersectionObserver((e,t)=>{e.forEach(e=>{if(e.isIntersecting){const n=e.target,o=n.getAttribute("data-bg");o&&(n.style.backgroundImage=`url(${o})`),t.unobserve(n)}})});lazyElements.forEach(e=>observer.observe(e));
 </script>
 </body>
 </html>

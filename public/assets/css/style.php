@@ -12,7 +12,8 @@ $cssFiles = [
     'bootsnav.css',
     // 'responsive.css',
     'flaticon-set.css',
-    'themify-icons.css'
+    'themify-icons.css',
+    'sweetalert2.min.css'
 ];
 
 $combined = '';

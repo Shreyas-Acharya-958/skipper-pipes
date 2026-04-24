@@ -3,78 +3,12 @@
 @section('title', 'Skipper Pipes - Home')
 
 @section('styles')
-    <style>
-        /* Jal Rakshak Popup Styles */
-        .jal-rakshak-btn-secondary {
-            padding: 12px 30px;
-            background-color: #144372;
-            color: white;
-            font-weight: 600;
-            border: none;
-            border-radius: 0;
-        }
-
-        .jal-rakshak-btn-secondary:hover {
-            background-color: #FFA800;
-            color: #144372;
-        }
-
-        .lp-para-heading {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        /* popup */
-        /* Wrapper */
-        #scrollPopup .popup-form-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Close Button */
-        #scrollPopup .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            color: #144372;
-            opacity: 0.8;
-            z-index: 10;
-        }
-
-        #scrollPopup .popup-close:hover {
-            opacity: 1;
-        }
-
-        /* Image Side */
-        #scrollPopup .popup-img img {
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Form Side */
-        #scrollPopup .popup-form {
-            background: #fff;
-        }
-
-        /* Popup CTA Link */
-        .popup-cta-link,
-        .popup-cta-link:hover {
-            color: #144372;
-            text-decoration: underline;
-            display: inline-block;
-        }
-    </style>
+    <style> .jal-rakshak-btn-secondary{padding:12px 30px;background-color:#144372;color:#fff;font-weight:600;border:none;border-radius:0}.jal-rakshak-btn-secondary:hover{background-color:#ffa800;color:#144372}.lp-para-heading{font-weight:600;margin-bottom:10px;color:#333}#scrollPopup .popup-form-wrapper{position:relative;overflow:hidden}#scrollPopup .popup-close{position:absolute;top:10px;right:15px;font-size:28px;color:#144372;opacity:.8;z-index:10}#scrollPopup .popup-close:hover{opacity:1}#scrollPopup .popup-img img{height:100%;object-fit:cover}#scrollPopup .popup-form{background:#fff}.popup-cta-link,.popup-cta-link:hover{color:#144372;text-decoration:underline;display:inline-block}</style>
 @endsection
 
 @section('content')
-    <!-- Hero section - hero banner -->
     <div class="carousel-wrapper hero-desktop-banner position-relative">
-        <!-- Black Overlay -->
         <div class="carousel-overlay"></div>
-
-        <!-- Your Carousel -->
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($banners as $key => $banner)
@@ -94,13 +28,10 @@
         </div>
     </div>
     <!-- Hero section ends- hero banner -->
-
-
     <!-- Hero section - hero banner  DYNAMIC PENDINGS-->
     <div class="carousel-wrapper homepage-mobile-banner position-relative">
         <!-- Black Overlay -->
         <div class="carousel-overlay"></div>
-
         <!-- Your Carousel -->
         <div id="carouselExampleFade1" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
@@ -122,9 +53,6 @@
         </div>
     </div>
     <!-- Hero section ends- hero banner -->
-
-
-    <!-- About section -->
     <div class="home-about-area default-padding">
         <div class="container">
             <div class="row align-center">
@@ -565,166 +493,11 @@
 @endsection
 
 @section('scripts')
-    {{-- <script>
-        // $(document).ready(function() {
-        //     // Tab switching functionality
-        //     $('.tab-btn').on('click', function() {
-        //         var tab = $(this).data('tab');
-
-        //         // Remove active classes
-        //         $('.tab-btn').removeClass('active-btn');
-        //         $('.tab').removeClass('active-tab');
-
-        //         // Add active classes
-        //         $(this).addClass('active-btn');
-        //         $(tab).addClass('active-tab');
-
-        //         // Reinitialize carousel for the active tab
-        //         $(tab).find('.owl-carousel').trigger('destroy.owl.carousel').owlCarousel(
-        //             JSON.parse($(tab).find('.owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
-        //         );
-        //     });
-
-        //     // Initialize first tab's carousel
-        //     $('.tab.active-tab .owl-carousel').owlCarousel(
-        //         JSON.parse($('.tab.active-tab .owl-carousel').attr('data-owl-options').replace(/'/g, '"'))
-        //     );
-        // });
-    </script>
-    <!-- Jal Rakshak Popup Scripts -->
-     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let popupShown = false;
-
-            window.addEventListener("scroll", function() {
-                let scrollTop = window.scrollY;
-                let docHeight = document.body.scrollHeight - window.innerHeight;
-                let scrolled = (scrollTop / docHeight) * 100;
-
-                if (scrolled > 15 && !popupShown) {
-                    $("#scrollPopup").modal("show");
-                    popupShown = true; // prevent multiple triggers
-                }
-            });
-        });
-    </script> --}}
-    <!-- jQuery Validation and SweetAlert for Popup Form -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Popup Form Handling -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}" defer></script>
     <script>
-    $(document).ready(function() {
-        // Prevent default form submission
-        $('#popupJalRakshakForm').on('submit', function(e) {
-            e.preventDefault();
-            return false;
-        });
-        $('#popupJalRakshakForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2,
-                    maxlength: 255
-                },
-                email: {
-                    email: true,
-                    maxlength: 255
-                },
-                phone: {
-                    required: true,
-                    minlength: 10,
-                    maxlength: 15
-                },
-                water_saving_commitment: {
-                    maxlength: 1000
-                }
-            },
-            messages: {
-                name: {
-                    required: "Please enter your name",
-                    minlength: "Name must be at least 2 characters long",
-                    maxlength: "Name cannot exceed 255 characters"
-                },
-                email: {
-                    email: "Please enter a valid email address",
-                    maxlength: "Email cannot exceed 255 characters"
-                },
-                phone: {
-                    required: "Please enter your mobile number",
-                    minlength: "Mobile number must be at least 10 digits",
-                    maxlength: "Mobile number cannot exceed 15 characters"
-                },
-                water_saving_commitment: {
-                    maxlength: "Commitment cannot exceed 1000 characters"
-                }
-            },
-            errorElement: 'div',
-            errorPlacement: function(error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight: function(element, errorClass, validClass) {
-                $(element).addClass('is-invalid').removeClass('is-valid');
-            },
-            unhighlight: function(element, errorClass, validClass) {
-                $(element).removeClass('is-invalid').addClass('is-valid');
-            },
-            submitHandler: function(form) {
-                // Show loading state with SweetAlert
-                Swal.fire({
-                    title: 'Submitting...',
-                    text: 'Please wait while we process your commitment.',
-                    allowOutsideClick: false,
-                    didOpen: () => {
-                    Swal.showLoading();
-                    }
-                });
-                $.ajax({
-                    url: "{{ route('front.jal-rakshak.submission') }}",
-                    type: "POST",
-                    data: $(form).serialize(),
-                    headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success!',
-                        text: response.message || 'Thank you for your commitment to water conservation!',
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#FFA800'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.reset();
-                            // Reset form validation
-                            $('#popupJalRakshakForm').validate().resetForm();
-                            // Remove any validation classes
-                            $('#popupJalRakshakForm .form-control').removeClass('is-valid is-invalid');
-                            // Close the modal
-                            $('#scrollPopup').modal('hide');
-                        }
-                    });
-                    },
-                    error: function(xhr) {
-                    let message = 'Something went wrong. Please check your inputs.';
-                    if (xhr.responseJSON?.errors) {
-                        message = Object.values(xhr.responseJSON.errors).join(' ');
-                    } else if (xhr.responseJSON?.message) {
-                        message = xhr.responseJSON.message;
-                    }
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Error!',
-                        text: message,
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#dc3545'
-                    });
-                    }
-                });
-                return false; // Prevent form submission
-            }
-        });
-    });
+    $(document).ready(function(){$('#popupJalRakshakForm').on('submit',function(e){e.preventDefault();return!1});$('#popupJalRakshakForm').validate({rules:{name:{required:!0,minlength:2,maxlength:255},email:{email:!0,maxlength:255},phone:{required:!0,minlength:10,maxlength:15},water_saving_commitment:{maxlength:1000}},messages:{name:{required:"Please enter your name",minlength:"Name must be at least 2 characters long",maxlength:"Name cannot exceed 255 characters"},email:{email:"Please enter a valid email address",maxlength:"Email cannot exceed 255 characters"},phone:{required:"Please enter your mobile number",minlength:"Mobile number must be at least 10 digits",maxlength:"Mobile number cannot exceed 15 characters"},water_saving_commitment:{maxlength:"Commitment cannot exceed 1000 characters"}},errorElement:'div',errorPlacement:function(error,element){error.addClass('invalid-feedback');element.closest('.form-group').append(error)},highlight:function(element,errorClass,validClass){$(element).addClass('is-invalid').removeClass('is-valid')},unhighlight:function(element,errorClass,validClass){$(element).removeClass('is-invalid').addClass('is-valid')},submitHandler:function(form){Swal.fire({title:'Submitting...',text:'Please wait while we process your commitment.',allowOutsideClick:!1,didOpen:()=>{Swal.showLoading()}});$.ajax({url:"{{ route('front.jal-rakshak.submission') }}",type:"POST",data:$(form).serialize(),headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'},success:function(response){Swal.fire({icon:'success',title:'Success!',text:response.message||'Thank you for your commitment to water conservation!',confirmButtonText:'OK',confirmButtonColor:'#FFA800'}).then((result)=>{if(result.isConfirmed){form.reset();$('#popupJalRakshakForm').validate().resetForm();$('#popupJalRakshakForm .form-control').removeClass('is-valid is-invalid');$('#scrollPopup').modal('hide')}})},error:function(xhr){let message='Something went wrong. Please check your inputs.';if(xhr.responseJSON?.errors){message=Object.values(xhr.responseJSON.errors).join(' ')}else if(xhr.responseJSON?.message){message=xhr.responseJSON.message}
+    Swal.fire({icon:'error',title:'Error!',text:message,confirmButtonText:'OK',confirmButtonColor:'#dc3545'})}});return!1}})})
     </script>
 @endsection

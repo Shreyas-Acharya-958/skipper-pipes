@@ -2,13 +2,7 @@
 
 @section('title', $blog->title . ' - Skipper Pipes')
 @section('styles')
-    <style>
-        .error {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-    </style>
+    <style> .error { color: red; font-size: 12px; margin-top: 5px;} </style>
 @endsection
 @section('content')
     <!-- Hero Banner -->
@@ -252,7 +246,7 @@
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}" defer></script>
     <script>
         $(document).ready(function() {
             // Reply link functionality
