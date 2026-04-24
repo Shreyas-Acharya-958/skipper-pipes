@@ -35,61 +35,33 @@ e(".contact-form").each((function(){e(this).submit((function(){var a=e(this).att
 e("body").scrollspy({target:".navbar-collapse",offset:200}),e("a.smooth-menu").on("click",(function(a){var t=e(this);e("html, body").stop().animate({scrollTop:e(t.attr("href")).offset().top-"75"+"px"},1500,"easeInOutExpo"),a.preventDefault()})),
 e(window).on("scroll",(function(){var a=e("nav.navbar.bootsnav.nav-full");e(this).scrollTop()>10?(a.addClass("scrolled"),a.removeClass("no-background")):(a.removeClass("scrolled"),a.addClass("no-background"))})),
 e(window).on("load",(function(){
-// Animate loader off screen
 e(".se-pre-con").fadeOut("slow")})),
-// home products carousel/swiper - homepage 
 e(".tabs-box").length&&e(".tabs-box .tab-buttons .tab-btn").on("click",(function(a){a.preventDefault();var t=e(e(this).attr("data-tab"));if(e(t).is(":visible"))return!1;t.parents(".tabs-box").find(".tab-buttons").find(".tab-btn").removeClass("active-btn"),e(this).addClass("active-btn"),t.parents(".tabs-box").find(".tabs-content").find(".tab").fadeOut(0),t.parents(".tabs-box").find(".tabs-content").find(".tab").removeClass("active-tab"),e(t).fadeIn(300),e(t).addClass("active-tab")})),
-// HOME PRODUCTS CAROUSEL - Owl Carousel
 e(".home-products__carousel").each((function(){var a=e(this),t=a.find(".item").length;a.owlCarousel({items:1,margin:30,smartSpeed:700,loop:t>1,// ✅ Enable loop only if more than 1 item
 autoplay:6e3,nav:!0,dots:!0,responsive:{0:{items:1},768:{items:Math.min(2,t)},992:{items:Math.min(2,t)},1200:{items:Math.min(2,t)}}}),t<=1&&a.addClass("single-item-carousel")})),e(window).on("load",(function(){
-// home products carousel/swiper
-// home products carousel/swiper - homepage
+!
 function thmOwlInit(){
-// owl slider
 e(".thm-owl__carousel").length&&e(".thm-owl__carousel").each((function(){let a=e(this),t=a.data("owl-options");a.owlCarousel(t)})),e(".thm-owl__carousel--custom-nav").length&&e(".thm-owl__carousel--custom-nav").each((function(){let a=e(this),t=a.data("owl-nav-prev"),i=a.data("owl-nav-next");e(t).on("click",(function(e){a.trigger("prev.owl.carousel"),e.preventDefault()})),e(i).on("click",(function(e){a.trigger("next.owl.carousel"),e.preventDefault()}))}))}()})),
-// Homepage - video section popup
 e(".video-popup").length&&e(".video-popup").magnificPopup({type:"iframe",mainClass:"mfp-fade",removalDelay:160,preloader:!0,fixedContentPos:!1}),
-// Careers page - culture section
 e(".culture-tab-buttons .nav-link").click((function(){e(".culture-tab-buttons .nav-link").removeClass("active"),e(this).addClass("active");let a=e(this).data("target");
-// Show correct content
 e(".culture-tab-pane-content").addClass("d-none"),e("#content-"+a).removeClass("d-none"),
-// Show correct image
 e(".culture-tab-image").addClass("d-none"),e("#img-"+a).removeClass("d-none")})),
-// FAQs page - filter tabs accordion
 e(".faq-tabs .nav-link").click((function(){
-// Make tabs active
 e(".faq-tabs .nav-link").removeClass("active"),e(this).addClass("active");
-// Get selected category
 let a=e(this).data("category");
-// Show selected FAQ section only
 e(".faq-section").addClass("d-none"),e('.faq-section[data-category="'+a+'"]').removeClass("d-none")})),
-// Media page - filter tabs accordion
 e(".media-tabs .nav-link").click((function(){
-// Make tabs active
 e(".media-tabs .nav-link").removeClass("active"),e(this).addClass("active");
-// Get selected category
 let a=e(this).data("category");
-// Show selected FAQ section only
 e(".media-section").addClass("d-none"),e('.media-section[data-category="'+a+'"]').removeClass("d-none")})),
-// Contact page
 e(document).ready((function(){e(".city-list .list-group-item").click((function(){var a=e(this).data("city");
-// Update active tab
 e(".city-list .list-group-item").removeClass("active"),e(this).addClass("active"),
-// Show relevant location info
 e(".location-info").addClass("d-none"),e("#info-"+a).removeClass("d-none"),
-// Handle map pins
 e(".active-pin").addClass("d-none"),e(".active-pin.pin-"+a).removeClass("d-none")}))})),
-// window scroll event
 e(window).on("scroll",(function(){if(e(".stricked-menu").length){var a=e(".stricked-menu");e(window).scrollTop()>130?a.addClass("stricky-fixed"):e(this).scrollTop()<=130&&a.removeClass("stricky-fixed")}if(e(".scroll-to-top").length){e(window).scrollTop()>100?e(".scroll-to-top").fadeIn(500):e(this).scrollTop()<=100&&e(".scroll-to-top").fadeOut(500)}
-// OnePageMenuScroll()
 }));const a=new IntersectionObserver((function(a){a.forEach((function(a){a.isIntersecting?e(a.target).addClass("show"):e(a.target).removeClass("show")}))}),{threshold:.3});e(".main-blogs-grid .blog-items .item").each((function(){a.observe(this)})),e(".business-dir-card").each((function(){a.observe(this)})),e(".business-heads-card").each((function(){a.observe(this)})),e(".certificate-col").each((function(){a.observe(this)}));
-// Timeline - Overview page
 new Swiper(".timeline-swiper",{slidesPerView:3,spaceBetween:40,grabCursor:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".swiper-pagination",clickable:!0},breakpoints:{992:{slidesPerView:3},768:{slidesPerView:2},0:{slidesPerView:1}}});
-// Leadership poage - business directors popup
 e(".view-profile-popup").magnificPopup({type:"inline",midClick:!0,removalDelay:300,mainClass:"mfp-fade"});
-// Location - Manufacturing page
 new Swiper(".location-swiper",{slidesPerView:3,spaceBetween:40,grabCursor:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".swiper-pagination",clickable:!0},breakpoints:{992:{slidesPerView:3},768:{slidesPerView:2},0:{slidesPerView:1}}});
-// careers page
 e(".partners-tab").click((function(){e(".partners-tab").removeClass("active"),e(this).addClass("active");const a=e(this).data("image");e("#tab-image").fadeOut(200,(function(){e(this).attr("src",a).fadeIn(200)}))})),
-// AOS Animate
 AOS.init()}(jQuery);// End jQuery
