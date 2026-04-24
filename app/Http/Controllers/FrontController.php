@@ -88,21 +88,15 @@ class FrontController extends Controller
         $path = request()->path();
         $pathWithoutSlash = ltrim($path, '/');
         
-        // Try to find a menu with this link or slug
-        $menu = \App\Models\Menu::where('link', $pathWithoutSlash)
-            ->orWhere('slug', $pathWithoutSlash)
-            ->orWhere('link', '/' . $pathWithoutSlash)
-            ->first();
-            
+        $menu = \App\Models\Menu::where('link', $pathWithoutSlash)->orWhere('slug', $pathWithoutSlash)->orWhere('link', '/' . $pathWithoutSlash)->first();
         if ($path == '' || $path == '/') {
-            //home page
-            $menu = \App\Models\Menu::where('link', '/')
-                ->orWhere('link', '')
-                ->first();
+            $menu = \App\Models\Menu::where('link', '/')->orWhere('link', '')->first();
         }
-
+        
         if ($menu) {
-            $seo = \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
+            $seo = \Cache::remember('active_menu_seo', 86400, function () {
+                        \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
+                    });
             if ($seo) {
                 return [
                     'meta_title' => $seo->meta_title,
@@ -122,7 +116,6 @@ class FrontController extends Controller
                 ];
             }
         }
-        // Fallback default
         return [
             'meta_title' => 'Skipper Pipes',
             'meta_description' => 'Discover high-quality pipes and fittings from Skipper Pipes.',
