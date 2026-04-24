@@ -29,6 +29,8 @@
     </div>
     <!-- Hero section ends- hero banner -->
     <!-- Hero section - hero banner  DYNAMIC PENDINGS-->
+    @if(request()->header('User-Agent') && preg_match('/Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i', request()->header('User-Agent')))
+
     <div class="carousel-wrapper homepage-mobile-banner position-relative">
         <!-- Black Overlay -->
         <div class="carousel-overlay"></div>
@@ -52,6 +54,7 @@
             </button>
         </div>
     </div>
+    @endif
     <!-- Hero section ends- hero banner -->
     <div class="home-about-area default-padding">
         <div class="container">
