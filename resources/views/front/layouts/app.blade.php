@@ -29,7 +29,9 @@
         <meta property="og:description" content="{{ $seoData['og_description'] ?? $seoData['meta_description'] ?? '' }}">
         <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
         @php 
-        $banner = \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
+        $banner = \Cache::remember('active_banners', 86400, function () {
+                   \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
+                });
         @endphp
         
         @if(!empty($seoData['og_image']))
@@ -160,12 +162,9 @@
     </style>
     @yield('styles')
 </head>
-
 <body>
-
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P387H72N" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P387H72N" height="0" width="0"style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header  -->
     <header id="home">
