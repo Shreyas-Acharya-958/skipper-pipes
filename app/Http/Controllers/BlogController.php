@@ -54,9 +54,9 @@ class BlogController extends Controller
             'meta_description' =>    'nullable|string',
             'meta_keywords' =>    'nullable|string',
             'published_at' => 'nullable|date',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
+            'image_1' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:blog_tags,id'
         ]);
@@ -150,9 +150,9 @@ class BlogController extends Controller
             'meta_description' =>    'nullable|string',
             'meta_keywords' =>    'nullable|string',
             'published_at' => 'nullable|date',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'image_2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
+            'image_1' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
+            'image_2' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'tags' => 'nullable|array',
             'tags.*' => 'exists:blog_tags,id'
         ]);

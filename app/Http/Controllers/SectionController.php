@@ -100,7 +100,7 @@ class SectionController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:sections,slug,' . $section->id,
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'short_description' => 'required|string|max:500',
             'long_description' => 'required|string',
             'status' => 'required|boolean',

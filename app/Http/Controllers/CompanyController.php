@@ -46,7 +46,7 @@ class CompanyController extends Controller
             'meta_keywords' => 'nullable|string',
             'status' => 'required|boolean',
             'is_active' => 'required|boolean',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('page_image')) {
@@ -92,7 +92,7 @@ class CompanyController extends Controller
             'meta_keywords' => 'nullable|string',
             'status' => 'required|boolean',
             'is_active' => 'required|boolean',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('page_image')) {

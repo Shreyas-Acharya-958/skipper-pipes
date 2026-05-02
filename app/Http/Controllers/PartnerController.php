@@ -41,7 +41,7 @@ class PartnerController extends Controller
             'meta_keywords' => 'nullable|string',
             'status' => 'required|in:0,1',
             'partner_type' => 'required|string|max:255',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('page_image')) {
@@ -78,7 +78,7 @@ class PartnerController extends Controller
             'meta_keywords' => 'nullable|string',
             'status' => 'required|in:0,1',
             'partner_type' => 'required|string|max:255',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('page_image')) {

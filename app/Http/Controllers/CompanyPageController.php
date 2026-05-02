@@ -38,7 +38,7 @@ class CompanyPageController extends Controller
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'status' => 'required|boolean',
             'is_active' => 'required|boolean',
         ]);
@@ -93,7 +93,7 @@ class CompanyPageController extends Controller
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keywords' => 'nullable|string',
-            'page_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'status' => 'required|boolean',
             'is_active' => 'required|boolean',
             'remove_image' => 'nullable|boolean'
