@@ -43,7 +43,9 @@
         @if(!empty($seoData['twitter_image']))
         <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
         @else
+        @if(!isset($blog))
         <meta property="twitter:image" content="{{ asset('storage/' .$banner->image) }}">
+        @endif
         @endif
         @if(!empty($seoData['schema_json']))
             <script type="application/ld+json">
