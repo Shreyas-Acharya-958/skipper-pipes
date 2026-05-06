@@ -221,16 +221,16 @@ class FrontController extends Controller
             'meta_author' => $blog->author ?? 'Skipper Pipes',
             'canonical_url' => $blog->canonical_url ?? '',
             'robots' => $blog->robots ?? '',
-            'og_title' => $blog->og_title ?? "",
+            'og_title' => $blog->og_title ?? ($blog->meta_title ?? ""),
             'og_description' => $blog->og_description ?? "",
             'og_type' => $blog->og_type ?? 'website',
-            'twitter_title' => $blog->twitter_title ?? "",
+            'twitter_title' => $blog->twitter_title ?? ($blog->meta_title ?? ""),
             'twitter_description' => $blog->twitter_description ?? "",
             'twitter_card' => $blog->twitter_card ?? 'summary_large_image',
             'custom_schema_json' => $blog->custom_schema_json ?? null,
             'schema_json' => $blog->schema_json ?? null,
-            'og_image' => !empty($blog->og_image) ? $blog->og_image : "",
-            'twitter_image' => !empty($blog->twitter_image) ? $blog->twitter_image:""
+            'og_image' => !empty($blog->og_image) ? $blog->og_image : $blog->image_1,
+            'twitter_image' => !empty($blog->twitter_image) ? $blog->twitter_image:$blog->image_1
         ];
 
         $recentBlogs = Blog::where('status', 1)
