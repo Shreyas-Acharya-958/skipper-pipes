@@ -29,7 +29,9 @@
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
+            @if(!isset($blog))
             <meta property="og:image" content="{{ asset('storage/' .$banner->image) }}">
+            @endif    
         @endif
 
         <!-- Twitter -->
