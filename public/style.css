@@ -58,6 +58,9 @@ input { border: 1px solid #e7e7e7; border-radius: inherit; box-shadow: inherit; 
 .product-cta .btn-light::after { background-color: white; color: var(--primary-color) !important; }
 .product-cta .btn-light:hover { color: var(--primary-color) !important; }
 .product-cta h2 { font-weight: 700; text-transform: capitalize; }
+.sticky-brochure-cta { position: fixed; z-index: 9999; }
+.sticky-brochure-cta { right: 10px; bottom: 64%; transform: translateY(50%);}
+.sticky-brochure-cta a { display: inline-block; transform: rotate(-90deg); transform-origin: right bottom; white-space: nowrap; margin-right: -10px; background-color: #144372 !important; color: white !important; border: 2px solid #ffffff;}
 .btn-light:hover::after { width: 100%; height: 100%; }
 .btn.btn-sm-lm { font-size: 12px; padding: 4px 35px; }
 a.more-btn { text-transform: uppercase; color: var(--primary-color); font-weight: 700; position: relative; z-index: 1; display: inline-block; margin-bottom: 10px; }
@@ -880,6 +883,8 @@ footer .link ul li a:hover { color: var(--secondary-color); }
   .manufacturing-container .location-swiper { margin-left: 20px !important; }
   .manufacturing-overview .site-heading.headings { margin-left: 0px !important; }
   .manufacturing-container .swiper-button-prev, .manufacturing-container .swiper-button-next, .manufacturing-container .swiper-pagination-bullets { display: block; }
+  .sticky-brochure-cta { left: 0; right: 0; bottom: 0; width: 100%;}
+  .sticky-brochure-cta a { display: block; width: 100%; text-align: center; border-radius: 0; background-color: #144372 !important; color: white !important; border: 2px solid #ffffff; }
 }
 @media (max-width: 576px) {
   .navbar { background-color: var(--bg-primary) !important; }
