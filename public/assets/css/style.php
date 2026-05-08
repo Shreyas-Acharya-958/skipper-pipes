@@ -5,7 +5,7 @@ header("Cache-Control: public, max-age=2592000");
 $basePath = __DIR__; // /css/
 
 $cssFiles = [
-    'font-awesome.min.css',
+    // 'font-awesome.min.css',
     'owl.carousel.min.css',
     'owl.theme.default.min.css',
     '../js/swiper/swiper.min.css', // from /css/ to /js/

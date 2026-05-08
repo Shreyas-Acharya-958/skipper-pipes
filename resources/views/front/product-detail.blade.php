@@ -300,12 +300,12 @@
     </section>
     <!-- product cta ends -->
 
-    <div class="sticky-brochure-cta">
+<div class="sticky-brochure-cta">
     <a class="btn btn-light effect btn-md js-download-brochure"
         target="_blank"
         href="{{ asset('storage/' . $product->brochure) }}"
-        data-file-name="{{ $fileName }}"
-        data-file-extension="{{ $fileExtension }}"
+        data-file-name="{{ $product->brochure }}"
+        data-file-extension="{{ pathinfo($product->brochure, PATHINFO_EXTENSION) }}"
         data-text="Download Brochure"
         download>
         Download Brochure
