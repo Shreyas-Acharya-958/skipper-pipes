@@ -170,7 +170,7 @@
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="100">
-                            <a href="{{ $category->products()->where('title', $category->name)->exists() ? route('front.products.show', ['slug' => Str::slug($category->name)]) : '#' }}">
+                            <a href="{{ $category->products()->where('title', $category->name)->exists() ? route('front.products.show', ['slug' => Str::slug($category->name)]) : route('front.products.show', ['slug' => ($category?->products()->orderBy('title','asc')->first()->slug ?? '#') ]) }}">
                                 {{-- <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div> --}}
                                 <div  class="thumb lazy-bg"  data-bg="{{ asset('storage/' . $category->image) }}"> </div>
                                 <img src="{{ asset('storage/' . $category->icon) }}" width="50" height="50" alt="{{ image_alt_text('storage/' . $category->icon, $category->name) }}">
