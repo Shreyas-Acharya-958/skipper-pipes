@@ -169,7 +169,7 @@
                                 @else
                                     <li class="dropdown {{ request()->is($menuLink . '/*') ? 'active' : '' }}">
                                         <a href="#" class="dropdown-toggle"
-                                            data-toggle="dropdown">{{ $menu->title }}</a>
+                                            data-toggle="dropdown">{{ $menu->title }} <i class="fa-solid fa-chevron-down"></i></a>
                                         <ul class="dropdown-menu">
                                             @foreach ($menu->children as $child)
                                                 @php
@@ -177,12 +177,12 @@
                                                 @endphp
                                                 @if ($child->children->isEmpty())
                                                     <li>
-                                                        <a href="{{ url($childLink) }}">{{ $child->title }}</a>
+                                                        <a href="{{ url($childLink) }}">{{ $child->title }} </a>
                                                     </li>
                                                 @else
                                                     <li class="dropdown">
                                                         <a href="#" class="dropdown-toggle"
-                                                            data-toggle="dropdown">{{ $child->title }}</a>
+                                                            data-toggle="dropdown">{{ $child->title }} <i class="fa-solid fa-chevron-right"></i></a>
                                                         <ul class="dropdown-menu">
                                                             @foreach ($child->children as $grandchild)
                                                                 @php
@@ -196,7 +196,7 @@
                                                                 @else
                                                                     <li class="dropdown">
                                                                         <a href="#" class="dropdown-toggle"
-                                                                            data-toggle="dropdown">{{ $grandchild->title }}</a>
+                                                                            data-toggle="dropdown">{{ $grandchild->title }} <i class="fa-solid fa-chevron-right"></i></a>
                                                                         <ul class="dropdown-menu">
                                                                             @foreach ($grandchild->children as $greatgrandchild)
                                                                                 @php

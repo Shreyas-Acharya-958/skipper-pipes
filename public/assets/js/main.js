@@ -64,4 +64,4 @@ new Swiper(".timeline-swiper",{slidesPerView:3,spaceBetween:40,grabCursor:!0,nav
 e(".view-profile-popup").magnificPopup({type:"inline",midClick:!0,removalDelay:300,mainClass:"mfp-fade"});
 new Swiper(".location-swiper",{slidesPerView:3,spaceBetween:40,grabCursor:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{el:".swiper-pagination",clickable:!0},breakpoints:{992:{slidesPerView:3},768:{slidesPerView:2},0:{slidesPerView:1}}});
 e(".partners-tab").click((function(){e(".partners-tab").removeClass("active"),e(this).addClass("active");const a=e(this).data("image");e("#tab-image").fadeOut(200,(function(){e(this).attr("src",a).fadeIn(200)}))})),
-AOS.init()}(jQuery);// End jQuery
+AOS.init({once:true,mirror:false});}(jQuery);// End jQuery
