@@ -72,7 +72,7 @@ Route::permanentRedirect('/top-benefits-and-applications-of-swr-pipes-and-fittin
 Route::permanentRedirect('/products/upvc-pipes', '/products/upvc-pipes-and-fittings');
 Route::permanentRedirect('/products/cpvc-pipes', '/products/cpvc-pipes-and-fittings');
 Route::permanentRedirect('/products/swr-pipes', '/products/swr-pipes-and-fittings');
-Route::permanentRedirect('/products/marina-tank', '/products/water-storage-tank');
+Route::permanentRedirect('/products/marina-tank', '/products/marina-tank');
 Route::permanentRedirect('/private-project', '/private-projects');
 Route::permanentRedirect('/blogs/flagbearers-of-safe-water-skipper-pipes-leading-the-way', '/blogs/skipper-safe-water-distribution-piping-solutions');
 Route::permanentRedirect('/blogs/the-future-of-plumbing-why-cpvc-pipes-are-becoming-the-industry-standard', '/blogs/cpvc-pipes-industry-standard-plumbing');
