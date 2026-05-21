@@ -405,7 +405,7 @@
                                         [$width, $height] = getimagesize($url);
                                         @endphp 
                                             <img src="{{ asset('storage/' . $blog->image_1) }}"  loading="lazy" 
-                                                alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}" width="{{ $width ?? '' }}" height="{{$height ?? ''}}">
+                                                alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}" width="{{ $width ?? '' }}" height="165">
                                         @else
                                             <img src="{{ asset('assets/img/final/blog1.jpeg') }}" loading="lazy" 
                                                 alt="{{ image_alt_text('assets/img/final/blog1.jpeg', $blog->title) }}">
