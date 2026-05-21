@@ -232,8 +232,11 @@
                                                             <div class="home-products__img-box">
                                                                 <div class="home-products__img">
                                                                     @if ($product->home_image)
-                                                                        <img src="{{ asset('storage/' . $product->home_image) }}" loading="lazy" 
-                                                                            alt="{{ image_alt_text('storage/' . $product->home_image, $product->title) }}">
+                                                                    @php
+                                                                    $url =  Storage::disk('public')->path($product->home_image);
+                                                                    [$width, $height] = getimagesize($url);
+                                                                    @endphp 
+                                                                        <img src="{{ asset('storage/' . $product->home_image) }}" loading="lazy" width="{{ $width }}" height="{{$height}}" alt="{{ image_alt_text('storage/' . $product->home_image, $product->title) }}">
                                                                     @else
                                                                         <img src="{{ asset('assets/img/final/project1.jpg') }}" loading="lazy" 
                                                                             alt="{{ image_alt_text('assets/img/final/project1.jpg', $product->title) }}">
@@ -397,8 +400,12 @@
                                 <div class="thumb">
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}" aria-label="Read more {{ $blog->title }}">
                                         @if ($blog->page_image)
+                                        @php
+                                        $url =  Storage::disk('public')->path( $blog->image_1);
+                                        [$width, $height] = getimagesize($url);
+                                        @endphp 
                                             <img src="{{ asset('storage/' . $blog->image_1) }}"  loading="lazy" 
-                                                alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}">
+                                                alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}" width="{{ $width ?? '' }}" height="{{$height ?? ''}}">
                                         @else
                                             <img src="{{ asset('assets/img/final/blog1.jpeg') }}" loading="lazy" 
                                                 alt="{{ image_alt_text('assets/img/final/blog1.jpeg', $blog->title) }}">
@@ -499,13 +506,10 @@
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}" defer></script>
     <script>
-    // document.addEventListener("DOMContentLoaded", function () { const video = document.querySelector(".lazy-video"); video.src = video.dataset.src; });
     $(document).ready(function(){$('#popupJalRakshakForm').on('submit',function(e){e.preventDefault();return!1});
     $('#popupJalRakshakForm').validate({rules:{name:{required:!0,minlength:2,maxlength:255},email:{email:!0,maxlength:255},phone:{required:!0,minlength:10,maxlength:15},water_saving_commitment:{maxlength:1000}},messages:{name:{required:"Please enter your name",minlength:"Name must be at least 2 characters long",maxlength:"Name cannot exceed 255 characters"},email:{email:"Please enter a valid email address",maxlength:"Email cannot exceed 255 characters"},phone:{required:"Please enter your mobile number",minlength:"Mobile number must be at least 10 digits",maxlength:"Mobile number cannot exceed 15 characters"},water_saving_commitment:{maxlength:"Commitment cannot exceed 1000 characters"}},errorElement:'div',errorPlacement:function(error,element){error.addClass('invalid-feedback');element.closest('.form-group').append(error)},highlight:function(element,errorClass,validClass){$(element).addClass('is-invalid').removeClass('is-valid')},unhighlight:function(element,errorClass,validClass){$(element).removeClass('is-invalid').addClass('is-valid')},submitHandler:function(form){Swal.fire({title:'Submitting...',text:'Please wait while we process your commitment.',allowOutsideClick:!1,didOpen:()=>{Swal.showLoading()}});$.ajax({url:"{{ route('front.jal-rakshak.submission') }}",type:"POST",data:$(form).serialize(),headers:{'X-CSRF-TOKEN':'{{ csrf_token() }}'},success:function(response){Swal.fire({icon:'success',title:'Success!',text:response.message||'Thank you for your commitment to water conservation!',confirmButtonText:'OK',confirmButtonColor:'#FFA800'}).then((result)=>{if(result.isConfirmed){form.reset();$('#popupJalRakshakForm').validate().resetForm();$('#popupJalRakshakForm .form-control').removeClass('is-valid is-invalid');$('#scrollPopup').modal('hide')}})},error:function(xhr){let message='Something went wrong. Please check your inputs.';if(xhr.responseJSON?.errors){message=Object.values(xhr.responseJSON.errors).join(' ')}else if(xhr.responseJSON?.message){message=xhr.responseJSON.message}
-    Swal.fire({icon:'error',title:'Error!',text:message,confirmButtonText:'OK',confirmButtonColor:'#dc3545'})}});return!1}})});
-    
+    Swal.fire({icon:'error',title:'Error!',text:message,confirmButtonText:'OK',confirmButtonColor:'#dc3545'})}});return!1}})});   
     </script>
 @endsection
