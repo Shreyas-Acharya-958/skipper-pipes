@@ -338,7 +338,7 @@ ul.achivement li .medium { font-weight: 600; text-align: right; }
 .blog-area .sidebar .sidebar-item.category .sidebar-info, .blog-area .sidebar .sidebar-item.archives .sidebar-info { margin-top: -5px; }
 .blog-area .sidebar .sidebar-item.category li { display: block; position: relative; margin-bottom: 10px; }
 .blog-area .sidebar .sidebar-item.category li a { display: flex; text-transform: capitalize; font-weight: 600; align-items: center; justify-content: space-between; position: relative; padding-left: 13px; color: #454545; }
-.blog-area .sidebar-item.category li a::after { position: absolute; left: 0; top: 6px; content: "\f105"; font-family: "Font Awesome 5 Pro"; font-weight: 600; font-size: 12px; }
+.blog-area .sidebar-item.category li a::after { position: absolute; left: 0; top: 6px; content: "\f105"; font-family: "Font Awesome 7 Free"; font-weight: 600; font-size: 12px; }
 .blog-area .sidebar .sidebar-item li a:hover { color: var(--primary-color); }
 .yellow .blog-area .sidebar .sidebar-item li a:hover { color: #febc35; }
 .blog-area .sidebar .sidebar-item.category li a span { font-size: 12px; margin-left: 5px; background: #ffffff; min-width: 40px; padding: 2px 5px; text-align: center; border-radius: 30px; margin: 3px 0; font-weight: 600; }
@@ -368,7 +368,7 @@ ul.achivement li .medium { font-weight: 600; text-align: right; }
 .sidebar-item.archives ul li { display: block; margin-bottom: 20px; position: relative; }
 .sidebar-item.archives ul li:last-child { margin-bottom: 0; }
 .sidebar-item.archives ul li a { display: inline-block; font-weight: 600; text-transform: capitalize; z-index: 1; padding-left: 25px; font-size: 14px; color: #454545; }
-.sidebar-item.archives ul li a::after { -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; content: "\f07b"; font-family: "Font Awesome 5 Pro"; height: 8px; left: 0; position: absolute; width: 8px; font-weight: 600; }
+.sidebar-item.archives ul li a::after { -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; content: "\f07b"; font-family: "Font Awesome 7 Free"; height: 8px; left: 0; position: absolute; width: 8px; font-weight: 600; }
 .sidebar-item.social-sidebar ul { margin-bottom: -10px; overflow: hidden; }
 .sidebar-item.social-sidebar li { display: inline-block; float: left; margin-right: 10px; margin-bottom: 10px; }
 .sidebar-item.social-sidebar li a { background: #002359 none repeat scroll 0 0; border: medium none; color: #ffffff; display: inline-block; height: 50px; line-height: 54px; margin-bottom: 5px; text-align: center; width: 50px; font-size: 14px; border-radius: 50%; }
@@ -406,7 +406,7 @@ ul.achivement li .medium { font-weight: 600; text-align: right; }
 .yellow .blog-area .item blockquote { background: #febc35; }
 .blog-area .item blockquote cite { display: block; margin-top: 9px; color: #ffffff; position: relative; font-style: normal; font-size: 15px; font-weight: 600; padding-left: 30px; }
 .blog-area .item blockquote cite::after { position: absolute; left: 0; top: 50%; content: ""; height: 2px; width: 20px; background: #ffffff; }
-.blog-area .item blockquote::after { position: absolute; right: 50px; content: "\f10d"; font-family: "Font Awesome 5 Pro"; bottom: 8px; font-weight: 100; opacity: 0.5; font-size: 140px; font-style: normal; color: #ffffff; }
+.blog-area .item blockquote::after { position: absolute; right: 50px; content: "\f10d"; font-family: "Font Awesome 7 Free"; bottom: 8px; font-weight: 100; opacity: 0.5; font-size: 140px; font-style: normal; color: #ffffff; }
 .blog-area .item blockquote p { margin: 0; position: relative; z-index: 1; line-height: 34px; font-size: 16px; font-style: italic; font-weight: 600; }
 .blog-area .blog-content .post-tags, .blog-area .blog-content .share { margin-top: 40px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #e7e7e7; border-bottom: 1px solid #e7e7e7; padding: 10px 0; padding-bottom: 6px; }
 .blog-area .blog-content .share li { display: inline-block; margin-left: 15px; }
@@ -515,10 +515,10 @@ footer .link ul li a:hover { color: var(--secondary-color); }
 .pagi-area .pagination li.active a { background: var(--primary-color); border-color: var(--primary-color); }
 .breadcrumb-area { padding: 15px 0; background-color: var(--bg-light); color: var(--primary-color); margin-top: -5px; }
 .breadcrumb-area .breadcrumb { background: transparent none repeat scroll 0 0; border: none; display: inline-block; margin: 0; position: relative; z-index: 1; padding: 0; }
-.breadcrumb>li+li::before { content: "\f105"; font-family: "Font Awesome 5 Pro"; font-weight: 400; padding: 0 5px; color: var(--primary-color); display: none; }
+.breadcrumb>li+li::before { content: "\f105"; font-family: "Font Awesome 7 Free"; font-weight: 400; padding: 0 5px; color: var(--primary-color); display: none; }
 .breadcrumb-area .breadcrumb li i { margin-right: 5px; }
 .breadcrumb-area .breadcrumb li { padding: 0 15px; position: relative; display: inline-block; z-index: 1; font-weight: 400; }
-.breadcrumb-area .breadcrumb li::after { content: "\f105"; font-family: "Font Awesome 5 Pro"; font-weight: 600; left: -5px; position: absolute; font-size: 14px; }
+.breadcrumb-area .breadcrumb li::after { content: "\f105"; font-family: "Font Awesome 7 Free"; font-weight: 600; left: -5px; position: absolute; font-size: 14px; }
 .breadcrumb-area .breadcrumb li:first-child::after { display: none; }
 .breadcrumb-area .breadcrumb a, .breadcrumb-area .breadcrumb li { font-weight: 600; text-transform: capitalize; color: var(--primary-color); }
 .work-process-area .single-item { margin-bottom: 30px; }
