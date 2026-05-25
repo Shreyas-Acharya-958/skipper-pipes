@@ -29,7 +29,7 @@
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
-            @if(!isset($blog))
+            @if(!isset($blog) || \Route::currentRouteName() == 'front.home')
             <meta property="og:image" content="{{ asset('storage/' .$banner->image) }}">
             @endif    
         @endif
@@ -323,10 +323,10 @@
     <script src="{{ asset('assets/js/jquery.appear.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.easing.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/modernizr.custom.13711.js') }}" defer></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/progress-bar.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}" defer></script>
-    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/jquery.simpleLoadMore.js') }}" defer></script>
     <script src="{{ asset('assets/js/count-to.js') }}" defer></script>
     <script src="{{ asset('assets/js/bootsnav.js') }}" defer></script>
