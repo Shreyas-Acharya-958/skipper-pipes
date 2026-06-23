@@ -83,6 +83,17 @@ Route::permanentRedirect('/blogs/what-are-the-main-advantages-of-using-upvc-pipe
 Route::permanentRedirect('/blogs/6-top-benefits-of-pvc-pipes-every-plumber-should-know', '/blogs/pvc-pipe-benefits-plumbing-guide');
 Route::permanentRedirect('/blogs/the-top-benefits-and-applications-of-swr-pipes-and-fittings', '/blogs/swr-pipes-fittings-benefits-applications-guide');
 Route::permanentRedirect('/blogs/why-are-hdpe-pipes-so-versatile-know-the-features-benefits', '/blogs/hdpe-pipes-features-benefits-applications');
+Route::permanentRedirect('/blogs/how-to-check-the-quality-of-cpvc-pipes-a-complete-guide-to-cpvc-pipe-testing', '/blogs/complete-guide-to-cpvc-pipe-quality-testing');
+Route::permanentRedirect('/blogs/a-new-milestone-for-skipper-pipes-celebrating-the-national-launch-of-flowsafe-cpvc-at-guwahati', '/blogs/skipper-flowsafe-cpvc-lubrizol-temprite-national-launch');
+Route::permanentRedirect('/blogs/what-makes-skipper-pipes-the-best-cpvc-pipes-in-india', '/blogs/skipper-best-quality-cpvc-pipe-company-in-india');
+Route::permanentRedirect('/blogs/pvc-pipe-vs-other-materials-pros-and-cons-simplified', '/blogs/pvc-pipe-advantages-and-disadvantages-pros-cons');
+Route::permanentRedirect('/blogs/how-to-perform-easy-diy-plumbing-pipe-fixes-at-home', '/blogs/diy-plumbing-repairs-simple-home-fixes');
+Route::permanentRedirect('/blogs/innovation-quality-the-award-winning-journey-of-skipper-pipes', '/blogs/innovation-quality-award-winning-journey');
+Route::permanentRedirect('/blogs/innovation-in-plumbing-the-future-of-pipe-systems', '/blogs/plumbing-innovation-future-pipe-systems');
+Route::permanentRedirect('/blogs/comparing-pvc-cpvc-and-hdpe-pipes-for-agricultural-applications-in-india', '/blogs/which-pvc-pipe-is-best-for-agriculture-comparison');
+Route::permanentRedirect('/blogs/a-comprehensive-buyers-guide-to-hdpe-pipes-in-india', '/blogs/hdpe-pipe-types-grade-uses-comprehensive-guide');
+Route::permanentRedirect('/top-reasons-why-indian-households-rely-on-skipper-marina-water-tanks', '/blogs/indian-water-tanks-skipper-marina-overhead-tank');
+Route::permanentRedirect('/blogs/what-are-pvc-drain-pipes-detailed-explanation', '/blogs/benefits-of-pvc-drain-pipes-for-modern-homes');
 
 
 // ----------------------------------------------------------------------
