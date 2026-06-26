@@ -144,6 +144,20 @@
                     {!! $product->technical !!}
                 </div>
             </div>
+            
+            @if($product->technical_brochure)
+                        <div class="justify-content-center d-flex mt-3">
+                            <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
+                                target="_blank"
+                                href="{{ asset('storage/' . $product->technical_brochure) }}"
+                                data-file-name="{{ $product->technical_brochure }}"
+                                data-file-extension="{{ pathinfo($product->technical_brochure, PATHINFO_EXTENSION) }}"
+                                data-text="Download Technical Brochure"
+                                download>
+                                Download Technical Brochure
+                            </a>
+                        </div>
+                            @endif
         </section>
         <!-- Product Technical Table ends -->
     @endif
@@ -323,7 +337,7 @@
         Download Brochure
     </a>
     @if($product->technical_brochure)
-    <a class="btn btn-light effect btn-md js-download-brochure"
+    {{-- <a class="btn btn-light effect btn-md js-download-brochure"
         target="_blank"
         href="{{ asset('storage/' . $product->technical_brochure) }}"
         data-file-name="{{ $product->technical_brochure }}"
@@ -331,7 +345,7 @@
         data-text="Download Technical Brochure"
         download>
         Download Technical Brochure
-    </a>
+    </a> --}}
     @endif
 </div>
 @endsection
