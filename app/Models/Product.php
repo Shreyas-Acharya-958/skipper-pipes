@@ -23,6 +23,7 @@ class Product extends Model
         'application',
         'faq',
         'brochure',
+        'technical_brochure',
         'meta_title',
         'meta_description',
         'meta_keywords',

@@ -81,6 +81,12 @@ class ProductController extends Controller
             $path = $file->storeAs('products/brochures', $filename, 'public');
             $validated['brochure'] = $path;
         }
+        if ($request->hasFile('technical_brochure')) {
+            $file = $request->file('technical_brochure');
+            $filename = Str::slug($request->title) . '-technical_brochure-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('products/brochures', $filename, 'public');
+            $validated['technical_brochure'] = $path;
+        }
 
         $product = Product::create($validated);
         if ($request->hasFile('brochure')) {
@@ -93,6 +99,16 @@ class ProductController extends Controller
                 'brochure_text' => 'Download Brochure',
             ]);
         }
+        // if ($request->hasFile('technical_brochure')) {
+        //     $file = $request->file('technical_brochure');
+        //     $path = $file->store('brochures', 'public');
+        //     $product->update([
+        //         'brochure_file' => $path,
+        //         'brochure_name' => $file->getClientOriginalName(),
+        //         'brochure_extension' => $file->getClientOriginalExtension(),
+        //         'brochure_text' => 'Download Brochure',
+        //     ]);
+        // }
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
@@ -174,6 +190,22 @@ class ProductController extends Controller
             $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('products/brochures', $filename, 'public');
             $validated['brochure'] = $path;
+        } else {
+            unset($validated['brochure']);
+        }
+        if ($request->has('remove_tech_brochure') && $request->input('remove_tech_brochure') === '1') {
+            if ($product->technical_brochure) {
+                Storage::disk('public')->delete($product->technical_brochure);
+                $validated['technical_brochure'] = null;
+            }
+        } elseif ($request->hasFile('technical_brochure')) {
+            if ($product->technical_brochure) {
+                Storage::disk('public')->delete($product->technical_brochure);
+            }
+            $file = $request->file('technical_brochure');
+            $filename = Str::slug($request->title) . '-technical_brochure-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('products/brochures', $filename, 'public');
+            $validated['technical_brochure'] = $path;
         } else {
             unset($validated['brochure']);
         }

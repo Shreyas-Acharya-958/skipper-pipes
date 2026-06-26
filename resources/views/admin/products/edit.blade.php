@@ -16,7 +16,7 @@
                         <input type="hidden" name="remove_product_overview_image" value="0"
                             id="remove_product_overview_image_input">
                         <input type="hidden" name="remove_brochure" value="0" id="remove_brochure_input">
-
+                        <input type="hidden" name="remove_tech_brochure" value="0" id="remove_tech_brochure_input">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -64,7 +64,7 @@
                             @enderror
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="page_image" class="form-label">Page Image</label>
                                     <input type="file" class="form-control @error('page_image') is-invalid @enderror"
@@ -83,7 +83,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="home_image" class="form-label">Home Image</label>
                                     <input type="file" class="form-control @error('home_image') is-invalid @enderror"
@@ -102,7 +102,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="mb-3">
                                     <label for="brochure" class="form-label">Brochure</label>
                                     <input type="file" class="form-control @error('brochure') is-invalid @enderror"
@@ -110,6 +110,24 @@
                                     @if ($product->brochure)
                                         <div class="mt-2 position-relative d-inline-block">
                                             <a href="{{ asset('storage/' . $product->brochure) }}" target="_blank"
+                                                class="btn btn-sm btn-info">View Current Brochure</a>
+                                            <button type="button" class="btn btn-sm btn-danger ms-2 remove-file-btn"
+                                                data-field="brochure">Remove</button>
+                                        </div>
+                                    @endif
+                                    @error('brochure')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label for="brochure" class="form-label">Technical Brochure</label>
+                                    <input type="file" class="form-control @error('technical_brochure') is-invalid @enderror"
+                                        id="technical_brochure" name="technical_brochure" accept=".pdf,.doc,.docx">
+                                    @if ($product->technical_brochure)
+                                        <div class="mt-2 position-relative d-inline-block">
+                                            <a href="{{ asset('storage/' . $product->technical_brochure) }}" target="_blank"
                                                 class="btn btn-sm btn-info">View Current Brochure</a>
                                             <button type="button" class="btn btn-sm btn-danger ms-2 remove-file-btn"
                                                 data-field="brochure">Remove</button>

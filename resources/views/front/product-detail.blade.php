@@ -212,6 +212,17 @@
                                 download>
                                 Download Brochure
                             </a>
+                            @if($product->technical_brochure)
+                            <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
+                                target="_blank"
+                                href="{{ asset('storage/' . $product->technical_brochure) }}"
+                                data-file-name="{{ $product->technical_brochure }}"
+                                data-file-extension="{{ pathinfo($product->technical_brochure, PATHINFO_EXTENSION) }}"
+                                data-text="Download Technical Brochure"
+                                download>
+                                Download Technical Brochure
+                            </a>
+                            @endif
                     </div>
                 </div>
             </div>
@@ -299,7 +310,8 @@
         </div>
     </section>
     <!-- product cta ends -->
-
+</div>
+</body>
 <div class="sticky-brochure-cta">
     <a class="btn btn-light effect btn-md js-download-brochure"
         target="_blank"
@@ -310,5 +322,16 @@
         download>
         Download Brochure
     </a>
+    @if($product->technical_brochure)
+    <a class="btn btn-light effect btn-md js-download-brochure"
+        target="_blank"
+        href="{{ asset('storage/' . $product->technical_brochure) }}"
+        data-file-name="{{ $product->technical_brochure }}"
+        data-file-extension="{{ pathinfo($product->technical_brochure, PATHINFO_EXTENSION) }}"
+        data-text="Download Technical Brochure"
+        download>
+        Download Technical Brochure
+    </a>
+    @endif
 </div>
 @endsection
