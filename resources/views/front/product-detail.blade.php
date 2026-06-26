@@ -221,9 +221,15 @@
                                 href="{{ asset('storage/' . $product->brochure) }}"
                                 data-file-name="{{ $fileName }}"
                                 data-file-extension="{{ $fileExtension }}"
-                                data-text="Download Product Brochure"
+                                data-text="{{ 
+                                 empty(!$product->technical_brochure) ? "Download Product Brochure" : "Download Brochure";  
+                                }}"
                                 download>
+                                @if($product->technical_brochure)
                                 Download Product Brochure
+                                @else 
+                                Download Brochure
+                                @endif
                             </a>
                             @if($product->technical_brochure)
                             <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
@@ -331,9 +337,15 @@
         href="{{ asset('storage/' . $product->brochure) }}"
         data-file-name="{{ $product->brochure }}"
         data-file-extension="{{ pathinfo($product->brochure, PATHINFO_EXTENSION) }}"
-        data-text="Download Product Brochure"
+        data-text="{{ 
+            empty(!$product->technical_brochure) ? "Download Product Brochure" : "Download Brochure";  
+        }}"
         download>
+        @if($product->technical_brochure)
         Download Product Brochure
+        @else 
+        Download Brochure
+        @endif
     </a>
     @if($product->technical_brochure)
     {{-- <a class="btn btn-light effect btn-md js-download-brochure"
