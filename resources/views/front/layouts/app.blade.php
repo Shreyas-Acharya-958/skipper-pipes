@@ -69,16 +69,13 @@
     <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
     </noscript>
-    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
-    <link rel="preload" href="{{ asset('assets/css/style.php') }}" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="{{ asset('style.min.php') }}" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="{{ asset('assets/css/responsive.css') }}" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <noscript>
         <link rel="stylesheet" href="{{ asset('style.min.php') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style.php') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <noscript>
+    
         <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
     </noscript>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V8XGVP5J7B"></script>
