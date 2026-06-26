@@ -319,9 +319,15 @@
                             href="{{ asset('storage/' . $product->brochure) }}"
                             data-file-name="{{ $fileName }}"
                             data-file-extension="{{ $fileExtension }}"
-                            data-text="Download Product Brochure"
+                            data-text="{{ 
+                                        empty(!$product->technical_brochure) ? "Download Product Brochure" : "Download Brochure";  
+                                    }}"
                             download>
+                             @if($product->technical_brochure)
                             Download Product Brochure
+                            @else 
+                            Download Brochure
+                            @endif
                         </a>
                     @endif
                 </div>
