@@ -344,25 +344,25 @@
         data-file-name="{{ $product->brochure }}"
         data-file-extension="{{ pathinfo($product->brochure, PATHINFO_EXTENSION) }}"
         data-text="{{ 
-            empty(!$product->technical_brochure) ? "Download Product Brochure" : "Download Brochure";  
+            empty(!$product->technical_brochure) ? "Product Brochure Download" : "Download Brochure";  
         }}"
         download>
         @if($product->technical_brochure)
-        Download Product Brochure
+        Product Brochure <br /><span>Download</span>
         @else 
         Download Brochure
         @endif
     </a>
     @if($product->technical_brochure)
-    {{-- <a class="btn btn-light effect btn-md js-download-brochure"
+    <a class="btn btn-light technical-btn effect btn-md js-download-brochure"
         target="_blank"
         href="{{ asset('storage/' . $product->technical_brochure) }}"
         data-file-name="{{ $product->technical_brochure }}"
         data-file-extension="{{ pathinfo($product->technical_brochure, PATHINFO_EXTENSION) }}"
-        data-text="Download Technical Brochure"
+        data-text="Technical Brochure Download"
         download>
-        Download Technical Brochure
-    </a> --}}
+        Technical Brochure <br /><span>Download</span>
+    </a>
     @endif
 </div>
 @endsection
