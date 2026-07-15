@@ -100,6 +100,16 @@
                             <div class="site-heading text-center">
                                 <p>{{ $product->title }}</p>
                                 <h2>Key Features & Benefits</h2>
+                                @if($product->id == 8)
+                                    <p class="mt-2">
+                                        Every house has unique water requirements. Skipper Marina water storage tanks come in 3-layer and 4-layer variations with food-grade materials to fit every household seamlessly:
+                                        <br/>500 Litre Water Tank: Perfect for small families, independent floors, or tight spaces.
+                                        <br/>1000 Litre Water Tank: The standard, most popular water tank for house setups in India.
+                                        <br/>2000 Litre Water Tank: Ideal for large joint families, multi-story buildings, and commercial spaces requiring massive water storage.
+                                        <br/><br/>
+                                        Not sure which capacity or layer configuration is right for your property? Read our <a href="https://skipperpipes.in/blogs/types-of-water-storage-tanks-a-complete-guide-for-homes-in-india" target="_blank">comprehensive guide on water storage tanks for homes</a> to make an informed decision for your household.
+                                    </p>
+                                @endif
                             </div>
                         </div>
 
