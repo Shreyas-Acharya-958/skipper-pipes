@@ -93,7 +93,10 @@ Route::permanentRedirect('/blogs/innovation-in-plumbing-the-future-of-pipe-syste
 Route::permanentRedirect('/blogs/comparing-pvc-cpvc-and-hdpe-pipes-for-agricultural-applications-in-india', '/blogs/which-pvc-pipe-is-best-for-agriculture-comparison');
 Route::permanentRedirect('/blogs/a-comprehensive-buyers-guide-to-hdpe-pipes-in-india', '/blogs/hdpe-pipe-types-grade-uses-comprehensive-guide');
 Route::permanentRedirect('/blogs/top-reasons-why-indian-households-rely-on-skipper-marina-water-tanks', '/blogs/indian-water-tanks-skipper-marina-overhead-tank');
-Route::permanentRedirect('/blogs/what-are-pvc-drain-pipes-detailed-explanation', '/blogs/benefits-of-pvc-drain-pipes-for-modern-homes');
+Route::permanentRedirect('/blogs/top-reasons-why-indian-households-rely-on-skipper-marina-water-tanks', '/blogs/indian-water-tanks-skipper-marina-overhead-tank');
+Route::permanentRedirect('/home/', '/');
+Route::permanentRedirect('/home', '/');
+Route::permanentRedirect('/different-types-of-pvc-pipes-and-their-applications/', '/blogs/different-types-of-plumbing-pipes-and-their-uses');
 
 
 // ----------------------------------------------------------------------
