@@ -36,7 +36,7 @@
         }
 
 /* =========================================
-   PRODUCT BROCHURE POPUP
+   PRODUCT BROCHURE POPUP FORM
 ========================================= */
 
 #productBrochurePopup {
@@ -45,14 +45,12 @@
 
 
 /* Modal size */
-
 #productBrochurePopup .brochure-modal-dialog {
     max-width: 800px;
 }
 
 
 /* Modal box */
-
 #productBrochurePopup .brochure-modal-content {
     position: relative;
     border-radius: 0;
@@ -62,7 +60,6 @@
 
 
 /* Inner spacing */
-
 #productBrochurePopup .brochure-popup-inner {
     padding: 42px 42px 28px;
     background: #ffffff;
@@ -70,46 +67,34 @@
 
 
 /* Heading */
-
 #productBrochurePopup h3 {
     margin: 0 0 28px;
     text-align: center;
-
     font-size: 24px;
     line-height: 1.25;
     font-weight: 700;
-
     color: #144372;
 }
 
 
 /* Second line */
-
 #productBrochurePopup h3 span {
     display: block;
 }
 
 
 /* Close button */
-
 #productBrochurePopup .brochure-popup-close {
     position: absolute;
-
     top: 4px;
     right: 10px;
-
     z-index: 10;
-
     padding: 0;
-
     font-size: 30px;
     line-height: 1;
-
     font-weight: 300;
-
     color: #1d5b8f;
     opacity: 1;
-
     text-shadow: none;
 }
 
@@ -122,7 +107,6 @@
 
 
 /* Form */
-
 #productBrochurePopup .product-brochure-form {
     border: 1px solid #d8d8d8;
     padding: 24px;
@@ -130,12 +114,10 @@
 
 
 /* Bootstrap row spacing */
-
 #productBrochurePopup .product-brochure-form .row {
     margin-left: -12px;
     margin-right: -12px;
 }
-
 
 #productBrochurePopup .product-brochure-form .col-md-6 {
     padding-left: 12px;
@@ -144,28 +126,20 @@
 
 
 /* Form group */
-
 #productBrochurePopup .product-brochure-form .form-group {
     margin-bottom: 14px;
 }
 
 
 /* Input */
-
 #productBrochurePopup .product-brochure-form .form-control {
     height: 45px;
-
     border: none;
     border-radius: 0;
-
     background: #f1f1f1;
-
     padding: 10px 15px;
-
     font-size: 16px;
-
     color: #333;
-
     box-shadow: none;
 }
 
@@ -175,32 +149,23 @@
 #productBrochurePopup .product-brochure-form .form-control:focus {
     background: #f7f7f7;
     outline: none;
-
     box-shadow: none;
 }
 
 
 /* Submit Button */
-
 #productBrochurePopup .brochure-submit-btn {
     display: inline-block;
-
     min-width: 145px;
     margin-top: 15px !important;
     padding: 13px 35px;
-
     border: none;
     border-radius: 0;
-
     background: #144372;
-
     color: #ffffff;
-
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition: all 0.3s ease;
 }
 
@@ -210,7 +175,7 @@
 }
 
 /* =========================================
-   BROCHURE THANK YOU SECTION
+   PRODUCT BROCHURE POPUP FORM -  THANK YOU SECTION
 ========================================= */
 
 #productBrochurePopup #brochureThankYouSection {
@@ -221,190 +186,172 @@
 
 #productBrochurePopup #brochureThankYouSection h3 {
     margin-bottom: 15px;
-
     font-size: 32px;
     font-weight: 700;
-
     color: #144372;
 }
 
 
 #productBrochurePopup #brochureThankYouSection p {
     max-width: 400px;
-
     margin: 0 auto 25px;
-
     font-size: 16px;
     line-height: 1.6;
-
     color: #555555;
 }
 
 
 #productBrochurePopup .brochure-download-btn {
     display: inline-block;
-
     padding: 14px 30px;
-
     background: #1d5b8f;
-
     color: #ffffff;
-
     font-size: 16px;
     font-weight: 600;
-
     text-decoration: none;
-
     transition: all 0.3s ease;
 }
 
 
 #productBrochurePopup .brochure-download-btn:hover {
     background: #123e63;
-
     color: #ffffff;
-
     text-decoration: none;
 }
 
 
-/* Mobile */
-
-@media (max-width: 767px) {
-
-    #productBrochurePopup .brochure-modal-dialog {
-        max-width: calc(100% - 30px);
-        margin: 15px auto;
-    }
-
-
-    #productBrochurePopup .brochure-popup-inner {
-        padding: 35px 20px 20px;
-    }
-
-
-    #productBrochurePopup h3 {
-        font-size: 20px;
-    }
-
-
-    #productBrochurePopup .product-brochure-form {
-        padding: 15px;
-    }
-
-}
-
-        /* ==========================
+/* ==========================
    Desktop
 ========================== */
-        @media (min-width:768px) {
+    @media (min-width:768px) {
 
-            .sticky-brochure-cta {
-                right: 0;
-                /* top:30%; */
-                top: 40%;
-                transform: translateY(-50%);
+        .sticky-brochure-cta {
+            right: 0;
+            /* top:30%; */
+            top: 40%;
+            transform: translateY(-50%);
 
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                /* gap:232px; space between rotated buttons */
-                gap: 144px;
-            }
-
-
-            .sticky-brochure-cta a {
-                display: block;
-                transform: rotate(-90deg);
-                transform-origin: right bottom;
-                font-weight: 600;
-                white-space: nowrap;
-                font-size: 14px;
-                padding: 10px 18px;
-                line-height: 1.4;
-                background: #144372 !important;
-                color: #fff !important;
-                border: 2px solid rgba(255, 255, 255, 0.7);
-
-                border-radius: 0;
-            }
-
-            .sticky-brochure-cta a span {
-                font-size: 9px;
-                /* #FFA800 */
-            }
-
-            .sticky-brochure-cta a.technical-btn {
-                color: #144372 !important;
-            }
-
-
-            .sticky-brochure-cta a.technical-btn,
-            .sticky-brochure-cta a.technical-btn:hover {
-                background-color: #FFA800 !important;
-            }
-
-            .sticky-brochure-cta a.technical-btn::after {
-                background-color: #FFA800 !important;
-                color: #144372 !important;
-            }
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            /* gap:232px; space between rotated buttons */
+            gap: 144px;
         }
 
-        /* ==========================
+
+        .sticky-brochure-cta a {
+            display: block;
+            transform: rotate(-90deg);
+            transform-origin: right bottom;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 14px;
+            padding: 10px 18px;
+            line-height: 1.4;
+            background: #144372 !important;
+            color: #fff !important;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 0;
+        }
+
+        .sticky-brochure-cta a span {
+            font-size: 9px;
+            /* #FFA800 */
+        }
+
+        .sticky-brochure-cta a.technical-btn {
+            color: #144372 !important;
+        }
+
+
+        .sticky-brochure-cta a.technical-btn,
+        .sticky-brochure-cta a.technical-btn:hover {
+            background-color: #FFA800 !important;
+        }
+
+        .sticky-brochure-cta a.technical-btn::after {
+            background-color: #FFA800 !important;
+            color: #144372 !important;
+        }
+    }
+
+/* ==========================
    Mobile
 ========================== */
 
-        @media (max-width:767px) {
+    @media (max-width:767px) {
 
-            .sticky-brochure-cta {
-                left: 0;
-                right: 0;
-                bottom: 0;
+        .sticky-brochure-cta {
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-                display: flex;
-                width: 100%;
-            }
-
-            .sticky-brochure-cta a {
-                flex: 1;
-                width: 50%;
-                text-align: center;
-                font-size: 12px;
-                line-height: 1.3;
-                border-radius: 0;
-                padding: 10px !important;
-                background: #144372 !important;
-                color: #fff !important;
-                border: 1px solid #fff;
-            }
-
-            /* If only one button exists */
-            .sticky-brochure-cta a:only-child {
-                width: 100%;
-                flex: 0 0 100%;
-            }
-
-            .sticky-brochure-cta a span {
-                font-size: 9px;
-                /* #FFA800 */
-            }
-
-            .sticky-brochure-cta a.technical-btn {
-                color: #144372 !important;
-            }
-
-            .sticky-brochure-cta a.technical-btn,
-            .sticky-brochure-cta a.technical-btn:hover {
-                background-color: #FFA800 !important;
-
-            }
-
-            .sticky-brochure-cta a.technical-btn::after {
-                background-color: #FFA800 !important;
-                color: #144372 !important;
-            }
+            display: flex;
+            width: 100%;
         }
-    </style>
+
+        .sticky-brochure-cta a {
+            flex: 1;
+            width: 50%;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.3;
+            border-radius: 0;
+            padding: 10px !important;
+            background: #144372 !important;
+            color: #fff !important;
+            border: 1px solid #fff;
+        }
+
+        /* If only one button exists */
+        .sticky-brochure-cta a:only-child {
+            width: 100%;
+            flex: 0 0 100%;
+        }
+
+        .sticky-brochure-cta a span {
+            font-size: 9px;
+            /* #FFA800 */
+        }
+
+        .sticky-brochure-cta a.technical-btn {
+            color: #144372 !important;
+        }
+
+        .sticky-brochure-cta a.technical-btn,
+        .sticky-brochure-cta a.technical-btn:hover {
+            background-color: #FFA800 !important;
+
+        }
+
+        .sticky-brochure-cta a.technical-btn::after {
+            background-color: #FFA800 !important;
+            color: #144372 !important;
+        }
+
+        /* Product brochure Popup form */
+         #productBrochurePopup .brochure-modal-dialog {
+        max-width: calc(100% - 30px);
+        margin: 15px auto;
+        }
+
+
+        #productBrochurePopup .brochure-popup-inner {
+            padding: 35px 20px 20px;
+        }
+
+
+        #productBrochurePopup h3 {
+            font-size: 20px;
+        }
+
+
+        #productBrochurePopup .product-brochure-form {
+            padding: 15px;
+        }
+    }
+</style>
 
 
 
@@ -1211,124 +1158,82 @@
     <!-- =========================================
      Product Brochure Download Popup
 ========================================= -->
-    <div class="modal fade" id="productBrochurePopup" tabindex="-1" role="dialog"
-        aria-labelledby="productBrochurePopupTitle" aria-hidden="true">
+    <div class="modal fade" id="productBrochurePopup" tabindex="-1" role="dialog" aria-labelledby="productBrochurePopupTitle" aria-hidden="true">
 
         <div class="modal-dialog modal-dialog-centered brochure-modal-dialog" role="document">
-
             <div class="modal-content brochure-modal-content">
-
                 <!-- Close Button -->
                 <button type="button" class="close brochure-popup-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
 
                 <div class="brochure-popup-inner">
+                    <!-- Form Section -->
+                    <div id="brochureFormSection">
 
-    <!-- Form Section -->
-    <div id="brochureFormSection">
+                        <h3 id="productBrochurePopupTitle">
+                            Get Access to Our Skipper Pipes Product Brochure
+                            <span>Fill Out the Form Below!</span>
+                        </h3>
 
-        <h3 id="productBrochurePopupTitle">
-            Get Access to Our Skipper Pipes Product Brochure
-            <span>Fill Out the Form Below!</span>
-        </h3>
+                        <form id="productBrochureForm"
+                            class="product-brochure-form">
+                            <div class="row">
+                                <!-- Name -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="Name *" required>
+                                    </div>
+                                </div>
 
-        <form id="productBrochureForm"
-              class="product-brochure-form">
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" >
+                                    </div>
+                                </div>
 
-            <div class="row">
+                                <!-- Mobile -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" name="mobile" placeholder="Mobile Number *" required>
+                                    </div>
+                                </div>
 
-                <!-- Name -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text"
-                               class="form-control"
-                               name="name"
-                               placeholder="Name *"
-                               required>
+                                <!-- Pincode -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text"
+                                            class="form-control" name="pincode" placeholder="Pincode *" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="brochure-submit-btn"> Submit </button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Thank You Section -->
+                    <div id="brochureThankYouSection" style="display: none;">
+
+                        <h3>Thank You!</h3>
+                        <p> Thank you for filling the form. Here is the Product Brochure link to download. </p>
+
+                        <div class="text-center">
+                            <!-- Replace the href with your actual PDF path -->
+                            <a href="assets/pdf/product-brochure.pdf"
+                            class="brochure-download-btn"
+                            download>
+                                Download Product Brochure
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Email -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="email"
-                               class="form-control"
-                               name="email"
-                               placeholder="Email *"
-                               required>
-                    </div>
-                </div>
-
-                <!-- Mobile -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="tel"
-                               class="form-control"
-                               name="mobile"
-                               placeholder="Mobile Number *"
-                               required>
-                    </div>
-                </div>
-
-                <!-- Pincode -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text"
-                               class="form-control"
-                               name="pincode"
-                               placeholder="Pincode *"
-                               required>
-                    </div>
-                </div>
-
             </div>
-
-            <div class="text-center">
-                <button type="submit"
-                        class="brochure-submit-btn">
-                    Submit
-                </button>
-            </div>
-
-        </form>
-
-    </div>
-
-
-    <!-- Thank You Section -->
-    <div id="brochureThankYouSection" style="display: none;">
-
-        <h3>
-            Thank You!
-        </h3>
-
-        <p>
-            Thank you for filling the form.
-            Here is the Product Brochure link to download.
-        </p>
-
-        <div class="text-center">
-
-            <!-- Replace the href with your actual PDF path -->
-            <a href="assets/pdf/product-brochure.pdf"
-               class="brochure-download-btn"
-               download>
-
-                Download Product Brochure
-
-            </a>
-
         </div>
-
-    </div>
-
-</div>
-
-            </div>
-
-        </div>
-
     </div>
 
 
@@ -1490,37 +1395,7 @@
     <script src="assets/js/bootsnav.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <script>
-$(document).ready(function () {
 
-    $("#productBrochureForm").on("submit", function (e) {
-
-        // Prevent page reload
-        e.preventDefault();
-
-
-        // Check HTML validation
-        if (!this.checkValidity()) {
-
-            this.reportValidity();
-
-            return;
-
-        }
-
-
-        // Hide form section
-        $("#brochureFormSection").fadeOut(300, function () {
-
-            // Show thank-you section
-            $("#brochureThankYouSection").fadeIn(300);
-
-        });
-
-    });
-
-});
-</script>
 
 <script>
 $(document).ready(function () {
