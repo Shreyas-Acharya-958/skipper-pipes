@@ -16,7 +16,7 @@ class ProductInquiryController extends Controller
             $query->where('name', 'like', "%{$search}%");
             $query->orWhere('email', 'like', "%{$search}%");
         }
-        $inquiries = $query->paginate(10); // 10 per page, change as needed
+        $inquiries = $query->with('product')->paginate(10); // 10 per page, change as needed
         return view('admin.inquiries.index', compact('inquiries'));
     }
     public function destroy(ProductInquiry $inquiry)

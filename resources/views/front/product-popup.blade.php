@@ -4,7 +4,7 @@
             <button type="button" class="close brochure-popup-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="brochure-popup-inner">
                 <div id="brochureFormSection">
-                    <h3 id="productBrochurePopupTitle"> Get Access to Our Skipper Pipes Product Brochure <span>Fill Out the Form Below!</span> </h3>
+                    <h3 id="productBrochurePopupTitle"> Get Access to Our Skipper Pipes <span class="typeofbrchure" style="display:inline-flex"></span> Brochure <span>Fill Out the Form Below!</span> </h3>
                     <form id="productBrochureForm" class="product-brochure-form" action="{{  route('front.products.save-inquiry-brochure',['slug'=>$product->slug]) }}" method="POST">
                         @csrf
                         <div class="row">
@@ -29,6 +29,8 @@
                             href="#"
                             data-file-name="{{ $product->brochure }}"
                             download>
+                            Download Brochure
+                        </a>
                     </div>
                 </div>
             </div>

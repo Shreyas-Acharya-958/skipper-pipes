@@ -387,19 +387,25 @@ $(document).on('click', '.js-download-brochure', function (e) {
     history.pushState(null,'',window.location.pathname + '#opened-form-for-' + brochureType + '-brochure');
     $('#inquiry_product_id').val(productId);
     $('#inquiry_brochure_type').val(brochureType);
+
+    
     $('#brochureFormSection').show();
+    $('#brochureFormSection .typeofbrchure').text(brochureType);
     $('#brochureThankYouSection').hide();
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
 <script>
-    $('#productBrochureForm').validate({
+$.validator.addMethod("pattern", function(value, element, pattern) {
+    return this.optional(element) || pattern.test(value);
+}, "Please enter a valid email address.");
+$('#productBrochureForm').validate({
     rules: {
         product_id: { required: true},
         brochure_type: { required: true},
         name: { required: true},
-        email: { required: true,email: true},
-        phone: { required: true, digits: true,minlength: 10, maxlength: 10},
+        email: { required: false,email: true, pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/ },
+        phone: { required: true, digits: true, pattern: /^[6-9][0-9]*$/, minlength: 10, maxlength: 12},
         pincode: { required: true, digits: true, minlength: 6, maxlength: 6}
     },
     submitHandler: function (form) {

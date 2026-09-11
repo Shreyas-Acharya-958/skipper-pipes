@@ -18,6 +18,7 @@ use App\Exports\BlogCommentsExport;
 use App\Exports\JalRakshakSubmissionsExport;
 use App\Exports\PrivateProjectEnquiriesExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProductInquiriesExport;
 
 class DashboardController extends Controller
 {
@@ -36,6 +37,7 @@ class DashboardController extends Controller
                 'blog_comment' => BlogComment::count(),
                 'jal_rakshak' => JalRakshakSubmission::count(),
                 'private_project' => PrivateProjectEnquiry::count(),
+                'product_brochure_inq' => \App\Models\ProductInquiry::count(),
             ];
             return view('admin.dashboard', compact('inquiries'));
         }
@@ -60,6 +62,7 @@ class DashboardController extends Controller
             'blog_comment' => BlogComment::count(),
             'jal_rakshak' => JalRakshakSubmission::count(),
             'private_project' => PrivateProjectEnquiry::count(),
+            'product_brochure_inq' => \App\Models\ProductInquiry::count(),
         ];
         return view('admin.dashboard', compact('inquiries'));
     }
@@ -136,5 +139,9 @@ class DashboardController extends Controller
     {
         $filename = 'private_project_enquiries_' . date('Y-m-d_H-i-s') . '.xlsx';
         return Excel::download(new PrivateProjectEnquiriesExport, $filename);
+    }
+    public function exportProductInquiriesExport()
+    {
+        return Excel::download( new ProductInquiriesExport, 'product-inquiries.xlsx' ); 
     }
 }

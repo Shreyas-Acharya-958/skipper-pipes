@@ -48,7 +48,7 @@
                                 @forelse ($inquiries as $inquiry)
                                     <tr>
                                         <td>{{ $inquiry->id }}</td>
-                                        <td>{{ $inquiry->product_id }}</td>
+                                        <td>{{ $inquiry->product->title }}</td>
                                         <td>{{ ucwords($inquiry->brochure_type) }}</td>
                                         <td>{{ $inquiry->name }}</td>
                                         <td>{{ $inquiry->email ?? '-' }}</td>
@@ -76,7 +76,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">
+                                        <td colspan="9" class="text-center">
                                             No inquiries found.
                                         </td>
                                     </tr>

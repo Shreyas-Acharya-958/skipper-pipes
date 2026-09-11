@@ -745,8 +745,8 @@ class FrontController extends Controller
             'product_id' => ['required', 'exists:products,id'],
             'brochure_type' => ['required', 'in:technical,product'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['nullable', 'email', 'max:255'],
-            'mobile' => ['required', 'string', 'max:10'],
+            'email' => ['nullable', 'email:rfc,dns','regex:/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/', 'max:255'],
+            'mobile' => ['required', 'string', 'max:12'],
             'pincode' => ['required', 'digits:6'],
             'website' => ['nullable', 'max:0'],
         ]);

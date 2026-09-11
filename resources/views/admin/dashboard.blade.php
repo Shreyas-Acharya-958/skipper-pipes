@@ -186,6 +186,12 @@
                         Private Projects <span class="badge bg-secondary">{{ $inquiries['private_project'] ?? 0 }}</span>
                     </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="product-brochure-tab" data-bs-toggle="tab" data-bs-target="#product-brochure"
+                        type="button" role="tab" aria-controls="product-brochure" aria-selected="false">
+                        Product Brohure Inquiries <span class="badge bg-secondary">{{ $inquiries['product_brochure_inq'] ?? 0 }}</span>
+                    </button>
+                </li>
             </ul>
             <div class="tab-content p-3 border border-top-0" id="inquiryTabsContent">
                 <div class="tab-pane fade show active" id="career" role="tabpanel" aria-labelledby="career-tab">
@@ -478,6 +484,61 @@
                                         <button class="btn btn-sm btn-danger delete-inquiry" data-type="private_project"
                                             data-id="{{ $item->id }}">Delete</button>
                                     </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="product-brochure" role="tabpanel" aria-labelledby="product-brochure-tab">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5>Private Project Enquiries</h5>
+                        <a href="{{ route('admin.dashboard.export.product-brochure') }}" class="btn btn-success btn-sm">
+                            <i class="fas fa-download"></i> Export Excel
+                        </a>
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                    <th>ID</th>
+                                    <th>Product</th>
+                                    <th>Brochure Type</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Pincode</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (\App\Models\ProductInquiry::latest()->take(20)->get() as $inquiry)
+                                <tr>
+                                    <td>{{ $inquiry->id }}</td>
+                                        <td>{{ $inquiry->product->title }}</td>
+                                        <td>{{ ucwords($inquiry->brochure_type) }}</td>
+                                        <td>{{ $inquiry->name }}</td>
+                                        <td>{{ $inquiry->email ?? '-' }}</td>
+                                        <td>{{ $inquiry->mobile }}</td>
+                                        <td>{{ $inquiry->pincode }}</td>
+                                        <td>{{ $inquiry->created_at?->format('d/m/Y H:i') }}</td>
+                                    <td>
+                                            <form
+        action="{{ route('admin.products.inquiries.destroy', $inquiry) }}"
+        method="POST"
+        class="d-inline"
+        onsubmit="return confirm('Are you sure you want to delete this inquiry?')"
+    >
+        @csrf
+        @method('DELETE')
+
+        <button
+            type="submit"
+            class="btn btn-link p-0"
+            title="Delete"
+        >
+            <i class="fas fa-trash text-danger" style="font-size: 1.2rem;"></i>
+        </button>
+    </form></td>
                                 </tr>
                             @endforeach
                         </tbody>
