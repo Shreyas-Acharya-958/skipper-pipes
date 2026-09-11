@@ -13,7 +13,8 @@ class ProductInquiryController extends Controller
         $query = ProductInquiry::query();
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where('title', 'like', "%{$search}%");
+            $query->where('name', 'like', "%{$search}%");
+            $query->orWhere('email', 'like', "%{$search}%");
         }
         $inquiries = $query->paginate(10); // 10 per page, change as needed
         return view('admin.inquiries.index', compact('inquiries'));
