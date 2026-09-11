@@ -344,11 +344,11 @@
         @endif
     </a> --}}
     <a class="btn btn-light effect btn-md js-download-brochure" target="_blank" data-product-id="{{ $product->id }}"
-        data-brochure-type="Product" data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"> Product Brochure <br /><span>Download</span>
+        data-brochure-type="Product" data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"> Product Brochure <br /><span>Download</span>
     </a>
     @if($product->technical_brochure)
         <a class="btn btn-light technical-btn effect btn-md js-download-brochure" target="_blank" data-product-id="{{ $product->id }}"
-        data-brochure-type="Technical" data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup">
+        data-brochure-type="Technical" data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup">
             Technical Brochure <br /><span>Download</span>
         </a>
     {{-- <a class="btn btn-light technical-btn effect btn-md js-download-brochure"
