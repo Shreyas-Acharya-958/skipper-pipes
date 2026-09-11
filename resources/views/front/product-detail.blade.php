@@ -153,10 +153,8 @@
                     <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                         target="_blank"
                         href="{{ asset('storage/' . $product->technical_brochure) }}"
-                        data-file-name="{{ $product->technical_brochure }}"
-                        data-file-extension="{{ pathinfo($product->technical_brochure, PATHINFO_EXTENSION) }}"
-                        data-text="Download Technical Brochure"
-                        download>
+                        data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
+                        >
                         Download Technical Brochure
                     </a>
                 </div>
@@ -223,12 +221,7 @@
                             <a class="btn btn-light effect btn-md js-download-brochure"
                                 target="_blank"
                                 href="{{ asset('storage/' . $product->brochure) }}"
-                                data-file-name="{{ $fileName }}"
-                                data-file-extension="{{ $fileExtension }}"
-                                data-text="{{ 
-                                 empty(!$product->technical_brochure) ? "Download Product Brochure" : "Download Brochure";  
-                                }}"
-                                download>
+                                data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"d>
                                 @if($product->technical_brochure)
                                 Download Product Brochure
                                 @else 
@@ -239,10 +232,8 @@
                             <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                                 target="_blank"
                                 href="{{ asset('storage/' . $product->technical_brochure) }}"
-                                data-file-name="{{ $product->technical_brochure }}"
-                                data-file-extension="{{ pathinfo($product->technical_brochure, PATHINFO_EXTENSION) }}"
-                                data-text="Download Technical Brochure"
-                                download>
+                                data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
+                                >
                                 Download Technical Brochure
                             </a>
                             @endif
@@ -319,14 +310,9 @@
                             $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
                         @endphp
                          <a class="btn btn-light effect btn-md js-download-brochure"
-                            target="_blank"
-                            href="{{ asset('storage/' . $product->brochure) }}"
-                            data-file-name="{{ $fileName }}"
-                            data-file-extension="{{ $fileExtension }}"
-                            data-text="{{ 
-                                        empty(!$product->technical_brochure) ? "Download Product Brochure" : "Download Brochure";  
-                                    }}"
-                            download>
+                            href="#"
+                            data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
+                            >
                              @if($product->technical_brochure)
                             Download Product Brochure
                             @else 
@@ -359,7 +345,7 @@
     </a> --}}
     <a class="btn btn-light effect btn-md js-download-brochure" target="_blank" data-product-id="{{ $product->id }}"
         data-brochure-type="Product" data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"> Product Brochure <br /><span>Download</span>
-        </a>
+    </a>
     @if($product->technical_brochure)
         <a class="btn btn-light technical-btn effect btn-md js-download-brochure" target="_blank" data-product-id="{{ $product->id }}"
         data-brochure-type="Technical" data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup">
@@ -386,9 +372,7 @@ $(document).on('click', '.js-download-brochure', function (e) {
     const brochureType = $(this).data('brochure-type').toLowerCase();
     history.pushState(null,'',window.location.pathname + '#opened-form-for-' + brochureType + '-brochure');
     $('#inquiry_product_id').val(productId);
-    $('#inquiry_brochure_type').val(brochureType);
-
-    
+    $('#inquiry_brochure_type').val(brochureType);  
     $('#brochureFormSection').show();
     $('#brochureFormSection .typeofbrchure').text(brochureType);
     $('#brochureThankYouSection').hide();
