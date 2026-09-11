@@ -152,6 +152,7 @@
                 <div class="justify-content-center d-flex mt-3">
                     <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                         target="_blank"
+                        data-brochure-type="Technical"
                         href="{{ asset('storage/' . $product->technical_brochure) }}"
                         data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                         >
@@ -220,6 +221,7 @@
                         <h2 class="text-white mb-4">Everything You Need to Know!</h2>
                             <a class="btn btn-light effect btn-md js-download-brochure"
                                 target="_blank"
+                                data-brochure-type="Product"
                                 href="{{ asset('storage/' . $product->brochure) }}"
                                 data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"d>
                                 @if($product->technical_brochure)
@@ -231,6 +233,7 @@
                             @if($product->technical_brochure)
                             <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                                 target="_blank"
+                                data-brochure-type="Technical"
                                 href="{{ asset('storage/' . $product->technical_brochure) }}"
                                 data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                                 >
@@ -311,6 +314,7 @@
                         @endphp
                          <a class="btn btn-light effect btn-md js-download-brochure"
                             href="#"
+                            data-brochure-type="Product"
                             data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                             >
                              @if($product->technical_brochure)
