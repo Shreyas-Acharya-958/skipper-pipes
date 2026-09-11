@@ -153,7 +153,7 @@
                     <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                         target="_blank"
                         href="{{ asset('storage/' . $product->technical_brochure) }}"
-                        data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
+                        data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                         >
                         Download Technical Brochure
                     </a>
@@ -221,7 +221,7 @@
                             <a class="btn btn-light effect btn-md js-download-brochure"
                                 target="_blank"
                                 href="{{ asset('storage/' . $product->brochure) }}"
-                                data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"d>
+                                data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"d>
                                 @if($product->technical_brochure)
                                 Download Product Brochure
                                 @else 
@@ -232,7 +232,7 @@
                             <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                                 target="_blank"
                                 href="{{ asset('storage/' . $product->technical_brochure) }}"
-                                data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
+                                data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                                 >
                                 Download Technical Brochure
                             </a>
