@@ -746,7 +746,7 @@ class FrontController extends Controller
             'brochure_type' => ['required', 'in:technical,product'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['nullable', 'email:rfc,dns','regex:/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/', 'max:255'],
-            'mobile' => ['required', 'string', 'max:12'],
+            'mobile' => ['required', 'string', 'max:12','regex:/^[6-9][0-9]*$/'],
             'pincode' => ['required', 'digits:6'],
             'website' => ['nullable', 'max:0'],
         ]);

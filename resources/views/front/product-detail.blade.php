@@ -395,6 +395,7 @@ $(document).on('click', '.js-download-brochure', function (e) {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/additional-methods.min.js"></script>
 <script>
 $.validator.addMethod("pattern", function(value, element, pattern) {
     return this.optional(element) || pattern.test(value);
@@ -404,8 +405,8 @@ $('#productBrochureForm').validate({
         product_id: { required: true},
         brochure_type: { required: true},
         name: { required: true},
-        email: { required: false,email: true, pattern: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/ },
-        phone: { required: true, digits: true, pattern: /^[6-9][0-9]*$/, minlength: 10, maxlength: 12},
+        email: { required: false,email: true, pattern: '/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/' },
+        mobile: { required: true, digits: true, pattern: '/^[6-9][0-9]*$/', minlength: 10, maxlength: 12},
         pincode: { required: true, digits: true, minlength: 6, maxlength: 6}
     },
     submitHandler: function (form) {
