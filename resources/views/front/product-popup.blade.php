@@ -23,7 +23,7 @@
                 </div>
                 <div id="brochureThankYouSection" style="display: none;">
                     <h3>Thank You!</h3>
-                    <p> Thank you for filling the form. Here is the Product Brochure link to download. </p>
+                    <p> Thank you for filling the form. Here is the Brochure link to download. </p>
                     <div class="text-center">
                         <a class="btn effect btn-md brochure-download-btn"
                             href="#"
