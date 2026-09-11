@@ -406,7 +406,7 @@ $('#productBrochureForm').validate({
         brochure_type: { required: true},
         name: { required: true},
         email: { required: false,email: true, pattern: "/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/" },
-        mobile: { required: true, digits: true, pattern: '/^[6-9][0-9]*$/', minlength: 10, maxlength: 12},
+        mobile: { required: true, digits: true, pattern: "^[6-9][0-9]*$", minlength: 10, maxlength: 12},
         pincode: { required: true, digits: true, minlength: 6, maxlength: 6}
     },
     submitHandler: function (form) {
