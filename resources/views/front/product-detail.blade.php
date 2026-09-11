@@ -369,10 +369,10 @@
 $(document).on('click', '.js-download-brochure', function (e) {
     e.preventDefault();
     const productId = $(this).data('product-id');
-    const brochureType = $(this).data('brochure-type').toLowerCase();
+    const brochureType = $(this).data('brochure-type');
     history.pushState(null,'',window.location.pathname + '#opened-form-for-' + brochureType + '-brochure');
     $('#inquiry_product_id').val(productId);
-    $('#inquiry_brochure_type').val(brochureType);  
+    $('#inquiry_brochure_type').val(brochureType.toLowerCase());  
     $('#brochureFormSection').show();
     $('#brochureFormSection .typeofbrchure').text(brochureType);
     $('#brochureThankYouSection').hide();
