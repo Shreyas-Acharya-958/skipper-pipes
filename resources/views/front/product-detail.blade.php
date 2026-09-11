@@ -1,5 +1,7 @@
 @extends('front.layouts.app')
-
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/products.css') }}">
+@endsection
 @section('content')
     <!-- Hero banner-section -->
     <section class="hero-banner2 products-banner">
@@ -7,12 +9,7 @@
             <img src="{{ asset('storage/' . $product->page_image) }}"
                 alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
         </div>
-
-
     </section>
-
-
-    <!-- Breadcrumb  -->
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
@@ -25,10 +22,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    <!-- Product Overview -->
     @if (
         $product->productionOverviewSection &&
             ($product->productionOverviewSection->overview_description ||
@@ -346,9 +340,9 @@
     </section>
     <!-- product cta ends -->
 </div>
-</body>
+
 <div class="sticky-brochure-cta">
-    <a class="btn btn-light effect btn-md js-download-brochure"
+    {{-- <a class="btn btn-light effect btn-md js-download-brochure"
         target="_blank"
         href="{{ asset('storage/' . $product->brochure) }}"
         data-file-name="{{ $product->brochure }}"
@@ -362,9 +356,16 @@
         @else 
         Download Brochure
         @endif
-    </a>
+    </a> --}}
+    <a class="btn btn-light effect btn-md js-download-brochure" target="_blank" data-product-id="{{ $product->id }}"
+        data-brochure-type="Product" data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"> Product Brochure <br /><span>Download</span>
+        </a>
     @if($product->technical_brochure)
-    <a class="btn btn-light technical-btn effect btn-md js-download-brochure"
+        <a class="btn btn-light technical-btn effect btn-md js-download-brochure" target="_blank" data-product-id="{{ $product->id }}"
+        data-brochure-type="Technical" data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup">
+            Technical Brochure <br /><span>Download</span>
+        </a>
+    {{-- <a class="btn btn-light technical-btn effect btn-md js-download-brochure"
         target="_blank"
         href="{{ asset('storage/' . $product->technical_brochure) }}"
         data-file-name="{{ $product->technical_brochure }}"
@@ -372,7 +373,73 @@
         data-text="Technical Brochure Download"
         download>
         Technical Brochure <br /><span>Download</span>
-    </a>
+    </a> --}}
     @endif
+    </div>
 </div>
 @endsection
+@section('scripts')
+<script>
+$(document).on('click', '.js-download-brochure', function (e) {
+    e.preventDefault();
+    const productId = $(this).data('product-id');
+    const brochureType = $(this).data('brochure-type').toLowerCase();
+    history.pushState(null,'',window.location.pathname + '#opened-form-for-' + brochureType + '-brochure');
+    $('#inquiry_product_id').val(productId);
+    $('#inquiry_brochure_type').val(brochureType);
+    $('#brochureFormSection').show();
+    $('#brochureThankYouSection').hide();
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
+<script>
+    $('#productBrochureForm').validate({
+    rules: {
+        product_id: { required: true},
+        brochure_type: { required: true},
+        name: { required: true},
+        email: { required: true,email: true},
+        phone: { required: true, digits: true,minlength: 10, maxlength: 10},
+        pincode: { required: true, digits: true, minlength: 6, maxlength: 6}
+    },
+    submitHandler: function (form) {
+        const $form = $(form);
+        const $button = $form.find('[type="submit"]');
+        $button.prop('disabled', true);
+        $.ajax({
+            url: $form.attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            data: $form.serialize(),
+            success: function (response) {
+                history.pushState( null,'', window.location.pathname + '#form-submitted');
+                $form[0].reset();
+                $form.validate().resetForm();
+                $form.find('.is-invalid').removeClass('is-invalid');
+                $('#brochureFormSection').hide();
+                $('#brochureThankYouSection').show();
+                $('.brochure-download-btn')
+                    .attr('href', response.file_url)
+                    .attr('data-file-name', response.file_name)
+                    .attr('download', '');
+                $('.brochure-download-btn').text('Download '+response.brochure+' Brochure')                
+            },
+            error: function (xhr) {
+                if (xhr.status === 422 && xhr.responseJSON.errors) {
+                    $.each(xhr.responseJSON.errors, function (field, messages) {
+                        const input = $form.find('[name="' + field + '"]');
+                        input.addClass('error');
+                        input.after(
+                            '<label class="error">' + messages[0] + '</label>'
+                        );
+                    });
+                }
+            },
+            complete: function () { $button.prop('disabled', false);}
+        });
+        return false;
+    }
+});
+</script>
+@endsection
+@include('front/product-popup')

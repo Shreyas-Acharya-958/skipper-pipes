@@ -76,6 +76,7 @@ use App\Models\WhySkipperPipeSectionFive;
 use App\Models\WhySkipperPipeSectionFour;
 use App\Models\WhySkipperPipeSectionThree;
 use App\Models\WhySkipperPipeSectionTwo;
+use App\Models\ProductInquiry;
 
 class FrontController extends Controller
 {
@@ -736,5 +737,34 @@ class FrontController extends Controller
     public function privateProjectsThankyou()
     {
         return view('front.private-projects-thankyou');
+    }
+
+    public function storeProductInquiry(Request $request)
+    {
+        $validated = $request->validate([
+            'product_id' => ['required', 'exists:products,id'],
+            'brochure_type' => ['required', 'in:technical,product'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'mobile' => ['required', 'string', 'max:10'],
+            'pincode' => ['required', 'digits:6'],
+            'website' => ['nullable', 'max:0'],
+        ]);
+        $basicDetails = [
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'device_type' => $request->header('Sec-CH-UA-Mobile'),
+            'platform' => $request->header('Sec-CH-UA-Platform')
+        ];
+        ProductInquiry::create($validated+$basicDetails);
+
+        $product = Product::find($request->product_id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Inquiry submitted successfully.',
+            'brochure' => $request->brochure_type,
+            'file_url' => $request->brochure_type == 'Technical' ?  asset('storage/' .$product->technical_brochure) :  asset('storage/' .$product->brochure),
+            'file_name' => $request->brochure_type == 'Technical' ?  $product->technical_brochure :  $product->brochure 
+        ]);
     }
 }

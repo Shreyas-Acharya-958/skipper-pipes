@@ -138,7 +138,7 @@
                                                         @endif
                                                         <input type="file" class="form-control application-image-input"
                                                             name="applications[{{ $index }}][image_file]"
-                                                            accept="image/*,.svg" readonly>
+                                                            accept=".jpg,.jpeg,.png,.svg,image/jpeg,image/png,image/svg+xml" readonly>
                                                         <input type="hidden"
                                                             name="applications[{{ $index }}][image_base64]"
                                                             class="image-base64-input">
@@ -156,7 +156,7 @@
                                                         @endif
                                                         <input type="file" class="form-control application-icon-input"
                                                             name="applications[{{ $index }}][icon_file]"
-                                                            accept="image/*,.svg">
+                                                            accept=".jpg,.jpeg,.png,.webp,.svg,image/jpeg,image/png,image/webp,image/svg+xml">
                                                         <input type="hidden"
                                                             name="applications[{{ $index }}][icon_base64]"
                                                             class="icon-base64-input">

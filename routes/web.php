@@ -30,7 +30,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\ContactUsSectionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\SectionController;
-
+use App\Http\Controllers\ProductInquiryController;
 
 // 301 Redirects
 Route::permanentRedirect('/plumbing-is-an-import', '/blogs/a-useful-guide-on-plumbing-pipe-size-calculation');
@@ -156,6 +156,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('company', CompanyController::class)->names('company');
 
     // Product routes
+    Route::get('products-inquiries', [ProductInquiryController::class,'index'])->name('products_inquiries.index');
+    Route::delete('products-inquiries/{inquiry}',[ProductInquiryController::class, 'destroy'])->name('products.inquiries.destroy');
     Route::resource('products', ProductController::class)->names('products');
     Route::get('products-section/{product}', [ProductController::class, 'sections'])->name('products.sections');
     Route::post('products-section/{product}/overview', [ProductController::class, 'saveOverview'])->name('products.sections.overview.save');
@@ -521,6 +523,7 @@ Route::name('front.')->group(function () {
     Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeBlogComment'])->name('blogs.comment');
     Route::get('/partner/{slug}', [FrontController::class, 'partner'])->name('partner.show');
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
+    Route::post('/products/{slug}/save-inquiry-brochure', [FrontController::class, 'storeProductInquiry'])->name('products.save-inquiry-brochure')->middleware('throttle:10,1');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');
     Route::post('/partner-enquiry', [FrontController::class, 'storePartnerEnquiry'])->name('partner.enquiry');
     Route::get('/dealer-thankyou', [FrontController::class, 'dealerThankyou'])->name('dealer.thankyou');

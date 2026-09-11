@@ -36,11 +36,9 @@
             font-weight: bold;
             padding: 10px 15px;
         }
-
         .nav.nav-tabs .nav-link:hover {
             background-color: transparent !important;
         }
-
         .btn-group .fa-eye {
             display: none;
         }
@@ -134,8 +132,12 @@
                                 Product Module
                             </span>
                         </div>
-                        <div class="collapse {{ request()->routeIs('admin.products.*', 'admin.product_categories.*') ? 'show' : '' }}"
+                        <div class="collapse {{ request()->routeIs('admin.products.*','admin.products_inquiries.index','admin.product_categories.*') ? 'show' : '' }}"
                             id="productModule">
+                            <a class="nav-link{{ request()->routeIs('admin.products_inquiries.*') ? ' active' : '' }}"
+                                href="{{ route('admin.products_inquiries.index') }}">
+                                <i class="fas fa-box"></i> <span class="nav-text">Brochure Inquiries</span>
+                            </a>
                             <a class="nav-link{{ request()->routeIs('admin.products.*') ? ' active' : '' }}"
                                 href="{{ route('admin.products.index') }}">
                                 <i class="fas fa-box"></i> <span class="nav-text">Products</span>
@@ -144,6 +146,7 @@
                                 href="{{ route('admin.product_categories.index') }}">
                                 <i class="fas fa-tags"></i> <span class="nav-text">Product Categories</span>
                             </a>
+                            
                         </div>
                     </div>
                 @endif

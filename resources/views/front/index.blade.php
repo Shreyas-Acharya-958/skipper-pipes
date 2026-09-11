@@ -234,9 +234,11 @@
                                                                     @if ($product->home_image)
                                                                     @php
                                                                     $url =  Storage::disk('public')->path($product->home_image);
-                                                                    [$width, $height] = getimagesize($url);
+                                                                    if ($product->home_image && Storage::disk('public')->exists($product->home_image)) {
+                                                                        [$width, $height] = getimagesize($url);
+                                                                    }
                                                                     @endphp 
-                                                                        <img src="{{ asset('storage/' . $product->home_image) }}" loading="lazy" width="{{ $width }}" height="{{$height}}" alt="{{ image_alt_text('storage/' . $product->home_image, $product->title) }}">
+                                                                        <img src="{{ asset('storage/' . $product->home_image) }}" loading="lazy" width="{{ $width ?? '' }}" height="{{$height ?? ''}}" alt="{{ image_alt_text('storage/' . $product->home_image, $product->title) }}">
                                                                     @else
                                                                         <img src="{{ asset('assets/img/final/project1.jpg') }}" loading="lazy" 
                                                                             alt="{{ image_alt_text('assets/img/final/project1.jpg', $product->title) }}">
@@ -399,10 +401,12 @@
                             <div class="item">
                                 <div class="thumb">
                                     <a href="{{ route('front.blogs.show', $blog->slug) }}" aria-label="Read more {{ $blog->title }}">
-                                        @if ($blog->page_image)
+                                        @if ($blog->image_1)
                                         @php
                                         $url =  Storage::disk('public')->path( $blog->image_1);
-                                        [$width, $height] = getimagesize($url);
+                                        if ($blog->image_1 && Storage::disk('public')->exists($blog->image_1)) {
+                                            [$width, $height] = getimagesize($url);
+                                        }
                                         @endphp 
                                             <img src="{{ asset('storage/' . $blog->image_1) }}"  loading="lazy" 
                                                 alt="{{ image_alt_text('storage/' . $blog->image_1, $blog->title) }}" width="{{ $width ?? '' }}" height="165">

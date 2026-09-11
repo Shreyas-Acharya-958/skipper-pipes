@@ -26,3 +26,5 @@ Thumbs.db
 phpmyadmin/
 /phpmyadmin
 phpmyadmin
+frontend
+frontend/*
