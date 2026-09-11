@@ -491,7 +491,7 @@
                 </div>
                 <div class="tab-pane fade" id="product-brochure" role="tabpanel" aria-labelledby="product-brochure-tab">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5>Product Brochure</h5>
+                        <h5>Brochure Inquiries</h5>
                         <a href="{{ route('admin.dashboard.export.product-brochure') }}" class="btn btn-success btn-sm">
                             <i class="fas fa-download"></i> Export Excel
                         </a>
