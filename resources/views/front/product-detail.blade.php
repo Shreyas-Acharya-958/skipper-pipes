@@ -400,12 +400,19 @@ $(document).on('click', '.js-download-brochure', function (e) {
 $.validator.addMethod("pattern", function(value, element, param) {
     return this.optional(element) || new RegExp(param).test(value);
 }, "Please enter a valid format.");
+$.validator.addMethod("validEmail", function(value, element) {
+    return this.optional(element) || /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value);
+}, "Please enter a valid email address.");
+$.validator.addMethod("alphaOnly", function(value, element) {
+    return this.optional(element) || /^[A-Za-z]+(?: [A-Za-z]+)*$/.test(value);
+}, "Please enter letters only.");
+
 $('#productBrochureForm').validate({
     rules: {
         product_id: { required: true},
         brochure_type: { required: true},
-        name: { required: true},
-        email: { required: false,email: true, pattern: "/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/" },
+        name: { required: true,     alphaOnly: true},
+        email: { required: false,email: true, validEmail:true },
         mobile: { required: true, digits: true, pattern: "^[6-9][0-9]*$", minlength: 10, maxlength: 12},
         pincode: { required: true, digits: true, minlength: 6, maxlength: 6}
     },
