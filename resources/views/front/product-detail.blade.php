@@ -427,8 +427,6 @@ $('#productBrochureForm').validate({
                     .attr('href', response.file_url)
                     .attr('data-file-name', response.file_name)
                     .attr('download', '');
-                isTech = response.brochure == 'Technical' ? 'tech':'prod';
-
                 $('.brochure-download-btn').text('Download '+response.brochure+' Brochure')                
             },
             error: function (xhr) {
