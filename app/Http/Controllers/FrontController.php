@@ -763,8 +763,8 @@ class FrontController extends Controller
             'success' => true,
             'message' => 'Inquiry submitted successfully.',
             'brochure' => $request->brochure_type,
-            'file_url' => $request->brochure_type == 'Technical' ?  asset('storage/' .$product->technical_brochure) :  asset('storage/' .$product->brochure),
-            'file_name' => $request->brochure_type == 'Technical' ?  $product->technical_brochure :  $product->brochure 
+            'file_url' => strtolower($request->brochure_type) == 'technical' ?  asset('storage/' .$product->technical_brochure) :  asset('storage/' .$product->brochure),
+            'file_name' => strtolower($request->brochure_type) == 'technical' ?  $product->technical_brochure :  $product->brochure 
         ]);
     }
 }
