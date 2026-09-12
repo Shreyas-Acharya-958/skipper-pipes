@@ -374,7 +374,8 @@ $(document).on('click', '.js-download-brochure', function (e) {
     e.preventDefault();
     const productId = $(this).data('product-id');
     const brochureType = $(this).data('brochure-type');
-    history.pushState(null,'',window.location.pathname + '#opened-form-for-' + brochureType + '-brochure');
+    const isTech = brochureType == 'Technical' ? 'tech':'prod';
+    history.pushState(null,'',window.location.pathname + '?'+ isTech +'-brochure');
     $('#inquiry_product_id').val(productId);
     $('#inquiry_brochure_type').val(brochureType.toLowerCase());  
     $('#brochureFormSection').show();
@@ -414,7 +415,9 @@ $('#productBrochureForm').validate({
             dataType: 'json',
             data: $form.serialize(),
             success: function (response) {
-                history.pushState( null,'', window.location.pathname + '#form-submitted');
+                const isTech = response.brochure == 'Technical' ? 'tech':'prod';
+                
+                history.pushState( null,'', window.location.pathname + '?'+isTech+'-brochure-submit');
                 $form[0].reset();
                 $form.validate().resetForm();
                 $form.find('.is-invalid').removeClass('is-invalid');
@@ -424,6 +427,8 @@ $('#productBrochureForm').validate({
                     .attr('href', response.file_url)
                     .attr('data-file-name', response.file_name)
                     .attr('download', '');
+                isTech = brochureType == 'Technical' ? 'tech':'prod';
+
                 $('.brochure-download-btn').text('Download '+response.brochure+' Brochure')                
             },
             error: function (xhr) {
