@@ -366,6 +366,7 @@
     @endif
     </div>
 </div>
+@include('front/product-popup')
 @endsection
 @section('scripts')
 <script>
@@ -446,4 +447,3 @@ $('#productBrochureForm').validate({
 });
 </script>
 @endsection
-@include('front/product-popup')
