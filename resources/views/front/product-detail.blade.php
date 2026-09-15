@@ -140,7 +140,6 @@
                         <div class="site-heading text-center">
                             <p>{{ $product->title }}</p>
                             <h2>Product Technical</h2>
-
                         </div>
                     </div>
                 </div>
@@ -153,7 +152,7 @@
                     <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                         target="_blank"
                         data-brochure-type="Technical"
-                        href="{{ asset('storage/' . $product->technical_brochure) }}"
+                        href="#"
                         data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                         >
                         Download Technical Brochure
@@ -222,7 +221,7 @@
                             <a class="btn btn-light effect btn-md js-download-brochure"
                                 target="_blank"
                                 data-brochure-type="Product"
-                                href="{{ asset('storage/' . $product->brochure) }}"
+                                href="#"
                                 data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"d>
                                 @if($product->technical_brochure)
                                 Download Product Brochure
@@ -234,7 +233,7 @@
                             <a class="btn btn-light effect ml-5 btn-md js-download-brochure"
                                 target="_blank"
                                 data-brochure-type="Technical"
-                                href="{{ asset('storage/' . $product->technical_brochure) }}"
+                                href="#"
                                 data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                                 >
                                 Download Technical Brochure
@@ -388,7 +387,7 @@ $(document).on('click', '.js-download-brochure', function (e) {
 <script>
 $.validator.addMethod("pattern", function(value, element, param) {
     return this.optional(element) || new RegExp(param).test(value);
-}, "Please enter a valid format.");
+}, "Please enter a valid mobile number.");
 $.validator.addMethod("validEmail", function(value, element) {
     return this.optional(element) || /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value);
 }, "Please enter a valid email address.");

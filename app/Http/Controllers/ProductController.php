@@ -306,6 +306,7 @@ class ProductController extends Controller
             'applications.*.image_base64' => 'nullable|string',
             'applications.*.icon_base64' => 'nullable|string',
         ]);
+        // dd($request);
 
         // Start transaction
         DB::beginTransaction();
@@ -365,8 +366,7 @@ class ProductController extends Controller
                             $imageData = base64_decode($imageData);
 
                             // Generate unique filename
-                            $filename = 'application_' . time() . '_' . uniqid() .$extension;
-
+                            $filename = 'application_' . time() . '_' . uniqid() .'.'.$extension;
                             // Store the file
                             Storage::disk('public')->put('products/applications/' . $filename, $imageData);
 
@@ -402,7 +402,7 @@ class ProductController extends Controller
                             $iconData = base64_decode($iconData);
 
                             // Generate unique filename
-                            $filename = 'application_icon_' . time() . '_' . uniqid() . $extension;
+                            $filename = 'application_icon_' . time() . '_' . uniqid() .'.'. $extension;
 
                             // Store the file
                             Storage::disk('public')->put('products/applications/icons/' . $filename, $iconData);
