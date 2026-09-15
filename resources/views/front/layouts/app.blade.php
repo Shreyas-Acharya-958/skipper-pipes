@@ -124,7 +124,7 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="side-menu" aria-label="Mobile Navigation Menu">
-                            <a href="#">
+                            <a href="#" aria-label="Open menu">
                                 <span class="bar-1"></span>
                                 <span class="bar-2"></span>
                                 <span class="bar-3"></span>
