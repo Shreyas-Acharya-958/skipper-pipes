@@ -415,7 +415,7 @@ $('#productBrochureForm').validate({
             dataType: 'json',
             data: $form.serialize(),
             success: function (response) {
-                const isTech = response.brochure == 'Technical' ? 'tech':'prod';
+                const isTech = response.brochure == 'technical' ? 'tech':'prod';
                 
                 history.pushState( null,'', window.location.pathname + '?'+isTech+'-brochure-submit');
                 $form[0].reset();
