@@ -153,6 +153,7 @@
                         target="_blank"
                         data-brochure-type="Technical"
                         href="#"
+                        data-product-id="{{ $product->id }}"
                         data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                         >
                         Download Technical Brochure
@@ -222,6 +223,7 @@
                                 target="_blank"
                                 data-brochure-type="Product"
                                 href="#"
+                                data-product-id="{{ $product->id }}"
                                 data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"d>
                                 @if($product->technical_brochure)
                                 Download Product Brochure
@@ -234,6 +236,7 @@
                                 target="_blank"
                                 data-brochure-type="Technical"
                                 href="#"
+                                data-product-id="{{ $product->id }}"
                                 data-file-extension="{{ $fileExtension ?? '' }}" data-text="Download Brochure" data-toggle="modal" data-target="#productBrochurePopup"
                                 >
                                 Download Technical Brochure
