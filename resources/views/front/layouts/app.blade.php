@@ -223,7 +223,7 @@
 
             <!-- Start Side Menu -->
             <div class="side">
-                <a href="#" class="close-side"><i class="fas fa-times"></i></a>
+                <a href="#" class="close-side" aria-label="Close menu"><i class="fas fa-times"></i></a>
                 <div class="widget">
                     <img src="{{ asset('assets/img/final/Logo-HR (1).png') }}" alt="{{ image_alt_text('assets/img/final/Logo-HR (1).png', 'Logo') }}">
                     <p>Trusted piping solutions engineered for strength, hygiene, and long-term durability across infrastructure, agriculture, industrial, and residential applications.</p>
