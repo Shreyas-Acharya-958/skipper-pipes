@@ -363,7 +363,7 @@
             <div class="container">
                 <div class="trusted-one__inner" data-aos="fade-up" data-aos-duration="1000">
                     <div class="trusted-one__video-link">
-                        <a href="{{ $sectionThree->video_link }}" class="video-popup">
+                        <a href="{{ $sectionThree->video_link }}" aria-label="Watch our video on YouTube" class="video-popup">
                             <div class="trusted-one__video-icon">
                                 <span class="fa fa-play"></span>
                                 <i class="ripple"></i>
