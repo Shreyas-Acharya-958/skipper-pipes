@@ -288,13 +288,26 @@ class ProductController extends Controller
                     // Check if it's a base64 image
                     if (strpos($imageData, ';base64,') !== false) {
                         // Extract the actual base64 string
-                        list(, $imageData) = explode(';base64,', $imageData);
+                        list($meta, $imageData) = explode(';base64,', $imageData);
 
                         // Decode base64 data
                         $imageData = base64_decode($imageData);
+                        // Get MIME type from Base64 header
+                        $mimeType = str_replace('data:', '', $meta);
+
+                        // Convert MIME type to extension
+                        $extension = match ($mimeType) {
+                            'image/jpeg' => 'jpg',
+                            'image/png'  => 'png',
+                            'image/webp' => 'webp',
+                            'image/svg+xml' => 'svg',
+                            'image/gif'  => 'gif',
+                            default => 'png',
+                        };
 
                         // Generate unique filename
-                        $filename = 'overview_' . time() . '_' . uniqid() . '.png';
+                        $filename = 'overview_' . time() . '_' . uniqid() . '.'.$extension;
+
 
                         // Store the file
                         Storage::disk('public')->put('products/overview/' . $filename, $imageData);
@@ -480,13 +493,25 @@ class ProductController extends Controller
 
                         // Extract the actual base64 string
                         if (strpos($featureData['image_base64'], ';base64,') !== false) {
-                            list(, $imageData) = explode(';base64,', $featureData['image_base64']);
+                            list($meta, $imageData) = explode(';base64,', $featureData['image_base64']);
 
                             // Decode base64 data
                             $imageData = base64_decode($imageData);
+                            // Get MIME type from Base64 header
+                            $mimeType = str_replace('data:', '', $meta);
+
+                            // Convert MIME type to extension
+                            $extension = match ($mimeType) {
+                                'image/jpeg' => 'jpg',
+                                'image/png'  => 'png',
+                                'image/webp' => 'webp',
+                                'image/svg+xml' => 'svg',
+                                'image/gif'  => 'gif',
+                                default => 'png',
+                            };
 
                             // Generate unique filename
-                            $filename = 'feature_' . time() . '_' . uniqid() . '.png';
+                            $filename = 'feature_' . time() . '_' . uniqid() . '.'.$extension;
 
                             // Store the file
                             Storage::disk('public')->put('products/features/' . $filename, $imageData);
@@ -505,13 +530,25 @@ class ProductController extends Controller
 
                         // Extract the actual base64 string
                         if (strpos($featureData['icon_base64'], ';base64,') !== false) {
-                            list(, $iconData) = explode(';base64,', $featureData['icon_base64']);
+                            list($meta, $iconData) = explode(';base64,', $featureData['icon_base64']);
 
                             // Decode base64 data
                             $iconData = base64_decode($iconData);
 
+                            // Get MIME type from Base64 header
+                            $mimeType = str_replace('data:', '', $meta);
+
+                            // Convert MIME type to extension
+                            $extension = match ($mimeType) {
+                                'image/jpeg' => 'jpg',
+                                'image/png'  => 'png',
+                                'image/webp' => 'webp',
+                                'image/svg+xml' => 'svg',
+                                'image/gif'  => 'gif',
+                                default => 'png',
+                            };
                             // Generate unique filename
-                            $filename = 'feature_icon_' . time() . '_' . uniqid() . '.svg';
+                            $filename = 'feature_icon_' . time() . '_' . uniqid() . '.'.$extension;
 
                             // Store the file
                             Storage::disk('public')->put('products/features/icons/' . $filename, $iconData);

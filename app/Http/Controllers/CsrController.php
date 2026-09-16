@@ -68,13 +68,25 @@ class CsrController extends Controller
 
                         // Extract the actual base64 string
                         if (strpos($sectionData['icon_base64'], ';base64,') !== false) {
-                            list(, $iconData) = explode(';base64,', $sectionData['icon_base64']);
+                            list($meta, $iconData) = explode(';base64,', $sectionData['icon_base64']);
 
                             // Decode base64 data
                             $iconData = base64_decode($iconData);
+                            // Get MIME type from Base64 header
+                            $mimeType = str_replace('data:', '', $meta);
+
+                            // Convert MIME type to extension
+                            $extension = match ($mimeType) {
+                                'image/jpeg' => 'jpg',
+                                'image/png'  => 'png',
+                                'image/webp' => 'webp',
+                                'image/svg+xml' => 'svg',
+                                'image/gif'  => 'gif',
+                                default => 'png',
+                            };
 
                             // Generate unique filename
-                            $filename = 'csr-focus-area-icon-' . time() . '_' . uniqid() . '.svg';
+                            $filename = 'csr-focus-area-icon-' . time() . '_' . uniqid() . '.'.$extension;
 
                             // Store the file
                             Storage::disk('public')->put('csr/section2/icons/' . $filename, $iconData);
