@@ -260,7 +260,7 @@
                         <li><a aria-label="Visit Instagram" href="https://www.instagram.com/skipperpipes/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
                         <li><a aria-label="Visit Linkedin" href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
                         <li><a aria-label="Visit Twitter / X" href="https://x.com/skipperpipes" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                        <li><a aria-label="Visit Youtube" href="https://www.youtube.com/@skipperpipes358" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li><a aria-label="Visit Youtube" href="https://www.youtube.com/@skipper-pipes" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
                     </ul>
                 </div>
             </div>

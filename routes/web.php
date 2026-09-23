@@ -97,6 +97,22 @@ Route::permanentRedirect('/blogs/top-reasons-why-indian-households-rely-on-skipp
 Route::permanentRedirect('/home/', '/');
 Route::permanentRedirect('/home', '/');
 Route::permanentRedirect('/different-types-of-pvc-pipes-and-their-applications/', '/blogs/different-types-of-plumbing-pipes-and-their-uses');
+Route::permanentRedirect('/blogs/the-complete-guide-to-underground-drainage-systems', '/blogs/underground-drainage-system-ugd-pipes-guide');
+Route::permanentRedirect('/blogs/the-molecular-truth-about-pipe-longevity-decoding-the-optimum-resin-to-filler-ratio-in-rigid-pvc-systems', '/blogs/pvc-pipe-resin-to-filler-ratio-strength-guide');
+Route::permanentRedirect('/blogs/is-pvc-pipe-safe-for-drinking-water-what-you-need-to-know', '/blogs/is-pvc-pipe-safe-for-drinking-water');
+Route::permanentRedirect('/blogs/understanding-astm-standards-for-pipes-and-fittings-the-essential-guide-for-builders-and-plumbers', '/blogs/astm-standards-for-pipes-and-fittings');
+Route::permanentRedirect('/blogs/plastic-pipes-vs-copper-pipes-which-one-is-better-for-plumbing', '/blogs/copper-pipes-vs-plastic-plumbing-pipe');
+Route::permanentRedirect('/blogs/types-of-water-storage-tanks-a-complete-guide-for-homes-in-india', '/blogs/types-of-water-storage-tanks-for-homes');
+Route::permanentRedirect('/blogs/skipper-flowsafe-transforming-indian-plumbing-with-advanced-temprite-cpvc-technology', '/blogs/skipper-flowsafe-temprite-cpvc-technology');
+Route::permanentRedirect('/products/agriculture-pipes', '/products/agriculture-pipes-for-farming');
+Route::permanentRedirect('/products/ribbed-strainer-pipes', '/products/ribbed-strainer-filter-pipes');
+Route::permanentRedirect('/products/water-storage-tank', '/products/overhead-plastic-water-storage-tank');
+Route::permanentRedirect('/products/bath-fittings', '/products/luxury-bathroom-fittings');
+Route::permanentRedirect('/blogs/why-skipper-hdpe-agriculture-pipes-are-the-best-choice-for-indian-farms-and-infrastructure', '/blogs/best-pipe-for-agriculture-hdpe-and-agri-farming-pipe');
+Route::permanentRedirect('/blogs/a-complete-guide-to-agriculture-pipes-in-india-types-uses-and-benefits', '/blogs/agriculture-irrigration-pipes-india-guide-types-uses-benefits');
+Route::permanentRedirect('/blogs/what-are-swr-pipes-and-how-do-they-work', '/blogs/what-are-swr-pipes-uses-benefits-how-they-work');
+Route::permanentRedirect('/blogs/pvc-connectors-and-fittings-uses-types-and-how-to-install-them', '/blogs/pvc-connectors-fittings-types-installation-guide');
+Route::permanentRedirect('/blogs/buying-guide-for-water-tank-in-india', '/blogs/water-tank-buying-guide-india');
 
 
 // ----------------------------------------------------------------------
