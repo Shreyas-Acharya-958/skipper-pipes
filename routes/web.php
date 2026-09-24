@@ -113,6 +113,36 @@ Route::permanentRedirect('/blogs/a-complete-guide-to-agriculture-pipes-in-india-
 Route::permanentRedirect('/blogs/what-are-swr-pipes-and-how-do-they-work', '/blogs/what-are-swr-pipes-uses-benefits-how-they-work');
 Route::permanentRedirect('/blogs/pvc-connectors-and-fittings-uses-types-and-how-to-install-them', '/blogs/pvc-connectors-fittings-types-installation-guide');
 Route::permanentRedirect('/blogs/buying-guide-for-water-tank-in-india', '/blogs/water-tank-buying-guide-india');
+Route::permanentRedirect('/jal-rakshak-submission', '/jal-rakshak');
+Route::permanentRedirect('/upvc-pipes-and-fittings', '/products/upvc-pipes-and-fittings');
+Route::permanentRedirect('/products/upvc-pipes-and-', '/products/upvc-pipes-and-fittings');
+Route::permanentRedirect('/products/water-storage-', '/products/overhead-plastic-water-storage-tank');
+Route::permanentRedirect('/products/cpvc-pipes-and-fitti', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/products/cpvc-pip', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/products/c', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/products/bath-', '/products/luxury-bathroom-fittings');
+Route::permanentRedirect('/products/w', '/products/overhead-plastic-water-storage-tank');
+Route::permanentRedirect('/products/water-', '/products/overhead-plastic-water-storage-tank');
+Route::permanentRedirect('/knowing-cpvc-pipes-fittings', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/contact/', '/contact-us');
+Route::permanentRedirect('/cp-bathroom-fittings/', '/products/luxury-bathroom-fittings');
+Route::permanentRedirect('/products/column-pi', '/products/column-pipes');
+Route::permanentRedirect('/products/swr-', '/products/swr-pipes-and-fittings');
+Route::permanentRedirect('/products/cpvc-', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/cpvc-pipes-and', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/skipper-pipe-distributor/', '/partner/become-distributor');
+Route::permanentRedirect('/products/cpvc-pipes-and-', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/blogs/what-are-pvc-drain-pipes-detailed-explanation', '/blogs/benefits-of-pvc-drain-pipes-for-modern-homes');
+Route::permanentRedirect('/products/cpvc-pipes-an', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/ptmt-faucets/', '/products/bath-fittings');
+Route::permanentRedirect('/cpvc-pipes-and-fittings/', '/products/cpvc-pipes-and-fittings');
+Route::permanentRedirect('/products/swr-pipes-an', '/products/swr-pipes-and-fittings');
+Route::permanentRedirect('/agriculture-pipes-and-fittings/', '/products/agriculture-pipes-for-farming');
+Route::permanentRedirect('/reasons-why-industry-experts-choose-skipper-pipes-for-large-scale-projects/', '/blogs/safe-piping-solutions-large-scale-projects');
+Route::permanentRedirect('/products/ba', '/products/luxury-bathroom-fittings');
+Route::permanentRedirect('/different-types-of-home-piping-solutions/', '/blogs/home-plumbing-pipes-types-and-how-to-choose-the-right-one');
+Route::permanentRedirect('/casing-pipes/', '/products/casing-pipes');
+
 
 
 // ----------------------------------------------------------------------
