@@ -94,9 +94,7 @@
                                                 <a href="#">
                                                     <i class="fas fa-calendar-alt"></i>
                                                     <span>
-                                                        @if ($blog->published_at)
-                                                            {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }}
-                                                        @endif
+                                                        {{ $blog->display_published_at ? $blog->display_published_at->format('d F, Y') : '' }}
                                                     </span>
                                                 </a>
                                             </li>

@@ -83,7 +83,7 @@
                                             <ul>
                                                 <li>
                                                     <i class="fas fa-calendar-alt"></i>
-                                                    {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }}
+                                                    {{ $blog->display_published_at ? $blog->display_published_at->format('d F, Y') : '' }}
                                                 </li>
                                             </ul>
                                         </div>
@@ -189,7 +189,7 @@
                                             <div class="info">
                                                 <div class="meta-title">
                                                     <span
-                                                        class="post-date">{{ $recentBlog->published_at ? $recentBlog->published_at->format('F d, Y') : '' }}</span>
+                                                        class="post-date">{{ $recentBlog->display_published_at ? $recentBlog->display_published_at->format('F d, Y') : '' }}</span>
                                                 </div>
                                                 <a href="{{ route('front.blogs.show', $recentBlog->slug) }}">
                                                     {{ Str::limit($recentBlog->title, 50) }}

@@ -22,8 +22,8 @@ class BlogController extends Controller
             $query->where('title', 'like', "%{$search}%");
         }
         $blogs = $query->with(['category', 'tags'])
+            ->orderByRaw('COALESCE(published_at, created_at) DESC')
             ->orderBy('sequence')
-            ->orderByDesc('published_at')
             ->paginate(10);
         return view('admin.blogs.index', compact('blogs'));
     }
@@ -54,6 +54,7 @@ class BlogController extends Controller
             'meta_description' =>    'nullable|string',
             'meta_keywords' =>    'nullable|string',
             'published_at' => 'nullable|date',
+            'modified_at' => 'nullable|date',
             'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'image_1' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'image_2' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
@@ -103,8 +104,8 @@ class BlogController extends Controller
                 ]
             ],
 
-            "datePublished" => \Carbon\Carbon::parse($blog->published_at)->toIso8601String(),
-            "dateModified" => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+            "datePublished" => $blog->display_published_at->toIso8601String(),
+            "dateModified" => $blog->display_modified_at->toIso8601String(),
 
             "mainEntityOfPage" => [
                 "@type" => "WebPage",
@@ -150,6 +151,7 @@ class BlogController extends Controller
             'meta_description' =>    'nullable|string',
             'meta_keywords' =>    'nullable|string',
             'published_at' => 'nullable|date',
+            'modified_at' => 'nullable|date',
             'page_image' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'image_1' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
             'image_2' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif|max:2048',
@@ -207,8 +209,8 @@ class BlogController extends Controller
                     ]
                 ],
 
-                "datePublished" => \Carbon\Carbon::parse($blog->published_at)->toIso8601String(),
-                "dateModified" => \Carbon\Carbon::parse($blog->updated_at)->toIso8601String(),
+                "datePublished" => $blog->display_published_at->toIso8601String(),
+                "dateModified" => $blog->display_modified_at->toIso8601String(),
 
                 "mainEntityOfPage" => [
                     "@type" => "WebPage",

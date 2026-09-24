@@ -47,7 +47,12 @@
                                 </tr>
                                 <tr>
                                     <th>Published At:</th>
-                                    <td>{{ $blog->published_at ? $blog->published_at->format('Y-m-d H:i:s') : 'Not Published' }}
+                                    <td>{{ $blog->display_published_at ? $blog->display_published_at->format('Y-m-d H:i:s') : 'N/A' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Modified At:</th>
+                                    <td>{{ $blog->display_modified_at ? $blog->display_modified_at->format('Y-m-d H:i:s') : 'N/A' }}
                                     </td>
                                 </tr>
                                 <tr>

@@ -29,6 +29,7 @@ class Blog extends Model
         'status',
         'sequence',
         'published_at',
+        'modified_at',
         'canonical_url',
         'robots',
         'og_title',
@@ -45,10 +46,21 @@ class Blog extends Model
 
     protected $casts = [
         'published_at' => 'datetime',
+        'modified_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'sequence' => 'integer'
     ];
+
+    public function getDisplayPublishedAtAttribute()
+    {
+        return $this->published_at ?? $this->created_at;
+    }
+
+    public function getDisplayModifiedAtAttribute()
+    {
+        return $this->modified_at ?? $this->updated_at ?? $this->display_published_at;
+    }
 
     public function comments(): HasMany
     {

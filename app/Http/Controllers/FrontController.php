@@ -193,8 +193,8 @@ class FrontController extends Controller
         // Get all blogs without pagination
         $blogs = Blog::where('status', 1)
             ->with('category')
+            ->orderByRaw('COALESCE(published_at, created_at) DESC')
             ->orderBy('sequence')
-            ->orderByDesc('published_at')
             ->get();
 
         $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
@@ -236,7 +236,7 @@ class FrontController extends Controller
 
         $recentBlogs = Blog::where('status', 1)
             ->where('id', '!=', $blog->id)
-            ->latest()
+            ->orderByRaw('COALESCE(published_at, created_at) DESC')
             ->take(5)
             ->get();
 

@@ -39,6 +39,7 @@
                                     <th>Tags</th>
                                     <th>Status</th>
                                     <th>Published At</th>
+                                    <th>Modified At</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -62,7 +63,10 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $blog->published_at ? \Carbon\Carbon::parse($blog->published_at)->format('d-m-Y H:i:s') : 'Not Published' }}
+                                            {{ $blog->display_published_at ? $blog->display_published_at->format('d-m-Y H:i:s') : 'N/A' }}
+                                        </td>
+                                        <td>
+                                            {{ $blog->display_modified_at ? $blog->display_modified_at->format('d-m-Y H:i:s') : 'N/A' }}
                                         </td>
 
                                         <td>

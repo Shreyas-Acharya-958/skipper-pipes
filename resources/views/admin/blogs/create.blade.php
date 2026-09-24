@@ -229,7 +229,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select @error('status') is-invalid @enderror" id="status"
@@ -244,13 +244,24 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label for="published_at" class="form-label">Published At</label>
                                     <input type="text"
                                         class="form-control @error('published_at') is-invalid @enderror"
                                         id="published_at" name="published_at" value="{{ old('published_at') }}">
                                     @error('published_at')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="modified_at" class="form-label">Modified At</label>
+                                    <input type="text"
+                                        class="form-control @error('modified_at') is-invalid @enderror"
+                                        id="modified_at" name="modified_at" value="{{ old('modified_at') }}">
+                                    @error('modified_at')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -342,7 +353,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
-        flatpickr("#published_at", {
+        flatpickr("#published_at, #modified_at", {
             enableTime: true,
             dateFormat: "Y-m-d H:i",
             time_24hr: true

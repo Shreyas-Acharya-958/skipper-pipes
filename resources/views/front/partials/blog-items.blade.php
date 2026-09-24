@@ -7,7 +7,7 @@
             <div class="info">
                 <div class="meta">
                     <ul>
-                        <li> <a href="#" aria-label="Blog Published On"><i class="fas fa-calendar-alt"></i> <span> @if ($blog->published_at) {{ $blog->published_at ? $blog->published_at->format('d F, Y') : '' }} @endif </span></a></li>
+                        <li> <a href="#" aria-label="Blog Published On"><i class="fas fa-calendar-alt"></i> <span> {{ $blog->display_published_at ? $blog->display_published_at->format('d F, Y') : '' }} </span></a></li>
                         @if ($blog->category)
                         <li><a href="#" aria-label="Blog Category"><i class="fas fa-folder"></i><span>{{ $blog->category->name }}</span></a> </li>
                         @endif
