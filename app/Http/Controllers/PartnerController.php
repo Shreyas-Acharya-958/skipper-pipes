@@ -116,7 +116,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'description' => 'required|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
         $images = [];
@@ -161,7 +161,7 @@ class PartnerController extends Controller
         $request->validate([
             'titles.*' => 'required|string|max:255',
             'descriptions.*' => 'required|string',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'nullable|image|mimes:webp,jpeg,png,jpg,gif,svg|max:2048',
             'existing_images.*' => 'nullable|string'
         ]);
 
@@ -210,7 +210,7 @@ class PartnerController extends Controller
     public function savePipesOffers(Request $request, Partner $partner)
     {
         $request->validate([
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'images.*' => 'required|image|mimes:webp,jpeg,png,jpg,gif|max:2048'
         ]);
 
         if ($request->hasFile('images')) {

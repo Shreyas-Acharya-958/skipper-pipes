@@ -10,7 +10,9 @@ if (!function_exists('image_alt_text')) {
      */
     function image_alt_text($imageUrl, $fallback = null)
     {
-        return \App\Models\ImageAltText::getAltText($imageUrl) ?? $fallback;
+        return Cache::rememberForever('image_alt_texts_map', fn () =>
+                \App\Models\ImageAltText::getAltText($imageUrl) ?? $fallback
+            );
     }
 }
 

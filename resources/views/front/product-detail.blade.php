@@ -7,7 +7,7 @@
     <section class="hero-banner2 products-banner">
         <div class="hero-banner2-bg product-banner-bg">
             <img src="{{ asset('storage/' . $product->page_image) }}"
-                alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}">
+                alt="{{ image_alt_text('storage/' . $product->page_image, $product->title) }}" width="1950px" height="auto">
         </div>
     </section>
     <div class="breadcrumb-area">

@@ -226,7 +226,7 @@ class OverviewController extends Controller
     public function saveLeftImage(Request $request)
     {
         $validated = $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
         $leftImage = OverviewLeftImage::first() ?? new OverviewLeftImage();
         if ($request->hasFile('image')) {

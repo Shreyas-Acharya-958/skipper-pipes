@@ -259,7 +259,13 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
         \Log::info('product seo'.json_encode($seoData));
-        $product = Product::where('slug', $slug)->with('productCategory')->firstOrFail();
+        $product = Product::where('slug', $slug)->with([
+            'productCategory',
+            'productionOverviewSection',
+            'productionFeaturesSections',
+            'productionApplicationSections',
+            'productionFaqSections',
+        ])->firstOrFail();
         // $seoData['og_image'] = !empty($seoData['og_image']) ? $seoData['og_image'] : $product->page_image;
         // $seoData['twitter_image'] = !empty($seoData['twitter_image']) ? $seoData['twitter_image']:$product->page_image;
         // $seoData['og_description'] = $seoData['og_description'] ?? $seoData['meta_description'];

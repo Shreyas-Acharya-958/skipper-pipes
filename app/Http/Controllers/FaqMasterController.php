@@ -169,7 +169,7 @@ class FaqMasterController extends Controller
         $validated = $request->validate([
             'title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
         $section = \App\Models\FaqSectionTwo::first() ?? new \App\Models\FaqSectionTwo();
         if ($request->hasFile('image')) {
