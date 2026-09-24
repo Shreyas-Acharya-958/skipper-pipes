@@ -76,9 +76,13 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('brochure')) {
-            $file = $request->file('brochure');
-            $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('products/brochures', $filename, 'public');
+            try {
+                $file = $request->file('brochure');
+                $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();       
+                $path = $file->storeAs('products/brochures', $filename, 'public');
+            } catch(\Exception $e){
+                dd($e);
+            }
             $validated['brochure'] = $path;
         }
         if ($request->hasFile('technical_brochure')) {
@@ -175,24 +179,38 @@ class ProductController extends Controller
                 unset($validated[$field]);
             }
         }
-
+        // dd(1, $request);
         // Handle brochure
-        if ($request->has('remove_brochure') && $request->input('remove_brochure') === '1') {
+        if ($request->hasFile('brochure')) {
+            if ($request->has('remove_brochure') && $request->input('remove_brochure') === '1') {
+                if ($product->brochure) {
+                    Storage::disk('public')->delete($product->brochure);
+                    $validated['brochure'] = null;
+                }
+            } 
+            if ($product->brochure) {
+                Storage::disk('public')->delete($product->brochure);
+            }
+            try {
+                $file = $request->file('brochure');
+                $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();       
+                $path = $file->storeAs('products/brochures', $filename, 'public');
+            } catch(\Exception $e){
+                dd($e);
+            }
+            // $file = $request->file('brochure');
+            // $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();
+            // $path = $file->storeAs('products/brochures', $filename, 'public');
+            $validated['brochure'] = $path;
+        } elseif ($request->has('remove_brochure') && $request->input('remove_brochure') === '1') {
             if ($product->brochure) {
                 Storage::disk('public')->delete($product->brochure);
                 $validated['brochure'] = null;
             }
-        } elseif ($request->hasFile('brochure')) {
-            if ($product->brochure) {
-                Storage::disk('public')->delete($product->brochure);
-            }
-            $file = $request->file('brochure');
-            $filename = Str::slug($request->title) . '-brochure-' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('products/brochures', $filename, 'public');
-            $validated['brochure'] = $path;
         } else {
             unset($validated['brochure']);
         }
+        // dd($validated);
         if ($request->has('remove_tech_brochure') && $request->input('remove_tech_brochure') === '1') {
             if ($product->technical_brochure) {
                 Storage::disk('public')->delete($product->technical_brochure);
@@ -207,7 +225,7 @@ class ProductController extends Controller
             $path = $file->storeAs('products/brochures', $filename, 'public');
             $validated['technical_brochure'] = $path;
         } else {
-            unset($validated['brochure']);
+            unset($validated['technical_brochure']);
         }
 
         $product->update($validated);
