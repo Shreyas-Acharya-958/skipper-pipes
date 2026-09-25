@@ -322,9 +322,9 @@ ul.achivement li .medium { font-weight: 600; text-align: right; }
 .blog-area.full-blog .blog-items .item .blog-h1_heading .meta ul { padding-left: 0; }
 .blog-area.full-blog .blog-items .item .blog-h1_heading .meta ul li { list-style: none; color: #144372; font-weight: 600; }
 .blog-area.full-blog .blog-items .item h2 { font-size: 26px; font-weight: bold; margin-top: 35px; }
-.blog-area.full-blog .blog-items .item h3 { font-size: 20px; font-weight: 600; margin-top: 35px; }
+.blog-area.full-blog .blog-items .item h3 { font-size: 20px; font-weight: 600; margin-top: 25px; margin-bottom: 0 !important; }
 .blog-area.full-blog .blog-items .item p a, .blog-area.full-blog .blog-items .item a { color: #144372; text-decoration: underline; }
-.blog-area.full-blog .blog-items .item .table-responsive-wrapper {width: 100%;  overflow-x: auto;  -webkit-overflow-scrolling: touch;  margin: 20px 0;}
+.blog-area.full-blog .blog-items .item .table-responsive-wrapper {width: 700px;  overflow-x: auto;  -webkit-overflow-scrolling: touch;  margin: 20px 0;}
 .blog-area.full-blog .blog-items .item .comparison-table {width: auto;  min-width: 500px;  border-collapse: collapse;  border: 1px solid #111;}
 .blog-area.full-blog .blog-items .item .comparison-table th, .blog-area.full-blog .blog-items .item .comparison-table td {  border: 1px solid #111;  padding: 10px 15px;  text-align: left;  vertical-align: top;}
 .blog-area.full-blog .blog-items .item .comparison-table th {background-color: #f5f5f5; font-weight: 600 !important;}
@@ -955,6 +955,7 @@ footer .link ul li a:hover { color: var(--secondary-color); }
   .hero-banner2-responsive.products-banner-responsive, .hero-banner2-responsive.single-blog-banner-responsive { display: inline-block; }
   .blog-area.full-blog .blog-items .item .blog-h1_heading h1 { font-size: 26px; }
   .blog-area.full-blog .blog-items .item h2 { font-size: 22px; }
+  .blog-area.full-blog .blog-items .item h3 { font-size:20px; margin-bottom: 0px !important; }
   .blog-area.full-blog .blog-items .item .comparison-table th, .blog-area.full-blog .blog-items .item .comparison-table td { padding: 8px 10px; font-size: 14px;}
   .hero-banner.single-blog .hero-banner-img { display: none; }
   .hero-banner.single-blog .hero-banner-img.bg-img { display: block; }
