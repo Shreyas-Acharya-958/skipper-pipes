@@ -846,6 +846,7 @@ footer .link ul li a:hover { color: var(--secondary-color); }
 }
 @media (max-width: 1024px) {
   .hero-banner.single-blog { max-height: 515px !important; height: 87% !important; min-height: auto !important; }
+  .blog-area.full-blog .blog-items .item .table-responsive-wrapper {width: 100% !important;}
 }
 @media (max-width: 1023px) {
   nav.navbar.bootsnav.nav-full .navbar-brand .logo.regular { display: none; }
@@ -891,6 +892,7 @@ footer .link ul li a:hover { color: var(--secondary-color); }
   .news-overview .news-col-wrapper:nth-child(3n) { border-right: 1px solid rgba(51, 51, 51, 0.3) !important; }
   .pin-assam { top: 26%; left: 81%; }
   .pin-west-bengal { top: 37%; left: 66%; }
+  .blog-area.full-blog .blog-items .item .table-responsive-wrapper {width: 100% !important;}
 }
 @media (max-width: 767px) {
   .home-about .thumb { margin: 0; margin-bottom: 30px; }
@@ -909,6 +911,7 @@ footer .link ul li a:hover { color: var(--secondary-color); }
   .manufacturing-container .swiper-button-prev, .manufacturing-container .swiper-button-next, .manufacturing-container .swiper-pagination-bullets { display: block; }
   /* .sticky-brochure-cta { left: 0; right: 0; bottom: 0; width: 100%;}
   .sticky-brochure-cta a { display: block; width: 100%; text-align: center; border-radius: 0; background-color: #144372 !important; color: white !important; border: 2px solid #ffffff; } */
+  .blog-area.full-blog .blog-items .item .table-responsive-wrapper {width: 100% !important;}
   .sticky-brochure-cta{ left:0; right:0; bottom:0; display:flex; width:100%; }
   .sticky-brochure-cta a{ flex:1; width:50%; text-align:center; font-size: 12px; line-height: 1.3; border-radius:0; padding: 10px !important; background:#144372 !important; color:#fff !important; border:1px solid #fff; }
   .sticky-brochure-cta a:only-child{ width:100%; flex:0 0 100%; }
@@ -956,6 +959,7 @@ footer .link ul li a:hover { color: var(--secondary-color); }
   .blog-area.full-blog .blog-items .item .blog-h1_heading h1 { font-size: 26px; }
   .blog-area.full-blog .blog-items .item h2 { font-size: 22px; }
   .blog-area.full-blog .blog-items .item h3 { font-size:20px; margin-bottom: 0px !important; }
+  .blog-area.full-blog .blog-items .item .table-responsive-wrapper {width: 100% !important;}
   .blog-area.full-blog .blog-items .item .comparison-table th, .blog-area.full-blog .blog-items .item .comparison-table td { padding: 8px 10px; font-size: 14px;}
   .hero-banner.single-blog .hero-banner-img { display: none; }
   .hero-banner.single-blog .hero-banner-img.bg-img { display: block; }
