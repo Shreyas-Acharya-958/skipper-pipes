@@ -512,8 +512,8 @@
                 <div class="row" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-12 text-center">
                         <div class="site-heading headings">
-                            <h4>Skipper Pipes - Jal Rakshak</h4>
-                            <h2>About the Initiative</h2>
+                            <h4>About the Initiative</h4>
+                            <h1>Skipper Pipes - Jal Rakshak</h1>
                         </div>
                     </div>
                 </div>
