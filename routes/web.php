@@ -134,7 +134,7 @@ Route::permanentRedirect('/skipper-pipe-distributor/', '/partner/become-distribu
 Route::permanentRedirect('/products/cpvc-pipes-and-', '/products/cpvc-pipes-and-fittings');
 Route::permanentRedirect('/blogs/what-are-pvc-drain-pipes-detailed-explanation', '/blogs/benefits-of-pvc-drain-pipes-for-modern-homes');
 Route::permanentRedirect('/products/cpvc-pipes-an', '/products/cpvc-pipes-and-fittings');
-Route::permanentRedirect('/ptmt-faucets/', '/products/bath-fittings');
+Route::permanentRedirect('/ptmt-faucets/', '/products/luxury-bathroom-fittings');
 Route::permanentRedirect('/cpvc-pipes-and-fittings/', '/products/cpvc-pipes-and-fittings');
 Route::permanentRedirect('/products/swr-pipes-an', '/products/swr-pipes-and-fittings');
 Route::permanentRedirect('/agriculture-pipes-and-fittings/', '/products/agriculture-pipes-for-farming');
@@ -142,6 +142,7 @@ Route::permanentRedirect('/reasons-why-industry-experts-choose-skipper-pipes-for
 Route::permanentRedirect('/products/ba', '/products/luxury-bathroom-fittings');
 Route::permanentRedirect('/different-types-of-home-piping-solutions/', '/blogs/home-plumbing-pipes-types-and-how-to-choose-the-right-one');
 Route::permanentRedirect('/casing-pipes/', '/products/casing-pipes');
+Route::permanentRedirect('/types-of-water-storage-tanks-a-complete-guide-for-homes-in-india', '/blogs/types-of-water-storage-tanks-for-homes');
 
 
 

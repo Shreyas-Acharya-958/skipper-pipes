@@ -450,4 +450,16 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://skipperpipes.in/blogs/cpvc-sdr-11-vs-sdr-13-5</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://skipperpipes.in/blogs/how-to-calculate-required-water-tank-capacity-for-home-and-commercial-buildings</loc>
+    <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
