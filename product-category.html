@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dustra- Factory & Industrial Template">
+
+    <!-- ========== Page Title ========== -->
+    <title>Skipper Pipes - Product Category</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="assets/img/final/skipper-pipes-favicon.png" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/icofont.min.css" rel="stylesheet" />
+    <link href="assets/css/themify-icons.css" rel="stylesheet" />
+    <link href="assets/css/flaticon-set.css" rel="stylesheet" />
+    <link href="assets/css/magnific-popup.css" rel="stylesheet" />
+    <link href="assets/js/swiper/swiper.min.css" rel="stylesheet" />
+    <link href="assets/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.css" rel="stylesheet" />
+    <link href="assets/css/bootsnav.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+    <style>
+
+.site-heading h1::before, .site-heading h2::before { background: var(--secondary-color) none repeat scroll 0 0; bottom: 0; content: ""; height: 2px; left: 50%; margin-left: -25px; position: absolute; width: 40px; }
+.site-heading h1::after, .site-heading h2::after { background: var(--secondary-color) none repeat scroll 0 0; bottom: 0; content: ""; height: 2px; left: 50%; margin-left: 20px; position: absolute; width: 5px; }
+.site-heading h1 { display: inline-block; font-weight: 700 !important; padding-bottom: 20px; margin-bottom: 0; position: relative; text-transform: capitalize; }
+.site-heading h1 span , .site-heading h2 span { color: var(--primary-color); }
+.site-heading .product-overview-text { margin: 0; margin-top: 20px; padding: 0 10%; font-weight: 600; color: #144372; font-size: 20px; }
+
+.services-one__single.product-cat .services-one__icon{
+    background-color: #FFA800;
+}
+
+.services-one__single.product-cat .services-one__icon i{
+    color: white;
+}
+
+.services-one__single.product-cat .services-one__content .services-one__title{
+    font-size: 22px;
+    margin-bottom: 10px;
+} 
+.services-one__single.product-cat .services-one__content p{
+    font-size: 15px !important;
+    line-height: 1.5;
+}
+
+.services-one__single.product-cat .services-one__content a{
+    font-size: 14px;
+    /* color: #FFA800; */
+    color: #144372;
+}
+
+.services-one__single.product-cat .services-one__content a:hover{
+    color: #144372;
+    color: #FFA800;
+}
+
+.services-one__icon{
+    top: 0;
+    left: 0 !important;
+}
+
+.guide-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.text-wrapper {
+    position: relative;
+    max-height: 105px;
+    overflow: hidden;
+    text-align: left;
+    transition: max-height 0.6s ease;
+}
+
+.text-wrapper h3{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0 0;
+}
+
+/* Fade at the bottom */
+.text-wrapper:not(.expanded)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 90px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        #fff
+    );
+    pointer-events: none;
+}
+
+
+/* Expanded state */
+.text-wrapper.expanded {
+    max-height: 500px;
+}
+
+.text-wrapper.expanded::after {
+    display: none;
+}
+
+.why-choose-card .single-item .item-inner{
+    background-color: white;
+    padding: 45px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.why-choose-card .single-item .item-inner img{
+    width: 40px;
+    margin-bottom: 20px;
+}
+
+.why-choose-card .single-item .item-inner h4{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.why-choose-card .single-item .item-inner p{
+    margin-bottom: 0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+ .sticky-brochure-cta {
+            position: fixed;
+            z-index: 9999;
+        }
+
+
+
+
+/* =========================================
+   PRODUCT BROCHURE POPUP FORM
+========================================= */
+
+#productBrochurePopup {
+    z-index: 99999;
+}
+
+
+/* Modal size */
+#productBrochurePopup .brochure-modal-dialog {
+    max-width: 800px;
+}
+
+
+/* Modal box */
+#productBrochurePopup .brochure-modal-content {
+    position: relative;
+    border-radius: 0;
+    border: 3px solid #1d5b8f;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Inner spacing */
+#productBrochurePopup .brochure-popup-inner {
+    padding: 42px 42px 28px;
+    background: #ffffff;
+}
+
+
+/* Heading */
+#productBrochurePopup h3 {
+    margin: 0 0 28px;
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #144372;
+}
+
+
+/* Second line */
+#productBrochurePopup h3 span {
+    display: block;
+}
+
+
+/* Close button */
+#productBrochurePopup .brochure-popup-close {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    z-index: 10;
+    padding: 0;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 300;
+    color: #1d5b8f;
+    opacity: 1;
+    text-shadow: none;
+}
+
+
+#productBrochurePopup .brochure-popup-close:hover,
+#productBrochurePopup .brochure-popup-close:focus {
+    outline: none;
+    opacity: 0.7;
+}
+
+
+/* Form */
+#productBrochurePopup .product-brochure-form {
+    border: 1px solid #d8d8d8;
+    padding: 24px;
+}
+
+
+/* Bootstrap row spacing */
+#productBrochurePopup .product-brochure-form .row {
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+#productBrochurePopup .product-brochure-form .col-md-6 {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+
+/* Form group */
+#productBrochurePopup .product-brochure-form .form-group {
+    margin-bottom: 14px;
+}
+
+
+/* Input */
+#productBrochurePopup .product-brochure-form .form-control {
+    height: 45px;
+    border: none;
+    border-radius: 0;
+    background: #f1f1f1;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    box-shadow: none;
+}
+
+
+/* Input focus */
+
+#productBrochurePopup .product-brochure-form .form-control:focus {
+    background: #f7f7f7;
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* Submit Button */
+#productBrochurePopup .brochure-submit-btn {
+    display: inline-block;
+    min-width: 145px;
+    margin-top: 15px !important;
+    padding: 13px 35px;
+    border: none;
+    border-radius: 0;
+    background: #144372;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+#productBrochurePopup .brochure-submit-btn:hover {
+    background: #123e63;
+}
+
+/* =========================================
+   PRODUCT BROCHURE POPUP FORM -  THANK YOU SECTION
+========================================= */
+
+#productBrochurePopup #brochureThankYouSection {
+    padding: 35px 20px;
+    text-align: center;
+}
+
+
+#productBrochurePopup #brochureThankYouSection h3 {
+    margin-bottom: 15px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #144372;
+}
+
+
+#productBrochurePopup #brochureThankYouSection p {
+    max-width: 400px;
+    margin: 0 auto 25px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555555;
+}
+
+
+#productBrochurePopup .brochure-download-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #1d5b8f;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+
+#productBrochurePopup .brochure-download-btn:hover {
+    background: #123e63;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+.hero-banner2.product-cat{
+    min-height: 400px !important;
+}
+
+/* ==========================
+   Desktop
+========================== */
+    @media (min-width:768px) {
+
+        .sticky-brochure-cta {
+            right: 0;
+            /* top:30%; */
+            top: 34%;
+            transform: translateY(-50%);
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            /* gap:232px; space between rotated buttons */
+            gap: 144px;
+        }
+
+
+        .sticky-brochure-cta a {
+            display: block;
+            transform: rotate(-90deg);
+            transform-origin: right bottom;
+            font-weight: 600;
+            white-space: nowrap;
+            font-size: 14px;
+            padding: 10px 18px;
+            line-height: 1.4;
+            background: #144372 !important;
+            color: #fff !important;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+
+            border-radius: 0;
+        }
+
+        .sticky-brochure-cta a span {
+            font-size: 9px;
+            /* #FFA800 */
+        }
+
+        .sticky-brochure-cta a.technical-btn {
+            color: #144372 !important;
+        }
+
+
+        .sticky-brochure-cta a.technical-btn,
+        .sticky-brochure-cta a.technical-btn:hover {
+            background-color: #FFA800 !important;
+        }
+
+        .sticky-brochure-cta a.technical-btn::after {
+            background-color: #FFA800 !important;
+            color: #144372 !important;
+        }
+    }
+
+/* ==========================
+   Mobile
+========================== */
+
+    @media (max-width:767px) {
+
+        .sticky-brochure-cta {
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            display: flex;
+            width: 100%;
+        }
+
+        .sticky-brochure-cta a {
+            flex: 1;
+            width: 50%;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.3;
+            border-radius: 0;
+            padding: 10px !important;
+            background: #144372 !important;
+            color: #fff !important;
+            border: 1px solid #fff;
+        }
+
+        /* If only one button exists */
+        .sticky-brochure-cta a:only-child {
+            width: 100%;
+            flex: 0 0 100%;
+        }
+
+        .sticky-brochure-cta a span {
+            font-size: 9px;
+            /* #FFA800 */
+        }
+
+        .sticky-brochure-cta a.technical-btn {
+            color: #144372 !important;
+        }
+
+        .sticky-brochure-cta a.technical-btn,
+        .sticky-brochure-cta a.technical-btn:hover {
+            background-color: #FFA800 !important;
+
+        }
+
+        .sticky-brochure-cta a.technical-btn::after {
+            background-color: #FFA800 !important;
+            color: #144372 !important;
+        }
+
+        /* Product brochure Popup form */
+         #productBrochurePopup .brochure-modal-dialog {
+        max-width: calc(100% - 30px);
+        margin: 15px auto;
+        }
+
+
+        #productBrochurePopup .brochure-popup-inner {
+            padding: 35px 20px 20px;
+        }
+
+
+        #productBrochurePopup h3 {
+            font-size: 20px;
+        }
+
+
+        #productBrochurePopup .product-brochure-form {
+            padding: 15px;
+        }
+
+        .text-wrapper.expanded {
+            max-height: 1200px;
+        }
+    }
+
+</style>
+
+
+
+</head>
+
+<body>
+
+    <!-- Header  -->
+    <header id="home">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default attr-bg navbar-fixed white no-background bootsnav nav-full">
+
+            <!-- Start Top Search -->
+            <div class="top-search">
+                <div class="container-full">
+                    <form method="get">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Top Search -->
+
+            <div class="container">
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <!-- <li class="search"><a href="#"><i class="ti-search"></i></a></li> -->
+                        <li class="side-menu">
+                            <a href="#">
+                                <span class="bar-1"></span>
+                                <span class="bar-2"></span>
+                                <span class="bar-3"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="assets/img/final/logo.png" class="logo regular" alt="Logo">
+                        <img src="assets/img/final/logo.png" class="logo logo-responsive" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-center" data-in="#" data-out="#">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Company</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="overview.html">Overview</a></li>
+                                <li><a href="leadership.html">Leadership</a></li>
+                                <li><a href="manufacturing.html">Manufacturing</a></li>
+                                <li><a href="csr.html">CSR</a></li>
+                                <li><a href="certifications.html">Certifications</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown">Products</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="why-skipper-pipes.html">Why Skipper Pipes</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plumbing & Sewage</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="product-single.html">UPVC Pipes</a></li>
+                                        <li><a href="#">CPVC Pipes</a></li>
+                                        <li><a href="#">SWR Pipes</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Agriculture Pipes</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Borewell</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Casing Pipes</a></li>
+                                        <li><a href="#">Column Pipes</a></li>
+                                        <li><a href="#">Ribbed Strainer Pipes</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">HDPE Pipes</a></li>
+                                <li><a href="#">Marina Tank</a></li>
+                                <li><a href="#">Bath Fittings</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="network.html">Network</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Partner</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="become-dealer.html">Become a Dealer</a></li>
+                                <li><a href="become-distributor.html">Become a Distributor</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Resources</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="blogs.html">Blogs</a></li>
+                                <li><a href="media.html">Media</a></li>
+                                <li><a href="careers.html">Careers</a></li>
+                                <li><a href="faqs.html">FAQs</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact Us</a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="fas fa-times"></i></a>
+                <div class="widget">
+                    <img src="assets/img/final/Logo-HR (1).png" alt="Logo">
+                    <p>
+                        Trusted piping solutions engineered for strength, hygiene, and long-term durability across
+                        infrastructure, agriculture, industrial, and residential applications.
+                    </p>
+                </div>
+                <div class="widget address">
+                    <div>
+                        <ul>
+                            <li>
+                                <div class="content">
+                                    <p>Address</p>
+                                    <strong>3A, Loudon Street Kolkata- 700017</strong>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="content">
+                                    <p>Email</p>
+                                    <strong>enquiry@skipperlimited.com</strong>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="content">
+                                    <p>Contact</p>
+                                    <strong>+91 33 2285 1231/32</strong>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget newsletter">
+                    <h4 class="title">Get Subscribed!</h4>
+                    <form action="#">
+                        <div class="input-group stylish-input-group">
+                            <input type="email" placeholder="Enter your e-mail" class="form-control" name="email">
+                            <span class="input-group-addon">
+                                <button type="submit">
+                                    <i class="fas fa-long-arrow-right"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="widget social">
+                    <ul class="link">
+                        <li><a href="#" target="_blank">
+                                <?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    width="22px" height="45px">
+                                    <path
+                                        d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z" />
+                                </svg>
+                            </a></li>
+
+                        <li><a href="https://www.instagram.com/skipperpipes/" target="_blank">
+                                <img src="assets/img/final2/Icons8/icons8-instagram-100.svg" alt="">
+                            </a></li>
+
+                        <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank">
+                                <img src="assets/img/final2/Icons8/icons8-linkedin-100.svg" alt="">
+                            </a></li>
+
+                        <li><a href="https://x.com/SkipperPipes" target="_blank">
+                                <img src="assets/img/final2/Icons8/icons8-x-100.svg" alt="">
+                            </a></li>
+                        <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank">
+                                <img src="assets/img/final2/Icons8/icons8-youtube-100 copy.svg" alt="">
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Side Menu -->
+
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Header -->
+
+    <!-- Hero banner-section -->
+    <section class="hero-banner2 product-cat">
+        <div class="hero-banner2-bg">
+            <img src="assets/img/final2/hero-pl-img.png" alt="">
+        </div>
+    </section>
+
+    <section class="hero-banner2-responsive">
+
+        <div class="hero-banner2-img-responsive">
+            <img src="assets/img/final2/hero-pl-img.png" alt="">
+        </div>
+    </section>
+    <!-- Hero banner-section ends -->
+
+    <!-- breadcrumb -->
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="blogs.html">Products Category</a></li>
+                        <li class="active">Borewell</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Product Overview -->
+    <section class="product-overview default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <h1>Borewell Pipes</h1>
+                        <p class="product-overview-text">Product Overview</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-center">
+                <div class="col-md-6 pt-3 pt-md-0">
+                    <!-- <h2>Product Overview</h2> -->
+                    <p class="pr-md-5">Skipper Borewell Pipes are built to protect your bore and deliver groundwater reliably for farms, homes and industry. Made from high-performance uPVC, the range brings together the three pipes every borewell needs: casing pipes that line and stabilise the bore, ribbed strainer pipes that let water in while holding back sand and gravel, and column pipes that carry the submersible pump and its discharge to the surface. Each pipe is corrosion-free, lightweight to handle and designed for leak-proof threaded joints, so installation is faster and the bore stays clean for years. Available in multiple diameters and pressure classes, Skipper Borewell Pipes can be matched to your bore depth, soil conditions and pump size.</p>
+                </div>
+                <div class="col-md-6 order-first order-md-last">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="assets/img/final/skipper-banner1.jpg" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="assets/img/final/skipper-banner2.jpeg"
+                                    alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="assets/img/final/skipper-banner3.jpeg"
+                                    alt="Third slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Overview ends -->
+
+
+    <!-- Products List -->
+    <section class="services-page-one bg-gray default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <p>Borewell Pipes</p>
+                        <h2>Explore Our Borewell Pipe Range</h2>
+
+                    </div>
+                </div>
+
+            </div>
+                
+            <div class="row">
+                <!--Services One Single Start-->
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="services-one__single product-cat">
+                        <div class="services-one__img-box">
+                            <div class="services-one__img">
+                                <img src="assets/img/final/agriculture-pipes.jpeg" alt="">
+                            </div>
+                            <div class="services-one__icon">
+                                <img src="assets/img/final2/Product-category/products-icon.svg"
+                                    alt="">
+                            </div>
+                            <a href="#" class="services-one__arrow"></a>
+                        </div>
+                        <div class="services-one__content">
+                            <h3 class="services-one__title">Casing Pipes</h3>
+                            <p>Line and stabilise the bore wall, preventing collapse and keeping surface contamination out of your groundwater.</p>
+                            <a href="#" class="">VIEW PRODUCT <i class="far fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services One Single End-->
+                <!--Services One Single Start-->
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="services-one__single product-cat">
+                        <div class="services-one__img-box">
+                            <div class="services-one__img">
+                                <img src="assets/img/final/agriculture-pipes.jpeg" alt="">
+                            </div>
+                            <div class="services-one__icon">
+                                <img src="assets/img/final2/Product-category/products-icon.svg"
+                                    alt="">
+                            </div>
+                            <a href="#" class="services-one__arrow"></a>
+                        </div>
+                        <div class="services-one__content">
+                            <h3 class="services-one__title">Column Pipes</h3>
+                            <p>Suspend the submersible pump securely and carry water to the surface with leak-proof threaded joints.</p>
+                            <a href="#" class="">VIEW PRODUCT <i class="far fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services One Single End-->
+                <!--Services One Single Start-->
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="services-one__single product-cat">
+                        <div class="services-one__img-box">
+                            <div class="services-one__img">
+                                <img src="assets/img/final/agriculture-pipes.jpeg" alt="">
+                            </div>
+                            <div class="services-one__icon">
+                                <img src="assets/img/final2/Product-category/products-icon.svg"
+                                    alt="">
+                            </div>
+                            <a href="#" class="services-one__arrow"></a>
+                        </div>
+                        <div class="services-one__content">
+                            <h3 class="services-one__title">Ribbed Strainer Pipes</h3>
+                            <p>Slotted, ribbed sections placed at the aquifer to let water in while filtering out sand and gravel.</p>
+                            <a href="#" class="">VIEW PRODUCT <i class="far fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!--Services One Single End-->
+
+                
+            </div>
+        </div>
+    </section>
+    <!-- Product Application ends -->
+
+    <!-- Product category guide section -->
+    <section class="product-cat-guide-sec default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <p>Borewell Pipes</p>
+                        <h2>A Complete Guide to Borewell Pipes</h2>
+                    </div>
+                </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="guide-content">
+                            <div class="text-wrapper" id="guideText">
+                                <p>
+                                    A borewell is only as dependable as the pipes that line it and lift
+                                    water from it. Every bore uses three kinds of pipe working together.
+                                    Casing pipes are lowered first to line the drilled hole, hold back
+                                    loose soil and stop surface water from contaminating the aquifer.
+                                    Ribbed strainer pipes are fitted at the water-bearing zone, where
+                                    their slots admit groundwater while the ribs keep the filter pack in
+                                    place. Column pipes then suspend the submersible pump and carry its
+                                    discharge to the surface under pressure.
+                                </p>
+
+                                <div class="extra-content">
+                                    <p>
+                                        Getting the diameter, pressure class and joint type right for
+                                        each of these pipes decides how long your borewell lasts and how
+                                        much water it delivers. This guide walks you through each pipe,
+                                        how to size it, and how to install it correctly.
+                                    </p>
+
+                                    <p>
+                                        Choosing the correct material and installation method also
+                                        improves the overall performance and reliability of the
+                                        borewell system.
+                                    </p>
+
+                                    <h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae, veritatis?</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ducimus consequatur quis facere deleniti voluptates veritatis non. Repudiandae dolores unde ipsa officiis alias ratione voluptatibus!</p>
+                                    <h3>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae, veritatis?</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ducimus consequatur quis facere deleniti voluptates veritatis non. Repudiandae dolores unde ipsa officiis alias ratione voluptatibus!</p>
+
+
+                                </div>
+                            </div>
+                            <a class="btn btn-dark theme theme2 btn-md mt-5 btn-text" id="readMoreBtn">
+                                <span class="btn-text">READ MORE</span>
+                                <span class="arrow">↓</span>
+                            </a>
+                            <!-- <button type="button" class="read-more-btn" id="readMoreBtn">
+                                <span class="btn-text">READ MORE</span>
+                                <span class="arrow">↓</span>
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product category guide section ends-->
+
+
+    <!-- Why choose sections -->
+    <section class="key-features-benefits bg-gray">
+        <div class="work-process-area relative default-padding bottom-less bg-fixed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="site-heading text-center">
+                            <p>Borewell Pipes</p>
+                            <h2>Why Choose Skipper Borewell Water Pipes</h2>
+                            <p>From the bore wall to the pump outlet, every Skipper borewell pipe is engineered to keep water flowing clean, strong and leak-free for years.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="why-choose-card">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item-inner">
+                                <img src="assets/img/final2/Products-icons/Products UPVC/Products UPVC_ Lead-Free.svg"
+                                        alt="">
+                                    <h4>Corrosion-Free uPVC</h4>
+                                    <p>No rust or scaling, even in hard or saline groundwater, so pipes stay clean inside for the life of the bore.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item-inner">
+                                <img src="assets/img/final2/Products-icons/Products UPVC/Products UPVC_ Lead-Free.svg"
+                                        alt="">
+                                    <h4>Leak-Proof Threaded Joints</h4>
+                                    <p>Precision threads create tight, secure joints that hold pressure and keep the bore free from soil ingress.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item-inner">
+                                <img src="assets/img/final2/Products-icons/Products UPVC/Products UPVC_ Lead-Free.svg"
+                                        alt="">
+                                    <h4>High Load-Bearing Strength</h4>
+                                    <p>Designed to carry the weight of the pump and water column across multiple pressure classes for different depths.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item-inner">
+                                <img src="assets/img/final2/Products-icons/Products UPVC/Products UPVC_ Lead-Free.svg"
+                                        alt="">
+                                    <h4>Clean, Hygienic Water</h4>
+                                    <p>Smooth inner walls and non-metallic material help keep water free from metallic contamination. [Confirm certifications]</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item-inner">
+                                <img src="assets/img/final2/Products-icons/Products UPVC/Products UPVC_ Lead-Free.svg"
+                                        alt="">
+                                    <h4>Lightweight, Faster Installation</h4>
+                                    <p>Far lighter than GI or steel, making pipes easier to transport, lower into the bore and pull out for service.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 single-item">
+                            <div class="item-inner">
+                                <img src="assets/img/final2/Products-icons/Products UPVC/Products UPVC_ Lead-Free.svg"
+                                        alt="">
+                                    <h4>Pan-India Dealer Network</h4>
+                                    <p>Skipper pipes and expert advice are available through dealers and distributors across India.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Why choose sections ends -->
+
+     <!-- Product Faq  -->
+    <section class="product-faq default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <p>Borewell Pipes</p>
+                        <h2>Frequently Asked Questions</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button"
+                                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        What are Borewell Pipes?
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Borewell pipes are the pipes used to build and operate a borewell. They include casing pipes that line the drilled bore, ribbed strainer pipes that let groundwater in at the aquifer, and column pipes that hold the submersible pump and carry water to the surface.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                       What is difference between casing, column, ribbed strainer pipes?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Casing pipes line and protect the bore wall. Ribbed strainer pipes are slotted sections placed at the water-bearing layer to admit water while holding back sand and gravel. Column pipes sit inside the casing, suspend the submersible pump and carry the pumped water upward under pressure.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        Which borewell pipe size is right for my bore?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                    Casing diameter follows the drilled bore diameter, and column pipe size follows the pump outlet and required flow. Bore depth and pump weight decide the pressure class. 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFour">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
+                                        aria-controls="collapseFour">
+                                        Are uPVC borewell pipes better then GI Pipes?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                   uPVC pipes do not rust or scale, are much lighter to handle and install, and keep water free from metallic contamination. GI pipes offer high mechanical strength but corrode over time, especially in hard or saline groundwater.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingFive">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                        data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
+                                        aria-controls="collapseFive">
+                                        How deep can uPVC casing and column pipes be installed?
+                                    </button>
+                                </h2>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                   Safe installation depth depends on the pipe class and wall thickness, along with pump weight for column pipes.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Faq ends -->
+  
+
+    <!-- product cta -->
+    <section class="product-cta bg-theme text-white default-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-white mb-4">Everything You Need to Know</h2>
+                    <a class="btn btn-light effect btn-md mr-md-3 mb-3 mb-md-0" href="#" data-file-name="{{ $fileName }}"
+            data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal"
+    data-target="#productBrochurePopup" download>Download Product Brochure</a>
+                    <a class="btn btn-light effect btn-md" href="#" data-file-name="{{ $fileName }}"
+            data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal"
+    data-target="#productBrochurePopup" download>Download Technical Brochure</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product cta ends -->
+
+    <!-- Blog Section  -->
+     <div class="blog-area home-blog date-less default-padding bottom-less">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="site-heading text-center">
+                        <p>Resources</p>
+                        <h2>Borewell Guides From Our Blog</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-items">
+                <div class="row">
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="item">
+                            <div class="thumb">
+                                <a href="blogs-single.html"><img src="assets/img/final/blog1.jpeg" alt="Thumb">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <div class="meta">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>14 June, 2025</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-folder"></i>
+                                                <span>Borewell</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content">
+                                    <h4>
+                                        <a href="blogs-single.html">The Environmental Impact of Piping Materials: Sustainable Choices for Green Building Projects</a>
+                                    </h4>
+                                    <p>
+                                       In the present construction industry, sustainability is considered to be crucial. Engineers, architects and builders are largely focusing on eco-friendly…
+                                    </p>
+                                    <a class="more-btn" href="blogs-single.html">Read More <i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="item">
+                            <div class="thumb">
+                                <a href="blogs-single.html"><img src="assets/img/final/blog2.jpeg" alt="Thumb">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <div class="meta">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>14 May, 2025</span>
+                                            </a>
+                                        </li>
+                                         <li>
+                                            <a href="#">
+                                                <i class="fas fa-folder"></i>
+                                                <span>Borewell</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content">
+                                    <h4>
+                                        <a href="blogs-single.html">Reasons Why Industry Experts Choose Skipper Pipes for Large-Scale Projects</a>
+                                    </h4>
+                                    <p>
+                                        Introduction Major real estate and infrastructure projects rely on the quality and endurance of critical components, such as pipe networks.…
+                                    </p>
+                                    <a class="more-btn" href="blogs-single.html">Read More <i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="item">
+                            <div class="thumb">
+                                <a href="blogs-single.html"><img src="assets/img/final/blog3.jpeg" alt="Thumb">
+                                </a>
+                            </div>
+                            <div class="info">
+                                <div class="meta">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fas fa-calendar-alt"></i>
+                                                <span>24 April, 2025</span>
+                                            </a>
+                                        </li>
+                                         <li>
+                                            <a href="#">
+                                                <i class="fas fa-folder"></i>
+                                                <span>Borewell</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content">
+                                    <h4>
+                                        <a href="blogs-single.html">Innovation & Quality: The Award-Winning Journey of Skipper <br>  Pipes</a>
+                                    </h4>
+                                    <p>
+                                       Today, in the modern age, the evolution of the plumbing pipes is something which is very fascinating to know. The advancement of technologies and ..
+                                    </p>
+                                    <a class="more-btn" href="blogs-single.html">Read More <i class="fas fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <a class="btn btn-dark theme theme2 btn-md btn-text" href="blogs.html">View All</a>
+            </div>
+        </div>
+    </div>
+    <!-- Blog Section ends -->
+
+
+    <div class="sticky-brochure-cta">
+        <a class="btn btn-light effect btn-md js-download-brochure" target="_blank"
+            href="{{ asset('storage/' . $product->brochure) }}" data-file-name="{{ $fileName }}"
+            data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal"
+    data-target="#productBrochurePopup" download>
+            Product Brochure <br /><span>Download</span>
+        </a>
+        <a class="btn btn-light technical-btn effect btn-md js-download-brochure" target="_blank"
+            href="{{ asset('storage/' . $product->brochure) }}" data-file-name="{{ $fileName }}"
+            data-file-extension="{{ $fileExtension }}" data-text="Download Brochure" data-toggle="modal"
+    data-target="#productBrochurePopup" download>
+            Technical Brochure <br /><span>Download</span>
+        </a>
+    </div>
+
+
+       <!-- =========================================
+     Product Brochure Download Popup
+========================================= -->
+    <div class="modal fade" id="productBrochurePopup" tabindex="-1" role="dialog" aria-labelledby="productBrochurePopupTitle" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered brochure-modal-dialog" role="document">
+            <div class="modal-content brochure-modal-content">
+                <!-- Close Button -->
+                <button type="button" class="close brochure-popup-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <div class="brochure-popup-inner">
+                    <!-- Form Section -->
+                    <div id="brochureFormSection">
+
+                        <h3 id="productBrochurePopupTitle">
+                            Get Access to Our Skipper Pipes Product Brochure
+                            <span>Fill Out the Form Below!</span>
+                        </h3>
+
+                        <form id="productBrochureForm"
+                            class="product-brochure-form">
+                            <div class="row">
+                                <!-- Name -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="Name *" required>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" >
+                                    </div>
+                                </div>
+
+                                <!-- Mobile -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" name="mobile" placeholder="Mobile Number *" required>
+                                    </div>
+                                </div>
+
+                                <!-- Pincode -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text"
+                                            class="form-control" name="pincode" placeholder="Pincode *" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="brochure-submit-btn"> Submit </button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Thank You Section -->
+                    <div id="brochureThankYouSection" style="display: none;">
+
+                        <h3>Thank You!</h3>
+                        <p> Thank you for filling the form. Here is the Product Brochure link to download. </p>
+
+                        <div class="text-center">
+                            <!-- Replace the href with your actual PDF path -->
+                            <a href="assets/pdf/product-brochure.pdf"
+                            class="brochure-download-btn"
+                            download>
+                                Download Product Brochure
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- Footer Section  -->
+    <footer>
+        <div class="container">
+            <div class="f-items default-padding">
+                <div class="row">
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <!-- <h4 class="widget-title">About Us</h4> -->
+                            <img src="assets/img/final/Logo-HR (1).png" class="w-50 mb-3" alt="">
+                            <p>
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum qui minima reiciendis ea,
+                                aperiam neque!
+                            </p>
+                            <ul class="footer-social">
+                                <li><a href="https://www.facebook.com/skipperpipes/" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.instagram.com/skipperpipes/" target="_blank"><i
+                                            class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://www.linkedin.com/company/skipperpipes/" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="https://www.youtube.com/@skipperpipes358" target="_blank"><i
+                                            class="fab fa-youtube"></i></a></li>
+                                <!-- <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li> -->
+                            </ul>
+
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Other Links</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">Privacy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Disclaimer</a>
+                                </li>
+                                <li>
+                                    <a href="#">Resources</a>
+                                </li>
+                                <li>
+                                    <a href="#">Network</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-2 col-md-6 single-item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Our Products</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">UPVC Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">CPVC Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">SWR Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Agriculture Pipes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Bath Fittings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+                    <!-- Single Item -->
+                    <div class="col-lg-4 col-md-6 single-item">
+                        <div class="f-item contact">
+                            <h4 class="widget-title">Contact Us</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi, est!
+                            </p>
+                            <ul>
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    3A, Loudon Street Kolkata- 700017
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope-open"></i>
+                                    <a href="mailto:enquiry@skipperlimited.com">enquiry@skipperlimited.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Single Item -->
+
+                </div>
+            </div>
+        </div>
+        <!-- Fixed Shape -->
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>&copy; Copyright 2025. All Rights Reserved by <a href="#">Skipper Pipes</a></p>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <ul>
+                            <li>
+                                <a href="#">Terms & Conditions</a>
+                            </li>
+                            <li>
+                                <a href="#">Privacy</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Footer Bottom -->
+
+        <div class="fixed-shape">
+            <img src="assets/img/shape/footer-shape.png" alt="Shape">
+        </div>
+        <!-- End Fixed Shape -->
+    </footer>
+    <!-- Footer Section ends -->
+
+
+
+
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.appear.js"></script>
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/modernizr.custom.13711.js"></script>
+    <script src="assets/js/swiper/swiper.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/progress-bar.min.js"></script>
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/jquery.simpleLoadMore.js"></script>
+    <script src="assets/js/count-to.js"></script>
+    <script src="assets/js/bootsnav.js"></script>
+    <script src="assets/js/main.js"></script>
+
+<script>
+    document.getElementById("readMoreBtn").addEventListener("click", function () {
+
+        const textWrapper = document.getElementById("guideText");
+        const btnText = this.querySelector(".btn-text");
+        const arrow = this.querySelector(".arrow");
+
+        textWrapper.classList.toggle("expanded");
+
+        if (textWrapper.classList.contains("expanded")) {
+            btnText.textContent = "READ LESS";
+            arrow.textContent = "↑";
+        } else {
+            btnText.textContent = "READ MORE";
+            arrow.textContent = "↓";
+        }
+    });
+
+
+    // STICKY CTA POPUP FORM
+    $(document).ready(function () {
+
+    $("#productBrochureForm").on("submit", function (e) {
+
+        e.preventDefault();
+
+        if (!this.checkValidity()) {
+
+            this.reportValidity();
+
+            return;
+
+        }
+
+
+        $("#brochureFormSection").fadeOut(300, function () {
+
+            $("#brochureThankYouSection").fadeIn(300);
+
+        });
+
+    });
+
+
+    // Reset popup when it closes
+    $("#productBrochurePopup").on("hidden.bs.modal", function () {
+
+        // Reset form
+        $("#productBrochureForm")[0].reset();
+
+
+        // Hide thank-you message
+        $("#brochureThankYouSection").hide();
+
+
+        // Show form again
+        $("#brochureFormSection").show();
+
+    });
+
+});
+</script>
+
+</body>
+
+</html>
