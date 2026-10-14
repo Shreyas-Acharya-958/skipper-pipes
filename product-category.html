@@ -37,8 +37,19 @@
 .site-heading h1 span , .site-heading h2 span { color: var(--primary-color); }
 .site-heading .product-overview-text { margin: 0; margin-top: 20px; padding: 0 10%; font-weight: 600; color: #144372; font-size: 20px; }
 
+
+/* ADD THIS CSS ONLY FROM HERE */
 .services-one__single.product-cat .services-one__icon{
     background-color: #FFA800;
+    position: absolute;
+    top: 0;
+    left: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    z-index: 1;
 }
 
 .services-one__single.product-cat .services-one__icon i{
@@ -65,13 +76,9 @@
     color: #FFA800;
 }
 
-.services-one__icon{
-    top: 0;
-    left: 0 !important;
-}
 
 .guide-content {
-    max-width: 1000px;
+    max-width: 1000px; /* need to check how to fix max-width */
     margin: 0 auto;
     text-align: center;
 }
@@ -148,7 +155,7 @@
 
 
 /* =========================================
-   PRODUCT BROCHURE POPUP FORM
+   PRODUCT BROCHURE POPUP FORM = DON"T ADD THIS CSS ITS SAME TO LIVE WEBSITE
 ========================================= */
 
 #productBrochurePopup {
@@ -287,7 +294,7 @@
 }
 
 /* =========================================
-   PRODUCT BROCHURE POPUP FORM -  THANK YOU SECTION
+   PRODUCT BROCHURE POPUP FORM -  THANK YOU SECTION = DON't ADD THIS CSS 
 ========================================= */
 
 #productBrochurePopup #brochureThankYouSection {
@@ -337,7 +344,7 @@
 }
 
 /* ==========================
-   Desktop
+   Desktop - DON't ADD WHOLE CSS    
 ========================== */
     @media (min-width:768px) {
 
@@ -393,7 +400,7 @@
     }
 
 /* ==========================
-   Mobile
+   Mobile - DON't ALL WHOLE CSS
 ========================== */
 
     @media (max-width:767px) {
@@ -466,6 +473,8 @@
         #productBrochurePopup .product-brochure-form {
             padding: 15px;
         }
+
+        /* only add this responsive css of text-wrapper */
 
         .text-wrapper.expanded {
             max-height: 1200px;
