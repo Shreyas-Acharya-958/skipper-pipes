@@ -665,10 +665,18 @@ footer .link ul li a:hover { color: var(--secondary-color); }
 .manufacturing-container .location-swiper { margin-left: 40px !important; }
 .manufacturing-container .swiper-button-prev, .manufacturing-container .swiper-button-next, .manufacturing-container .swiper-pagination-bullets { display: none; }
 .timeline-swiper, .location-swiper { padding-bottom: 60px; }
-.timeline-slide, .location-slide { background: white; padding: 20px; max-width: 350px; text-align: left; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+/* .timeline-slide, .location-slide { background: white; padding: 20px; max-width: 350px; text-align: left; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
 .location-slide { padding: 15px !important; }
 .location-slide .location-title { font-size: 18px; line-height: 1.5; font-weight: 600; color: var(--primary-color); display: block; margin-top: 15px; }
-.location-slide .location-work { font-size: 15px; font-weight: 500; color: var(--text-color); margin-bottom: 10px; display: block; }
+.location-slide .location-work { font-size: 15px; font-weight: 500; color: var(--text-color); margin-bottom: 10px; display: block; } */
+
+
+.timeline-slide {background: white; padding: 20px; max-width: 350px; text-align: left; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);}
+.location-slide {background: white; padding: 15px !important; width: 100%; max-width: none; height: auto; box-sizing: border-box; text-align: left; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);}
+.location-slide .location-img img {width: 100%; height: auto; display: block; object-fit: cover;}
+.location-slide .location-title {font-size: 18px; line-height: 1.5; font-weight: 600; color: var(--primary-color); display: block; margin-top: 15px;}
+.location-slide .location-work {font-size: 15px; font-weight: 500; color: var(--text-color); margin-bottom: 10px; display: block;}
+
 .timeline-year { font-size: 20px !important; font-weight: 700; color: #fff; border-bottom: 1px solid var(--secondary-color); padding-bottom: 10px; margin-bottom: 15px; }
 .timeline-img img, .location-img img { width: 100%; height: auto; }
 .timeline-title { font-weight: 600; color: var(--primary-color); margin-bottom: 10px; }
