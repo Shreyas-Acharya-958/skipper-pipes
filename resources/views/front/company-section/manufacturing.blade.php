@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="manufacturing-container" data-aos="fade-up" data-aos-duration="1000">
                         <div class="swiper location-swiper">
                             <div class="swiper-wrapper">
