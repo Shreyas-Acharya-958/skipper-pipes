@@ -168,18 +168,7 @@
                     @foreach ($categories as $category)
                         <div class="col-lg-4 col-md-6 product-category-col" data-aos="fade-up" data-aos-duration="1000"
                             data-aos-delay="100">
-                            @php
-                                $hasAllCategorySections = $category->productionOverviewSection &&
-                                    ($category->productionOverviewSection->overview_description || $category->productionOverviewSection->overview_image) &&
-                                    $category->productionFeaturesSections->isNotEmpty() &&
-                                    $category->productionFaqSections->isNotEmpty();
-                                $categoryUrl = $hasAllCategorySections
-                                    ? route('front.categories.show', $category->slug)
-                                    : ($category->products()->where('title', $category->name)->exists()
-                                        ? route('front.products.show', ['slug' => $category->slug])
-                                        : route('front.products.show', ['slug' => ($category?->products()->orderBy('title', 'asc')->first()->slug ?? '#')]));
-                            @endphp
-                            <a href="{{ $categoryUrl }}">
+                            <a href="{{ $category->home_category_url }}">
                                 {{-- <div class="thumb" style="background: url({{ asset('storage/' . $category->image) }});"></div> --}}
                                 <div  class="thumb lazy-bg"  data-bg="{{ asset('storage/' . $category->image) }}"> </div>
                                 <img src="{{ asset('storage/' . $category->icon) }}" width="50" height="50" alt="{{ image_alt_text('storage/' . $category->icon, $category->name) }}">

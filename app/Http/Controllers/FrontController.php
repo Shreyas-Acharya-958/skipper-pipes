@@ -130,17 +130,39 @@ class FrontController extends Controller
         $seoData = $this->getSeoDataForCurrentUrl();
 
         // Get all active categories with their products
-        $categories = ProductCategory::with([
+        $categories = ProductCategory::select('id', 'name', 'slug', 'description', 'image', 'icon')->with([
             'products' => function ($query) {
-                $query->where('status', '1');
+                $query->select('id', 'product_category_id', 'title', 'slug', 'home_image', 'status')
+                    ->orderBy('title');
             },
-            'productionOverviewSection',
-            'productionApplicationSections',
-            'productionFeaturesSections',
-            'productionFaqSections',
+            'productionOverviewSection' => function ($query) {
+                $query->select('id', 'product_category_id', 'overview_description', 'overview_image');
+            },
+            'productionFeaturesSections' => function ($query) {
+                $query->select('id', 'product_category_id');
+            },
+            'productionFaqSections' => function ($query) {
+                $query->select('id', 'product_category_id');
+            },
         ])
             ->where('status', '1')
             ->get();
+
+        foreach ($categories as $category) {
+            $hasAllCategorySections = $category->productionOverviewSection &&
+                ($category->productionOverviewSection->overview_description || $category->productionOverviewSection->overview_image) &&
+                $category->productionFeaturesSections->isNotEmpty() &&
+                $category->productionFaqSections->isNotEmpty();
+
+            $matchingProduct = $category->products->firstWhere('title', $category->name);
+            $firstProduct = $category->products->first();
+
+            $category->setAttribute('home_category_url', $hasAllCategorySections
+                ? route('front.categories.show', $category->slug)
+                : ($matchingProduct
+                    ? route('front.products.show', ['slug' => $category->slug])
+                    : route('front.products.show', ['slug' => $firstProduct->slug ?? '#'])));
+        }
 
         // Get featured categories for the static section
         $featuredCategories = $categories;
@@ -149,25 +171,35 @@ class FrontController extends Controller
             // ->get();
 
         // Get banners
-        $banners = Banner::where('status', '1')
+        $banners = Banner::select('id', 'title', 'image', 'mobile_image', 'sequence')
+            ->where('status', '1')
             ->orderBy('sequence')
             ->get();
 
         // Get recent blogs
-        $blogs = Blog::where('status', '1')
-            ->with('category')
+        $blogs = Blog::select('id', 'cat_id', 'title', 'slug', 'image_1', 'short_description', 'published_at', 'created_at', 'sequence')
+            ->where('status', '1')
+            ->with(['category' => function ($query) {
+                $query->select('id', 'title');
+            }])
             ->orderBy('sequence')
             ->take(3)
             ->get();
 
         // Get home page sections
 
-        $sectionOne = HomeSectionOne::with('features')->first();
-        $sectionTwo = HomeSectionTwo::first();
-        $sectionThree = HomeSectionThree::first();
-        $sectionFour = HomeSectionFour::with(['reviews' => function ($query) {
-            $query->where('status', 1)->orderBy('sequence');
-        }])->first();
+        $sectionOne = HomeSectionOne::select('id', 'title', 'description', 'image', 'video', 'now_more')
+            ->with(['features' => function ($query) {
+                $query->select('id', 'section_one_id', 'title', 'icon');
+            }])->first();
+        $sectionTwo = HomeSectionTwo::select('id', 'title', 'description', 'image', 'image_title', 'image_button', 'link')->first();
+        $sectionThree = HomeSectionThree::select('id', 'title', 'image', 'video_link')->first();
+        $sectionFour = HomeSectionFour::select('id', 'image', 'title', 'description')
+            ->with(['reviews' => function ($query) {
+                $query->select('id', 'section_four_id', 'description', 'person_name', 'person_role', 'person_image', 'status', 'sequence')
+                    ->where('status', 1)
+                    ->orderBy('sequence');
+            }])->first();
 
         $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
         $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
@@ -336,13 +368,22 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
         \Log::info('product seo'.json_encode($seoData));
-        $product = Product::where('slug', $slug)->with([
-            'productCategory',
-            'productionOverviewSection',
-            'productionFeaturesSections',
-            'productionApplicationSections',
-            'productionFaqSections',
-        ])->firstOrFail();
+        $product = Product::select('id', 'product_category_id', 'title', 'h1_title', 'slug', 'page_image', 'technical', 'brochure', 'technical_brochure')
+            ->where('slug', $slug)
+            ->with([
+                'productionOverviewSection' => function ($query) {
+                    $query->select('id', 'product_id', 'overview_description', 'overview_image');
+                },
+                'productionFeaturesSections' => function ($query) {
+                    $query->select('id', 'product_id', 'image', 'alert', 'icon', 'title', 'description', 'sequence');
+                },
+                'productionApplicationSections' => function ($query) {
+                    $query->select('id', 'product_id', 'icon', 'title', 'description', 'sequence');
+                },
+                'productionFaqSections' => function ($query) {
+                    $query->select('id', 'product_id', 'title', 'description', 'sequence');
+                },
+            ])->firstOrFail();
         // $seoData['og_image'] = !empty($seoData['og_image']) ? $seoData['og_image'] : $product->page_image;
         // $seoData['twitter_image'] = !empty($seoData['twitter_image']) ? $seoData['twitter_image']:$product->page_image;
         // $seoData['og_description'] = $seoData['og_description'] ?? $seoData['meta_description'];

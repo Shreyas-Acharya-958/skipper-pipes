@@ -26,14 +26,11 @@
         <meta property="og:title" content="{{ $seoData['og_title'] ?? $seoData['meta_title'] ?? '' }}">
         <meta property="og:description" content="{{ $seoData['og_description'] ?? $seoData['meta_description'] ?? '' }}">
         <meta property="og:type" content="{{ $seoData['og_type'] ?? 'website' }}">
-        @php 
-        $banner = \App\Models\Banner::where('status', '1')->orderBy('sequence')->first();
-        @endphp      
         @if(!empty($seoData['og_image']))
             <meta property="og:image" content="{{ asset('storage/' . $seoData['og_image']) }}">
             @else 
             @if(!isset($blog) || \Route::currentRouteName() == 'front.home')
-            <meta property="og:image" content="{{ asset('storage/' .$banner->image) }}">
+            <meta property="og:image" content="{{ asset('storage/' .$layoutBanner->image) }}">
             @endif    
         @endif
 
@@ -153,10 +150,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-center" data-in="#" data-out="#">
-                        @php
-                            $menus = App\Models\Menu::tree();
-                        @endphp
-                        @foreach ($menus as $menu)
+                        @foreach ($layoutMenus as $menu)
                             @php
                                 $menuLink = $menu->link == 'https://skipperbathfittings.com/beta/' ? 'products/bath-fittings' : $menu->link;
                             @endphp
@@ -274,23 +268,20 @@
         <div class="container">
             <div class="f-items default-padding">
                 <div class="row">
-                    @php
-                        $footer = \App\Models\Footer::select('section1', 'section2', 'section3', 'section4')->first();
-                    @endphp
                     <!-- Single Item -->
-                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section1) !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $layoutFooter->section1) !!}
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section2) !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $layoutFooter->section2) !!}
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section3) !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $layoutFooter->section3) !!}
                     <!-- End Single Item -->
 
                     <!-- Single Item -->
-                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $footer->section4) !!}
+                    {!! str_replace('https://skipperbathfittings.com/beta/', url('products/bath-fittings'), $layoutFooter->section4) !!}
                     <!-- End Single Item -->
                 </div>
             </div>
