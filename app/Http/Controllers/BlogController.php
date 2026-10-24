@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\SiteCache;
+
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\BlogCategory;
@@ -270,6 +272,8 @@ class BlogController extends Controller
                 'sequence' => $index + 1,
             ]);
         }
+
+        SiteCache::invalidate();
 
         return response()->json([
             'success' => true,

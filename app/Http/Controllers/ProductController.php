@@ -13,6 +13,7 @@ use App\Models\ProductionOverviewSection;
 use App\Models\ProductionApplicationSection;
 use App\Models\ProductionFeaturesSection;
 use App\Models\ProductionFaqSection;
+use App\Support\SiteCache;
 
 class ProductController extends Controller
 {
@@ -322,6 +323,7 @@ class ProductController extends Controller
             $overview->save();
 
             DB::commit();
+            SiteCache::invalidate();
             return redirect()->back()->withFragment($request->input('active_tab', '#overview'))->with('success', 'Overview section updated successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -448,6 +450,7 @@ class ProductController extends Controller
             }
 
             DB::commit();
+            SiteCache::invalidate();
             return redirect()->back()->withFragment($request->input('active_tab', '#applications'))->with('success', 'Applications section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();
@@ -563,6 +566,7 @@ class ProductController extends Controller
             }
 
             DB::commit();
+            SiteCache::invalidate();
             return redirect()->back()->withFragment($request->input('active_tab', '#features'))->with('success', 'Features section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();
@@ -611,6 +615,7 @@ class ProductController extends Controller
             }
 
             DB::commit();
+            SiteCache::invalidate();
             return redirect()->back()->withFragment($request->input('active_tab', '#faq'))->with('success', 'FAQ section updated successfully.');
         } catch (\Exception $e) {
             DB::rollback();

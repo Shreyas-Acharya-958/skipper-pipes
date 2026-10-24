@@ -77,6 +77,7 @@ use App\Models\WhySkipperPipeSectionFour;
 use App\Models\WhySkipperPipeSectionThree;
 use App\Models\WhySkipperPipeSectionTwo;
 use App\Models\ProductInquiry;
+use App\Support\SiteCache;
 
 class FrontController extends Controller
 {
@@ -87,48 +88,59 @@ class FrontController extends Controller
     private function getSeoDataForCurrentUrl()
     {
         $path = request()->path();
-        $pathWithoutSlash = ltrim($path, '/');
-        
-        $menu = \App\Models\Menu::where('link', $pathWithoutSlash)->orWhere('slug', $pathWithoutSlash)->orWhere('link', '/' . $pathWithoutSlash)->first();
-        if ($path == '' || $path == '/') {
-            $menu = \App\Models\Menu::where('link', '/')->orWhere('link', '')->first();
-        }
-        
-        if ($menu) {
-            $seo = //\Cache::remember('active_menu_seo', 86400, function () use ($menu) {
-                \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
-            // });
-            if ($seo) {
-                return [
-                    'meta_title' => $seo->meta_title,
-                    'meta_description' => $seo->meta_description,
-                    'meta_keywords' => $seo->meta_keywords,
-                    'meta_author' => 'Skipper Pipes',
-                    'canonical_url' => $seo->canonical_url ?? '',
-                    'robots' => $seo->robots ?? '',
-                    'og_title' => $seo->og_title ?? '',
-                    'og_description' => $seo->og_description ?? '',
-                    'og_type' => $seo->og_type ?? 'website',
-                    'twitter_title' => $seo->twitter_title ?? '',
-                    'twitter_description' => $seo->twitter_description ?? '',
-                    'twitter_card' => $seo->twitter_card ?? 'summary_large_image',
-                    'custom_schema_json' => $seo->custom_schema_json ?? null,
-                    'schema_json' => $seo->schema_json ?? null,
-                ];
+        $loadSeoData = function () use ($path) {
+            $pathWithoutSlash = ltrim($path, '/');
+
+            $menu = \App\Models\Menu::where('link', $pathWithoutSlash)
+                ->orWhere('slug', $pathWithoutSlash)
+                ->orWhere('link', '/' . $pathWithoutSlash)
+                ->first();
+            if ($path == '' || $path == '/') {
+                $menu = \App\Models\Menu::where('link', '/')->orWhere('link', '')->first();
             }
+
+            if ($menu) {
+                $seo = \App\Models\MenuSeoMetadata::where('menu_id', $menu->id)->first();
+                if ($seo) {
+                    return [
+                        'meta_title' => $seo->meta_title,
+                        'meta_description' => $seo->meta_description,
+                        'meta_keywords' => $seo->meta_keywords,
+                        'meta_author' => 'Skipper Pipes',
+                        'canonical_url' => $seo->canonical_url ?? '',
+                        'robots' => $seo->robots ?? '',
+                        'og_title' => $seo->og_title ?? '',
+                        'og_description' => $seo->og_description ?? '',
+                        'og_type' => $seo->og_type ?? 'website',
+                        'twitter_title' => $seo->twitter_title ?? '',
+                        'twitter_description' => $seo->twitter_description ?? '',
+                        'twitter_card' => $seo->twitter_card ?? 'summary_large_image',
+                        'custom_schema_json' => $seo->custom_schema_json ?? null,
+                        'schema_json' => $seo->schema_json ?? null,
+                    ];
+                }
+            }
+
+            return [
+                'meta_title' => 'Skipper Pipes',
+                'meta_description' => 'Discover high-quality pipes and fittings from Skipper Pipes.',
+                'meta_keywords' => 'pipes, plumbing, fittings, skipper pipes, manufacturing',
+                'meta_author' => 'Skipper Pipes',
+            ];
+        };
+
+        if (request()->routeIs('front.home', 'front.products.show')) {
+            return SiteCache::remember('seo:' . $path, 86400, $loadSeoData);
         }
-        return [
-            'meta_title' => 'Skipper Pipes',
-            'meta_description' => 'Discover high-quality pipes and fittings from Skipper Pipes.',
-            'meta_keywords' => 'pipes, plumbing, fittings, skipper pipes, manufacturing',
-            'meta_author' => 'Skipper Pipes',
-        ];
+
+        return $loadSeoData();
     }
 
     public function index()
     {
         $seoData = $this->getSeoDataForCurrentUrl();
 
+        $homeData = SiteCache::remember('home', 3600, function () {
         // Get all active categories with their products
         $categories = ProductCategory::select('id', 'name', 'slug', 'description', 'image', 'icon')->with([
             'products' => function ($query) {
@@ -200,6 +212,18 @@ class FrontController extends Controller
                     ->where('status', 1)
                     ->orderBy('sequence');
             }])->first();
+
+            return compact('categories', 'featuredCategories', 'banners', 'blogs', 'sectionOne', 'sectionTwo', 'sectionThree', 'sectionFour');
+        });
+
+        $categories = $homeData['categories'];
+        $featuredCategories = $homeData['featuredCategories'];
+        $banners = $homeData['banners'];
+        $blogs = $homeData['blogs'];
+        $sectionOne = $homeData['sectionOne'];
+        $sectionTwo = $homeData['sectionTwo'];
+        $sectionThree = $homeData['sectionThree'];
+        $sectionFour = $homeData['sectionFour'];
 
         $seoData['og_description'] = !empty($seoData['og_description']) ? $seoData['og_description'] : ($seoData['meta_description'] ?? null);
         $seoData['twitter_description'] = !empty($seoData['twitter_description']) ? $seoData['twitter_description'] : ($seoData['meta_description'] ?? null);
@@ -366,24 +390,26 @@ class FrontController extends Controller
 
     public function productDetail($slug)
     {
+        $product = SiteCache::remember('product:' . $slug, 3600, function () use ($slug) {
+            return Product::select('id', 'product_category_id', 'title', 'h1_title', 'slug', 'page_image', 'technical', 'brochure', 'technical_brochure')
+                ->where('slug', $slug)
+                ->with([
+                    'productionOverviewSection' => function ($query) {
+                        $query->select('id', 'product_id', 'overview_description', 'overview_image');
+                    },
+                    'productionFeaturesSections' => function ($query) {
+                        $query->select('id', 'product_id', 'image', 'alert', 'icon', 'title', 'description', 'sequence');
+                    },
+                    'productionApplicationSections' => function ($query) {
+                        $query->select('id', 'product_id', 'icon', 'title', 'description', 'sequence');
+                    },
+                    'productionFaqSections' => function ($query) {
+                        $query->select('id', 'product_id', 'title', 'description', 'sequence');
+                    },
+                ])->firstOrFail();
+        });
         $seoData = $this->getSeoDataForCurrentUrl();
         \Log::info('product seo'.json_encode($seoData));
-        $product = Product::select('id', 'product_category_id', 'title', 'h1_title', 'slug', 'page_image', 'technical', 'brochure', 'technical_brochure')
-            ->where('slug', $slug)
-            ->with([
-                'productionOverviewSection' => function ($query) {
-                    $query->select('id', 'product_id', 'overview_description', 'overview_image');
-                },
-                'productionFeaturesSections' => function ($query) {
-                    $query->select('id', 'product_id', 'image', 'alert', 'icon', 'title', 'description', 'sequence');
-                },
-                'productionApplicationSections' => function ($query) {
-                    $query->select('id', 'product_id', 'icon', 'title', 'description', 'sequence');
-                },
-                'productionFaqSections' => function ($query) {
-                    $query->select('id', 'product_id', 'title', 'description', 'sequence');
-                },
-            ])->firstOrFail();
         // $seoData['og_image'] = !empty($seoData['og_image']) ? $seoData['og_image'] : $product->page_image;
         // $seoData['twitter_image'] = !empty($seoData['twitter_image']) ? $seoData['twitter_image']:$product->page_image;
         // $seoData['og_description'] = $seoData['og_description'] ?? $seoData['meta_description'];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Models\MenuSeoMetadata;
+use App\Support\SiteCache;
 use Illuminate\Support\Facades\Log;
 
 class MenuController extends Controller
@@ -87,6 +88,8 @@ class MenuController extends Controller
                 'sequence' => $item['sequence']
             ]);
         }
+
+        SiteCache::invalidate();
 
         return response()->json(['message' => 'Menu order updated successfully']);
     }

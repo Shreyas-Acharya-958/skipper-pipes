@@ -10,6 +10,7 @@ use App\Models\ProductionFaqSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Support\SiteCache;
 
 class ProductCategoryController extends Controller
 {
@@ -279,6 +280,8 @@ class ProductCategoryController extends Controller
             $application->save();
         }
 
+        SiteCache::invalidate();
+
         return redirect()->back()->withFragment('#applications')->with('success', 'Applications section updated successfully.');
     }
 
@@ -314,6 +317,8 @@ class ProductCategoryController extends Controller
             $feature->save();
         }
 
+        SiteCache::invalidate();
+
         return redirect()->back()->withFragment('#features')->with('success', 'Features section updated successfully.');
     }
 
@@ -338,6 +343,8 @@ class ProductCategoryController extends Controller
             $faq->sequence = $index;
             $faq->save();
         }
+
+        SiteCache::invalidate();
 
         return redirect()->back()->withFragment('#faq')->with('success', 'FAQ section updated successfully.');
     }

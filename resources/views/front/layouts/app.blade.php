@@ -44,7 +44,7 @@
         <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
         @else
         @if(!isset($blog) || \Route::currentRouteName() == 'front.home')
-        <meta property="twitter:image" content="{{ asset('storage/' .$banner->image) }}">
+        <meta property="twitter:image" content="{{ asset('storage/' .$layoutBanner->image) }}">
         @endif
         @endif
         @if(!empty($seoData['schema_json']))
