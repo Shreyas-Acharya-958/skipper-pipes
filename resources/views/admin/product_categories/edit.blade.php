@@ -86,6 +86,25 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label for="hero_image" class="form-label">Category Hero Image</label>
+                                    @if ($category->hero_image)
+                                        <div class="mb-2">
+                                            <img src="{{ asset('storage/' . $category->hero_image) }}"
+                                                alt="{{ $category->name }} Hero" style="max-width: 200px;">
+                                        </div>
+                                    @endif
+                                    <input type="file" class="form-control @error('hero_image') is-invalid @enderror"
+                                        id="hero_image" name="hero_image" accept="image/*,.svg">
+                                    <small class="text-muted">Leave empty to keep the current hero image</small>
+                                    @error('hero_image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label for="status" class="form-label">Status</label>
                                     <select class="form-select @error('status') is-invalid @enderror" id="status"
                                         name="status" required>

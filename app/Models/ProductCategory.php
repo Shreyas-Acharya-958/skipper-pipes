@@ -14,6 +14,7 @@ class ProductCategory extends Model
         'slug',
         'description',
         'image',
+        'hero_image',
         'icon',
         'brochure',
         'technical_brochure',

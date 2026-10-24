@@ -43,6 +43,7 @@ use App\Models\HomeSectionOne;
 use App\Models\HomeSectionTwo;
 use App\Models\HomeSectionThree;
 use App\Models\HomeSectionFour;
+use Illuminate\Support\Str;
 use App\Models\LeadershipSectionFour;
 use App\Models\LeadershipSectionOne;
 use App\Models\LeadershipSectionThree;
@@ -334,6 +335,40 @@ class FrontController extends Controller
             ])
             ->firstOrFail();
 
+        $categorySlugs = collect([$productCategory->slug, Str::slug($productCategory->name)])->filter();
+        $blogCategoryIds = BlogCategory::where('status', 1)
+            ->get(['id', 'title'])
+            ->filter(function ($blogCategory) use ($categorySlugs) {
+                $blogCategorySlug = Str::slug($blogCategory->title);
+
+                return $categorySlugs->contains(fn ($categorySlug) => $categorySlug === $blogCategorySlug ||
+                    Str::startsWith($categorySlug, $blogCategorySlug . '-') ||
+                    Str::startsWith($blogCategorySlug, $categorySlug . '-'));
+            })
+            ->pluck('id');
+
+        $categoryBlogs = collect();
+        if ($blogCategoryIds->isNotEmpty()) {
+            $categoryBlogs = Blog::select('id', 'cat_id', 'title', 'slug', 'page_image', 'image_1', 'short_description', 'published_at', 'created_at')
+                ->where('status', 1)
+                ->whereIn('cat_id', $blogCategoryIds)
+                ->with(['category' => fn ($query) => $query->select('id', 'title')])
+                ->orderByRaw('COALESCE(published_at, created_at) DESC')
+                ->take(3)
+                ->get();
+        }
+
+        $hasCategoryBlogs = $categoryBlogs->isNotEmpty();
+
+        if (!$hasCategoryBlogs) {
+            $categoryBlogs = Blog::select('id', 'cat_id', 'title', 'slug', 'page_image', 'image_1', 'short_description', 'published_at', 'created_at')
+                ->where('status', 1)
+                ->with(['category' => fn ($query) => $query->select('id', 'title')])
+                ->orderByRaw('COALESCE(published_at, created_at) DESC')
+                ->take(3)
+                ->get();
+        }
+
         if (($seoData['meta_title'] ?? 'Skipper Pipes') === 'Skipper Pipes') {
             $seoData['meta_title'] = $productCategory->name;
             $seoData['meta_description'] = $productCategory->description;
@@ -352,7 +387,7 @@ class FrontController extends Controller
         $seoData['twitter_card'] = $productCategory->twitter_card ?: ($seoData['twitter_card'] ?? 'summary_large_image');
         $seoData['twitter_image'] = $seoData['twitter_image'] ?? $productCategory->image;
 
-        return view('front.category-detail', compact('productCategory', 'seoData'));
+        return view('front.category-detail', compact('productCategory', 'seoData', 'categoryBlogs', 'hasCategoryBlogs'));
     }
 
     public function storeCategoryInquiry(Request $request, $slug)

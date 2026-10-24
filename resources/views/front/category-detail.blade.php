@@ -110,6 +110,7 @@
 
 @section('content')
     @php
+        $heroImage = $productCategory->hero_image ?: $productCategory->image;
         $overviewImages = $productCategory->productionOverviewSection?->overview_image ?? [];
         if (is_string($overviewImages)) {
             $overviewImages = json_decode($overviewImages, true) ?? [];
@@ -118,14 +119,14 @@
 
     <section class="hero-banner2 product-cat">
         <div class="hero-banner2-bg">
-            <img src="{{ $productCategory->image ? asset('storage/' . $productCategory->image) : asset('assets/img/final/product-category.jpg') }}"
-                alt="{{ image_alt_text('storage/' . $productCategory->image, $productCategory->name) }}">
+            <img src="{{ $heroImage ? asset('storage/' . $heroImage) : asset('assets/img/final/product-category.jpg') }}"
+                alt="{{ image_alt_text($heroImage ? 'storage/' . $heroImage : 'assets/img/final/product-category.jpg', $productCategory->name) }}">
         </div>
     </section>
     <section class="hero-banner2-responsive">
         <div class="hero-banner2-img-responsive">
-            <img src="{{ $productCategory->image ? asset('storage/' . $productCategory->image) : asset('assets/img/final/product-category.jpg') }}"
-                alt="{{ image_alt_text('storage/' . $productCategory->image, $productCategory->name) }}">
+            <img src="{{ $heroImage ? asset('storage/' . $heroImage) : asset('assets/img/final/product-category.jpg') }}"
+                alt="{{ image_alt_text($heroImage ? 'storage/' . $heroImage : 'assets/img/final/product-category.jpg', $productCategory->name) }}">
         </div>
     </section>
 
@@ -303,6 +304,49 @@
             @if ($productCategory->technical_brochure)<a class="btn btn-light technical-btn effect btn-md js-download-category-brochure" data-brochure-type="technical" data-toggle="modal" data-target="#categoryBrochurePopup">Technical Brochure <br><span>Download</span></a>@endif
         </div>
         @include('front.category-popup')
+    @endif
+
+    @if ($categoryBlogs->isNotEmpty())
+        <section class="blog-area home-blog date-less default-padding bottom-less">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="site-heading text-center">
+                            <p>Resources</p>
+                            <h2>{{ $hasCategoryBlogs ? $productCategory->name . ' Guides From Our Blog' : 'Latest Guides From Our Blog' }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-items">
+                    <div class="row">
+                        @foreach ($categoryBlogs as $blog)
+                            @php($blogImage = $blog->image_1 ?: $blog->page_image)
+                            <div class="col-lg-4 col-md-6 single-item" data-aos="flip-right" data-aos-duration="1000"
+                                data-aos-delay="100">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="{{ route('front.blogs.show', $blog->slug) }}" aria-label="Read more {{ $blog->title }}">
+                                            <img src="{{ $blogImage ? asset('storage/' . $blogImage) : asset('assets/img/final/blog1.jpeg') }}"
+                                                loading="lazy" alt="{{ $blog->title }}">
+                                        </a>
+                                    </div>
+                                    <div class="info">
+                                        <div class="content">
+                                            <h4><a href="{{ route('front.blogs.show', $blog->slug) }}">{{ $blog->title }}</a></h4>
+                                            <p>{{ Str::limit($blog->short_description, 150) }}</p>
+                                            <a class="more-btn" href="{{ route('front.blogs.show', $blog->slug) }}">Read More <i class="fas fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <a class="btn btn-dark theme theme2 btn-md btn-text" href="{{ route('front.blogs.index') }}">View All</a>
+                </div>
+            </div>
+        </section>
     @endif
 @endsection
 

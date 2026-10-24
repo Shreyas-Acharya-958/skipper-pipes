@@ -52,17 +52,22 @@ class ProductCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:product_categories',
             'description' => 'nullable|string',
             'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'hero_image' => 'nullable|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'icon' => 'nullable|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'brochure' => 'nullable|mimes:pdf,doc,docx|max:10240',
             'technical_brochure' => 'nullable|mimes:pdf,doc,docx|max:10240',
             'status' => 'required|boolean'
         ]);
 
-        $data = $request->except(['image', 'icon', 'brochure', 'technical_brochure']);
+        $data = $request->except(['image', 'hero_image', 'icon', 'brochure', 'technical_brochure']);
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('product-categories', 'public');
             $data['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('hero_image')) {
+            $data['hero_image'] = $request->file('hero_image')->store('product-categories/hero', 'public');
         }
 
         if ($request->hasFile('icon')) {
@@ -111,13 +116,14 @@ class ProductCategoryController extends Controller
             'slug' => 'required|string|max:255|unique:product_categories,slug,' . $productCategory->id,
             'description' => 'nullable|string',
             'image' => 'nullable|mimes:webp,jpeg,png,jpg,gif,svg|max:2048',
+            'hero_image' => 'nullable|mimes:webp,jpeg,png,jpg,gif,svg|max:2048',
             'icon' => 'nullable|mimes:webp,jpeg,png,jpg,gif,svg|max:2048',
             'brochure' => 'nullable|mimes:pdf,doc,docx|max:10240',
             'technical_brochure' => 'nullable|mimes:pdf,doc,docx|max:10240',
             'status' => 'required|boolean'
         ]);
 
-        $data = $request->except(['image', 'icon', 'brochure', 'technical_brochure']);
+        $data = $request->except(['image', 'hero_image', 'icon', 'brochure', 'technical_brochure']);
 
         if ($request->hasFile('image')) {
             // Delete old image if exists
@@ -127,6 +133,14 @@ class ProductCategoryController extends Controller
 
             $imagePath = $request->file('image')->store('product-categories', 'public');
             $data['image'] = $imagePath;
+        }
+
+        if ($request->hasFile('hero_image')) {
+            if ($productCategory->hero_image) {
+                Storage::disk('public')->delete($productCategory->hero_image);
+            }
+
+            $data['hero_image'] = $request->file('hero_image')->store('product-categories/hero', 'public');
         }
 
         if ($request->hasFile('icon')) {
@@ -170,6 +184,10 @@ class ProductCategoryController extends Controller
         // Delete the image if exists
         if ($productCategory->image) {
             Storage::disk('public')->delete($productCategory->image);
+        }
+
+        if ($productCategory->hero_image) {
+            Storage::disk('public')->delete($productCategory->hero_image);
         }
 
         // Delete the icon if exists
