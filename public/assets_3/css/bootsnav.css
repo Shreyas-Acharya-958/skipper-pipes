@@ -1255,7 +1255,7 @@ nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:hover::after {
 
 nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle::after {
   content: "\f107";
-  font-family: "Font Awesome 5 Pro";
+  font-family: "Font Awesome 7 Free";
   margin-left: 5px;
   margin-top: 2px;
   border: none;
@@ -1947,7 +1947,7 @@ nav.navbar.bootsnav {
   }
 
   nav.navbar.bootsnav li.dropdown ul.dropdown-menu li.dropdown > a.dropdown-toggle:before {
-    font-family: 'Font Awesome 5 Pro';
+    font-family: 'Font Awesome 7 Free';
     font-weight: 700;
     float: right;
     content: "\f105";
@@ -1955,7 +1955,7 @@ nav.navbar.bootsnav {
   }
 
   nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu li.dropdown > a.dropdown-toggle:before {
-    font-family: 'Font Awesome 5 Pro';
+    font-family: 'Font Awesome 7 Free';
     font-weight: 700;
     float: right;
     content: "\f105";
@@ -1963,7 +1963,7 @@ nav.navbar.bootsnav {
   }
 
   nav.navbar.bootsnav ul.navbar-right li.dropdown.dropdown-left ul.dropdown-menu li.dropdown > a.dropdown-toggle:before {
-    font-family: 'Font Awesome 5 Pro';
+    font-family: 'Font Awesome 7 Free';
     font-weight: 700;
     float: left;
     content: "\f104";
@@ -2756,7 +2756,7 @@ nav.navbar.bootsnav {
   }
 
   nav.navbar.bootsnav li.dropdown a.dropdown-toggle:before {
-    font-family: 'Font Awesome 5 Pro';
+    font-family: 'Font Awesome 7 Free';
     font-weight: 700;
     content: "\f105";
     float: right;
@@ -2869,7 +2869,7 @@ nav.navbar.bootsnav {
   nav.navbar.bootsnav .dropdown .megamenu-content .col-menu .title::before {
     content: "\f105";
     float: right;
-    font-family: "Font Awesome 5 Pro";
+    font-family: "Font Awesome 7 Free";
     font-size: 16px;
     font-weight: 700;
     margin-left: 10px;
