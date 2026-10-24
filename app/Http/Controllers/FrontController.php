@@ -194,7 +194,7 @@ class FrontController extends Controller
             ->with(['category' => function ($query) {
                 $query->select('id', 'title');
             }])
-            ->orderBy('sequence')
+            ->orderBy('published_at')
             ->take(3)
             ->get();
 
