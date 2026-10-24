@@ -186,7 +186,7 @@
                             <div class="services-one__single">
                                 <div class="services-one__img-box">
                                     <div class="services-one__img"><img src="{{ asset('storage/' . $application->image) }}"
-                                            alt="{{ image_alt_text('storage/' . $application->image, $application->title) }}">
+                                            alt="{{ $application->title }}">
                                     </div>
                                     <div class="services-one__shape-1"></div>
                                     <div class="services-one__icon"><img

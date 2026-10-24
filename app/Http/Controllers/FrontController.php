@@ -195,6 +195,7 @@ class FrontController extends Controller
                 $query->select('id', 'title');
             }])
             ->orderBy('published_at')
+            ->orderBy('created_at')
             ->take(3)
             ->get();
 
@@ -401,7 +402,7 @@ class FrontController extends Controller
                         $query->select('id', 'product_id', 'image', 'alert', 'icon', 'title', 'description', 'sequence');
                     },
                     'productionApplicationSections' => function ($query) {
-                        $query->select('id', 'product_id', 'icon', 'title', 'description', 'sequence');
+                        $query->select('id', 'product_id', 'image', 'icon', 'title', 'description', 'sequence');
                     },
                     'productionFaqSections' => function ($query) {
                         $query->select('id', 'product_id', 'title', 'description', 'sequence');
