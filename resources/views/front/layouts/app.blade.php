@@ -12,7 +12,10 @@
         <meta name="description" content="{{ $seoData['meta_description'] ?? '' }}">
         <meta name="keywords" content="{{ $seoData['meta_keywords'] ?? '' }}">
     @endif
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ !empty($seoData['canonical_url']) ? $seoData['canonical_url'] : url()->current() }}">
+    @if (!empty($seoData['robots']))
+        <meta name="robots" content="{{ $seoData['robots'] }}">
+    @endif
     <link rel="preconnect" href="{{ url('/') }}">
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     @hasSection ('og-tags')
@@ -39,7 +42,7 @@
         <meta name="twitter:title" content="{{ $seoData['twitter_title'] ?? $seoData['og_title'] ?? '' }}">
         <meta property="twitter:url" content="{{ url()->current() }}">
         <meta property="twitter:site" content="@skipperpipes">
-        <meta property="twitter:description" content="{{ $seoData['meta_description'] ?? $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
+        <meta property="twitter:description" content="{{ $seoData['twitter_description'] ?? $seoData['meta_description'] ?? 'Skipper Pipes - Leading manufacturer of high-quality pipes and fittings' }}">
         @if(!empty($seoData['twitter_image']))
         <meta name="twitter:image" content="{{ asset('storage/' . $seoData['twitter_image']) }}">
         @else

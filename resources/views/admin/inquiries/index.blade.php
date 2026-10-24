@@ -33,7 +33,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Product</th>
+                                    <th>Product / Category</th>
                                     <th>Brochure Type</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -48,7 +48,7 @@
                                 @forelse ($inquiries as $inquiry)
                                     <tr>
                                         <td>{{ $inquiry->id }}</td>
-                                        <td>{{ $inquiry->product->title }}</td>
+                                        <td>{{ $inquiry->productCategory?->name ?? $inquiry->product?->title ?? 'N/A' }}</td>
                                         <td>{{ ucwords($inquiry->brochure_type) }}</td>
                                         <td>{{ $inquiry->name }}</td>
                                         <td>{{ $inquiry->email ?? '-' }}</td>

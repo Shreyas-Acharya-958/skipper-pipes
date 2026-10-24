@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductInquiry extends Model
 {
- protected $fillable = ['product_id','brochure_type','name',
+ protected $fillable = ['product_id','product_category_id','brochure_type','name',
     'email',
     'mobile',
     'pincode',
@@ -17,5 +17,9 @@ class ProductInquiry extends Model
 
     public function product(){
         return $this->belongsTo(\App\Models\Product::class,'product_id');
+    }
+
+    public function productCategory(){
+        return $this->belongsTo(\App\Models\ProductCategory::class,'product_category_id');
     }
 }

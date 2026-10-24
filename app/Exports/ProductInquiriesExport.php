@@ -14,13 +14,13 @@ class ProductInquiriesExport implements FromCollection, WithHeadings, WithMappin
 {
     public function collection()
     {
-        return ProductInquiry::with('product')->get();
+        return ProductInquiry::with(['product', 'productCategory'])->get();
     }
 
     public function headings(): array
     {
         return [
-            'Product',
+            'Product / Category',
             'Brochure Type',
             'Name',
             'Email',
@@ -33,7 +33,7 @@ class ProductInquiriesExport implements FromCollection, WithHeadings, WithMappin
     public function map($inquiry): array
     {
         return [
-            $inquiry->product?->title ?? 'N/A',
+            $inquiry->productCategory?->name ?? $inquiry->product?->title ?? 'N/A',
             $inquiry->brochure_type ?? 'N/A',
             $inquiry->name,
             $inquiry->email ?? 'N/A',

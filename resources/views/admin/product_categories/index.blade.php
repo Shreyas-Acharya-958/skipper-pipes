@@ -62,6 +62,10 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
+                                                <a href="{{ route('admin.product_categories.sections', $category) }}"
+                                                    class="me-2" title="Edit Sections">
+                                                    <i class="fas fa-th-large text-primary" style="font-size: 1.2rem;"></i>
+                                                </a>
                                                 <a href="{{ route('admin.product_categories.show', $category) }}"
                                                     class="me-2" title="View">
                                                     <i class="fas fa-eye text-info" style="font-size: 1.2rem;"></i>

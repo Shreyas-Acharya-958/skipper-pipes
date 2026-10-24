@@ -8,6 +8,7 @@ class ProductionFaqSection extends Model
 {
     protected $fillable = [
         'product_id',
+        'product_category_id',
         'title',
         'description',
         'sequence',
@@ -16,5 +17,10 @@ class ProductionFaqSection extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function productCategory()
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 }

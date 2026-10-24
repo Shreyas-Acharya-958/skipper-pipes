@@ -11,6 +11,7 @@ class ProductionFeaturesSection extends Model
 
     protected $fillable = [
         'product_id',
+        'product_category_id',
         'image',
         'icon',
         'title',
@@ -22,5 +23,10 @@ class ProductionFeaturesSection extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function productCategory()
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 }

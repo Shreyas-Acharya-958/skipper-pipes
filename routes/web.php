@@ -215,6 +215,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Product Category routes
     Route::resource('product-categories', ProductCategoryController::class)->names('product_categories');
+    Route::get('product-categories/{productCategory}/sections', [ProductCategoryController::class, 'sections'])->name('product_categories.sections');
+    Route::post('product-categories/{productCategory}/sections/overview', [ProductCategoryController::class, 'saveOverview'])->name('product_categories.sections.overview.save');
+    Route::post('product-categories/{productCategory}/sections/seo', [ProductCategoryController::class, 'saveSeo'])->name('product_categories.sections.seo.save');
+    Route::post('product-categories/{productCategory}/sections/applications', [ProductCategoryController::class, 'saveApplications'])->name('product_categories.sections.applications.save');
+    Route::post('product-categories/{productCategory}/sections/features', [ProductCategoryController::class, 'saveFeatures'])->name('product_categories.sections.features.save');
+    Route::post('product-categories/{productCategory}/sections/faq', [ProductCategoryController::class, 'saveFaq'])->name('product_categories.sections.faq.save');
 
     // Blog Category routes
     Route::resource('blog-categories', BlogCategoryController::class)->names('blog_categories');
@@ -550,6 +556,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
         // Product Category routes
         Route::resource('product-categories', ProductCategoryController::class)->names('product_categories');
+        Route::get('product-categories/{productCategory}/sections', [ProductCategoryController::class, 'sections'])->name('product_categories.sections');
+        Route::post('product-categories/{productCategory}/sections/overview', [ProductCategoryController::class, 'saveOverview'])->name('product_categories.sections.overview.save');
+        Route::post('product-categories/{productCategory}/sections/seo', [ProductCategoryController::class, 'saveSeo'])->name('product_categories.sections.seo.save');
+        Route::post('product-categories/{productCategory}/sections/applications', [ProductCategoryController::class, 'saveApplications'])->name('product_categories.sections.applications.save');
+        Route::post('product-categories/{productCategory}/sections/features', [ProductCategoryController::class, 'saveFeatures'])->name('product_categories.sections.features.save');
+        Route::post('product-categories/{productCategory}/sections/faq', [ProductCategoryController::class, 'saveFaq'])->name('product_categories.sections.faq.save');
     });
 
     // Routes accessible by Admin and Lead Management (Dashboard module)
@@ -570,6 +582,8 @@ Route::name('front.')->group(function () {
     Route::get('/blogs/{slug}', [FrontController::class, 'blogDetail'])->name('blogs.show');
     Route::post('/blogs/{blog}/comment', [FrontController::class, 'storeBlogComment'])->name('blogs.comment');
     Route::get('/partner/{slug}', [FrontController::class, 'partner'])->name('partner.show');
+    Route::get('/category/{slug}', [FrontController::class, 'categoryDetail'])->name('categories.show');
+    Route::post('/category/{slug}/save-inquiry-brochure', [FrontController::class, 'storeCategoryInquiry'])->name('categories.save-inquiry-brochure')->middleware('throttle:10,1');
     Route::get('/products/{slug}', [FrontController::class, 'productDetail'])->name('products.show');
     Route::post('/products/{slug}/save-inquiry-brochure', [FrontController::class, 'storeProductInquiry'])->name('products.save-inquiry-brochure')->middleware('throttle:10,1');
     Route::get('/company/{slug}', [FrontController::class, 'companyPage'])->name('company.page');

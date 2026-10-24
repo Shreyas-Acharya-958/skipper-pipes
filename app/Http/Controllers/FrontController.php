@@ -130,9 +130,15 @@ class FrontController extends Controller
         $seoData = $this->getSeoDataForCurrentUrl();
 
         // Get all active categories with their products
-        $categories = ProductCategory::with(['products' => function ($query) {
-            $query->where('status', '1');
-        }])
+        $categories = ProductCategory::with([
+            'products' => function ($query) {
+                $query->where('status', '1');
+            },
+            'productionOverviewSection',
+            'productionApplicationSections',
+            'productionFeaturesSections',
+            'productionFaqSections',
+        ])
             ->where('status', '1')
             ->get();
 
@@ -253,6 +259,77 @@ class FrontController extends Controller
         $seoData = $this->getSeoDataForCurrentUrl();
         $products = Product::where('status', 1)->paginate(9);
         return view('front.products', compact('products', 'seoData'));
+    }
+
+    public function categoryDetail($slug)
+    {
+        $seoData = $this->getSeoDataForCurrentUrl();
+        $productCategory = ProductCategory::where('slug', $slug)
+            ->where('status', 1)
+            ->with([
+                'products' => function ($query) {
+                    $query->where('status', 1)->orderBy('title');
+                },
+                'productionOverviewSection',
+                'productionApplicationSections',
+                'productionFeaturesSections',
+                'productionFaqSections',
+            ])
+            ->firstOrFail();
+
+        if (($seoData['meta_title'] ?? 'Skipper Pipes') === 'Skipper Pipes') {
+            $seoData['meta_title'] = $productCategory->name;
+            $seoData['meta_description'] = $productCategory->description;
+        }
+        $seoData['meta_title'] = $productCategory->meta_title ?: ($seoData['meta_title'] ?? $productCategory->name);
+        $seoData['meta_description'] = $productCategory->meta_description ?: ($seoData['meta_description'] ?? $productCategory->description);
+        $seoData['meta_keywords'] = $productCategory->meta_keywords ?: ($seoData['meta_keywords'] ?? '');
+        $seoData['canonical_url'] = $productCategory->canonical_url ?: ($seoData['canonical_url'] ?? url()->current());
+        $seoData['robots'] = $productCategory->robots ?: ($seoData['robots'] ?? '');
+        $seoData['og_title'] = $productCategory->og_title ?: ($seoData['og_title'] ?? $seoData['meta_title']);
+        $seoData['og_description'] = $productCategory->og_description ?: ($seoData['og_description'] ?? $seoData['meta_description']);
+        $seoData['og_type'] = $productCategory->og_type ?: ($seoData['og_type'] ?? 'website');
+        $seoData['og_image'] = $seoData['og_image'] ?? $productCategory->image;
+        $seoData['twitter_title'] = $productCategory->twitter_title ?: ($seoData['twitter_title'] ?? $seoData['meta_title']);
+        $seoData['twitter_description'] = $productCategory->twitter_description ?: ($seoData['twitter_description'] ?? $seoData['meta_description']);
+        $seoData['twitter_card'] = $productCategory->twitter_card ?: ($seoData['twitter_card'] ?? 'summary_large_image');
+        $seoData['twitter_image'] = $seoData['twitter_image'] ?? $productCategory->image;
+
+        return view('front.category-detail', compact('productCategory', 'seoData'));
+    }
+
+    public function storeCategoryInquiry(Request $request, $slug)
+    {
+        $productCategory = ProductCategory::where('slug', $slug)->where('status', 1)->firstOrFail();
+        $validated = $request->validate([
+            'product_category_id' => ['required', 'in:' . $productCategory->id],
+            'brochure_type' => ['required', 'in:category,technical'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'email', 'regex:/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/', 'max:255'],
+            'mobile' => ['required', 'string', 'max:12', 'regex:/^[6-9][0-9]*$/'],
+            'pincode' => ['required', 'digits:6'],
+            'website' => ['nullable', 'max:0'],
+        ]);
+
+        $file = $validated['brochure_type'] === 'technical'
+            ? $productCategory->technical_brochure
+            : $productCategory->brochure;
+        abort_unless($file, 404);
+
+        ProductInquiry::create($validated + [
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'device_type' => $request->header('Sec-CH-UA-Mobile'),
+            'platform' => $request->header('Sec-CH-UA-Platform'),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Inquiry submitted successfully.',
+            'brochure' => $validated['brochure_type'],
+            'file_url' => asset('storage/' . $file),
+            'file_name' => $file,
+        ]);
     }
 
     public function productDetail($slug)
