@@ -10,6 +10,12 @@ if (!function_exists('image_alt_text')) {
      */
     function image_alt_text($imageUrl, $fallback = null)
     {
+        if (!request()->routeIs('front.home', 'front.products.show')) {
+            return Cache::rememberForever('image_alt_texts_map', fn () =>
+                \App\Models\ImageAltText::getAltText($imageUrl) ?? $fallback
+            );
+        }
+
         $imagePath = parse_url($imageUrl, PHP_URL_PATH) ?: $imageUrl;
         $imagePath = ltrim($imagePath, '/');
         $normalizedPath = \App\Models\ImageAltText::normalizePath($imagePath);

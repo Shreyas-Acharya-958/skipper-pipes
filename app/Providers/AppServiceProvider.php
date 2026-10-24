@@ -73,13 +73,21 @@ class AppServiceProvider extends ServiceProvider
         View::composer('front.layouts.app', function ($view) {
             $viewData = $view->getData();
             $banners = $viewData['banners'] ?? collect();
-            $layoutData = SiteCache::remember('layout', 86400, function () use ($banners) {
-                return [
+            if (request()->routeIs('front.home', 'front.products.show')) {
+                $layoutData = SiteCache::remember('layout', 86400, function () use ($banners) {
+                    return [
+                        'menus' => Menu::tree(),
+                        'footer' => Footer::select('section1', 'section2', 'section3', 'section4')->first(),
+                        'banner' => $banners->first() ?? Banner::where('status', '1')->orderBy('sequence')->first(),
+                    ];
+                });
+            } else {
+                $layoutData = [
                     'menus' => Menu::tree(),
                     'footer' => Footer::select('section1', 'section2', 'section3', 'section4')->first(),
                     'banner' => $banners->first() ?? Banner::where('status', '1')->orderBy('sequence')->first(),
                 ];
-            });
+            }
 
             $view->with([
                 'layoutBanner' => $banners->first() ?? $layoutData['banner'],
