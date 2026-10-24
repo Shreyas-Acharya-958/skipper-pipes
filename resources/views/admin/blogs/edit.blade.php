@@ -333,6 +333,28 @@
 @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.1/tinymce.min.js"></script>
     <script>
+        function uploadBlogEditorImage(file, fileName) {
+            var formData = new FormData();
+            formData.append('file', file, fileName || file.name);
+
+            return fetch('{{ route('admin.upload.image') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                })
+                .then(function(response) {
+                    return response.json().then(function(json) {
+                        if (!response.ok || !json.location) {
+                            throw new Error(json.error || 'Image upload failed.');
+                        }
+                        return json.location;
+                    });
+                });
+        }
+
         tinymce.init({
             selector: '#long_description',
             height: 300,
@@ -349,7 +371,39 @@
             force_br_newlines: false,
             force_p_newlines: false,
             forced_root_block: '',
-            keep_styles: true
+            keep_styles: true,
+            document_base_url: '{{ url('/') }}/',
+            relative_urls: false,
+            remove_script_host: false,
+            automatic_uploads: true,
+            file_picker_types: 'image',
+            images_upload_handler: function(blobInfo) {
+                return uploadBlogEditorImage(blobInfo.blob(), blobInfo.filename());
+            },
+            file_picker_callback: function(callback, value, meta) {
+                if (meta.filetype !== 'image') {
+                    return;
+                }
+
+                var input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.jpg,.jpeg,.png,.gif,.webp';
+                input.onchange = function() {
+                    var file = input.files[0];
+                    if (!file) {
+                        return;
+                    }
+
+                    uploadBlogEditorImage(file, file.name)
+                        .then(function(location) {
+                            callback(location, { title: file.name });
+                        })
+                        .catch(function(error) {
+                            alert(error.message || 'Image upload failed.');
+                        });
+                };
+                input.click();
+            }
         });
     </script>
     <script>

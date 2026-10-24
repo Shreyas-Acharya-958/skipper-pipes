@@ -101,7 +101,7 @@
                         <div class="col-12">
                             <h5>Long Description</h5>
                             <div class="border rounded p-3 bg-light">
-                                {!! nl2br(e($blog->long_description)) !!}
+                                {!! $blog->long_description !!}
                             </div>
                         </div>
                     </div>
