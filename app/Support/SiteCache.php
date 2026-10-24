@@ -9,7 +9,7 @@ class SiteCache
 {
     public static function remember(string $key, int $seconds, Closure $callback)
     {
-        $cache = Cache::store('file');
+        $cache = Cache::store('site_file');
         $version = $cache->get('site_cache_version', 1);
         $cacheKey = 'site_cache_' . $version . '_' . sha1($key);
 
@@ -31,11 +31,35 @@ class SiteCache
 
     public static function invalidate(): void
     {
-        $cache = Cache::store('file');
+        $cache = Cache::store('site_file');
 
         $cache->lock('site_cache_version_lock', 10)->block(5, function () use ($cache) {
             $version = (int) $cache->get('site_cache_version', 0);
             $cache->forever('site_cache_version', $version + 1);
         });
+    }
+
+    public static function forget(string $key): void
+    {
+        $cache = Cache::store('site_file');
+        $version = $cache->get('site_cache_version', 1);
+        $cache->forget('site_cache_' . $version . '_' . sha1($key));
+    }
+
+    public static function forgetProduct(?string $slug): void
+    {
+        if ($slug) {
+            self::forget('product:' . $slug);
+        }
+    }
+
+    public static function forgetHome(): void
+    {
+        self::forget('home');
+    }
+
+    public static function forgetLayout(): void
+    {
+        self::forget('layout');
     }
 }

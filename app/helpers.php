@@ -21,7 +21,7 @@ if (!function_exists('image_alt_text')) {
         $normalizedPath = \App\Models\ImageAltText::normalizePath($imagePath);
         $fileName = strtolower(basename($imagePath));
 
-        $imageAltTexts = \App\Support\SiteCache::remember('image_alt_texts_map', 86400, function () {
+        $imageAltTexts = \App\Support\SiteCache::remember('image_alt_texts_map', 604800, function () {
             return \App\Models\ImageAltText::query()
                 ->get(['normalized_path', 'file_name', 'alt_text'])
                 ->toArray();

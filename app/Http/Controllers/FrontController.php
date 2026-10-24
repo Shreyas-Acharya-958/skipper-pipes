@@ -130,7 +130,7 @@ class FrontController extends Controller
         };
 
         if (request()->routeIs('front.home', 'front.products.show')) {
-            return SiteCache::remember('seo:' . $path, 86400, $loadSeoData);
+            return SiteCache::remember('seo:' . $path, 604800, $loadSeoData);
         }
 
         return $loadSeoData();
@@ -140,7 +140,7 @@ class FrontController extends Controller
     {
         $seoData = $this->getSeoDataForCurrentUrl();
 
-        $homeData = SiteCache::remember('home', 3600, function () {
+        $homeData = SiteCache::remember('home', 604800, function () {
         // Get all active categories with their products
         $categories = ProductCategory::select('id', 'name', 'slug', 'description', 'image', 'icon')->with([
             'products' => function ($query) {
@@ -390,7 +390,7 @@ class FrontController extends Controller
 
     public function productDetail($slug)
     {
-        $product = SiteCache::remember('product:' . $slug, 3600, function () use ($slug) {
+        $product = SiteCache::remember('product:' . $slug, 604800, function () use ($slug) {
             return Product::select('id', 'product_category_id', 'title', 'h1_title', 'slug', 'page_image', 'technical', 'brochure', 'technical_brochure')
                 ->where('slug', $slug)
                 ->with([

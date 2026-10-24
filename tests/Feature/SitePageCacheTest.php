@@ -33,12 +33,12 @@ class SitePageCacheTest extends TestCase
         $slug = 'missing-' . Str::random(12);
         $this->get('/products/' . $slug)->assertNotFound();
 
-        $version = Cache::store('file')->get('site_cache_version', 1);
+        $version = Cache::store('site_file')->get('site_cache_version', 1);
         $cacheKey = 'site_cache_' . $version . '_' . sha1('product:' . $slug);
         $seoCacheKey = 'site_cache_' . $version . '_' . sha1('seo:products/' . $slug);
 
-        $this->assertFalse(Cache::store('file')->has($cacheKey));
-        $this->assertFalse(Cache::store('file')->has($seoCacheKey));
+        $this->assertFalse(Cache::store('site_file')->has($cacheKey));
+        $this->assertFalse(Cache::store('site_file')->has($seoCacheKey));
     }
 
     public function test_warm_home_and_product_requests_run_no_database_queries(): void
@@ -76,6 +76,17 @@ class SitePageCacheTest extends TestCase
         $this->artisan('site-cache:warm')->assertSuccessful();
 
         Http::assertSentCount(5);
+    }
+
+    public function test_site_cache_can_forget_one_entry_without_forgetting_other_entries(): void
+    {
+        SiteCache::remember('granular:first', 600, fn () => 'first');
+        SiteCache::remember('granular:second', 600, fn () => 'second');
+
+        SiteCache::forget('granular:first');
+
+        $this->assertSame('first-rebuilt', SiteCache::remember('granular:first', 600, fn () => 'first-rebuilt'));
+        $this->assertSame('second', SiteCache::remember('granular:second', 600, fn () => 'unexpected'));
     }
 
     public function test_product_edits_invalidate_cached_page_content(): void

@@ -11,6 +11,7 @@ use App\Models\HomeSectionFour;
 use App\Models\HomeSectionFourReview;
 use App\Models\HomeSectionOne;
 use App\Models\HomeSectionOneFeature;
+use App\Models\HomePageSEO;
 use App\Models\HomeSectionThree;
 use App\Models\HomeSectionTwo;
 use App\Models\ImageAltText;
@@ -62,6 +63,7 @@ class AppServiceProvider extends ServiceProvider
             HomeSectionThree::class,
             HomeSectionFour::class,
             HomeSectionFourReview::class,
+            HomePageSEO::class,
             Menu::class,
             MenuSeoMetadata::class,
             Footer::class,
@@ -74,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
             $viewData = $view->getData();
             $banners = $viewData['banners'] ?? collect();
             if (request()->routeIs('front.home', 'front.products.show')) {
-                $layoutData = SiteCache::remember('layout', 86400, function () use ($banners) {
+                $layoutData = SiteCache::remember('layout', 604800, function () use ($banners) {
                     return [
                         'menus' => Menu::tree(),
                         'footer' => Footer::select('section1', 'section2', 'section3', 'section4')->first(),
